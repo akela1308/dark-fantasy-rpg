@@ -15,13 +15,11 @@ import skillsData  from '../data/skills.json';
 // Добавляй сюда по мере появления арта:
 const SPRITE_IDS = [
   'hero_duelist',
-  // 'companion_archer',
-  // 'companion_shield',
-  // 'companion_healer',
-  // 'shadow_guard',
-  // 'bone_archer',
-  // 'wraith_herald',
-  // 'black_commander',
+  // 'companion_brawler',   // добавь когда будет арт
+  // 'companion_healer',    // добавь когда будет арт
+  // 'bandit_commander',    // добавь когда будет арт
+  // 'bandit_brawler',      // добавь когда будет арт
+  // 'bandit_archer',       // добавь когда будет арт
 ];
 const HAS_BG = false; // true когда положишь assets/sprites/battle_bg.png
 
