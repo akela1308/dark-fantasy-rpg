@@ -31,8 +31,8 @@ const HAS_BG = true; // поставь true когда добавишь battle_b
 // Enemy:  bottom-center-right → top-far-right
 const UNIT_POSITIONS = {
   player: {
-    0: { 0: { x: 250, y: 490 }, 1: { x: 400, y: 455 }, 2: { x: 540, y: 425 } },
-    1: { 0: { x: 195, y: 340 }, 1: { x: 340, y: 315 }, 2: { x: 475, y: 295 } },
+    0: { 0: { x: 290, y: 490 }, 1: { x: 430, y: 455 }, 2: { x: 560, y: 425 } },
+    1: { 0: { x: 225, y: 340 }, 1: { x: 360, y: 315 }, 2: { x: 490, y: 295 } },
   },
   enemy: {
     0: { 0: { x: 760, y: 480 }, 1: { x: 920, y: 455 }, 2: { x: 650, y: 460 } },
@@ -51,14 +51,7 @@ export class BattleScene extends Phaser.Scene {
   preload() {
     if (HAS_BG) this.load.image('battle_bg', 'battle_bg.png');
     SPRITE_IDS.forEach(id => this.load.image(id, `sprites/${id}.png`));
-    this.music = new MusicPlayer(this);
-    this.music.preload();
-    // Preload portraits by ID
-    const portraitIds = [
-      'hero_duelist','companion_brawler','companion_healer',
-      'bandit_commander','bandit_brawler','bandit_archer'
-    ];
-    portraitIds.forEach(id => this.load.image(`portrait_${id}`, `portraits/${id}.png`));
+    // Ассеты загружены в LoadingScene — здесь ничего не грузим
   }
 
   create() {
@@ -132,13 +125,7 @@ export class BattleScene extends Phaser.Scene {
     gfx.lineStyle(1, 0x333344, 0.3);
     gfx.lineBetween(640, 280, 640, 560);
 
-    // Метки сторон
-    this.add.text(310, 168, 'ВАШИ ВОИНЫ', {
-      fontSize: '13px', color: '#4A90D9', fontFamily: 'serif', alpha: 0.8
-    }).setOrigin(0.5).setDepth(2);
-    this.add.text(970, 168, 'ВРАГИ', {
-      fontSize: '13px', color: '#CC2222', fontFamily: 'serif', alpha: 0.8
-    }).setOrigin(0.5).setDepth(2);
+    // Метки убраны — стороны видны через портреты
   }
 
   // ── UI ────────────────────────────────────────────────────────────────

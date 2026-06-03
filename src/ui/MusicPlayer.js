@@ -22,12 +22,8 @@ export class MusicPlayer {
     this.current = null;
   }
 
-  // Вызвать в preload() сцены
-  preload() {
-    this.tracks.forEach(t => {
-      this.scene.load.audio(t.key, `audio/${t.file}`);
-    });
-  }
+  // Ассеты загружены в LoadingScene — preload не нужен
+  preload() {}
 
   // Вызвать в create() сцены
   create() {

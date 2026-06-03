@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
-import { BootScene }   from './scenes/BootScene.js';
-import { BattleScene } from './scenes/BattleScene.js';
+import { BootScene }    from './scenes/BootScene.js';
+import { LoadingScene } from './scenes/LoadingScene.js';
+import { BattleScene }  from './scenes/BattleScene.js';
 import { GAME_WIDTH, GAME_HEIGHT } from './utils/constants.js';
 
 const config = {
@@ -8,7 +9,7 @@ const config = {
   width:  GAME_WIDTH,
   height: GAME_HEIGHT,
   backgroundColor: '#0A0A0F',
-  scene: [BootScene, BattleScene],
+  scene: [BootScene, LoadingScene, BattleScene],
   scale: {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH,

@@ -38,6 +38,6 @@ export class BootScene extends Phaser.Scene {
 
     btn.on('pointerover',  () => btn.setColor('#C9A84C'));
     btn.on('pointerout',   () => btn.setColor('#E8E8E8'));
-    btn.on('pointerdown',  () => this.scene.start('BattleScene'));
+    btn.on('pointerdown',  () => this.scene.start('LoadingScene'));
   }
 }
