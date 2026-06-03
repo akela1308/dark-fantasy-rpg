@@ -96,7 +96,7 @@ export class BattleScene extends Phaser.Scene {
 
   _drawBg() {
     if (HAS_BG) {
-      this.add.image(640, 360, 'battle_bg').setDisplaySize(1280, 720);
+      this.add.image(640, 360, 'battle_bg').setDisplaySize(1280, 720).setDepth(0);
     } else {
       // Атмосферный градиент-заглушка
       const bg = this.add.graphics();
@@ -114,7 +114,7 @@ export class BattleScene extends Phaser.Scene {
   // ── Поле боя (без сетки, только атмосфера) ────────────────────────────
 
   _drawField() {
-    const gfx = this.add.graphics();
+    const gfx = this.add.graphics().setDepth(1);
 
     // Тонкие разделители зон
     gfx.lineStyle(1, 0x333344, 0.3);
@@ -123,10 +123,10 @@ export class BattleScene extends Phaser.Scene {
     // Метки сторон
     this.add.text(310, 168, 'ВАШИ ВОИНЫ', {
       fontSize: '13px', color: '#4A90D9', fontFamily: 'serif', alpha: 0.8
-    }).setOrigin(0.5);
+    }).setOrigin(0.5).setDepth(2);
     this.add.text(970, 168, 'ВРАГИ', {
       fontSize: '13px', color: '#CC2222', fontFamily: 'serif', alpha: 0.8
-    }).setOrigin(0.5);
+    }).setOrigin(0.5).setDepth(2);
   }
 
   // ── UI ────────────────────────────────────────────────────────────────
@@ -156,7 +156,7 @@ export class BattleScene extends Phaser.Scene {
         ? (unit.type === 'player' ? 0x00FF88 : 0xFF3322)
         : (unit.type === 'player' ? 0x2255AA : 0x661111);
       const ringAlpha = isActive ? 0.55 : 0.25;
-      const ring = this.add.ellipse(x, y + 8, h * 0.75, h * 0.22, ringColor, ringAlpha);
+      const ring = this.add.ellipse(x, y + 8, h * 0.75, h * 0.22, ringColor, ringAlpha).setDepth(1);
       this._unitSprites.push(ring);
 
       // Спрайт или прямоугольник
@@ -164,7 +164,7 @@ export class BattleScene extends Phaser.Scene {
       const hasSprite = SPRITE_IDS.includes(unit.id);
 
       if (hasSprite) {
-        sprite = this.add.image(x, y, unit.id).setOrigin(0.5, 1);
+        sprite = this.add.image(x, y, unit.id).setOrigin(0.5, 1).setDepth(1);
         const boss = unit.isBoss;
         const targetH = boss ? h * 1.45 : h;
         const ratio = sprite.width / sprite.height;
@@ -186,15 +186,15 @@ export class BattleScene extends Phaser.Scene {
       const hpPct = unit.hp / unit.maxHp;
       const barColor = hpPct > 0.5 ? 0x44CC44 : hpPct > 0.25 ? 0xCCAA00 : 0xCC2222;
 
-      const barBg   = this.add.rectangle(x, barY, barW, barH, 0x111111, 0.9).setOrigin(0.5);
-      const barFill = this.add.rectangle(x - barW/2 + (barW * hpPct)/2, barY, barW * hpPct, barH, barColor, 1).setOrigin(0.5);
+      const barBg   = this.add.rectangle(x, barY, barW, barH, 0x111111, 0.9).setOrigin(0.5).setDepth(2);
+      const barFill = this.add.rectangle(x - barW/2 + (barW * hpPct)/2, barY, barW * hpPct, barH, barColor, 1).setOrigin(0.5).setDepth(2);
 
       // Имя и HP
       const nameStyle = { fontSize: '10px', color: '#AAAAAA', fontFamily: 'serif' };
-      const nameText = this.add.text(x, barY + 8, unit.name, nameStyle).setOrigin(0.5, 0);
+      const nameText = this.add.text(x, barY + 8, unit.name, nameStyle).setOrigin(0.5, 0).setDepth(2);
       const hpText   = this.add.text(x, y - h - 4, `${unit.hp}/${unit.maxHp}`, {
         fontSize: '11px', color: isActive ? '#FFFFFF' : '#888888', fontFamily: 'monospace'
-      }).setOrigin(0.5, 1);
+      }).setOrigin(0.5, 1).setDepth(2);
 
       // Интерактивность
       if (unit.type === 'enemy') {

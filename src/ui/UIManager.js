@@ -29,10 +29,10 @@ export class UIManager {
   _createLogPanel() {
     const x = 20, y = 540, w = 600, h = 160;
     this.scene.add.rectangle(x + w/2, y + h/2, w, h, 0x0D0D1A, 0.9)
-      .setStrokeStyle(1, 0x333355);
-    this.scene.add.text(x + 10, y + 6, 'ЛОГ БОЯ', { fontSize: '11px', color: '#555577', fontFamily: 'serif' });
+      .setStrokeStyle(1, 0x333355).setDepth(3);
+    this.scene.add.text(x + 10, y + 6, 'ЛОГ БОЯ', { fontSize: '11px', color: '#555577', fontFamily: 'serif' }).setDepth(3);
 
-    this._logContainer = this.scene.add.container(x + 10, y + 22);
+    this._logContainer = this.scene.add.container(x + 10, y + 22).setDepth(3);
     for (let i = 0; i < 7; i++) {
       const t = this.scene.add.text(0, i * 19, '', { fontSize: '13px', color: '#AAAAAA', fontFamily: 'serif' });
       this._logLines.push(t);
@@ -53,15 +53,15 @@ export class UIManager {
   _createActionPanel() {
     const x = 660, y = 540, w = 600, h = 160;
     this.scene.add.rectangle(x + w/2, y + h/2, w, h, 0x0D0D1A, 0.9)
-      .setStrokeStyle(1, 0x333355);
+      .setStrokeStyle(1, 0x333355).setDepth(3);
 
-    this._actionPanel = this.scene.add.container(x + 10, y + 10);
+    this._actionPanel = this.scene.add.container(x + 10, y + 10).setDepth(3);
   }
 
   _createTurnLabel() {
     this._turnLabel = this.scene.add.text(640, 30, '', {
       fontFamily: 'serif', fontSize: '18px', color: '#E8E8E8',
-    }).setOrigin(0.5, 0);
+    }).setOrigin(0.5, 0).setDepth(3);
   }
 
   // ── Обновление UI ─────────────────────────────────────────────────────
@@ -119,14 +119,14 @@ export class UIManager {
     // Подсказка
     this.scene.add.text(x, baseY + 8, 'Кликни по врагу для атаки · Скиллы ниже:', {
       fontSize: '12px', color: '#666688', fontFamily: 'serif'
-    }).setName('hint');
+    }).setName('hint').setDepth(3);
     this._actionBtns.push(this.scene.children.getByName('hint'));
   }
 
   _addBtn(x, y, label, color, cb) {
     const btn = this.scene.add.text(x, y, label, {
       fontSize: '14px', color, fontFamily: 'serif',
-    }).setInteractive({ useHandCursor: true });
+    }).setInteractive({ useHandCursor: true }).setDepth(3);
 
     btn.on('pointerover', () => btn.setAlpha(0.7));
     btn.on('pointerout',  () => btn.setAlpha(1));
