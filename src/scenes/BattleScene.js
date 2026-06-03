@@ -26,13 +26,16 @@ const HAS_BG = false; // поставь true когда добавишь battle_
 // Задний ряд  (row=1): выше, чуть меньше (перспектива)
 const UNIT_POSITIONS = {
   player: {
-    // [row][col] → {x, y, scale}
-    0: { 0: { x: 155, y: 510 }, 1: { x: 290, y: 490 }, 2: { x: 425, y: 510 } },
-    1: { 0: { x: 180, y: 355 }, 1: { x: 310, y: 340 }, 2: { x: 440, y: 355 } },
+    // передний ряд: левее, ниже, крупнее
+    0: { 0: { x: 115, y: 530 }, 1: { x: 300, y: 510 }, 2: { x: 485, y: 530 } },
+    // задний ряд: правее от своей колонки, выше
+    1: { 0: { x: 160, y: 355 }, 1: { x: 460, y: 340 }, 2: { x: 560, y: 355 } },
   },
   enemy: {
-    0: { 0: { x: 1125, y: 510 }, 1: { x: 990, y: 490 }, 2: { x: 855, y: 510 } },
-    1: { 0: { x: 1100, y: 355 }, 1: { x: 970, y: 340 }, 2: { x: 840, y: 355 } },
+    // передний ряд: правее, ниже
+    0: { 0: { x: 1165, y: 530 }, 1: { x: 980, y: 510 }, 2: { x: 795, y: 530 } },
+    // задний ряд
+    1: { 0: { x: 1120, y: 355 }, 1: { x: 820, y: 340 }, 2: { x: 720, y: 355 } },
   },
 };
 
@@ -166,8 +169,9 @@ export class BattleScene extends Phaser.Scene {
         const targetH = boss ? h * 1.45 : h;
         const ratio = sprite.width / sprite.height;
         sprite.setDisplaySize(targetH * ratio, targetH);
-        // Враги смотрят влево (лицом к игроку)
+        // Враги смотрят влево, дуэлянт смотрит вправо (лицом к врагам)
         if (unit.type === 'enemy') sprite.setFlipX(true);
+        if (unit.id === 'hero_duelist') sprite.setFlipX(true);
       } else {
         const w = unit.isBoss ? 90 : 65;
         sprite = this.add.rectangle(x, y, w, h * 0.85, unit.color, 1)
