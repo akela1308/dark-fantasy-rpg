@@ -1,6 +1,6 @@
 export default {
   base: '/dark-fantasy-rpg/',
-  publicDir: 'assets',
+  publicDir: 'public',
   build: {
     outDir: 'dist',
   },
