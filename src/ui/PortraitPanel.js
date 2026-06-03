@@ -69,8 +69,12 @@ export class PortraitPanel {
 
       // Портрет
       const portrait = this.scene.add.image(cx, cy - 14, `portrait_${unit.id}`)
-        .setDisplaySize(cardW - 4, cardH - 36)
         .setDepth(depth + 1);
+      // Масштаб без растяжки — вписываем в карточку сохраняя пропорции
+      const maxW = cardW - 4;
+      const maxH = cardH - 36;
+      const scale = Math.min(maxW / portrait.width, maxH / portrait.height);
+      portrait.setScale(scale);
 
       // HP бар фон
       const barX   = isLeft ? panelX + 4 : panelX - cardW + 4;
