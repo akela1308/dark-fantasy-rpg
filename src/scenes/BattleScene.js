@@ -25,25 +25,25 @@ const HAS_BG = true; // поставь true когда добавишь battle_b
 // Передний ряд (row=0): ниже, крупнее
 // Задний ряд  (row=1): выше, чуть меньше (перспектива)
 // Disciples II-style diagonal grid
-// Player: top-left diagonal (back=top-left, front=center-left)
-// Enemy:  bottom-right diagonal (back=bottom-right, front=center-right)
+// Player: bottom-left → top-center-left
+// Enemy:  bottom-center-right → top-far-right
 const UNIT_POSITIONS = {
   player: {
-    // front row (closer to center, lower, bigger)
-    0: { 0: { x: 230, y: 570 }, 1: { x: 380, y: 545 }, 2: { x: 530, y: 520 } },
-    // back row (further left, higher, smaller)
-    1: { 0: { x: 170, y: 390 }, 1: { x: 310, y: 370 }, 2: { x: 450, y: 350 } },
+    // front row: lower, closer to left edge (avoiding raven)
+    0: { 0: { x: 255, y: 575 }, 1: { x: 415, y: 550 }, 2: { x: 540, y: 530 } },
+    // back row: higher, slightly right of front
+    1: { 0: { x: 195, y: 400 }, 1: { x: 340, y: 380 }, 2: { x: 470, y: 360 } },
   },
   enemy: {
-    // front row (closer to center, lower, bigger)
-    0: { 0: { x: 1050, y: 570 }, 1: { x: 900, y: 545 }, 2: { x: 750, y: 520 } },
-    // back row (further right, higher, smaller)
-    1: { 0: { x: 1110, y: 390 }, 1: { x: 970, y: 370 }, 2: { x: 830, y: 350 } },
+    // front row: lower, center-right area
+    0: { 0: { x: 870, y: 560 }, 1: { x: 1050, y: 545 }, 2: { x: 750, y: 545 } },
+    // back row: higher, far right
+    1: { 0: { x: 810, y: 390 }, 1: { x: 985, y: 375 }, 2: { x: 700, y: 375 } },
   },
 };
 
 // Высота спрайта в пикселях по ряду (перспектива)
-const ROW_HEIGHT = { 0: 220, 1: 155 };
+const ROW_HEIGHT = { 0: 230, 1: 160 };
 
 export class BattleScene extends Phaser.Scene {
   constructor() {
@@ -364,9 +364,9 @@ export class BattleScene extends Phaser.Scene {
   // ── После хода ────────────────────────────────────────────────────────
 
   _afterPlayerAction() {
-    this._renderAll();
     if (this._checkEnd()) return;
     this.turnManager.nextTurn();
+    this._renderAll();
     this.ui.update();
     if (!this.turnManager.isPlayerTurn()) this._runAITurn();
   }
@@ -387,9 +387,9 @@ export class BattleScene extends Phaser.Scene {
   }
 
   _finishTurn() {
-    this._renderAll();
     if (this._checkEnd()) return;
     this.turnManager.nextTurn();
+    this._renderAll();
     this.ui.update();
     if (!this.turnManager.isPlayerTurn()) this._runAITurn();
   }

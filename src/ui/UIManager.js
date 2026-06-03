@@ -149,11 +149,16 @@ export class UIManager {
     [...this.playerUnits, ...this.enemyUnits].forEach(unit => {
       if (!unit.isAlive || !unit._sprite) return;
       const isActive = unit === active;
-      const color = isActive
-        ? 0x00FF88
-        : (unit.type === 'player' ? COLORS.PLAYER_BORDER : COLORS.ENEMY_BORDER);
-      const width = isActive ? 3 : 1;
-      unit._sprite.setStrokeStyle(width, color);
+      if (!isActive) return;
+      // Draw glow ring around active unit using graphics
+      const x = unit._sprite.x;
+      const y = unit._sprite.y;
+      const w = unit._sprite.displayWidth || 80;
+      const color = unit.type === 'player' ? 0x00FF88 : 0xFF3322;
+      const gfx = this.scene.add.graphics().setDepth(1);
+      gfx.lineStyle(3, color, 0.9);
+      gfx.strokeEllipse(x, y, w * 0.9, w * 0.25);
+      this._borders.push(gfx);
     });
   }
 }
