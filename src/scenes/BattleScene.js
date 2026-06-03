@@ -144,11 +144,11 @@ export class BattleScene extends Phaser.Scene {
 
       if (hasSprite) {
         sprite = this.add.image(cx, cy, unit.id);
-        const scale = unit.isBoss ? 1.6 : 1.0;
-        sprite.setDisplaySize(60 * scale, 80 * scale);
+        const scale = unit.isBoss ? 2.2 : 1.4;
+        sprite.setDisplaySize(GRID.CELL_W * scale * 0.72, GRID.CELL_H * scale * 0.95);
       } else {
-        const w = unit.isBoss ? 80 : 60;
-        const h = unit.isBoss ? 100 : 80;
+        const w = unit.isBoss ? 100 : 80;
+        const h = unit.isBoss ? 120 : 95;
         sprite = this.add.rectangle(cx, cy, w, h, unit.color, 1)
           .setStrokeStyle(unit.isBoss ? 3 : 2, unit.isBoss ? 0xFF0000 : 0x333333);
       }
@@ -354,7 +354,7 @@ export class BattleScene extends Phaser.Scene {
   // ══════════════════════════════════════════════════════════════════════
 
   _onEnemyClick(target) {
-    if (this.battleOver || this._animating) return;
+    if (this.battleOver) return;
     if (!this.turnManager.isPlayerTurn()) return;
     const actor = this.turnManager.active;
     if (!actor || actor.type !== 'player') return;
@@ -362,37 +362,29 @@ export class BattleScene extends Phaser.Scene {
     if (this._pendingSkill) {
       const sk = this.skillSystem.get(this._pendingSkill);
       if (sk && sk.targetType === 'enemy_single') {
-        this._animating = true;
-        this._animAttack(actor, target).then(() => {
-          actor.handleSkill(this._pendingSkill, target, this.skillSystem);
-          this._pendingSkill = null;
-          this._animating = false;
-          this._afterPlayerAction();
-        });
+        this._playAttackAnim(actor, target);
+        actor.handleSkill(this._pendingSkill, target, this.skillSystem);
+        this._pendingSkill = null;
+        this.time.delayedCall(150, () => this._afterPlayerAction());
         return;
       }
     }
 
-    this._animating = true;
-    this._animAttack(actor, target).then(() => {
-      actor.handleAttack(target, this.skillSystem);
-      this._animating = false;
-      this._afterPlayerAction();
-    });
+    this._playAttackAnim(actor, target);
+    actor.handleAttack(target, this.skillSystem);
+    this.time.delayedCall(150, () => this._afterPlayerAction());
   }
 
   _onAllyClick(target) {
-    if (this.battleOver || this._animating) return;
+    if (this.battleOver) return;
     if (!this.turnManager.isPlayerTurn()) return;
     if (!this._pendingSkill) return;
 
     const actor = this.turnManager.active;
     const sk = this.skillSystem.get(this._pendingSkill);
     if (sk && (sk.targetType === 'ally_single' || sk.targetType === 'self')) {
-      this._animating = true;
       actor.handleSkill(this._pendingSkill, target, this.skillSystem);
       this._pendingSkill = null;
-      this._animating = false;
       this._afterPlayerAction();
     }
   }
@@ -429,38 +421,56 @@ export class BattleScene extends Phaser.Scene {
     }
   }
 
-  // ── ИИ с анимациями ───────────────────────────────────────────────────
+  // ── ИИ ────────────────────────────────────────────────────────────────
 
   _runAITurn() {
     this.time.delayedCall(AI_DELAY, () => {
       if (this.battleOver) return;
       const actor = this.turnManager.active;
+
       if (!actor || actor.type !== 'enemy') {
-        this._afterAIAction();
+        this._finishTurn();
         return;
       }
 
-      // Находим цель до действия чтобы анимировать
+      // Анимация — только визуальная, не блокирует логику
       const target = actor.findTarget(this.playerUnits, this.grid);
-
-      if (target) {
-        this._animAttack(actor, target).then(() => {
-          actor.decideAction(this.playerUnits, this.skillSystem, this.grid);
-          this._afterAIAction();
-        });
-      } else {
-        actor.decideAction(this.playerUnits, this.skillSystem, this.grid);
-        this._afterAIAction();
+      if (target && actor._sprite && target._sprite) {
+        this._playAttackAnim(actor, target);
       }
+
+      // Логика выполняется сразу
+      actor.decideAction(this.playerUnits, this.skillSystem, this.grid);
+
+      // Обновляем поле и переходим к следующему ходу после анимации
+      this.time.delayedCall(200, () => {
+        this._finishTurn();
+      });
     });
   }
 
-  _afterAIAction() {
+  // Визуальная анимация атаки (не блокирующая)
+  _playAttackAnim(attacker, target) {
+    if (!attacker._sprite || !target._sprite) return;
+    const origX = attacker._spriteX;
+    const origY = attacker._spriteY;
+    const dx = (target._spriteX - origX) * 0.3;
+    const dy = (target._spriteY - origY) * 0.3;
+    this.tweens.add({
+      targets: attacker._sprite,
+      x: origX + dx,
+      y: origY + dy,
+      duration: 100,
+      ease: 'Power2',
+      yoyo: true,
+    });
+  }
+
+  _finishTurn() {
     this._renderAll();
     if (this._checkEnd()) return;
     this.turnManager.nextTurn();
     this.ui.update();
-
     if (!this.turnManager.isPlayerTurn()) {
       this._runAITurn();
     }
