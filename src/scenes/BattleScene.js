@@ -19,7 +19,7 @@ const SPRITE_IDS = [
   'bandit_brawler',
   'bandit_archer',
 ];
-const HAS_BG = false; // поставь true когда добавишь battle_bg.png
+const HAS_BG = true; // поставь true когда добавишь battle_bg.png
 
 // ── Позиции юнитов в стиле Disciples II ──────────────────────────────────
 // Передний ряд (row=0): ниже, крупнее
@@ -48,7 +48,7 @@ export class BattleScene extends Phaser.Scene {
   }
 
   preload() {
-    if (HAS_BG) this.load.image('battle_bg', 'sprites/battle_bg.png');
+    if (HAS_BG) this.load.image('battle_bg', 'battle_bg.png');
     SPRITE_IDS.forEach(id => this.load.image(id, `sprites/${id}.png`));
   }
 
