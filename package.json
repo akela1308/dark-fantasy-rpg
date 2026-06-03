@@ -1,0 +1,17 @@
+{
+  "name": "dark-fantasy-rpg",
+  "version": "0.1.0",
+  "description": "Dark Fantasy Tactical RPG — Vertical Slice",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "phaser": "^3.80.1"
+  },
+  "devDependencies": {
+    "vite": "^5.2.0"
+  }
+}

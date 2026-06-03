@@ -1,0 +1,60 @@
+[
+  {
+    "id": "hero_duelist",
+    "name": "Падший Дуэлянт",
+    "type": "player",
+    "hp": 80,
+    "maxHp": 80,
+    "damage": { "min": 12, "max": 18 },
+    "speed": 7,
+    "position": { "row": 0, "col": 0 },
+    "skills": ["rapier_strike", "dueling_stance"],
+    "resources": { "pistol_charges": 2 },
+    "lifesteal": 3,
+    "color": 0x4A90D9,
+    "description": "Бывший имперский дуэлянт. Каждый удар — судьба."
+  },
+  {
+    "id": "companion_archer",
+    "name": "Стрелок",
+    "type": "player",
+    "hp": 55,
+    "maxHp": 55,
+    "damage": { "min": 14, "max": 20 },
+    "speed": 6,
+    "position": { "row": 1, "col": 1 },
+    "skills": ["aimed_shot"],
+    "resources": { "pistol_charges": 0 },
+    "ranged": true,
+    "color": 0x7BC67E,
+    "description": "Молчаливый. Промахов не знает."
+  },
+  {
+    "id": "companion_shield",
+    "name": "Мечник",
+    "type": "player",
+    "hp": 100,
+    "maxHp": 100,
+    "damage": { "min": 8, "max": 14 },
+    "speed": 5,
+    "position": { "row": 0, "col": 1 },
+    "skills": ["shield_cover"],
+    "resources": { "cover_uses": 1 },
+    "color": 0xC0C0C0,
+    "description": "Щит — его судьба. Умрёт за своих."
+  },
+  {
+    "id": "companion_healer",
+    "name": "Знахарка",
+    "type": "player",
+    "hp": 50,
+    "maxHp": 50,
+    "damage": { "min": 6, "max": 10 },
+    "speed": 4,
+    "position": { "row": 1, "col": 2 },
+    "skills": ["bandage"],
+    "ranged": false,
+    "color": 0xE8C96B,
+    "description": "Лечит раны. Сама — на грани сил."
+  }
+]

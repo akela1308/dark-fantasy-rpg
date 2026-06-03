@@ -1,0 +1,62 @@
+[
+  {
+    "id": "rapier_strike",
+    "name": "Укол в уязвимость",
+    "description": "Точный удар рапирой. Урон ×1.8",
+    "type": "active",
+    "targetType": "enemy_single",
+    "cooldown": 1,
+    "damageMultiplier": 1.8
+  },
+  {
+    "id": "dueling_stance",
+    "name": "Дуэльная стойка",
+    "description": "+30% уклонение на 1 ход",
+    "type": "active",
+    "targetType": "self",
+    "cooldown": 2,
+    "effect": "dodge_boost",
+    "effectValue": 0.3,
+    "duration": 1
+  },
+  {
+    "id": "pistol_shot",
+    "name": "Выстрел из пистолета",
+    "description": "Игнорирует ряды. 22–28 урона",
+    "type": "active",
+    "targetType": "enemy_single",
+    "cooldown": 0,
+    "usesResource": "pistol_charges",
+    "damage": { "min": 22, "max": 28 },
+    "ignoreRows": true
+  },
+  {
+    "id": "aimed_shot",
+    "name": "Прицельный выстрел",
+    "description": "×2 урон, без промаха",
+    "type": "active",
+    "targetType": "enemy_single",
+    "cooldown": 2,
+    "damageMultiplier": 2.0,
+    "cannotMiss": true
+  },
+  {
+    "id": "shield_cover",
+    "name": "Прикрыть",
+    "description": "Принять следующий удар на себя вместо союзника",
+    "type": "active",
+    "targetType": "ally_single",
+    "cooldown": 0,
+    "usesResource": "cover_uses",
+    "effect": "cover"
+  },
+  {
+    "id": "bandage",
+    "name": "Перевязка",
+    "description": "Лечит 20 HP выбранному союзнику",
+    "type": "active",
+    "targetType": "ally_single",
+    "cooldown": 2,
+    "healAmount": 20
+  }
+]
