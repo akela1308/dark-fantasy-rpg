@@ -4,6 +4,7 @@ import { TurnManager } from '../systems/TurnManager.js';
 import { SkillSystem }  from '../systems/SkillSystem.js';
 import { BattleGrid }   from '../systems/BattleGrid.js';
 import { UIManager }    from '../ui/UIManager.js';
+import { MusicPlayer }  from '../ui/MusicPlayer.js';
 import { COLORS, XP, AI_DELAY } from '../utils/constants.js';
 import eventBus from '../utils/eventBus.js';
 
@@ -53,6 +54,8 @@ export class BattleScene extends Phaser.Scene {
   preload() {
     if (HAS_BG) this.load.image('battle_bg', 'battle_bg.png');
     SPRITE_IDS.forEach(id => this.load.image(id, `sprites/${id}.png`));
+    this.music = new MusicPlayer(this);
+    this.music.preload();
   }
 
   create() {
@@ -65,6 +68,7 @@ export class BattleScene extends Phaser.Scene {
     this._bindEvents();
     this.turnManager.init([...this.playerUnits, ...this.enemyUnits]);
     this._renderAll();
+    this.music.create();
   }
 
   // ── Инициализация ─────────────────────────────────────────────────────
