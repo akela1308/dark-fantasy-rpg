@@ -30,16 +30,16 @@ const HAS_BG = true; // поставь true когда добавишь battle_b
 // Enemy:  bottom-center-right → top-far-right
 const UNIT_POSITIONS = {
   player: {
-    // front row: lower, closer to left edge (avoiding raven)
-    0: { 0: { x: 255, y: 575 }, 1: { x: 415, y: 550 }, 2: { x: 540, y: 530 } },
-    // back row: higher, slightly right of front
-    1: { 0: { x: 195, y: 400 }, 1: { x: 340, y: 380 }, 2: { x: 470, y: 360 } },
+    // front row — сдвинуто на СВ (северо-восток)
+    0: { 0: { x: 310, y: 530 }, 1: { x: 460, y: 505 }, 2: { x: 590, y: 485 } },
+    // back row
+    1: { 0: { x: 250, y: 360 }, 1: { x: 390, y: 340 }, 2: { x: 520, y: 320 } },
   },
   enemy: {
-    // front row: lower, center-right area
-    0: { 0: { x: 870, y: 560 }, 1: { x: 1050, y: 545 }, 2: { x: 750, y: 545 } },
-    // back row: higher, far right
-    1: { 0: { x: 810, y: 390 }, 1: { x: 985, y: 375 }, 2: { x: 700, y: 375 } },
+    // front row
+    0: { 0: { x: 870, y: 530 }, 1: { x: 1040, y: 515 }, 2: { x: 750, y: 520 } },
+    // back row
+    1: { 0: { x: 810, y: 365 }, 1: { x: 975, y: 350 }, 2: { x: 700, y: 355 } },
   },
 };
 
@@ -54,8 +54,8 @@ export class BattleScene extends Phaser.Scene {
   preload() {
     if (HAS_BG) this.load.image('battle_bg', 'battle_bg.png');
     SPRITE_IDS.forEach(id => this.load.image(id, `sprites/${id}.png`));
-    this.music = new MusicPlayer(this);
-    this.music.preload();
+    // this.music = new MusicPlayer(this);
+    // this.music.preload();
   }
 
   create() {
@@ -186,22 +186,11 @@ export class BattleScene extends Phaser.Scene {
           .setStrokeStyle(unit.isBoss ? 3 : 1, unit.isBoss ? 0xFF0000 : 0x444444);
       }
 
-      // HP-бар под юнитом
-      const barW = h * 0.65;
-      const barH = 5;
-      const barY = y + 14;
-      const hpPct = unit.hp / unit.maxHp;
-      const barColor = hpPct > 0.5 ? 0x44CC44 : hpPct > 0.25 ? 0xCCAA00 : 0xCC2222;
-
-      const barBg   = this.add.rectangle(x, barY, barW, barH, 0x111111, 0.9).setOrigin(0.5).setDepth(2);
-      const barFill = this.add.rectangle(x - barW/2 + (barW * hpPct)/2, barY, barW * hpPct, barH, barColor, 1).setOrigin(0.5).setDepth(2);
-
-      // Имя и HP
-      const nameStyle = { fontSize: '10px', color: '#AAAAAA', fontFamily: 'serif' };
-      const nameText = this.add.text(x, barY + 8, unit.name, nameStyle).setOrigin(0.5, 0).setDepth(2);
-      const hpText   = this.add.text(x, y - h - 4, `${unit.hp}/${unit.maxHp}`, {
-        fontSize: '11px', color: isActive ? '#FFFFFF' : '#888888', fontFamily: 'monospace'
-      }).setOrigin(0.5, 1).setDepth(2);
+      // HP/name перенесены в портреты — здесь не рисуем
+      const barBg   = null;
+      const barFill = null;
+      const nameText = null;
+      const hpText   = null;
 
       // Интерактивность
       if (unit.type === 'enemy') {
@@ -215,10 +204,10 @@ export class BattleScene extends Phaser.Scene {
         sprite.on('pointerdown', () => this._onAllyClick(unit));
       }
 
-      this._unitSprites.push(sprite, barBg, barFill, nameText, hpText);
+      this._unitSprites.push(sprite);
 
       unit._sprite  = sprite;
-      unit._hpText  = hpText;
+      unit._hpText  = null;
       unit._spriteX = x;
       unit._spriteY = y - h / 2; // центр для анимаций
     });
