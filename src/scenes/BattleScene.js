@@ -4,15 +4,13 @@ import { TurnManager } from '../systems/TurnManager.js';
 import { SkillSystem }  from '../systems/SkillSystem.js';
 import { BattleGrid }   from '../systems/BattleGrid.js';
 import { UIManager }    from '../ui/UIManager.js';
-import { COLORS, GRID, PHASE, XP, AI_DELAY } from '../utils/constants.js';
+import { COLORS, XP, AI_DELAY } from '../utils/constants.js';
 import eventBus from '../utils/eventBus.js';
 
 import unitsData   from '../data/units.json';
 import enemiesData from '../data/enemies.json';
 import skillsData  from '../data/skills.json';
 
-// ID юнитов у которых есть PNG-спрайт в assets/sprites/
-// Добавляй сюда по мере появления арта:
 const SPRITE_IDS = [
   'hero_duelist',
   'companion_brawler',
@@ -21,25 +19,34 @@ const SPRITE_IDS = [
   'bandit_brawler',
   'bandit_archer',
 ];
-const HAS_BG = false; // true когда положишь assets/sprites/battle_bg.png
+const HAS_BG = false; // поставь true когда добавишь battle_bg.png
 
-/**
- * BattleScene — главная сцена боя с tween-анимациями.
- */
+// ── Позиции юнитов в стиле Disciples II ──────────────────────────────────
+// Передний ряд (row=0): ниже, крупнее
+// Задний ряд  (row=1): выше, чуть меньше (перспектива)
+const UNIT_POSITIONS = {
+  player: {
+    // [row][col] → {x, y, scale}
+    0: { 0: { x: 155, y: 510 }, 1: { x: 290, y: 490 }, 2: { x: 425, y: 510 } },
+    1: { 0: { x: 180, y: 355 }, 1: { x: 310, y: 340 }, 2: { x: 440, y: 355 } },
+  },
+  enemy: {
+    0: { 0: { x: 1125, y: 510 }, 1: { x: 990, y: 490 }, 2: { x: 855, y: 510 } },
+    1: { 0: { x: 1100, y: 355 }, 1: { x: 970, y: 340 }, 2: { x: 840, y: 355 } },
+  },
+};
+
+// Высота спрайта в пикселях по ряду (перспектива)
+const ROW_HEIGHT = { 0: 170, 1: 125 };
+
 export class BattleScene extends Phaser.Scene {
   constructor() {
     super({ key: 'BattleScene' });
   }
 
   preload() {
-    // Фон поля боя
-    if (HAS_BG) {
-      this.load.image('battle_bg', 'sprites/battle_bg.png');
-    }
-    // Спрайты юнитов (загружаем только те что есть)
-    SPRITE_IDS.forEach(id => {
-      this.load.image(id, `sprites/${id}.png`);
-    });
+    if (HAS_BG) this.load.image('battle_bg', 'sprites/battle_bg.png');
+    SPRITE_IDS.forEach(id => this.load.image(id, `sprites/${id}.png`));
   }
 
   create() {
@@ -47,7 +54,7 @@ export class BattleScene extends Phaser.Scene {
     this._initSystems();
     this._initUnits();
     this._drawBg();
-    this._drawGrid();
+    this._drawField();
     this._initUI();
     this._bindEvents();
     this.turnManager.init([...this.playerUnits, ...this.enemyUnits]);
@@ -57,14 +64,13 @@ export class BattleScene extends Phaser.Scene {
   // ── Инициализация ─────────────────────────────────────────────────────
 
   _initSystems() {
-    this.skillSystem  = new SkillSystem();
+    this.skillSystem = new SkillSystem();
     this.skillSystem.registerAll(skillsData);
-    this.turnManager  = new TurnManager();
-    this.grid         = new BattleGrid();
-    this.battleLog    = [];
-    this.battleOver   = false;
-    this.selectedUnit = null;
-    this._animating   = false; // блокировка кликов во время анимации
+    this.turnManager = new TurnManager();
+    this.grid        = new BattleGrid();
+    this.battleLog   = [];
+    this.battleOver  = false;
+    this._pendingSkill = null;
   }
 
   _initUnits() {
@@ -73,44 +79,54 @@ export class BattleScene extends Phaser.Scene {
     this.grid.placeAll([...this.playerUnits, ...this.enemyUnits]);
   }
 
+  // ── Позиция юнита на экране ───────────────────────────────────────────
+
+  _getPos(unit) {
+    const side = unit.type === 'player' ? 'player' : 'enemy';
+    const { row, col } = unit.position;
+    const pos = UNIT_POSITIONS[side]?.[row]?.[col];
+    if (!pos) return { x: 640, y: 400 };
+    return pos;
+  }
+
   // ── Фон ───────────────────────────────────────────────────────────────
 
   _drawBg() {
     if (HAS_BG) {
       this.add.image(640, 360, 'battle_bg').setDisplaySize(1280, 720);
     } else {
-      // Градиентный placeholder-фон
+      // Атмосферный градиент-заглушка
       const bg = this.add.graphics();
-      bg.fillGradientStyle(0x050510, 0x050510, 0x0A0A1F, 0x0A0A1F, 1);
+      bg.fillGradientStyle(0x060810, 0x060810, 0x0E1020, 0x0E1020, 1);
       bg.fillRect(0, 0, 1280, 720);
+      // Земля
+      bg.fillGradientStyle(0x1A1208, 0x1A1208, 0x2A1E10, 0x2A1E10, 1);
+      bg.fillRect(0, 420, 1280, 300);
+      // Линия горизонта
+      bg.lineStyle(1, 0x3A2E1A, 0.4);
+      bg.lineBetween(0, 420, 1280, 420);
     }
   }
 
-  // ── Рендер сетки ──────────────────────────────────────────────────────
+  // ── Поле боя (без сетки, только атмосфера) ────────────────────────────
 
-  _drawGrid() {
+  _drawField() {
     const gfx = this.add.graphics();
 
-    ['player', 'enemy'].forEach(side => {
-      for (let row = 0; row < GRID.ROWS; row++) {
-        for (let col = 0; col < GRID.COLS; col++) {
-          const { x, y } = BattleGrid.getCellPixelPos(side, row, col);
-          gfx.fillStyle(COLORS.GRID_CELL, 0.7);
-          gfx.fillRect(x, y, GRID.CELL_W, GRID.CELL_H);
-          gfx.lineStyle(1, COLORS.GRID_BORDER, 0.5);
-          gfx.strokeRect(x, y, GRID.CELL_W, GRID.CELL_H);
-        }
-      }
-    });
+    // Тонкие разделители зон
+    gfx.lineStyle(1, 0x333344, 0.3);
+    gfx.lineBetween(640, 280, 640, 560);
 
-    gfx.lineStyle(2, 0x444466, 0.8);
-    gfx.lineBetween(640, 200, 640, 520);
-
-    this.add.text(300, 190, 'ВАШИ ВОИНЫ', { fontSize: '14px', color: '#4A90D9', fontFamily: 'serif' }).setOrigin(0.5);
-    this.add.text(970, 190, 'ВРАГИ',       { fontSize: '14px', color: '#CC2222', fontFamily: 'serif' }).setOrigin(0.5);
+    // Метки сторон
+    this.add.text(310, 168, 'ВАШИ ВОИНЫ', {
+      fontSize: '13px', color: '#4A90D9', fontFamily: 'serif', alpha: 0.8
+    }).setOrigin(0.5);
+    this.add.text(970, 168, 'ВРАГИ', {
+      fontSize: '13px', color: '#CC2222', fontFamily: 'serif', alpha: 0.8
+    }).setOrigin(0.5);
   }
 
-  // ── UI Manager ────────────────────────────────────────────────────────
+  // ── UI ────────────────────────────────────────────────────────────────
 
   _initUI() {
     this.ui = new UIManager(this);
@@ -120,68 +136,68 @@ export class BattleScene extends Phaser.Scene {
   // ── Рендер юнитов ─────────────────────────────────────────────────────
 
   _renderAll() {
-    if (this._unitSprites) this._unitSprites.forEach(s => s.destroy());
+    if (this._unitSprites) this._unitSprites.forEach(s => { try { s.destroy(); } catch(e){} });
     this._unitSprites = [];
+
+    const active = this.turnManager.active;
 
     [...this.playerUnits, ...this.enemyUnits].forEach(unit => {
       if (!unit.isAlive) return;
-      const side = unit.type === 'player' ? 'player' : 'enemy';
-      const { x, y } = BattleGrid.getCellPixelPos(side, unit.position.row, unit.position.col);
-      const cx = x + GRID.CELL_W / 2;
-      const cy = y + GRID.CELL_H / 2;
 
-      // Свечение под активным юнитом
-      const isActive = unit === this.turnManager.active;
-      if (isActive) {
-        const glowColor = unit.type === 'player' ? 0x00FF88 : 0xFF3322;
-        const glow = this.add.ellipse(cx, cy + 36, 70, 18, glowColor, 0.35);
-        this._unitSprites.push(glow);
-      }
+      const { x, y } = this._getPos(unit);
+      const h = ROW_HEIGHT[unit.position.row] ?? 140;
+      const isActive = unit === active;
+
+      // Круг под ногами (Disciples-стиль)
+      const ringColor = isActive
+        ? (unit.type === 'player' ? 0x00FF88 : 0xFF3322)
+        : (unit.type === 'player' ? 0x2255AA : 0x661111);
+      const ringAlpha = isActive ? 0.55 : 0.25;
+      const ring = this.add.ellipse(x, y + 8, h * 0.75, h * 0.22, ringColor, ringAlpha);
+      this._unitSprites.push(ring);
 
       // Спрайт или прямоугольник
       let sprite;
       const hasSprite = SPRITE_IDS.includes(unit.id);
 
       if (hasSprite) {
-        sprite = this.add.image(cx, cy, unit.id);
-        const scale = unit.isBoss ? 2.2 : 1.4;
-        sprite.setDisplaySize(GRID.CELL_W * scale * 0.72, GRID.CELL_H * scale * 0.95);
+        sprite = this.add.image(x, y, unit.id).setOrigin(0.5, 1);
+        const boss = unit.isBoss;
+        const targetH = boss ? h * 1.45 : h;
+        // Сохраняем пропорции
+        const ratio = sprite.width / sprite.height;
+        sprite.setDisplaySize(targetH * ratio, targetH);
       } else {
-        const w = unit.isBoss ? 100 : 80;
-        const h = unit.isBoss ? 120 : 95;
-        sprite = this.add.rectangle(cx, cy, w, h, unit.color, 1)
-          .setStrokeStyle(unit.isBoss ? 3 : 2, unit.isBoss ? 0xFF0000 : 0x333333);
+        const w = unit.isBoss ? 90 : 65;
+        sprite = this.add.rectangle(x, y, w, h * 0.85, unit.color, 1)
+          .setOrigin(0.5, 1)
+          .setStrokeStyle(unit.isBoss ? 3 : 1, unit.isBoss ? 0xFF0000 : 0x444444);
       }
 
-      // HP-бар
-      const barW = GRID.CELL_W - 16;
-      const barH = 6;
-      const barX = x + 8;
-      const barY = y + GRID.CELL_H - 22;
+      // HP-бар под юнитом
+      const barW = h * 0.65;
+      const barH = 5;
+      const barY = y + 14;
       const hpPct = unit.hp / unit.maxHp;
       const barColor = hpPct > 0.5 ? 0x44CC44 : hpPct > 0.25 ? 0xCCAA00 : 0xCC2222;
 
-      const barBg   = this.add.rectangle(barX + barW/2, barY, barW, barH, 0x111111, 1);
-      const barFill = this.add.rectangle(barX + (barW * hpPct)/2, barY, barW * hpPct, barH, barColor, 1);
+      const barBg   = this.add.rectangle(x, barY, barW, barH, 0x111111, 0.9).setOrigin(0.5);
+      const barFill = this.add.rectangle(x - barW/2 + (barW * hpPct)/2, barY, barW * hpPct, barH, barColor, 1).setOrigin(0.5);
 
-      // Имя
-      const nameText = this.add.text(cx, y + GRID.CELL_H - 10, unit.name, {
-        fontSize: '10px', color: '#CCCCCC', fontFamily: 'serif'
+      // Имя и HP
+      const nameStyle = { fontSize: '10px', color: '#AAAAAA', fontFamily: 'serif' };
+      const nameText = this.add.text(x, barY + 8, unit.name, nameStyle).setOrigin(0.5, 0);
+      const hpText   = this.add.text(x, y - h - 4, `${unit.hp}/${unit.maxHp}`, {
+        fontSize: '11px', color: isActive ? '#FFFFFF' : '#888888', fontFamily: 'monospace'
       }).setOrigin(0.5, 1);
 
-      // HP цифры
-      const hpText = this.add.text(cx, y + 4, `${unit.hp}/${unit.maxHp}`, {
-        fontSize: '11px', color: '#88EE88', fontFamily: 'monospace'
-      }).setOrigin(0.5, 0);
-
-      // Кликабельность
+      // Интерактивность
       if (unit.type === 'enemy') {
         sprite.setInteractive({ useHandCursor: true });
         sprite.on('pointerdown', () => this._onEnemyClick(unit));
-        sprite.on('pointerover', () => { if (!hasSprite) sprite.setStrokeStyle(3, 0xFFFF00); });
-        sprite.on('pointerout',  () => { if (!hasSprite) sprite.setStrokeStyle(2, unit.isBoss ? 0xFF0000 : 0x333333); });
+        sprite.on('pointerover', () => sprite.setAlpha(0.8));
+        sprite.on('pointerout',  () => sprite.setAlpha(1.0));
       }
-
       if (unit.type === 'player') {
         sprite.setInteractive({ useHandCursor: true });
         sprite.on('pointerdown', () => this._onAllyClick(unit));
@@ -191,8 +207,8 @@ export class BattleScene extends Phaser.Scene {
 
       unit._sprite  = sprite;
       unit._hpText  = hpText;
-      unit._spriteX = cx;
-      unit._spriteY = cy;
+      unit._spriteX = x;
+      unit._spriteY = y - h / 2; // центр для анимаций
     });
 
     this.ui.update();
@@ -202,155 +218,88 @@ export class BattleScene extends Phaser.Scene {
   // АНИМАЦИИ
   // ══════════════════════════════════════════════════════════════════════
 
-  /**
-   * Анимация атаки: юнит сдвигается к цели и возвращается.
-   * Возвращает Promise — можно await.
-   */
-  _animAttack(attacker, target) {
-    return new Promise(resolve => {
-      if (!attacker._sprite || !target._sprite) { resolve(); return; }
-
-      const origX = attacker._spriteX;
-      const origY = attacker._spriteY;
-      const tx = target._spriteX;
-      const ty = target._spriteY;
-
-      // Смещение на 35% пути к цели
-      const dx = (tx - origX) * 0.35;
-      const dy = (ty - origY) * 0.35;
-
-      this.tweens.add({
-        targets: attacker._sprite,
-        x: origX + dx,
-        y: origY + dy,
-        duration: 120,
-        ease: 'Power2',
-        yoyo: true,
-        onComplete: resolve,
-      });
-    });
-  }
-
-  /**
-   * Анимация получения урона: белая вспышка + тряска.
-   */
-  _animHit(unit) {
-    return new Promise(resolve => {
-      if (!unit._sprite) { resolve(); return; }
-
-      const origX = unit._spriteX;
-
-      // Тряска
-      this.tweens.add({
-        targets: unit._sprite,
-        x: origX + 8,
-        duration: 40,
-        yoyo: true,
-        repeat: 2,
-        ease: 'Linear',
-        onComplete: () => {
-          unit._sprite.x = origX;
-          resolve();
-        }
-      });
-
-      // Белая вспышка (tint только для image, для rectangle — fillColor)
-      if (unit._sprite.setTint) {
-        unit._sprite.setTint(0xFFFFFF);
-        this.time.delayedCall(200, () => {
-          if (unit._sprite) unit._sprite.clearTint();
-        });
-      } else {
-        const origColor = unit.color;
-        unit._sprite.setFillStyle(0xFFFFFF);
-        this.time.delayedCall(200, () => {
-          if (unit._sprite) unit._sprite.setFillStyle(origColor);
-        });
-      }
-    });
-  }
-
-  /**
-   * Анимация смерти: юнит угасает и падает.
-   */
-  _animDeath(unit) {
-    return new Promise(resolve => {
-      if (!unit._sprite) { resolve(); return; }
-
-      this.tweens.add({
-        targets: unit._sprite,
-        alpha: 0,
-        y: unit._spriteY + 30,
-        duration: 500,
-        ease: 'Power2',
-        onComplete: resolve,
-      });
-    });
-  }
-
-  /**
-   * Анимация лечения: зелёные частицы вверх.
-   */
-  _animHeal(unit) {
-    return new Promise(resolve => {
-      if (!unit._sprite) { resolve(); return; }
-
-      // Зелёный ореол
-      const glow = this.add.ellipse(
-        unit._spriteX, unit._spriteY,
-        80, 80, 0x44FF88, 0.5
-      );
-
-      this.tweens.add({
-        targets: glow,
-        alpha: 0,
-        scaleX: 2,
-        scaleY: 2,
-        duration: 600,
-        ease: 'Power2',
-        onComplete: () => { glow.destroy(); resolve(); }
-      });
-
-      // Плывущий "+HP" текст
-      const txt = this.add.text(
-        unit._spriteX, unit._spriteY - 20,
-        `+HP`, { fontSize: '18px', color: '#44FF88', fontFamily: 'serif', stroke: '#000', strokeThickness: 2 }
-      ).setOrigin(0.5);
-
-      this.tweens.add({
-        targets: txt,
-        y: unit._spriteY - 70,
-        alpha: 0,
-        duration: 800,
-        ease: 'Power2',
-        onComplete: () => txt.destroy(),
-      });
-    });
-  }
-
-  /**
-   * Плывущий текст урона над целью.
-   */
-  _animDamageNumber(unit, amount) {
-    const txt = this.add.text(
-      unit._spriteX + Phaser.Math.Between(-20, 20),
-      unit._spriteY - 30,
-      `-${amount}`,
-      { fontSize: '20px', color: '#FF4444', fontFamily: 'serif', stroke: '#000', strokeThickness: 3 }
-    ).setOrigin(0.5);
-
+  _playAttackAnim(attacker, target) {
+    if (!attacker._sprite || !target._sprite) return;
+    const origX = attacker._spriteX;
+    const origY = attacker._spriteY;
+    const dx = (target._spriteX - origX) * 0.28;
+    const dy = (target._spriteY - origY) * 0.28;
     this.tweens.add({
-      targets: txt,
-      y: unit._spriteY - 80,
-      alpha: 0,
-      duration: 900,
+      targets: attacker._sprite,
+      x: attacker._sprite.x + dx,
+      y: attacker._sprite.y + dy,
+      duration: 110,
       ease: 'Power2',
+      yoyo: true,
+    });
+  }
+
+  _animHit(unit) {
+    if (!unit._sprite) return;
+    const origX = unit._sprite.x;
+    this.tweens.add({
+      targets: unit._sprite,
+      x: origX + 7,
+      duration: 35,
+      yoyo: true,
+      repeat: 2,
+      ease: 'Linear',
+      onComplete: () => { if (unit._sprite) unit._sprite.x = origX; }
+    });
+    if (unit._sprite.setTint) {
+      unit._sprite.setTint(0xFFFFFF);
+      this.time.delayedCall(180, () => { if (unit._sprite) unit._sprite.clearTint(); });
+    }
+  }
+
+  _animDeath(unit) {
+    if (!unit._sprite) return;
+    this.tweens.add({
+      targets: unit._sprite,
+      alpha: 0,
+      y: unit._sprite.y + 25,
+      duration: 450,
+      ease: 'Power2',
+      onComplete: () => this.grid.remove(unit),
+    });
+  }
+
+  _animHeal(unit) {
+    if (!unit._sprite) return;
+    const glow = this.add.ellipse(unit._spriteX, unit._spriteY, 90, 90, 0x44FF88, 0.45);
+    this.tweens.add({
+      targets: glow, alpha: 0, scaleX: 2.2, scaleY: 2.2,
+      duration: 550, ease: 'Power2',
+      onComplete: () => glow.destroy(),
+    });
+    const txt = this.add.text(unit._spriteX, unit._spriteY - 20, '+HP', {
+      fontSize: '17px', color: '#44FF88', fontFamily: 'serif',
+      stroke: '#000', strokeThickness: 2
+    }).setOrigin(0.5);
+    this.tweens.add({
+      targets: txt, y: unit._spriteY - 65, alpha: 0,
+      duration: 750, ease: 'Power2',
+      onComplete: () => txt.destroy(),
+    });
+  }
+
+  _animDamageNumber(unit, amount) {
+    if (!unit._spriteX) return;
+    const txt = this.add.text(
+      unit._spriteX + Phaser.Math.Between(-18, 18),
+      unit._spriteY - 20,
+      `-${amount}`,
+      { fontSize: '19px', color: '#FF4444', fontFamily: 'serif', stroke: '#000', strokeThickness: 3 }
+    ).setOrigin(0.5);
+    this.tweens.add({
+      targets: txt, y: unit._spriteY - 70, alpha: 0,
+      duration: 850, ease: 'Power2',
       onComplete: () => txt.destroy(),
     });
   }
 
   // ══════════════════════════════════════════════════════════════════════
-  // ОБРАБОТКА КЛИКОВ С АНИМАЦИЯМИ
+  // КЛИКИ
   // ══════════════════════════════════════════════════════════════════════
 
   _onEnemyClick(target) {
@@ -365,21 +314,20 @@ export class BattleScene extends Phaser.Scene {
         this._playAttackAnim(actor, target);
         actor.handleSkill(this._pendingSkill, target, this.skillSystem);
         this._pendingSkill = null;
-        this.time.delayedCall(150, () => this._afterPlayerAction());
+        this._afterPlayerAction();
         return;
       }
     }
 
     this._playAttackAnim(actor, target);
     actor.handleAttack(target, this.skillSystem);
-    this.time.delayedCall(150, () => this._afterPlayerAction());
+    this._afterPlayerAction();
   }
 
   _onAllyClick(target) {
     if (this.battleOver) return;
     if (!this.turnManager.isPlayerTurn()) return;
     if (!this._pendingSkill) return;
-
     const actor = this.turnManager.active;
     const sk = this.skillSystem.get(this._pendingSkill);
     if (sk && (sk.targetType === 'ally_single' || sk.targetType === 'self')) {
@@ -393,13 +341,10 @@ export class BattleScene extends Phaser.Scene {
     if (!this.turnManager.isPlayerTurn()) return;
     const actor = this.turnManager.active;
     if (!actor) return;
-
     const sk = this.skillSystem.get(skillId);
     if (!sk) return;
-
     if (sk.targetType === 'self') {
       actor.handleSkill(skillId, actor, this.skillSystem);
-      this._pendingSkill = null;
       this._afterPlayerAction();
     } else {
       this._pendingSkill = skillId;
@@ -408,61 +353,28 @@ export class BattleScene extends Phaser.Scene {
     }
   }
 
-  // ── После хода игрока ─────────────────────────────────────────────────
+  // ── После хода ────────────────────────────────────────────────────────
 
   _afterPlayerAction() {
     this._renderAll();
     if (this._checkEnd()) return;
     this.turnManager.nextTurn();
     this.ui.update();
-
-    if (!this.turnManager.isPlayerTurn()) {
-      this._runAITurn();
-    }
+    if (!this.turnManager.isPlayerTurn()) this._runAITurn();
   }
-
-  // ── ИИ ────────────────────────────────────────────────────────────────
 
   _runAITurn() {
     this.time.delayedCall(AI_DELAY, () => {
       if (this.battleOver) return;
       const actor = this.turnManager.active;
-
       if (!actor || actor.type !== 'enemy') {
         this._finishTurn();
         return;
       }
-
-      // Анимация — только визуальная, не блокирует логику
       const target = actor.findTarget(this.playerUnits, this.grid);
-      if (target && actor._sprite && target._sprite) {
-        this._playAttackAnim(actor, target);
-      }
-
-      // Логика выполняется сразу
+      if (target) this._playAttackAnim(actor, target);
       actor.decideAction(this.playerUnits, this.skillSystem, this.grid);
-
-      // Обновляем поле и переходим к следующему ходу после анимации
-      this.time.delayedCall(200, () => {
-        this._finishTurn();
-      });
-    });
-  }
-
-  // Визуальная анимация атаки (не блокирующая)
-  _playAttackAnim(attacker, target) {
-    if (!attacker._sprite || !target._sprite) return;
-    const origX = attacker._spriteX;
-    const origY = attacker._spriteY;
-    const dx = (target._spriteX - origX) * 0.3;
-    const dy = (target._spriteY - origY) * 0.3;
-    this.tweens.add({
-      targets: attacker._sprite,
-      x: origX + dx,
-      y: origY + dy,
-      duration: 100,
-      ease: 'Power2',
-      yoyo: true,
+      this.time.delayedCall(180, () => this._finishTurn());
     });
   }
 
@@ -471,17 +383,14 @@ export class BattleScene extends Phaser.Scene {
     if (this._checkEnd()) return;
     this.turnManager.nextTurn();
     this.ui.update();
-    if (!this.turnManager.isPlayerTurn()) {
-      this._runAITurn();
-    }
+    if (!this.turnManager.isPlayerTurn()) this._runAITurn();
   }
 
-  // ── Проверка конца боя ────────────────────────────────────────────────
+  // ── Конец боя ─────────────────────────────────────────────────────────
 
   _checkEnd() {
     const allEnemiesDead = this.enemyUnits.every(u => !u.isAlive);
     const heroAlive      = this.playerUnits[0]?.isAlive;
-
     if (allEnemiesDead) { this._endBattle('victory'); return true; }
     if (!heroAlive)      { this._endBattle('defeat');  return true; }
     return false;
@@ -489,39 +398,29 @@ export class BattleScene extends Phaser.Scene {
 
   _endBattle(result) {
     this.battleOver = true;
-    eventBus.emit('battle_end', result);
-
     const { width, height } = this.scale;
-    this.add.rectangle(width / 2, height / 2, width, height, 0x000000, 0.75);
+    this.add.rectangle(width/2, height/2, width, height, 0x000000, 0.75);
+
+    const title = result === 'victory' ? 'ПОБЕДА' : 'ПОРАЖЕНИЕ';
+    const color = result === 'victory' ? '#C9A84C' : '#CC2222';
+
+    const t = this.add.text(width/2, height/2 - 80, title, {
+      fontFamily: 'serif', fontSize: '72px', color,
+      stroke: '#000', strokeThickness: 4,
+    }).setOrigin(0.5).setAlpha(0);
+    this.tweens.add({ targets: t, alpha: 1, duration: 600 });
 
     if (result === 'victory') {
-      const titleTxt = this.add.text(width / 2, height / 2 - 80, 'ПОБЕДА', {
-        fontFamily: 'serif', fontSize: '72px', color: '#C9A84C',
-        stroke: '#000', strokeThickness: 4,
-      }).setOrigin(0.5).setAlpha(0);
-
-      this.tweens.add({ targets: titleTxt, alpha: 1, duration: 600, ease: 'Power2' });
-
       this.playerUnits[0].addXP(XP.WIN_HERO);
       this.playerUnits.slice(1).forEach(u => u.addXP(XP.WIN_COMPANION));
-
-      this.add.text(width / 2, height / 2, `Получено XP: ${XP.WIN_HERO}`, {
-        fontFamily: 'serif', fontSize: '28px', color: '#E8E8E8',
+      this.add.text(width/2, height/2, `Получено XP: ${XP.WIN_HERO}`, {
+        fontFamily: 'serif', fontSize: '26px', color: '#E8E8E8',
       }).setOrigin(0.5);
-
-    } else {
-      const titleTxt = this.add.text(width / 2, height / 2 - 80, 'ПОРАЖЕНИЕ', {
-        fontFamily: 'serif', fontSize: '72px', color: '#CC2222',
-        stroke: '#000', strokeThickness: 4,
-      }).setOrigin(0.5).setAlpha(0);
-
-      this.tweens.add({ targets: titleTxt, alpha: 1, duration: 600, ease: 'Power2' });
     }
 
-    const btn = this.add.text(width / 2, height / 2 + 80, '[ Попробовать снова ]', {
-      fontFamily: 'serif', fontSize: '28px', color: '#AAAAAA',
+    const btn = this.add.text(width/2, height/2 + 80, '[ Попробовать снова ]', {
+      fontFamily: 'serif', fontSize: '26px', color: '#AAAAAA',
     }).setOrigin(0.5).setInteractive({ useHandCursor: true });
-
     btn.on('pointerover', () => btn.setColor('#FFFFFF'));
     btn.on('pointerout',  () => btn.setColor('#AAAAAA'));
     btn.on('pointerdown', () => { eventBus.clear(); this.scene.restart(); });
@@ -536,27 +435,16 @@ export class BattleScene extends Phaser.Scene {
       this.ui?.appendLog(msg);
     });
 
-    eventBus.on('turn_started', unit => {
-      this.ui?.highlightActive(unit);
-    });
+    eventBus.on('turn_started',  unit => this.ui?.highlightActive(unit));
 
-    // Анимация урона
     eventBus.on('unit_damaged', ({ unit, amount }) => {
       this._animHit(unit);
       this._animDamageNumber(unit, amount);
     });
 
-    // Анимация лечения
-    eventBus.on('unit_healed', ({ unit, amount }) => {
-      this._animHeal(unit);
-    });
+    eventBus.on('unit_healed', ({ unit }) => this._animHeal(unit));
 
-    // Анимация смерти
-    eventBus.on('unit_died', unit => {
-      this._animDeath(unit).then(() => {
-        this.grid.remove(unit);
-      });
-    });
+    eventBus.on('unit_died', unit => this._animDeath(unit));
 
     eventBus.on('skill_selected', skillId => this._onSkillSelect(skillId));
 
