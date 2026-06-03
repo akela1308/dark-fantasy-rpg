@@ -14,7 +14,7 @@ import skillsData  from '../data/skills.json';
 // ID юнитов у которых есть PNG-спрайт в assets/sprites/
 // Добавляй сюда по мере появления арта:
 const SPRITE_IDS = [
-  // 'hero_duelist',
+  'hero_duelist',
   // 'companion_archer',
   // 'companion_shield',
   // 'companion_healer',
