@@ -1,6 +1,5 @@
 /**
- * LoadingScene — показывает экран загрузки пока грузятся все тяжёлые ассеты.
- * После загрузки переходит в BattleScene.
+ * LoadingScene — экран загрузки с картинкой по центру и прогресс баром.
  */
 export class LoadingScene extends Phaser.Scene {
   constructor() {
@@ -11,24 +10,41 @@ export class LoadingScene extends Phaser.Scene {
     const W = this.scale.width;
     const H = this.scale.height;
 
-    // Загружаем фон загрузки первым (он маленький)
-    this.load.image('loading_bg', 'loading.png');
+    // Чёрный фон сразу
+    this.add.rectangle(W / 2, H / 2, W, H, 0x000000);
 
-    // После первого файла — показываем картинку
-    this.load.once('filecomplete-image-loading_bg', () => {
-      this.add.image(W / 2, H / 2, 'loading_bg')
-        .setDisplaySize(W, H);
+    // Прогресс бар (рисуем до загрузки картинки)
+    const barW = 400;
+    const barH = 6;
+    const barX = W / 2 - barW / 2;
+    const barY = H - 50;
 
-      // Прогресс бар
-      const barBg   = this.add.rectangle(W / 2, H - 48, 400, 8, 0x222222, 0.8);
-      const barFill = this.add.rectangle(W / 2 - 200, H - 48, 0, 8, 0xC9A84C, 1).setOrigin(0, 0.5);
+    this.add.rectangle(W / 2, barY, barW, barH, 0x333333).setOrigin(0.5);
+    const barFill = this.add.rectangle(barX, barY, 1, barH, 0xC9A84C).setOrigin(0, 0.5);
 
-      this.load.on('progress', (value) => {
-        barFill.setDisplaySize(400 * value, 8);
-      });
+    // Слушаем прогресс
+    this.load.on('progress', (value) => {
+      barFill.width = Math.max(1, barW * value);
     });
 
-    // Спрайты персонажей
+    this.load.on('complete', () => {
+      this.scene.start('BattleScene');
+    });
+
+    // Сначала загружаем картинку
+    this.load.image('loading_bg', 'loading.png');
+
+    // Когда картинка загружена — показываем её по центру без растяжки
+    this.load.once('filecomplete-image-loading_bg', () => {
+      const img = this.add.image(W / 2, H / 2, 'loading_bg');
+      // Масштабируем чтобы вписалась в экран, сохраняя пропорции
+      const scaleX = W / img.width;
+      const scaleY = H / img.height;
+      const scale  = Math.min(scaleX, scaleY, 1); // не увеличиваем если меньше экрана
+      img.setScale(scale);
+    });
+
+    // Спрайты
     const sprites = [
       'hero_duelist','companion_brawler','companion_healer',
       'bandit_commander','bandit_brawler','bandit_archer'
@@ -57,6 +73,7 @@ export class LoadingScene extends Phaser.Scene {
   }
 
   create() {
+    // Запасной вариант если complete не сработал
     this.scene.start('BattleScene');
   }
 }
