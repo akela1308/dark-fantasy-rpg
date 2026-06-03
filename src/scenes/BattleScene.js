@@ -159,17 +159,30 @@ export class BattleScene extends Phaser.Scene {
         ? (unit.type === 'player' ? 0x00FF88 : 0xFF3322)
         : (unit.type === 'player' ? 0x2255AA : 0x661111);
       const ringAlpha = isActive ? 0.55 : 0.25;
-      const ring = this.add.ellipse(x, y + 8, h * 0.75, h * 0.22, ringColor, ringAlpha).setDepth(1);
+      // Глубина: передний ряд (row=0) поверх заднего (row=1)
+      const rowDepth = unit.position.row === 0 ? 3 : 2;
+      const ring = this.add.ellipse(x, y + 8, h * 0.75, h * 0.22, ringColor, ringAlpha).setDepth(rowDepth - 1);
       this._unitSprites.push(ring);
+
+      // Индивидуальные коэффициенты масштаба спрайтов
+      const SPRITE_SCALE = {
+        hero_duelist:      0.78, // герой немного меньше
+        companion_brawler: 1.05, // боец чуть больше
+        companion_healer:  0.90,
+        bandit_commander:  0.92,
+        bandit_brawler:    1.00,
+        bandit_archer:     0.88,
+      };
 
       // Спрайт или прямоугольник
       let sprite;
       const hasSprite = SPRITE_IDS.includes(unit.id);
 
       if (hasSprite) {
-        sprite = this.add.image(x, y, unit.id).setOrigin(0.5, 1).setDepth(1);
+        sprite = this.add.image(x, y, unit.id).setOrigin(0.5, 1).setDepth(rowDepth);
         const boss = unit.isBoss;
-        const targetH = boss ? h * 1.45 : h;
+        const unitScale = SPRITE_SCALE[unit.id] ?? 1;
+        const targetH = (boss ? h * 1.45 : h) * unitScale;
         const ratio = sprite.width / sprite.height;
         sprite.setDisplaySize(targetH * ratio, targetH);
         // Враги смотрят влево, дуэлянт смотрит вправо (лицом к врагам)
