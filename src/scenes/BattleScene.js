@@ -34,11 +34,11 @@ export class BattleScene extends Phaser.Scene {
   preload() {
     // Фон поля боя
     if (HAS_BG) {
-      this.load.image('battle_bg', 'assets/sprites/battle_bg.png');
+      this.load.image('battle_bg', 'sprites/battle_bg.png');
     }
     // Спрайты юнитов (загружаем только те что есть)
     SPRITE_IDS.forEach(id => {
-      this.load.image(id, `assets/sprites/${id}.png`);
+      this.load.image(id, `sprites/${id}.png`);
     });
   }
 
