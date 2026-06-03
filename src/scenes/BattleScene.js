@@ -164,9 +164,10 @@ export class BattleScene extends Phaser.Scene {
         sprite = this.add.image(x, y, unit.id).setOrigin(0.5, 1);
         const boss = unit.isBoss;
         const targetH = boss ? h * 1.45 : h;
-        // Сохраняем пропорции
         const ratio = sprite.width / sprite.height;
         sprite.setDisplaySize(targetH * ratio, targetH);
+        // Враги смотрят влево (лицом к игроку)
+        if (unit.type === 'enemy') sprite.setFlipX(true);
       } else {
         const w = unit.isBoss ? 90 : 65;
         sprite = this.add.rectangle(x, y, w, h * 0.85, unit.color, 1)
