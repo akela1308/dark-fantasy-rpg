@@ -66,6 +66,8 @@ export class BattleScene extends Phaser.Scene {
     this._bindEvents();
     this.turnManager.init([...this.playerUnits, ...this.enemyUnits]);
     this._renderAll();
+    // Инициализируем плеер здесь (ассеты уже в кэше после LoadingScene)
+    this.music = new MusicPlayer(this);
     this.music.create();
   }
 
