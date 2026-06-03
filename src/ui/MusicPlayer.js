@@ -32,22 +32,29 @@ export class MusicPlayer {
   // Вызвать в create() сцены
   create() {
     this._buildUI();
-    this._play(0);
+    // Браузер требует хотя бы одно взаимодействие до autoplay.
+    // Ждём unlock от Phaser и сразу стартуем.
+    if (this.scene.sound.locked) {
+      this.scene.sound.once('unlocked', () => { this._play(0); });
+    } else {
+      this._play(0);
+    }
   }
 
   _play(index) {
     if (this.current) {
-      this.current.stop();
-      this.current.destroy();
+      try { this.current.stop(); this.current.destroy(); } catch(e) {}
     }
-    this.index   = index % this.tracks.length;
+    this.index   = ((index % this.tracks.length) + this.tracks.length) % this.tracks.length;
     const track  = this.tracks[this.index];
     this.current = this.scene.sound.add(track.key, { loop: false, volume: 0.5 });
-    if (!this.muted) this.current.play();
 
-    // Когда трек кончился — следующий
+    // Запускаем только если не muted и аудио контекст разблокирован
+    if (!this.muted) {
+      try { this.current.play(); } catch(e) {}
+    }
+
     this.current.on('complete', () => this._play(this.index + 1));
-
     this._updateLabel();
   }
 

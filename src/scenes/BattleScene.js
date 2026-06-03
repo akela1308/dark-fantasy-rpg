@@ -54,8 +54,8 @@ export class BattleScene extends Phaser.Scene {
   preload() {
     if (HAS_BG) this.load.image('battle_bg', 'battle_bg.png');
     SPRITE_IDS.forEach(id => this.load.image(id, `sprites/${id}.png`));
-    // this.music = new MusicPlayer(this);
-    // this.music.preload();
+    this.music = new MusicPlayer(this);
+    this.music.preload();
   }
 
   create() {
@@ -68,7 +68,7 @@ export class BattleScene extends Phaser.Scene {
     this._bindEvents();
     this.turnManager.init([...this.playerUnits, ...this.enemyUnits]);
     this._renderAll();
-    // this.music.create();
+    this.music.create();
   }
 
   // ── Инициализация ─────────────────────────────────────────────────────
