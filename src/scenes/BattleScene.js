@@ -24,23 +24,26 @@ const HAS_BG = true; // поставь true когда добавишь battle_b
 // ── Позиции юнитов в стиле Disciples II ──────────────────────────────────
 // Передний ряд (row=0): ниже, крупнее
 // Задний ряд  (row=1): выше, чуть меньше (перспектива)
+// Disciples II-style diagonal grid
+// Player: top-left diagonal (back=top-left, front=center-left)
+// Enemy:  bottom-right diagonal (back=bottom-right, front=center-right)
 const UNIT_POSITIONS = {
   player: {
-    // передний ряд: левее, ниже, крупнее
-    0: { 0: { x: 115, y: 530 }, 1: { x: 300, y: 510 }, 2: { x: 485, y: 530 } },
-    // задний ряд: правее от своей колонки, выше
-    1: { 0: { x: 160, y: 355 }, 1: { x: 460, y: 340 }, 2: { x: 560, y: 355 } },
+    // front row (closer to center, lower, bigger)
+    0: { 0: { x: 230, y: 570 }, 1: { x: 380, y: 545 }, 2: { x: 530, y: 520 } },
+    // back row (further left, higher, smaller)
+    1: { 0: { x: 170, y: 390 }, 1: { x: 310, y: 370 }, 2: { x: 450, y: 350 } },
   },
   enemy: {
-    // передний ряд: правее, ниже
-    0: { 0: { x: 1165, y: 530 }, 1: { x: 980, y: 510 }, 2: { x: 795, y: 530 } },
-    // задний ряд
-    1: { 0: { x: 1120, y: 355 }, 1: { x: 820, y: 340 }, 2: { x: 720, y: 355 } },
+    // front row (closer to center, lower, bigger)
+    0: { 0: { x: 1050, y: 570 }, 1: { x: 900, y: 545 }, 2: { x: 750, y: 520 } },
+    // back row (further right, higher, smaller)
+    1: { 0: { x: 1110, y: 390 }, 1: { x: 970, y: 370 }, 2: { x: 830, y: 350 } },
   },
 };
 
 // Высота спрайта в пикселях по ряду (перспектива)
-const ROW_HEIGHT = { 0: 170, 1: 125 };
+const ROW_HEIGHT = { 0: 220, 1: 155 };
 
 export class BattleScene extends Phaser.Scene {
   constructor() {
