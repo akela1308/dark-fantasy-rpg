@@ -57,6 +57,19 @@ export class LoadingScene extends Phaser.Scene {
     // Фон боя
     this.load.image('battle_bg', 'battle_bg.png');
 
+    // Карты мира
+    this.load.image('map_map1',         'maps/map1.png');
+    this.load.image('map_tavern_map',   'maps/tavern_map.png');
+    this.load.image('map_tavern_inside','maps/tavern_inside.png');
+    this.load.image('map_mountains_map','maps/mountains_map.png');
+    this.load.image('map_swamp_map',    'maps/swamp_map.png');
+
+    // Персонажи на карте
+    this.load.image('map_hero',    'maps/characters/hero.png');
+    this.load.image('map_brawler', 'maps/characters/brawler.png');
+    this.load.image('map_healer',  'maps/characters/healer.png');
+    this.load.image('map_bandit',  'maps/characters/bandit.png');
+
     // Аудио
     const tracks = [
       ['track_ashes2',     'Ashes of Velanth 2.mp3'],
@@ -73,7 +86,7 @@ export class LoadingScene extends Phaser.Scene {
   }
 
   create() {
-    // Запасной вариант если complete не сработал
-    this.scene.start('BattleScene');
+    // После загрузки — карта мира
+    this.scene.start('MapScene', { mapKey: 'map1' });
   }
 }
