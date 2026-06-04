@@ -63,6 +63,9 @@ export class LoadingScene extends Phaser.Scene {
     // Фон боя
     this.load.image('battle_bg', 'battle_bg.png');
 
+    // UI
+    this.load.image('dialog_frame', 'ui/dialog_frame.png');
+
     // Карты мира
     this.load.image('map_map1',         'maps/map1.png');
     this.load.image('map_tavern_map',   'maps/tavern_map.png');
@@ -73,10 +76,14 @@ export class LoadingScene extends Phaser.Scene {
     this.load.image('map_elf_boloto',   'maps/elf_boloto.png');
 
     // Персонажи на карте
-    this.load.image('map_hero',    'maps/characters/hero.png');
-    this.load.image('map_brawler', 'maps/characters/brawler.png');
-    this.load.image('map_healer',  'maps/characters/healer.png');
-    this.load.image('map_bandit',  'maps/characters/bandit.png');
+    this.load.image('map_hero',      'maps/characters/hero.png');
+    this.load.image('map_brawler',   'maps/characters/brawler.png');
+    this.load.image('map_healer',    'maps/characters/healer.png');
+    this.load.image('map_bandit',    'maps/characters/bandit.png');
+    this.load.image('map_tavernman', 'maps/characters/tavernman.png');
+
+    // Портрет хозяина таверны
+    this.load.image('portrait_tavernman', 'portraits/tavernman.png');
 
     // Аудио
     const tracks = [

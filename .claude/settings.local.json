@@ -17,7 +17,24 @@
       "Bash(node test-game.mjs)",
       "Bash(node test-404.mjs)",
       "Bash(node test-separation.mjs)",
-      "Bash(node test-party.mjs)"
+      "Bash(node test-party.mjs)",
+      "Bash(node test-zones.mjs)",
+      "Bash(node -e \"const p = require\\('/tmp/node_modules/playwright'\\); console.log\\(Object.keys\\(p\\).slice\\(0,3\\)\\)\")",
+      "Bash(node -e \"require\\('playwright-chromium'\\)\")",
+      "Bash(node *)",
+      "Bash(git pull *)",
+      "Bash(git stash *)",
+      "Bash(git fetch *)",
+      "Bash(git merge *)",
+      "Bash(git reset *)",
+      "Bash(git checkout *)",
+      "Bash(mkdir -p /tmp/git-stash-files)",
+      "Bash(cp public/maps/characters/tavernman.png /tmp/git-stash-files/)",
+      "Bash(cp public/portraits/tavernman.png /tmp/git-stash-files/)",
+      "Bash(cp public/ui/dialog_frame.png /tmp/git-stash-files/)",
+      "Bash(cp src/ui/DialoguePanel.js /tmp/git-stash-files/)",
+      "Bash(cp /tmp/git-stash-files/tavernman.png public/maps/characters/)",
+      "Bash(cp /tmp/git-stash-files/tavernman.png public/portraits/)"
     ]
   }
 }

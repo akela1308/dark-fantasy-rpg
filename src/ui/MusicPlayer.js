@@ -64,26 +64,33 @@ export class MusicPlayer {
   }
 
   _buildUI() {
-    const x = 8, y = 8, depth = 50;
+    // Плеер позиционирован по зелёной зоне: экран x=0–420px, y=0–55px
+    // zoom=0.765 → world = screen/0.765
+    const depth = 52;
 
-    this._bg = this.scene.add.rectangle(x + 145, y + 24, 290, 48, 0x0a0a14, 0.88)
-      .setStrokeStyle(1, 0x333355).setOrigin(0.5).setDepth(depth).setScrollFactor(0);
+    // Фон: левый край x=0, тянется вправо на 527 мировых единиц (≈403px экрана)
+    this._bg = this.scene.add.rectangle(0, 35, 527, 65, 0x07070f, 0.90)
+      .setStrokeStyle(1, 0x2a2a44).setOrigin(0, 0.5).setDepth(depth).setScrollFactor(0);
 
-    this._btnMute = this.scene.add.text(x + 10, y + 6, '♪', {
+    // ♪ кнопка → экран (13,11) → world (17,14)
+    this._btnMute = this.scene.add.text(17, 14, '♪', {
       fontSize: '26px', color: '#C9A84C', fontFamily: 'serif'
     }).setDepth(depth).setScrollFactor(0).setInteractive({ useHandCursor: true });
     this._btnMute.on('pointerdown', () => this._toggleMute());
 
-    this._btnPrev = this.scene.add.text(x + 44, y + 8, '◀', {
+    // ◀ → world (72,17)
+    this._btnPrev = this.scene.add.text(72, 17, '◀', {
       fontSize: '20px', color: '#888888', fontFamily: 'serif'
     }).setDepth(depth).setScrollFactor(0).setInteractive({ useHandCursor: true });
     this._btnPrev.on('pointerdown', () => this._startTrack(this.index - 1 + this.tracks.length));
 
-    this._label = this.scene.add.text(x + 72, y + 10, '', {
+    // Лейбл → world (107,19)
+    this._label = this.scene.add.text(107, 19, '', {
       fontSize: '14px', color: '#AAAAAA', fontFamily: 'serif'
     }).setDepth(depth).setScrollFactor(0);
 
-    this._btnNext = this.scene.add.text(x + 262, y + 8, '▶', {
+    // ▶ → world (505,17)
+    this._btnNext = this.scene.add.text(505, 17, '▶', {
       fontSize: '20px', color: '#888888', fontFamily: 'serif'
     }).setDepth(depth).setScrollFactor(0).setInteractive({ useHandCursor: true });
     this._btnNext.on('pointerdown', () => this._startTrack(this.index + 1));

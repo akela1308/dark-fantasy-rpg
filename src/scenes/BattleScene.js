@@ -257,26 +257,34 @@ export class BattleScene extends Phaser.Scene {
     });
   }
 
-  _animHit(unit) {
+  _animHit(unit, isCrit = false) {
     if (!unit._sprite) return;
     const origX = unit._sprite.x;
+    const shakeX = isCrit ? 12 : 7;
     this.tweens.add({
       targets: unit._sprite,
-      x: origX + 7,
-      duration: 35,
+      x: origX + shakeX,
+      duration: 30,
       yoyo: true,
-      repeat: 2,
+      repeat: isCrit ? 3 : 2,
       ease: 'Linear',
       onComplete: () => { if (unit._sprite) unit._sprite.x = origX; }
     });
+    // Цветовая вспышка: крит — красная, обычный — белая
     if (unit._sprite.setTint) {
-      unit._sprite.setTint(0xFFFFFF);
-      this.time.delayedCall(180, () => { if (unit._sprite) unit._sprite.clearTint(); });
+      unit._sprite.setTint(isCrit ? 0xFF2222 : 0xFFFFFF);
+      this.time.delayedCall(isCrit ? 220 : 160, () => { if (unit._sprite) unit._sprite.clearTint(); });
+    }
+    // Camera shake на крит
+    if (isCrit) {
+      this.cameras.main.shake(180, 0.006);
     }
   }
 
   _animDeath(unit) {
     if (!unit._sprite) return;
+    // Camera shake на смерть
+    this.cameras.main.shake(250, 0.009);
     // grid.remove() вызывается синхронно в _afterPlayerAction/_finishTurn,
     // чтобы не зависеть от onComplete (который не срабатывает при destroy спрайта)
     this.tweens.add({
@@ -307,17 +315,25 @@ export class BattleScene extends Phaser.Scene {
     });
   }
 
-  _animDamageNumber(unit, amount) {
+  _animDamageNumber(unit, amount, isCrit = false) {
     if (!unit._spriteX) return;
+    const label   = isCrit ? `КРИТ! -${amount}` : `-${amount}`;
+    const color   = isCrit ? '#FFD700' : '#FF4444';
+    const size    = isCrit ? '24px' : '19px';
     const txt = this.add.text(
       unit._spriteX + Phaser.Math.Between(-18, 18),
       unit._spriteY - 20,
-      `-${amount}`,
-      { fontSize: '19px', color: '#FF4444', fontFamily: 'serif', stroke: '#000', strokeThickness: 3 }
+      label,
+      { fontSize: size, color, fontFamily: 'serif', stroke: '#000', strokeThickness: 3 }
     ).setOrigin(0.5);
     this.tweens.add({
-      targets: txt, y: unit._spriteY - 70, alpha: 0,
-      duration: 850, ease: 'Power2',
+      targets: txt,
+      y:       unit._spriteY - (isCrit ? 90 : 70),
+      alpha:   0,
+      scaleX:  isCrit ? 1.4 : 1,
+      scaleY:  isCrit ? 1.4 : 1,
+      duration: isCrit ? 1000 : 850,
+      ease: 'Power2',
       onComplete: () => txt.destroy(),
     });
   }
@@ -477,9 +493,9 @@ export class BattleScene extends Phaser.Scene {
 
     eventBus.on('turn_started',  unit => this.ui?.highlightActive(unit));
 
-    eventBus.on('unit_damaged', ({ unit, amount }) => {
-      this._animHit(unit);
-      this._animDamageNumber(unit, amount);
+    eventBus.on('unit_damaged', ({ unit, amount, isCrit }) => {
+      this._animHit(unit, !!isCrit);
+      this._animDamageNumber(unit, amount, !!isCrit);
     });
 
     eventBus.on('unit_healed', ({ unit }) => this._animHeal(unit));
