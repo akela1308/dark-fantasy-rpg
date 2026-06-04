@@ -72,6 +72,42 @@ const MAP_CONFIGS = {
     ],
     tavernEntry: null,
     bandits: false,
+    // Хозяин таверны стоит у барной стойки (правая часть, walkable зона)
+    npcs: [
+      {
+        x: 1120, y: 460,
+        spriteKey:   'map_tavernman',
+        portraitKey: 'portrait_tavernman',
+        name:        'Хозяин таверны',
+        height:      140,
+        dialogues: [
+          {
+            text: '"Добро пожаловать в «Хромой лось»! Лучшая таверна в округе — и единственная, где вас не зарежут за ужином."',
+            choices: [
+              { label: 'Что слышно в окрестностях?',  style: 'default' },
+              { label: 'Налей-ка нам выпить.',         style: 'default' },
+              { label: 'Нам нужна комната на ночь.',   style: 'default' },
+              { label: 'Спасибо, мы идём дальше.',     style: 'retreat' },
+            ],
+          },
+          {
+            // ответ на "что слышно"
+            text: '"В лесу за деревней разбойники орудуют уже неделю. Говорят, ими командует какой-то наёмник. Будьте осторожны."',
+            choices: [{ label: 'Понятно. Спасибо.', style: 'default' }],
+          },
+          {
+            // ответ на "налей"
+            text: '"Три медяка кружка. Тёмное, светлое и что-то ужасное — я сам не знаю что, но берут охотно."',
+            choices: [{ label: 'Тёмное, конечно.', style: 'default' }],
+          },
+          {
+            // ответ на "комнату"
+            text: '"Есть. Пять медяков ночь. Клопов почти нет."',
+            choices: [{ label: 'Договорились.', style: 'default' }],
+          },
+        ],
+      },
+    ],
   },
 
   forest1: {
@@ -181,6 +217,10 @@ export class MapScene extends Phaser.Scene {
     // Диалоговая панель (in-world overlay)
     this._dialogue = new DialoguePanel(this);
 
+    // NPC (статичные, кликабельные)
+    this._npcs = [];
+    this._spawnNPCs(cfg);
+
     // Клик по карте
     this.input.on('pointerdown', (ptr) => {
       if (ptr.rightButtonDown()) return;
@@ -251,6 +291,73 @@ export class MapScene extends Phaser.Scene {
         b.shadow.setPosition(b.sprite.x, b.sprite.y + 2);
       }
     }
+  }
+
+  // ─── NPCs ────────────────────────────────────────────────────────────────
+
+  _spawnNPCs(cfg) {
+    (cfg.npcs || []).forEach(npc => {
+      const h = npc.height || 130;
+      const tex = this.textures.get(npc.spriteKey);
+      const ratio = tex.getSourceImage().height > 0
+        ? h / tex.getSourceImage().height : 1;
+
+      // Тень
+      const shadow = this.add.ellipse(npc.x, npc.y + 8, 55, 16, 0x000000, 0.35).setDepth(1);
+
+      // Спрайт
+      const sprite = this.add.image(npc.x, npc.y, npc.spriteKey)
+        .setScale(ratio)
+        .setDepth(npc.y)
+        .setInteractive({ useHandCursor: true });
+
+      // Имя над головой
+      const label = this.add.text(npc.x, npc.y - h / 2 - 12, npc.name, {
+        fontFamily: 'serif', fontSize: '14px', color: '#D4AA60',
+        stroke: '#000', strokeThickness: 3,
+      }).setOrigin(0.5, 1).setDepth(npc.y + 1);
+
+      // Hover — небольшое свечение
+      sprite.on('pointerover',  () => sprite.setTint(0xFFEEBB));
+      sprite.on('pointerout',   () => sprite.clearTint());
+
+      // Клик — диалог
+      sprite.on('pointerdown', () => {
+        if (this._transitioning || this._dialogue?.active) return;
+        this.hero.stopMove();
+        this.brawler.stopMove();
+        this.healer.stopMove();
+        this._showNpcDialogue(npc, 0);
+      });
+
+      this._npcs.push({ sprite, shadow, label, cfg: npc });
+    });
+  }
+
+  _showNpcDialogue(npc, dialogueIndex) {
+    const dlg = npc.dialogues[dialogueIndex] || npc.dialogues[0];
+
+    // Маппинг вариантов: некоторые открывают следующий диалог
+    const choices = dlg.choices.map((ch, i) => ({
+      label:    ch.label,
+      style:    ch.style || 'default',
+      onSelect: () => {
+        // Если есть следующий диалог — показываем его, иначе просто закрываем
+        const nextIdx = dialogueIndex + 1 + i;
+        if (npc.dialogues[nextIdx]) {
+          this._showNpcDialogue(npc, nextIdx);
+        }
+        // retreat и последний вариант — просто закрываем (hide уже вызван в DialoguePanel)
+      },
+    }));
+
+    this._dialogue.show({
+      portraitLeft:  'portrait_hero_duelist',
+      portraitRight: npc.portraitKey,
+      speakerName:   npc.name,
+      text:          dlg.text,
+      choices,
+    });
   }
 
   // ─── Bandits ─────────────────────────────────────────────────────────────
