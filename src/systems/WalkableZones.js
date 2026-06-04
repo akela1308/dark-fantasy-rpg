@@ -67,16 +67,9 @@ export class WalkableZones {
   /**
    * Debug: нарисовать зоны с учётом масштаба и смещения карты
    */
-  drawDebug(scene, scale = 1, offX = 0, offY = 0) {
-    const g = scene.add.graphics().setDepth(100).setAlpha(0.3);
-    g.lineStyle(2, 0xFF0000, 0.8);
-    this.zones.forEach(z => {
-      g.strokeRect(
-        offX + z.x * scale,
-        offY + z.y * scale,
-        z.w * scale,
-        z.h * scale
-      );
-    });
+  drawDebug(scene) {
+    const g = scene.add.graphics().setDepth(100).setAlpha(0.4);
+    g.lineStyle(2, 0xFF0000, 0.9);
+    this.zones.forEach(z => g.strokeRect(z.x, z.y, z.w, z.h));
   }
 }
