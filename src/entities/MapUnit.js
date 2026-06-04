@@ -11,6 +11,7 @@ export class MapUnit {
     this.moving   = false;
     this._bobTween   = null;
     this._leanTween  = null;
+    this._idleTween  = null;
 
     // Спрайт
     this.sprite = scene.add.image(x, y, textureKey)
@@ -24,6 +25,9 @@ export class MapUnit {
 
     // Тень под ногами
     this.shadow = scene.add.ellipse(x, y + 2, 28, 8, 0x000000, 0.25).setDepth(9);
+
+    // Запускаем idle-анимацию сразу
+    this._startIdleAnim();
   }
 
   get x() { return this.sprite.x; }
@@ -56,6 +60,7 @@ export class MapUnit {
         this.sprite.y = this.targetY;
         this.moving = false;
         this._stopWalkAnim();
+        this._startIdleAnim();
       }
     } else {
       const step = this.speed * (delta / 1000);
@@ -65,7 +70,11 @@ export class MapUnit {
       // Flip в сторону движения
       this.sprite.setFlipX(dx < 0);
 
-      this.moving = true;
+      if (!this.moving) {
+        this.moving = true;
+        this._stopIdleAnim();
+        this._startWalkAnim();
+      }
     }
 
     // Тень следует
@@ -86,6 +95,22 @@ export class MapUnit {
     });
 
     this._leanTween = null; // объединили с bobTween
+  }
+
+  _startIdleAnim() {
+    if (this._idleTween) return;
+    this._idleTween = this.scene.tweens.add({
+      targets: this.sprite,
+      angle: { from: -0.6, to: 0.6 },
+      duration: 2800,
+      yoyo: true,
+      repeat: -1,
+      ease: 'Sine.easeInOut',
+    });
+  }
+
+  _stopIdleAnim() {
+    if (this._idleTween) { this._idleTween.stop(); this._idleTween = null; }
   }
 
   _stopWalkAnim() {

@@ -112,9 +112,10 @@ export class MapScene extends Phaser.Scene {
   _spawnBandits() {
     if (this.game.registry.get('bandit_0_defeated')) return;
 
-    // Один бандит патрулирует центральную часть дороги
+    // Два бандита патрулируют дорогу (screen coords, y=420-460 = середина дороги)
     const patrols = [
-      [{ x: 750, y: 510 }, { x: 950, y: 470 }, { x: 840, y: 530 }],
+      [{ x: 640, y: 450 }, { x: 780, y: 430 }, { x: 710, y: 460 }],
+      [{ x: 880, y: 430 }, { x: 1040, y: 415 }, { x: 960, y: 445 }],
     ];
 
     const unitH = 120;
@@ -201,37 +202,44 @@ export class MapScene extends Phaser.Scene {
       { key: 'portrait_companion_brawler', label: 'Боец' },
       { key: 'portrait_companion_healer',  label: 'Знахарка' },
     ];
-    const cardW = 100, cardH = 115, startY = 80, gapY = 125;
+    // Портреты — вплотную к левому краю, крупнее
+    const cardW = 118, cardH = 138, startY = 100, gapY = 150;
     portraits.forEach((p, i) => {
-      const cx = 55, cy = startY + i * gapY;
-      this.add.rectangle(cx, cy, cardW, cardH, 0x0a0810, 0.9)
+      const cx = cardW / 2;  // вплотную к левому краю
+      const cy = startY + i * gapY;
+      this.add.rectangle(cx, cy, cardW, cardH, 0x0a0810, 0.92)
         .setStrokeStyle(2, 0x445577).setDepth(50).setScrollFactor(0);
-      const img = this.add.image(cx, cy - 8, p.key).setDepth(51).setScrollFactor(0);
-      img.setScale(Math.min((cardW - 6) / img.width, (cardH - 22) / img.height));
-      this.add.text(cx, cy + cardH / 2 - 10, p.label, {
-        fontSize: '12px', color: '#AAAAAA', fontFamily: 'serif',
+      const img = this.add.image(cx, cy - 10, p.key).setDepth(51).setScrollFactor(0);
+      img.setScale(Math.min((cardW - 6) / img.width, (cardH - 26) / img.height));
+      this.add.text(cx, cy + cardH / 2 - 8, p.label, {
+        fontSize: '13px', color: '#CCCCCC', fontFamily: 'serif',
       }).setOrigin(0.5, 1).setDepth(51).setScrollFactor(0);
     });
 
-    this._hoverPortrait = this.add.image(200, 60, 'portrait_bandit_commander')
-      .setScale(0.18).setDepth(60).setScrollFactor(0).setAlpha(0).setVisible(false);
-    this._hoverBg = this.add.rectangle(200, 60, 80, 90, 0x0a0810, 0.9)
-      .setStrokeStyle(1, 0x663333).setDepth(59).setScrollFactor(0).setAlpha(0).setVisible(false);
-    this._hoverLabel = this.add.text(200, 102, 'Разбойник', {
-      fontSize: '9px', color: '#CC4444', fontFamily: 'serif',
-    }).setOrigin(0.5).setDepth(61).setScrollFactor(0).setAlpha(0).setVisible(false);
+    // Hover-портрет бандита — у ПРАВОГО края экрана
+    const hW = 120, hH = 145;
+    const hx = 1280 - hW / 2;  // правый край
+    this._hoverBg = this.add.rectangle(hx, 120, hW, hH, 0x0a0810, 0.92)
+      .setStrokeStyle(2, 0x663333).setDepth(59).setScrollFactor(0).setAlpha(0);
+    this._hoverPortrait = this.add.image(hx, 115, 'portrait_bandit_commander')
+      .setDepth(60).setScrollFactor(0).setAlpha(0);
+    // Масштаб портрета под карточку
+    const pScale = Math.min((hW - 6) / this._hoverPortrait.width, (hH - 26) / this._hoverPortrait.height);
+    this._hoverPortrait.setScale(pScale);
+    this._hoverLabel = this.add.text(hx, 185, 'Командир разбойников', {
+      fontSize: '11px', color: '#CC4444', fontFamily: 'serif',
+    }).setOrigin(0.5).setDepth(61).setScrollFactor(0).setAlpha(0);
 
-    // Hover на бандита — используем мировые координаты
+    // Hover на бандита
     this.input.on('pointermove', (ptr) => {
       let hovered = false;
       this._bandits.forEach(b => {
         if (b.encountered) return;
-        if (Phaser.Math.Distance.Between(ptr.worldX, ptr.worldY, b.unit.sprite.x, b.unit.sprite.y) < 45)
+        if (Phaser.Math.Distance.Between(ptr.x, ptr.y, b.unit.sprite.x, b.unit.sprite.y) < 40)
           hovered = true;
       });
-      [this._hoverPortrait, this._hoverBg, this._hoverLabel].forEach(el =>
-        el.setVisible(hovered).setAlpha(hovered ? 1 : 0)
-      );
+      const a = hovered ? 1 : 0;
+      [this._hoverPortrait, this._hoverBg, this._hoverLabel].forEach(el => el.setAlpha(a));
     });
 
     this.music = new MusicPlayer(this);
