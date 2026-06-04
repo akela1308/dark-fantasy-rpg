@@ -1,6 +1,7 @@
 import { MapUnit }       from '../entities/MapUnit.js';
 import { WalkableZones } from '../systems/WalkableZones.js';
 import { MusicPlayer }   from '../ui/MusicPlayer.js';
+import { DialoguePanel } from '../ui/DialoguePanel.js';
 import eventBus           from '../utils/eventBus.js';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -14,9 +15,9 @@ const MAP_CONFIGS = {
       default:  { x: 240, y: 640 },
       from_left:{ x: 240, y: 640 },
     },
-    // Правый край → Tavern Map
+    // Правый край → Tavern Map (y=377-515 — диапазон дороги на правом конце)
     exits: [
-      { zone: { x: 1595, y: 270, w: 77, h: 460 }, toMap: 'tavern_map', spawnId: 'from_left' },
+      { zone: { x: 1588, y: 360, w: 84, h: 165 }, toMap: 'tavern_map', spawnId: 'from_left' },
     ],
     labels:    [],
     bandits:   false,
@@ -26,27 +27,26 @@ const MAP_CONFIGS = {
   tavern_map: {
     bgKey: 'map_tavern_map',
     spawnPoints: {
-      default:     { x: 110, y: 680 },
-      from_left:   { x: 110, y: 680 },
-      tavern_exit: { x: 890, y: 430 },   // выход из таверны — перед зданием
+      default:     { x: 110, y: 620 },
+      from_left:   { x: 110, y: 620 },
+      tavern_exit: { x: 1380, y: 480 },   // возврат из таверны — у двери
     },
-    // Правый край (нижняя часть — мимо таверны) → Forest1
+    // Нижняя ветка X — правый-нижний угол → Forest1
     exits: [
-      { zone: { x: 1595, y: 390, w: 77, h: 480 }, toMap: 'forest1', spawnId: 'from_left' },
+      { zone: { x: 1548, y: 720, w: 124, h: 221 }, toMap: 'forest1', spawnId: 'from_left' },
     ],
-    // Здание таверны — ховер-надпись
+    // Ховер над зданием таверны
     labels: [
       {
-        hoverZone: { x: 870, y: 110, w: 802, h: 660 },
-        text: 'Таверна',
-        // Позиция надписи на экране (scroll-fixed)
-        screenX: 1050,
-        screenY: 60,
+        hoverZone: { x: 1095, y: 368, w: 577, h: 232 },
+        text: 'Войти',
+        screenX: 1160,
+        screenY: 55,
       },
     ],
-    // Вход в здание → Tavern Inside
+    // Верхняя ветка X — дверь таверны → Tavern Inside
     tavernEntry: {
-      zone:    { x: 1010, y: 300, w: 420, h: 380 },
+      zone:    { x: 1440, y: 368, w: 232, h: 175 },
       toMap:   'tavern_inside',
       spawnId: 'default',
     },
@@ -56,16 +56,15 @@ const MAP_CONFIGS = {
   tavern_inside: {
     bgKey: 'map_tavern_inside',
     spawnPoints: {
-      // Общий зал — нижний центр интерьера
-      default: { x: 836, y: 715 },
+      default: { x: 780, y: 820 },   // у входной двери, общий зал
     },
-    // Зона у выходной двери → назад на Tavern Map
+    // Зона двери → выход на Tavern Map
     exits: [
-      { zone: { x: 590, y: 810, w: 420, h: 80 }, toMap: 'tavern_map', spawnId: 'tavern_exit' },
+      { zone: { x: 618, y: 862, w: 325, h: 79 }, toMap: 'tavern_map', spawnId: 'tavern_exit' },
     ],
     labels: [
       {
-        hoverZone: { x: 590, y: 810, w: 420, h: 80 },
+        hoverZone: { x: 618, y: 862, w: 325, h: 79 },
         text: 'Выход',
         screenX: 640,
         screenY: 675,
@@ -73,29 +72,65 @@ const MAP_CONFIGS = {
     ],
     tavernEntry: null,
     bandits: false,
+    // Хозяин таверны стоит у барной стойки (правая часть, walkable зона)
+    npcs: [
+      {
+        x: 1120, y: 460,
+        spriteKey:   'map_tavernman',
+        portraitKey: 'portrait_tavernman',
+        name:        'Хозяин таверны',
+        height:      140,
+        dialogues: [
+          {
+            text: '"Добро пожаловать в «Хромой лось»! Лучшая таверна в округе — и единственная, где вас не зарежут за ужином."',
+            choices: [
+              { label: 'Что слышно в окрестностях?',  style: 'default' },
+              { label: 'Налей-ка нам выпить.',         style: 'default' },
+              { label: 'Нам нужна комната на ночь.',   style: 'default' },
+              { label: 'Спасибо, мы идём дальше.',     style: 'retreat' },
+            ],
+          },
+          {
+            // ответ на "что слышно"
+            text: '"В лесу за деревней разбойники орудуют уже неделю. Говорят, ими командует какой-то наёмник. Будьте осторожны."',
+            choices: [{ label: 'Понятно. Спасибо.', style: 'default' }],
+          },
+          {
+            // ответ на "налей"
+            text: '"Три медяка кружка. Тёмное, светлое и что-то ужасное — я сам не знаю что, но берут охотно."',
+            choices: [{ label: 'Тёмное, конечно.', style: 'default' }],
+          },
+          {
+            // ответ на "комнату"
+            text: '"Есть. Пять медяков ночь. Клопов почти нет."',
+            choices: [{ label: 'Договорились.', style: 'default' }],
+          },
+        ],
+      },
+    ],
   },
 
   forest1: {
     bgKey: 'map_forest1',
     spawnPoints: {
-      default:  { x: 100, y: 530 },
-      from_left:{ x: 100, y: 530 },
+      default:  { x: 100, y: 555 },
+      from_left:{ x: 100, y: 555 },
     },
     exits: [
-      // Верхняя ветка → Mountains Map
-      { zone: { x: 1530, y: 100, w: 142, h: 290 }, toMap: 'mountains_map', spawnId: 'from_left' },
-      // Нижняя ветка → Elf Swamp
-      { zone: { x: 1530, y: 590, w: 142, h: 290 }, toMap: 'elf_boloto', spawnId: 'from_left' },
+      // Верхняя ветка → Mountains Map (y=192-450)
+      { zone: { x: 1548, y: 178, w: 124, h: 275 }, toMap: 'mountains_map', spawnId: 'from_left' },
+      // Нижняя ветка → Elf Swamp (y=570-798)
+      { zone: { x: 1548, y: 558, w: 124, h: 245 }, toMap: 'elf_boloto',    spawnId: 'from_left' },
     ],
     labels: [
       {
-        hoverZone: { x: 1150, y: 80,  w: 522, h: 310 },
+        hoverZone: { x: 1065, y: 180, w: 607, h: 270 },
         text: '↑ Горный перевал',
         screenX: 1060,
         screenY: 50,
       },
       {
-        hoverZone: { x: 1150, y: 570, w: 522, h: 310 },
+        hoverZone: { x: 1065, y: 558, w: 607, h: 250 },
         text: '↓ Болото эльфов',
         screenX: 1060,
         screenY: 690,
@@ -103,14 +138,14 @@ const MAP_CONFIGS = {
     ],
     tavernEntry: null,
     bandits: true,
-    banditPos: { x: 490, y: 465 },   // у костра, левая часть карты
+    banditPos: { x: 500, y: 560 },   // у костра/лагеря, левая-центральная часть
   },
 
   mountains_map: {
     bgKey: 'map_mountains_map',
     spawnPoints: {
-      default:  { x: 200, y: 610 },
-      from_left:{ x: 200, y: 610 },
+      default:  { x: 180, y: 580 },
+      from_left:{ x: 180, y: 580 },
     },
     exits:      [],
     labels:     [],
@@ -121,8 +156,8 @@ const MAP_CONFIGS = {
   elf_boloto: {
     bgKey: 'map_elf_boloto',
     spawnPoints: {
-      default:  { x: 200, y: 520 },
-      from_left:{ x: 200, y: 520 },
+      default:  { x: 180, y: 560 },
+      from_left:{ x: 180, y: 560 },
     },
     exits:      [],
     labels:     [],
@@ -178,6 +213,13 @@ export class MapScene extends Phaser.Scene {
     // Hover-надписи для POI
     this._hoverLabels = [];
     this._setupLabels(cfg);
+
+    // Диалоговая панель (in-world overlay)
+    this._dialogue = new DialoguePanel(this);
+
+    // NPC (статичные, кликабельные)
+    this._npcs = [];
+    this._spawnNPCs(cfg);
 
     // Клик по карте
     this.input.on('pointerdown', (ptr) => {
@@ -251,6 +293,73 @@ export class MapScene extends Phaser.Scene {
     }
   }
 
+  // ─── NPCs ────────────────────────────────────────────────────────────────
+
+  _spawnNPCs(cfg) {
+    (cfg.npcs || []).forEach(npc => {
+      const h = npc.height || 130;
+      const tex = this.textures.get(npc.spriteKey);
+      const ratio = tex.getSourceImage().height > 0
+        ? h / tex.getSourceImage().height : 1;
+
+      // Тень
+      const shadow = this.add.ellipse(npc.x, npc.y + 8, 55, 16, 0x000000, 0.35).setDepth(1);
+
+      // Спрайт
+      const sprite = this.add.image(npc.x, npc.y, npc.spriteKey)
+        .setScale(ratio)
+        .setDepth(npc.y)
+        .setInteractive({ useHandCursor: true });
+
+      // Имя над головой
+      const label = this.add.text(npc.x, npc.y - h / 2 - 12, npc.name, {
+        fontFamily: 'serif', fontSize: '14px', color: '#D4AA60',
+        stroke: '#000', strokeThickness: 3,
+      }).setOrigin(0.5, 1).setDepth(npc.y + 1);
+
+      // Hover — небольшое свечение
+      sprite.on('pointerover',  () => sprite.setTint(0xFFEEBB));
+      sprite.on('pointerout',   () => sprite.clearTint());
+
+      // Клик — диалог
+      sprite.on('pointerdown', () => {
+        if (this._transitioning || this._dialogue?.active) return;
+        this.hero.stopMove();
+        this.brawler.stopMove();
+        this.healer.stopMove();
+        this._showNpcDialogue(npc, 0);
+      });
+
+      this._npcs.push({ sprite, shadow, label, cfg: npc });
+    });
+  }
+
+  _showNpcDialogue(npc, dialogueIndex) {
+    const dlg = npc.dialogues[dialogueIndex] || npc.dialogues[0];
+
+    // Маппинг вариантов: некоторые открывают следующий диалог
+    const choices = dlg.choices.map((ch, i) => ({
+      label:    ch.label,
+      style:    ch.style || 'default',
+      onSelect: () => {
+        // Если есть следующий диалог — показываем его, иначе просто закрываем
+        const nextIdx = dialogueIndex + 1 + i;
+        if (npc.dialogues[nextIdx]) {
+          this._showNpcDialogue(npc, nextIdx);
+        }
+        // retreat и последний вариант — просто закрываем (hide уже вызван в DialoguePanel)
+      },
+    }));
+
+    this._dialogue.show({
+      portraitLeft:  'portrait_hero_duelist',
+      portraitRight: npc.portraitKey,
+      speakerName:   npc.name,
+      text:          dlg.text,
+      choices,
+    });
+  }
+
   // ─── Bandits ─────────────────────────────────────────────────────────────
 
   _spawnBandits(cfg) {
@@ -270,7 +379,7 @@ export class MapScene extends Phaser.Scene {
   }
 
   _checkEncounters() {
-    if (this._transitioning) return;
+    if (this._transitioning || this._dialogue?.active) return;
     this._bandits.forEach(b => {
       if (b.encountered) return;
       const dist = Phaser.Math.Distance.Between(
@@ -278,22 +387,129 @@ export class MapScene extends Phaser.Scene {
       );
       if (dist < 100) {
         b.encountered = true;
-        this._transitioning = true;
         this.hero.stopMove();
         this.brawler.stopMove();
         this.healer.stopMove();
-        this.time.delayedCall(350, () => {
-          this.cameras.main.fade(500, 0, 0, 0, false, (cam, progress) => {
-            if (progress === 1) {
-              this.scene.start('LoadingScene', {
-                destination: 'BattleScene',
-                destinationData: {},
-              });
-            }
-          });
-        });
+        this._showBanditDialogue(b);
       }
     });
+  }
+
+  // ─── Диалог с бандитом ────────────────────────────────────────────────
+
+  _showBanditDialogue(bandit) {
+    this._dialogue.show({
+      portraitLeft:  'portrait_hero_duelist',
+      portraitRight: 'portrait_bandit_commander',
+      speakerName:   'Командир разбойников',
+      text: '"Стоять. Дальше — только если заплатите жизнями. Последний шанс убраться."',
+      choices: [
+        {
+          label:    'Атаковать!',
+          style:    'attack',
+          onSelect: () => this._startBattle(),
+        },
+        {
+          label:    'Мы просто проходим мимо, не ищем беды.',
+          style:    'default',
+          onSelect: () => this._banditLetThrough(bandit),
+        },
+        {
+          label:    '[Запугать] Убирайся с дороги, пока цел.',
+          style:    'threat',
+          onSelect: () => this._tryIntimidate(bandit),
+        },
+        {
+          label:    'Поворачиваем назад.',
+          style:    'retreat',
+          onSelect: () => {
+            bandit.encountered = false; // сбрасываем — если вернутся, диалог снова
+            this._transitionTo('tavern_map', 'tavern_exit');
+          },
+        },
+      ],
+    });
+  }
+
+  _startBattle() {
+    this._transitioning = true;
+    this.time.delayedCall(200, () => {
+      this.cameras.main.fade(500, 0, 0, 0, false, (cam, progress) => {
+        if (progress === 1) {
+          this.scene.start('LoadingScene', {
+            destination: 'BattleScene',
+            destinationData: {},
+          });
+        }
+      });
+    });
+  }
+
+  /** Бандит пропускает — за "дань" или просто пугается молчания */
+  _banditLetThrough(bandit) {
+    // Второй диалог — бандит отступает
+    this._dialogue.show({
+      portraitLeft:  'portrait_hero_duelist',
+      portraitRight: 'portrait_bandit_commander',
+      speakerName:   'Командир разбойников',
+      text: '"...Умно. Проходите. Но помните — дороги назад не будет."',
+      choices: [
+        {
+          label:    'Идём дальше.',
+          style:    'default',
+          onSelect: () => this._banditRetreat(bandit),
+        },
+      ],
+    });
+  }
+
+  /** Запугивание — 50/50 */
+  _tryIntimidate(bandit) {
+    const success = Math.random() < 0.5;
+    if (success) {
+      this._dialogue.show({
+        portraitLeft:  'portrait_hero_duelist',
+        portraitRight: 'portrait_bandit_commander',
+        speakerName:   'Командир разбойников',
+        text: '"...Вы не обычные путники. Отступить! Уходим!"',
+        choices: [
+          {
+            label:    'Смотрим как бегут.',
+            style:    'default',
+            onSelect: () => this._banditRetreat(bandit),
+          },
+        ],
+      });
+    } else {
+      this._dialogue.show({
+        portraitLeft:  'portrait_hero_duelist',
+        portraitRight: 'portrait_bandit_commander',
+        speakerName:   'Командир разбойников',
+        text: '"Хах! Слова — не оружие. Взять их!"',
+        choices: [
+          {
+            label:    'Тогда в бой!',
+            style:    'attack',
+            onSelect: () => this._startBattle(),
+          },
+        ],
+      });
+    }
+  }
+
+  /** Анимация отступления бандита + убираем его с карты */
+  _banditRetreat(bandit) {
+    this.game.registry.set('bandit_0_defeated', true);
+    if (bandit?.unit?.sprite) {
+      this.tweens.add({
+        targets:  bandit.unit.sprite,
+        x:        bandit.unit.sprite.x - 200,
+        alpha:    0,
+        duration: 800,
+        ease:     'Power2',
+        onComplete: () => bandit.unit.sprite?.destroy(),
+      });
+    }
   }
 
   // ─── Labels (hover-надписи для зданий и развилок) ────────────────────────
@@ -385,28 +601,36 @@ export class MapScene extends Phaser.Scene {
   }
 
   _buildHUD(cfg) {
-    // Подсказка
-    this.add.text(16, 16, '🗺 Кликни по дороге чтобы идти', {
-      fontSize: '13px', color: '#C9A84C', fontFamily: 'serif',
-      backgroundColor: '#00000088', padding: { x: 8, y: 4 },
-    }).setDepth(50).setScrollFactor(0);
+    // Подсказка — справа внизу, не мешает плееру и портретам
+    this.add.text(1270, 708, 'Кликни чтобы идти', {
+      fontSize: '12px', color: '#666655', fontFamily: 'serif',
+    }).setOrigin(1, 1).setDepth(50).setScrollFactor(0);
 
-    // Портреты партии — левый край
+    // ── Портреты партии ───────────────────────────────────────────────
+    // Позиционированы по аннотации:
+    //   Экран: x=0–120px, y=180–555px
+    //   zoom=0.765 → world = screen/0.765
     const portraits = [
       { key: 'portrait_hero_duelist',      label: 'Дуэлянт' },
       { key: 'portrait_companion_brawler', label: 'Боец' },
       { key: 'portrait_companion_healer',  label: 'Знахарка' },
     ];
-    const cardW = 118, cardH = 138, startY = 100, gapY = 150;
+    // Портреты: левый край = x:0, setOrigin(0, 0.5) гарантирует flush к краю
+    const cardW  = 150, cardH = 160;
+    const startY = 310;
+    const gapY   = 170;
     portraits.forEach((p, i) => {
-      const cx = cardW / 2;
       const cy = startY + i * gapY;
-      this.add.rectangle(cx, cy, cardW, cardH, 0x0a0810, 0.92)
-        .setStrokeStyle(2, 0x445577).setDepth(50).setScrollFactor(0);
+      // Левый край прямоугольника ровно на x=0
+      this.add.rectangle(0, cy, cardW, cardH, 0x0a0810, 0.94)
+        .setStrokeStyle(2, 0x445577)
+        .setOrigin(0, 0.5)
+        .setDepth(50).setScrollFactor(0);
+      const cx = cardW / 2;
       const img = this.add.image(cx, cy - 10, p.key).setDepth(51).setScrollFactor(0);
-      img.setScale(Math.min((cardW - 6) / img.width, (cardH - 26) / img.height));
-      this.add.text(cx, cy + cardH / 2 - 8, p.label, {
-        fontSize: '13px', color: '#CCCCCC', fontFamily: 'serif',
+      img.setScale(Math.min((cardW - 8) / img.width, (cardH - 28) / img.height));
+      this.add.text(cx, cy + cardH / 2 - 6, p.label, {
+        fontSize: '14px', color: '#CCCCCC', fontFamily: 'serif',
       }).setOrigin(0.5, 1).setDepth(51).setScrollFactor(0);
     });
 
