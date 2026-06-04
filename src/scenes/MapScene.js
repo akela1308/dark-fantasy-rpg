@@ -1,5 +1,6 @@
 import { MapUnit }       from '../entities/MapUnit.js';
 import { WalkableZones } from '../systems/WalkableZones.js';
+import { MusicPlayer }   from '../ui/MusicPlayer.js';
 import eventBus           from '../utils/eventBus.js';
 
 /**
@@ -19,27 +20,46 @@ export class MapScene extends Phaser.Scene {
 
   create() {
     const mapW = 1672, mapH = 941;
+    const W    = 1280, H    = 720; // размер экрана
 
-    // ── Фон карты ─────────────────────────────────────────────────────
-    this.add.image(mapW / 2, mapH / 2, `map_${this.mapKey}`)
-      .setDisplaySize(mapW, mapH)
+    // Масштаб чтобы вся карта влезла на экран
+    const zoom = Math.min(W / mapW, H / mapH); // ~0.765
+
+    // Рендерим карту в координатах ЭКРАНА (не мира) — проще и надёжнее
+    // Всё в одном масштабе, камера статична
+    this.cameras.main.setZoom(1); // zoom = 1, масштабируем сам контент
+
+    const imgScale = zoom;
+
+    // ── Фон карты — вписан в экран ───────────────────────────────────
+    this.add.image(W / 2, H / 2, `map_${this.mapKey}`)
+      .setScale(imgScale)
       .setDepth(0);
 
-    // Размер мира для камеры
-    this.physics.world.setBounds(0, 0, mapW, mapH);
-    this.cameras.main.setBounds(0, 0, mapW, mapH);
+    // Мировые координаты = экранные (zoom 1), карта занимает W×H пикселей
+    // Пересчитаем позиции персонажей и зон в экранные координаты
+    this._mapScale = imgScale;
+    this._mapOffX  = (W - mapW * imgScale) / 2;
+    this._mapOffY  = (H - mapH * imgScale) / 2;
 
     // ── Walkable zones ────────────────────────────────────────────────
     this.walkable = new WalkableZones(this.mapKey);
-    // this.walkable.drawDebug(this); // раскомментировать для отладки зон
+    // this.walkable.drawDebug(this, this._mapScale, this._mapOffX, this._mapOffY);
 
-    // ── Стартовая позиция ─────────────────────────────────────────────
-    const startX = 220, startY = 490;
+    // ── Стартовая позиция (в координатах карты → экрана) ─────────────
+    const toScreen = (mx, my) => ({
+      x: this._mapOffX + mx * this._mapScale,
+      y: this._mapOffY + my * this._mapScale,
+    });
+    this._toScreen = toScreen;
+
+    const start = toScreen(220, 490);
 
     // ── Персонажи ────────────────────────────────────────────────────
-    this.hero    = new MapUnit(this, startX,      startY, 'map_hero',    { height: 68, speed: 130 });
-    this.brawler = new MapUnit(this, startX - 40, startY, 'map_brawler', { height: 62, speed: 130 });
-    this.healer  = new MapUnit(this, startX - 70, startY, 'map_healer',  { height: 60, speed: 130 });
+    const unitH = Math.round(88 * this._mapScale);  // масштабируем высоту
+    this.hero    = new MapUnit(this, start.x,       start.y, 'map_hero',    { height: unitH + 8, speed: 100 });
+    this.brawler = new MapUnit(this, start.x - 42,  start.y, 'map_brawler', { height: unitH,     speed: 100 });
+    this.healer  = new MapUnit(this, start.x - 76,  start.y, 'map_healer',  { height: unitH - 4, speed: 100 });
 
     // История позиций героя для следования спутников
     this._heroTrail = [];
@@ -49,17 +69,24 @@ export class MapScene extends Phaser.Scene {
     this._bandits = [];
     this._spawnBandits();
 
-    // ── Камера следует за героем ──────────────────────────────────────
-    this.cameras.main.startFollow(this.hero.sprite, true, 0.08, 0.08);
-    this.cameras.main.setZoom(1.3);
+    // ── Камера: вся карта видна на экране, без скролла ───────────────
+    // Карта 1672x941, экран 1280x720 → подгоняем масштаб чтобы влезла
+    const scaleX = 1280 / mapW;
+    const scaleY = 720  / mapH;
+    const zoom   = Math.min(scaleX, scaleY);
+    this.cameras.main.setZoom(zoom);
+    this.cameras.main.centerOn(mapW / 2, mapH / 2);
 
     // ── Клик для движения ─────────────────────────────────────────────
     this.input.on('pointerdown', (ptr) => {
       if (ptr.rightButtonDown()) return;
-      // Переводим экранные координаты в мировые
-      const wx = ptr.worldX;
-      const wy = ptr.worldY;
-      const dest = this.walkable.clamp(wx, wy);
+      const sx = ptr.x, sy = ptr.y;
+      // Конвертируем экранные координаты в координаты карты для проверки walkable
+      const mx = (sx - this._mapOffX) / this._mapScale;
+      const my = (sy - this._mapOffY) / this._mapScale;
+      const clamped = this.walkable.clamp(mx, my);
+      // Обратно в экранные
+      const dest = this._toScreen(clamped.x, clamped.y);
       this.hero.moveTo(dest.x, dest.y);
       this._showClickMarker(dest.x, dest.y);
     });
@@ -107,16 +134,16 @@ export class MapScene extends Phaser.Scene {
   // ── Бандиты ────────────────────────────────────────────────────────
 
   _spawnBandits() {
+    // Waypoints в координатах карты → конвертируем в экранные
     const patrols = [
-      // Waypoints бандита 1 (у ворот, середина карты)
-      [{ x: 650, y: 490 }, { x: 850, y: 490 }, { x: 750, y: 520 }],
-      // Waypoints бандита 2 (правее)
-      [{ x: 1050, y: 480 }, { x: 1200, y: 495 }, { x: 1100, y: 460 }],
-    ];
+      [{ x: 650, y: 430 }, { x: 820, y: 415 }, { x: 720, y: 445 }],
+      [{ x: 1050, y: 390 }, { x: 1200, y: 370 }, { x: 1120, y: 410 }],
+    ].map(wps => wps.map(p => this._toScreen(p.x, p.y)));
 
+    const unitH = Math.round(88 * this._mapScale);
     patrols.forEach((waypoints, i) => {
       const b = new MapUnit(this, waypoints[0].x, waypoints[0].y, 'map_bandit', {
-        height: 65, speed: 55
+        height: unitH, speed: 42
       });
       b.sprite.setFlipX(true);
       this._bandits.push({
@@ -173,11 +200,14 @@ export class MapScene extends Phaser.Scene {
   }
 
   _startEncounter() {
-    // Небольшая пауза → диалог → бой
     this.time.delayedCall(400, () => {
-      this.cameras.main.fade(600, 0, 0, 0, false, (cam, progress) => {
+      this.cameras.main.fade(500, 0, 0, 0, false, (cam, progress) => {
         if (progress === 1) {
-          this.scene.start('DialogueScene', { returnTo: 'BattleScene' });
+          // Через LoadingScene — покажет наш экран загрузки
+          this.scene.start('LoadingScene', {
+            destination: 'BattleScene',
+            destinationData: {}
+          });
         }
       });
     });
@@ -201,10 +231,54 @@ export class MapScene extends Phaser.Scene {
   // ── HUD ────────────────────────────────────────────────────────────
 
   _buildHUD() {
-    // Подсказка
     this.add.text(16, 16, '🗺 Кликни по дороге чтобы идти', {
       fontSize: '13px', color: '#C9A84C', fontFamily: 'serif',
       backgroundColor: '#00000088', padding: { x: 8, y: 4 }
     }).setDepth(50).setScrollFactor(0);
+
+    // ── Портреты игрока (левая панель, как в бою) ─────────────────────
+    const portraits = [
+      { key: 'portrait_hero_duelist',    label: 'Дуэлянт' },
+      { key: 'portrait_companion_brawler', label: 'Боец' },
+      { key: 'portrait_companion_healer',  label: 'Знахарка' },
+    ];
+    const cardW = 64, cardH = 72, startY = 120, gapY = 80;
+    portraits.forEach((p, i) => {
+      const cx = 38, cy = startY + i * gapY;
+      this.add.rectangle(cx, cy, cardW, cardH, 0x0a0810, 0.85)
+        .setStrokeStyle(1, 0x334466).setDepth(50).setScrollFactor(0);
+      const img = this.add.image(cx, cy - 6, p.key).setDepth(51).setScrollFactor(0);
+      const s = Math.min((cardW - 4) / img.width, (cardH - 18) / img.height);
+      img.setScale(s);
+      this.add.text(cx, cy + cardH / 2 - 10, p.label, {
+        fontSize: '9px', color: '#AAAAAA', fontFamily: 'serif'
+      }).setOrigin(0.5, 1).setDepth(51).setScrollFactor(0);
+    });
+
+    // ── Hover-портрет бандита (появляется при наведении) ─────────────
+    this._hoverPortrait = this.add.image(200, 60, 'portrait_bandit_commander')
+      .setScale(0.18).setDepth(60).setScrollFactor(0).setAlpha(0).setVisible(false);
+    this._hoverBg = this.add.rectangle(200, 60, 80, 90, 0x0a0810, 0.9)
+      .setStrokeStyle(1, 0x663333).setDepth(59).setScrollFactor(0).setAlpha(0).setVisible(false);
+    this._hoverLabel = this.add.text(200, 102, 'Разбойник', {
+      fontSize: '9px', color: '#CC4444', fontFamily: 'serif'
+    }).setOrigin(0.5).setDepth(61).setScrollFactor(0).setAlpha(0).setVisible(false);
+
+    // Показываем hover при наведении на бандита
+    this.input.on('pointermove', (ptr) => {
+      let hovered = false;
+      this._bandits.forEach(b => {
+        if (b.encountered) return;
+        const d = Phaser.Math.Distance.Between(ptr.x, ptr.y, b.unit.sprite.x, b.unit.sprite.y);
+        if (d < 35) hovered = true;
+      });
+      [this._hoverPortrait, this._hoverBg, this._hoverLabel].forEach(el => {
+        el.setVisible(hovered).setAlpha(hovered ? 1 : 0);
+      });
+    });
+
+    // Музыкальный плеер
+    this.music = new MusicPlayer(this);
+    this.music.create();
   }
 }

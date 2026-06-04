@@ -6,6 +6,12 @@ export class LoadingScene extends Phaser.Scene {
     super({ key: 'LoadingScene' });
   }
 
+  init(data) {
+    // Куда идти после загрузки и с какими данными
+    this._destination     = data?.destination     || 'MapScene';
+    this._destinationData = data?.destinationData || { mapKey: 'map1' };
+  }
+
   preload() {
     const W = this.scale.width;
     const H = this.scale.height;
@@ -28,7 +34,7 @@ export class LoadingScene extends Phaser.Scene {
     });
 
     this.load.on('complete', () => {
-      this.scene.start('MapScene', { mapKey: 'map1' });
+      this.scene.start(this._destination, this._destinationData);
     });
 
     // Сначала загружаем картинку
@@ -83,10 +89,20 @@ export class LoadingScene extends Phaser.Scene {
       ['track_mermaids',   'Mermaids song.mp3'],
     ];
     tracks.forEach(([key, file]) => this.load.audio(key, `audio/${file}`));
+
+    // Запускаем музыку как только загрузится первый трек
+    this.load.once('filecomplete-audio-track_ashes2', () => {
+      if (!this.game.registry.get('musicStarted')) {
+        const music = this.sound.add('track_ashes2', { loop: true, volume: 0.45 });
+        music.play();
+        this.game.registry.set('musicStarted', true);
+        this.game.registry.set('bgMusic', music);
+        this.game.registry.set('bgMusicIndex', 0);
+      }
+    });
   }
 
   create() {
-    // После загрузки — карта мира
-    this.scene.start('MapScene', { mapKey: 'map1' });
+    this.scene.start(this._destination, this._destinationData);
   }
 }

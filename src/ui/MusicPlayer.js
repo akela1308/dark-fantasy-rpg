@@ -1,98 +1,100 @@
 /**
  * MusicPlayer — компактный плеер в углу экрана.
- * Кнопки: ♪ вкл/выкл, ◀ пред, ▶ след.
- * Показывает название текущего трека.
+ * Музыка уже может играть с BootScene через registry.
+ * Плеер подхватывает текущий трек и позволяет переключать.
  */
 export class MusicPlayer {
   constructor(scene) {
-    this.scene   = scene;
-    this.tracks  = [
-      { key: 'track_ashes2',      file: 'Ashes of Velanth 2.mp3',       label: 'Ashes of Velanth II' },
-      { key: 'track_ashes',       file: 'Ashes of Velanth.mp3',         label: 'Ashes of Velanth' },
-      { key: 'track_ward',        file: 'Ashes of the Last Ward.mp3',   label: 'Ashes of the Last Ward' },
-      { key: 'track_monastery2',  file: 'Ashes of the Monastery 2.mp3', label: 'Ashes of Monastery II' },
-      { key: 'track_monastery',   file: 'Ashes of the Monastery.mp3',   label: 'Ashes of the Monastery' },
-      { key: 'track_pass',        file: 'Ashes of the Pass.mp3',        label: 'Ashes of the Pass' },
-      { key: 'track_dark',        file: 'Dark Song.mp3',                label: 'Dark Song' },
-      { key: 'track_forest',      file: 'Forest song.mp3',              label: 'Forest Song' },
-      { key: 'track_mermaids',    file: 'Mermaids song.mp3',            label: 'Mermaids Song' },
+    this.scene  = scene;
+    this.tracks = [
+      { key: 'track_ashes2',     file: 'Ashes of Velanth 2.mp3',       label: 'Ashes of Velanth II' },
+      { key: 'track_ashes',      file: 'Ashes of Velanth.mp3',         label: 'Ashes of Velanth' },
+      { key: 'track_ward',       file: 'Ashes of the Last Ward.mp3',   label: 'Ashes of the Last Ward' },
+      { key: 'track_monastery2', file: 'Ashes of the Monastery 2.mp3', label: 'Ashes of Monastery II' },
+      { key: 'track_monastery',  file: 'Ashes of the Monastery.mp3',   label: 'Ashes of the Monastery' },
+      { key: 'track_pass',       file: 'Ashes of the Pass.mp3',        label: 'Ashes of the Pass' },
+      { key: 'track_dark',       file: 'Dark Song.mp3',                label: 'Dark Song' },
+      { key: 'track_forest',     file: 'Forest song.mp3',              label: 'Forest Song' },
+      { key: 'track_mermaids',   file: 'Mermaids song.mp3',            label: 'Mermaids Song' },
     ];
-    this.index   = 0;
     this.muted   = false;
     this.current = null;
   }
 
-  // Ассеты загружены в LoadingScene — preload не нужен
-  preload() {}
+  preload() {} // ассеты грузит LoadingScene
 
-  // Вызвать в create() сцены
   create() {
-    this._buildUI();
-    // Браузер требует хотя бы одно взаимодействие до autoplay.
-    // Ждём unlock от Phaser и сразу стартуем.
-    if (this.scene.sound.locked) {
-      this.scene.sound.once('unlocked', () => { this._play(0); });
+    // Подхватываем уже играющую музыку из глобального registry
+    const reg      = this.scene.game.registry;
+    const existing = reg.get('bgMusic');
+    const idx      = reg.get('bgMusicIndex') ?? 0;
+
+    if (existing && existing.isPlaying) {
+      this.current = existing;
+      this.index   = idx;
     } else {
-      this._play(0);
+      // Если музыки нет — запускаем
+      this.index = idx;
+      this._startTrack(this.index);
     }
+
+    this._buildUI();
   }
 
-  _play(index) {
+  _startTrack(index) {
     if (this.current) {
-      try { this.current.stop(); this.current.destroy(); } catch(e) {}
+      try { this.current.stop(); } catch(e) {}
     }
-    this.index   = ((index % this.tracks.length) + this.tracks.length) % this.tracks.length;
-    const track  = this.tracks[this.index];
-    this.current = this.scene.sound.add(track.key, { loop: false, volume: 0.5 });
+    this.index = ((index % this.tracks.length) + this.tracks.length) % this.tracks.length;
+    const track = this.tracks[this.index];
 
-    // Запускаем только если не muted и аудио контекст разблокирован
+    // Проверяем что трек загружен
+    if (!this.scene.cache.audio.exists(track.key)) return;
+
+    this.current = this.scene.sound.add(track.key, { loop: false, volume: 0.45 });
     if (!this.muted) {
       try { this.current.play(); } catch(e) {}
     }
+    this.current.on('complete', () => this._startTrack(this.index + 1));
 
-    this.current.on('complete', () => this._play(this.index + 1));
+    // Сохраняем в глобальный registry
+    this.scene.game.registry.set('bgMusic', this.current);
+    this.scene.game.registry.set('bgMusicIndex', this.index);
+
     this._updateLabel();
   }
 
   _buildUI() {
-    const x = 10, y = 10;
-    const depth = 10;
+    const x = 10, y = 10, depth = 50;
 
-    // Фон плеера
     this._bg = this.scene.add.rectangle(x + 110, y + 18, 220, 36, 0x0a0a14, 0.82)
-      .setStrokeStyle(1, 0x333355)
-      .setOrigin(0.5)
-      .setDepth(depth)
-      .setScrollFactor(0);
+      .setStrokeStyle(1, 0x333355).setOrigin(0.5).setDepth(depth).setScrollFactor(0);
 
-    // Кнопка вкл/выкл ♪
     this._btnMute = this.scene.add.text(x + 8, y + 4, '♪', {
       fontSize: '18px', color: '#C9A84C', fontFamily: 'serif'
-    }).setDepth(depth).setInteractive({ useHandCursor: true });
+    }).setDepth(depth).setScrollFactor(0).setInteractive({ useHandCursor: true });
     this._btnMute.on('pointerdown', () => this._toggleMute());
 
-    // Кнопка ◀ предыдущий
     this._btnPrev = this.scene.add.text(x + 34, y + 5, '◀', {
       fontSize: '14px', color: '#888888', fontFamily: 'serif'
-    }).setDepth(depth).setInteractive({ useHandCursor: true });
-    this._btnPrev.on('pointerdown', () => this._play(this.index - 1 + this.tracks.length));
+    }).setDepth(depth).setScrollFactor(0).setInteractive({ useHandCursor: true });
+    this._btnPrev.on('pointerdown', () => this._startTrack(this.index - 1 + this.tracks.length));
 
-    // Название трека
     this._label = this.scene.add.text(x + 55, y + 6, '', {
       fontSize: '11px', color: '#AAAAAA', fontFamily: 'serif'
-    }).setDepth(depth);
+    }).setDepth(depth).setScrollFactor(0);
 
-    // Кнопка ▶ следующий
     this._btnNext = this.scene.add.text(x + 198, y + 5, '▶', {
       fontSize: '14px', color: '#888888', fontFamily: 'serif'
-    }).setDepth(depth).setInteractive({ useHandCursor: true });
-    this._btnNext.on('pointerdown', () => this._play(this.index + 1));
+    }).setDepth(depth).setScrollFactor(0).setInteractive({ useHandCursor: true });
+    this._btnNext.on('pointerdown', () => this._startTrack(this.index + 1));
 
-    // Hover эффекты
     [this._btnMute, this._btnPrev, this._btnNext].forEach(btn => {
       btn.on('pointerover', () => btn.setAlpha(0.6));
       btn.on('pointerout',  () => btn.setAlpha(1));
     });
+
+    this._updateLabel();
   }
 
   _toggleMute() {
@@ -107,9 +109,9 @@ export class MusicPlayer {
   }
 
   _updateLabel() {
-    const name = this.tracks[this.index].label;
-    // Обрезаем если длинное
+    if (!this._label) return;
+    const name  = this.tracks[this.index]?.label ?? '';
     const short = name.length > 18 ? name.slice(0, 17) + '…' : name;
-    this._label?.setText(short);
+    this._label.setText(short);
   }
 }
