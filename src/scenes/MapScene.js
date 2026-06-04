@@ -27,26 +27,26 @@ const MAP_CONFIGS = {
   tavern_map: {
     bgKey: 'map_tavern_map',
     spawnPoints: {
-      default:     { x: 110, y: 680 },
-      from_left:   { x: 110, y: 680 },
-      tavern_exit: { x: 900, y: 540 },   // возврат из таверны — у нижней ветки
+      default:     { x: 110, y: 620 },
+      from_left:   { x: 110, y: 620 },
+      tavern_exit: { x: 1380, y: 480 },   // возврат из таверны — у двери
     },
-    // Верхняя ветка — правый край → Forest1  (y=315-520)
+    // Нижняя ветка X — правый-нижний угол → Forest1
     exits: [
-      { zone: { x: 1588, y: 298, w: 84, h: 230 }, toMap: 'forest1', spawnId: 'from_left' },
+      { zone: { x: 1548, y: 720, w: 124, h: 221 }, toMap: 'forest1', spawnId: 'from_left' },
     ],
-    // Здание таверны — ховер-надпись (правая половина карты)
+    // Ховер над зданием таверны
     labels: [
       {
-        hoverZone: { x: 870, y: 110, w: 802, h: 660 },
-        text: 'Таверна',
-        screenX: 1050,
-        screenY: 60,
+        hoverZone: { x: 1095, y: 368, w: 577, h: 232 },
+        text: 'Войти',
+        screenX: 1160,
+        screenY: 55,
       },
     ],
-    // Дверь таверны — правый конец нижней ветки (y=528-693, подальше от верхней)
+    // Верхняя ветка X — дверь таверны → Tavern Inside
     tavernEntry: {
-      zone:    { x: 1440, y: 528, w: 232, h: 165 },
+      zone:    { x: 1440, y: 368, w: 232, h: 175 },
       toMap:   'tavern_inside',
       spawnId: 'default',
     },
@@ -56,16 +56,15 @@ const MAP_CONFIGS = {
   tavern_inside: {
     bgKey: 'map_tavern_inside',
     spawnPoints: {
-      // Общий зал — нижний центр интерьера
-      default: { x: 836, y: 715 },
+      default: { x: 780, y: 820 },   // у входной двери, общий зал
     },
-    // Нижний зал у двери → назад на Tavern Map (y=755-883 = вся нижняя полоса)
+    // Зона двери → выход на Tavern Map
     exits: [
-      { zone: { x: 205, y: 820, w: 1245, h: 63 }, toMap: 'tavern_map', spawnId: 'tavern_exit' },
+      { zone: { x: 618, y: 862, w: 325, h: 79 }, toMap: 'tavern_map', spawnId: 'tavern_exit' },
     ],
     labels: [
       {
-        hoverZone: { x: 205, y: 820, w: 1245, h: 63 },
+        hoverZone: { x: 618, y: 862, w: 325, h: 79 },
         text: 'Выход',
         screenX: 640,
         screenY: 675,
@@ -495,28 +494,32 @@ export class MapScene extends Phaser.Scene {
   }
 
   _buildHUD(cfg) {
-    // Подсказка
-    this.add.text(16, 16, '🗺 Кликни по дороге чтобы идти', {
-      fontSize: '13px', color: '#C9A84C', fontFamily: 'serif',
-      backgroundColor: '#00000088', padding: { x: 8, y: 4 },
-    }).setDepth(50).setScrollFactor(0);
+    // Подсказка — справа внизу, не мешает плееру и портретам
+    this.add.text(1270, 708, 'Кликни чтобы идти', {
+      fontSize: '12px', color: '#666655', fontFamily: 'serif',
+    }).setOrigin(1, 1).setDepth(50).setScrollFactor(0);
 
-    // Портреты партии — левый край
+    // ── Портреты партии ───────────────────────────────────────────────
+    // Позиционированы по аннотации:
+    //   Экран: x=0–120px, y=180–555px
+    //   zoom=0.765 → world = screen/0.765
     const portraits = [
       { key: 'portrait_hero_duelist',      label: 'Дуэлянт' },
       { key: 'portrait_companion_brawler', label: 'Боец' },
       { key: 'portrait_companion_healer',  label: 'Знахарка' },
     ];
-    const cardW = 118, cardH = 138, startY = 100, gapY = 150;
+    const cardW = 144, cardH = 155;         // screen≈110×119px
+    const cx     = cardW / 2;              // screen x≈55px (левый край)
+    const startY = 315;                    // world → screen≈241px
+    const gapY   = 163;                    // screen gap≈125px
     portraits.forEach((p, i) => {
-      const cx = cardW / 2;
       const cy = startY + i * gapY;
-      this.add.rectangle(cx, cy, cardW, cardH, 0x0a0810, 0.92)
+      this.add.rectangle(cx, cy, cardW, cardH, 0x0a0810, 0.94)
         .setStrokeStyle(2, 0x445577).setDepth(50).setScrollFactor(0);
       const img = this.add.image(cx, cy - 10, p.key).setDepth(51).setScrollFactor(0);
       img.setScale(Math.min((cardW - 6) / img.width, (cardH - 26) / img.height));
       this.add.text(cx, cy + cardH / 2 - 8, p.label, {
-        fontSize: '13px', color: '#CCCCCC', fontFamily: 'serif',
+        fontSize: '14px', color: '#CCCCCC', fontFamily: 'serif',
       }).setOrigin(0.5, 1).setDepth(51).setScrollFactor(0);
     });
 
