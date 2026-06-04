@@ -93,11 +93,25 @@ export class LoadingScene extends Phaser.Scene {
     // Запускаем музыку как только загрузится первый трек
     this.load.once('filecomplete-audio-track_ashes2', () => {
       if (!this.game.registry.get('musicStarted')) {
-        const music = this.sound.add('track_ashes2', { loop: true, volume: 0.45 });
-        music.play();
-        this.game.registry.set('musicStarted', true);
-        this.game.registry.set('bgMusic', music);
-        this.game.registry.set('bgMusicIndex', 0);
+        const startMusic = () => {
+          if (this.game.registry.get('musicStarted')) return;
+          const music = this.sound.add('track_ashes2', { loop: false, volume: 0.45 });
+          music.play();
+          music.on('complete', () => {
+            // MusicPlayer в следующей сцене подхватит и продолжит
+            this.game.registry.set('bgMusicIndex', 1);
+          });
+          this.game.registry.set('musicStarted', true);
+          this.game.registry.set('bgMusic', music);
+          this.game.registry.set('bgMusicIndex', 0);
+        };
+
+        if (this.sound.locked) {
+          // Браузер заблокировал autoplay — запустим при первом взаимодействии
+          this.sound.once('unlocked', startMusic);
+        } else {
+          startMusic();
+        }
       }
     });
   }
