@@ -154,15 +154,27 @@ export class BattleScene extends Phaser.Scene {
       const h = ROW_HEIGHT[unit.position.row] ?? 140;
       const isActive = unit === active;
 
-      // Круг под ногами (Disciples-стиль)
-      const ringColor = isActive
-        ? (unit.type === 'player' ? 0x00FF88 : 0xFF3322)
-        : (unit.type === 'player' ? 0x2255AA : 0x661111);
-      const ringAlpha = isActive ? 0.55 : 0.25;
       // Глубина: передний ряд (row=0) поверх заднего (row=1)
       const rowDepth = unit.position.row === 0 ? 3 : 2;
-      const ring = this.add.ellipse(x, y + 8, h * 0.75, h * 0.22, ringColor, ringAlpha).setDepth(rowDepth - 1);
-      this._unitSprites.push(ring);
+
+      // Тонкое кольцо под ногами — только контур, без заливки
+      const ringColor = unit.type === 'player' ? 0x44AAFF : 0xFF4422;
+      const ringW = h * 0.72;
+      const ringH = h * 0.20;
+      const gfx = this.add.graphics().setDepth(1).setAlpha(isActive ? 0.35 : 0.15);
+      gfx.lineStyle(1.5, ringColor, 1);
+      gfx.strokeEllipse(x, y + 6, ringW, ringH);
+      this._unitSprites.push(gfx);
+
+      // Еле заметное мерцание
+      this.tweens.add({
+        targets: gfx,
+        alpha: { from: isActive ? 0.35 : 0.15, to: isActive ? 0.12 : 0.05 },
+        duration: Phaser.Math.Between(1800, 2600),
+        yoyo: true,
+        repeat: -1,
+        ease: 'Sine.easeInOut',
+      });
 
       // Индивидуальные коэффициенты масштаба спрайтов
       const SPRITE_SCALE = {
