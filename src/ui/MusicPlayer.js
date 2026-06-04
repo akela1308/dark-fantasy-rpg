@@ -68,9 +68,9 @@ export class MusicPlayer {
     // zoom=0.765 → world = screen/0.765
     const depth = 52;
 
-    // Фон: мировой центр (268, 35), размер 527×65 → экран (205, 27), 403×50
-    this._bg = this.scene.add.rectangle(268, 35, 527, 65, 0x07070f, 0.90)
-      .setStrokeStyle(1, 0x2a2a44).setOrigin(0.5).setDepth(depth).setScrollFactor(0);
+    // Фон: левый край x=0, тянется вправо на 527 мировых единиц (≈403px экрана)
+    this._bg = this.scene.add.rectangle(0, 35, 527, 65, 0x07070f, 0.90)
+      .setStrokeStyle(1, 0x2a2a44).setOrigin(0, 0.5).setDepth(depth).setScrollFactor(0);
 
     // ♪ кнопка → экран (13,11) → world (17,14)
     this._btnMute = this.scene.add.text(17, 14, '♪', {

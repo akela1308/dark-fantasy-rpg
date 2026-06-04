@@ -615,17 +615,21 @@ export class MapScene extends Phaser.Scene {
       { key: 'portrait_companion_brawler', label: 'Боец' },
       { key: 'portrait_companion_healer',  label: 'Знахарка' },
     ];
-    const cardW = 144, cardH = 155;         // screen≈110×119px
-    const cx     = cardW / 2;              // screen x≈55px (левый край)
-    const startY = 315;                    // world → screen≈241px
-    const gapY   = 163;                    // screen gap≈125px
+    // Портреты: левый край = x:0, setOrigin(0, 0.5) гарантирует flush к краю
+    const cardW  = 150, cardH = 160;
+    const startY = 310;
+    const gapY   = 170;
     portraits.forEach((p, i) => {
       const cy = startY + i * gapY;
-      this.add.rectangle(cx, cy, cardW, cardH, 0x0a0810, 0.94)
-        .setStrokeStyle(2, 0x445577).setDepth(50).setScrollFactor(0);
+      // Левый край прямоугольника ровно на x=0
+      this.add.rectangle(0, cy, cardW, cardH, 0x0a0810, 0.94)
+        .setStrokeStyle(2, 0x445577)
+        .setOrigin(0, 0.5)
+        .setDepth(50).setScrollFactor(0);
+      const cx = cardW / 2;
       const img = this.add.image(cx, cy - 10, p.key).setDepth(51).setScrollFactor(0);
-      img.setScale(Math.min((cardW - 6) / img.width, (cardH - 26) / img.height));
-      this.add.text(cx, cy + cardH / 2 - 8, p.label, {
+      img.setScale(Math.min((cardW - 8) / img.width, (cardH - 28) / img.height));
+      this.add.text(cx, cy + cardH / 2 - 6, p.label, {
         fontSize: '14px', color: '#CCCCCC', fontFamily: 'serif',
       }).setOrigin(0.5, 1).setDepth(51).setScrollFactor(0);
     });
