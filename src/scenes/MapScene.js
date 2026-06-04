@@ -73,6 +73,8 @@ export class MapScene extends Phaser.Scene {
     this.brawler.update(delta);
     this.healer.update(delta);
 
+    this._separateParty();
+
     this._updateBandits(delta);
     this._checkEncounters();
   }
@@ -81,6 +83,30 @@ export class MapScene extends Phaser.Scene {
     const idx = Math.max(0, this._heroTrail.length - stepsBack);
     const pos = this._heroTrail[idx];
     if (pos) unit.moveTo(pos.x, pos.y);
+  }
+
+  _separateParty() {
+    const MIN = 55; // минимальное расстояние между центрами спрайтов
+    // Порядок приоритета: герой не двигается, brawler только от героя, healer от обоих
+    const pairs = [
+      [this.hero,    this.brawler],
+      [this.hero,    this.healer],
+      [this.brawler, this.healer],
+    ];
+    for (const [a, b] of pairs) {
+      const dx = b.sprite.x - a.sprite.x;
+      const dy = b.sprite.y - a.sprite.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < MIN && dist > 0.1) {
+        // Выталкиваем только b (менее приоритетный)
+        const push = MIN - dist;
+        const nx = dx / dist;
+        const ny = dy / dist;
+        b.sprite.x += nx * push;
+        b.sprite.y += ny * push;
+        b.shadow.setPosition(b.sprite.x, b.sprite.y + 2);
+      }
+    }
   }
 
   _spawnBandits() {
