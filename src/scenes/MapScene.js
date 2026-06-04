@@ -15,9 +15,9 @@ const MAP_CONFIGS = {
       default:  { x: 240, y: 640 },
       from_left:{ x: 240, y: 640 },
     },
-    // Правый край → Tavern Map
+    // Правый край → Tavern Map (y=377-515 — диапазон дороги на правом конце)
     exits: [
-      { zone: { x: 1595, y: 270, w: 77, h: 460 }, toMap: 'tavern_map', spawnId: 'from_left' },
+      { zone: { x: 1588, y: 360, w: 84, h: 165 }, toMap: 'tavern_map', spawnId: 'from_left' },
     ],
     labels:    [],
     bandits:   false,
@@ -29,25 +29,24 @@ const MAP_CONFIGS = {
     spawnPoints: {
       default:     { x: 110, y: 680 },
       from_left:   { x: 110, y: 680 },
-      tavern_exit: { x: 890, y: 430 },   // выход из таверны — перед зданием
+      tavern_exit: { x: 900, y: 540 },   // возврат из таверны — у нижней ветки
     },
-    // Правый край (нижняя часть — мимо таверны) → Forest1
+    // Верхняя ветка — правый край → Forest1  (y=315-520)
     exits: [
-      { zone: { x: 1595, y: 390, w: 77, h: 480 }, toMap: 'forest1', spawnId: 'from_left' },
+      { zone: { x: 1588, y: 298, w: 84, h: 230 }, toMap: 'forest1', spawnId: 'from_left' },
     ],
-    // Здание таверны — ховер-надпись
+    // Здание таверны — ховер-надпись (правая половина карты)
     labels: [
       {
         hoverZone: { x: 870, y: 110, w: 802, h: 660 },
         text: 'Таверна',
-        // Позиция надписи на экране (scroll-fixed)
         screenX: 1050,
         screenY: 60,
       },
     ],
-    // Вход в здание → Tavern Inside
+    // Дверь таверны — правый конец нижней ветки (y=528-693, подальше от верхней)
     tavernEntry: {
-      zone:    { x: 1010, y: 300, w: 420, h: 380 },
+      zone:    { x: 1440, y: 528, w: 232, h: 165 },
       toMap:   'tavern_inside',
       spawnId: 'default',
     },
@@ -60,13 +59,13 @@ const MAP_CONFIGS = {
       // Общий зал — нижний центр интерьера
       default: { x: 836, y: 715 },
     },
-    // Зона у выходной двери → назад на Tavern Map
+    // Нижний зал у двери → назад на Tavern Map (y=755-883 = вся нижняя полоса)
     exits: [
-      { zone: { x: 590, y: 810, w: 420, h: 80 }, toMap: 'tavern_map', spawnId: 'tavern_exit' },
+      { zone: { x: 205, y: 820, w: 1245, h: 63 }, toMap: 'tavern_map', spawnId: 'tavern_exit' },
     ],
     labels: [
       {
-        hoverZone: { x: 590, y: 810, w: 420, h: 80 },
+        hoverZone: { x: 205, y: 820, w: 1245, h: 63 },
         text: 'Выход',
         screenX: 640,
         screenY: 675,
@@ -79,24 +78,24 @@ const MAP_CONFIGS = {
   forest1: {
     bgKey: 'map_forest1',
     spawnPoints: {
-      default:  { x: 100, y: 530 },
-      from_left:{ x: 100, y: 530 },
+      default:  { x: 100, y: 555 },
+      from_left:{ x: 100, y: 555 },
     },
     exits: [
-      // Верхняя ветка → Mountains Map
-      { zone: { x: 1530, y: 100, w: 142, h: 290 }, toMap: 'mountains_map', spawnId: 'from_left' },
-      // Нижняя ветка → Elf Swamp
-      { zone: { x: 1530, y: 590, w: 142, h: 290 }, toMap: 'elf_boloto', spawnId: 'from_left' },
+      // Верхняя ветка → Mountains Map (y=192-450)
+      { zone: { x: 1548, y: 178, w: 124, h: 275 }, toMap: 'mountains_map', spawnId: 'from_left' },
+      // Нижняя ветка → Elf Swamp (y=570-798)
+      { zone: { x: 1548, y: 558, w: 124, h: 245 }, toMap: 'elf_boloto',    spawnId: 'from_left' },
     ],
     labels: [
       {
-        hoverZone: { x: 1150, y: 80,  w: 522, h: 310 },
+        hoverZone: { x: 1065, y: 180, w: 607, h: 270 },
         text: '↑ Горный перевал',
         screenX: 1060,
         screenY: 50,
       },
       {
-        hoverZone: { x: 1150, y: 570, w: 522, h: 310 },
+        hoverZone: { x: 1065, y: 558, w: 607, h: 250 },
         text: '↓ Болото эльфов',
         screenX: 1060,
         screenY: 690,
@@ -104,14 +103,14 @@ const MAP_CONFIGS = {
     ],
     tavernEntry: null,
     bandits: true,
-    banditPos: { x: 490, y: 465 },   // у костра, левая часть карты
+    banditPos: { x: 500, y: 560 },   // у костра/лагеря, левая-центральная часть
   },
 
   mountains_map: {
     bgKey: 'map_mountains_map',
     spawnPoints: {
-      default:  { x: 200, y: 610 },
-      from_left:{ x: 200, y: 610 },
+      default:  { x: 180, y: 580 },
+      from_left:{ x: 180, y: 580 },
     },
     exits:      [],
     labels:     [],
@@ -122,8 +121,8 @@ const MAP_CONFIGS = {
   elf_boloto: {
     bgKey: 'map_elf_boloto',
     spawnPoints: {
-      default:  { x: 200, y: 520 },
-      from_left:{ x: 200, y: 520 },
+      default:  { x: 180, y: 560 },
+      from_left:{ x: 180, y: 560 },
     },
     exits:      [],
     labels:     [],
