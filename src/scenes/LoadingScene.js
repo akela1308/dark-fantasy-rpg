@@ -63,6 +63,9 @@ export class LoadingScene extends Phaser.Scene {
     // Фон боя
     this.load.image('battle_bg', 'battle_bg.png');
 
+    // UI
+    this.load.image('dialog_frame', 'ui/dialog_frame.png');
+
     // Карты мира
     this.load.image('map_map1',         'maps/map1.png');
     this.load.image('map_tavern_map',   'maps/tavern_map.png');

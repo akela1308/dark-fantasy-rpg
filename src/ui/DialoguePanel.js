@@ -1,16 +1,9 @@
 /**
  * DialoguePanel — in-world диалоговый UI (Section 8 North Star doc).
- * Отображается поверх карты без смены сцены.
- *
- * Использование:
- *   this._dialogue = new DialoguePanel(scene);
- *   this._dialogue.show({ ... });
- *   this._dialogue.hide();
+ * Использует готическую рамку dialog_frame как полноэкранный overlay.
+ * Рамка 666×375 RGBA масштабируется до 1280×720 (1:1 соотношение).
  */
 export class DialoguePanel {
-  /**
-   * @param {Phaser.Scene} scene
-   */
   constructor(scene) {
     this.scene   = scene;
     this._group  = scene.add.group();
@@ -19,117 +12,129 @@ export class DialoguePanel {
 
   /**
    * @param {object} cfg
-   * @param {string}   cfg.portraitLeft   — ключ текстуры левого портрета (герой)
-   * @param {string}   cfg.portraitRight  — ключ текстуры правого портрета (NPC)
-   * @param {string}   cfg.speakerName    — имя говорящего (NPC)
+   * @param {string}   cfg.portraitLeft   — ключ текстуры: герой
+   * @param {string}   cfg.portraitRight  — ключ текстуры: NPC
+   * @param {string}   cfg.speakerName    — имя говорящего
    * @param {string}   cfg.text           — реплика NPC
    * @param {Array}    cfg.choices        — [{label, style?, onSelect}]
    *   style: 'default' | 'attack' | 'threat' | 'retreat'
    */
   show(cfg) {
-    this.hide(); // Очистим предыдущий если был
+    this.hide();
     this._active = true;
 
     const scene = this.scene;
     const W = 1280, H = 720;
-    const panelH = 230;
-    const panelY = H - panelH;
 
-    // ── Полупрозрачный фон панели ─────────────────────────────────────
-    const bg = scene.add.rectangle(W / 2, panelY + panelH / 2, W, panelH, 0x0a0810, 0.94)
-      .setDepth(80).setScrollFactor(0);
-    this._add(bg);
+    // ── Затемнение за рамкой ──────────────────────────────────────────
+    const overlay = scene.add.rectangle(W / 2, H / 2, W, H, 0x000000, 0.55)
+      .setDepth(78).setScrollFactor(0);
+    this._add(overlay);
 
-    // Верхняя граница — золотая линия
-    const line = scene.add.rectangle(W / 2, panelY + 1, W, 2, 0x8B6914, 1)
-      .setDepth(81).setScrollFactor(0);
-    this._add(line);
+    // ── Рамка — полноэкранная ─────────────────────────────────────────
+    const frame = scene.add.image(W / 2, H / 2, 'dialog_frame')
+      .setDepth(79).setScrollFactor(0);
+    // Масштабируем чтобы точно покрыть 1280×720
+    frame.setScale(W / frame.width, H / frame.height);
+    this._add(frame);
 
-    // ── Портрет левый (герой) ─────────────────────────────────────────
-    const portSize = 170;
-    const portPad  = 12;
+    // ── Портреты ──────────────────────────────────────────────────────
+    //    Левый (герой): внутри левой части рамки
+    //    Правый (NPC):  внутри правой части рамки
+    const portW = 190, portH = 230;
+    const portY  = H / 2 - 20;
 
-    const leftBg = scene.add.rectangle(portPad + portSize / 2, panelY + panelH / 2, portSize, portSize, 0x0d1020, 0.95)
-      .setStrokeStyle(2, 0x445577).setDepth(81).setScrollFactor(0);
+    // Левый портрет
+    const leftX = 118;
+    const leftBg = scene.add.rectangle(leftX, portY, portW, portH, 0x06080f, 0.9)
+      .setStrokeStyle(1, 0x3a4a6a, 0.8).setDepth(80).setScrollFactor(0);
     this._add(leftBg);
 
     if (scene.textures.exists(cfg.portraitLeft)) {
-      const lp = scene.add.image(portPad + portSize / 2, panelY + panelH / 2, cfg.portraitLeft)
-        .setDepth(82).setScrollFactor(0);
-      const sc = Math.min((portSize - 8) / lp.width, (portSize - 8) / lp.height);
-      lp.setScale(sc);
+      const lp = scene.add.image(leftX, portY, cfg.portraitLeft)
+        .setDepth(81).setScrollFactor(0);
+      lp.setScale(Math.min((portW - 6) / lp.width, (portH - 6) / lp.height));
       this._add(lp);
     }
 
-    // ── Портрет правый (NPC) ──────────────────────────────────────────
-    const rightX = W - portPad - portSize / 2;
-    const rightBg = scene.add.rectangle(rightX, panelY + panelH / 2, portSize, portSize, 0x0d0a0a, 0.95)
-      .setStrokeStyle(2, 0x553333).setDepth(81).setScrollFactor(0);
+    // Правый портрет
+    const rightX = W - 118;
+    const rightBg = scene.add.rectangle(rightX, portY, portW, portH, 0x0f0606, 0.9)
+      .setStrokeStyle(1, 0x6a3a3a, 0.8).setDepth(80).setScrollFactor(0);
     this._add(rightBg);
 
     if (scene.textures.exists(cfg.portraitRight)) {
-      const rp = scene.add.image(rightX, panelY + panelH / 2, cfg.portraitRight)
-        .setDepth(82).setScrollFactor(0);
-      const sc = Math.min((portSize - 8) / rp.width, (portSize - 8) / rp.height);
-      rp.setScale(sc);
+      const rp = scene.add.image(rightX, portY, cfg.portraitRight)
+        .setDepth(81).setScrollFactor(0);
+      rp.setScale(Math.min((portW - 6) / rp.width, (portH - 6) / rp.height));
       this._add(rp);
     }
 
-    // Имя NPC
-    const nameLabel = scene.add.text(rightX, panelY + panelH - 14, cfg.speakerName || '', {
-      fontFamily: 'serif', fontSize: '12px', color: '#CC6666',
-    }).setOrigin(0.5, 1).setDepth(82).setScrollFactor(0);
-    this._add(nameLabel);
+    // Имя NPC под правым портретом
+    if (cfg.speakerName) {
+      const nameLabel = scene.add.text(rightX, portY + portH / 2 + 16, cfg.speakerName, {
+        fontFamily: 'serif', fontSize: '13px', color: '#BB5555',
+        stroke: '#000', strokeThickness: 2,
+      }).setOrigin(0.5, 0).setDepth(82).setScrollFactor(0);
+      this._add(nameLabel);
+    }
 
-    // ── Текст реплики ─────────────────────────────────────────────────
-    const textX    = portPad + portSize + 16;
-    const textMaxW = W - portSize * 2 - portPad * 2 - 32;
+    // ── Реплика NPC ───────────────────────────────────────────────────
+    const textX    = leftX  + portW / 2 + 30;
+    const textMaxW = rightX - portW / 2 - 30 - textX;
+    const textY    = H / 2 - 115;
 
-    const speechText = scene.add.text(textX, panelY + 18, cfg.text || '', {
+    const speechText = scene.add.text(textX, textY, cfg.text || '', {
       fontFamily: 'serif',
-      fontSize:   '17px',
-      color:      '#E8E8E8',
+      fontSize:   '18px',
+      color:      '#E8E2D4',
       wordWrap:   { width: textMaxW },
-      lineSpacing: 4,
+      lineSpacing: 6,
+      stroke:     '#000000',
+      strokeThickness: 1,
     }).setDepth(82).setScrollFactor(0);
     this._add(speechText);
 
+    // ── Разделитель между репликой и вариантами ───────────────────────
+    const sepY = H / 2 + 28;
+    const sep  = scene.add.rectangle(W / 2, sepY, textMaxW + 60, 1, 0x7a6530, 0.6)
+      .setDepth(81).setScrollFactor(0);
+    this._add(sep);
+
     // ── Варианты ответа ───────────────────────────────────────────────
-    const choiceColors = {
+    const styleColor = {
       default: '#C9A84C',
-      attack:  '#FF4444',
-      threat:  '#FF8C00',
+      attack:  '#E05050',
+      threat:  '#E08030',
       retreat: '#888888',
     };
-    const choiceHover = {
+    const styleHover = {
       default: '#FFD700',
-      attack:  '#FF7777',
-      threat:  '#FFB347',
+      attack:  '#FF8080',
+      threat:  '#FFB060',
       retreat: '#BBBBBB',
     };
 
-    const choiceStartY = panelY + 85;
-    const choiceGap    = 32;
+    const choiceStartY = sepY + 22;
+    const choiceGapY   = 34;
 
     (cfg.choices || []).forEach((ch, i) => {
-      const style  = ch.style || 'default';
-      const color  = choiceColors[style] || choiceColors.default;
-      const hover  = choiceHover[style]  || choiceHover.default;
+      const color = styleColor[ch.style || 'default'] || styleColor.default;
+      const hover = styleHover[ch.style || 'default'] || styleHover.default;
 
-      const btn = scene.add.text(textX, choiceStartY + i * choiceGap, `${i + 1}. ${ch.label}`, {
+      const btn = scene.add.text(textX, choiceStartY + i * choiceGapY, `${i + 1}. ${ch.label}`, {
         fontFamily: 'serif',
-        fontSize:   '16px',
+        fontSize:   '17px',
         color,
         stroke:     '#000000',
         strokeThickness: 2,
       })
-        .setDepth(83)
-        .setScrollFactor(0)
+        .setDepth(83).setScrollFactor(0)
         .setInteractive({ useHandCursor: true });
 
-      btn.on('pointerover',  () => btn.setColor(hover));
-      btn.on('pointerout',   () => btn.setColor(color));
-      btn.on('pointerdown',  () => {
+      btn.on('pointerover', () => btn.setColor(hover));
+      btn.on('pointerout',  () => btn.setColor(color));
+      btn.on('pointerdown', () => {
         this.hide();
         if (ch.onSelect) ch.onSelect();
       });
@@ -137,10 +142,13 @@ export class DialoguePanel {
       this._add(btn);
     });
 
-    // Появление — лёгкий fade in
+    // ── Fade in ───────────────────────────────────────────────────────
     this._group.getChildren().forEach(obj => {
+      const targetAlpha = (obj === overlay) ? 0.55 : 1;
       obj.setAlpha(0);
-      scene.tweens.add({ targets: obj, alpha: { from: 0, to: obj === bg ? 0.94 : 1 }, duration: 200 });
+      scene.tweens.add({
+        targets: obj, alpha: targetAlpha, duration: 220, ease: 'Power1',
+      });
     });
   }
 
