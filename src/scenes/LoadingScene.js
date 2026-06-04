@@ -28,7 +28,7 @@ export class LoadingScene extends Phaser.Scene {
     });
 
     this.load.on('complete', () => {
-      this.scene.start('BattleScene');
+      this.scene.start('MapScene', { mapKey: 'map1' });
     });
 
     // Сначала загружаем картинку
