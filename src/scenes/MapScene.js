@@ -28,17 +28,17 @@ export class MapScene extends Phaser.Scene {
 
     // Зоны хождения в мировых координатах карты
     this.walkable = new WalkableZones(this.mapKey);
-    // Раскомментировать для отладки зон:
-    // this.walkable.drawDebug(this);
+    // Красные прямоугольники = зоны хождения (убрать после настройки)
+    this.walkable.drawDebug(this);
 
     // Персонажи в мировых координатах
     // unitH в пикселях мира — на экране будет unitH * zoom (~0.765)
-    const unitH = 120;
-    const startX = 220, startY = 490;
+    const unitH = 130;
+    const startX = 240, startY = 640; // стартуем на дороге
 
     this.hero    = new MapUnit(this, startX,       startY, 'map_hero',    { height: unitH + 10, speed: 130 });
-    this.brawler = new MapUnit(this, startX - 55,  startY, 'map_brawler', { height: unitH,      speed: 130 });
-    this.healer  = new MapUnit(this, startX - 100, startY, 'map_healer',  { height: unitH - 6,  speed: 130 });
+    this.brawler = new MapUnit(this, startX - 65,  startY, 'map_brawler', { height: unitH,      speed: 130 });
+    this.healer  = new MapUnit(this, startX - 120, startY, 'map_healer',  { height: unitH - 6,  speed: 130 });
 
     this._heroTrail    = [];
     this._trailInterval = 0;
@@ -85,10 +85,9 @@ export class MapScene extends Phaser.Scene {
   }
 
   _spawnBandits() {
-    // Waypoints в мировых координатах карты
+    // Один бандит патрулирует центральную часть дороги
     const patrols = [
-      [{ x: 650, y: 430 }, { x: 820, y: 415 }, { x: 720, y: 445 }],
-      [{ x: 1050, y: 390 }, { x: 1200, y: 370 }, { x: 1120, y: 410 }],
+      [{ x: 750, y: 510 }, { x: 950, y: 470 }, { x: 840, y: 530 }],
     ];
 
     const unitH = 120;
@@ -175,15 +174,15 @@ export class MapScene extends Phaser.Scene {
       { key: 'portrait_companion_brawler', label: 'Боец' },
       { key: 'portrait_companion_healer',  label: 'Знахарка' },
     ];
-    const cardW = 64, cardH = 72, startY = 120, gapY = 80;
+    const cardW = 100, cardH = 115, startY = 80, gapY = 125;
     portraits.forEach((p, i) => {
-      const cx = 38, cy = startY + i * gapY;
-      this.add.rectangle(cx, cy, cardW, cardH, 0x0a0810, 0.85)
-        .setStrokeStyle(1, 0x334466).setDepth(50).setScrollFactor(0);
-      const img = this.add.image(cx, cy - 6, p.key).setDepth(51).setScrollFactor(0);
-      img.setScale(Math.min((cardW - 4) / img.width, (cardH - 18) / img.height));
+      const cx = 55, cy = startY + i * gapY;
+      this.add.rectangle(cx, cy, cardW, cardH, 0x0a0810, 0.9)
+        .setStrokeStyle(2, 0x445577).setDepth(50).setScrollFactor(0);
+      const img = this.add.image(cx, cy - 8, p.key).setDepth(51).setScrollFactor(0);
+      img.setScale(Math.min((cardW - 6) / img.width, (cardH - 22) / img.height));
       this.add.text(cx, cy + cardH / 2 - 10, p.label, {
-        fontSize: '9px', color: '#AAAAAA', fontFamily: 'serif',
+        fontSize: '12px', color: '#AAAAAA', fontFamily: 'serif',
       }).setOrigin(0.5, 1).setDepth(51).setScrollFactor(0);
     });
 

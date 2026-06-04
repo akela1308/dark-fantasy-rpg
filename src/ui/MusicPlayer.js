@@ -65,27 +65,27 @@ export class MusicPlayer {
   }
 
   _buildUI() {
-    const x = 10, y = 10, depth = 50;
+    const x = 8, y = 8, depth = 50;
 
-    this._bg = this.scene.add.rectangle(x + 110, y + 18, 220, 36, 0x0a0a14, 0.82)
+    this._bg = this.scene.add.rectangle(x + 145, y + 24, 290, 48, 0x0a0a14, 0.88)
       .setStrokeStyle(1, 0x333355).setOrigin(0.5).setDepth(depth).setScrollFactor(0);
 
-    this._btnMute = this.scene.add.text(x + 8, y + 4, '♪', {
-      fontSize: '18px', color: '#C9A84C', fontFamily: 'serif'
+    this._btnMute = this.scene.add.text(x + 10, y + 6, '♪', {
+      fontSize: '26px', color: '#C9A84C', fontFamily: 'serif'
     }).setDepth(depth).setScrollFactor(0).setInteractive({ useHandCursor: true });
     this._btnMute.on('pointerdown', () => this._toggleMute());
 
-    this._btnPrev = this.scene.add.text(x + 34, y + 5, '◀', {
-      fontSize: '14px', color: '#888888', fontFamily: 'serif'
+    this._btnPrev = this.scene.add.text(x + 44, y + 8, '◀', {
+      fontSize: '20px', color: '#888888', fontFamily: 'serif'
     }).setDepth(depth).setScrollFactor(0).setInteractive({ useHandCursor: true });
     this._btnPrev.on('pointerdown', () => this._startTrack(this.index - 1 + this.tracks.length));
 
-    this._label = this.scene.add.text(x + 55, y + 6, '', {
-      fontSize: '11px', color: '#AAAAAA', fontFamily: 'serif'
+    this._label = this.scene.add.text(x + 72, y + 10, '', {
+      fontSize: '14px', color: '#AAAAAA', fontFamily: 'serif'
     }).setDepth(depth).setScrollFactor(0);
 
-    this._btnNext = this.scene.add.text(x + 198, y + 5, '▶', {
-      fontSize: '14px', color: '#888888', fontFamily: 'serif'
+    this._btnNext = this.scene.add.text(x + 262, y + 8, '▶', {
+      fontSize: '20px', color: '#888888', fontFamily: 'serif'
     }).setDepth(depth).setScrollFactor(0).setInteractive({ useHandCursor: true });
     this._btnNext.on('pointerdown', () => this._startTrack(this.index + 1));
 
