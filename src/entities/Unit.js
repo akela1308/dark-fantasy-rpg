@@ -30,6 +30,14 @@ export class Unit {
 
   // --- Урон ---
   takeDamage(amount) {
+    // Эффект прикрытия — Боец принимает удар вместо союзника
+    const cover = this.effects.find(e => e.type === 'covered_by' && e.coveredBy?.isAlive);
+    if (cover) {
+      this.effects = this.effects.filter(e => e !== cover);
+      eventBus.emit('log', `${cover.coveredBy.name} принимает удар вместо ${this.name}!`);
+      return cover.coveredBy.takeDamage(amount);
+    }
+
     // Проверка уклонения
     const dodge = this.effects.find(e => e.type === 'dodge_boost');
     if (dodge && Math.random() < dodge.value) {

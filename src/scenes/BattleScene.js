@@ -277,13 +277,14 @@ export class BattleScene extends Phaser.Scene {
 
   _animDeath(unit) {
     if (!unit._sprite) return;
+    // grid.remove() вызывается синхронно в _afterPlayerAction/_finishTurn,
+    // чтобы не зависеть от onComplete (который не срабатывает при destroy спрайта)
     this.tweens.add({
       targets: unit._sprite,
       alpha: 0,
       y: unit._sprite.y + 25,
       duration: 450,
       ease: 'Power2',
-      onComplete: () => this.grid.remove(unit),
     });
   }
 
@@ -381,6 +382,8 @@ export class BattleScene extends Phaser.Scene {
   _afterPlayerAction() {
     if (this._checkEnd()) return;
     this.turnManager.nextTurn();
+    // Синхронно убираем мёртвых из грида (onComplete tween ненадёжен)
+    [...this.playerUnits, ...this.enemyUnits].forEach(u => { if (!u.isAlive) this.grid.remove(u); });
     this._renderAll();
     this.ui.update();
     if (!this.turnManager.isPlayerTurn()) this._runAITurn();
@@ -404,6 +407,7 @@ export class BattleScene extends Phaser.Scene {
   _finishTurn() {
     if (this._checkEnd()) return;
     this.turnManager.nextTurn();
+    [...this.playerUnits, ...this.enemyUnits].forEach(u => { if (!u.isAlive) this.grid.remove(u); });
     this._renderAll();
     this.ui.update();
     if (!this.turnManager.isPlayerTurn()) this._runAITurn();
@@ -439,6 +443,7 @@ export class BattleScene extends Phaser.Scene {
       this.add.text(width/2, height/2, `Получено XP: ${XP.WIN_HERO}`, {
         fontFamily: 'serif', fontSize: '26px', color: '#E8E8E8',
       }).setOrigin(0.5);
+      this.game.registry.set('bandit_0_defeated', true);
     }
 
     const btn = this.add.text(width/2, height/2 + 80, '[ Попробовать снова ]', {
@@ -447,6 +452,18 @@ export class BattleScene extends Phaser.Scene {
     btn.on('pointerover', () => btn.setColor('#FFFFFF'));
     btn.on('pointerout',  () => btn.setColor('#AAAAAA'));
     btn.on('pointerdown', () => { eventBus.clear(); this.scene.restart(); });
+
+    if (result === 'victory') {
+      const btnMap = this.add.text(width/2, height/2 + 125, '[ На карту ]', {
+        fontFamily: 'serif', fontSize: '26px', color: '#C9A84C',
+      }).setOrigin(0.5).setInteractive({ useHandCursor: true });
+      btnMap.on('pointerover', () => btnMap.setColor('#FFD700'));
+      btnMap.on('pointerout',  () => btnMap.setColor('#C9A84C'));
+      btnMap.on('pointerdown', () => {
+        eventBus.clear();
+        this.scene.start('LoadingScene', { destination: 'MapScene', destinationData: { mapKey: 'map1' } });
+      });
+    }
   }
 
   // ── EventBus ──────────────────────────────────────────────────────────
@@ -474,6 +491,7 @@ export class BattleScene extends Phaser.Scene {
     eventBus.on('skip_turn', () => {
       if (!this.turnManager.isPlayerTurn()) return;
       this.turnManager.skipTurn();
+      this._renderAll();
       this.ui.update();
       if (!this.turnManager.isPlayerTurn()) this._runAITurn();
     });

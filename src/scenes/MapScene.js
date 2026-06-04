@@ -28,8 +28,7 @@ export class MapScene extends Phaser.Scene {
 
     // Зоны хождения в мировых координатах карты
     this.walkable = new WalkableZones(this.mapKey);
-    // Красные прямоугольники = зоны хождения (убрать после настройки)
-    this.walkable.drawDebug(this);
+    // this.walkable.drawDebug(this);
 
     // Персонажи в мировых координатах
     // unitH в пикселях мира — на экране будет unitH * zoom (~0.765)
@@ -85,6 +84,8 @@ export class MapScene extends Phaser.Scene {
   }
 
   _spawnBandits() {
+    if (this.game.registry.get('bandit_0_defeated')) return;
+
     // Один бандит патрулирует центральную часть дороги
     const patrols = [
       [{ x: 750, y: 510 }, { x: 950, y: 470 }, { x: 840, y: 530 }],

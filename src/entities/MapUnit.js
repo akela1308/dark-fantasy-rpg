@@ -75,23 +75,17 @@ export class MapUnit {
   _startWalkAnim() {
     if (this._bobTween) return;
 
+    // Только угол — не трогаем y чтобы не конфликтовать с движением
     this._bobTween = this.scene.tweens.add({
       targets: this.sprite,
-      y: { from: this.sprite.y - 3, to: this.sprite.y + 3 },
-      duration: 220,
+      angle: { from: -2.5, to: 2.5 },
+      duration: 200,
       yoyo: true,
       repeat: -1,
       ease: 'Sine.easeInOut',
     });
 
-    this._leanTween = this.scene.tweens.add({
-      targets: this.sprite,
-      angle: { from: -2, to: 2 },
-      duration: 220,
-      yoyo: true,
-      repeat: -1,
-      ease: 'Sine.easeInOut',
-    });
+    this._leanTween = null; // объединили с bobTween
   }
 
   _stopWalkAnim() {

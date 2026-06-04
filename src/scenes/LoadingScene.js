@@ -85,8 +85,6 @@ export class LoadingScene extends Phaser.Scene {
       ['track_monastery',  'Ashes of the Monastery.mp3'],
       ['track_pass',       'Ashes of the Pass.mp3'],
       ['track_dark',       'Dark Song.mp3'],
-      ['track_forest',     'Forest song.mp3'],
-      ['track_mermaids',   'Mermaids song.mp3'],
     ];
     tracks.forEach(([key, file]) => this.load.audio(key, `audio/${file}`));
 
@@ -117,6 +115,6 @@ export class LoadingScene extends Phaser.Scene {
   }
 
   create() {
-    this.scene.start(this._destination, this._destinationData);
+    // scene.start is handled by the 'complete' event in preload
   }
 }

@@ -14,8 +14,6 @@ export class MusicPlayer {
       { key: 'track_monastery',  file: 'Ashes of the Monastery.mp3',   label: 'Ashes of the Monastery' },
       { key: 'track_pass',       file: 'Ashes of the Pass.mp3',        label: 'Ashes of the Pass' },
       { key: 'track_dark',       file: 'Dark Song.mp3',                label: 'Dark Song' },
-      { key: 'track_forest',     file: 'Forest song.mp3',              label: 'Forest Song' },
-      { key: 'track_mermaids',   file: 'Mermaids song.mp3',            label: 'Mermaids Song' },
     ];
     this.muted   = false;
     this.current = null;
@@ -44,6 +42,7 @@ export class MusicPlayer {
   _startTrack(index) {
     if (this.current) {
       try { this.current.stop(); } catch(e) {}
+      try { this.current.destroy(); } catch(e) {}
     }
     this.index = ((index % this.tracks.length) + this.tracks.length) % this.tracks.length;
     const track = this.tracks[this.index];

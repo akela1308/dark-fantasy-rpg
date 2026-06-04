@@ -35,7 +35,8 @@ export class SkillSystem {
     }
 
     // Выполнить эффект
-    if (skill.effect) {
+    // skill.effect может быть функцией (commanders_roar) или строкой-типом из JSON
+    if (typeof skill.effect === 'function') {
       skill.effect(caster, target, eventBus);
     } else {
       this._applyBuiltin(skill, caster, target);

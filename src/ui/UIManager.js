@@ -117,10 +117,10 @@ export class UIManager {
     }
 
     // Подсказка
-    this.scene.add.text(x, baseY + 8, 'Кликни по врагу для атаки · Скиллы ниже:', {
+    const hint = this.scene.add.text(x, baseY + 8, 'Кликни по врагу для атаки · Скиллы ниже:', {
       fontSize: '12px', color: '#666688', fontFamily: 'serif'
-    }).setName('hint').setDepth(3);
-    this._actionBtns.push(this.scene.children.getByName('hint'));
+    }).setDepth(3);
+    this._actionBtns.push(hint);
   }
 
   _addBtn(x, y, label, color, cb) {
