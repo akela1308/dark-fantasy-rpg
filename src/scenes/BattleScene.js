@@ -461,7 +461,7 @@ export class BattleScene extends Phaser.Scene {
       btnMap.on('pointerout',  () => btnMap.setColor('#C9A84C'));
       btnMap.on('pointerdown', () => {
         eventBus.clear();
-        this.scene.start('LoadingScene', { destination: 'MapScene', destinationData: { mapKey: 'map1' } });
+        this.scene.start('LoadingScene', { destination: 'MapScene', destinationData: { mapKey: 'forest1', spawnId: 'from_left' } });
       });
     }
   }

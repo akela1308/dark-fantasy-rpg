@@ -12,6 +12,7 @@
     "phaser": "^3.80.1"
   },
   "devDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "^4.61.1",
     "vite": "^5.2.0"
   }
 }
