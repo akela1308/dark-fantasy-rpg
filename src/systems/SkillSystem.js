@@ -54,18 +54,23 @@ export class SkillSystem {
   _applyBuiltin(skill, caster, target) {
     // Урон × множитель
     if (skill.damageMultiplier && target) {
-      const base = caster.rollDamage();
-      const dmg  = Math.round(base * skill.damageMultiplier);
-      target.takeDamage(dmg);
-      eventBus.emit('log', `${caster.name} использует "${skill.name}" — ${dmg} урона!`);
+      const base   = caster.rollDamage();
+      const isCrit = Math.random() < 0.15; // 15% крит
+      const dmg    = Math.round(base * skill.damageMultiplier * (isCrit ? 1.8 : 1));
+      target.takeDamage(dmg, { isCrit });
+      const suffix = isCrit ? ' 💥 КРИТ!' : '';
+      eventBus.emit('log', `${caster.name} использует "${skill.name}" — ${dmg} урона!${suffix}`);
     }
 
     // Фиксированный урон (пистолет)
     if (skill.damage && target) {
       const { min, max } = skill.damage;
-      const dmg = Math.floor(Math.random() * (max - min + 1)) + min;
-      target.takeDamage(dmg);
-      eventBus.emit('log', `${caster.name}: "${skill.name}" — ${dmg} урона!`);
+      const isCrit = Math.random() < 0.15;
+      const base   = Math.floor(Math.random() * (max - min + 1)) + min;
+      const dmg    = Math.round(base * (isCrit ? 1.8 : 1));
+      target.takeDamage(dmg, { isCrit });
+      const suffix = isCrit ? ' 💥 КРИТ!' : '';
+      eventBus.emit('log', `${caster.name}: "${skill.name}" — ${dmg} урона!${suffix}`);
     }
 
     // Лечение

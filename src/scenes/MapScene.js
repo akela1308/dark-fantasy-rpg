@@ -1,6 +1,7 @@
 import { MapUnit }       from '../entities/MapUnit.js';
 import { WalkableZones } from '../systems/WalkableZones.js';
 import { MusicPlayer }   from '../ui/MusicPlayer.js';
+import { DialoguePanel } from '../ui/DialoguePanel.js';
 import eventBus           from '../utils/eventBus.js';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -179,6 +180,9 @@ export class MapScene extends Phaser.Scene {
     this._hoverLabels = [];
     this._setupLabels(cfg);
 
+    // Диалоговая панель (in-world overlay)
+    this._dialogue = new DialoguePanel(this);
+
     // Клик по карте
     this.input.on('pointerdown', (ptr) => {
       if (ptr.rightButtonDown()) return;
@@ -270,7 +274,7 @@ export class MapScene extends Phaser.Scene {
   }
 
   _checkEncounters() {
-    if (this._transitioning) return;
+    if (this._transitioning || this._dialogue?.active) return;
     this._bandits.forEach(b => {
       if (b.encountered) return;
       const dist = Phaser.Math.Distance.Between(
@@ -278,22 +282,129 @@ export class MapScene extends Phaser.Scene {
       );
       if (dist < 100) {
         b.encountered = true;
-        this._transitioning = true;
         this.hero.stopMove();
         this.brawler.stopMove();
         this.healer.stopMove();
-        this.time.delayedCall(350, () => {
-          this.cameras.main.fade(500, 0, 0, 0, false, (cam, progress) => {
-            if (progress === 1) {
-              this.scene.start('LoadingScene', {
-                destination: 'BattleScene',
-                destinationData: {},
-              });
-            }
-          });
-        });
+        this._showBanditDialogue(b);
       }
     });
+  }
+
+  // ─── Диалог с бандитом ────────────────────────────────────────────────
+
+  _showBanditDialogue(bandit) {
+    this._dialogue.show({
+      portraitLeft:  'portrait_hero_duelist',
+      portraitRight: 'portrait_bandit_commander',
+      speakerName:   'Командир разбойников',
+      text: '"Стоять. Дальше — только если заплатите жизнями. Последний шанс убраться."',
+      choices: [
+        {
+          label:    'Атаковать!',
+          style:    'attack',
+          onSelect: () => this._startBattle(),
+        },
+        {
+          label:    'Мы просто проходим мимо, не ищем беды.',
+          style:    'default',
+          onSelect: () => this._banditLetThrough(bandit),
+        },
+        {
+          label:    '[Запугать] Убирайся с дороги, пока цел.',
+          style:    'threat',
+          onSelect: () => this._tryIntimidate(bandit),
+        },
+        {
+          label:    'Поворачиваем назад.',
+          style:    'retreat',
+          onSelect: () => {
+            bandit.encountered = false; // сбрасываем — если вернутся, диалог снова
+            this._transitionTo('tavern_map', 'tavern_exit');
+          },
+        },
+      ],
+    });
+  }
+
+  _startBattle() {
+    this._transitioning = true;
+    this.time.delayedCall(200, () => {
+      this.cameras.main.fade(500, 0, 0, 0, false, (cam, progress) => {
+        if (progress === 1) {
+          this.scene.start('LoadingScene', {
+            destination: 'BattleScene',
+            destinationData: {},
+          });
+        }
+      });
+    });
+  }
+
+  /** Бандит пропускает — за "дань" или просто пугается молчания */
+  _banditLetThrough(bandit) {
+    // Второй диалог — бандит отступает
+    this._dialogue.show({
+      portraitLeft:  'portrait_hero_duelist',
+      portraitRight: 'portrait_bandit_commander',
+      speakerName:   'Командир разбойников',
+      text: '"...Умно. Проходите. Но помните — дороги назад не будет."',
+      choices: [
+        {
+          label:    'Идём дальше.',
+          style:    'default',
+          onSelect: () => this._banditRetreat(bandit),
+        },
+      ],
+    });
+  }
+
+  /** Запугивание — 50/50 */
+  _tryIntimidate(bandit) {
+    const success = Math.random() < 0.5;
+    if (success) {
+      this._dialogue.show({
+        portraitLeft:  'portrait_hero_duelist',
+        portraitRight: 'portrait_bandit_commander',
+        speakerName:   'Командир разбойников',
+        text: '"...Вы не обычные путники. Отступить! Уходим!"',
+        choices: [
+          {
+            label:    'Смотрим как бегут.',
+            style:    'default',
+            onSelect: () => this._banditRetreat(bandit),
+          },
+        ],
+      });
+    } else {
+      this._dialogue.show({
+        portraitLeft:  'portrait_hero_duelist',
+        portraitRight: 'portrait_bandit_commander',
+        speakerName:   'Командир разбойников',
+        text: '"Хах! Слова — не оружие. Взять их!"',
+        choices: [
+          {
+            label:    'Тогда в бой!',
+            style:    'attack',
+            onSelect: () => this._startBattle(),
+          },
+        ],
+      });
+    }
+  }
+
+  /** Анимация отступления бандита + убираем его с карты */
+  _banditRetreat(bandit) {
+    this.game.registry.set('bandit_0_defeated', true);
+    if (bandit?.unit?.sprite) {
+      this.tweens.add({
+        targets:  bandit.unit.sprite,
+        x:        bandit.unit.sprite.x - 200,
+        alpha:    0,
+        duration: 800,
+        ease:     'Power2',
+        onComplete: () => bandit.unit.sprite?.destroy(),
+      });
+    }
   }
 
   // ─── Labels (hover-надписи для зданий и развилок) ────────────────────────

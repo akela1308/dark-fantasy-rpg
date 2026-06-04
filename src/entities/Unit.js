@@ -29,13 +29,15 @@ export class Unit {
   }
 
   // --- Урон ---
-  takeDamage(amount) {
+  takeDamage(amount, opts = {}) {
+    const isCrit = opts.isCrit || false;
+
     // Эффект прикрытия — Боец принимает удар вместо союзника
     const cover = this.effects.find(e => e.type === 'covered_by' && e.coveredBy?.isAlive);
     if (cover) {
       this.effects = this.effects.filter(e => e !== cover);
       eventBus.emit('log', `${cover.coveredBy.name} принимает удар вместо ${this.name}!`);
-      return cover.coveredBy.takeDamage(amount);
+      return cover.coveredBy.takeDamage(amount, opts);
     }
 
     // Проверка уклонения
@@ -48,7 +50,7 @@ export class Unit {
     const actual = Math.max(0, amount);
     this.hp = Math.max(0, this.hp - actual);
 
-    eventBus.emit('unit_damaged', { unit: this, amount: actual });
+    eventBus.emit('unit_damaged', { unit: this, amount: actual, isCrit });
 
     if (this.hp <= 0) {
       this.isAlive = false;
