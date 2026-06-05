@@ -27,21 +27,29 @@ const MAP_CONFIGS = {
   tavern_map: {
     bgKey: 'map_tavern_map',
     spawnPoints: {
-      default:     { x: 110, y: 620 },
-      from_left:   { x: 110, y: 620 },
-      tavern_exit: { x: 1380, y: 480 },   // возврат из таверны — у двери
+      default:          { x: 350, y: 700 },   // у ворот слева — на дороге (зелёная зона)
+      from_left:        { x: 350, y: 700 },
+      tavern_exit:      { x: 1380, y: 480 },   // возврат из таверны — у двери
+      from_road_boloto: { x: 350, y: 700 },    // возврат с болотной дороги
     },
-    // Нижняя ветка X — правый-нижний угол → Forest1
     exits: [
-      { zone: { x: 1548, y: 720, w: 124, h: 221 }, toMap: 'forest1', spawnId: 'from_left' },
+      // Правый-нижний угол → Forest1
+      { zone: { x: 1548, y: 720, w: 124, h: 221 }, toMap: 'forest1',    spawnId: 'from_left' },
+      // Верхняя-левая дорога → Road Boloto
+      { zone: { x: 0,    y: 130, w: 220, h: 390 }, toMap: 'road_boloto', spawnId: 'from_tavern' },
     ],
-    // Ховер над зданием таверны
     labels: [
       {
         hoverZone: { x: 1095, y: 368, w: 577, h: 232 },
         text: 'Войти',
         screenX: 1516,
         screenY: 72,
+      },
+      {
+        hoverZone: { x: 0, y: 130, w: 220, h: 390 },
+        text: '← Болотная дорога',
+        screenX: 183,
+        screenY: 52,
       },
     ],
     // Верхняя ветка X — дверь таверны → Tavern Inside
@@ -141,6 +149,28 @@ const MAP_CONFIGS = {
     banditPos: { x: 920, y: 490 },   // на дороге у перекрёстка
   },
 
+  road_boloto: {
+    bgKey: 'map_road_boloto',
+    spawnPoints: {
+      default:      { x: 200, y: 780 },   // приход с tavern_map — нижняя дорога
+      from_tavern:  { x: 200, y: 780 },
+    },
+    exits: [
+      // Назад на tavern_map — нижняя-левая дорога
+      { zone: { x: 0, y: 750, w: 320, h: 191 }, toMap: 'tavern_map', spawnId: 'from_road_boloto' },
+    ],
+    labels: [
+      {
+        hoverZone: { x: 0, y: 750, w: 320, h: 191 },
+        text: '← Деревня',
+        screenX: 183,
+        screenY: 875,
+      },
+    ],
+    tavernEntry: null,
+    bandits: false,
+  },
+
   mountains_map: {
     bgKey: 'map_mountains_map',
     spawnPoints: {
@@ -225,6 +255,7 @@ export class MapScene extends Phaser.Scene {
     // Клик по карте
     this.input.on('pointerdown', (ptr) => {
       if (ptr.rightButtonDown()) return;
+      if (this._dialogue?.active) return;   // диалог идёт — движение заблокировано
       const clamped = this.walkable.clamp(ptr.worldX, ptr.worldY);
       this.hero.moveTo(clamped.x, clamped.y);
       this._showClickMarker(clamped.x, clamped.y);

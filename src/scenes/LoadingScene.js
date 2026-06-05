@@ -74,6 +74,7 @@ export class LoadingScene extends Phaser.Scene {
     this.load.image('map_swamp_map',    'maps/swamp_map.png');
     this.load.image('map_forest1',      'maps/forest1.png');
     this.load.image('map_elf_boloto',   'maps/elf_boloto.png');
+    this.load.image('map_road_boloto',  'maps/road_boloto.png');
 
     // Персонажи на карте
     this.load.image('map_hero',      'maps/characters/hero.png');
