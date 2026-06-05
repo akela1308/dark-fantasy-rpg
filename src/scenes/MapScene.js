@@ -58,16 +58,16 @@ const MAP_CONFIGS = {
     spawnPoints: {
       default: { x: 780, y: 820 },   // у входной двери, общий зал
     },
-    // Зона двери → выход на Tavern Map
+    // Зона двери (арка с фонарём, левая стена) → выход на Tavern Map
     exits: [
-      { zone: { x: 618, y: 862, w: 325, h: 79 }, toMap: 'tavern_map', spawnId: 'tavern_exit' },
+      { zone: { x: 148, y: 358, w: 220, h: 220 }, toMap: 'tavern_map', spawnId: 'tavern_exit' },
     ],
     labels: [
       {
-        hoverZone: { x: 618, y: 862, w: 325, h: 79 },
+        hoverZone: { x: 148, y: 358, w: 220, h: 220 },
         text: 'Выход',
-        screenX: 836,
-        screenY: 882,
+        screenX: 258,
+        screenY: 468,
       },
     ],
     tavernEntry: null,
@@ -79,7 +79,7 @@ const MAP_CONFIGS = {
         spriteKey:   'map_tavernman',
         portraitKey: 'portrait_tavernman',
         name:        'Хозяин таверны',
-        height:      140,
+        height:      185,
         dialogues: [
           {
             text: '"Добро пожаловать в «Хромой лось»! Лучшая таверна в округе — и единственная, где вас не зарежут за ужином."',
@@ -113,7 +113,7 @@ const MAP_CONFIGS = {
   forest1: {
     bgKey: 'map_forest1',
     spawnPoints: {
-      default:  { x: 100, y: 555 },
+      default:  { x: 800, y: 500 },
       from_left:{ x: 100, y: 555 },
     },
     exits: [
@@ -138,7 +138,7 @@ const MAP_CONFIGS = {
     ],
     tavernEntry: null,
     bandits: true,
-    banditPos: { x: 500, y: 560 },   // у костра/лагеря, левая-центральная часть
+    banditPos: { x: 920, y: 490 },   // на дороге у перекрёстка
   },
 
   mountains_map: {
@@ -198,11 +198,11 @@ export class MapScene extends Phaser.Scene {
     this.walkable = new WalkableZones(this.mapKey);
     // this.walkable.drawDebug(this); // раскомментируй для отладки
 
-    // Партия
-    const unitH = 130;
-    this.hero    = new MapUnit(this, spawn.x,       spawn.y, 'map_hero',    { height: unitH + 10, speed: 130 });
-    this.brawler = new MapUnit(this, spawn.x - 65,  spawn.y, 'map_brawler', { height: unitH,      speed: 130 });
-    this.healer  = new MapUnit(this, spawn.x - 120, spawn.y, 'map_healer',  { height: unitH - 6,  speed: 130 });
+    // Партия: боец — самый крупный, герой чуть меньше, знахарка меньше всех
+    const unitH = this.mapKey === 'tavern_inside' ? 158 : 130;
+    this.hero    = new MapUnit(this, spawn.x,       spawn.y, 'map_hero',    { height: unitH - 5,  speed: 130 });
+    this.brawler = new MapUnit(this, spawn.x - 65,  spawn.y, 'map_brawler', { height: unitH + 15, speed: 130 });
+    this.healer  = new MapUnit(this, spawn.x - 120, spawn.y, 'map_healer',  { height: unitH - 8,  speed: 130 });
 
     this._heroTrail     = [];
     this._trailInterval = 0;
@@ -312,15 +312,15 @@ export class MapScene extends Phaser.Scene {
         .setDepth(npc.y)
         .setInteractive({ useHandCursor: true });
 
-      // Имя над головой
+      // Имя над головой — только по hover
       const label = this.add.text(npc.x, npc.y - h / 2 - 12, npc.name, {
         fontFamily: 'serif', fontSize: '14px', color: '#D4AA60',
         stroke: '#000', strokeThickness: 3,
-      }).setOrigin(0.5, 1).setDepth(npc.y + 1);
+      }).setOrigin(0.5, 1).setDepth(npc.y + 1).setAlpha(0);
 
-      // Hover — небольшое свечение
-      sprite.on('pointerover',  () => sprite.setTint(0xFFEEBB));
-      sprite.on('pointerout',   () => sprite.clearTint());
+      // Hover — свечение + показываем имя
+      sprite.on('pointerover',  () => { sprite.setTint(0xFFEEBB); label.setAlpha(1); });
+      sprite.on('pointerout',   () => { sprite.clearTint(); label.setAlpha(0); });
 
       // Клик — диалог
       sprite.on('pointerdown', () => {
@@ -367,7 +367,7 @@ export class MapScene extends Phaser.Scene {
     if (this.game.registry.get('bandit_0_defeated')) return;
 
     const b = new MapUnit(this, cfg.banditPos.x, cfg.banditPos.y, 'map_bandit', {
-      height: 120, speed: 40,
+      height: 130, speed: 40,
     });
     b.sprite.setFlipX(true);
     this._bandits.push({ unit: b, encountered: false });
@@ -617,14 +617,13 @@ export class MapScene extends Phaser.Scene {
       { key: 'portrait_companion_healer',  label: 'Знахарка' },
     ];
     // Портреты: левый край = x:0, setOrigin(0, 0.5) гарантирует flush к краю
-    const cardW  = 150, cardH = 160;
-    const startY = 310;
-    const gapY   = 170;
+    const cardW  = 225, cardH = 240;
+    const startY = 290;
+    const gapY   = 255;
     portraits.forEach((p, i) => {
       const cy = startY + i * gapY;
-      // Левый край прямоугольника ровно на x=0
+      // Левый край прямоугольника ровно на x=0, без рамки
       this.add.rectangle(0, cy, cardW, cardH, 0x0a0810, 0.94)
-        .setStrokeStyle(2, 0x445577)
         .setOrigin(0, 0.5)
         .setDepth(50).setScrollFactor(0);
       const cx = cardW / 2;
@@ -643,7 +642,7 @@ export class MapScene extends Phaser.Scene {
       const hx = 1594;
 
       this._hoverBg = this.add.rectangle(hx, 230, hW, hH, 0x0a0810, 0.92)
-        .setStrokeStyle(2, 0x663333).setDepth(59).setScrollFactor(0).setAlpha(0);
+        .setDepth(59).setScrollFactor(0).setAlpha(0);
       this._hoverPortrait = this.add.image(hx, 225, 'portrait_bandit_commander')
         .setDepth(60).setScrollFactor(0).setAlpha(0);
       const pScale = Math.min(

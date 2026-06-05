@@ -203,8 +203,7 @@ export class BattleScene extends Phaser.Scene {
       } else {
         const w = unit.isBoss ? 90 : 65;
         sprite = this.add.rectangle(x, y, w, h * 0.85, unit.color, 1)
-          .setOrigin(0.5, 1)
-          .setStrokeStyle(unit.isBoss ? 3 : 1, unit.isBoss ? 0xFF0000 : 0x444444);
+          .setOrigin(0.5, 1);
       }
 
       // HP/name перенесены в портреты — здесь не рисуем

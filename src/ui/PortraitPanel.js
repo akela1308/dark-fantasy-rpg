@@ -62,9 +62,8 @@ export class PortraitPanel {
       const cx = isLeft ? panelX + cardW / 2 : panelX - cardW / 2;
       const cy = startY + i * gapY;
 
-      // Фон карточки
+      // Фон карточки — без рамки
       this.scene.add.rectangle(cx, cy, cardW, cardH, 0x0a0810, 0.88)
-        .setStrokeStyle(1, isLeft ? 0x334466 : 0x663333)
         .setDepth(depth);
 
       // Портрет
