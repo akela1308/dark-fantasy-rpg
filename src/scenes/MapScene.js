@@ -40,8 +40,8 @@ const MAP_CONFIGS = {
       {
         hoverZone: { x: 1095, y: 368, w: 577, h: 232 },
         text: 'Войти',
-        screenX: 1160,
-        screenY: 55,
+        screenX: 1516,
+        screenY: 72,
       },
     ],
     // Верхняя ветка X — дверь таверны → Tavern Inside
@@ -66,8 +66,8 @@ const MAP_CONFIGS = {
       {
         hoverZone: { x: 618, y: 862, w: 325, h: 79 },
         text: 'Выход',
-        screenX: 640,
-        screenY: 675,
+        screenX: 836,
+        screenY: 882,
       },
     ],
     tavernEntry: null,
@@ -126,14 +126,14 @@ const MAP_CONFIGS = {
       {
         hoverZone: { x: 1065, y: 180, w: 607, h: 270 },
         text: '↑ Горный перевал',
-        screenX: 1060,
-        screenY: 50,
+        screenX: 1385,
+        screenY: 65,
       },
       {
         hoverZone: { x: 1065, y: 558, w: 607, h: 250 },
         text: '↓ Болото эльфов',
-        screenX: 1060,
-        screenY: 690,
+        screenX: 1385,
+        screenY: 902,
       },
     ],
     tavernEntry: null,
@@ -187,8 +187,9 @@ export class MapScene extends Phaser.Scene {
     const W = 1280, H = 720;
     const zoom = Math.min(W / mapW, H / mapH);   // ~0.765
 
+    this.cameras.main.setOrigin(0, 0);
     this.cameras.main.setZoom(zoom);
-    this.cameras.main.centerOn(mapW / 2, mapH / 2);
+    this.cameras.main.setScroll(0, 0);
 
     // Фон
     this.add.image(mapW / 2, mapH / 2, cfg.bgKey).setScale(1).setDepth(0);
@@ -601,8 +602,8 @@ export class MapScene extends Phaser.Scene {
   }
 
   _buildHUD(cfg) {
-    // Подсказка — справа внизу, не мешает плееру и портретам
-    this.add.text(1270, 708, 'Кликни чтобы идти', {
+    // Подсказка — справа внизу (world coords for origin(0,0) camera: canvas = world * zoom)
+    this.add.text(1662, 928, 'Кликни чтобы идти', {
       fontSize: '12px', color: '#666655', fontFamily: 'serif',
     }).setOrigin(1, 1).setDepth(50).setScrollFactor(0);
 
@@ -637,18 +638,20 @@ export class MapScene extends Phaser.Scene {
     // Hover-портрет бандита (только на картах с бандитами)
     if (cfg.bandits) {
       const hW = 120, hH = 145;
-      const hx = 1280 - hW / 2;
+      // origin(0,0) camera: canvas_x = world_x * zoom → world_x = canvas_x / zoom
+      // target canvas center: 1280 - 60 = 1220 → world = 1220 / 0.7651 ≈ 1594
+      const hx = 1594;
 
-      this._hoverBg = this.add.rectangle(hx, 120, hW, hH, 0x0a0810, 0.92)
+      this._hoverBg = this.add.rectangle(hx, 230, hW, hH, 0x0a0810, 0.92)
         .setStrokeStyle(2, 0x663333).setDepth(59).setScrollFactor(0).setAlpha(0);
-      this._hoverPortrait = this.add.image(hx, 115, 'portrait_bandit_commander')
+      this._hoverPortrait = this.add.image(hx, 225, 'portrait_bandit_commander')
         .setDepth(60).setScrollFactor(0).setAlpha(0);
       const pScale = Math.min(
         (hW - 6) / this._hoverPortrait.width,
         (hH - 26) / this._hoverPortrait.height
       );
       this._hoverPortrait.setScale(pScale);
-      this._hoverLabel = this.add.text(hx, 185, 'Командир разбойников', {
+      this._hoverLabel = this.add.text(hx, 295, 'Командир разбойников', {
         fontSize: '11px', color: '#CC4444', fontFamily: 'serif',
       }).setOrigin(0.5).setDepth(61).setScrollFactor(0).setAlpha(0);
 
