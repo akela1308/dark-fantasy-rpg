@@ -8,13 +8,18 @@
       * { margin: 0; padding: 0; box-sizing: border-box; }
       body {
         background: #0A0A0F;
-        display: flex;
-        justify-content: center;
-        align-items: center;
         height: 100vh;
         overflow: hidden;
+        position: relative;
       }
-      canvas { display: block; }
+      canvas {
+        display: block;
+        position: absolute !important;
+        left: 0 !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        margin-left: 0 !important;
+      }
     </style>
   </head>
   <body>
