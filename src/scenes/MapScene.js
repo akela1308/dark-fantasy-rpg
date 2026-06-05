@@ -27,10 +27,10 @@ const MAP_CONFIGS = {
   tavern_map: {
     bgKey: 'map_tavern_map',
     spawnPoints: {
-      default:          { x: 350, y: 700 },   // у ворот слева — на дороге (зелёная зона)
-      from_left:        { x: 350, y: 700 },
-      tavern_exit:      { x: 1380, y: 480 },   // возврат из таверны — у двери
-      from_road_boloto: { x: 350, y: 700 },    // возврат с болотной дороги
+      default:          { x: 180, y: 480 },   // левая ветка дороги, на брусчатке
+      from_left:        { x: 180, y: 480 },
+      tavern_exit:      { x: 1380, y: 420 },   // возврат из таверны — у двери
+      from_road_boloto: { x: 120, y: 390 },    // возврат с болотной дороги — верхняя ветка
     },
     exits: [
       // Правый-нижний угол → Forest1
@@ -152,8 +152,8 @@ const MAP_CONFIGS = {
   road_boloto: {
     bgKey: 'map_road_boloto',
     spawnPoints: {
-      default:      { x: 200, y: 780 },   // приход с tavern_map — нижняя дорога
-      from_tavern:  { x: 200, y: 780 },
+      default:      { x: 500, y: 640 },   // в центральной zone, вне exit-зоны (x:0-320)
+      from_tavern:  { x: 500, y: 640 },
     },
     exits: [
       // Назад на tavern_map — нижняя-левая дорога
@@ -226,7 +226,7 @@ export class MapScene extends Phaser.Scene {
 
     // Зоны хождения
     this.walkable = new WalkableZones(this.mapKey);
-    // this.walkable.drawDebug(this); // раскомментируй для отладки
+    this.walkable.drawDebug(this); // временно — отладка зон
 
     // Партия: боец — самый крупный, герой чуть меньше, знахарка меньше всех
     const unitH = this.mapKey === 'tavern_inside' ? 158 : 130;
@@ -648,9 +648,9 @@ export class MapScene extends Phaser.Scene {
       { key: 'portrait_companion_healer',  label: 'Знахарка' },
     ];
     // Портреты: левый край = x:0, setOrigin(0, 0.5) гарантирует flush к краю
-    const cardW  = 225, cardH = 240;
-    const startY = 290;
-    const gapY   = 255;
+    const cardW  = 150, cardH = 160;
+    const startY = 310;
+    const gapY   = 170;
     portraits.forEach((p, i) => {
       const cy = startY + i * gapY;
       // Левый край прямоугольника ровно на x=0, без рамки
