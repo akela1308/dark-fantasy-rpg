@@ -27,10 +27,10 @@ const MAP_CONFIGS = {
   tavern_map: {
     bgKey: 'map_tavern_map',
     spawnPoints: {
-      default:          { x: 180, y: 480 },   // левая ветка дороги, на брусчатке
-      from_left:        { x: 180, y: 480 },
+      default:          { x: 310, y: 460 },   // левый-центр дороги, вне exit-зоны road_boloto (x:0-220)
+      from_left:        { x: 310, y: 460 },
       tavern_exit:      { x: 1380, y: 420 },   // возврат из таверны — у двери
-      from_road_boloto: { x: 120, y: 390 },    // возврат с болотной дороги — верхняя ветка
+      from_road_boloto: { x: 310, y: 380 },    // возврат с болотной дороги — вне exit-зоны
     },
     exits: [
       // Правый-нижний угол → Forest1
