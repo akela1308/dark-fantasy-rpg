@@ -186,6 +186,9 @@ const MAP_CONFIGS = {
     tavernEntry: null,
     bandits: true,
     banditPos: { x: 920, y: 490 },
+    campfires: [
+      { x: 523, y: 445 },   // лагерь разбойников
+    ],
   },
 
   road_boloto: {
@@ -282,6 +285,9 @@ export class MapScene extends Phaser.Scene {
 
     // Мерцание фонарей
     this._spawnLanterns(cfg);
+
+    // Костры
+    this._spawnCampfires(cfg);
 
     // Бандиты (только Forest1)
     this._bandits = [];
@@ -390,6 +396,68 @@ export class MapScene extends Phaser.Scene {
         b.shadow.setPosition(b.sprite.x, b.sprite.y + 2);
       }
     }
+  }
+
+  // ─── Костры (кластер огня + дым) ────────────────────────────────────────
+  _spawnCampfires(cfg) {
+    (cfg.campfires || []).forEach(c => {
+      if (!this.textures.exists('fire_dot')) {
+        const g = this.make.graphics({ x: 0, y: 0, add: false });
+        g.fillStyle(0xffffff, 1);
+        g.fillCircle(3, 3, 3);
+        g.generateTexture('fire_dot', 6, 6);
+        g.destroy();
+      }
+
+      // Свечение у основания (угли)
+      const ember = this.add.ellipse(c.x, c.y + 6, 80, 22, 0xFF4400, 0.18).setDepth(c.y - 2);
+      this.tweens.add({
+        targets: ember,
+        alpha: { from: 0.10, to: 0.26 },
+        scaleX: { from: 0.9, to: 1.1 },
+        duration: 400, yoyo: true, repeat: -1, ease: 'Sine.easeInOut',
+      });
+
+      // Несколько точек огня вокруг центра — имитация языков пламени
+      const offsets = [
+        { dx: 0,   dy:  0,  sc: 1.3  },   // центр — самый высокий
+        { dx: -14, dy:  5,  sc: 0.9  },   // левый язык
+        { dx:  14, dy:  5,  sc: 0.85 },   // правый язык
+        { dx: -6,  dy: -4,  sc: 0.75 },   // левый-центр
+        { dx:  7,  dy: -2,  sc: 0.70 },   // правый-центр
+      ];
+
+      offsets.forEach(({ dx, dy, sc }) => {
+        // Огонь
+        this.add.particles(c.x + dx, c.y + dy, 'fire_dot', {
+          speed:    { min: 25 * sc, max: 60 * sc },
+          angle:    { min: 258, max: 282 },
+          lifespan: { min: 300, max: 550 },
+          scale:    { start: 0.7 * sc, end: 0 },
+          alpha:    { start: 1, end: 0 },
+          tint:     [0xFFEE22, 0xFF9900, 0xFF4400],
+          quantity:  1,
+          frequency: 45 + Math.random() * 30,   // чуть разные ритмы
+          gravityY: -35,
+          blendMode: 'ADD',
+          depth:     c.y + 2,
+        });
+      });
+
+      // Дым — поднимается выше и рассеивается
+      this.add.particles(c.x, c.y - 10, 'fire_dot', {
+        speed:    { min: 12, max: 30 },
+        angle:    { min: 255, max: 285 },
+        lifespan: { min: 900, max: 1800 },
+        scale:    { start: 0.5, end: 1.8 },
+        alpha:    { start: 0.22, end: 0 },
+        tint:     [0x888888, 0x666666, 0xAAAAAA],
+        quantity:  1,
+        frequency: 90,
+        gravityY: -14,
+        depth:     c.y + 3,
+      });
+    });
   }
 
   // ─── Фонари (мерцающее свечение без открытого огня) ─────────────────────
