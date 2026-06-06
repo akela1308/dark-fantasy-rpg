@@ -83,7 +83,7 @@ const MAP_CONFIGS = {
     // NPC таверны
     npcs: [
       {
-        x: 735, y: 247,
+        x: 683, y: 299,
         spriteKey:   'map_wanderer',
         portraitKey: 'portrait_wanderer',
         name:        'Странник',
