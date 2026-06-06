@@ -304,6 +304,7 @@ export class MapScene extends Phaser.Scene {
 
   create() {
     this._transitioning = false;
+    this._exitCooldown  = 2200;  // мс после спавна — выходы не срабатывают
 
     const cfg   = MAP_CONFIGS[this.mapKey];
     const rawSpawn = cfg.spawnPoints[this.spawnId] ?? cfg.spawnPoints.default;
@@ -428,7 +429,9 @@ export class MapScene extends Phaser.Scene {
 
     this._updateLabelHovers();
 
-    if (!this._transitioning) {
+    if (this._exitCooldown > 0) this._exitCooldown -= delta;
+
+    if (!this._transitioning && this._exitCooldown <= 0) {
       this._checkExits();
       this._checkTavernEntry();
     }
