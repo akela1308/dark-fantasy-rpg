@@ -77,9 +77,24 @@ export class Unit {
 
   // --- Базовая атака ---
   attack(target) {
-    const dmg = this.rollDamage();
-    const actual = target.takeDamage(dmg);
-    eventBus.emit('log', `${this.name} атакует ${target.name} — ${actual} урона`);
+    // ── Шанс попадания (на основе разницы скоростей) ──
+    const hitChance = Math.max(50, Math.min(95, 70 + (this.speed - target.speed) * 4));
+    if (Math.random() * 100 > hitChance) {
+      eventBus.emit('log', `${this.name} промахивается по ${target.name}!`);
+      eventBus.emit('unit_missed', { unit: target });
+      return 0;
+    }
+
+    // ── Критический удар: 8% + бонус скорости ──
+    const critChance = 8 + Math.max(0, this.speed - 5) * 1.5;
+    const isCrit = Math.random() * 100 < critChance;
+    const dmg  = Math.round(this.rollDamage() * (isCrit ? 1.8 : 1));
+
+    const actual = target.takeDamage(dmg, { isCrit });
+    const msg = isCrit
+      ? `💥 ${this.name} КРИТ по ${target.name} — ${actual} урона!`
+      : `${this.name} атакует ${target.name} — ${actual} урона`;
+    eventBus.emit('log', msg);
 
     // Lifesteal
     if (this.lifesteal > 0 && actual > 0) {

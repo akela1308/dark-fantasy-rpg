@@ -337,6 +337,25 @@ export class BattleScene extends Phaser.Scene {
     });
   }
 
+  _animMiss(unit) {
+    if (!unit._spriteX) return;
+    const txt = this.add.text(
+      unit._spriteX + Phaser.Math.Between(-12, 12),
+      unit._spriteY - 15,
+      'Промах!',
+      { fontSize: '16px', color: '#AAAAAA', fontFamily: 'serif',
+        stroke: '#000', strokeThickness: 2 }
+    ).setOrigin(0.5).setAlpha(0.85);
+    this.tweens.add({
+      targets: txt,
+      y: unit._spriteY - 55,
+      alpha: 0,
+      duration: 700,
+      ease: 'Power1',
+      onComplete: () => txt.destroy(),
+    });
+  }
+
   // ══════════════════════════════════════════════════════════════════════
   // КЛИКИ
   // ══════════════════════════════════════════════════════════════════════
@@ -495,6 +514,12 @@ export class BattleScene extends Phaser.Scene {
     eventBus.on('unit_damaged', ({ unit, amount, isCrit }) => {
       this._animHit(unit, !!isCrit);
       this._animDamageNumber(unit, amount, !!isCrit);
+      // Camera shake на обычный удар (лёгкий)
+      if (!isCrit) this.cameras.main.shake(80, 0.002);
+    });
+
+    eventBus.on('unit_missed', ({ unit }) => {
+      this._animMiss(unit);
     });
 
     eventBus.on('unit_healed', ({ unit }) => this._animHeal(unit));
