@@ -90,6 +90,10 @@ export class LoadingScene extends Phaser.Scene {
     img('portrait_tavernman', 'portraits/tavernman.png');
     img('portrait_wanderer',  'portraits/wanderer.png');
 
+    // Туман
+    img('fog',  'maps/fog.png');
+    img('fog2', 'maps/fog2.png');
+
     // Аудио
     const tracks = [
       ['track_ashes2',     'Ashes of Velanth 2.mp3'],

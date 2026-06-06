@@ -25,21 +25,12 @@ const MAP_CONFIGS = {
       { x: 1218, y: 525 },
     ],
     fog: [
-      // Верхняя зона (деревья над дорогой)
-      { x: 120,  y: 180, rx: 320, ry: 90,  alpha: 0.13, speed: 18, dir:  1 },
-      { x: 500,  y: 120, rx: 400, ry: 80,  alpha: 0.10, speed: 24, dir: -1 },
-      { x: 900,  y: 200, rx: 360, ry: 100, alpha: 0.12, speed: 20, dir:  1 },
-      { x: 1350, y: 150, rx: 300, ry: 75,  alpha: 0.09, speed: 28, dir: -1 },
-      { x: 1600, y: 250, rx: 250, ry: 80,  alpha: 0.11, speed: 16, dir:  1 },
-      // Нижняя зона (болото/трава под дорогой)
-      { x: 200,  y: 820, rx: 350, ry: 100, alpha: 0.15, speed: 22, dir: -1 },
-      { x: 600,  y: 860, rx: 420, ry: 110, alpha: 0.12, speed: 19, dir:  1 },
-      { x: 1050, y: 830, rx: 380, ry: 95,  alpha: 0.13, speed: 25, dir: -1 },
-      { x: 1500, y: 870, rx: 290, ry: 85,  alpha: 0.10, speed: 21, dir:  1 },
-      // Средний слой (у обочин дороги)
-      { x: 80,   y: 560, rx: 280, ry: 65,  alpha: 0.08, speed: 14, dir:  1 },
-      { x: 750,  y: 520, rx: 320, ry: 60,  alpha: 0.07, speed: 17, dir: -1 },
-      { x: 1400, y: 490, rx: 260, ry: 55,  alpha: 0.08, speed: 15, dir:  1 },
+      // Верхняя зона: медленный дальний туман
+      { key: 'fog',  y: 160, alpha: 0.22, speedX: 0.12, depth: 1   },
+      { key: 'fog',  y: 220, alpha: 0.16, speedX: -0.08, depth: 2  },
+      // Нижняя зона: стелющийся туман у земли
+      { key: 'fog2', y: 790, alpha: 0.28, speedX: 0.10, depth: 1   },
+      { key: 'fog2', y: 860, alpha: 0.20, speedX: -0.14, depth: 2  },
     ],
   },
 
@@ -362,6 +353,11 @@ export class MapScene extends Phaser.Scene {
   // ─── Update ──────────────────────────────────────────────────────────────
 
   update(time, delta) {
+    // Скроллинг тумана
+    if (this._fogLayers) {
+      this._fogLayers.forEach(t => { t.tilePositionX += t._speedX; });
+    }
+
     this.hero.update(delta);
 
     this._trailInterval += delta;
@@ -419,26 +415,21 @@ export class MapScene extends Phaser.Scene {
     }
   }
 
-  // ─── Туман (медленно дрейфующие полупрозрачные пятна) ───────────────────
+  // ─── Туман (TileSprite — бесконечный скроллинг текстуры) ────────────────
   _spawnFog(cfg) {
-    (cfg.fog || []).forEach(f => {
-      const ellipse = this.add.ellipse(f.x, f.y, f.rx * 2, f.ry * 2, 0xCCDDEE, f.alpha)
-        .setDepth(1);   // поверх фона, под персонажами
+    const layers = cfg.fog || [];
+    if (!layers.length) return;
 
-      // Медленный горизонтальный дрейф — туда-обратно с разной дальностью
-      const drift = f.rx * 0.18 * f.dir;   // амплитуда = 18% ширины эллипса
-      const dur   = (f.rx * 2 + f.ry) / f.speed * 1000;  // период зависит от размера и скорости
-
-      this.tweens.add({
-        targets:  ellipse,
-        x:        f.x + drift,
-        alpha:    { from: f.alpha * 0.6, to: f.alpha },
-        duration: dur,
-        yoyo:     true,
-        repeat:   -1,
-        ease:     'Sine.easeInOut',
-        delay:    Math.random() * 4000,   // разный старт — не двигаются синхронно
-      });
+    this._fogLayers = layers.map(f => {
+      // TileSprite шириной на всю карту, высота = высота текстуры
+      const tex = this.textures.get(f.key).getSourceImage();
+      const h   = tex.height;
+      const tile = this.add.tileSprite(836, f.y, 1672, h, f.key)
+        .setAlpha(f.alpha)
+        .setDepth(f.depth)
+        .setScrollFactor(1);   // двигается вместе с камерой
+      tile._speedX = f.speedX;
+      return tile;
     });
   }
 
