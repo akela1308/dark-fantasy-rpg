@@ -15,13 +15,17 @@ const MAP_CONFIGS = {
       default:  { x: 240, y: 640 },
       from_left:{ x: 240, y: 640 },
     },
-    // Правый край → Tavern Map (y=377-515 — диапазон дороги на правом конце)
     exits: [
       { zone: { x: 1588, y: 360, w: 84, h: 165 }, toMap: 'tavern_map', spawnId: 'from_left' },
     ],
     labels:    [],
     bandits:   false,
     tavernEntry: null,
+    torches: [
+      { x: 220,  y: 810 },  // фонарь у левого края дороги
+      { x: 680,  y: 720 },  // свеча у надгробия по центру
+      { x: 1080, y: 655 },  // факел справа на дороге
+    ],
   },
 
   tavern_map: {
@@ -59,6 +63,12 @@ const MAP_CONFIGS = {
       spawnId: 'default',
     },
     bandits: false,
+    torches: [
+      { x: 245,  y: 875 },  // фонарь у входа слева
+      { x: 490,  y: 650 },  // фонарь у колодца
+      { x: 895,  y: 545 },  // фонарь у столба по центру
+      { x: 1490, y: 745 },  // фонарь у таверны справа
+    ],
   },
 
   tavern_inside: {
@@ -80,6 +90,13 @@ const MAP_CONFIGS = {
     ],
     tavernEntry: null,
     bandits: false,
+    torches: [
+      { x: 670,  y: 195, scale: 1.4 },  // люстра (крупнее)
+      { x: 260,  y: 320 },              // настенный фонарь слева
+      { x: 870,  y: 270 },              // свеча на барной стойке
+      { x: 980,  y: 310 },              // свеча на барной стойке
+      { x: 1090, y: 340 },              // свеча на барной стойке
+    ],
     // NPC таверны
     npcs: [
       {
@@ -176,7 +193,13 @@ const MAP_CONFIGS = {
     ],
     tavernEntry: null,
     bandits: true,
-    banditPos: { x: 920, y: 490 },   // на дороге у перекрёстка
+    banditPos: { x: 920, y: 490 },
+    torches: [
+      { x: 190,  y: 600 },  // фонарь у входа в лес
+      { x: 850,  y: 490 },  // лагерь разбойников — костёр, крупнее
+      { x: 1380, y: 360 },  // факел на развилке вверх
+      { x: 1380, y: 640 },  // факел на развилке вниз
+    ],
   },
 
   road_boloto: {
@@ -256,16 +279,20 @@ export class MapScene extends Phaser.Scene {
 
     // Зоны хождения
     this.walkable = new WalkableZones(this.mapKey);
-    this.walkable.drawDebug(this); // временно — отладка зон
+    // this.walkable.drawDebug(this); // раскомментируй для отладки зон
 
     // Партия: боец — самый крупный, герой чуть меньше, знахарка меньше всех
     const unitH = this.mapKey === 'tavern_inside' ? 158 : 130;
-    this.hero    = new MapUnit(this, spawn.x,       spawn.y, 'map_hero',    { height: unitH - 5,  speed: 130 });
-    this.brawler = new MapUnit(this, spawn.x - 65,  spawn.y, 'map_brawler', { height: unitH + 15, speed: 130 });
-    this.healer  = new MapUnit(this, spawn.x - 120, spawn.y, 'map_healer',  { height: unitH - 8,  speed: 130 });
+    // idlePeriod — уникальный ритм дыхания для каждого персонажа
+    this.hero    = new MapUnit(this, spawn.x,       spawn.y, 'map_hero',    { height: unitH - 5,  speed: 130, idlePeriod: 2800 });
+    this.brawler = new MapUnit(this, spawn.x - 65,  spawn.y, 'map_brawler', { height: unitH + 15, speed: 130, idlePeriod: 3400 });
+    this.healer  = new MapUnit(this, spawn.x - 120, spawn.y, 'map_healer',  { height: unitH - 8,  speed: 130, idlePeriod: 2200 });
 
     this._heroTrail     = [];
     this._trailInterval = 0;
+
+    // Частицы огня (факелы, свечи)
+    this._spawnTorches(cfg);
 
     // Бандиты (только Forest1)
     this._bandits = [];
@@ -356,6 +383,52 @@ export class MapScene extends Phaser.Scene {
   }
 
   // ─── NPCs ────────────────────────────────────────────────────────────────
+
+  // ─── Частицы огня (факелы / свечи) ─────────────────────────────────────────
+  _spawnTorches(cfg) {
+    const torches = cfg.torches || [];
+    if (!torches.length) return;
+
+    // Создаём текстуру-точку для частиц (если ещё нет)
+    if (!this.textures.exists('fire_dot')) {
+      const g = this.make.graphics({ x: 0, y: 0, add: false });
+      g.fillStyle(0xffffff, 1);
+      g.fillCircle(3, 3, 3);
+      g.generateTexture('fire_dot', 6, 6);
+      g.destroy();
+    }
+
+    torches.forEach(t => {
+      const sc = t.scale ?? 1.0;
+      // Основное пламя — оранжево-жёлтые частицы вверх
+      this.add.particles(t.x, t.y, 'fire_dot', {
+        speed:    { min: 18 * sc, max: 45 * sc },
+        angle:    { min: 255, max: 285 },        // вверх ± чуть в стороны
+        lifespan: { min: 350, max: 600 },
+        scale:    { start: 0.55 * sc, end: 0 },
+        alpha:    { start: 0.9, end: 0 },
+        tint:     [ 0xFFDD44, 0xFF9900, 0xFF6600 ],
+        quantity:  1,
+        frequency: 55,
+        gravityY: -22,
+        blendMode: 'ADD',
+        depth:     t.y + 5,
+      });
+      // Дым — серые частицы чуть выше, медленнее
+      this.add.particles(t.x, t.y - 12 * sc, 'fire_dot', {
+        speed:    { min: 8 * sc,  max: 22 * sc },
+        angle:    { min: 260, max: 280 },
+        lifespan: { min: 500, max: 900 },
+        scale:    { start: 0.3 * sc, end: 0.6 * sc },
+        alpha:    { start: 0.18, end: 0 },
+        tint:     0xAAAAAA,
+        quantity:  1,
+        frequency: 120,
+        gravityY: -10,
+        depth:     t.y + 6,
+      });
+    });
+  }
 
   _spawnNPCs(cfg) {
     (cfg.npcs || []).forEach(npc => {

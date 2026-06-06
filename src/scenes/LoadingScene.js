@@ -50,43 +50,45 @@ export class LoadingScene extends Phaser.Scene {
       img.setScale(scale);
     });
 
-    // Спрайты
+    // Хелпер: загружаем только если ещё нет в кэше
+    const img  = (key, path) => { if (!this.textures.exists(key))   this.load.image(key, path); };
+    const snd  = (key, path) => { if (!this.cache.audio.exists(key)) this.load.audio(key, path); };
+
+    // Спрайты (бой)
     const sprites = [
       'hero_duelist','companion_brawler','companion_healer',
       'bandit_commander','bandit_brawler','bandit_archer'
     ];
-    sprites.forEach(id => this.load.image(id, `sprites/${id}.png`));
+    sprites.forEach(id => img(id, `sprites/${id}.png`));
 
-    // Портреты
-    sprites.forEach(id => this.load.image(`portrait_${id}`, `portraits/${id}.png`));
+    // Портреты (бой)
+    sprites.forEach(id => img(`portrait_${id}`, `portraits/${id}.png`));
 
-    // Фон боя
-    this.load.image('battle_bg', 'battle_bg.png');
-
-    // UI
-    this.load.image('dialog_frame', 'ui/dialog_frame.png');
+    // Фон боя и UI
+    img('battle_bg',    'battle_bg.png');
+    img('dialog_frame', 'ui/dialog_frame.png');
 
     // Карты мира
-    this.load.image('map_map1',         'maps/map1.png');
-    this.load.image('map_tavern_map',   'maps/tavern_map.png');
-    this.load.image('map_tavern_inside','maps/tavern_inside.png');
-    this.load.image('map_mountains_map','maps/mountains_map.png');
-    this.load.image('map_swamp_map',    'maps/swamp_map.png');
-    this.load.image('map_forest1',      'maps/forest1.png');
-    this.load.image('map_elf_boloto',   'maps/elf_boloto.png');
-    this.load.image('map_road_boloto',  'maps/road_boloto.png');
+    img('map_map1',          'maps/map1.png');
+    img('map_tavern_map',    'maps/tavern_map.png');
+    img('map_tavern_inside', 'maps/tavern_inside.png');
+    img('map_mountains_map', 'maps/mountains_map.png');
+    img('map_swamp_map',     'maps/swamp_map.png');
+    img('map_forest1',       'maps/forest1.png');
+    img('map_elf_boloto',    'maps/elf_boloto.png');
+    img('map_road_boloto',   'maps/road_boloto.png');
 
     // Персонажи на карте
-    this.load.image('map_hero',      'maps/characters/hero.png');
-    this.load.image('map_brawler',   'maps/characters/brawler.png');
-    this.load.image('map_healer',    'maps/characters/healer.png');
-    this.load.image('map_bandit',    'maps/characters/bandit.png');
-    this.load.image('map_tavernman', 'maps/characters/tavernman.png');
-    this.load.image('map_wanderer',  'maps/characters/map_wanderer.png');
+    img('map_hero',      'maps/characters/hero.png');
+    img('map_brawler',   'maps/characters/brawler.png');
+    img('map_healer',    'maps/characters/healer.png');
+    img('map_bandit',    'maps/characters/bandit.png');
+    img('map_tavernman', 'maps/characters/tavernman.png');
+    img('map_wanderer',  'maps/characters/map_wanderer.png');
 
     // Портреты NPC
-    this.load.image('portrait_tavernman', 'portraits/tavernman.png');
-    this.load.image('portrait_wanderer',  'portraits/wanderer.png');
+    img('portrait_tavernman', 'portraits/tavernman.png');
+    img('portrait_wanderer',  'portraits/wanderer.png');
 
     // Аудио
     const tracks = [
@@ -98,7 +100,7 @@ export class LoadingScene extends Phaser.Scene {
       ['track_pass',       'Ashes of the Pass.mp3'],
       ['track_dark',       'Dark Song.mp3'],
     ];
-    tracks.forEach(([key, file]) => this.load.audio(key, `audio/${file}`));
+    tracks.forEach(([key, file]) => snd(key, `audio/${file}`));
 
     // Запускаем музыку как только загрузится первый трек
     this.load.once('filecomplete-audio-track_ashes2', () => {

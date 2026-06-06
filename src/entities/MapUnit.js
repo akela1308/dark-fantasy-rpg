@@ -4,14 +4,16 @@
  */
 export class MapUnit {
   constructor(scene, x, y, textureKey, config = {}) {
-    this.scene    = scene;
-    this.speed    = config.speed ?? 120;
-    this.targetX  = x;
-    this.targetY  = y;
-    this.moving   = false;
+    this.scene       = scene;
+    this.speed       = config.speed ?? 120;
+    this.targetX     = x;
+    this.targetY     = y;
+    this.moving      = false;
+    this._idlePeriod = config.idlePeriod ?? 2800;  // уникальный ритм для каждого персонажа
     this._bobTween   = null;
     this._leanTween  = null;
     this._idleTween  = null;
+    this._breathTween = null;
 
     // Спрайт
     this.sprite = scene.add.image(x, y, textureKey)
@@ -99,10 +101,21 @@ export class MapUnit {
 
   _startIdleAnim() {
     if (this._idleTween) return;
+    const baseScale = this.sprite.scaleX;
+    // Покачивание (угол)
     this._idleTween = this.scene.tweens.add({
       targets: this.sprite,
       angle: { from: -0.6, to: 0.6 },
-      duration: 2800,
+      duration: this._idlePeriod,
+      yoyo: true,
+      repeat: -1,
+      ease: 'Sine.easeInOut',
+    });
+    // Дыхание (scaleY) — чуть другой ритм чтобы не было синхрона
+    this._breathTween = this.scene.tweens.add({
+      targets: this.sprite,
+      scaleY: { from: baseScale, to: baseScale * 1.022 },
+      duration: this._idlePeriod * 1.15,
       yoyo: true,
       repeat: -1,
       ease: 'Sine.easeInOut',
@@ -110,7 +123,8 @@ export class MapUnit {
   }
 
   _stopIdleAnim() {
-    if (this._idleTween) { this._idleTween.stop(); this._idleTween = null; }
+    if (this._idleTween)  { this._idleTween.stop();  this._idleTween  = null; }
+    if (this._breathTween) { this._breathTween.stop(); this._breathTween = null; }
   }
 
   _stopWalkAnim() {
@@ -125,6 +139,7 @@ export class MapUnit {
 
   destroy() {
     this._stopWalkAnim();
+    this._stopIdleAnim();
     this.sprite.destroy();
     this.shadow.destroy();
   }
