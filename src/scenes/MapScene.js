@@ -21,6 +21,9 @@ const MAP_CONFIGS = {
     labels:    [],
     bandits:   false,
     tavernEntry: null,
+    lanterns: [
+      { x: 1218, y: 525 },  // фонарь справа на дороге
+    ],
   },
 
   tavern_map: {
@@ -277,6 +280,9 @@ export class MapScene extends Phaser.Scene {
     // Частицы огня (факелы, свечи)
     this._spawnTorches(cfg);
 
+    // Мерцание фонарей
+    this._spawnLanterns(cfg);
+
     // Бандиты (только Forest1)
     this._bandits = [];
     if (cfg.bandits) this._spawnBandits(cfg);
@@ -384,6 +390,46 @@ export class MapScene extends Phaser.Scene {
         b.shadow.setPosition(b.sprite.x, b.sprite.y + 2);
       }
     }
+  }
+
+  // ─── Фонари (мерцающее свечение без открытого огня) ─────────────────────
+  _spawnLanterns(cfg) {
+    (cfg.lanterns || []).forEach(t => {
+      // Внешнее мягкое свечение (большой, полупрозрачный)
+      const outerGlow = this.add.ellipse(t.x, t.y, 110, 60, 0xFF8800, 0.08)
+        .setDepth(t.y - 1);
+      // Внутреннее ядро (поменьше, ярче)
+      const innerGlow = this.add.ellipse(t.x, t.y - 4, 48, 28, 0xFFCC44, 0.30)
+        .setDepth(t.y);
+
+      // Мерцание: случайные tweens на alpha создают неравномерный живой огонь
+      const flicker = () => {
+        const duration = Phaser.Math.Between(80, 320);
+        const alphaOuter = Phaser.Math.FloatBetween(0.05, 0.14);
+        const alphaInner = Phaser.Math.FloatBetween(0.18, 0.42);
+        const scaleX = Phaser.Math.FloatBetween(0.88, 1.12);
+        const scaleY = Phaser.Math.FloatBetween(0.90, 1.10);
+
+        this.tweens.add({
+          targets: outerGlow,
+          alpha: alphaOuter,
+          scaleX, scaleY,
+          duration,
+          ease: 'Sine.easeInOut',
+          onComplete: flicker,   // рекурсивно — каждый раз новые значения
+        });
+        this.tweens.add({
+          targets: innerGlow,
+          alpha: alphaInner,
+          scaleX: scaleX * 0.9,
+          scaleY: scaleY * 0.9,
+          duration,
+          ease: 'Sine.easeInOut',
+        });
+      };
+
+      flicker();
+    });
   }
 
   // ─── Dev Grid ────────────────────────────────────────────────────────────
