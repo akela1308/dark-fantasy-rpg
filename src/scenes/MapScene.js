@@ -12,8 +12,9 @@ const MAP_CONFIGS = {
   map1: {
     bgKey: 'map_map1',
     spawnPoints: {
-      default:  { x: 240, y: 640 },
-      from_left:{ x: 240, y: 640 },
+      default:    { x: 240, y: 640 },
+      from_left:  { x: 240, y: 640 },
+      from_right: { x: 1530, y: 480 },  // возврат с tavern_map — у правого выхода
     },
     exits: [
       { zone: { x: 1588, y: 360, w: 84, h: 165 }, toMap: 'tavern_map', spawnId: 'from_left' },
@@ -40,13 +41,16 @@ const MAP_CONFIGS = {
       default:          { x: 150, y: 820 },   // зона спавна: квадраты (0-300, 700-900)
       from_left:        { x: 150, y: 820 },
       tavern_exit:      { x: 1350, y: 560 },   // возврат из таверны — в блоке 8 (y>530, вне запрета)
-      from_road_boloto: { x: 310, y: 380 },    // возврат с болотной дороги — вне exit-зоны
+      from_road_boloto: { x: 310, y: 380 },    // возврат с болотной дороги
+      from_forest:      { x: 1450, y: 750 },   // возврат с forest1 — нижний правый
     },
     exits: [
       // Правый-нижний угол → Forest1
       { zone: { x: 1548, y: 720, w: 124, h: 221 }, toMap: 'forest1',    spawnId: 'from_left' },
       // Верхняя-левая дорога → Road Boloto
       { zone: { x: 0,    y: 130, w: 220, h: 390 }, toMap: 'road_boloto', spawnId: 'from_tavern' },
+      // Нижний-левый угол → Map1 (возврат)
+      { zone: { x: 0,    y: 750, w: 150, h: 191 }, toMap: 'map1',        spawnId: 'from_right' },
     ],
     labels: [
       {
@@ -60,6 +64,12 @@ const MAP_CONFIGS = {
         text: '← Болотная дорога',
         screenX: 183,
         screenY: 52,
+      },
+      {
+        hoverZone: { x: 0, y: 750, w: 150, h: 191 },
+        text: '← Руины',
+        screenX: 110,
+        screenY: 872,
       },
     ],
     // Верхняя ветка X — дверь таверны → Tavern Inside
@@ -166,14 +176,18 @@ const MAP_CONFIGS = {
   forest1: {
     bgKey: 'map_forest1',
     spawnPoints: {
-      default:  { x: 800, y: 500 },
-      from_left:{ x: 100, y: 555 },
+      default:       { x: 800, y: 500 },
+      from_left:     { x: 100, y: 555 },
+      from_mountains:{ x: 1480, y: 300 },  // возврат с Mountains — верхняя ветка
+      from_elf:      { x: 1480, y: 650 },  // возврат с Elf Boloto — нижняя ветка
     },
     exits: [
-      // Верхняя ветка → Mountains Map (y=192-450)
+      // Верхняя ветка → Mountains Map
       { zone: { x: 1548, y: 178, w: 124, h: 275 }, toMap: 'mountains_map', spawnId: 'from_left' },
-      // Нижняя ветка → Elf Swamp (y=570-798)
+      // Нижняя ветка → Elf Swamp
       { zone: { x: 1548, y: 558, w: 124, h: 245 }, toMap: 'elf_boloto',    spawnId: 'from_left' },
+      // Левый край → Tavern Map (возврат)
+      { zone: { x: 0,    y: 468, w: 100, h: 184 }, toMap: 'tavern_map',    spawnId: 'from_forest' },
     ],
     labels: [
       {
@@ -187,6 +201,12 @@ const MAP_CONFIGS = {
         text: '↓ Болото эльфов',
         screenX: 1385,
         screenY: 902,
+      },
+      {
+        hoverZone: { x: 0, y: 468, w: 100, h: 184 },
+        text: '← Таверна',
+        screenX: 90,
+        screenY: 465,
       },
     ],
     tavernEntry: null,
@@ -234,8 +254,17 @@ const MAP_CONFIGS = {
       default:  { x: 180, y: 580 },
       from_left:{ x: 180, y: 580 },
     },
-    exits:      [],
-    labels:     [],
+    exits: [
+      { zone: { x: 0, y: 468, w: 120, h: 250 }, toMap: 'forest1', spawnId: 'from_mountains' },
+    ],
+    labels: [
+      {
+        hoverZone: { x: 0, y: 468, w: 120, h: 250 },
+        text: '← Лес',
+        screenX: 90,
+        screenY: 465,
+      },
+    ],
     tavernEntry: null,
     bandits:    false,
   },
@@ -246,8 +275,17 @@ const MAP_CONFIGS = {
       default:  { x: 180, y: 560 },
       from_left:{ x: 180, y: 560 },
     },
-    exits:      [],
-    labels:     [],
+    exits: [
+      { zone: { x: 0, y: 468, w: 120, h: 200 }, toMap: 'forest1', spawnId: 'from_elf' },
+    ],
+    labels: [
+      {
+        hoverZone: { x: 0, y: 468, w: 120, h: 200 },
+        text: '← Лес',
+        screenX: 90,
+        screenY: 465,
+      },
+    ],
     tavernEntry: null,
     bandits:    false,
   },
