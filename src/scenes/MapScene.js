@@ -200,11 +200,10 @@ const MAP_CONFIGS = {
   road_boloto: {
     bgKey: 'map_road_boloto',
     spawnPoints: {
-      default:      { x: 380, y: 420 },   // в блоке 2 (x:300-700, y:280-560), вне exit-зоны (y>520 нет — проверено)
-      from_tavern:  { x: 380, y: 420 },
+      default:      { x: 1600, y: 800 },   // правый нижний угол (блок 5: x:1250-1672, y:750-911)
+      from_tavern:  { x: 1600, y: 800 },   // приход с tavern_map — правый нижний угол
     },
     exits: [
-      // Назад на tavern_map — нижняя-левая дорога
       { zone: { x: 0, y: 750, w: 320, h: 191 }, toMap: 'tavern_map', spawnId: 'from_road_boloto' },
     ],
     labels: [
@@ -217,6 +216,16 @@ const MAP_CONFIGS = {
     ],
     tavernEntry: null,
     bandits: false,
+    fog: [
+      // Верхняя зона — густой болотный туман
+      { key: 'fog',  y: 80,  alpha: 0.30, speedX:  0.09, depth: 1 },
+      { key: 'fog',  y: 160, alpha: 0.22, speedX: -0.06, depth: 2 },
+      { key: 'fog2', y: 110, alpha: 0.18, speedX:  0.13, depth: 1 },
+      // Нижняя зона — туман у болота
+      { key: 'fog2', y: 800, alpha: 0.28, speedX: -0.10, depth: 1 },
+      { key: 'fog',  y: 870, alpha: 0.20, speedX:  0.07, depth: 2 },
+      { key: 'fog2', y: 920, alpha: 0.25, speedX: -0.12, depth: 1 },
+    ],
   },
 
   mountains_map: {
