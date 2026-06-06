@@ -29,8 +29,8 @@ const MAP_CONFIGS = {
   tavern_map: {
     bgKey: 'map_tavern_map',
     spawnPoints: {
-      default:          { x: 250, y: 700 },   // нижний-левый угол (блок 6), вне road_boloto exit (y>520)
-      from_left:        { x: 250, y: 700 },
+      default:          { x: 150, y: 820 },   // зона спавна: квадраты (0-300, 700-900)
+      from_left:        { x: 150, y: 820 },
       tavern_exit:      { x: 1380, y: 420 },   // возврат из таверны — у двери
       from_road_boloto: { x: 310, y: 380 },    // возврат с болотной дороги — вне exit-зоны
     },
