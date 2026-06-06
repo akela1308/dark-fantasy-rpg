@@ -303,6 +303,27 @@ export class MapScene extends Phaser.Scene {
 
     this._clickMarker = this.add.graphics().setDepth(20);
     this._buildHUD(cfg);
+
+    // ─── Dev Grid (клавиша G) ────────────────────────────────────────────
+    this._devGrid = null;
+    this._devGridLabels = [];
+    this._devCursorLabel = this.add.text(0, 0, '', {
+      fontSize: '11px', color: '#00FF88', fontFamily: 'monospace',
+      stroke: '#000', strokeThickness: 2,
+    }).setDepth(999).setScrollFactor(0).setAlpha(0);
+
+    this.input.keyboard.on('keydown-G', () => this._toggleDevGrid());
+
+    // Курсор: показывает мировые координаты под мышью в dev-режиме
+    this.input.on('pointermove', (ptr) => {
+      if (!this._devGrid) return;
+      const wx = Math.round(ptr.worldX);
+      const wy = Math.round(ptr.worldY);
+      this._devCursorLabel
+        .setText(`world: ${wx}, ${wy}`)
+        .setPosition(ptr.x + 14, ptr.y - 4)
+        .setAlpha(1);
+    });
   }
 
   // ─── Update ──────────────────────────────────────────────────────────────
@@ -363,6 +384,47 @@ export class MapScene extends Phaser.Scene {
         b.shadow.setPosition(b.sprite.x, b.sprite.y + 2);
       }
     }
+  }
+
+  // ─── Dev Grid ────────────────────────────────────────────────────────────
+  _toggleDevGrid() {
+    if (this._devGrid) {
+      // Выключить
+      this._devGrid.destroy();
+      this._devGrid = null;
+      this._devGridLabels.forEach(l => l.destroy());
+      this._devGridLabels = [];
+      this._devCursorLabel.setAlpha(0);
+      return;
+    }
+
+    // Включить
+    const STEP = 100;          // шаг сетки в мировых пикселях
+    const mapW = 1672, mapH = 941;
+    const g = this.add.graphics().setDepth(998).setAlpha(0.55);
+
+    // Вертикальные линии
+    g.lineStyle(1, 0x00FF88, 0.4);
+    for (let x = 0; x <= mapW; x += STEP) {
+      g.lineBetween(x, 0, x, mapH);
+    }
+    // Горизонтальные линии
+    for (let y = 0; y <= mapH; y += STEP) {
+      g.lineBetween(0, y, mapW, y);
+    }
+
+    // Подписи координат каждые 200px
+    for (let x = 0; x <= mapW; x += 200) {
+      for (let y = 0; y <= mapH; y += 200) {
+        const lbl = this.add.text(x + 3, y + 2, `${x},${y}`, {
+          fontSize: '10px', color: '#00FF88', fontFamily: 'monospace',
+          stroke: '#000', strokeThickness: 2,
+        }).setDepth(999).setAlpha(0.85);
+        this._devGridLabels.push(lbl);
+      }
+    }
+
+    this._devGrid = g;
   }
 
   // ─── NPCs ────────────────────────────────────────────────────────────────
