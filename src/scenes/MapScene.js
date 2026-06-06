@@ -152,8 +152,8 @@ const MAP_CONFIGS = {
   road_boloto: {
     bgKey: 'map_road_boloto',
     spawnPoints: {
-      default:      { x: 500, y: 640 },   // в центральной zone, вне exit-зоны (x:0-320)
-      from_tavern:  { x: 500, y: 640 },
+      default:      { x: 380, y: 420 },   // в блоке 2 (x:300-700, y:280-560), вне exit-зоны (y>520 нет — проверено)
+      from_tavern:  { x: 380, y: 420 },
     },
     exits: [
       // Назад на tavern_map — нижняя-левая дорога
