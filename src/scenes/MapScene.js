@@ -22,7 +22,24 @@ const MAP_CONFIGS = {
     bandits:   false,
     tavernEntry: null,
     lanterns: [
-      { x: 1218, y: 525 },  // фонарь справа на дороге
+      { x: 1218, y: 525 },
+    ],
+    fog: [
+      // Верхняя зона (деревья над дорогой)
+      { x: 120,  y: 180, rx: 320, ry: 90,  alpha: 0.13, speed: 18, dir:  1 },
+      { x: 500,  y: 120, rx: 400, ry: 80,  alpha: 0.10, speed: 24, dir: -1 },
+      { x: 900,  y: 200, rx: 360, ry: 100, alpha: 0.12, speed: 20, dir:  1 },
+      { x: 1350, y: 150, rx: 300, ry: 75,  alpha: 0.09, speed: 28, dir: -1 },
+      { x: 1600, y: 250, rx: 250, ry: 80,  alpha: 0.11, speed: 16, dir:  1 },
+      // Нижняя зона (болото/трава под дорогой)
+      { x: 200,  y: 820, rx: 350, ry: 100, alpha: 0.15, speed: 22, dir: -1 },
+      { x: 600,  y: 860, rx: 420, ry: 110, alpha: 0.12, speed: 19, dir:  1 },
+      { x: 1050, y: 830, rx: 380, ry: 95,  alpha: 0.13, speed: 25, dir: -1 },
+      { x: 1500, y: 870, rx: 290, ry: 85,  alpha: 0.10, speed: 21, dir:  1 },
+      // Средний слой (у обочин дороги)
+      { x: 80,   y: 560, rx: 280, ry: 65,  alpha: 0.08, speed: 14, dir:  1 },
+      { x: 750,  y: 520, rx: 320, ry: 60,  alpha: 0.07, speed: 17, dir: -1 },
+      { x: 1400, y: 490, rx: 260, ry: 55,  alpha: 0.08, speed: 15, dir:  1 },
     ],
   },
 
@@ -31,7 +48,7 @@ const MAP_CONFIGS = {
     spawnPoints: {
       default:          { x: 150, y: 820 },   // зона спавна: квадраты (0-300, 700-900)
       from_left:        { x: 150, y: 820 },
-      tavern_exit:      { x: 1380, y: 420 },   // возврат из таверны — у двери
+      tavern_exit:      { x: 1350, y: 560 },   // возврат из таверны — в блоке 8 (y>530, вне запрета)
       from_road_boloto: { x: 310, y: 380 },    // возврат с болотной дороги — вне exit-зоны
     },
     exits: [
@@ -83,8 +100,6 @@ const MAP_CONFIGS = {
     tavernEntry: null,
     bandits: false,
     torches: [
-      { x: 670,  y: 195, scale: 1.4 },  // люстра (крупнее)
-      { x: 260,  y: 320 },              // настенный фонарь слева
       { x: 961,  y: 278 },              // свеча на баре
       { x: 1062, y: 313 },              // свеча на баре
       { x: 1201, y: 361 },              // свеча на баре
@@ -253,7 +268,9 @@ export class MapScene extends Phaser.Scene {
     this._transitioning = false;
 
     const cfg   = MAP_CONFIGS[this.mapKey];
-    const spawn = cfg.spawnPoints[this.spawnId] ?? cfg.spawnPoints.default;
+    const rawSpawn = cfg.spawnPoints[this.spawnId] ?? cfg.spawnPoints.default;
+    // Клампим спавн на случай если он вне walkable зоны
+    const spawn = this.walkable.clamp(rawSpawn.x, rawSpawn.y);
 
     const mapW = 1672, mapH = 941;
     const W = 1280, H = 720;
@@ -288,6 +305,9 @@ export class MapScene extends Phaser.Scene {
 
     // Костры
     this._spawnCampfires(cfg);
+
+    // Туман
+    this._spawnFog(cfg);
 
     // Бандиты (только Forest1)
     this._bandits = [];
@@ -396,6 +416,29 @@ export class MapScene extends Phaser.Scene {
         b.shadow.setPosition(b.sprite.x, b.sprite.y + 2);
       }
     }
+  }
+
+  // ─── Туман (медленно дрейфующие полупрозрачные пятна) ───────────────────
+  _spawnFog(cfg) {
+    (cfg.fog || []).forEach(f => {
+      const ellipse = this.add.ellipse(f.x, f.y, f.rx * 2, f.ry * 2, 0xCCDDEE, f.alpha)
+        .setDepth(1);   // поверх фона, под персонажами
+
+      // Медленный горизонтальный дрейф — туда-обратно с разной дальностью
+      const drift = f.rx * 0.18 * f.dir;   // амплитуда = 18% ширины эллипса
+      const dur   = (f.rx * 2 + f.ry) / f.speed * 1000;  // период зависит от размера и скорости
+
+      this.tweens.add({
+        targets:  ellipse,
+        x:        f.x + drift,
+        alpha:    { from: f.alpha * 0.6, to: f.alpha },
+        duration: dur,
+        yoyo:     true,
+        repeat:   -1,
+        ease:     'Sine.easeInOut',
+        delay:    Math.random() * 4000,   // разный старт — не двигаются синхронно
+      });
+    });
   }
 
   // ─── Костры (кластер огня + дым) ────────────────────────────────────────
