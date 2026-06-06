@@ -269,8 +269,6 @@ export class MapScene extends Phaser.Scene {
 
     const cfg   = MAP_CONFIGS[this.mapKey];
     const rawSpawn = cfg.spawnPoints[this.spawnId] ?? cfg.spawnPoints.default;
-    // Клампим спавн на случай если он вне walkable зоны
-    const spawn = this.walkable.clamp(rawSpawn.x, rawSpawn.y);
 
     const mapW = 1672, mapH = 941;
     const W = 1280, H = 720;
@@ -283,9 +281,12 @@ export class MapScene extends Phaser.Scene {
     // Фон
     this.add.image(mapW / 2, mapH / 2, cfg.bgKey).setScale(1).setDepth(0);
 
-    // Зоны хождения
+    // Зоны хождения — создаём ДО клампинга спавна
     this.walkable = new WalkableZones(this.mapKey);
     // this.walkable.drawDebug(this); // раскомментируй для отладки зон
+
+    // Клампим спавн на случай если он вне walkable зоны
+    const spawn = this.walkable.clamp(rawSpawn.x, rawSpawn.y);
 
     // Партия: боец — самый крупный, герой чуть меньше, знахарка меньше всех
     const unitH = this.mapKey === 'tavern_inside' ? 158 : 130;
