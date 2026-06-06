@@ -30,6 +30,9 @@ export class MusicPlayer {
     if (existing && existing.isPlaying) {
       this.current = existing;
       this.index   = idx;
+      // Переподключаем complete — старый listener (из LoadingScene) не запускал следующий трек
+      existing.removeAllListeners('complete');
+      existing.on('complete', () => this._startTrack(this.index + 1));
     } else {
       // Если музыки нет — запускаем
       this.index = idx;
