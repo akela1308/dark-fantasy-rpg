@@ -80,8 +80,38 @@ const MAP_CONFIGS = {
     ],
     tavernEntry: null,
     bandits: false,
-    // Хозяин таверны стоит у барной стойки (правая часть, walkable зона)
+    // NPC таверны
     npcs: [
+      {
+        x: 580, y: 350,
+        spriteKey:   'map_wanderer',
+        portraitKey: 'portrait_wanderer',
+        name:        'Странник',
+        height:      155,
+        hoverPortrait: true,   // показывать портрет справа при наведении
+        dialogues: [
+          {
+            text: '"Ты не местный... Это видно. Присядь, раз уж пришёл. Я тут уже три дня — жду, пока стихнет. Слышал что-нибудь о старом алтаре к востоку отсюда? В лесу, за болотом. Я видел там свечение. Синее, холодное. Не природное."',
+            choices: [
+              { label: 'Что ещё ты там видел?',         style: 'default' },
+              { label: 'Какой артефакт?',                style: 'default' },
+              { label: 'Спасибо, запомню.',              style: 'retreat' },
+            ],
+          },
+          {
+            text: '"Животные обходят то место стороной. Я сам едва не шагнул в свечение — что-то остановило. Инстинкт, или предостережение. Три камня со знаками указывают путь к алтарю. Найдёшь их — найдёшь и то, что там лежит."',
+            choices: [{ label: 'Что за артефакт там спрятан?', style: 'default' }],
+          },
+          {
+            text: '"Печать Забытого — так её называют старожилы. Кольцо. Говорят, усиливает волю и позволяет видеть сквозь тьму. Но берёт свою плату. Последний, кто носил его, потерял рассудок. Иди, если не боишься. Только не говори, что я не предупреждал."',
+            choices: [{ label: 'Я запомню твоё предупреждение.', style: 'default' }],
+          },
+          {
+            text: '"Печать Забытого. Кольцо из чёрного металла — старожилы говорят, оно усиливает волю и открывает взгляд во тьму. Но берёт свою плату. Последний владелец потерял рассудок. Думай сам, стоит ли оно того."',
+            choices: [{ label: 'Я буду осторожен. Спасибо.', style: 'default' }],
+          },
+        ],
+      },
       {
         x: 1120, y: 460,
         spriteKey:   'map_tavernman',
@@ -349,9 +379,27 @@ export class MapScene extends Phaser.Scene {
         stroke: '#000', strokeThickness: 3,
       }).setOrigin(0.5, 1).setDepth(npc.y + 1).setAlpha(0);
 
+      // Hover-портрет справа (если задан флаг hoverPortrait)
+      let _hBg, _hImg, _hName;
+      if (npc.hoverPortrait && npc.portraitKey) {
+        const hW = 120, hH = 145, hx = 1594;
+        _hBg   = this.add.rectangle(hx, 230, hW, hH, 0x0a0810, 0.92).setDepth(59).setScrollFactor(0).setAlpha(0);
+        _hImg  = this.add.image(hx, 222, npc.portraitKey).setDepth(60).setScrollFactor(0).setAlpha(0);
+        _hImg.setScale(Math.min((hW - 6) / _hImg.width, (hH - 26) / _hImg.height));
+        _hName = this.add.text(hx, 295, npc.name, {
+          fontSize: '11px', color: '#CC9944', fontFamily: 'serif',
+        }).setOrigin(0.5).setDepth(61).setScrollFactor(0).setAlpha(0);
+      }
+
       // Hover — свечение + показываем имя
-      sprite.on('pointerover',  () => { sprite.setTint(0xFFEEBB); label.setAlpha(1); });
-      sprite.on('pointerout',   () => { sprite.clearTint(); label.setAlpha(0); });
+      sprite.on('pointerover',  () => {
+        sprite.setTint(0xFFEEBB); label.setAlpha(1);
+        if (_hBg) { _hBg.setAlpha(1); _hImg.setAlpha(1); _hName.setAlpha(1); }
+      });
+      sprite.on('pointerout',   () => {
+        sprite.clearTint(); label.setAlpha(0);
+        if (_hBg) { _hBg.setAlpha(0); _hImg.setAlpha(0); _hName.setAlpha(0); }
+      });
 
       // Клик — диалог
       sprite.on('pointerdown', () => {

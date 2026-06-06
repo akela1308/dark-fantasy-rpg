@@ -82,9 +82,11 @@ export class LoadingScene extends Phaser.Scene {
     this.load.image('map_healer',    'maps/characters/healer.png');
     this.load.image('map_bandit',    'maps/characters/bandit.png');
     this.load.image('map_tavernman', 'maps/characters/tavernman.png');
+    this.load.image('map_wanderer',  'maps/characters/map_wanderer.png');
 
-    // Портрет хозяина таверны
+    // Портреты NPC
     this.load.image('portrait_tavernman', 'portraits/tavernman.png');
+    this.load.image('portrait_wanderer',  'portraits/wanderer.png');
 
     // Аудио
     const tracks = [
