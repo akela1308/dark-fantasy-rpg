@@ -9,7 +9,8 @@ export class MapUnit {
     this.targetX     = x;
     this.targetY     = y;
     this.moving      = false;
-    this._idlePeriod = config.idlePeriod ?? 2800;  // уникальный ритм для каждого персонажа
+    this._idlePeriod    = config.idlePeriod    ?? 2800;
+    this._walkThreshold = config.walkThreshold ?? 10;  // мин. дистанция для старта walk-анимации
     this._bobTween   = null;
     this._leanTween  = null;
     this._idleTween  = null;
@@ -78,7 +79,7 @@ export class MapUnit {
 
       // Гистерезис: walk-анимация стартует только при реальном движении (>10px)
       // Мелкие толчки от _separateParty (<5px) сюда не попадают
-      if (!this.moving && dist > 10) {
+      if (!this.moving && dist > this._walkThreshold) {
         this.moving = true;
         this._stopIdleAnim();
         this._startWalkAnim();

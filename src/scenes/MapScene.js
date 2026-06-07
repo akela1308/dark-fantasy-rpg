@@ -105,7 +105,7 @@ const MAP_CONFIGS = {
       // Стол перед странником: правый нижний угол ножки на мировых (641, 373)
       // table4: контент cols 266-380 / rows 106-268 из 661×377
       // origin выровнен по нижнему правому краю ножки
-      { key: 'prop_table4', x: 641, y: 373, originX: 380/661, originY: 268/377, height: 340 },
+      { key: 'prop_table4', x: 665, y: 395, originX: 380/661, originY: 268/377, height: 170 },
     ],
     torches: [
       { x: 961,  y: 278 },              // свеча на баре
@@ -341,8 +341,8 @@ export class MapScene extends Phaser.Scene {
     const unitH = this.mapKey === 'tavern_inside' ? 158 : 130;
     // idlePeriod — уникальный ритм дыхания для каждого персонажа
     this.hero    = new MapUnit(this, spawn.x,       spawn.y, 'map_hero',    { height: unitH - 5,  speed: 130, idlePeriod: 2800 });
-    this.brawler = new MapUnit(this, spawn.x - 65,  spawn.y, 'map_brawler', { height: unitH + 15, speed: 130, idlePeriod: 3400 });
-    this.healer  = new MapUnit(this, spawn.x - 120, spawn.y, 'map_healer',  { height: unitH - 8,  speed: 130, idlePeriod: 2200 });
+    this.brawler = new MapUnit(this, spawn.x - 65,  spawn.y, 'map_brawler', { height: unitH + 15, speed: 130, idlePeriod: 3400, walkThreshold: 40 });
+    this.healer  = new MapUnit(this, spawn.x - 120, spawn.y, 'map_healer',  { height: unitH - 8,  speed: 130, idlePeriod: 2200, walkThreshold: 40 });
 
     this._heroTrail     = [];
     this._trailInterval = 0;
@@ -1114,15 +1114,11 @@ export class MapScene extends Phaser.Scene {
       // Чёрный фон — полностью непрозрачный, перекрывает любые артефакты
       this.add.rectangle(0, cy, cardW + 4, cardH + 4, 0x000000, 1)
         .setOrigin(0, 0.5).setDepth(49).setScrollFactor(0);
-      this.add.rectangle(0, cy, cardW, cardH, 0x07060a, 1)
+      this.add.rectangle(0, cy, cardW, cardH, 0x000000, 1)
         .setOrigin(0, 0.5).setDepth(50).setScrollFactor(0);
       const cx = cardW / 2;
       const img = this.add.image(cx, cy - 10, p.key).setDepth(51).setScrollFactor(0);
       img.setScale(Math.min((cardW - 8) / img.width, (cardH - 28) / img.height));
-      // Готическая рамка поверх портрета — перекрывает любые края
-      this.add.image(cx, cy - 4, 'portrait_frame')
-        .setDisplaySize(cardW + 6, cardH + 8)
-        .setDepth(52).setScrollFactor(0);
       this.add.text(cx, cy + cardH / 2 - 2, p.label, {
         fontSize: '13px', color: '#BBBBAA', fontFamily: 'serif',
       }).setOrigin(0.5, 1).setDepth(53).setScrollFactor(0);
