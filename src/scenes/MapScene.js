@@ -103,7 +103,9 @@ const MAP_CONFIGS = {
     // Статические пропсы (мебель, предметы)
     props: [
       // Стол перед странником: правый нижний угол ножки на мировых (641, 373)
-      { key: 'prop_table3', x: 641, y: 373, originX: 1, originY: 1, height: 115 },
+      // table4: контент cols 266-380 / rows 106-268 из 661×377
+      // origin выровнен по нижнему правому краю ножки
+      { key: 'prop_table4', x: 641, y: 373, originX: 380/661, originY: 268/377, height: 115 },
     ],
     torches: [
       { x: 961,  y: 278 },              // свеча на баре
@@ -473,6 +475,11 @@ export class MapScene extends Phaser.Scene {
         b.sprite.x += (dx / dist) * push;
         b.sprite.y += (dy / dist) * push;
         b.shadow.setPosition(b.sprite.x, b.sprite.y + 2);
+        // Если юнит стоит — обновляем цель чтобы не было обратного движения
+        if (!b.moving) {
+          b.targetX = b.sprite.x;
+          b.targetY = b.sprite.y;
+        }
       }
     }
   }
