@@ -1132,16 +1132,17 @@ export class MapScene extends Phaser.Scene {
     ];
     // Портреты: только PNG + подпись, никаких рамок и прямоугольников
     const cardW  = 150, cardH = 160;
-    const startY = 210;   // на 100px выше (один квадрат)
-    const gapY   = 170;
+    const startY = 210;
+    const gapY   = 190;  // увеличен зазор чтобы уместить подпись между портретами
     portraits.forEach((p, i) => {
       const cy = startY + i * gapY;
       const cx = cardW / 2;
       const img = this.add.image(cx, cy, p.key).setDepth(51).setScrollFactor(0);
       img.setScale(Math.min(cardW / img.width, cardH / img.height));
-      this.add.text(cx, cy + cardH / 2 + 2, p.label, {
+      // Подпись в середине зазора между портретами
+      this.add.text(cx, cy + cardH / 2 + (gapY - cardH) / 2, p.label, {
         fontSize: '13px', color: '#BBBBAA', fontFamily: 'serif',
-      }).setOrigin(0.5, 0).setDepth(51).setScrollFactor(0);
+      }).setOrigin(0.5, 0.5).setDepth(51).setScrollFactor(0);
     });
 
     // Hover-портрет бандита (только на картах с бандитами)
