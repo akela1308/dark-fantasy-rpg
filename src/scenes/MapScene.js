@@ -436,6 +436,17 @@ export class MapScene extends Phaser.Scene {
 
     this._separateParty();
 
+    // Safety-net: если герой стоит — компаньоны гарантированно в idle (дышат, не шатаются)
+    if (!this.hero.moving) {
+      [this.brawler, this.healer].forEach(u => {
+        if (u.moving || u._bobTween) {
+          u.moving = false;
+          u._stopWalkAnim();
+          if (!u._idleTween) u._startIdleAnim();
+        }
+      });
+    }
+
     if (this._bandits.length) {
       this._updateBandits(delta);
       this._checkEncounters();
