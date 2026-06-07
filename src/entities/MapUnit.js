@@ -36,12 +36,14 @@ export class MapUnit {
   get y() { return this.sprite.y; }
 
   moveTo(tx, ty) {
-    this.targetX = tx;
-    this.targetY = ty;
-    if (!this.moving) {
-      this.moving = true;
-      this._startWalkAnim();
+    const dx = tx - this.sprite.x;
+    const dy = ty - this.sprite.y;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+    if (dist > 15) {
+      this.targetX = tx;
+      this.targetY = ty;
     }
+    // Не трогаем moving/анимацию — update() управляет состоянием
   }
 
   stopMove() {
@@ -56,30 +58,33 @@ export class MapUnit {
     const dy = this.targetY - this.sprite.y;
     const dist = Math.sqrt(dx * dx + dy * dy);
 
-    if (dist < 3) {
+    if (dist < 5) {
+      // Гистерезис: переходим в idle только если были moving
       if (this.moving) {
-        this.sprite.x = this.targetX;
-        this.sprite.y = this.targetY;
         this.moving = false;
         this._stopWalkAnim();
         this._startIdleAnim();
+      }
+      if (dist < 1) {
+        this.sprite.x = this.targetX;
+        this.sprite.y = this.targetY;
       }
     } else {
       const step = this.speed * (delta / 1000);
       this.sprite.x += (dx / dist) * step;
       this.sprite.y += (dy / dist) * step;
 
-      // Flip в сторону движения
       this.sprite.setFlipX(dx < 0);
 
-      if (!this.moving) {
+      // Гистерезис: walk-анимация стартует только при реальном движении (>10px)
+      // Мелкие толчки от _separateParty (<5px) сюда не попадают
+      if (!this.moving && dist > 10) {
         this.moving = true;
         this._stopIdleAnim();
         this._startWalkAnim();
       }
     }
 
-    // Тень следует
     this.shadow.setPosition(this.sprite.x, this.sprite.y + 2);
   }
 
@@ -101,24 +106,15 @@ export class MapUnit {
 
   _startIdleAnim() {
     if (this._idleTween) return;
-    const baseScale = this.sprite.scaleX;
-    // Покачивание (угол)
+    const baseScale = this.sprite.scaleY;
+    // Только дыхание (scaleY) — без раскачки угла
     this._idleTween = this.scene.tweens.add({
-      targets: this.sprite,
-      angle: { from: -0.6, to: 0.6 },
+      targets:  this.sprite,
+      scaleY:   { from: baseScale, to: baseScale * 1.022 },
       duration: this._idlePeriod,
-      yoyo: true,
-      repeat: -1,
-      ease: 'Sine.easeInOut',
-    });
-    // Дыхание (scaleY) — чуть другой ритм чтобы не было синхрона
-    this._breathTween = this.scene.tweens.add({
-      targets: this.sprite,
-      scaleY: { from: baseScale, to: baseScale * 1.022 },
-      duration: this._idlePeriod * 1.15,
-      yoyo: true,
-      repeat: -1,
-      ease: 'Sine.easeInOut',
+      yoyo:     true,
+      repeat:   -1,
+      ease:     'Sine.easeInOut',
     });
   }
 
@@ -130,11 +126,7 @@ export class MapUnit {
   _stopWalkAnim() {
     if (this._bobTween)  { this._bobTween.stop();  this._bobTween  = null; }
     if (this._leanTween) { this._leanTween.stop(); this._leanTween = null; }
-    this.scene.tweens.add({
-      targets: this.sprite,
-      angle: 0,
-      duration: 80,
-    });
+    this.sprite.setAngle(0);
   }
 
   destroy() {

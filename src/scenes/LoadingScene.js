@@ -68,6 +68,22 @@ export class LoadingScene extends Phaser.Scene {
     img('battle_bg',    'battle_bg.png');
     img('dialog_frame', 'ui/dialog_frame.png');
 
+    // UI ассеты (портреты, скиллы, панели)
+    img('portrait_frame',       'ui/portrait_frame.png');
+    img('skill_button',         'ui/skill_button.png');
+    img('hp_bar_frame',         'ui/hp_bar_frame.png');
+    img('panel_frame',          'ui/panel_frame.png');
+    img('character_sheet_bg',   'ui/character_sheet_bg.png');
+    img('map_menu_button',      'ui/map_menu_button.png');
+    img('bottom_panel',         'ui/bottom_panel.png');
+    img('panel_divider',        'ui/panel_divider.png');
+    img('inventory_slot',       'ui/inventory_slot.png');
+    img('icon_rapier_strike',   'ui/icon_rapier_strike.png');
+    img('icon_dueling_stance',  'ui/icon_dueling_stance.png');
+    img('icon_pistol',          'ui/icon_pistol.png');
+    img('bleeding_curse',       'ui/bleeding_curse.png');
+    img('healing_magic',        'ui/healing_magic.png');
+
     // Карты мира
     img('map_map1',          'maps/map1.png');
     img('map_tavern_map',    'maps/tavern_map.png');

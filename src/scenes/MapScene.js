@@ -1064,5 +1064,253 @@ export class MapScene extends Phaser.Scene {
 
     this.music = new MusicPlayer(this);
     this.music.create();
+
+    this._initCharacterSheet();
+  }
+
+  // ── Экран персонажа ──────────────────────────────────────────────────────
+
+  _initCharacterSheet() {
+    const CHARS = [
+      { id: 'hero_duelist',      name: 'Падший Дуэлянт', sprite: 'hero_duelist',       hp: 80,  maxHp: 80,  dmg: '12–18', spd: 7, lvl: 1,
+        skills: ['Укол в уязвимость', 'Дуэльная стойка', 'Пистолет (2 заряда)'],
+        desc: 'Бывший имперский дуэлянт. Мастер рапиры и пистолета.' },
+      { id: 'companion_brawler', name: 'Боец',            sprite: 'companion_brawler',  hp: 100, maxHp: 100, dmg: '10–16', spd: 5, lvl: 1,
+        skills: ['Прикрыть'],
+        desc: 'Верный защитник отряда. Принимает удары на себя.' },
+      { id: 'companion_healer',  name: 'Знахарка',        sprite: 'companion_healer',   hp: 50,  maxHp: 50,  dmg: '6–10',  spd: 4, lvl: 1,
+        skills: ['Перевязка'],
+        desc: 'Целительница с тёмным прошлым. Лечит раны отряда.' },
+    ];
+
+    const W = 1280, H = 720;
+    const PW = 860, PH = 540;
+    const PX = (W - PW) / 2, PY = (H - PH) / 2;
+    const DEPTH = 80;
+
+    // Затемнение фона
+    const overlay = this.add.rectangle(W/2, H/2, W, H, 0x000000, 0.78)
+      .setDepth(DEPTH).setScrollFactor(0).setInteractive()
+      .setVisible(false);
+    overlay.on('pointerdown', () => this._hideCharSheet());
+
+    // Фон панели
+    const bg = this.add.rectangle(W/2, H/2, PW, PH, 0x07060a, 0.97)
+      .setDepth(DEPTH+1).setScrollFactor(0).setVisible(false);
+
+    // Готический фрейм
+    const bgImg = this.add.image(W/2, H/2, 'character_sheet_bg')
+      .setDisplaySize(PW + 20, PH + 20)
+      .setDepth(DEPTH+2).setScrollFactor(0).setVisible(false);
+
+    // Заголовок
+    const title = this.add.text(W/2, PY + 18, 'ПЕРСОНАЖ', {
+      fontSize: '17px', color: '#d4a832', fontFamily: 'serif', letterSpacing: 4
+    }).setOrigin(0.5, 0).setDepth(DEPTH+3).setScrollFactor(0).setVisible(false);
+
+    // Кнопка X
+    const closeBtn = this.add.text(PX + PW - 16, PY + 12, '✕', {
+      fontSize: '16px', color: '#888888', fontFamily: 'serif'
+    }).setOrigin(1, 0).setDepth(DEPTH+3).setScrollFactor(0)
+      .setInteractive({ useHandCursor: true }).setVisible(false);
+    closeBtn.on('pointerover', () => closeBtn.setColor('#FFFFFF'));
+    closeBtn.on('pointerout',  () => closeBtn.setColor('#888888'));
+    closeBtn.on('pointerdown', () => this._hideCharSheet());
+
+    // Разделитель (вертикальный)
+    const divLeft  = this.add.image(PX + 220, H/2, 'panel_divider')
+      .setDisplaySize(6, PH - 60).setDepth(DEPTH+3).setScrollFactor(0).setVisible(false);
+    const divRight = this.add.image(PX + PW - 220, H/2, 'panel_divider')
+      .setDisplaySize(6, PH - 60).setDepth(DEPTH+3).setScrollFactor(0).setVisible(false);
+
+    // Контейнер для динамического контента
+    this._csContent = [];
+
+    // Вкладки персонажей
+    const tabs = [];
+    CHARS.forEach((ch, i) => {
+      const tx = PX + 60 + i * 260;
+      const ty = PY + 46;
+      const tab = this.add.text(tx, ty, ch.name, {
+        fontSize: '13px', color: i === 0 ? '#d4a832' : '#666666', fontFamily: 'serif'
+      }).setOrigin(0, 0).setDepth(DEPTH+4).setScrollFactor(0)
+        .setInteractive({ useHandCursor: true }).setVisible(false);
+      tab.on('pointerdown', () => {
+        tabs.forEach((t,j) => t.setColor(j === i ? '#d4a832' : '#666666'));
+        this._renderCharContent(CHARS[i], PX, PY, PW, PH, DEPTH);
+      });
+      tabs.push(tab);
+    });
+
+    // Горизонтальная линия под вкладками
+    const tabLine = this.add.graphics().setDepth(DEPTH+3).setScrollFactor(0).setVisible(false);
+    tabLine.lineStyle(1, 0x4a3f25, 0.6);
+    tabLine.lineBetween(PX + 16, PY + 64, PX + PW - 16, PY + 64);
+
+    this._charSheetElements = [overlay, bg, bgImg, title, closeBtn, divLeft, divRight, tabLine, ...tabs];
+    this._charSheetTabs = tabs;
+    this._charSheetChars = CHARS;
+    this._charSheetPX = PX; this._charSheetPY = PY;
+    this._charSheetPW = PW; this._charSheetPH = PH;
+    this._charSheetDEPTH = DEPTH;
+
+    this._initBottomBar();
+  }
+
+  _initBottomBar() {
+    const zoom = this.cameras.main.zoom;
+    const W = this.cameras.main.width  / zoom;   // world units = canvas/zoom ≈ 1673
+    const H = this.cameras.main.height / zoom;   // world units = canvas/zoom ≈ 941
+    const BAR_H = 130;
+    const BAR_Y = H - BAR_H / 2;
+    const DEPTH = 55;
+
+    // Изображение 1536×343 — сохраняем пропорции при высоте BAR_H
+    const imgW = Math.round(BAR_H * (1536 / 343));
+    this.add.image(W / 2, BAR_Y, 'bottom_panel')
+      .setDisplaySize(imgW, BAR_H)
+      .setDepth(DEPTH).setScrollFactor(0);
+
+    // 5 слотов выровнены по визуальным ячейкам изображения
+    const SLOT_FRACTIONS = [0.164, 0.332, 0.500, 0.668, 0.836];
+    const SLOTS = [
+      { label: '',       action: null },
+      { label: '',       action: null },
+      { label: 'Отряд', action: () => this._showCharSheet(0) },
+      { label: '',       action: null },
+      { label: '',       action: null },
+    ];
+
+    const SLOT_W = Math.round(imgW * 0.11);
+    const SLOT_H = Math.round(BAR_H * 0.65);
+    const imgStartX = W / 2 - imgW / 2;
+
+    SLOTS.forEach((slot, i) => {
+      const sx = Math.round(imgStartX + SLOT_FRACTIONS[i] * imgW);
+      const sy = BAR_Y;
+
+      const isEmpty = !slot.action;
+
+      // Невидимая интерактивная зона поверх слота
+      const hit = this.add.rectangle(sx, sy, SLOT_W, SLOT_H, 0x000000, 0)
+        .setDepth(DEPTH + 1).setScrollFactor(0);
+
+      if (isEmpty) return;
+
+      // Подпись
+      const label = this.add.text(sx, BAR_Y + BAR_H * 0.38, slot.label, {
+        fontSize: '10px', color: '#9a8855', fontFamily: 'serif',
+      }).setOrigin(0.5, 0).setDepth(DEPTH + 2).setScrollFactor(0);
+
+      // Hover-подсветка
+      const glow = this.add.rectangle(sx, sy, SLOT_W, SLOT_H, 0xC9A84C, 0)
+        .setDepth(DEPTH + 1).setScrollFactor(0);
+
+      hit.setInteractive({ useHandCursor: true });
+      hit.on('pointerover', () => { glow.setAlpha(0.12); label.setColor('#C9A84C'); });
+      hit.on('pointerout',  () => { glow.setAlpha(0);    label.setColor('#9a8855'); });
+      hit.on('pointerdown', slot.action);
+    });
+  }
+
+  _showCharSheet(idx = 0) {
+    this._charSheetElements.forEach(e => e.setVisible(true));
+    this._charSheetTabs.forEach((t,i) => t.setColor(i === idx ? '#d4a832' : '#666666'));
+    this._renderCharContent(
+      this._charSheetChars[idx],
+      this._charSheetPX, this._charSheetPY,
+      this._charSheetPW, this._charSheetPH,
+      this._charSheetDEPTH
+    );
+  }
+
+  _hideCharSheet() {
+    this._charSheetElements.forEach(e => e.setVisible(false));
+    this._csContent.forEach(e => { try { e.destroy(); } catch {} });
+    this._csContent = [];
+  }
+
+  _renderCharContent(ch, PX, PY, PW, PH, DEPTH) {
+    this._csContent.forEach(e => { try { e.destroy(); } catch {} });
+    this._csContent = [];
+
+    const W = 1280, H = 720;
+    const add = (obj) => { this._csContent.push(obj); return obj; };
+
+    // ── Центральная зона: спрайт персонажа ──
+    const cx = PX + PW/2;
+    const cy = H/2 + 20;
+    const sprite = add(this.add.image(cx, cy, ch.sprite)
+      .setDepth(DEPTH+5).setScrollFactor(0));
+    const sh = PH - 130;
+    sprite.setScale(Math.min(180 / sprite.width, sh / sprite.height));
+
+    // Имя под спрайтом
+    add(this.add.text(cx, PY + PH - 42, ch.name, {
+      fontSize: '16px', color: '#d4a832', fontFamily: 'serif'
+    }).setOrigin(0.5, 0).setDepth(DEPTH+5).setScrollFactor(0));
+
+    // Описание
+    add(this.add.text(cx, PY + PH - 22, ch.desc, {
+      fontSize: '10px', color: '#777766', fontFamily: 'serif',
+      wordWrap: { width: 200 }
+    }).setOrigin(0.5, 0).setDepth(DEPTH+5).setScrollFactor(0));
+
+    // ── Правая зона: статы ──
+    const rx = PX + PW - 210;
+    const ry = PY + 80;
+    const stats = [
+      ['Уровень',  `${ch.lvl}`],
+      ['HP',       `${ch.hp} / ${ch.maxHp}`],
+      ['Урон',     ch.dmg],
+      ['Скорость', `${ch.spd}`],
+    ];
+    add(this.add.text(rx, ry - 14, 'ХАРАКТЕРИСТИКИ', {
+      fontSize: '11px', color: '#d4a832', fontFamily: 'serif', letterSpacing: 2
+    }).setDepth(DEPTH+5).setScrollFactor(0));
+
+    stats.forEach(([label, val], i) => {
+      add(this.add.text(rx, ry + 10 + i * 32, label, {
+        fontSize: '11px', color: '#888877', fontFamily: 'serif'
+      }).setDepth(DEPTH+5).setScrollFactor(0));
+      add(this.add.text(rx + 180, ry + 10 + i * 32, val, {
+        fontSize: '13px', color: '#CCCCCC', fontFamily: 'serif'
+      }).setOrigin(1, 0).setDepth(DEPTH+5).setScrollFactor(0));
+      // Разделитель
+      const lg = this.add.graphics().setDepth(DEPTH+4).setScrollFactor(0);
+      lg.lineStyle(1, 0x333322, 0.5);
+      lg.lineBetween(rx, ry + 26 + i*32, rx + 185, ry + 26 + i*32);
+      add(lg);
+    });
+
+    // Скиллы
+    const sy = ry + stats.length * 32 + 20;
+    add(this.add.text(rx, sy, 'СКИЛЛЫ', {
+      fontSize: '11px', color: '#d4a832', fontFamily: 'serif', letterSpacing: 2
+    }).setDepth(DEPTH+5).setScrollFactor(0));
+    ch.skills.forEach((sk, i) => {
+      add(this.add.text(rx, sy + 18 + i * 22, `• ${sk}`, {
+        fontSize: '12px', color: '#AAAAAA', fontFamily: 'serif'
+      }).setDepth(DEPTH+5).setScrollFactor(0));
+    });
+
+    // ── Левая зона: инвентарь ──
+    const ix = PX + 16;
+    const iy = PY + 80;
+    add(this.add.text(ix + 90, iy - 14, 'ИНВЕНТАРЬ', {
+      fontSize: '11px', color: '#d4a832', fontFamily: 'serif', letterSpacing: 2
+    }).setOrigin(0.5, 0).setDepth(DEPTH+5).setScrollFactor(0));
+
+    const slotSize = 52, slotGap = 8;
+    const cols = 3, rows = 4;
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        const sx2 = ix + c * (slotSize + slotGap) + slotSize/2;
+        const sy2 = iy + 10 + r * (slotSize + slotGap) + slotSize/2;
+        add(this.add.image(sx2, sy2, 'inventory_slot')
+          .setDisplaySize(slotSize, slotSize)
+          .setDepth(DEPTH+5).setScrollFactor(0).setAlpha(0.7));
+      }
+    }
   }
 }

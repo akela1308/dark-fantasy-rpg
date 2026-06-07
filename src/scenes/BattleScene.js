@@ -206,11 +206,25 @@ export class BattleScene extends Phaser.Scene {
           .setOrigin(0.5, 1);
       }
 
-      // HP/name перенесены в портреты — здесь не рисуем
-      const barBg   = null;
-      const barFill = null;
-      const nameText = null;
-      const hpText   = null;
+      // HP-бар над спрайтом
+      const barW     = hasSprite ? Math.min(sprite.displayWidth * 1.1, 80) : 60;
+      const barH     = 5;
+      const spriteTop = hasSprite ? (y - sprite.displayHeight) : (y - h * 0.85);
+      const barY     = spriteTop - 6;
+      const pct      = Math.max(0, unit.hp / unit.maxHp);
+      const barColor = pct > 0.5 ? 0x44CC44 : pct > 0.25 ? 0xCCAA00 : 0xCC2222;
+
+      const barBg = this.add.rectangle(x, barY, barW, barH, 0x111111, 0.85)
+        .setDepth(rowDepth + 1);
+      const barFill = this.add.rectangle(x - barW / 2, barY, barW * pct, barH, barColor)
+        .setOrigin(0, 0.5).setDepth(rowDepth + 2);
+
+      unit._hpBar    = barFill;
+      unit._hpBarBg  = barBg;
+      unit._hpBarMaxW = barW;
+      unit._hpBarY   = barY;
+
+      this._unitSprites.push(barBg, barFill);
 
       // Интерактивность
       if (unit.type === 'enemy') {
@@ -233,7 +247,16 @@ export class BattleScene extends Phaser.Scene {
     });
 
     this.ui.update();
-    this.portraits?.update();
+    this.portraits?.update(this.turnManager.active);
+  }
+
+  _updateHpBar(unit) {
+    if (!unit._hpBar || !unit._hpBarMaxW) return;
+    const pct   = Math.max(0, unit.hp / unit.maxHp);
+    const color = pct > 0.5 ? 0x44CC44 : pct > 0.25 ? 0xCCAA00 : 0xCC2222;
+    unit._hpBar.setDisplaySize(Math.max(1, unit._hpBarMaxW * pct), 5);
+    unit._hpBar.setFillStyle(color);
+    this.portraits?.update(this.turnManager.active);
   }
 
   // ══════════════════════════════════════════════════════════════════════
@@ -480,24 +503,193 @@ export class BattleScene extends Phaser.Scene {
       this.game.registry.set('bandit_0_defeated', true);
     }
 
-    const btn = this.add.text(width/2, height/2 + 80, '[ Попробовать снова ]', {
-      fontFamily: 'serif', fontSize: '26px', color: '#AAAAAA',
-    }).setOrigin(0.5).setInteractive({ useHandCursor: true });
-    btn.on('pointerover', () => btn.setColor('#FFFFFF'));
-    btn.on('pointerout',  () => btn.setColor('#AAAAAA'));
-    btn.on('pointerdown', () => { eventBus.clear(); this.scene.restart(); });
+    const showButtons = () => {
+      const btn = this.add.text(width/2, height/2 + 80, '[ Попробовать снова ]', {
+        fontFamily: 'serif', fontSize: '26px', color: '#AAAAAA',
+      }).setOrigin(0.5).setInteractive({ useHandCursor: true });
+      btn.on('pointerover', () => btn.setColor('#FFFFFF'));
+      btn.on('pointerout',  () => btn.setColor('#AAAAAA'));
+      btn.on('pointerdown', () => { eventBus.clear(); this.scene.restart(); });
+
+      if (result === 'victory') {
+        const btnMap = this.add.text(width/2, height/2 + 125, '[ На карту ]', {
+          fontFamily: 'serif', fontSize: '26px', color: '#C9A84C',
+        }).setOrigin(0.5).setInteractive({ useHandCursor: true });
+        btnMap.on('pointerover', () => btnMap.setColor('#FFD700'));
+        btnMap.on('pointerout',  () => btnMap.setColor('#C9A84C'));
+        btnMap.on('pointerdown', () => {
+          eventBus.clear();
+          this.scene.start('LoadingScene', { destination: 'MapScene', destinationData: { mapKey: 'forest1', spawnId: 'from_left' } });
+        });
+      }
+    };
 
     if (result === 'victory') {
-      const btnMap = this.add.text(width/2, height/2 + 125, '[ На карту ]', {
-        fontFamily: 'serif', fontSize: '26px', color: '#C9A84C',
-      }).setOrigin(0.5).setInteractive({ useHandCursor: true });
-      btnMap.on('pointerover', () => btnMap.setColor('#FFD700'));
-      btnMap.on('pointerout',  () => btnMap.setColor('#C9A84C'));
-      btnMap.on('pointerdown', () => {
-        eventBus.clear();
-        this.scene.start('LoadingScene', { destination: 'MapScene', destinationData: { mapKey: 'forest1', spawnId: 'from_left' } });
-      });
+      const leveledUp = this.playerUnits.filter(u => u.canLevelUp(XP.THRESHOLD));
+      if (leveledUp.length > 0) {
+        this.time.delayedCall(800, () => {
+          this._showLevelUpScreen(leveledUp, showButtons);
+        });
+      } else {
+        showButtons();
+      }
+    } else {
+      showButtons();
     }
+  }
+
+  _showLevelUpScreen(units, onComplete) {
+    const unit = units[0];
+    const remaining = units.slice(1);
+    const W = this.scale.width;
+    const H = this.scale.height;
+    const elements = [];
+
+    // Затемняющий оверлей
+    const overlay = this.add.rectangle(W/2, H/2, W, H, 0x000000, 0.7)
+      .setDepth(90).setScrollFactor(0);
+    elements.push(overlay);
+
+    // Панель
+    const panel = this.add.rectangle(W/2, H/2, 580, 420, 0x07060a)
+      .setDepth(91).setScrollFactor(0).setAlpha(0.97);
+    elements.push(panel);
+
+    // Золотая рамка
+    const gfx = this.add.graphics().setDepth(92).setScrollFactor(0);
+    gfx.lineStyle(2, 0xd4a832, 0.9);
+    gfx.strokeRect(W/2 - 290, H/2 - 210, 580, 420);
+    // Угловые акценты
+    gfx.lineStyle(3, 0xd4a832, 1);
+    const cx = W/2 - 290, cy = H/2 - 210, cw = 580, ch = 420, ca = 18;
+    gfx.lineBetween(cx, cy, cx + ca, cy);
+    gfx.lineBetween(cx, cy, cx, cy + ca);
+    gfx.lineBetween(cx + cw, cy, cx + cw - ca, cy);
+    gfx.lineBetween(cx + cw, cy, cx + cw, cy + ca);
+    gfx.lineBetween(cx, cy + ch, cx + ca, cy + ch);
+    gfx.lineBetween(cx, cy + ch, cx, cy + ch - ca);
+    gfx.lineBetween(cx + cw, cy + ch, cx + cw - ca, cy + ch);
+    gfx.lineBetween(cx + cw, cy + ch, cx + cw, cy + ch - ca);
+    elements.push(gfx);
+
+    // Заголовок
+    elements.push(this.add.text(W/2, H/2 - 178, '❖ УРОВЕНЬ ПОВЫШЕН ❖', {
+      fontSize: '20px', color: '#d4a832', fontFamily: 'serif',
+    }).setOrigin(0.5).setDepth(92).setScrollFactor(0));
+
+    // Разделитель
+    const divGfx = this.add.graphics().setDepth(92).setScrollFactor(0);
+    divGfx.lineStyle(1, 0xd4a832, 0.4);
+    divGfx.lineBetween(W/2 - 220, H/2 - 155, W/2 + 220, H/2 - 155);
+    elements.push(divGfx);
+
+    // Имя юнита
+    elements.push(this.add.text(W/2, H/2 - 130, unit.name, {
+      fontSize: '26px', color: '#FFFFFF', fontFamily: 'serif',
+      stroke: '#000', strokeThickness: 2,
+    }).setOrigin(0.5).setDepth(92).setScrollFactor(0));
+
+    // Новый уровень
+    elements.push(this.add.text(W/2, H/2 - 98, `★ Уровень ${unit.level + 1} ★`, {
+      fontSize: '15px', color: '#aaaaaa', fontFamily: 'serif',
+    }).setOrigin(0.5).setDepth(92).setScrollFactor(0));
+
+    // Подпись
+    elements.push(this.add.text(W/2, H/2 - 62, 'Выберите бонус:', {
+      fontSize: '13px', color: '#888888', fontFamily: 'serif',
+    }).setOrigin(0.5).setDepth(92).setScrollFactor(0));
+
+    // Бонусы
+    const bonuses = [
+      {
+        key: 'hp',
+        label: 'Закалённость',
+        desc: '+20 к максимальному HP',
+      },
+      {
+        key: 'damage',
+        label: 'Мастерство',
+        desc: '+3 к урону',
+      },
+      {
+        key: 'speed',
+        label: 'Быстрота',
+        desc: '+1 к скорости',
+      },
+    ];
+
+    const cleanup = () => elements.forEach(e => { try { e.destroy(); } catch (_) {} });
+
+    bonuses.forEach((bonus, i) => {
+      const by = H/2 - 10 + i * 75;
+
+      const btn = this.add.rectangle(W/2, by, 490, 60, 0x110e0a)
+        .setDepth(92).setScrollFactor(0).setInteractive({ useHandCursor: true });
+
+      const btnBorder = this.add.graphics().setDepth(92).setScrollFactor(0);
+      btnBorder.lineStyle(1, 0x4a3a1a, 0.7);
+      btnBorder.strokeRect(W/2 - 245, by - 30, 490, 60);
+
+      const lbl = this.add.text(W/2, by - 10, bonus.label, {
+        fontSize: '16px', color: '#d4a832', fontFamily: 'serif',
+      }).setOrigin(0.5).setDepth(93).setScrollFactor(0);
+
+      const desc = this.add.text(W/2, by + 13, bonus.desc, {
+        fontSize: '12px', color: '#887755', fontFamily: 'serif',
+      }).setOrigin(0.5).setDepth(93).setScrollFactor(0);
+
+      elements.push(btn, btnBorder, lbl, desc);
+
+      btn.on('pointerover', () => {
+        btn.setFillStyle(0x2a1e0a);
+        btnBorder.clear();
+        btnBorder.lineStyle(1, 0xd4a832, 0.8);
+        btnBorder.strokeRect(W/2 - 245, by - 30, 490, 60);
+        lbl.setColor('#FFD700');
+      });
+      btn.on('pointerout', () => {
+        btn.setFillStyle(0x110e0a);
+        btnBorder.clear();
+        btnBorder.lineStyle(1, 0x4a3a1a, 0.7);
+        btnBorder.strokeRect(W/2 - 245, by - 30, 490, 60);
+        lbl.setColor('#d4a832');
+      });
+      btn.on('pointerdown', () => {
+        // Применяем бонус напрямую, вызываем levelUp с key
+        if (bonus.key === 'hp') {
+          unit.maxHp += 20;
+          unit.hp = Math.min(unit.hp + 20, unit.maxHp);
+          unit.level++;
+          unit.xp = 0;
+          eventBus.emit('log', `${unit.name}: +20 к максимальному HP`);
+          eventBus.emit('level_up', { unit, choice: 'hp' });
+        } else if (bonus.key === 'damage') {
+          const dmg = unit.damage || { min: 10, max: 16 };
+          unit.damage = { min: dmg.min + 3, max: dmg.max + 3 };
+          unit.level++;
+          unit.xp = 0;
+          eventBus.emit('log', `${unit.name}: +3 к урону`);
+          eventBus.emit('level_up', { unit, choice: 'damage' });
+        } else if (bonus.key === 'speed') {
+          unit.speed = (unit.speed || 5) + 1;
+          unit.level++;
+          unit.xp = 0;
+          eventBus.emit('log', `${unit.name}: +1 к скорости`);
+          eventBus.emit('level_up', { unit, choice: 'speed' });
+        }
+        cleanup();
+        if (remaining.length > 0) {
+          this._showLevelUpScreen(remaining, onComplete);
+        } else {
+          onComplete();
+        }
+      });
+    });
+
+    // Анимация появления панели
+    panel.setAlpha(0);
+    overlay.setAlpha(0);
+    this.tweens.add({ targets: [overlay, panel], alpha: { from: 0, to: 1 }, duration: 300 });
   }
 
   // ── EventBus ──────────────────────────────────────────────────────────
@@ -514,7 +706,7 @@ export class BattleScene extends Phaser.Scene {
     eventBus.on('unit_damaged', ({ unit, amount, isCrit }) => {
       this._animHit(unit, !!isCrit);
       this._animDamageNumber(unit, amount, !!isCrit);
-      // Camera shake на обычный удар (лёгкий)
+      this._updateHpBar(unit);
       if (!isCrit) this.cameras.main.shake(80, 0.002);
     });
 
@@ -522,7 +714,10 @@ export class BattleScene extends Phaser.Scene {
       this._animMiss(unit);
     });
 
-    eventBus.on('unit_healed', ({ unit }) => this._animHeal(unit));
+    eventBus.on('unit_healed', ({ unit }) => {
+      this._animHeal(unit);
+      this._updateHpBar(unit);
+    });
 
     eventBus.on('unit_died', unit => this._animDeath(unit));
 
