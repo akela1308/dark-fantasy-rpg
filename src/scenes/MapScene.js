@@ -346,7 +346,7 @@ export class MapScene extends Phaser.Scene {
     // idlePeriod — уникальный ритм дыхания для каждого персонажа
     this.hero    = new MapUnit(this, spawn.x,       spawn.y, 'map_hero',    { height: unitH - 5,  speed: 130, idlePeriod: 2800 });
     this.brawler = new MapUnit(this, spawn.x - 65,  spawn.y, 'map_brawler', { height: unitH + 15, speed: 130, idlePeriod: 3400, walkThreshold: 40 });
-    this.healer  = new MapUnit(this, spawn.x - 120, spawn.y, 'map_healer',  { height: unitH - 8,  speed: 130, idlePeriod: 2200, walkThreshold: 40 });
+    this.healer  = new MapUnit(this, spawn.x - 120, spawn.y, 'map_healer',  { height: unitH + 10, speed: 130, idlePeriod: 2200, walkThreshold: 40 });
 
     this._heroTrail     = [];
     this._trailInterval = 0;
@@ -1130,23 +1130,18 @@ export class MapScene extends Phaser.Scene {
       { key: 'portrait_companion_brawler', label: 'Боец' },
       { key: 'portrait_companion_healer',  label: 'Знахарка' },
     ];
-    // Портреты: левый край = x:0, setOrigin(0, 0.5) гарантирует flush к краю
+    // Портреты: только PNG + подпись, никаких рамок и прямоугольников
     const cardW  = 150, cardH = 160;
-    const startY = 310;
+    const startY = 210;   // на 100px выше (один квадрат)
     const gapY   = 170;
     portraits.forEach((p, i) => {
       const cy = startY + i * gapY;
-      // Чёрный фон — полностью непрозрачный, перекрывает любые артефакты
-      this.add.rectangle(0, cy, cardW + 4, cardH + 4, 0x000000, 1)
-        .setOrigin(0, 0.5).setDepth(49).setScrollFactor(0);
-      this.add.rectangle(0, cy, cardW, cardH, 0x000000, 1)
-        .setOrigin(0, 0.5).setDepth(50).setScrollFactor(0);
       const cx = cardW / 2;
-      const img = this.add.image(cx, cy - 10, p.key).setDepth(51).setScrollFactor(0);
-      img.setScale(Math.min((cardW - 8) / img.width, (cardH - 28) / img.height));
-      this.add.text(cx, cy + cardH / 2 - 2, p.label, {
+      const img = this.add.image(cx, cy, p.key).setDepth(51).setScrollFactor(0);
+      img.setScale(Math.min(cardW / img.width, cardH / img.height));
+      this.add.text(cx, cy + cardH / 2 + 2, p.label, {
         fontSize: '13px', color: '#BBBBAA', fontFamily: 'serif',
-      }).setOrigin(0.5, 1).setDepth(53).setScrollFactor(0);
+      }).setOrigin(0.5, 0).setDepth(51).setScrollFactor(0);
     });
 
     // Hover-портрет бандита (только на картах с бандитами)
