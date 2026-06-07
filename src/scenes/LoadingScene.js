@@ -102,6 +102,9 @@ export class LoadingScene extends Phaser.Scene {
     img('map_tavernman', 'maps/characters/tavernman.png');
     img('map_wanderer',  'maps/characters/map_wanderer.png');
 
+    // Пропсы (интерьерные объекты)
+    img('prop_table3',   'sprites/table3.png');
+
     // Портреты NPC
     img('portrait_tavernman', 'portraits/tavernman.png');
     img('portrait_wanderer',  'portraits/wanderer.png');

@@ -100,6 +100,11 @@ const MAP_CONFIGS = {
     ],
     tavernEntry: null,
     bandits: false,
+    // Статические пропсы (мебель, предметы)
+    props: [
+      // Стол перед странником: правый нижний угол ножки на мировых (641, 373)
+      { key: 'prop_table3', x: 641, y: 373, originX: 1, originY: 1, height: 115 },
+    ],
     torches: [
       { x: 961,  y: 278 },              // свеча на баре
       { x: 1062, y: 313 },              // свеча на баре
@@ -362,6 +367,9 @@ export class MapScene extends Phaser.Scene {
 
     // Диалоговая панель (in-world overlay)
     this._dialogue = new DialoguePanel(this);
+
+    // Статические пропсы (мебель и предметы)
+    this._spawnProps(cfg);
 
     // NPC (статичные, кликабельные)
     this._npcs = [];
@@ -723,6 +731,18 @@ export class MapScene extends Phaser.Scene {
         gravityY: -10,
         depth:     t.y + 6,
       });
+    });
+  }
+
+  _spawnProps(cfg) {
+    (cfg.props || []).forEach(p => {
+      const img = this.add.image(p.x, p.y, p.key)
+        .setOrigin(p.originX ?? 0.5, p.originY ?? 1)
+        .setDepth(p.y + 1); // depth по Y — поверх всего что выше по экрану
+      if (p.height) {
+        const scale = p.height / img.height;
+        img.setScale(scale);
+      }
     });
   }
 
