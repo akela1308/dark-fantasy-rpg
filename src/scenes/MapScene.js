@@ -1131,18 +1131,19 @@ export class MapScene extends Phaser.Scene {
       { key: 'portrait_companion_healer',  label: 'Знахарка' },
     ];
     // Портреты: только PNG + подпись, никаких рамок и прямоугольников
-    const cardW  = 150, cardH = 160;
+    const cardW  = 150, cardH = 130;
     const startY = 210;
-    const gapY   = 190;  // увеличен зазор чтобы уместить подпись между портретами
+    const gapY   = 175;  // гарантирует зазор 45px между картами
+    const UI_DEPTH = 9000; // всегда поверх персонажей карты
     portraits.forEach((p, i) => {
       const cy = startY + i * gapY;
       const cx = cardW / 2;
-      const img = this.add.image(cx, cy, p.key).setDepth(51).setScrollFactor(0);
+      const img = this.add.image(cx, cy, p.key).setDepth(UI_DEPTH).setScrollFactor(0);
       img.setScale(Math.min(cardW / img.width, cardH / img.height));
       // Подпись в середине зазора между портретами
       this.add.text(cx, cy + cardH / 2 + (gapY - cardH) / 2, p.label, {
         fontSize: '13px', color: '#BBBBAA', fontFamily: 'serif',
-      }).setOrigin(0.5, 0.5).setDepth(51).setScrollFactor(0);
+      }).setOrigin(0.5, 0.5).setDepth(UI_DEPTH).setScrollFactor(0);
     });
 
     // Hover-портрет бандита (только на картах с бандитами)
