@@ -815,12 +815,12 @@ export class MapScene extends Phaser.Scene {
       }).setOrigin(0.5, 1).setDepth(npc.y + 1).setAlpha(0);
 
       // Hover-портрет справа (если задан флаг hoverPortrait)
-      let _hBg, _hImg, _hName;
+      // Hover-портрет справа — только PNG, никакого фона/рамки
+      let _hImg, _hName;
       if (npc.hoverPortrait && npc.portraitKey) {
         const hW = 120, hH = 145, hx = 1594;
-        _hBg   = this.add.rectangle(hx, 230, hW, hH, 0x0a0810, 0.92).setDepth(59).setScrollFactor(0).setAlpha(0);
         _hImg  = this.add.image(hx, 222, npc.portraitKey).setDepth(60).setScrollFactor(0).setAlpha(0);
-        _hImg.setScale(Math.min((hW - 6) / _hImg.width, (hH - 26) / _hImg.height));
+        _hImg.setScale(Math.min(hW / _hImg.width, hH / _hImg.height));
         _hName = this.add.text(hx, 295, npc.name, {
           fontSize: '11px', color: '#CC9944', fontFamily: 'serif',
         }).setOrigin(0.5).setDepth(61).setScrollFactor(0).setAlpha(0);
@@ -829,11 +829,11 @@ export class MapScene extends Phaser.Scene {
       // Hover — свечение + показываем имя
       sprite.on('pointerover',  () => {
         sprite.setTint(0xFFEEBB); label.setAlpha(1);
-        if (_hBg) { _hBg.setAlpha(1); _hImg.setAlpha(1); _hName.setAlpha(1); }
+        if (_hImg) { _hImg.setAlpha(1); _hName.setAlpha(1); }
       });
       sprite.on('pointerout',   () => {
         sprite.clearTint(); label.setAlpha(0);
-        if (_hBg) { _hBg.setAlpha(0); _hImg.setAlpha(0); _hName.setAlpha(0); }
+        if (_hImg) { _hImg.setAlpha(0); _hName.setAlpha(0); }
       });
 
       // Клик — диалог
@@ -1153,14 +1153,10 @@ export class MapScene extends Phaser.Scene {
       // target canvas center: 1280 - 60 = 1220 → world = 1220 / 0.7651 ≈ 1594
       const hx = 1594;
 
-      this._hoverBg = this.add.rectangle(hx, 230, hW, hH, 0x0a0810, 0.92)
-        .setDepth(59).setScrollFactor(0).setAlpha(0);
+      // Только PNG портрет + подпись, никакого фона и рамок
       this._hoverPortrait = this.add.image(hx, 225, 'portrait_bandit_commander')
         .setDepth(60).setScrollFactor(0).setAlpha(0);
-      const pScale = Math.min(
-        (hW - 6) / this._hoverPortrait.width,
-        (hH - 26) / this._hoverPortrait.height
-      );
+      const pScale = Math.min(hW / this._hoverPortrait.width, hH / this._hoverPortrait.height);
       this._hoverPortrait.setScale(pScale);
       this._hoverLabel = this.add.text(hx, 295, 'Командир разбойников', {
         fontSize: '11px', color: '#CC4444', fontFamily: 'serif',
@@ -1174,7 +1170,7 @@ export class MapScene extends Phaser.Scene {
             hovered = true;
         });
         const a = hovered ? 1 : 0;
-        [this._hoverPortrait, this._hoverBg, this._hoverLabel].forEach(el => el.setAlpha(a));
+        [this._hoverPortrait, this._hoverLabel].forEach(el => el.setAlpha(a));
       });
     }
 
