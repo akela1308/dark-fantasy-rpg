@@ -1133,6 +1133,7 @@ export class MapScene extends Phaser.Scene {
     ];
 
     const zoom = this.cameras.main.zoom;
+    const s = v => v / zoom;
     const W = this.cameras.main.width  / zoom;   // мировые единицы ≈1672
     const H = this.cameras.main.height / zoom;   // мировые единицы ≈941
     const PW = 1050 / zoom, PH = 640 / zoom;     // размер панели в мировых единицах
@@ -1156,7 +1157,7 @@ export class MapScene extends Phaser.Scene {
       .setDepth(DEPTH+2).setScrollFactor(0).setVisible(false);
 
     // Заголовок
-    const title = this.add.text(W/2, PY + 22, 'ПЕРСОНАЖ', {
+    const title = this.add.text(W/2, s(100), 'ПЕРСОНАЖ', {
       fontSize: '17px', color: '#d4a832', fontFamily: 'serif', letterSpacing: 4
     }).setOrigin(0.5, 0).setDepth(DEPTH+3).setScrollFactor(0).setVisible(false);
 
@@ -1287,83 +1288,65 @@ export class MapScene extends Phaser.Scene {
     this._csContent.forEach(e => { try { e.destroy(); } catch {} });
     this._csContent = [];
 
-    const W = 1280, H = 720;
+    const zoom = this.cameras.main.zoom;
+    const s = v => v / zoom;
     const add = (obj) => { this._csContent.push(obj); return obj; };
 
     // ── Центральная зона: спрайт персонажа ──
-    const cx = PX + PW/2;
-    const cy = H/2 + 20;
-    const sprite = add(this.add.image(cx, cy, ch.sprite)
-      .setDepth(DEPTH+5).setScrollFactor(0));
-    const sh = PH - 130;
-    sprite.setScale(Math.min(180 / sprite.width, sh / sprite.height));
+    const sprite = add(this.add.image(s(600), s(320), ch.sprite)
+      .setOrigin(0.5, 0.5).setDepth(DEPTH+5).setScrollFactor(0));
+    sprite.setDisplaySize(s(260), s(380));
 
-    // Имя под спрайтом
-    add(this.add.text(cx, PY + PH - 42, ch.name, {
-      fontSize: '16px', color: '#d4a832', fontFamily: 'serif'
+    // Имя персонажа
+    add(this.add.text(s(600), s(530), ch.name, {
+      fontSize: `${s(18)}px`, color: '#d4a832', fontFamily: 'serif'
     }).setOrigin(0.5, 0).setDepth(DEPTH+5).setScrollFactor(0));
 
     // Описание
-    add(this.add.text(cx, PY + PH - 22, ch.desc, {
-      fontSize: '10px', color: '#777766', fontFamily: 'serif',
-      wordWrap: { width: 200 }
+    add(this.add.text(s(600), s(560), ch.desc, {
+      fontSize: `${s(12)}px`, color: '#888877', fontFamily: 'serif',
+      wordWrap: { width: s(260) }, align: 'center'
     }).setOrigin(0.5, 0).setDepth(DEPTH+5).setScrollFactor(0));
 
     // ── Правая зона: статы ──
-    const rx = PX + PW - 210;
-    const ry = PY + 80;
+    const rx = s(880);
+    const ry = s(100);
     const stats = [
       ['Уровень',  `${ch.lvl}`],
       ['HP',       `${ch.hp} / ${ch.maxHp}`],
       ['Урон',     ch.dmg],
       ['Скорость', `${ch.spd}`],
     ];
-    add(this.add.text(rx, ry - 14, 'ХАРАКТЕРИСТИКИ', {
-      fontSize: '11px', color: '#d4a832', fontFamily: 'serif', letterSpacing: 2
+    add(this.add.text(rx, ry - s(14), 'ХАРАКТЕРИСТИКИ', {
+      fontSize: `${s(14)}px`, color: '#d4a832', fontFamily: 'serif', letterSpacing: 2
     }).setDepth(DEPTH+5).setScrollFactor(0));
 
     stats.forEach(([label, val], i) => {
-      add(this.add.text(rx, ry + 10 + i * 32, label, {
-        fontSize: '11px', color: '#888877', fontFamily: 'serif'
+      add(this.add.text(rx, ry + s(10) + i * s(40), label, {
+        fontSize: `${s(13)}px`, color: '#888877', fontFamily: 'serif'
       }).setDepth(DEPTH+5).setScrollFactor(0));
-      add(this.add.text(rx + 180, ry + 10 + i * 32, val, {
-        fontSize: '13px', color: '#CCCCCC', fontFamily: 'serif'
+      add(this.add.text(rx + s(200), ry + s(10) + i * s(40), val, {
+        fontSize: `${s(15)}px`, color: '#CCCCCC', fontFamily: 'serif', fontStyle: 'bold'
       }).setOrigin(1, 0).setDepth(DEPTH+5).setScrollFactor(0));
-      // Разделитель
-      const lg = this.add.graphics().setDepth(DEPTH+4).setScrollFactor(0);
+      const lg = add(this.add.graphics().setDepth(DEPTH+4).setScrollFactor(0));
       lg.lineStyle(1, 0x333322, 0.5);
-      lg.lineBetween(rx, ry + 26 + i*32, rx + 185, ry + 26 + i*32);
-      add(lg);
+      lg.lineBetween(rx, ry + s(26) + i * s(40), rx + s(200), ry + s(26) + i * s(40));
     });
 
     // Скиллы
-    const sy = ry + stats.length * 32 + 20;
-    add(this.add.text(rx, sy, 'СКИЛЛЫ', {
-      fontSize: '11px', color: '#d4a832', fontFamily: 'serif', letterSpacing: 2
+    const skillsY = ry + stats.length * s(40) + s(20);
+    add(this.add.text(rx, skillsY, 'СКИЛЛЫ', {
+      fontSize: `${s(14)}px`, color: '#d4a832', fontFamily: 'serif', letterSpacing: 2
     }).setDepth(DEPTH+5).setScrollFactor(0));
     ch.skills.forEach((sk, i) => {
-      add(this.add.text(rx, sy + 18 + i * 22, `• ${sk}`, {
-        fontSize: '12px', color: '#AAAAAA', fontFamily: 'serif'
+      add(this.add.text(rx, skillsY + s(18) + i * s(26), `• ${sk}`, {
+        fontSize: `${s(13)}px`, color: '#AAAAAA', fontFamily: 'serif'
       }).setDepth(DEPTH+5).setScrollFactor(0));
     });
 
-    // ── Левая зона: инвентарь ──
-    const ix = PX + 16;
-    const iy = PY + 80;
-    add(this.add.text(ix + 90, iy - 14, 'ИНВЕНТАРЬ', {
-      fontSize: '11px', color: '#d4a832', fontFamily: 'serif', letterSpacing: 2
+    // ── Левая зона: заголовок инвентаря ──
+    add(this.add.text(s(300), s(85), 'ИНВЕНТАРЬ', {
+      fontSize: `${s(13)}px`, color: '#d4a832', fontFamily: 'serif', letterSpacing: 3
     }).setOrigin(0.5, 0).setDepth(DEPTH+5).setScrollFactor(0));
-
-    const slotSize = 52, slotGap = 8;
-    const cols = 3, rows = 4;
-    for (let r = 0; r < rows; r++) {
-      for (let c = 0; c < cols; c++) {
-        const sx2 = ix + c * (slotSize + slotGap) + slotSize/2;
-        const sy2 = iy + 10 + r * (slotSize + slotGap) + slotSize/2;
-        add(this.add.image(sx2, sy2, 'inventory_slot')
-          .setDisplaySize(slotSize, slotSize)
-          .setDepth(DEPTH+5).setScrollFactor(0).setAlpha(0.7));
-      }
-    }
   }
 }
