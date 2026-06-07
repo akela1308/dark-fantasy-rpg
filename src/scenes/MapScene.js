@@ -1262,19 +1262,25 @@ export class MapScene extends Phaser.Scene {
 
       if (isEmpty) return;
 
-      // Подпись
-      const label = this.add.text(sx, sy - SLOT_H * 0.25, slot.label, {
-        fontSize: '11px', color: '#FFFFFF', fontFamily: 'serif',
+      // Иконка кнопки внутри слота
+      const iconSize = Math.round(SLOT_H * 0.72);
+      const icon = this.add.image(sx, sy - SLOT_H * 0.08, 'map_menu_button')
+        .setDisplaySize(iconSize, iconSize)
+        .setDepth(DEPTH + 4).setScrollFactor(0).setAlpha(0.9);
+
+      // Подпись под иконкой
+      const label = this.add.text(sx, sy + SLOT_H * 0.32, slot.label, {
+        fontSize: '10px', color: '#C9A84C', fontFamily: 'serif',
         stroke: '#000000', strokeThickness: 2,
       }).setOrigin(0.5, 0.5).setDepth(DEPTH + 5).setScrollFactor(0);
 
       // Hover-подсветка
       const glow = this.add.rectangle(sx, sy, SLOT_W, SLOT_H, 0xC9A84C, 0)
-        .setDepth(DEPTH + 4).setScrollFactor(0);
+        .setDepth(DEPTH + 3).setScrollFactor(0);
 
       hit.setInteractive({ useHandCursor: true });
-      hit.on('pointerover', () => { glow.setAlpha(0.12); label.setColor('#C9A84C'); });
-      hit.on('pointerout',  () => { glow.setAlpha(0);    label.setColor('#9a8855'); });
+      hit.on('pointerover', () => { glow.setAlpha(0.15); icon.setAlpha(1); label.setColor('#FFD700'); });
+      hit.on('pointerout',  () => { glow.setAlpha(0);    icon.setAlpha(0.9); label.setColor('#C9A84C'); });
       hit.on('pointerdown', slot.action);
     });
   }

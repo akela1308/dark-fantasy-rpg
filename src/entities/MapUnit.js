@@ -78,7 +78,7 @@ export class MapUnit {
 
       // Гистерезис: walk-анимация стартует только при реальном движении (>10px)
       // Мелкие толчки от _separateParty (<5px) сюда не попадают
-      if (!this.moving && dist > 10) {
+      if (!this.moving && dist > 28) {
         this.moving = true;
         this._stopIdleAnim();
         this._startWalkAnim();
