@@ -454,6 +454,8 @@ export class MapScene extends Phaser.Scene {
   // ─── Party ───────────────────────────────────────────────────────────────
 
   _followTrail(unit, stepsBack) {
+    // Когда герой стоит — не обновляем цель, компаньоны остаются на месте и дышат
+    if (!this.hero.moving) return;
     const idx = Math.max(0, this._heroTrail.length - stepsBack);
     const pos = this._heroTrail[idx];
     if (pos) unit.moveTo(pos.x, pos.y);
