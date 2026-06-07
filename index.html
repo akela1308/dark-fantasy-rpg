@@ -10,10 +10,12 @@
         background: #0A0A0F;
         overflow: hidden;
       }
-      canvas {
+      canvas, canvas:focus, canvas:focus-visible, canvas:active {
         display: block;
-        outline: none !important;
+        outline: 0 !important;
+        outline-width: 0 !important;
         border: none !important;
+        box-shadow: none !important;
         -webkit-tap-highlight-color: transparent !important;
         user-select: none;
         -webkit-user-select: none;

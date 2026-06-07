@@ -105,7 +105,7 @@ const MAP_CONFIGS = {
       // Стол перед странником: правый нижний угол ножки на мировых (641, 373)
       // table4: контент cols 266-380 / rows 106-268 из 661×377
       // origin выровнен по нижнему правому краю ножки
-      { key: 'prop_table4', x: 641, y: 373, originX: 380/661, originY: 268/377, height: 115 },
+      { key: 'prop_table4', x: 641, y: 373, originX: 380/661, originY: 268/377, height: 340 },
     ],
     torches: [
       { x: 961,  y: 278 },              // свеча на баре
@@ -1100,16 +1100,21 @@ export class MapScene extends Phaser.Scene {
     const gapY   = 170;
     portraits.forEach((p, i) => {
       const cy = startY + i * gapY;
-      // Левый край прямоугольника ровно на x=0, без рамки
-      this.add.rectangle(0, cy, cardW, cardH, 0x0a0810, 0.94)
-        .setOrigin(0, 0.5)
-        .setDepth(50).setScrollFactor(0);
+      // Чёрный фон — полностью непрозрачный, перекрывает любые артефакты
+      this.add.rectangle(0, cy, cardW + 4, cardH + 4, 0x000000, 1)
+        .setOrigin(0, 0.5).setDepth(49).setScrollFactor(0);
+      this.add.rectangle(0, cy, cardW, cardH, 0x07060a, 1)
+        .setOrigin(0, 0.5).setDepth(50).setScrollFactor(0);
       const cx = cardW / 2;
       const img = this.add.image(cx, cy - 10, p.key).setDepth(51).setScrollFactor(0);
       img.setScale(Math.min((cardW - 8) / img.width, (cardH - 28) / img.height));
-      this.add.text(cx, cy + cardH / 2 - 6, p.label, {
-        fontSize: '14px', color: '#CCCCCC', fontFamily: 'serif',
-      }).setOrigin(0.5, 1).setDepth(51).setScrollFactor(0);
+      // Готическая рамка поверх портрета — перекрывает любые края
+      this.add.image(cx, cy - 4, 'portrait_frame')
+        .setDisplaySize(cardW + 6, cardH + 8)
+        .setDepth(52).setScrollFactor(0);
+      this.add.text(cx, cy + cardH / 2 - 2, p.label, {
+        fontSize: '13px', color: '#BBBBAA', fontFamily: 'serif',
+      }).setOrigin(0.5, 1).setDepth(53).setScrollFactor(0);
     });
 
     // Hover-портрет бандита (только на картах с бандитами)
