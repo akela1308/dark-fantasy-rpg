@@ -31,14 +31,12 @@ const HAS_BG = true; // поставь true когда добавишь battle_b
 // Enemy:  bottom-center-right → top-far-right
 const UNIT_POSITIONS = {
   player: {
-    // col 0 = Дуэлянт теперь правее Бойца (другое плечо)
-    // col 1 = Боец левее
-    0: { 0: { x: 470, y: 470 }, 1: { x: 320, y: 490 }, 2: { x: 580, y: 450 } },
-    1: { 0: { x: 390, y: 320 }, 1: { x: 250, y: 340 }, 2: { x: 500, y: 300 } },
+    0: { 0: { x: 280, y: 480 }, 1: { x: 420, y: 460 }, 2: { x: 180, y: 500 } },
+    1: { 0: { x: 350, y: 330 }, 1: { x: 490, y: 310 }, 2: { x: 220, y: 350 } },
   },
   enemy: {
-    0: { 0: { x: 760, y: 480 }, 1: { x: 920, y: 455 }, 2: { x: 650, y: 460 } },
-    1: { 0: { x: 820, y: 330 }, 1: { x: 1000, y: 310 }, 2: { x: 700, y: 315 } },
+    0: { 0: { x: 760, y: 480 }, 1: { x: 900, y: 460 }, 2: { x: 1040, y: 480 } },
+    1: { 0: { x: 830, y: 330 }, 1: { x: 970, y: 310 }, 2: { x: 700, y: 350 } },
   },
 };
 
@@ -66,6 +64,7 @@ export class BattleScene extends Phaser.Scene {
     this.portraits = new PortraitPanel(this, this.playerUnits, this.enemyUnits);
     this.portraits.create();
     this._bindEvents();
+    this.input.keyboard.on('keydown-B', () => this._toggleBattleGrid());
     this.turnManager.init([...this.playerUnits, ...this.enemyUnits]);
     this._renderAll();
     // Инициализируем плеер здесь (ассеты уже в кэше после LoadingScene)
@@ -693,6 +692,32 @@ export class BattleScene extends Phaser.Scene {
   }
 
   // ── EventBus ──────────────────────────────────────────────────────────
+
+  _toggleBattleGrid() {
+    if (this._battleGridDebug) {
+      this._battleGridDebug.forEach(o => o.destroy());
+      this._battleGridDebug = null;
+      return;
+    }
+    this._battleGridDebug = [];
+    const sides = ['player', 'enemy'];
+    sides.forEach(side => {
+      const color = side === 'player' ? 0x00FFFF : 0xFF4444;
+      const rows = UNIT_POSITIONS[side];
+      Object.entries(rows).forEach(([row, cols]) => {
+        Object.entries(cols).forEach(([col, pos]) => {
+          const circle = this.add.circle(pos.x, pos.y, 8, color)
+            .setDepth(999).setScrollFactor(0);
+          const label = this.add.text(pos.x + 10, pos.y - 8,
+            `${side === 'player' ? 'P' : 'E'} r${row}c${col}`, {
+              fontSize: '11px', color: side === 'player' ? '#00FFFF' : '#FF4444',
+              fontFamily: 'monospace',
+            }).setDepth(999).setScrollFactor(0);
+          this._battleGridDebug.push(circle, label);
+        });
+      });
+    });
+  }
 
   _bindEvents() {
     eventBus.on('log', msg => {

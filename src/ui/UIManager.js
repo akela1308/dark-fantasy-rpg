@@ -28,8 +28,8 @@ export class UIManager {
 
   _createLogPanel() {
     const x = 20, y = 540, w = 600, h = 160;
-    this.scene.add.rectangle(x + w/2, y + h/2, w, h, 0x0D0D1A, 0.9)
-      .setStrokeStyle(1, 0x333355).setDepth(3);
+    this.scene.add.rectangle(x + w/2, y + h/2, w, h, 0x07060a, 0.9)
+      .setStrokeStyle(1, 0x3a3020, 0.6).setDepth(3);
     this.scene.add.text(x + 10, y + 6, 'ЛОГ БОЯ', { fontSize: '11px', color: '#555577', fontFamily: 'serif' }).setDepth(3);
 
     this._logContainer = this.scene.add.container(x + 10, y + 22).setDepth(3);
@@ -52,8 +52,8 @@ export class UIManager {
 
   _createActionPanel() {
     const x = 660, y = 540, w = 600, h = 160;
-    this.scene.add.rectangle(x + w/2, y + h/2, w, h, 0x0D0D1A, 0.9)
-      .setStrokeStyle(1, 0x333355).setDepth(3);
+    this.scene.add.rectangle(x + w/2, y + h/2, w, h, 0x07060a, 0.9)
+      .setStrokeStyle(1, 0x3a3020, 0.6).setDepth(3);
 
     this._actionPanel = this.scene.add.container(x + 10, y + 10).setDepth(3);
   }
@@ -80,7 +80,7 @@ export class UIManager {
       ? `⚔ Ход: ${unit.name}`
       : `⏳ Ход противника: ${unit.name}`
     );
-    this._turnLabel.setColor(isPlayer ? '#4A90D9' : '#CC2222');
+    this._turnLabel.setColor(isPlayer ? '#C9A84C' : '#CC2222');
   }
 
   _updateActionButtons() {
@@ -173,8 +173,8 @@ export class UIManager {
 
     if (active) {
       frame.setInteractive({ useHandCursor: true });
-      frame.on('pointerover', () => { frame.setAlpha(0.75); frame.setScale(1.08); });
-      frame.on('pointerout',  () => { frame.setAlpha(1);    frame.setScale(1); });
+      frame.on('pointerover', () => frame.setAlpha(0.6));
+      frame.on('pointerout',  () => frame.setAlpha(1));
       frame.on('pointerdown', cb);
     }
 

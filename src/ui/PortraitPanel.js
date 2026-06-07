@@ -92,11 +92,6 @@ export class PortraitPanel {
       const baseScale = Math.min(maxW / portrait.width, maxH / portrait.height);
       portrait.setScale(baseScale);
 
-      // Готическая рамка поверх портрета
-      const frameImg = this.scene.add.image(cx, cy - 4, 'portrait_frame')
-        .setDepth(depth + 2)
-        .setDisplaySize(cardW + 8, cardH + 12);
-
       // activeBorder убран
       const activeBorder = null;
 

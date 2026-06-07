@@ -100,6 +100,10 @@ const MAP_CONFIGS = {
     ],
     tavernEntry: null,
     bandits: false,
+    // Дым из трубки странника
+    pipeSmoke: [
+      { x: 663, y: 276 },
+    ],
     // Статические пропсы (мебель, предметы)
     props: [
       // Стол перед странником: правый нижний угол ножки на мировых (641, 373)
@@ -369,6 +373,9 @@ export class MapScene extends Phaser.Scene {
 
     // Диалоговая панель (in-world overlay)
     this._dialogue = new DialoguePanel(this);
+
+    // Дым из трубок
+    this._spawnPipeSmoke(cfg);
 
     // Статические пропсы (мебель и предметы)
     this._spawnProps(cfg);
@@ -750,6 +757,24 @@ export class MapScene extends Phaser.Scene {
         frequency: 120,
         gravityY: -10,
         depth:     t.y + 6,
+      });
+    });
+  }
+
+  _spawnPipeSmoke(cfg) {
+    (cfg.pipeSmoke || []).forEach(({ x, y }) => {
+      // Тонкая струйка дыма — медленная, светло-серая, рассеивается
+      this.add.particles(x, y, 'fire_dot', {
+        speed:    { min: 4, max: 12 },
+        angle:    { min: 262, max: 278 },   // почти строго вверх, лёгкое колебание
+        lifespan: { min: 1200, max: 2400 },
+        scale:    { start: 0.18, end: 0.9 },
+        alpha:    { start: 0.35, end: 0 },
+        tint:     [0xCCCCCC, 0xAAAAAA, 0xBBBBBB],
+        quantity:  1,
+        frequency: 220,                      // одна частица каждые ~220мс
+        gravityY: -8,
+        depth:    y + 5,
       });
     });
   }
