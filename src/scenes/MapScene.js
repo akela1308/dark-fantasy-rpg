@@ -385,6 +385,7 @@ export class MapScene extends Phaser.Scene {
     }).setDepth(999).setScrollFactor(0).setAlpha(0);
 
     this.input.keyboard.on('keydown-G', () => this._toggleDevGrid());
+    this.input.keyboard.on('keydown-H', () => this._toggleScreenGrid());
 
     // Курсор: показывает мировые координаты под мышью в dev-режиме
     this.input.on('pointermove', (ptr) => {
@@ -624,6 +625,54 @@ export class MapScene extends Phaser.Scene {
     }
 
     this._devGrid = g;
+  }
+
+  // Экранная сетка (H) — координаты в пикселях экрана, для позиционирования UI
+  _toggleScreenGrid() {
+    if (this._screenGrid) {
+      this._screenGrid.forEach(o => { try { o.destroy(); } catch {} });
+      this._screenGrid = null;
+      return;
+    }
+
+    const zoom  = this.cameras.main.zoom;
+    const SW    = this.cameras.main.width;   // ширина экрана в пикселях (1280)
+    const SH    = this.cameras.main.height;  // высота экрана в пикселях (720)
+    const STEP  = 100;
+    const DEPTH = 998;
+    const objs  = [];
+
+    const gfx = this.add.graphics().setScrollFactor(0).setDepth(DEPTH);
+    gfx.lineStyle(1, 0x00FFFF, 0.25);
+    objs.push(gfx);
+
+    // Вертикальные линии
+    for (let sx = 0; sx <= SW; sx += STEP) {
+      const wx = sx / zoom;
+      gfx.lineBetween(wx, 0, wx, SH / zoom);
+      const lbl = this.add.text(wx + 2, 4 / zoom, `${sx}`, {
+        fontSize: `${Math.round(9 / zoom)}px`, color: '#00FFFF', fontFamily: 'monospace',
+      }).setScrollFactor(0).setDepth(DEPTH + 1).setAlpha(0.85);
+      objs.push(lbl);
+    }
+
+    // Горизонтальные линии
+    for (let sy = 0; sy <= SH; sy += STEP) {
+      const wy = sy / zoom;
+      gfx.lineBetween(0, wy, SW / zoom, wy);
+      const lbl = this.add.text(4 / zoom, wy + 2 / zoom, `${sy}`, {
+        fontSize: `${Math.round(9 / zoom)}px`, color: '#00FFFF', fontFamily: 'monospace',
+      }).setScrollFactor(0).setDepth(DEPTH + 1).setAlpha(0.85);
+      objs.push(lbl);
+    }
+
+    // Подсказка
+    const hint = this.add.text(SW / zoom / 2, 4 / zoom, 'SCREEN COORDS (H — скрыть)', {
+      fontSize: `${Math.round(10 / zoom)}px`, color: '#FFFF00', fontFamily: 'monospace',
+    }).setOrigin(0.5, 0).setScrollFactor(0).setDepth(DEPTH + 1);
+    objs.push(hint);
+
+    this._screenGrid = objs;
   }
 
   // ─── NPCs ────────────────────────────────────────────────────────────────
@@ -1083,11 +1132,12 @@ export class MapScene extends Phaser.Scene {
         desc: 'Целительница с тёмным прошлым. Лечит раны отряда.' },
     ];
 
-    const W = this.cameras.main.width;
-    const H = this.cameras.main.height;
-    const PW = 1050, PH = 640;
+    const zoom = this.cameras.main.zoom;
+    const W = this.cameras.main.width  / zoom;   // мировые единицы ≈1672
+    const H = this.cameras.main.height / zoom;   // мировые единицы ≈941
+    const PW = 1050 / zoom, PH = 640 / zoom;     // размер панели в мировых единицах
     const PX = (W - PW) / 2;
-    const PY = (H - PH) / 2 - 20;
+    const PY = (H - PH) / 2 - 20 / zoom;
     const DEPTH = 80;
 
     // Затемнение фона
