@@ -19,7 +19,7 @@ export class MapUnit {
     // Спрайт
     this.sprite = scene.add.image(x, y, textureKey)
       .setOrigin(0.5, 1)
-      .setDepth(10);
+      .setDepth(y);   // depth = Y для изометрической сортировки
 
     // Масштаб под размер карты
     const h = config.height ?? 72;
@@ -27,7 +27,7 @@ export class MapUnit {
     this.sprite.setScale(scale);
 
     // Тень под ногами
-    this.shadow = scene.add.ellipse(x, y + 2, 28, 8, 0x000000, 0.25).setDepth(9);
+    this.shadow = scene.add.ellipse(x, y + 2, 28, 8, 0x000000, 0.25).setDepth(y - 1);
 
     // Запускаем idle-анимацию сразу
     this._startIdleAnim();
@@ -87,6 +87,9 @@ export class MapUnit {
     }
 
     this.shadow.setPosition(this.sprite.x, this.sprite.y + 2);
+    // Изометрическая сортировка по Y
+    this.sprite.setDepth(this.sprite.y);
+    this.shadow.setDepth(this.sprite.y - 1);
   }
 
   _startWalkAnim() {
