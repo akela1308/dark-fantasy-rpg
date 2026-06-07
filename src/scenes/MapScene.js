@@ -1083,9 +1083,11 @@ export class MapScene extends Phaser.Scene {
         desc: 'Целительница с тёмным прошлым. Лечит раны отряда.' },
     ];
 
-    const W = 1280, H = 720;
-    const PW = 860, PH = 540;
-    const PX = (W - PW) / 2, PY = (H - PH) / 2;
+    const W = this.cameras.main.width;
+    const H = this.cameras.main.height;
+    const PW = 1050, PH = 640;
+    const PX = (W - PW) / 2;
+    const PY = (H - PH) / 2 - 20;
     const DEPTH = 80;
 
     // Затемнение фона
@@ -1095,21 +1097,21 @@ export class MapScene extends Phaser.Scene {
     overlay.on('pointerdown', () => this._hideCharSheet());
 
     // Фон панели
-    const bg = this.add.rectangle(W/2, H/2, PW, PH, 0x07060a, 0.97)
+    const bg = this.add.rectangle(W/2, H/2 - 20, PW, PH, 0x07060a, 0.97)
       .setDepth(DEPTH+1).setScrollFactor(0).setVisible(false);
 
     // Готический фрейм
-    const bgImg = this.add.image(W/2, H/2, 'character_sheet_bg')
-      .setDisplaySize(PW + 20, PH + 20)
+    const bgImg = this.add.image(W/2, H/2 - 20, 'character_sheet_bg')
+      .setDisplaySize(PW + 16, PH + 16)
       .setDepth(DEPTH+2).setScrollFactor(0).setVisible(false);
 
     // Заголовок
-    const title = this.add.text(W/2, PY + 18, 'ПЕРСОНАЖ', {
+    const title = this.add.text(W/2, PY + 22, 'ПЕРСОНАЖ', {
       fontSize: '17px', color: '#d4a832', fontFamily: 'serif', letterSpacing: 4
     }).setOrigin(0.5, 0).setDepth(DEPTH+3).setScrollFactor(0).setVisible(false);
 
     // Кнопка X
-    const closeBtn = this.add.text(PX + PW - 16, PY + 12, '✕', {
+    const closeBtn = this.add.text(PX + PW - 20, PY + 16, '✕', {
       fontSize: '16px', color: '#888888', fontFamily: 'serif'
     }).setOrigin(1, 0).setDepth(DEPTH+3).setScrollFactor(0)
       .setInteractive({ useHandCursor: true }).setVisible(false);
@@ -1145,7 +1147,7 @@ export class MapScene extends Phaser.Scene {
     // Горизонтальная линия под вкладками
     const tabLine = this.add.graphics().setDepth(DEPTH+3).setScrollFactor(0).setVisible(false);
     tabLine.lineStyle(1, 0x4a3f25, 0.6);
-    tabLine.lineBetween(PX + 16, PY + 64, PX + PW - 16, PY + 64);
+    tabLine.lineBetween(PX + 20, PY + 68, PX + PW - 20, PY + 68);
 
     this._charSheetElements = [overlay, bg, bgImg, title, closeBtn, divLeft, divRight, tabLine, ...tabs];
     this._charSheetTabs = tabs;
@@ -1182,7 +1184,7 @@ export class MapScene extends Phaser.Scene {
     ];
 
     const SLOT_W = Math.round(imgW * 0.11);
-    const SLOT_H = Math.round(BAR_H * 0.65);
+    const SLOT_H = Math.round(BAR_H * 0.55);
     const imgStartX = W / 2 - imgW / 2;
 
     SLOTS.forEach((slot, i) => {
@@ -1198,9 +1200,10 @@ export class MapScene extends Phaser.Scene {
       if (isEmpty) return;
 
       // Подпись
-      const label = this.add.text(sx, BAR_Y + BAR_H * 0.38, slot.label, {
-        fontSize: '10px', color: '#9a8855', fontFamily: 'serif',
-      }).setOrigin(0.5, 0).setDepth(DEPTH + 2).setScrollFactor(0);
+      const label = this.add.text(sx, sy - SLOT_H * 0.25, slot.label, {
+        fontSize: '11px', color: '#FFFFFF', fontFamily: 'serif',
+        stroke: '#000000', strokeThickness: 2,
+      }).setOrigin(0.5, 0.5).setDepth(DEPTH + 2).setScrollFactor(0);
 
       // Hover-подсветка
       const glow = this.add.rectangle(sx, sy, SLOT_W, SLOT_H, 0xC9A84C, 0)
