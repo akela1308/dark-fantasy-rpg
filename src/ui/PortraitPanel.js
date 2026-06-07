@@ -49,9 +49,8 @@ export class PortraitPanel {
       hpText.setText(`${Math.max(0, unit.hp)}/${unit.maxHp}`);
       dimOverlay.setAlpha(unit.isAlive ? 0 : 0.7);
 
-      // Активная рамка
+      // PERMANENT: no active borders, no stroke — never render colored borders on portraits
       const isActive = activeUnit && unit === activeUnit;
-      if (activeBorder) activeBorder.setAlpha(isActive ? 1 : 0);
 
       // Масштаб портрета при активном ходе
       const targetScale = isActive ? baseScale * 1.06 : baseScale;
@@ -63,18 +62,8 @@ export class PortraitPanel {
       }
     });
 
-    // Пульс рамки для нового активного юнита
     if (activeUnit && activeUnit !== this._activeUnit) {
       this._activeUnit = activeUnit;
-      if (this._activeTween) { this._activeTween.stop(); this._activeTween = null; }
-      const card = this._cards.find(c => c.unit === activeUnit);
-      if (card && card.activeBorder) {
-        this._activeTween = this.scene.tweens.add({
-          targets: card.activeBorder,
-          alpha: { from: 1, to: 0.3 },
-          duration: 900, yoyo: true, repeat: -1, ease: 'Sine.easeInOut',
-        });
-      }
     }
   }
 

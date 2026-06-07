@@ -106,11 +106,11 @@ export class MapUnit {
 
   _startIdleAnim() {
     if (this._idleTween) return;
+    this.sprite.setAngle(0);
     const baseScale = this.sprite.scaleY;
-    // Только дыхание (scaleY) — без раскачки угла
     this._idleTween = this.scene.tweens.add({
       targets:  this.sprite,
-      scaleY:   { from: baseScale, to: baseScale * 1.022 },
+      scaleY:   { from: baseScale * 0.998, to: baseScale * 1.022 },
       duration: this._idlePeriod,
       yoyo:     true,
       repeat:   -1,
@@ -127,6 +127,7 @@ export class MapUnit {
     if (this._bobTween)  { this._bobTween.stop();  this._bobTween  = null; }
     if (this._leanTween) { this._leanTween.stop(); this._leanTween = null; }
     this.sprite.setAngle(0);
+    this.sprite.setScale(this.sprite.scaleX, this.sprite.scaleY);
   }
 
   destroy() {

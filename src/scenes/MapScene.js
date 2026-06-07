@@ -303,6 +303,9 @@ export class MapScene extends Phaser.Scene {
   }
 
   create() {
+    this.game.canvas.style.outline = 'none';
+    this.game.canvas.style.webkitTapHighlightColor = 'rgba(0,0,0,0)';
+
     this._transitioning = false;
     this._exitCooldown  = 2200;  // мс после спавна — выходы не срабатывают
 
@@ -738,6 +741,7 @@ export class MapScene extends Phaser.Scene {
         .setScale(ratio)
         .setDepth(npc.y)
         .setInteractive({ useHandCursor: true });
+      this._addBreathingTween(sprite, 3000 + Math.random() * 600);
 
       // Имя над головой — только по hover
       const label = this.add.text(npc.x, npc.y - h / 2 - 12, npc.name, {
@@ -1139,13 +1143,21 @@ export class MapScene extends Phaser.Scene {
     const PW = 1050 / zoom, PH = 640 / zoom;     // размер панели в мировых единицах
     const PX = (W - PW) / 2;
     const PY = (H - PH) / 2 - 20 / zoom;
-    const DEPTH = 80;
+    const DEPTH = 200;
 
     // Затемнение фона
     const overlay = this.add.rectangle(W/2, H/2, W, H, 0x000000, 0.78)
       .setDepth(DEPTH).setScrollFactor(0).setInteractive()
       .setVisible(false);
-    overlay.on('pointerdown', () => this._hideCharSheet());
+    overlay.on('pointerdown', (ptr) => {
+      const cam  = this.cameras.main;
+      const zoom = cam.zoom;
+      const sx   = ptr.x / zoom;
+      const sy   = ptr.y / zoom;
+      const insideX = sx >= this._charSheetPX && sx <= this._charSheetPX + this._charSheetPW;
+      const insideY = sy >= this._charSheetPY && sy <= this._charSheetPY + this._charSheetPH;
+      if (!insideX || !insideY) this._hideCharSheet();
+    });
 
     // Фон панели
     const bg = this.add.rectangle(W/2, H/2 - 20, PW, PH, 0x07060a, 0.97)
@@ -1157,13 +1169,13 @@ export class MapScene extends Phaser.Scene {
       .setDepth(DEPTH+2).setScrollFactor(0).setVisible(false);
 
     // Заголовок
-    const title = this.add.text(W/2, s(100), 'ПЕРСОНАЖ', {
+    const title = this.add.text(W/2, s(115), 'ПЕРСОНАЖ', {
       fontSize: '17px', color: '#d4a832', fontFamily: 'serif', letterSpacing: 4
     }).setOrigin(0.5, 0).setDepth(DEPTH+3).setScrollFactor(0).setVisible(false);
 
     // Кнопка X
-    const closeBtn = this.add.text(PX + PW - 20, PY + 16, '✕', {
-      fontSize: '16px', color: '#888888', fontFamily: 'serif'
+    const closeBtn = this.add.text(PX + PW - 14, PY + 14, '✕', {
+      fontSize: '22px', color: '#CCCCCC', fontFamily: 'serif'
     }).setOrigin(1, 0).setDepth(DEPTH+3).setScrollFactor(0)
       .setInteractive({ useHandCursor: true }).setVisible(false);
     closeBtn.on('pointerover', () => closeBtn.setColor('#FFFFFF'));
@@ -1184,7 +1196,7 @@ export class MapScene extends Phaser.Scene {
     CHARS.forEach((ch, i) => {
       const tx = PX + 60 + i * 260;
       const ty = PY + 46;
-      const tab = this.add.text(tx, ty, ch.name, {
+      const tab = this.add.text(tx, ty, '', {
         fontSize: '13px', color: i === 0 ? '#d4a832' : '#666666', fontFamily: 'serif'
       }).setOrigin(0, 0).setDepth(DEPTH+4).setScrollFactor(0)
         .setInteractive({ useHandCursor: true }).setVisible(false);
@@ -1246,7 +1258,7 @@ export class MapScene extends Phaser.Scene {
 
       // Невидимая интерактивная зона поверх слота
       const hit = this.add.rectangle(sx, sy, SLOT_W, SLOT_H, 0x000000, 0)
-        .setDepth(DEPTH + 1).setScrollFactor(0);
+        .setDepth(DEPTH + 3).setScrollFactor(0);
 
       if (isEmpty) return;
 
@@ -1254,16 +1266,26 @@ export class MapScene extends Phaser.Scene {
       const label = this.add.text(sx, sy - SLOT_H * 0.25, slot.label, {
         fontSize: '11px', color: '#FFFFFF', fontFamily: 'serif',
         stroke: '#000000', strokeThickness: 2,
-      }).setOrigin(0.5, 0.5).setDepth(DEPTH + 2).setScrollFactor(0);
+      }).setOrigin(0.5, 0.5).setDepth(DEPTH + 5).setScrollFactor(0);
 
       // Hover-подсветка
       const glow = this.add.rectangle(sx, sy, SLOT_W, SLOT_H, 0xC9A84C, 0)
-        .setDepth(DEPTH + 1).setScrollFactor(0);
+        .setDepth(DEPTH + 4).setScrollFactor(0);
 
       hit.setInteractive({ useHandCursor: true });
       hit.on('pointerover', () => { glow.setAlpha(0.12); label.setColor('#C9A84C'); });
       hit.on('pointerout',  () => { glow.setAlpha(0);    label.setColor('#9a8855'); });
       hit.on('pointerdown', slot.action);
+    });
+  }
+
+  _addBreathingTween(sprite, period = 2800) {
+    const baseScaleY = sprite.scaleY;
+    this.tweens.add({
+      targets: sprite,
+      scaleY: { from: baseScaleY * 0.998, to: baseScaleY * 1.022 },
+      duration: period,
+      yoyo: true, repeat: -1, ease: 'Sine.easeInOut',
     });
   }
 
@@ -1293,24 +1315,27 @@ export class MapScene extends Phaser.Scene {
     const add = (obj) => { this._csContent.push(obj); return obj; };
 
     // ── Центральная зона: спрайт персонажа ──
-    const sprite = add(this.add.image(s(600), s(320), ch.sprite)
+    const sprite = add(this.add.image(s(575), s(340), ch.sprite)
       .setOrigin(0.5, 0.5).setDepth(DEPTH+5).setScrollFactor(0));
-    sprite.setDisplaySize(s(260), s(380));
+    const naturalRatio = sprite.width / sprite.height;
+    const displayH = s(370);
+    sprite.setDisplaySize(displayH * naturalRatio, displayH);
 
     // Имя персонажа
-    add(this.add.text(s(600), s(530), ch.name, {
+    add(this.add.text(s(630), s(490), ch.name, {
       fontSize: `${s(18)}px`, color: '#d4a832', fontFamily: 'serif'
     }).setOrigin(0.5, 0).setDepth(DEPTH+5).setScrollFactor(0));
 
     // Описание
-    add(this.add.text(s(600), s(560), ch.desc, {
+    add(this.add.text(s(630), s(518), ch.desc, {
       fontSize: `${s(12)}px`, color: '#888877', fontFamily: 'serif',
       wordWrap: { width: s(260) }, align: 'center'
     }).setOrigin(0.5, 0).setDepth(DEPTH+5).setScrollFactor(0));
 
     // ── Правая зона: статы ──
     const rx = s(880);
-    const ry = s(100);
+    const ry = s(115);
+    const statsX = s(800);
     const stats = [
       ['Уровень',  `${ch.lvl}`],
       ['HP',       `${ch.hp} / ${ch.maxHp}`],
@@ -1322,30 +1347,30 @@ export class MapScene extends Phaser.Scene {
     }).setDepth(DEPTH+5).setScrollFactor(0));
 
     stats.forEach(([label, val], i) => {
-      add(this.add.text(rx, ry + s(10) + i * s(40), label, {
+      add(this.add.text(statsX, ry + s(10) + i * s(40), label, {
         fontSize: `${s(13)}px`, color: '#888877', fontFamily: 'serif'
       }).setDepth(DEPTH+5).setScrollFactor(0));
-      add(this.add.text(rx + s(200), ry + s(10) + i * s(40), val, {
+      add(this.add.text(statsX + s(200), ry + s(10) + i * s(40), val, {
         fontSize: `${s(15)}px`, color: '#CCCCCC', fontFamily: 'serif', fontStyle: 'bold'
       }).setOrigin(1, 0).setDepth(DEPTH+5).setScrollFactor(0));
       const lg = add(this.add.graphics().setDepth(DEPTH+4).setScrollFactor(0));
       lg.lineStyle(1, 0x333322, 0.5);
-      lg.lineBetween(rx, ry + s(26) + i * s(40), rx + s(200), ry + s(26) + i * s(40));
+      lg.lineBetween(statsX, ry + s(26) + i * s(40), statsX + s(200), ry + s(26) + i * s(40));
     });
 
     // Скиллы
     const skillsY = ry + stats.length * s(40) + s(20);
-    add(this.add.text(rx, skillsY, 'СКИЛЛЫ', {
+    add(this.add.text(statsX, skillsY, 'СКИЛЛЫ', {
       fontSize: `${s(14)}px`, color: '#d4a832', fontFamily: 'serif', letterSpacing: 2
     }).setDepth(DEPTH+5).setScrollFactor(0));
     ch.skills.forEach((sk, i) => {
-      add(this.add.text(rx, skillsY + s(18) + i * s(26), `• ${sk}`, {
+      add(this.add.text(statsX, skillsY + s(18) + i * s(26), `• ${sk}`, {
         fontSize: `${s(13)}px`, color: '#AAAAAA', fontFamily: 'serif'
       }).setDepth(DEPTH+5).setScrollFactor(0));
     });
 
     // ── Левая зона: заголовок инвентаря ──
-    add(this.add.text(s(300), s(85), 'ИНВЕНТАРЬ', {
+    add(this.add.text(s(300), s(100), 'ИНВЕНТАРЬ', {
       fontSize: `${s(13)}px`, color: '#d4a832', fontFamily: 'serif', letterSpacing: 3
     }).setOrigin(0.5, 0).setDepth(DEPTH+5).setScrollFactor(0));
   }
