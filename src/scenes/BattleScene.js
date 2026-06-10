@@ -65,6 +65,7 @@ export class BattleScene extends Phaser.Scene {
     this.portraits.create();
     this._bindEvents();
     this.input.keyboard.on('keydown-B', () => this._toggleBattleGrid());
+    this.input.keyboard.on('keydown-G', () => this._toggleBattleCoordGrid());
     this.turnManager.init([...this.playerUnits, ...this.enemyUnits]);
     this._renderAll();
     // Инициализируем плеер здесь (ассеты уже в кэше после LoadingScene)
@@ -692,6 +693,42 @@ export class BattleScene extends Phaser.Scene {
   }
 
   // ── EventBus ──────────────────────────────────────────────────────────
+
+  _toggleBattleCoordGrid() {
+    if (this._coordGrid) {
+      this._coordGrid.forEach(o => { try { o.destroy(); } catch {} });
+      this._coordGrid = null;
+      return;
+    }
+    this._coordGrid = [];
+    const W = 1280, H = 720, STEP = 100;
+    const gfx = this.add.graphics().setDepth(998).setScrollFactor(0);
+    gfx.lineStyle(1, 0x00FF88, 0.2);
+    this._coordGrid.push(gfx);
+
+    for (let x = 0; x <= W; x += STEP) {
+      gfx.lineBetween(x, 0, x, H);
+      const lbl = this.add.text(x + 2, 2, `${x}`, {
+        fontSize: '10px', color: '#00FF88', fontFamily: 'monospace',
+      }).setDepth(999).setScrollFactor(0);
+      this._coordGrid.push(lbl);
+    }
+    for (let y = 0; y <= H; y += STEP) {
+      gfx.lineBetween(0, y, W, y);
+      const lbl = this.add.text(2, y + 2, `${y}`, {
+        fontSize: '10px', color: '#00FF88', fontFamily: 'monospace',
+      }).setDepth(999).setScrollFactor(0);
+      this._coordGrid.push(lbl);
+    }
+    // Показывает координаты мыши
+    const cursor = this.add.text(640, 10, '', {
+      fontSize: '12px', color: '#FFFF00', fontFamily: 'monospace',
+    }).setOrigin(0.5, 0).setDepth(999).setScrollFactor(0);
+    this._coordGrid.push(cursor);
+    this.input.on('pointermove', (ptr) => {
+      if (this._coordGrid) cursor.setText(`x:${Math.round(ptr.x)}  y:${Math.round(ptr.y)}`);
+    });
+  }
 
   _toggleBattleGrid() {
     if (this._battleGridDebug) {
