@@ -50,9 +50,20 @@ export class MusicPlayer {
     this.index = ((index % this.tracks.length) + this.tracks.length) % this.tracks.length;
     const track = this.tracks[this.index];
 
-    // Проверяем что трек загружен
-    if (!this.scene.cache.audio.exists(track.key)) return;
+    // Если трек не загружен — грузим его сейчас (ленивая загрузка)
+    if (!this.scene.cache.audio.exists(track.key)) {
+      this.scene.load.audio(track.key, `audio/${track.file}`);
+      this.scene.load.once(`filecomplete-audio-${track.key}`, () => {
+        this._playTrack(track);
+      });
+      this.scene.load.start();
+      return;
+    }
 
+    this._playTrack(track);
+  }
+
+  _playTrack(track) {
     this.current = this.scene.sound.add(track.key, { loop: false, volume: 0.45 });
     if (!this.muted) {
       try { this.current.play(); } catch(e) {}

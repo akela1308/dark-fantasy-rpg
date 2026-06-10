@@ -118,17 +118,10 @@ export class LoadingScene extends Phaser.Scene {
     img('fog',  'maps/fog.png');
     img('fog2', 'maps/fog2.png');
 
-    // Аудио
-    const tracks = [
-      ['track_ashes2',     'Ashes of Velanth 2.mp3'],
-      ['track_ashes',      'Ashes of Velanth.mp3'],
-      ['track_ward',       'Ashes of the Last Ward.mp3'],
-      ['track_monastery2', 'Ashes of the Monastery 2.mp3'],
-      ['track_monastery',  'Ashes of the Monastery.mp3'],
-      ['track_pass',       'Ashes of the Pass.mp3'],
-      ['track_dark',       'Dark Song.mp3'],
-    ];
-    tracks.forEach(([key, file]) => snd(key, `audio/${file}`));
+    // Аудио: только первый трек сразу, остальные — при необходимости (ленивая загрузка)
+    // Это экономит ~50 МБ при первом старте
+    snd('track_ashes2', 'audio/Ashes of Velanth 2.mp3');
+    // Остальные треки грузятся в MusicPlayer когда понадобятся
 
     // Запускаем музыку как только загрузится первый трек
     this.load.once('filecomplete-audio-track_ashes2', () => {
