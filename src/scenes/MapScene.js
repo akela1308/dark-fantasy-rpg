@@ -181,6 +181,32 @@ const MAP_CONFIGS = {
           },
         ],
       },
+      {
+        x: 1200, y: 590,
+        spriteKey:   'map_drunkman',
+        portraitKey: 'portrait_drunkman',
+        name:        'Пьяница',
+        height:      160,
+        flipX:       true,
+        dialogues: [
+          {
+            text: '"Хэ... ты кто таков? Не важно. Садись, выпьем. У меня тут... тут есть кое-что интересное. Слыхал про Запечатанный подвал на севере? Там такое... такое, что трезвым не расскажешь."',
+            choices: [
+              { label: 'Что за подвал?',          style: 'default' },
+              { label: 'Ты пьян, приятель.',       style: 'default' },
+              { label: 'Не мешай, я занят.',        style: 'retreat' },
+            ],
+          },
+          {
+            text: '"Подвал... говорят, там заперто что-то живое. Стражи давно сбежали. Кто зайдёт — не возвращается. Я бы сам сходил, да ноги не слушаются... третий день уже."',
+            choices: [{ label: 'Любопытно. Спасибо.', style: 'default' }],
+          },
+          {
+            text: '"Пьян? Я трезвее всех в этой дыре. Просто... вижу больше, чем положено. Вот и пью, чтобы видеть поменьше."',
+            choices: [{ label: 'Понятно. Береги себя.', style: 'default' }],
+          },
+        ],
+      },
     ],
   },
 
@@ -805,6 +831,7 @@ export class MapScene extends Phaser.Scene {
       const sprite = this.add.image(npc.x, npc.y, npc.spriteKey)
         .setScale(ratio)
         .setDepth(npc.y)
+        .setFlipX(npc.flipX || false)
         .setInteractive({ useHandCursor: true });
       this._addBreathingTween(sprite, 3000 + Math.random() * 600);
 
