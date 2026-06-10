@@ -1,11 +1,7 @@
 /**
  * DialoguePanel — нижняя диалоговая полоса в стиле RPG.
- *
- * Phaser 3 + zoom camera: setScrollFactor(0) убирает скролл, но zoom всё равно
- * масштабирует объекты. Формула: screen_px = world_px * zoom
- * → world_px = screen_px / zoom
- *
- * Всё позиционирование делается в screen-пикселях (1280×720), потом делится на zoom.
+ * Использует dialog_frame.png как декоративную рамку.
+ * Портреты снаружи рамки по бокам.
  */
 export class DialoguePanel {
   constructor(scene) {
@@ -19,60 +15,67 @@ export class DialoguePanel {
     this._active = true;
 
     const scene = this.scene;
+    const zoom  = scene.cameras.main.zoom || 1;
+    const s     = v => v / zoom;
 
-    // ── Zoom-компенсация ───────────────────────────────────────────────
-    const zoom = scene.cameras.main.zoom || 1;
-    // Переводим screen-пиксель в world-координату
-    const s = v => v / zoom;
-
-    // Размеры canvas в screen-пикселях
     const SW = 1280, SH = 720;
 
     const hasLeft  = !!(cfg.portraitLeft  && scene.textures.exists(cfg.portraitLeft));
     const hasRight = !!(cfg.portraitRight && scene.textures.exists(cfg.portraitRight));
 
-    // ── Нижняя панель (screen coords → world coords) ───────────────────
-    const barH_s  = 220;                    // высота в screen px
-    const barTop_s = SH - barH_s;           // 500 screen px — верхняя граница панели
-    const barCY_s  = SH - barH_s / 2;       // 610 screen px — центр панели
+    // Портреты: 160×200 screen px, выступают выше панели
+    const portW_s  = 160;
+    const portH_s  = 200;
+    const barH_s   = 260;
+    const barTop_s = SH - barH_s;
+    const barCY_s  = SH - barH_s / 2;
 
-    // Фон панели — без обводки, полная ширина
+    // Зоны текста (screen px)
+    const padPort  = 20;  // отступ текста от портрета
+    let textLeft_s  = 40;
+    let textRight_s = SW - 40;
+
+    if (hasLeft)  textLeft_s  = padPort + portW_s + 20;      // ~200
+    if (hasRight) textRight_s = SW - padPort - portW_s - 20; // ~1080
+
+    const textW_s = textRight_s - textLeft_s;
+
+    // ── Тёмный полупрозрачный фон (full width) ─────────────────────────
     const bg = scene.add.rectangle(
-      s(SW / 2), s(barCY_s), s(SW), s(barH_s), 0x040608, 0.95
+      s(SW / 2), s(barCY_s), s(SW), s(barH_s), 0x020305, 0.92
     ).setDepth(950).setScrollFactor(0);
     this._add(bg);
 
-    // Золотая линия сверху (2px)
-    const topLine = scene.add.rectangle(
-      s(SW / 2), s(barTop_s), s(SW), s(2), 0xc0a040, 1
-    ).setDepth(951).setScrollFactor(0);
-    this._add(topLine);
+    // ── Декоративная рамка — растягивается по текстовой области ────────
+    if (scene.textures.exists('dialog_frame')) {
+      const frameX_s = (textLeft_s + textRight_s) / 2;
+      const framePad_s = 30; // небольшой выход рамки за текст
+      const frameW_s  = textW_s + framePad_s * 2;
+      const frameH_s  = barH_s + 10; // чуть выше панели — украшение выступает
 
-    // ── Портреты (в screen px, конвертируем в world) ───────────────────
-    const portW_s = 160, portH_s = 190;
-    const portCY_s = barCY_s;   // центр портрета = центр панели по Y
+      const frame = scene.add.image(s(frameX_s), s(barCY_s), 'dialog_frame')
+        .setDisplaySize(s(frameW_s), s(frameH_s))
+        .setDepth(951).setScrollFactor(0).setAlpha(0.95);
+      this._add(frame);
+    }
 
-    let textLeft_s  = 20;
-    let textRight_s = SW - 20;
+    // ── Портреты — снаружи рамки, по краям панели ──────────────────────
+    const portCY_s = barTop_s + barH_s * 0.45; // центр портрета
 
     if (hasLeft) {
-      const lx_s = 95;
+      const lx_s = padPort + portW_s / 2;
       this._drawPortrait(scene, s(lx_s), s(portCY_s), s(portW_s), s(portH_s),
                          cfg.portraitLeft, null);
-      textLeft_s = lx_s + portW_s / 2 + 10;   // 185 screen px
     }
 
     if (hasRight) {
-      const rx_s = SW - 95;  // 1185 screen px
+      const rx_s = SW - padPort - portW_s / 2;
       this._drawPortrait(scene, s(rx_s), s(portCY_s), s(portW_s), s(portH_s),
                          cfg.portraitRight, cfg.speakerName, s(portH_s));
-      textRight_s = rx_s - portW_s / 2 - 10;  // 1095 screen px
     }
 
-    // ── Текст реплики ─────────────────────────────────────────────────
-    const textW_s = textRight_s - textLeft_s;
-    const textY_s = barTop_s + 16;
-
+    // ── Текст реплики ──────────────────────────────────────────────────
+    const textY_s   = barTop_s + 22;
     const speech = scene.add.text(s(textLeft_s), s(textY_s), cfg.text || '', {
       fontFamily:      'serif',
       fontSize:        `${Math.round(17 / zoom)}px`,
@@ -84,14 +87,14 @@ export class DialoguePanel {
     }).setDepth(955).setScrollFactor(0);
     this._add(speech);
 
-    // ── Разделитель ───────────────────────────────────────────────────
-    const sepY_s = barTop_s + 100;
+    // ── Разделитель ────────────────────────────────────────────────────
+    const sepY_s = barTop_s + 108;
     const sep = scene.add.rectangle(
-      s((textLeft_s + textRight_s) / 2), s(sepY_s), s(textW_s), s(1), 0x8a7030, 0.6
+      s((textLeft_s + textRight_s) / 2), s(sepY_s), s(textW_s - 40), s(1), 0x8a7030, 0.5
     ).setDepth(954).setScrollFactor(0);
     this._add(sep);
 
-    // ── Варианты ответа ───────────────────────────────────────────────
+    // ── Варианты ответа ────────────────────────────────────────────────
     const styleColor = { default: '#C9A84C', attack: '#E05050', threat: '#E08030', retreat: '#888888' };
     const styleHover = { default: '#FFD700', attack: '#FF8080', threat: '#FFB060', retreat: '#BBBBBB' };
     const choiceStartY_s = sepY_s + 16;
@@ -102,7 +105,7 @@ export class DialoguePanel {
       const hover = styleHover[ch.style || 'default'] || styleHover.default;
 
       const btn = scene.add.text(
-        s(textLeft_s),
+        s(textLeft_s + 8),
         s(choiceStartY_s + i * choiceGapY_s),
         `${i + 1}. ${ch.label}`,
         {
@@ -121,27 +124,26 @@ export class DialoguePanel {
       this._add(btn);
     });
 
-    // ── Fade-in ───────────────────────────────────────────────────────
+    // ── Fade-in ────────────────────────────────────────────────────────
     this._group.getChildren().forEach(obj => {
-      const target = obj === bg ? 0.95 : 1;
+      const target = obj === bg ? 0.92 : (obj.type === 'Image' && obj.texture?.key === 'dialog_frame') ? 0.95 : 1;
       obj.setAlpha(0);
-      scene.tweens.add({ targets: obj, alpha: target, duration: 200, ease: 'Power1' });
+      scene.tweens.add({ targets: obj, alpha: target, duration: 220, ease: 'Power1' });
     });
   }
 
-  // portH нужен чтобы разместить подпись имени под портретом
   _drawPortrait(scene, x, y, w, h, key, name, portH) {
-    // Изображение напрямую — без фона и без рамки
     const img = scene.add.image(x, y, key).setDepth(953).setScrollFactor(0);
     img.setScale(Math.min(w / img.width, h / img.height));
     this._add(img);
 
     if (name) {
+      const zoom = scene.cameras.main.zoom || 1;
       const label = scene.add.text(x, y + (portH || h) / 2 + 8, name, {
-        fontFamily: 'serif',
-        fontSize:   `${Math.round(12 / (scene.cameras.main.zoom || 1))}px`,
-        color:      '#BB5555',
-        stroke:     '#000',
+        fontFamily:      'serif',
+        fontSize:        `${Math.round(12 / zoom)}px`,
+        color:           '#BB5555',
+        stroke:          '#000',
         strokeThickness: 2,
       }).setOrigin(0.5, 0).setDepth(956).setScrollFactor(0);
       this._add(label);
