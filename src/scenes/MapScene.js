@@ -975,18 +975,57 @@ export class MapScene extends Phaser.Scene {
     });
     b.sprite.setFlipX(false);
 
-    // Компаньоны командира — статичные спрайты рядом
     const bx = cfg.banditPos.x;
     const by = cfg.banditPos.y;
-    const brawlerSprite = this.add.image(bx - 90, by + 20, 'bandit_brawler')
-      .setOrigin(0.5, 1).setDepth(by + 19).setFlipX(false);
-    brawlerSprite.setScale(110 / brawlerSprite.height);
 
-    const archerSprite = this.add.image(bx + 80, by - 15, 'bandit_archer')
-      .setOrigin(0.5, 1).setDepth(by - 16).setFlipX(true);
-    archerSprite.setScale(100 / archerSprite.height);
+    // ── Воин ──────────────────────────────────────────────────────────────
+    const warrior = this.add.image(bx - 90, by + 20, 'map_bandit_warrior')
+      .setOrigin(0.5, 1).setDepth(by + 19).setFlipX(true);
+    warrior.setScale(115 / warrior.height);
+    const wBase = warrior.scaleY;
+    this.tweens.add({
+      targets: warrior,
+      scaleY: { from: wBase * 0.997, to: wBase * 1.018 },
+      duration: 2700, yoyo: true, repeat: -1, ease: 'Sine.easeInOut',
+    });
+    warrior.setInteractive({ useHandCursor: true });
+    warrior.on('pointerdown', () => this._showCompanionDialogue('warrior'));
 
-    this._bandits.push({ unit: b, encountered: false, companions: [brawlerSprite, archerSprite] });
+    // ── Арбалетчик ────────────────────────────────────────────────────────
+    const archer = this.add.image(bx + 80, by - 15, 'map_bandit_archer')
+      .setOrigin(0.5, 1).setDepth(by - 16).setFlipX(false);
+    archer.setScale(105 / archer.height);
+    const aBase = archer.scaleY;
+    this.tweens.add({
+      targets: archer,
+      scaleY: { from: aBase * 0.997, to: aBase * 1.020 },
+      duration: 3100, yoyo: true, repeat: -1, ease: 'Sine.easeInOut',
+    });
+    archer.setInteractive({ useHandCursor: true });
+    archer.on('pointerdown', () => this._showCompanionDialogue('archer'));
+
+    this._banditCompanions = [
+      { sprite: warrior, type: 'warrior' },
+      { sprite: archer,  type: 'archer'  },
+    ];
+
+    this._bandits.push({ unit: b, encountered: false, companions: [warrior, archer] });
+  }
+
+  _showCompanionDialogue(type) {
+    if (this._dialogue?.active) return;
+    if (this._bandits[0]?.encountered) return;
+    const isWarrior = type === 'warrior';
+    this._dialogue.show({
+      portraitLeft:       'portrait_hero_duelist',
+      portraitRight:      isWarrior ? 'portrait_bandit_warrior' : 'portrait_bandit_archer',
+      speakerName:        isWarrior ? 'Воин' : 'Арбалетчик',
+      speakerNameLeft:    'Дуэлянт',
+      text: '"Иди говори с нашим командиром. С нами нечего обсуждать."',
+      choices: [
+        { label: 'Понял.', style: 'retreat', onSelect: () => {} },
+      ],
+    });
   }
 
   _updateBandits(delta) {
@@ -1239,31 +1278,59 @@ export class MapScene extends Phaser.Scene {
       }).setOrigin(0.5, 0.5).setDepth(UI_DEPTH).setScrollFactor(0);
     });
 
-    // Hover-портрет бандита (только на картах с бандитами)
+    // Hover-портреты бандитов (командир + воин + арбалетчик)
     if (cfg.bandits) {
       const hW = 120, hH = 145;
-      // origin(0,0) camera: canvas_x = world_x * zoom → world_x = canvas_x / zoom
-      // target canvas center: 1280 - 60 = 1220 → world = 1220 / 0.7651 ≈ 1594
+      // screen x≈1220 → world x = 1220 / zoom ≈ 1594
       const hx = 1594;
 
-      // Только PNG портрет + подпись, никакого фона и рамок
-      this._hoverPortrait = this.add.image(hx, 225, 'portrait_bandit_commander')
+      this._hoverPortrait = this.add.image(hx, 210, 'portrait_bandit_commander')
         .setDepth(60).setScrollFactor(0).setAlpha(0);
-      const pScale = Math.min(hW / this._hoverPortrait.width, hH / this._hoverPortrait.height);
-      this._hoverPortrait.setScale(pScale);
-      this._hoverLabel = this.add.text(hx, 295, 'Командир разбойников', {
+      this._hoverPortrait.setScale(
+        Math.min(hW / this._hoverPortrait.width, hH / this._hoverPortrait.height)
+      );
+      this._hoverLabel = this.add.text(hx, 285, '', {
         fontSize: '11px', color: '#CC4444', fontFamily: 'serif',
       }).setOrigin(0.5).setDepth(61).setScrollFactor(0).setAlpha(0);
 
+      // Проверяемые зоны: [портрет-ключ, подпись, getter позиции, радиус]
+      const _getHoverTarget = (ptr) => {
+        if (this._bandits[0]?.encountered) return null;
+
+        // Командир
+        const cmd = this._bandits[0]?.unit?.sprite;
+        if (cmd && Phaser.Math.Distance.Between(ptr.worldX, ptr.worldY, cmd.x, cmd.y) < 70)
+          return { key: 'portrait_bandit_commander', label: 'Командир разбойников' };
+
+        // Воин
+        const wSprite = this._banditCompanions?.[0]?.sprite;
+        if (wSprite && Phaser.Math.Distance.Between(ptr.worldX, ptr.worldY, wSprite.x, wSprite.y) < 65)
+          return { key: 'portrait_bandit_warrior', label: 'Воин' };
+
+        // Арбалетчик
+        const aSprite = this._banditCompanions?.[1]?.sprite;
+        if (aSprite && Phaser.Math.Distance.Between(ptr.worldX, ptr.worldY, aSprite.x, aSprite.y) < 65)
+          return { key: 'portrait_bandit_archer', label: 'Арбалетчик' };
+
+        return null;
+      };
+
       this.input.on('pointermove', (ptr) => {
-        let hovered = false;
-        this._bandits.forEach(b => {
-          if (b.encountered) return;
-          if (Phaser.Math.Distance.Between(ptr.worldX, ptr.worldY, b.unit.sprite.x, b.unit.sprite.y) < 70)
-            hovered = true;
-        });
-        const a = hovered ? 1 : 0;
-        [this._hoverPortrait, this._hoverLabel].forEach(el => el.setAlpha(a));
+        const found = _getHoverTarget(ptr);
+        if (found) {
+          if (this._hoverPortrait.texture.key !== found.key) {
+            this._hoverPortrait.setTexture(found.key);
+            this._hoverPortrait.setScale(
+              Math.min(hW / this._hoverPortrait.width, hH / this._hoverPortrait.height)
+            );
+          }
+          this._hoverLabel.setText(found.label);
+          this._hoverPortrait.setAlpha(1);
+          this._hoverLabel.setAlpha(1);
+        } else {
+          this._hoverPortrait.setAlpha(0);
+          this._hoverLabel.setAlpha(0);
+        }
       });
     }
 
