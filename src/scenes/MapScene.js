@@ -958,8 +958,20 @@ export class MapScene extends Phaser.Scene {
     const b = new MapUnit(this, cfg.banditPos.x, cfg.banditPos.y, 'map_bandit', {
       height: 130, speed: 40,
     });
-    b.sprite.setFlipX(true);
-    this._bandits.push({ unit: b, encountered: false });
+    b.sprite.setFlipX(false);
+
+    // Компаньоны командира — статичные спрайты рядом
+    const bx = cfg.banditPos.x;
+    const by = cfg.banditPos.y;
+    const brawlerSprite = this.add.image(bx - 90, by + 20, 'bandit_brawler')
+      .setOrigin(0.5, 1).setDepth(by + 19).setFlipX(false);
+    brawlerSprite.setScale(110 / brawlerSprite.height);
+
+    const archerSprite = this.add.image(bx + 80, by - 15, 'bandit_archer')
+      .setOrigin(0.5, 1).setDepth(by - 16).setFlipX(true);
+    archerSprite.setScale(100 / archerSprite.height);
+
+    this._bandits.push({ unit: b, encountered: false, companions: [brawlerSprite, archerSprite] });
   }
 
   _updateBandits(delta) {
@@ -1090,6 +1102,10 @@ export class MapScene extends Phaser.Scene {
   /** Анимация отступления бандита + убираем его с карты */
   _banditRetreat(bandit) {
     this.game.registry.set('bandit_0_defeated', true);
+    // Убираем компаньонов
+    (bandit?.companions || []).forEach(s => {
+      this.tweens.add({ targets: s, alpha: 0, duration: 600, onComplete: () => s.destroy() });
+    });
     if (bandit?.unit?.sprite) {
       this.tweens.add({
         targets:  bandit.unit.sprite,
