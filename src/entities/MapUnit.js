@@ -96,31 +96,20 @@ export class MapUnit {
   _startWalkAnim() {
     if (this._bobTween) return;
 
-    // Наклон тела при шаге — вращение вокруг ног (origin 0.5, 1)
+    // Оригинальный наклон тела — как было
     this._bobTween = this.scene.tweens.add({
-      targets:  this.sprite,
-      angle:    { from: -2.5, to: 2.5 },
-      duration: 220,
-      yoyo:     true,
-      repeat:   -1,
-      ease:     'Sine.easeInOut',
+      targets: this.sprite,
+      angle:   { from: -2.5, to: 2.5 },
+      duration: 200,
+      yoyo:    true,
+      repeat:  -1,
+      ease:    'Sine.easeInOut',
     });
+    this._leanTween = null;
 
-    // Вертикальный боб — squash при "приземлении", stretch в "полёте"
-    const bs = this._baseScale;
-    this._leanTween = this.scene.tweens.add({
-      targets:  this.sprite,
-      scaleY:   { from: bs * 0.96, to: bs * 1.03 },
-      duration: 220,
-      yoyo:     true,
-      repeat:   -1,
-      ease:     'Sine.easeInOut',
-      offset:   110, // сдвиг на полфазы — боб в противофазе с наклоном
-    });
-
-    // Пыль от шагов — каждые 440мс (один полный цикл)
+    // Пыль от шагов — два облачка за цикл (400мс)
     this._dustTimer = this.scene.time.addEvent({
-      delay:    440,
+      delay:    200,
       loop:     true,
       callback: this._spawnDust,
       callbackScope: this,
@@ -128,16 +117,20 @@ export class MapUnit {
   }
 
   _spawnDust() {
-    const x = this.sprite.x + Phaser.Math.Between(-8, 8);
-    const y = this.sprite.y + 2;
-    const dust = this.scene.add.ellipse(x, y, 18, 7, 0x8a7050, 0.55)
+    // Левая и правая нога попеременно
+    const side = (Math.floor(this.scene.time.now / 200) % 2 === 0) ? -10 : 10;
+    const x = this.sprite.x + side + Phaser.Math.Between(-4, 4);
+    const y = this.sprite.y + 4;
+
+    const dust = this.scene.add.ellipse(x, y, 22, 9, 0x9a8060, 0.7)
       .setDepth(this.sprite.y - 2);
     this.scene.tweens.add({
       targets:  dust,
       alpha:    0,
-      scaleX:   2.2,
-      scaleY:   0.3,
-      duration: 420,
+      scaleX:   2.8,
+      scaleY:   0.2,
+      y:        y - 4,
+      duration: 380,
       ease:     'Power2',
       onComplete: () => dust.destroy(),
     });
