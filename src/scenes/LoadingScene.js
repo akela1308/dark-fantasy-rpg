@@ -102,6 +102,7 @@ export class LoadingScene extends Phaser.Scene {
     img('map_tavernman', 'maps/characters/tavernman.png');
     img('map_wanderer',  'maps/characters/map_wanderer.png');
     img('map_drunkman',  'maps/characters/drunkman.png');
+    img('map_dog',       'maps/characters/dog.png');
 
     // Пропсы (интерьерные объекты)
     img('prop_table3',   'sprites/table3.png');
@@ -111,6 +112,7 @@ export class LoadingScene extends Phaser.Scene {
     img('portrait_tavernman', 'portraits/tavernman.png');
     img('portrait_wanderer',  'portraits/wanderer.png');
     img('portrait_drunkman',  'portraits/drunkman.png');
+    img('portrait_dog',       'portraits/dog.png');
 
     // Туман
     img('fog',  'maps/fog.png');

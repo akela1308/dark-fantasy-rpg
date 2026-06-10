@@ -81,6 +81,19 @@ const MAP_CONFIGS = {
     bandits: false,
     npcs: [
       {
+        x: 776, y: 481,
+        spriteKey:   'map_dog',
+        portraitKey: 'portrait_dog',
+        name:        'Пёс',
+        height:      110,
+        dialogues: [
+          {
+            text: '"Р-р-р-р-р-р-р..."',
+            choices: [{ label: 'Хороший пёс...', style: 'retreat' }],
+          },
+        ],
+      },
+      {
         x: 1200, y: 590,
         spriteKey:   'map_drunkman',
         portraitKey: 'portrait_drunkman',
@@ -88,6 +101,7 @@ const MAP_CONFIGS = {
         height:      160,
         flipX:       true,
         vanishKey:   'drunkman_talked',
+        hoverPortrait: true,
         dialogues: [
           {
             text: '"Хэ... ты кто таков? Не важно. Садись, выпьем. У меня тут... тут есть кое-что интересное. Слыхал про Запечатанный подвал на севере? Там такое... такое, что трезвым не расскажешь."',
