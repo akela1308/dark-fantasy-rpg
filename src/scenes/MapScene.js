@@ -85,7 +85,7 @@ const MAP_CONFIGS = {
         spriteKey:   'map_dog',
         portraitKey: 'portrait_dog',
         name:        'Пёс',
-        height:      110,
+        height:      75,
         dialogues: [
           {
             text: '"Р-р-р-р-р-р-р..."',
@@ -94,7 +94,7 @@ const MAP_CONFIGS = {
         ],
       },
       {
-        x: 1200, y: 560,
+        x: 1200, y: 520,
         spriteKey:   'map_drunkman',
         portraitKey: 'portrait_drunkman',
         name:        'Пьяница',
