@@ -81,7 +81,7 @@ const MAP_CONFIGS = {
     bandits: false,
     npcs: [
       {
-        x: 776, y: 481,
+        x: 770, y: 480,
         spriteKey:   'map_dog',
         portraitKey: 'portrait_dog',
         name:        'Пёс',
@@ -94,7 +94,7 @@ const MAP_CONFIGS = {
         ],
       },
       {
-        x: 1200, y: 590,
+        x: 1200, y: 600,
         spriteKey:   'map_drunkman',
         portraitKey: 'portrait_drunkman',
         name:        'Пьяница',
@@ -102,6 +102,7 @@ const MAP_CONFIGS = {
         flipX:       true,
         vanishKey:   'drunkman_talked',
         hoverPortrait: true,
+        sway: true,
         dialogues: [
           {
             text: '"Хэ... ты кто таков? Не важно. Садись, выпьем. У меня тут... тут есть кое-что интересное. Слыхал про Запечатанный подвал на севере? Там такое... такое, что трезвым не расскажешь."',
@@ -853,6 +854,27 @@ export class MapScene extends Phaser.Scene {
         .setFlipX(npc.flipX || false)
         .setInteractive({ useHandCursor: true });
       this._addBreathingTween(sprite, 3000 + Math.random() * 600);
+
+      // Пьяное покачивание (sway: true)
+      if (npc.sway) {
+        this.tweens.add({
+          targets: sprite,
+          angle:   { from: -4, to: 4 },
+          duration: 1600,
+          yoyo:    true,
+          repeat:  -1,
+          ease:    'Sine.easeInOut',
+        });
+        this.tweens.add({
+          targets:  sprite,
+          x:        { from: npc.x - 5, to: npc.x + 5 },
+          duration: 2200,
+          yoyo:     true,
+          repeat:   -1,
+          ease:     'Sine.easeInOut',
+          delay:    400,
+        });
+      }
 
       // Имя над головой — только по hover
       const label = this.add.text(npc.x, npc.y - h / 2 - 12, npc.name, {
