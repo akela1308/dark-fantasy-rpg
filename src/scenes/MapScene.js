@@ -188,6 +188,7 @@ const MAP_CONFIGS = {
         name:        'Пьяница',
         height:      160,
         flipX:       true,
+        vanishKey:   'drunkman_talked', // исчезает после разговора при следующем визите
         dialogues: [
           {
             text: '"Хэ... ты кто таков? Не важно. Садись, выпьем. У меня тут... тут есть кое-что интересное. Слыхал про Запечатанный подвал на севере? Там такое... такое, что трезвым не расскажешь."',
@@ -819,6 +820,8 @@ export class MapScene extends Phaser.Scene {
 
   _spawnNPCs(cfg) {
     (cfg.npcs || []).forEach(npc => {
+      // NPC с vanishKey исчезает навсегда после разговора (флаг сохраняется в registry)
+      if (npc.vanishKey && this.game.registry.get(npc.vanishKey)) return;
       const h = npc.height || 130;
       const tex = this.textures.get(npc.spriteKey);
       const ratio = tex.getSourceImage().height > 0
@@ -869,6 +872,8 @@ export class MapScene extends Phaser.Scene {
         this.hero.stopMove();
         this.brawler.stopMove();
         this.healer.stopMove();
+        // Помечаем разговор состоявшимся — при следующем визите NPC исчезнет
+        if (npc.vanishKey) this.game.registry.set(npc.vanishKey, true);
         this._showNpcDialogue(npc, 0);
       });
 
