@@ -79,6 +79,14 @@ const MAP_CONFIGS = {
       spawnId: 'default',
     },
     bandits: false,
+    fog: [
+      // Верхняя зона
+      { key: 'fog',  y: 120, alpha: 0.20, speedX:  0.10, depth: 1 },
+      { key: 'fog',  y: 200, alpha: 0.14, speedX: -0.07, depth: 2 },
+      // Нижняя зона
+      { key: 'fog2', y: 780, alpha: 0.25, speedX:  0.09, depth: 1 },
+      { key: 'fog2', y: 860, alpha: 0.18, speedX: -0.12, depth: 2 },
+    ],
     npcs: [
       {
         x: 770, y: 440,

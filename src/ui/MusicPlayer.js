@@ -84,7 +84,7 @@ export class MusicPlayer {
 
     // Фон: вдвое меньше — ширина 264, высота 33
     this._bg = this.scene.add.rectangle(0, 17, 264, 33, 0x07070f, 0.90)
-      .setStrokeStyle(1, 0x2a2a44).setOrigin(0, 0.5).setDepth(depth).setScrollFactor(0);
+      .setOrigin(0, 0.5).setDepth(depth).setScrollFactor(0);
 
     // ♪ кнопка
     this._btnMute = this.scene.add.text(8, 7, '♪', {

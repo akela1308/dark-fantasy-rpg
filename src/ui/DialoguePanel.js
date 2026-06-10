@@ -40,11 +40,7 @@ export class DialoguePanel {
     const frameW_s  = frameR_s - frameL_s;
     const frameH_s  = barH_s;
 
-    // ── Тёмный фон (full width) ────────────────────────────────────────
-    const bg = scene.add.rectangle(
-      s(SW / 2), s(barCY_s), s(SW), s(barH_s), 0x020305, 0.93
-    ).setDepth(950).setScrollFactor(0);
-    this._add(bg);
+    // Фон убран — dialog_frame даёт подложку для текста
 
     // ── Декоративная рамка ─────────────────────────────────────────────
     if (scene.textures.exists('dialog_frame')) {
@@ -126,7 +122,7 @@ export class DialoguePanel {
     // ── Fade-in ────────────────────────────────────────────────────────
     this._group.getChildren().forEach(obj => {
       obj.setAlpha(0);
-      scene.tweens.add({ targets: obj, alpha: obj === bg ? 0.93 : 1, duration: 200, ease: 'Power1' });
+      scene.tweens.add({ targets: obj, alpha: 1, duration: 200, ease: 'Power1' });
     });
   }
 
