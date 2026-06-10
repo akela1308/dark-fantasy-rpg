@@ -392,12 +392,10 @@ export class MapScene extends Phaser.Scene {
     // Клампим спавн на случай если он вне walkable зоны
     const spawn = this.walkable.clamp(rawSpawn.x, rawSpawn.y);
 
-    // Партия: боец — самый крупный, герой чуть меньше, знахарка меньше всех
-    const unitH = this.mapKey === 'tavern_inside' ? 158 : 130;
-    // idlePeriod — уникальный ритм дыхания для каждого персонажа
-    this.hero    = new MapUnit(this, spawn.x,       spawn.y, 'map_hero',    { height: unitH - 5,  speed: 130, idlePeriod: 2800 });
-    this.brawler = new MapUnit(this, spawn.x - 65,  spawn.y, 'map_brawler', { height: unitH + 15, speed: 130, idlePeriod: 3400, walkThreshold: 40 });
-    this.healer  = new MapUnit(this, spawn.x - 120, spawn.y, 'map_healer',  { height: unitH + 10, speed: 130, idlePeriod: 2200, walkThreshold: 40 });
+    // Партия: фиксированные высоты — не зависят от карты
+    this.hero    = new MapUnit(this, spawn.x,       spawn.y, 'map_hero',    { height: 130, speed: 130, idlePeriod: 2800 });
+    this.brawler = new MapUnit(this, spawn.x - 65,  spawn.y, 'map_brawler', { height: 148, speed: 130, idlePeriod: 3400, walkThreshold: 40 });
+    this.healer  = new MapUnit(this, spawn.x - 120, spawn.y, 'map_healer',  { height: 118, speed: 130, idlePeriod: 2200, walkThreshold: 40 });
 
     this._heroTrail     = [];
     this._trailInterval = 0;

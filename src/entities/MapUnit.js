@@ -21,10 +21,11 @@ export class MapUnit {
       .setOrigin(0.5, 1)
       .setDepth(y);   // depth = Y для изометрической сортировки
 
-    // Масштаб под размер карты
+    // Масштаб под размер карты — сохраняем базовый scale для idle-анимации
     const h = config.height ?? 72;
     const scale = h / this.sprite.height;
     this.sprite.setScale(scale);
+    this._baseScale = scale;  // фиксируем — idle-анимация не накапливает погрешность
 
     // Тень под ногами
     this.shadow = scene.add.ellipse(x, y + 2, 28, 8, 0x000000, 0.25).setDepth(y - 1);
@@ -111,7 +112,8 @@ export class MapUnit {
   _startIdleAnim() {
     if (this._idleTween) return;
     this.sprite.setAngle(0);
-    const baseScale = this.sprite.scaleY;
+    this.sprite.setScale(this._baseScale); // сбрасываем к базовому перед анимацией
+    const baseScale = this._baseScale;
     this._idleTween = this.scene.tweens.add({
       targets:  this.sprite,
       scaleY:   { from: baseScale * 0.998, to: baseScale * 1.022 },
