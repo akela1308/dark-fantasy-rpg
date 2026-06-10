@@ -82,30 +82,30 @@ export class MusicPlayer {
     // zoom=0.765 → world = screen/0.765
     const depth = 52;
 
-    // Фон: левый край x=0, тянется вправо на 527 мировых единиц (≈403px экрана)
-    this._bg = this.scene.add.rectangle(0, 35, 527, 65, 0x07070f, 0.90)
+    // Фон: вдвое меньше — ширина 264, высота 33
+    this._bg = this.scene.add.rectangle(0, 17, 264, 33, 0x07070f, 0.90)
       .setStrokeStyle(1, 0x2a2a44).setOrigin(0, 0.5).setDepth(depth).setScrollFactor(0);
 
-    // ♪ кнопка → экран (13,11) → world (17,14)
-    this._btnMute = this.scene.add.text(17, 14, '♪', {
-      fontSize: '26px', color: '#C9A84C', fontFamily: 'serif'
+    // ♪ кнопка
+    this._btnMute = this.scene.add.text(8, 7, '♪', {
+      fontSize: '13px', color: '#C9A84C', fontFamily: 'serif'
     }).setDepth(depth).setScrollFactor(0).setInteractive({ useHandCursor: true });
     this._btnMute.on('pointerdown', () => this._toggleMute());
 
-    // ◀ → world (72,17)
-    this._btnPrev = this.scene.add.text(72, 17, '◀', {
-      fontSize: '20px', color: '#888888', fontFamily: 'serif'
+    // ◀
+    this._btnPrev = this.scene.add.text(28, 8, '◀', {
+      fontSize: '11px', color: '#888888', fontFamily: 'serif'
     }).setDepth(depth).setScrollFactor(0).setInteractive({ useHandCursor: true });
     this._btnPrev.on('pointerdown', () => this._startTrack(this.index - 1 + this.tracks.length));
 
-    // Лейбл → world (107,19)
-    this._label = this.scene.add.text(107, 19, '', {
-      fontSize: '14px', color: '#AAAAAA', fontFamily: 'serif'
+    // Лейбл
+    this._label = this.scene.add.text(46, 9, '', {
+      fontSize: '10px', color: '#AAAAAA', fontFamily: 'serif'
     }).setDepth(depth).setScrollFactor(0);
 
-    // ▶ → world (505,17)
-    this._btnNext = this.scene.add.text(505, 17, '▶', {
-      fontSize: '20px', color: '#888888', fontFamily: 'serif'
+    // ▶
+    this._btnNext = this.scene.add.text(252, 8, '▶', {
+      fontSize: '11px', color: '#888888', fontFamily: 'serif'
     }).setDepth(depth).setScrollFactor(0).setInteractive({ useHandCursor: true });
     this._btnNext.on('pointerdown', () => this._startTrack(this.index + 1));
 
