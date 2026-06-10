@@ -853,9 +853,9 @@ export class MapScene extends Phaser.Scene {
       // Тень
       const shadow = this.add.ellipse(npc.x, npc.y + 8, 55, 16, 0x000000, 0.35).setDepth(1);
 
-      // Спрайт — origin (0.5, 1): нижний центр, чтобы вращение шло вокруг ног
+      // Спрайт — origin (0.5, 0.5) для всех NPC (стандарт)
       const sprite = this.add.image(npc.x, npc.y, npc.spriteKey)
-        .setOrigin(0.5, 1)
+        .setOrigin(0.5, 0.5)
         .setScale(ratio)
         .setDepth(npc.y)
         .setFlipX(npc.flipX || false)
