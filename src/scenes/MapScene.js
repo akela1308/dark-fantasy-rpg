@@ -853,32 +853,35 @@ export class MapScene extends Phaser.Scene {
       // Тень
       const shadow = this.add.ellipse(npc.x, npc.y + 8, 55, 16, 0x000000, 0.35).setDepth(1);
 
-      // Спрайт
+      // Спрайт — origin (0.5, 1): нижний центр, чтобы вращение шло вокруг ног
       const sprite = this.add.image(npc.x, npc.y, npc.spriteKey)
+        .setOrigin(0.5, 1)
         .setScale(ratio)
         .setDepth(npc.y)
         .setFlipX(npc.flipX || false)
         .setInteractive({ useHandCursor: true });
       this._addBreathingTween(sprite, 3000 + Math.random() * 600);
 
-      // Пьяное покачивание (sway: true)
+      // Пьяное покачивание (sway: true) — тело качается, ноги стоят на месте
       if (npc.sway) {
-        this.tweens.add({
-          targets: sprite,
-          angle:   { from: -2, to: 2 },
-          duration: 2000,
-          yoyo:    true,
-          repeat:  -1,
-          ease:    'Sine.easeInOut',
-        });
+        // Вращение вокруг нижнего центра (ног) — x не двигаем
         this.tweens.add({
           targets:  sprite,
-          x:        { from: npc.x - 3, to: npc.x + 3 },
+          angle:    { from: -3, to: 3 },
+          duration: 2000,
+          yoyo:     true,
+          repeat:   -1,
+          ease:     'Sine.easeInOut',
+        });
+        // Лёгкое смещение верхней части тела (через scaleX) — как инерция при покачивании
+        this.tweens.add({
+          targets:  sprite,
+          scaleX:   { from: ratio * 0.99, to: ratio * 1.01 },
           duration: 2600,
           yoyo:     true,
           repeat:   -1,
           ease:     'Sine.easeInOut',
-          delay:    400,
+          delay:    300,
         });
       }
 

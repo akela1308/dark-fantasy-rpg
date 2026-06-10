@@ -96,17 +96,51 @@ export class MapUnit {
   _startWalkAnim() {
     if (this._bobTween) return;
 
-    // Только угол — не трогаем y чтобы не конфликтовать с движением
+    // Наклон тела при шаге — вращение вокруг ног (origin 0.5, 1)
     this._bobTween = this.scene.tweens.add({
-      targets: this.sprite,
-      angle: { from: -2.5, to: 2.5 },
-      duration: 200,
-      yoyo: true,
-      repeat: -1,
-      ease: 'Sine.easeInOut',
+      targets:  this.sprite,
+      angle:    { from: -2.5, to: 2.5 },
+      duration: 220,
+      yoyo:     true,
+      repeat:   -1,
+      ease:     'Sine.easeInOut',
     });
 
-    this._leanTween = null; // объединили с bobTween
+    // Вертикальный боб — squash при "приземлении", stretch в "полёте"
+    const bs = this._baseScale;
+    this._leanTween = this.scene.tweens.add({
+      targets:  this.sprite,
+      scaleY:   { from: bs * 0.96, to: bs * 1.03 },
+      duration: 220,
+      yoyo:     true,
+      repeat:   -1,
+      ease:     'Sine.easeInOut',
+      offset:   110, // сдвиг на полфазы — боб в противофазе с наклоном
+    });
+
+    // Пыль от шагов — каждые 440мс (один полный цикл)
+    this._dustTimer = this.scene.time.addEvent({
+      delay:    440,
+      loop:     true,
+      callback: this._spawnDust,
+      callbackScope: this,
+    });
+  }
+
+  _spawnDust() {
+    const x = this.sprite.x + Phaser.Math.Between(-8, 8);
+    const y = this.sprite.y + 2;
+    const dust = this.scene.add.ellipse(x, y, 18, 7, 0x8a7050, 0.55)
+      .setDepth(this.sprite.y - 2);
+    this.scene.tweens.add({
+      targets:  dust,
+      alpha:    0,
+      scaleX:   2.2,
+      scaleY:   0.3,
+      duration: 420,
+      ease:     'Power2',
+      onComplete: () => dust.destroy(),
+    });
   }
 
   _startIdleAnim() {
@@ -130,10 +164,11 @@ export class MapUnit {
   }
 
   _stopWalkAnim() {
-    if (this._bobTween)  { this._bobTween.stop();  this._bobTween  = null; }
-    if (this._leanTween) { this._leanTween.stop(); this._leanTween = null; }
+    if (this._bobTween)   { this._bobTween.stop();   this._bobTween  = null; }
+    if (this._leanTween)  { this._leanTween.stop();  this._leanTween = null; }
+    if (this._dustTimer)  { this._dustTimer.remove(); this._dustTimer = null; }
     this.sprite.setAngle(0);
-    this.sprite.setScale(this.sprite.scaleX, this.sprite.scaleY);
+    this.sprite.setScale(this._baseScale);
   }
 
   destroy() {
