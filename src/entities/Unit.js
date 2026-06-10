@@ -19,6 +19,10 @@ export class Unit {
     this.ranged   = data.ranged || false;
     this.ignoreRows = data.ignoreRows || false;
     this.lifesteal  = data.lifesteal || 0;
+    this.armor    = data.armor    || 0;   // % редукция урона (0–90), как в Disciples II
+    this.xpKill   = data.xpKill  || 15;  // XP за убийство этого юнита
+    this.regen    = data.regen    || 0;   // % HP восстанавливается в конце хода
+    this.accuracy = data.accuracy ?? 75;  // базовая точность (0–100)
     this.color    = data.color || 0xFFFFFF;
     this.isBoss   = data.isBoss || false;
 
@@ -47,7 +51,16 @@ export class Unit {
       return 0;
     }
 
-    const actual = Math.max(0, amount);
+    // Эффект Защиты: -50% урона на 1 ход (Disciples II: defend = ~50%)
+    const defending = this.effects.find(e => e.type === 'defending');
+    let reduced = defending ? Math.round(amount * 0.5) : amount;
+
+    // Броня: % редукция (Disciples II формула: урон × (1 - ARMOR/100))
+    if (this.armor > 0) {
+      reduced = Math.max(1, Math.round(reduced * (1 - this.armor / 100)));
+    }
+
+    const actual = Math.max(1, reduced);
     this.hp = Math.max(0, this.hp - actual);
 
     eventBus.emit('unit_damaged', { unit: this, amount: actual, isCrit });
@@ -134,7 +147,13 @@ export class Unit {
   // --- Конец хода ---
   endTurn() {
     this.tickCooldowns();
-    this.tickEffects();
+    this.tickEffects(); // снимает defending через duration=1
+    // Регенерация: regen% от maxHp в конце хода
+    if (this.regen > 0 && this.isAlive && this.hp < this.maxHp) {
+      const amount = Math.max(1, Math.round(this.maxHp * this.regen / 100));
+      this.heal(amount);
+      eventBus.emit('log', `${this.name} восстанавливает ${amount} HP (регенерация)`);
+    }
   }
 
   // --- Сброс на новый бой ---

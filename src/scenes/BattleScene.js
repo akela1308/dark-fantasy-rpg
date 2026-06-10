@@ -784,12 +784,35 @@ export class BattleScene extends Phaser.Scene {
       this._updateHpBar(unit);
     });
 
-    eventBus.on('unit_died', unit => this._animDeath(unit));
+    eventBus.on('unit_died', unit => {
+      this._animDeath(unit);
+      // XP за убийство вражеского юнита
+      if (unit.type === 'enemy') {
+        const xpGain = unit.xpKill ?? 15;
+        this.playerUnits.filter(u => u.isAlive).forEach(pu => {
+          pu.addXP(xpGain);
+          eventBus.emit('log', `${pu.name} получает ${xpGain} XP`);
+        });
+      }
+    });
 
     eventBus.on('skill_selected', skillId => this._onSkillSelect(skillId));
 
     eventBus.on('skip_turn', () => {
       if (!this.turnManager.isPlayerTurn()) return;
+      this.turnManager.skipTurn();
+      this._renderAll();
+      this.ui.update();
+      if (!this.turnManager.isPlayerTurn()) this._runAITurn();
+    });
+
+    // Защита: юнит получает эффект defending на 1 ход (~50% урона)
+    eventBus.on('defend_action', () => {
+      if (!this.turnManager.isPlayerTurn()) return;
+      const unit = this.turnManager.active;
+      if (!unit || unit.type !== 'player') return;
+      unit.addEffect({ type: 'defending', value: 0.5, duration: 2 }); // duration=2: снимается после след. хода
+      eventBus.emit('log', `${unit.name} принимает оборонительную стойку!`);
       this.turnManager.skipTurn();
       this._renderAll();
       this.ui.update();

@@ -122,6 +122,16 @@ export class UIManager {
       this._addIconBtn(bx, btnY, b.label, b.icon, b.sub, b.tint, b.cb);
     });
 
+    // Кнопка Защита (Disciples II: defend = ~50% урона)
+    const isDefending = unit.effects.some(e => e.type === 'defending');
+    const defend = this.scene.add.text(1230, 568, isDefending ? '🛡 Защита ✓' : '🛡 Защита', {
+      fontSize: '13px', color: isDefending ? '#44FF88' : '#8899AA', fontFamily: 'serif',
+    }).setOrigin(1, 0).setInteractive({ useHandCursor: true }).setDepth(3);
+    defend.on('pointerover', () => defend.setAlpha(0.7));
+    defend.on('pointerout',  () => defend.setAlpha(1));
+    defend.on('pointerdown', () => eventBus.emit('defend_action'));
+    this._actionBtns.push(defend);
+
     // Кнопка Пропустить — текстовая справа
     const skip = this.scene.add.text(1230, 548, 'Пропустить', {
       fontSize: '13px', color: '#666666', fontFamily: 'serif',
