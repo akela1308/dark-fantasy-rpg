@@ -1102,20 +1102,7 @@ export class MapScene extends Phaser.Scene {
   /** Анимация отступления бандита + убираем его с карты */
   _banditRetreat(bandit) {
     this.game.registry.set('bandit_0_defeated', true);
-    // Убираем компаньонов
-    (bandit?.companions || []).forEach(s => {
-      this.tweens.add({ targets: s, alpha: 0, duration: 600, onComplete: () => s.destroy() });
-    });
-    if (bandit?.unit?.sprite) {
-      this.tweens.add({
-        targets:  bandit.unit.sprite,
-        x:        bandit.unit.sprite.x - 200,
-        alpha:    0,
-        duration: 800,
-        ease:     'Power2',
-        onComplete: () => bandit.unit.sprite?.destroy(),
-      });
-    }
+    // Все трое остаются на месте — можно пройти мимо
   }
 
   // ─── Labels (hover-надписи для зданий и развилок) ────────────────────────
