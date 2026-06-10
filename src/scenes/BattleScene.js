@@ -29,19 +29,20 @@ const HAS_BG = true; // поставь true когда добавишь battle_b
 // Disciples II-style diagonal grid
 // Player: bottom-left → top-center-left
 // Enemy:  bottom-center-right → top-far-right
+// Зеркало врагов: ось x=700, формула 1400-player_x
 const UNIT_POSITIONS = {
   player: {
-    0: { 0: { x: 414, y: 503 }, 1: { x: 548, y: 417 }, 2: { x: 644, y: 344 } }, // передний ряд
+    0: { 0: { x: 414, y: 503 }, 1: { x: 548, y: 417 }, 2: { x: 666, y: 343 } }, // передний ряд
     1: { 0: { x: 301, y: 401 }, 1: { x: 440, y: 353 }, 2: { x: 570, y: 304 } }, // задний ряд
   },
   enemy: {
-    0: { 0: { x: 760, y: 480 }, 1: { x: 900, y: 460 }, 2: { x: 1040, y: 480 } },
-    1: { 0: { x: 830, y: 330 }, 1: { x: 970, y: 310 }, 2: { x: 700, y: 350 } },
+    0: { 0: { x: 986, y: 503 }, 1: { x: 852, y: 417 }, 2: { x: 734, y: 343 } }, // передний ряд (зеркало)
+    1: { 0: { x: 1099, y: 401 }, 1: { x: 960, y: 353 }, 2: { x: 830, y: 304 } }, // задний ряд (зеркало)
   },
 };
 
 // Высота спрайта в пикселях по ряду (перспектива)
-const ROW_HEIGHT = { 0: 230, 1: 160 };
+const BASE_HEIGHT = 160; // единая база — знахарка/арбалетчик
 
 export class BattleScene extends Phaser.Scene {
   constructor() {
@@ -151,7 +152,7 @@ export class BattleScene extends Phaser.Scene {
       if (!unit.isAlive) return;
 
       const { x, y } = this._getPos(unit);
-      const h = ROW_HEIGHT[unit.position.row] ?? 140;
+      const h = BASE_HEIGHT;
       const isActive = unit === active;
 
       // Глубина: передний ряд (row=0) поверх заднего (row=1)
@@ -177,13 +178,15 @@ export class BattleScene extends Phaser.Scene {
       });
 
       // Индивидуальные коэффициенты масштаба спрайтов
+      // Пропорции: база=160px (знахарка/арбалетчик — эталон)
+      // Женщины: 0.90 / Герой: чуть выше знахарки / Боец: крупнее героя
       const SPRITE_SCALE = {
-        hero_duelist:      0.78, // герой немного меньше
-        companion_brawler: 1.05, // боец чуть больше
-        companion_healer:  0.90,
-        bandit_commander:  0.92,
-        bandit_brawler:    1.00,
-        bandit_archer:     0.88,
+        companion_healer:  0.90, // женщина — эталон
+        bandit_archer:     0.88, // женщина — чуть меньше
+        hero_duelist:      0.97, // чуть выше знахарки
+        bandit_commander:  0.97, // как герой
+        bandit_brawler:    1.06, // крупнее, но не гигант
+        companion_brawler: 1.09, // самый крупный из игроков
       };
 
       // Спрайт или прямоугольник
