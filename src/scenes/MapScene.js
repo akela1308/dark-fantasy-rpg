@@ -1202,7 +1202,7 @@ export class MapScene extends Phaser.Scene {
     const PW = 1050 / zoom, PH = 640 / zoom;     // размер панели в мировых единицах
     const PX = (W - PW) / 2;
     const PY = (H - PH) / 2 - 20 / zoom;
-    const DEPTH = 200;
+    const DEPTH = 10000; // выше всего — портреты HUD=9000, боттом-бар=55
 
     // Затемнение фона
     const overlay = this.add.rectangle(W/2, H/2, W, H, 0x000000, 0.78)
