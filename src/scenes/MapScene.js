@@ -1480,7 +1480,7 @@ export class MapScene extends Phaser.Scene {
       ['Уровень',  `${ch.lvl}`],
       ['HP',       `${ch.hp} / ${ch.maxHp}`],
       ['Урон',     ch.dmg],
-      ['Скорость', `${ch.spd}`],
+      ['Инициатива', `${ch.spd}`],
     ];
     add(this.add.text(rx, ry - s(14), 'ХАРАКТЕРИСТИКИ', {
       fontSize: `${s(14)}px`, color: '#d4a832', fontFamily: 'serif', letterSpacing: 2

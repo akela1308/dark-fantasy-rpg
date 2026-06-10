@@ -602,23 +602,28 @@ export class BattleScene extends Phaser.Scene {
       fontSize: '13px', color: '#888888', fontFamily: 'serif',
     }).setOrigin(0.5).setDepth(92).setScrollFactor(0));
 
-    // Бонусы
-    const bonuses = [
-      {
-        key: 'hp',
-        label: 'Закалённость',
-        desc: '+20 к максимальному HP',
-      },
-      {
-        key: 'damage',
-        label: 'Мастерство',
-        desc: '+3 к урону',
-      },
-      {
-        key: 'speed',
-        label: 'Быстрота',
-        desc: '+1 к скорости',
-      },
+    // Классовые бонусы — уникальные для каждого персонажа
+    const CLASS_BONUSES = {
+      hero_duelist: [
+        { key: 'damage',    label: 'Мастерство',  desc: '+3 к урону' },
+        { key: 'speed',     label: 'Инициатива',  desc: '+1 к инициативе' },
+        { key: 'commander', label: '⚔ Командир',  desc: 'Открывает 4-й слот в отряде' },
+      ],
+      companion_brawler: [
+        { key: 'hp',        label: 'Закалённость', desc: '+25 к максимальному HP' },
+        { key: 'armor',     label: 'Стойкость',    desc: '+5% к броне' },
+        { key: 'berserk',   label: 'Берсерк',      desc: '+5 к максимальному урону' },
+      ],
+      companion_healer: [
+        { key: 'hp',        label: 'Выносливость',  desc: '+20 к максимальному HP' },
+        { key: 'armor',     label: 'Оберег',        desc: '+3% к броне' },
+        { key: 'cooldown',  label: 'Концентрация',  desc: '-1 к откату всех навыков' },
+      ],
+    };
+    const bonuses = CLASS_BONUSES[unit.id] || [
+      { key: 'hp',     label: 'Закалённость', desc: '+20 к максимальному HP' },
+      { key: 'damage', label: 'Мастерство',   desc: '+3 к урону' },
+      { key: 'speed',  label: 'Инициатива',   desc: '+1 к инициативе' },
     ];
 
     const cleanup = () => elements.forEach(e => { try { e.destroy(); } catch (_) {} });
@@ -658,28 +663,36 @@ export class BattleScene extends Phaser.Scene {
         lbl.setColor('#d4a832');
       });
       btn.on('pointerdown', () => {
-        // Применяем бонус напрямую, вызываем levelUp с key
+        unit.level++;
+        unit.xp = 0;
         if (bonus.key === 'hp') {
-          unit.maxHp += 20;
-          unit.hp = Math.min(unit.hp + 20, unit.maxHp);
-          unit.level++;
-          unit.xp = 0;
-          eventBus.emit('log', `${unit.name}: +20 к максимальному HP`);
-          eventBus.emit('level_up', { unit, choice: 'hp' });
+          const gain = unit.id === 'companion_brawler' ? 25 : 20;
+          unit.maxHp += gain;
+          unit.hp = Math.min(unit.hp + gain, unit.maxHp);
+          eventBus.emit('log', `${unit.name}: +${gain} к максимальному HP`);
         } else if (bonus.key === 'damage') {
           const dmg = unit.damage || { min: 10, max: 16 };
           unit.damage = { min: dmg.min + 3, max: dmg.max + 3 };
-          unit.level++;
-          unit.xp = 0;
           eventBus.emit('log', `${unit.name}: +3 к урону`);
-          eventBus.emit('level_up', { unit, choice: 'damage' });
         } else if (bonus.key === 'speed') {
           unit.speed = (unit.speed || 5) + 1;
-          unit.level++;
-          unit.xp = 0;
-          eventBus.emit('log', `${unit.name}: +1 к скорости`);
-          eventBus.emit('level_up', { unit, choice: 'speed' });
+          eventBus.emit('log', `${unit.name}: +1 к инициативе`);
+        } else if (bonus.key === 'armor') {
+          const gain = unit.id === 'companion_healer' ? 3 : 5;
+          unit.armor = Math.min(90, (unit.armor || 0) + gain);
+          eventBus.emit('log', `${unit.name}: +${gain}% к броне`);
+        } else if (bonus.key === 'berserk') {
+          unit.damage = { min: unit.damage.min, max: unit.damage.max + 5 };
+          eventBus.emit('log', `${unit.name}: +5 к максимальному урону`);
+        } else if (bonus.key === 'cooldown') {
+          // Снижаем максимальный откат всех скиллов на 1
+          unit._cdReduction = (unit._cdReduction || 0) + 1;
+          eventBus.emit('log', `${unit.name}: откаты навыков -1`);
+        } else if (bonus.key === 'commander') {
+          this.game.registry.set('commander_unlocked', true);
+          eventBus.emit('log', `${unit.name}: открыт слот Командира — отряд расширен!`);
         }
+        eventBus.emit('level_up', { unit, choice: bonus.key });
         cleanup();
         if (remaining.length > 0) {
           this._showLevelUpScreen(remaining, onComplete);

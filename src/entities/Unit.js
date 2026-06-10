@@ -129,7 +129,9 @@ export class Unit {
   }
 
   setCooldown(skillId, turns) {
-    this.cooldowns[skillId] = turns;
+    // Учитываем бонус Концентрации знахарки
+    const reduced = Math.max(1, turns - (this._cdReduction || 0));
+    this.cooldowns[skillId] = reduced;
   }
 
   // --- Эффекты ---
