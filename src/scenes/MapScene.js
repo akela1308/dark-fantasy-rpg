@@ -279,13 +279,20 @@ const MAP_CONFIGS = {
       from_tavern:  { x: 1600, y: 800 },   // приход с tavern_map — правый нижний угол
     },
     exits: [
-      { zone: { x: 0, y: 750, w: 320, h: 191 }, toMap: 'tavern_map', spawnId: 'from_road_boloto' },
+      { zone: { x: 0,    y: 750, w: 320, h: 191 }, toMap: 'tavern_map', spawnId: 'from_road_boloto' },
+      { zone: { x: 1550, y: 700, w: 122, h: 250 }, toMap: 'tavern_map', spawnId: 'from_road_boloto' },
     ],
     labels: [
       {
         hoverZone: { x: 0, y: 750, w: 320, h: 191 },
         text: '← Деревня',
         screenX: 183,
+        screenY: 875,
+      },
+      {
+        hoverZone: { x: 1550, y: 700, w: 122, h: 250 },
+        text: '→ Деревня',
+        screenX: 1200,
         screenY: 875,
       },
     ],
