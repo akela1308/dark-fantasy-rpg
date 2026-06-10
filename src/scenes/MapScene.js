@@ -81,7 +81,7 @@ const MAP_CONFIGS = {
     bandits: false,
     npcs: [
       {
-        x: 770, y: 480,
+        x: 770, y: 440,
         spriteKey:   'map_dog',
         portraitKey: 'portrait_dog',
         name:        'Пёс',
@@ -94,7 +94,7 @@ const MAP_CONFIGS = {
         ],
       },
       {
-        x: 1200, y: 600,
+        x: 1200, y: 560,
         spriteKey:   'map_drunkman',
         portraitKey: 'portrait_drunkman',
         name:        'Пьяница',
@@ -859,16 +859,16 @@ export class MapScene extends Phaser.Scene {
       if (npc.sway) {
         this.tweens.add({
           targets: sprite,
-          angle:   { from: -4, to: 4 },
-          duration: 1600,
+          angle:   { from: -2, to: 2 },
+          duration: 2000,
           yoyo:    true,
           repeat:  -1,
           ease:    'Sine.easeInOut',
         });
         this.tweens.add({
           targets:  sprite,
-          x:        { from: npc.x - 5, to: npc.x + 5 },
-          duration: 2200,
+          x:        { from: npc.x - 3, to: npc.x + 3 },
+          duration: 2600,
           yoyo:     true,
           repeat:   -1,
           ease:     'Sine.easeInOut',
