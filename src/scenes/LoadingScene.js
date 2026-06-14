@@ -120,6 +120,7 @@ export class LoadingScene extends Phaser.Scene {
     img('map_bandit_warrior', 'maps/characters/bandit_warrior.png');
     img('map_bandit_archer',  'maps/characters/bandit_archer_map.png');
     img('map_cleaning_girl', 'maps/characters/cleaning_girl.png');
+    img('map_dwarf_beer',    'maps/characters/dwarf_beer.png');
     img('map_companion_brawler', 'maps/characters/companion_brawler.png');
     img('map_companion_healer',  'maps/characters/companion_healer.png');
 
@@ -135,6 +136,7 @@ export class LoadingScene extends Phaser.Scene {
     img('portrait_bandit_warrior','portraits/bandit_warrior.png');
     img('portrait_bandit_archer', 'portraits/bandit_archer_map.png');
     img('portrait_cleaning_girl','portraits/cleaning_girl.png');
+    img('portrait_dwarf_beer',   'portraits/dwarf_beer.png');
     img('portrait_companion_brawler', 'portraits/companion_brawler.png');
     img('portrait_companion_healer',  'portraits/companion_healer.png');
 

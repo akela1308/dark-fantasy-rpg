@@ -5,6 +5,7 @@ import { DialoguePanel } from '../ui/DialoguePanel.js';
 import eventBus           from '../utils/eventBus.js';
 
 import MAP_CONFIGS from '../data/maps.json';
+import { SaveSystem } from '../utils/SaveSystem.js';
 
 // ─────────────────────────────────────────────────────────────────────────────
 export class MapScene extends Phaser.Scene {
@@ -20,6 +21,9 @@ export class MapScene extends Phaser.Scene {
   create() {
     this.game.canvas.style.outline = 'none';
     this.game.canvas.style.webkitTapHighlightColor = 'rgba(0,0,0,0)';
+
+    // Восстановить флаги реестра из сохранения (NPC-исчезновения, бандиты и т.д.)
+    SaveSystem.applyFlagsToRegistry(this.game.registry);
 
     this._transitioning = false;
     this._exitCooldown  = 2200;  // мс после спавна — выходы не срабатывают
@@ -864,6 +868,8 @@ export class MapScene extends Phaser.Scene {
     this.hero.stopMove();
     this.brawler.stopMove();
     this.healer.stopMove();
+    // Обновить позицию в сохранении при переходе между картами
+    SaveSystem.updatePosition(mapKey, spawnId);
     this.cameras.main.fade(600, 0, 0, 0, false, (cam, progress) => {
       if (progress === 1) {
         this.scene.start('LoadingScene', {

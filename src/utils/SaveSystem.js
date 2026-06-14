@@ -1,0 +1,111 @@
+// ─────────────────────────────────────────────────────────────────────────────
+//  ЖЕЛЕЗНЫЙ РЕЖИМ — одно сохранение, смерть = начало заново
+// ─────────────────────────────────────────────────────────────────────────────
+
+const SAVE_KEY = 'darkfantasy_ironman_v1';
+
+// Все флаги реестра, которые нужно сохранять
+const REGISTRY_FLAGS = [
+  'bandit_0_defeated',
+  'commander_unlocked',
+  'drunkman_talked',
+];
+
+export const SaveSystem = {
+
+  // Полное сохранение после боя
+  save(playerUnits, mapKey, spawnId, registry) {
+    try {
+      const state = {
+        units: playerUnits.map(u => ({
+          id:        u.id,
+          hp:        u.hp,
+          maxHp:     u.maxHp,
+          damage:    { ...u.damage },
+          armor:     u.armor,
+          xp:        u.xp,
+          level:     u.level,
+          resources: { ...u.resources },
+        })),
+        mapKey,
+        spawnId,
+        flags: Object.fromEntries(
+          REGISTRY_FLAGS
+            .filter(k => registry.get(k))
+            .map(k => [k, registry.get(k)])
+        ),
+        savedAt: Date.now(),
+      };
+      localStorage.setItem(SAVE_KEY, JSON.stringify(state));
+      return true;
+    } catch (e) {
+      console.warn('[SaveSystem] Не удалось сохранить:', e);
+      return false;
+    }
+  },
+
+  // Обновить только позицию на карте (без перезаписи юнитов)
+  updatePosition(mapKey, spawnId) {
+    try {
+      const save = this.load();
+      if (!save) return;
+      save.mapKey  = mapKey;
+      save.spawnId = spawnId;
+      localStorage.setItem(SAVE_KEY, JSON.stringify(save));
+    } catch (e) {
+      console.warn('[SaveSystem] Не удалось обновить позицию:', e);
+    }
+  },
+
+  // Загрузить сохранение (null если нет)
+  load() {
+    try {
+      const raw = localStorage.getItem(SAVE_KEY);
+      return raw ? JSON.parse(raw) : null;
+    } catch (e) {
+      console.warn('[SaveSystem] Не удалось загрузить:', e);
+      return null;
+    }
+  },
+
+  // Удалить сохранение (при смерти — всё начинается заново)
+  deleteSave() {
+    try {
+      localStorage.removeItem(SAVE_KEY);
+    } catch (e) {
+      console.warn('[SaveSystem] Не удалось удалить:', e);
+    }
+  },
+
+  hasSave() {
+    try {
+      return localStorage.getItem(SAVE_KEY) !== null;
+    } catch (e) {
+      return false;
+    }
+  },
+
+  // Восстановить флаги реестра из сохранения
+  applyFlagsToRegistry(registry) {
+    const save = this.load();
+    if (!save) return;
+    Object.entries(save.flags || {}).forEach(([k, v]) => registry.set(k, v));
+  },
+
+  // Применить сохранённые статы к массиву PlayerUnit
+  applyToUnits(playerUnits) {
+    const save = this.load();
+    if (!save) return;
+    playerUnits.forEach(u => {
+      const s = save.units.find(sv => sv.id === u.id);
+      if (!s) return;
+      u.hp        = s.hp;
+      u.maxHp     = s.maxHp;
+      u.damage    = { ...s.damage };
+      u.armor     = s.armor;
+      u.xp        = s.xp;
+      u.level     = s.level;
+      u.resources = { ...u.resources, ...s.resources };
+    });
+  },
+};

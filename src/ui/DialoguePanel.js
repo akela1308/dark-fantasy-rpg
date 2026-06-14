@@ -64,29 +64,35 @@ export class DialoguePanel {
     }
 
     // ── Текстовая зона — внутри рамки, с отступом ─────────────────────
-    const innerPad_s = 28;
+    const innerPad_s = 22;
     const textL_s    = frameL_s + innerPad_s;
     const textR_s    = frameR_s - innerPad_s;
     const textW_s    = textR_s - textL_s;
 
     // Верхняя часть рамки (~22%) занята орнаментом черепа → текст ниже
-    const textY_s = barTop_s + Math.round(frameH_s * 0.22); // 440 + 62 = 502
+    const textY_s = barTop_s + Math.round(frameH_s * 0.22);
 
     const speech = scene.add.text(s(textL_s), s(textY_s), cfg.text || '', {
       fontFamily:      'serif',
-      fontSize:        `${Math.round(16 / zoom)}px`,
+      fontSize:        `${Math.round(15 / zoom)}px`,
       color:           '#E8E2D4',
-      wordWrap:        { width: s(textW_s) },
-      lineSpacing:     s(4),
+      wordWrap:        { width: s(textW_s), useAdvancedWrap: true },
+      lineSpacing:     s(3),
       stroke:          '#000000',
       strokeThickness: 1,
     }).setDepth(955).setScrollFactor(0);
     this._add(speech);
 
-    // ── Разделитель ────────────────────────────────────────────────────
-    const sepY_s = barTop_s + Math.round(frameH_s * 0.55); // 440 + 154 = 594
+    // ── Разделитель — динамически ПОСЛЕ текста, не на фиксированной высоте ──
+    const textBottom  = speech.getBounds().bottom;           // мировые px
+    const sepGap      = s(10);
+    const frameBottom = s(barTop_s + frameH_s);
+    // Сепаратор не ниже 58% рамки (чтобы оставить место для вариантов)
+    const sepYMax     = s(barTop_s + Math.round(frameH_s * 0.58));
+    const sepY_world  = Math.min(textBottom + sepGap, sepYMax);
+
     const sep = scene.add.rectangle(
-      s(frameCX_s), s(sepY_s), s(textW_s), s(1), 0x8a7030, 0.5
+      s(frameCX_s), sepY_world, s(textW_s), s(1), 0x8a7030, 0.5
     ).setDepth(954).setScrollFactor(0);
     this._add(sep);
 
@@ -94,19 +100,24 @@ export class DialoguePanel {
     const styleColor = { default: '#C9A84C', attack: '#E05050', threat: '#E08030', retreat: '#888888' };
     const styleHover = { default: '#FFD700', attack: '#FF8080', threat: '#FFB060', retreat: '#BBBBBB' };
 
-    const choiceStartY_s = sepY_s + 14;
-    const choiceGapY_s   = 28;
+    const numChoices    = (cfg.choices || []).length;
+    // Доступная высота под варианты (до нижнего края рамки минус отступ)
+    const availH_world  = frameBottom - sepY_world - s(8);
+    const choiceGapY    = numChoices > 0
+      ? Math.min(s(27), availH_world / numChoices)
+      : s(27);
+    const choiceStartY  = sepY_world + s(11);
 
     (cfg.choices || []).forEach((ch, i) => {
       const color = styleColor[ch.style || 'default'] || styleColor.default;
       const hover = styleHover[ch.style || 'default'] || styleHover.default;
       const btn = scene.add.text(
         s(textL_s),
-        s(choiceStartY_s + i * choiceGapY_s),
+        choiceStartY + i * choiceGapY,
         `${i + 1}. ${ch.label}`,
         {
           fontFamily:      'serif',
-          fontSize:        `${Math.round(15 / zoom)}px`,
+          fontSize:        `${Math.round(14 / zoom)}px`,
           color,
           stroke:          '#000',
           strokeThickness: 2,

@@ -12,6 +12,7 @@ import eventBus from '../utils/eventBus.js';
 import unitsData   from '../data/units.json';
 import enemiesData from '../data/enemies.json';
 import skillsData  from '../data/skills.json';
+import { SaveSystem } from '../utils/SaveSystem.js';
 
 const SPRITE_IDS = [
   'hero_duelist',
@@ -72,6 +73,7 @@ export class BattleScene extends Phaser.Scene {
     this._bindEvents();
     this.input.keyboard.on('keydown-B', () => this._toggleBattleGrid());
     this.input.keyboard.on('keydown-G', () => this._toggleBattleCoordGrid());
+    this.input.keyboard.on('keydown-H', () => this._toggleFineGrid());
     this.turnManager.init([...this.playerUnits, ...this.enemyUnits]);
     this._renderAll();
     // Инициализируем плеер здесь (ассеты уже в кэше после LoadingScene)
@@ -93,6 +95,7 @@ export class BattleScene extends Phaser.Scene {
 
   _initUnits() {
     this.playerUnits = unitsData.map(d => new PlayerUnit(d));
+    SaveSystem.applyToUnits(this.playerUnits);   // восстановить HP/XP/level из сохранения
     this.enemyUnits  = enemiesData.map(d => new EnemyUnit(d));
     this.grid.placeAll([...this.playerUnits, ...this.enemyUnits]);
   }
@@ -189,7 +192,7 @@ export class BattleScene extends Phaser.Scene {
         companion_healer:  0.90, // женщина — эталон
         bandit_archer:     0.88, // женщина — чуть меньше
         hero_duelist:      0.97, // чуть выше знахарки
-        bandit_commander:  0.97, // как герой
+        bandit_commander:  0.97, // командир — обычный размер
         bandit_brawler:    1.06, // крупнее, но не гигант
         companion_brawler: 1.09, // самый крупный из игроков
       };
@@ -200,9 +203,8 @@ export class BattleScene extends Phaser.Scene {
 
       if (hasSprite) {
         sprite = this.add.image(x, y, unit.id).setOrigin(0.5, 1).setDepth(rowDepth);
-        const boss = unit.isBoss;
         const unitScale = SPRITE_SCALE[unit.id] ?? 1;
-        const targetH = (boss ? h * 1.45 : h) * unitScale;
+        const targetH = h * unitScale;  // isBoss не влияет на визуальный размер
         const ratio = sprite.width / sprite.height;
         sprite.setDisplaySize(targetH * ratio, targetH);
         // Враги смотрят влево, дуэлянт смотрит вправо (лицом к врагам)
@@ -522,7 +524,7 @@ export class BattleScene extends Phaser.Scene {
     const { width, height } = this.scale;
     this.add.rectangle(width/2, height/2, width, height, 0x000000, 0.75);
 
-    const title = result === 'victory' ? 'ПОБЕДА' : 'ПОРАЖЕНИЕ';
+    const title = result === 'victory' ? 'ПОБЕДА' : 'ВЫ ПАЛИ';
     const color = result === 'victory' ? '#C9A84C' : '#CC2222';
 
     const t = this.add.text(width/2, height/2 - 80, title, {
@@ -538,35 +540,51 @@ export class BattleScene extends Phaser.Scene {
         fontFamily: 'serif', fontSize: '26px', color: '#E8E8E8',
       }).setOrigin(0.5);
       this.game.registry.set('bandit_0_defeated', true);
+
+      // ── ЖЕЛЕЗНЫЙ РЕЖИМ: сохраняем после победы ──────────────────────
+      SaveSystem.save(
+        this.playerUnits,
+        this._fromMapKey,
+        this._fromSpawnId,
+        this.game.registry
+      );
     }
 
     const showButtons = () => {
-      const btn = this.add.text(width/2, height/2 + 80, '[ Попробовать снова ]', {
-        fontFamily: 'serif', fontSize: '26px', color: '#AAAAAA',
-      }).setOrigin(0.5).setInteractive({ useHandCursor: true });
-      btn.on('pointerover', () => btn.setColor('#FFFFFF'));
-      btn.on('pointerout',  () => btn.setColor('#AAAAAA'));
-      btn.on('pointerdown', () => {
-        eventBus.clear();
-        // Восстанавливаем HP до 30% максимума перед возвратом на карту
-        this.playerUnits.forEach(u => {
-          u.hp = Math.max(1, Math.floor(u.maxHp * 0.3));
-        });
-        this.scene.start('LoadingScene', {
-          destination: 'MapScene',
-          destinationData: { mapKey: this._fromMapKey, spawnId: this._fromSpawnId },
-        });
-      });
-
       if (result === 'victory') {
-        const btnMap = this.add.text(width/2, height/2 + 125, '[ На карту ]', {
+        // Кнопка возврата на карту
+        const btnMap = this.add.text(width/2, height/2 + 80, '[ На карту ]', {
           fontFamily: 'serif', fontSize: '26px', color: '#C9A84C',
         }).setOrigin(0.5).setInteractive({ useHandCursor: true });
         btnMap.on('pointerover', () => btnMap.setColor('#FFD700'));
         btnMap.on('pointerout',  () => btnMap.setColor('#C9A84C'));
         btnMap.on('pointerdown', () => {
           eventBus.clear();
-          this.scene.start('LoadingScene', { destination: 'MapScene', destinationData: { mapKey: 'forest1', spawnId: 'from_left' } });
+          this.scene.start('LoadingScene', {
+            destination: 'MapScene',
+            destinationData: { mapKey: this._fromMapKey, spawnId: this._fromSpawnId },
+          });
+        });
+      } else {
+        // ── ЖЕЛЕЗНЫЙ РЕЖИМ: поражение = удаление сохранения ─────────────
+        SaveSystem.deleteSave();
+
+        this.add.text(width/2, height/2, 'Сохранение уничтожено.\nВсё начинается заново.', {
+          fontFamily: 'serif', fontSize: '22px', color: '#888888',
+          align: 'center', lineSpacing: 8,
+        }).setOrigin(0.5);
+
+        const btnRestart = this.add.text(width/2, height/2 + 100, '[ Начать заново ]', {
+          fontFamily: 'serif', fontSize: '26px', color: '#CC4444',
+        }).setOrigin(0.5).setInteractive({ useHandCursor: true });
+        btnRestart.on('pointerover', () => btnRestart.setColor('#FF6666'));
+        btnRestart.on('pointerout',  () => btnRestart.setColor('#CC4444'));
+        btnRestart.on('pointerdown', () => {
+          eventBus.clear();
+          this.scene.start('LoadingScene', {
+            destination: 'BootScene',
+            destinationData: {},
+          });
         });
       }
     };
@@ -578,10 +596,10 @@ export class BattleScene extends Phaser.Scene {
           this._showLevelUpScreen(leveledUp, showButtons);
         });
       } else {
-        showButtons();
+        this.time.delayedCall(800, showButtons);
       }
     } else {
-      showButtons();
+      this.time.delayedCall(1200, showButtons);
     }
   }
 
@@ -753,6 +771,38 @@ export class BattleScene extends Phaser.Scene {
   }
 
   // ── EventBus ──────────────────────────────────────────────────────────
+
+  _toggleFineGrid() {
+    if (this._fineGrid) {
+      this._fineGrid.forEach(o => { try { o.destroy(); } catch {} });
+      this._fineGrid = null;
+      return;
+    }
+    this._fineGrid = [];
+    const W = 1280, H = 720, STEP = 25;
+    const gfx = this.add.graphics().setDepth(997).setScrollFactor(0);
+    // Мелкие линии — очень прозрачные
+    gfx.lineStyle(1, 0x00FF88, 0.10);
+    for (let x = 0; x <= W; x += STEP) gfx.lineBetween(x, 0, x, H);
+    for (let y = 0; y <= H; y += STEP) gfx.lineBetween(0, y, W, y);
+    // Каждые 100px — ярче и с подписью
+    gfx.lineStyle(1, 0x00FF88, 0.30);
+    for (let x = 0; x <= W; x += 100) {
+      gfx.lineBetween(x, 0, x, H);
+      const lbl = this.add.text(x + 2, 2, `${x}`, {
+        fontSize: '9px', color: '#00FF88', fontFamily: 'monospace',
+      }).setDepth(998).setScrollFactor(0);
+      this._fineGrid.push(lbl);
+    }
+    for (let y = 0; y <= H; y += 100) {
+      gfx.lineBetween(0, y, W, y);
+      const lbl = this.add.text(2, y + 2, `${y}`, {
+        fontSize: '9px', color: '#00FF88', fontFamily: 'monospace',
+      }).setDepth(998).setScrollFactor(0);
+      this._fineGrid.push(lbl);
+    }
+    this._fineGrid.push(gfx);
+  }
 
   _toggleBattleCoordGrid() {
     if (this._coordGrid) {
