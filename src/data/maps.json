@@ -450,8 +450,8 @@
         ]
       },
       {
-        "x": 300,
-        "y": 780,
+        "x": 430,
+        "y": 730,
         "spriteKey": "map_cleaning_girl",
         "portraitKey": "portrait_cleaning_girl",
         "name": "Уборщица",
@@ -502,7 +502,7 @@
         "spriteKey": "map_dwarf_beer",
         "portraitKey": "portrait_dwarf_beer",
         "name": "Дварф",
-        "height": 140,
+        "height": 200,
         "sway": false,
         "hoverPortrait": true,
         "dialogues": [
