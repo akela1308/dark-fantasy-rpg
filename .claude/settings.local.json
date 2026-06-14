@@ -34,7 +34,14 @@
       "Bash(cp public/ui/dialog_frame.png /tmp/git-stash-files/)",
       "Bash(cp src/ui/DialoguePanel.js /tmp/git-stash-files/)",
       "Bash(cp /tmp/git-stash-files/tavernman.png public/maps/characters/)",
-      "Bash(cp /tmp/git-stash-files/tavernman.png public/portraits/)"
+      "Bash(cp /tmp/git-stash-files/tavernman.png public/portraits/)",
+      "Bash(python3 -c ' *)",
+      "Bash(python3 -)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5174/)",
+      "Bash(curl *)",
+      "Bash(screencapture -x /tmp/game_check.png)",
+      "Bash(screencapture -x /tmp/game_map.png)",
+      "Bash(screencapture -x /tmp/game_fixed.png)"
     ]
   }
 }
