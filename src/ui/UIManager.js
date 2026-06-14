@@ -27,7 +27,7 @@ export class UIManager {
   // ── Лог событий ───────────────────────────────────────────────────────
 
   _createLogPanel() {
-    const x = 20, y = 540, w = 600, h = 160;
+    const x = 660, y = 540, w = 600, h = 160;  // лог — справа
     this._logBg = this.scene.add.rectangle(x + w/2, y + h/2, w, h, 0x07060a, 0.9)
       .setStrokeStyle(1, 0x3a3020, 0.6).setDepth(3);
     this.scene.add.text(x + 10, y + 6, 'ЛОГ БОЯ', { fontSize: '11px', color: '#555577', fontFamily: 'serif' }).setDepth(3);
@@ -65,7 +65,7 @@ export class UIManager {
   // ── Панель действий ───────────────────────────────────────────────────
 
   _createActionPanel() {
-    const x = 660, y = 540, w = 600, h = 160;
+    const x = 20, y = 540, w = 600, h = 160;  // скиллы — слева
     this.scene.add.rectangle(x + w/2, y + h/2, w, h, 0x07060a, 0.9)
       .setStrokeStyle(1, 0x3a3020, 0.6).setDepth(3);
 
@@ -124,11 +124,11 @@ export class UIManager {
       buttons.push({ skillId: 'pistol_shot', label: 'Пистолет', icon: 'icon_pistol', sub: `×${unit.resources.pistol_charges}`, tint: null, cb: () => eventBus.emit('skill_selected', 'pistol_shot') });
     }
 
-    // Горизонтальный ряд иконок
+    // Горизонтальный ряд иконок — центр левой панели (x=20+300=320)
     const btnSize = 64;
     const gap     = 12;
     const totalW  = buttons.length * (btnSize + gap) - gap;
-    const startX  = 960 - totalW / 2;
+    const startX  = 320 - totalW / 2;
     const btnY    = 610;
 
     buttons.forEach((b, i) => {
@@ -136,9 +136,9 @@ export class UIManager {
       this._addIconBtn(bx, btnY, b.label, b.icon, b.sub, b.tint, b.cb, b.desc);
     });
 
-    // Кнопка Защита (Disciples II: defend = ~50% урона)
+    // Кнопка Защита — правый край левой панели (x=610)
     const isDefending = unit.effects.some(e => e.type === 'defending');
-    const defend = this.scene.add.text(1230, 568, isDefending ? '🛡 Защита ✓' : '🛡 Защита', {
+    const defend = this.scene.add.text(610, 568, isDefending ? '🛡 Защита ✓' : '🛡 Защита', {
       fontSize: '13px', color: isDefending ? '#44FF88' : '#8899AA', fontFamily: 'serif',
     }).setOrigin(1, 0).setInteractive({ useHandCursor: true }).setDepth(3);
     defend.on('pointerover', () => defend.setAlpha(0.7));
@@ -146,8 +146,8 @@ export class UIManager {
     defend.on('pointerdown', () => eventBus.emit('defend_action'));
     this._actionBtns.push(defend);
 
-    // Кнопка Пропустить — текстовая справа
-    const skip = this.scene.add.text(1230, 548, 'Пропустить', {
+    // Кнопка Пропустить — правый край левой панели
+    const skip = this.scene.add.text(610, 548, 'Пропустить', {
       fontSize: '13px', color: '#666666', fontFamily: 'serif',
     }).setOrigin(1, 0).setInteractive({ useHandCursor: true }).setDepth(3);
     skip.on('pointerover', () => skip.setColor('#AAAAAA'));
@@ -155,8 +155,8 @@ export class UIManager {
     skip.on('pointerdown', () => eventBus.emit('skip_turn'));
     this._actionBtns.push(skip);
 
-    // Подсказка
-    const hint = this.scene.add.text(670, 548, 'Кликни по врагу для атаки:', {
+    // Подсказка — левый край левой панели
+    const hint = this.scene.add.text(30, 548, 'Кликни по врагу для атаки:', {
       fontSize: '12px', color: '#555577', fontFamily: 'serif'
     }).setDepth(3);
     this._actionBtns.push(hint);
