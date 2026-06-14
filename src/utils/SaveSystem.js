@@ -89,8 +89,11 @@ export const SaveSystem = {
   // Восстановить флаги реестра из сохранения
   applyFlagsToRegistry(registry) {
     const save = this.load();
-    if (!save) return;
-    registry.set('playerGold', save.gold ?? 0);
+    if (!save) {
+      registry.set('playerGold', 7); // стартовое золото для новой игры
+      return;
+    }
+    registry.set('playerGold', save.gold ?? 7);
     Object.entries(save.flags || {}).forEach(([k, v]) => registry.set(k, v));
   },
 

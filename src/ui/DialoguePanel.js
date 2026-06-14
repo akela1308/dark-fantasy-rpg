@@ -47,7 +47,7 @@ export class DialoguePanel {
     if (scene.textures.exists('dialog_frame')) {
       const frame = scene.add.image(s(frameCX_s), s(barCY_s), 'dialog_frame')
         .setDisplaySize(s(frameW_s), s(frameH_s))
-        .setDepth(951).setScrollFactor(0);
+        .setDepth(9500).setScrollFactor(0);
       this._add(frame);
     }
 
@@ -81,7 +81,7 @@ export class DialoguePanel {
       lineSpacing:     s(3),
       stroke:          '#000000',
       strokeThickness: 1,
-    }).setDepth(955).setScrollFactor(0);
+    }).setDepth(9504).setScrollFactor(0);
     this._add(speech);
 
     // ── Разделитель — динамически ПОСЛЕ текста, не на фиксированной высоте ──
@@ -94,7 +94,7 @@ export class DialoguePanel {
 
     const sep = scene.add.rectangle(
       s(frameCX_s), sepY_world, s(textW_s), s(1), 0x8a7030, 0.5
-    ).setDepth(954).setScrollFactor(0);
+    ).setDepth(9503).setScrollFactor(0);
     this._add(sep);
 
     // ── Варианты ответа ────────────────────────────────────────────────
@@ -123,7 +123,7 @@ export class DialoguePanel {
           stroke:          '#000',
           strokeThickness: 2,
         }
-      ).setDepth(956).setScrollFactor(0)
+      ).setDepth(9505).setScrollFactor(0)
         .setInteractive({ useHandCursor: true });
 
       btn.on('pointerover',  () => btn.setColor(hover));
@@ -140,7 +140,7 @@ export class DialoguePanel {
   }
 
   _drawPortrait(scene, x, y, w, h, key, name, portH) {
-    const img = scene.add.image(x, y, key).setDepth(953).setScrollFactor(0);
+    const img = scene.add.image(x, y, key).setDepth(9502).setScrollFactor(0);
     img.setScale(Math.min(w / img.width, h / img.height));
     this._add(img);
 
@@ -152,7 +152,7 @@ export class DialoguePanel {
         color:           '#BB5555',
         stroke:          '#000',
         strokeThickness: 2,
-      }).setOrigin(0.5, 0).setDepth(956).setScrollFactor(0);
+      }).setOrigin(0.5, 0).setDepth(9505).setScrollFactor(0);
       this._add(label);
     }
   }

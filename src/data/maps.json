@@ -323,10 +323,10 @@
       {
         "key": "prop_table2_2",
         "x": 830,
-        "y": 800,
+        "y": 770,
         "originX": 0.5,
         "originY": 0.82,
-        "height": 200
+        "height": 300
       }
     ],
     "torches": [
