@@ -1122,7 +1122,7 @@ export class MapScene extends Phaser.Scene {
     const H = this.cameras.main.height / zoom;   // world units = canvas/zoom ≈ 941
     const BAR_H = 130;
     const BAR_Y = H - BAR_H / 2;
-    const DEPTH = 55;
+    const DEPTH = 8000; // выше любого NPC (depth = npc.y, макс ~941)
 
     // Изображение 1536×343 — сохраняем пропорции при высоте BAR_H
     const imgW = Math.round(BAR_H * (1536 / 343));
