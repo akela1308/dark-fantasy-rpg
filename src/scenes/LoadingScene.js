@@ -99,12 +99,24 @@ export class LoadingScene extends Phaser.Scene {
     img('map_brawler',   'maps/characters/brawler.png');
     img('map_healer',    'maps/characters/healer.png');
     img('map_bandit',    'maps/characters/bandit.png');
+
+    // Paper doll части: герои (upper = голова+торс, leg_l/leg_r = ноги)
+    const paperdollChars = ['hero', 'brawler', 'healer', 'companion_brawler', 'companion_healer'];
+    paperdollChars.forEach(name => {
+      const prefix = name.startsWith('companion_') ? name : name;
+      img(`map_${prefix}_upper`, `maps/characters/${prefix}_upper.png`);
+      img(`map_${prefix}_leg_l`, `maps/characters/${prefix}_leg_l.png`);
+      img(`map_${prefix}_leg_r`, `maps/characters/${prefix}_leg_r.png`);
+    });
     img('map_tavernman', 'maps/characters/tavernman.png');
     img('map_wanderer',  'maps/characters/map_wanderer.png');
     img('map_drunkman',       'maps/characters/drunkman.png');
     img('map_dog',            'maps/characters/dog.png');
     img('map_bandit_warrior', 'maps/characters/bandit_warrior.png');
     img('map_bandit_archer',  'maps/characters/bandit_archer_map.png');
+    img('map_cleaning_girl', 'maps/characters/cleaning_girl.png');
+    img('map_companion_brawler', 'maps/characters/companion_brawler.png');
+    img('map_companion_healer',  'maps/characters/companion_healer.png');
 
     // Пропсы (интерьерные объекты)
     img('prop_table3',   'sprites/table3.png');
@@ -117,6 +129,9 @@ export class LoadingScene extends Phaser.Scene {
     img('portrait_dog',           'portraits/dog.png');
     img('portrait_bandit_warrior','portraits/bandit_warrior.png');
     img('portrait_bandit_archer', 'portraits/bandit_archer_map.png');
+    img('portrait_cleaning_girl','portraits/cleaning_girl.png');
+    img('portrait_companion_brawler', 'portraits/companion_brawler.png');
+    img('portrait_companion_healer',  'portraits/companion_healer.png');
 
     // Туман
     img('fog',  'maps/fog.png');
