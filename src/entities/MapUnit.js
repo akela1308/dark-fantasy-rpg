@@ -13,6 +13,7 @@ export class MapUnit {
     this.moving           = false;
     this._idlePeriod      = config.idlePeriod    ?? 2800;
     this._walkThreshold   = config.walkThreshold ?? 10;
+    this._skirtWalk       = config.skirtWalk     ?? false;
     this._bobTween        = null;
     this._leanTween       = null;
     this._legLTween       = null;
@@ -22,8 +23,9 @@ export class MapUnit {
 
     const h = config.height ?? 72;
 
-    // Автодетект paper doll по наличию разрезанных текстур
-    if (scene.textures.exists(textureKey + '_upper')) {
+    // Автодетект paper doll по наличию разрезанных текстур.
+    // config.paperdoll = false явно отключает даже при наличии текстур.
+    if (config.paperdoll !== false && scene.textures.exists(textureKey + '_upper')) {
       this._paperdoll = true;
       this._setupPaperdoll(x, y, textureKey, h);
     } else {
@@ -173,6 +175,19 @@ export class MapUnit {
         repeat:   -1,
         ease:     'Sine.easeInOut',
       });
+    } else if (this._skirtWalk) {
+      // Знахарка/юбка: еле заметное покачивание тела + лёгкое расширение silhouette
+      // имитирует движение платья при ходьбе
+      const s = this._baseScale;
+      this._bobTween = this.scene.tweens.add({
+        targets:  this.sprite,
+        scaleX:   { from: s * 0.97, to: s * 1.03 },
+        angle:    { from: -1, to: 1 },
+        duration: 420,
+        yoyo:     true,
+        repeat:   -1,
+        ease:     'Sine.easeInOut',
+      });
     } else {
       // Legacy: покачивание всего тела
       this._bobTween = this.scene.tweens.add({
@@ -263,7 +278,7 @@ export class MapUnit {
       this._upper.setScale(s).setPosition(0, this._baseUpperY);
     } else {
       this.sprite.setAngle(0);
-      this.sprite.setScale(this._baseScale);
+      this.sprite.setScale(this._baseScale);  // сбрасывает и scaleX и scaleY
     }
   }
 

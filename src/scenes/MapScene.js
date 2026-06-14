@@ -429,9 +429,9 @@ export class MapScene extends Phaser.Scene {
 
     // Внутри таверны персонажи крупнее (интерьер ближе к камере)
     const s = this.mapKey === 'tavern_inside' ? 1.25 : 1;
-    this.hero    = new MapUnit(this, spawn.x,       spawn.y, 'map_hero',    { height: Math.round(130 * s), speed: 130, idlePeriod: 2800 });
+    this.hero    = new MapUnit(this, spawn.x,       spawn.y, 'map_hero',    { height: Math.round(130 * s), speed: 130, idlePeriod: 2800, paperdoll: false });
     this.brawler = new MapUnit(this, spawn.x - 65,  spawn.y, 'map_brawler', { height: Math.round(148 * s), speed: 130, idlePeriod: 3400, walkThreshold: 40 });
-    this.healer  = new MapUnit(this, spawn.x - 120, spawn.y, 'map_healer',  { height: Math.round(118 * s), speed: 130, idlePeriod: 2200, walkThreshold: 40 });
+    this.healer  = new MapUnit(this, spawn.x - 120, spawn.y, 'map_healer',  { height: Math.round(118 * s), speed: 130, idlePeriod: 2200, walkThreshold: 40, paperdoll: false, skirtWalk: true });
 
     this._heroTrail     = [];
     this._trailInterval = 0;
