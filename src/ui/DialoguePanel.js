@@ -25,18 +25,18 @@ export class DialoguePanel {
     const hasRight = !!(cfg.portraitRight && scene.textures.exists(cfg.portraitRight));
 
     // ── Размеры панели ─────────────────────────────────────────────────
-    const barH_s   = 280;
-    const barTop_s = SH - barH_s;      // 440
-    const barCY_s  = SH - barH_s / 2; // 580
+    const barH_s   = 310;
+    const barTop_s = SH - barH_s;      // 410
+    const barCY_s  = SH - barH_s / 2;  // 565
 
     // ── Рамка: пропорциональный масштаб (без растяжки) ────────────────
     // dialog_frame.png: 666×375, ratio = 1.776:1
     const FRAME_RATIO = 666 / 375;                           // 1.776
-    const frameH_s    = barH_s;                               // 280
-    const frameW_s    = Math.round(frameH_s * FRAME_RATIO);  // 497
+    const frameH_s    = barH_s;                               // 310
+    const frameW_s    = Math.round(frameH_s * FRAME_RATIO);  // 551
     const frameCX_s   = SW / 2;                              // 640 — по центру
-    const frameL_s    = Math.round(frameCX_s - frameW_s / 2); // 392
-    const frameR_s    = Math.round(frameCX_s + frameW_s / 2); // 889
+    const frameL_s    = Math.round(frameCX_s - frameW_s / 2); // 364
+    const frameR_s    = Math.round(frameCX_s + frameW_s / 2); // 915
 
     // ── Портреты: по краям экрана, независимо от рамки ────────────────
     const portW_s  = 185;
@@ -64,13 +64,14 @@ export class DialoguePanel {
     }
 
     // ── Текстовая зона — внутри рамки, с отступом ─────────────────────
-    const innerPad_s = 22;
+    // ~15% ширины рамки с каждой стороны = декоративные бордюры
+    const innerPad_s = 80;
     const textL_s    = frameL_s + innerPad_s;
     const textR_s    = frameR_s - innerPad_s;
-    const textW_s    = textR_s - textL_s;
+    const textW_s    = textR_s - textL_s;   // ~391px
 
-    // Верхняя часть рамки (~22%) занята орнаментом черепа → текст ниже
-    const textY_s = barTop_s + Math.round(frameH_s * 0.22);
+    // Верхняя часть рамки (~24%) занята орнаментом черепа → текст ниже
+    const textY_s = barTop_s + Math.round(frameH_s * 0.24);
 
     const speech = scene.add.text(s(textL_s), s(textY_s), cfg.text || '', {
       fontFamily:      'serif',
@@ -87,8 +88,8 @@ export class DialoguePanel {
     const textBottom  = speech.getBounds().bottom;           // мировые px
     const sepGap      = s(10);
     const frameBottom = s(barTop_s + frameH_s);
-    // Сепаратор не ниже 58% рамки (чтобы оставить место для вариантов)
-    const sepYMax     = s(barTop_s + Math.round(frameH_s * 0.58));
+    // Сепаратор не ниже 62% рамки (чтобы оставить место для вариантов)
+    const sepYMax     = s(barTop_s + Math.round(frameH_s * 0.62));
     const sepY_world  = Math.min(textBottom + sepGap, sepYMax);
 
     const sep = scene.add.rectangle(
