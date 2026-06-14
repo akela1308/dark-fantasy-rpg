@@ -28,9 +28,23 @@ export class UIManager {
 
   _createLogPanel() {
     const x = 20, y = 540, w = 600, h = 160;
-    this.scene.add.rectangle(x + w/2, y + h/2, w, h, 0x07060a, 0.9)
+    this._logBg = this.scene.add.rectangle(x + w/2, y + h/2, w, h, 0x07060a, 0.9)
       .setStrokeStyle(1, 0x3a3020, 0.6).setDepth(3);
     this.scene.add.text(x + 10, y + 6, 'ЛОГ БОЯ', { fontSize: '11px', color: '#555577', fontFamily: 'serif' }).setDepth(3);
+
+    // Кнопка свернуть/развернуть
+    this._logCollapsed = false;
+    const toggleBtn = this.scene.add.text(x + w - 14, y + 6, '≡', {
+      fontSize: '14px', color: '#888877', fontFamily: 'serif',
+    }).setOrigin(1, 0).setDepth(5).setInteractive({ useHandCursor: true });
+    toggleBtn.on('pointerover', () => toggleBtn.setColor('#FFD700'));
+    toggleBtn.on('pointerout',  () => toggleBtn.setColor(this._logCollapsed ? '#FFD700' : '#888877'));
+    toggleBtn.on('pointerdown', () => {
+      this._logCollapsed = !this._logCollapsed;
+      this._logContainer.setVisible(!this._logCollapsed);
+      this._logBg.setAlpha(this._logCollapsed ? 0.3 : 0.9);
+      toggleBtn.setColor(this._logCollapsed ? '#FFD700' : '#888877');
+    });
 
     this._logContainer = this.scene.add.container(x + 10, y + 22).setDepth(3);
     for (let i = 0; i < 7; i++) {
@@ -104,7 +118,7 @@ export class UIManager {
       const skill = skillsData.find(s => s.id === skillId);
       if (!skill) return;
       const onCD = unit.isOnCooldown(skillId);
-      buttons.push({ skillId, label: skill.name, icon: SKILL_ICONS[skillId] || null, sub: onCD ? `КД ${unit.cooldowns[skillId]}` : null, tint: onCD ? 0x444444 : null, cb: onCD ? null : () => eventBus.emit('skill_selected', skillId) });
+      buttons.push({ skillId, label: skill.name, desc: skill.description || null, icon: SKILL_ICONS[skillId] || null, sub: onCD ? `КД ${unit.cooldowns[skillId]}` : null, tint: onCD ? 0x444444 : null, cb: onCD ? null : () => eventBus.emit('skill_selected', skillId) });
     });
     if ((unit.resources?.pistol_charges || 0) > 0) {
       buttons.push({ skillId: 'pistol_shot', label: 'Пистолет', icon: 'icon_pistol', sub: `×${unit.resources.pistol_charges}`, tint: null, cb: () => eventBus.emit('skill_selected', 'pistol_shot') });
@@ -119,7 +133,7 @@ export class UIManager {
 
     buttons.forEach((b, i) => {
       const bx = startX + i * (btnSize + gap) + btnSize / 2;
-      this._addIconBtn(bx, btnY, b.label, b.icon, b.sub, b.tint, b.cb);
+      this._addIconBtn(bx, btnY, b.label, b.icon, b.sub, b.tint, b.cb, b.desc);
     });
 
     // Кнопка Защита (Disciples II: defend = ~50% урона)
@@ -148,7 +162,7 @@ export class UIManager {
     this._actionBtns.push(hint);
   }
 
-  _addIconBtn(x, y, label, iconKey, sub, tint, cb) {
+  _addIconBtn(x, y, label, iconKey, sub, tint, cb, desc) {
     const size   = 64;
     const active = !!cb;
 
@@ -183,12 +197,44 @@ export class UIManager {
 
     if (active) {
       frame.setInteractive({ useHandCursor: true });
-      frame.on('pointerover', () => frame.setAlpha(0.6));
-      frame.on('pointerout',  () => frame.setAlpha(1));
+      frame.on('pointerover', () => {
+        frame.setAlpha(0.6);
+        if (desc) this._showTooltip(x, y - 42, desc);
+      });
+      frame.on('pointerout', () => {
+        frame.setAlpha(1);
+        this._hideTooltip();
+      });
       frame.on('pointerdown', cb);
     }
 
     this._actionBtns.push(frame, lbl);
+  }
+
+
+  _showTooltip(x, y, text) {
+    this._hideTooltip();
+    const pad = 8;
+    const txt = this.scene.add.text(x, y, text, {
+      fontSize: '12px', color: '#E8E2D4', fontFamily: 'serif',
+      stroke: '#000', strokeThickness: 2,
+      wordWrap: { width: 180 },
+    }).setOrigin(0.5, 1).setDepth(20);
+
+    const b = txt.getBounds();
+    const bg = this.scene.add.rectangle(
+      b.centerX, b.centerY, b.width + pad * 2, b.height + pad * 2,
+      0x0d0b0f, 0.92
+    ).setStrokeStyle(1, 0x8a7030, 0.8).setDepth(19);
+
+    this._tooltipObjs = [bg, txt];
+  }
+
+  _hideTooltip() {
+    if (this._tooltipObjs) {
+      this._tooltipObjs.forEach(o => o.destroy());
+      this._tooltipObjs = null;
+    }
   }
 
   _addBtn(x, y, label, color, cb) {

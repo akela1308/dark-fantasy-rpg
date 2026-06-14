@@ -85,7 +85,9 @@ export class Unit {
   // --- Вычислить урон удара ---
   rollDamage() {
     const { min, max } = this.damage;
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+    const base = Math.floor(Math.random() * (max - min + 1)) + min;
+    const rage  = this.effects.find(e => e.type === 'enraged');
+    return base + (rage ? rage.value : 0);
   }
 
   // --- Базовая атака ---

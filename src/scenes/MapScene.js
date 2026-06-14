@@ -233,6 +233,33 @@ const MAP_CONFIGS = {
           },
         ],
       },
+      {
+        x: 500, y: 580,
+        spriteKey:   'map_cleaning_girl',
+        portraitKey: 'portrait_cleaning_girl',
+        name:        'Уборщица',
+        height:      140,
+        sway:        true,
+        hoverPortrait: true,
+        dialogues: [
+          {
+            text: '"Проходите, проходите... Тут вечно грязь тащат. Ноги хоть вытирайте."',
+            choices: [
+              { label: 'Ты давно здесь работаешь?',       style: 'default' },
+              { label: 'Видела что-нибудь подозрительное?', style: 'default' },
+              { label: 'Прости, что помешал.',              style: 'retreat' },
+            ],
+          },
+          {
+            text: '"Уже три года. Хозяин платит немного, зато крыша над головой. А в такие времена это уже немало."',
+            choices: [{ label: 'Это верно. Спасибо.', style: 'default' }],
+          },
+          {
+            text: '"На той неделе приходили двое — молчаливые, в плащах. Долго шептались в углу с каким-то человеком, а потом ушли до рассвета. Хозяину я ничего не сказала — не моё дело."',
+            choices: [{ label: 'Ты правильно сделала. Будь осторожна.', style: 'default' }],
+          },
+        ],
+      },
     ],
   },
 
@@ -981,7 +1008,7 @@ export class MapScene extends Phaser.Scene {
     // ── Воин ──────────────────────────────────────────────────────────────
     const warrior = this.add.image(bx - 90, by + 20, 'map_bandit_warrior')
       .setOrigin(0.5, 1).setDepth(by + 19).setFlipX(true);
-    warrior.setScale(115 / warrior.height);
+    warrior.setScale(155 / warrior.height);
     const wBase = warrior.scaleY;
     this.tweens.add({
       targets: warrior,
@@ -1094,7 +1121,7 @@ export class MapScene extends Phaser.Scene {
         if (progress === 1) {
           this.scene.start('LoadingScene', {
             destination: 'BattleScene',
-            destinationData: {},
+            destinationData: { fromMapKey: this.mapKey, fromSpawnId: this.spawnId },
           });
         }
       });

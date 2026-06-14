@@ -49,6 +49,11 @@ export class BattleScene extends Phaser.Scene {
     super({ key: 'BattleScene' });
   }
 
+  init(data) {
+    this._fromMapKey  = data?.fromMapKey  || 'map1';
+    this._fromSpawnId = data?.fromSpawnId || 'default';
+  }
+
   preload() {
     if (HAS_BG) this.load.image('battle_bg', 'battle_bg.png');
     SPRITE_IDS.forEach(id => this.load.image(id, `sprites/${id}.png`));
@@ -251,6 +256,12 @@ export class BattleScene extends Phaser.Scene {
 
     this.ui.update();
     this.portraits?.update(this.turnManager.active);
+    // Подсветка целей: при ходе игрока — враги, иначе — сброс
+    if (this.turnManager.isPlayerTurn() && !this._pendingSkill) {
+      this._highlightTargets('enemy_single');
+    } else if (!this.turnManager.isPlayerTurn()) {
+      this._clearTargetHighlight();
+    }
   }
 
   _updateHpBar(unit) {
@@ -386,6 +397,27 @@ export class BattleScene extends Phaser.Scene {
   // КЛИКИ
   // ══════════════════════════════════════════════════════════════════════
 
+
+  // ── Подсветка доступных целей ────────────────────────────────────────
+
+  _highlightTargets(type) {
+    this._clearTargetHighlight();
+    const isAlly = type === 'ally_single';
+    const targets = isAlly
+      ? this.playerUnits.filter(u => u.isAlive)
+      : this.enemyUnits.filter(u => u.isAlive);
+    const tint = isAlly ? 0x88FFCC : 0xFFDD55;
+    targets.forEach(u => {
+      if (u._sprite) u._sprite.setTint(tint);
+    });
+  }
+
+  _clearTargetHighlight() {
+    [...(this.playerUnits || []), ...(this.enemyUnits || [])].forEach(u => {
+      if (u._sprite) u._sprite.clearTint();
+    });
+  }
+
   _onEnemyClick(target) {
     if (this.battleOver) return;
     if (!this.turnManager.isPlayerTurn()) return;
@@ -433,6 +465,7 @@ export class BattleScene extends Phaser.Scene {
     } else {
       this._pendingSkill = skillId;
       eventBus.emit('log', `Выберите цель для "${sk.name}"`);
+      this._highlightTargets(sk.targetType);
       this.ui.update();
     }
   }
@@ -440,6 +473,7 @@ export class BattleScene extends Phaser.Scene {
   // ── После хода ────────────────────────────────────────────────────────
 
   _afterPlayerAction() {
+    this._clearTargetHighlight();
     if (this._checkEnd()) return;
     this.turnManager.nextTurn();
     // Синхронно убираем мёртвых из грида (onComplete tween ненадёжен)
@@ -512,7 +546,17 @@ export class BattleScene extends Phaser.Scene {
       }).setOrigin(0.5).setInteractive({ useHandCursor: true });
       btn.on('pointerover', () => btn.setColor('#FFFFFF'));
       btn.on('pointerout',  () => btn.setColor('#AAAAAA'));
-      btn.on('pointerdown', () => { eventBus.clear(); this.scene.restart(); });
+      btn.on('pointerdown', () => {
+        eventBus.clear();
+        // Восстанавливаем HP до 30% максимума перед возвратом на карту
+        this.playerUnits.forEach(u => {
+          u.hp = Math.max(1, Math.floor(u.maxHp * 0.3));
+        });
+        this.scene.start('LoadingScene', {
+          destination: 'MapScene',
+          destinationData: { mapKey: this._fromMapKey, spawnId: this._fromSpawnId },
+        });
+      });
 
       if (result === 'victory') {
         const btnMap = this.add.text(width/2, height/2 + 125, '[ На карту ]', {
@@ -810,6 +854,14 @@ export class BattleScene extends Phaser.Scene {
     });
 
     eventBus.on('skill_selected', skillId => this._onSkillSelect(skillId));
+
+    eventBus.on('commanders_roar', caster => {
+      // Все живые враги (кроме самого Командира) получают ярость: +5 к урону на 2 хода
+      this.enemyUnits.filter(u => u.isAlive && u !== caster).forEach(u => {
+        u.addEffect({ type: 'enraged', value: 5, duration: 2 });
+      });
+      this.cameras.main.shake(350, 0.010);
+    });
 
     eventBus.on('skip_turn', () => {
       if (!this.turnManager.isPlayerTurn()) return;

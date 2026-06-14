@@ -1,6 +1,8 @@
 /**
  * DialoguePanel — нижняя диалоговая полоса в стиле RPG.
- * dialog_frame.png — центральная рамка. Портреты снаружи по бокам.
+ * dialog_frame.png — центральная рамка (666×375, ratio 1.776:1).
+ * Рамка рендерится с сохранением пропорций — без растяжки.
+ * Портреты по краям экрана, независимо от рамки.
  */
 export class DialoguePanel {
   constructor(scene) {
@@ -23,24 +25,23 @@ export class DialoguePanel {
     const hasRight = !!(cfg.portraitRight && scene.textures.exists(cfg.portraitRight));
 
     // ── Размеры панели ─────────────────────────────────────────────────
-    const barH_s   = 240;
-    const barTop_s = SH - barH_s;       // 480
-    const barCY_s  = SH - barH_s / 2;  // 600
+    const barH_s   = 280;
+    const barTop_s = SH - barH_s;      // 440
+    const barCY_s  = SH - barH_s / 2; // 580
 
-    // ── Портреты: снаружи рамки, по краям экрана ───────────────────────
-    const portW_s = 155;
-    const portH_s = 210;
+    // ── Рамка: пропорциональный масштаб (без растяжки) ────────────────
+    // dialog_frame.png: 666×375, ratio = 1.776:1
+    const FRAME_RATIO = 666 / 375;                           // 1.776
+    const frameH_s    = barH_s;                               // 280
+    const frameW_s    = Math.round(frameH_s * FRAME_RATIO);  // 497
+    const frameCX_s   = SW / 2;                              // 640 — по центру
+    const frameL_s    = Math.round(frameCX_s - frameW_s / 2); // 392
+    const frameR_s    = Math.round(frameCX_s + frameW_s / 2); // 889
+
+    // ── Портреты: по краям экрана, независимо от рамки ────────────────
+    const portW_s  = 185;
+    const portH_s  = 255;
     const portCY_s = barCY_s - 10; // чуть выше центра — выступают вверх
-
-    // ── Рамка: занимает пространство МЕЖДУ портретами ──────────────────
-    const frameMargin_s = hasLeft || hasRight ? portW_s + 10 : 20;
-    const frameL_s = hasLeft  ? frameMargin_s       : 20;
-    const frameR_s = hasRight ? SW - frameMargin_s  : SW - 20;
-    const frameCX_s = (frameL_s + frameR_s) / 2;
-    const frameW_s  = frameR_s - frameL_s;
-    const frameH_s  = barH_s;
-
-    // Фон убран — dialog_frame даёт подложку для текста
 
     // ── Декоративная рамка ─────────────────────────────────────────────
     if (scene.textures.exists('dialog_frame')) {
@@ -62,14 +63,14 @@ export class DialoguePanel {
                          cfg.portraitRight, cfg.speakerName || null, s(portH_s));
     }
 
-    // ── Текстовая зона — внутри рамки, с отступом от края рамки ────────
-    const innerPad_s = 30;  // отступ от края рамки до текста
-    const textL_s = frameL_s + innerPad_s;
-    const textR_s = frameR_s - innerPad_s;
-    const textW_s = textR_s - textL_s;
+    // ── Текстовая зона — внутри рамки, с отступом ─────────────────────
+    const innerPad_s = 28;
+    const textL_s    = frameL_s + innerPad_s;
+    const textR_s    = frameR_s - innerPad_s;
+    const textW_s    = textR_s - textL_s;
 
-    // Рамка: верхняя часть ≈ 40px занята черепом-орнаментом → текст ниже
-    const textY_s = barTop_s + 45;
+    // Верхняя часть рамки (~22%) занята орнаментом черепа → текст ниже
+    const textY_s = barTop_s + Math.round(frameH_s * 0.22); // 440 + 62 = 502
 
     const speech = scene.add.text(s(textL_s), s(textY_s), cfg.text || '', {
       fontFamily:      'serif',
@@ -83,7 +84,7 @@ export class DialoguePanel {
     this._add(speech);
 
     // ── Разделитель ────────────────────────────────────────────────────
-    const sepY_s = barTop_s + 120;
+    const sepY_s = barTop_s + Math.round(frameH_s * 0.55); // 440 + 154 = 594
     const sep = scene.add.rectangle(
       s(frameCX_s), s(sepY_s), s(textW_s), s(1), 0x8a7030, 0.5
     ).setDepth(954).setScrollFactor(0);
