@@ -100,14 +100,19 @@ export class LoadingScene extends Phaser.Scene {
     img('map_healer',    'maps/characters/healer.png');
     img('map_bandit',    'maps/characters/bandit.png');
 
-    // Paper doll части: герои (upper = голова+торс, leg_l/leg_r = ноги)
-    const paperdollChars = ['hero', 'brawler', 'healer', 'companion_brawler', 'companion_healer'];
-    paperdollChars.forEach(name => {
-      const prefix = name.startsWith('companion_') ? name : name;
-      img(`map_${prefix}_upper`, `maps/characters/${prefix}_upper.png`);
-      img(`map_${prefix}_leg_l`, `maps/characters/${prefix}_leg_l.png`);
-      img(`map_${prefix}_leg_r`, `maps/characters/${prefix}_leg_r.png`);
+    // Paper doll части
+    // Боец и компаньоны — split: upper + leg_l + leg_r (ноги раздельно)
+    const splitChars = ['brawler', 'companion_brawler', 'companion_healer'];
+    splitChars.forEach(name => {
+      img(`map_${name}_upper`, `maps/characters/${name}_upper.png`);
+      img(`map_${name}_leg_l`, `maps/characters/${name}_leg_l.png`);
+      img(`map_${name}_leg_r`, `maps/characters/${name}_leg_r.png`);
     });
+    // Герой — single: upper + legs (плащ как единая деталь, без сплита)
+    img('map_hero_upper', 'maps/characters/hero_upper.png');
+    img('map_hero_legs',  'maps/characters/hero_legs.png');
+    // Знахарка — без paperdoll (юбка)
+    img('map_healer_upper', 'maps/characters/healer_upper.png');
     img('map_tavernman', 'maps/characters/tavernman.png');
     img('map_wanderer',  'maps/characters/map_wanderer.png');
     img('map_drunkman',       'maps/characters/drunkman.png');
