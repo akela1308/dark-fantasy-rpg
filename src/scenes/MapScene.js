@@ -377,6 +377,10 @@ export class MapScene extends Phaser.Scene {
     if (this._screenGrid) {
       this._screenGrid.forEach(o => { try { o.destroy(); } catch {} });
       this._screenGrid = null;
+      if (this._screenGridMoveHandler) {
+        this.input.off('pointermove', this._screenGridMoveHandler);
+        this._screenGridMoveHandler = null;
+      }
       return;
     }
 
@@ -416,6 +420,26 @@ export class MapScene extends Phaser.Scene {
       fontSize: `${Math.round(10 / zoom)}px`, color: '#FFFF00', fontFamily: 'monospace',
     }).setOrigin(0.5, 0).setScrollFactor(0).setDepth(DEPTH + 1);
     objs.push(hint);
+
+    // Координаты мыши вверху по центру
+    const cursor = this.add.text(SW / zoom / 2, 18 / zoom, '', {
+      fontSize: `${Math.round(11 / zoom)}px`, color: '#FFFFFF', fontFamily: 'monospace',
+    }).setOrigin(0.5, 0).setScrollFactor(0).setDepth(DEPTH + 2);
+    objs.push(cursor);
+
+    const onMove = (ptr) => {
+      if (!this._screenGrid) return;
+      // Экранные координаты (screen px)
+      const sx = Math.round(ptr.x * zoom);
+      const sy = Math.round(ptr.y * zoom);
+      // Мировые координаты
+      const wx = Math.round(ptr.worldX);
+      const wy = Math.round(ptr.worldY);
+      cursor.setText(`screen: ${sx}, ${sy}   world: ${wx}, ${wy}`);
+    };
+    this.input.on('pointermove', onMove);
+    // Сохраняем ссылку на обработчик чтобы снять при скрытии
+    this._screenGridMoveHandler = onMove;
 
     this._screenGrid = objs;
   }
