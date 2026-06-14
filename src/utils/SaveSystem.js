@@ -29,6 +29,7 @@ export const SaveSystem = {
         })),
         mapKey,
         spawnId,
+        gold:  registry.get('playerGold') ?? 0,
         flags: Object.fromEntries(
           REGISTRY_FLAGS
             .filter(k => registry.get(k))
@@ -89,7 +90,26 @@ export const SaveSystem = {
   applyFlagsToRegistry(registry) {
     const save = this.load();
     if (!save) return;
+    registry.set('playerGold', save.gold ?? 0);
     Object.entries(save.flags || {}).forEach(([k, v]) => registry.set(k, v));
+  },
+
+  // Добавить золото и сохранить
+  addGold(amount, registry) {
+    const current = registry.get('playerGold') ?? 0;
+    registry.set('playerGold', current + amount);
+    // Обновляем gold в текущем сохранении не перезаписывая остальное
+    try {
+      const save = this.load();
+      if (save) {
+        save.gold = current + amount;
+        localStorage.setItem('darkfantasy_ironman_v1', JSON.stringify(save));
+      }
+    } catch (e) {}
+  },
+
+  getGold(registry) {
+    return registry.get('playerGold') ?? 0;
   },
 
   // Применить сохранённые статы к массиву PlayerUnit

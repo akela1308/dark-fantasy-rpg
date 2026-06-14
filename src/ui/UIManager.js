@@ -110,6 +110,9 @@ export class UIManager {
       rapier_strike:  'icon_rapier_strike',
       dueling_stance: 'icon_dueling_stance',
       pistol_shot:    'icon_pistol',
+      shield_cover:   'icon_might',          // боец: прикрыть
+      bandage:        'icon_heart',           // знахарка: перевязка
+      aimed_shot:     'icon_bow',             // лучник: прицельный выстрел
     };
 
     // Собираем все скиллы включая пистолет
@@ -136,17 +139,17 @@ export class UIManager {
       this._addIconBtn(bx, btnY, b.label, b.icon, b.sub, b.tint, b.cb, b.desc);
     });
 
-    // Кнопка Защита — правый край левой панели (x=610)
-    const isDefending = unit.effects.some(e => e.type === 'defending');
-    const defend = this.scene.add.text(610, 568, isDefending ? '🛡 Защита ✓' : '🛡 Защита', {
-      fontSize: '13px', color: isDefending ? '#44FF88' : '#8899AA', fontFamily: 'serif',
-    }).setOrigin(1, 0).setInteractive({ useHandCursor: true }).setDepth(3);
-    defend.on('pointerover', () => defend.setAlpha(0.7));
-    defend.on('pointerout',  () => defend.setAlpha(1));
-    defend.on('pointerdown', () => eventBus.emit('defend_action'));
-    this._actionBtns.push(defend);
+    // Вспомогательная функция: маленькая иконка слева от текста
+    const _addMiniIcon = (x, y, key, alpha = 0.85) => {
+      if (this.scene.textures.exists(key)) {
+        const ico = this.scene.add.image(x, y, key)
+          .setDisplaySize(18, 18).setDepth(3).setAlpha(alpha);
+        this._actionBtns.push(ico);
+      }
+    };
 
     // Кнопка Пропустить — правый край левой панели
+    _addMiniIcon(525, 556, 'icon_broken_sword', 0.6);
     const skip = this.scene.add.text(610, 548, 'Пропустить', {
       fontSize: '13px', color: '#666666', fontFamily: 'serif',
     }).setOrigin(1, 0).setInteractive({ useHandCursor: true }).setDepth(3);
@@ -154,6 +157,17 @@ export class UIManager {
     skip.on('pointerout',  () => skip.setColor('#666666'));
     skip.on('pointerdown', () => eventBus.emit('skip_turn'));
     this._actionBtns.push(skip);
+
+    // Кнопка Защита — правый край левой панели (x=610)
+    const isDefending = unit.effects.some(e => e.type === 'defending');
+    _addMiniIcon(525, 576, 'icon_shield', isDefending ? 1.0 : 0.75);
+    const defend = this.scene.add.text(610, 568, isDefending ? 'Защита ✓' : 'Защита', {
+      fontSize: '13px', color: isDefending ? '#44FF88' : '#8899AA', fontFamily: 'serif',
+    }).setOrigin(1, 0).setInteractive({ useHandCursor: true }).setDepth(3);
+    defend.on('pointerover', () => defend.setAlpha(0.7));
+    defend.on('pointerout',  () => defend.setAlpha(1));
+    defend.on('pointerdown', () => eventBus.emit('defend_action'));
+    this._actionBtns.push(defend);
 
     // Подсказка — левый край левой панели
     const hint = this.scene.add.text(30, 548, 'Кликни по врагу для атаки:', {

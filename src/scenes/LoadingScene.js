@@ -124,7 +124,25 @@ export class LoadingScene extends Phaser.Scene {
     img('map_companion_brawler', 'maps/characters/companion_brawler.png');
     img('map_companion_healer',  'maps/characters/companion_healer.png');
 
-    // Пропсы (интерьерные объекты)
+    // Иконки скиллов и действий (dark_rpg_icons)
+    img('icon_shield',         'ui/icon_shield.png');
+    img('icon_broken_sword',   'ui/icon_broken_sword.png');
+    img('icon_might',          'ui/icon_might.png');
+    img('icon_heart',          'ui/icon_heart.png');
+    img('icon_bow',            'ui/icon_bow.png');
+    img('icon_gold',           'ui/icon_gold.png');
+    img('icon_skull',          'ui/icon_skull.png');
+    img('icon_hammer',         'ui/icon_hammer.png');
+    img('icon_healing_potion', 'ui/icon_healing_potion.png');
+    img('icon_hand',           'ui/icon_hand.png');
+    img('icon_axe',            'ui/icon_axe.png');
+    img('icon_dual_sword',     'ui/icon_dual_sword.png');
+    img('icon_crossbow',       'ui/icon_crossbow.png');
+    img('icon_trader',         'ui/icon_trader.png');
+    img('icon_luck_horseshoe', 'ui/icon_luck_horseshoe.png');
+    img('icon_drop',           'ui/icon_drop.png');
+
+        // Пропсы (интерьерные объекты)
     img('prop_table3',   'sprites/table3.png');
     img('prop_table4',   'sprites/table4.png');
     img('prop_table2_2', 'sprites/table2_2.png');

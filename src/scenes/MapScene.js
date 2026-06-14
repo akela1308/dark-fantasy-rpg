@@ -1177,6 +1177,43 @@ export class MapScene extends Phaser.Scene {
       hit.on('pointerout',  () => { glow.setAlpha(0);    icon.setAlpha(0.9); label.setColor('#C9A84C'); });
       hit.on('pointerdown', slot.action);
     });
+
+    // ── Золото: левый угол нижней панели ──────────────────────────────────
+    this._initGoldHUD(imgStartX, imgW, BAR_Y, DEPTH);
+  }
+
+  _initGoldHUD(imgStartX, imgW, barY, DEPTH) {
+    // Позиция: левее первого слота (fraction 0.164 → примерно 0.06)
+    const gx = Math.round(imgStartX + imgW * 0.065);
+    const iconSize = 32;
+
+    // Иконка монеты
+    if (this.textures.exists('icon_gold')) {
+      this.add.image(gx, barY - 14, 'icon_gold')
+        .setDisplaySize(iconSize, iconSize)
+        .setDepth(DEPTH + 4).setScrollFactor(0);
+    }
+
+    // Число: читаем из реестра (уже применено через applyFlagsToRegistry)
+    const gold = this.game.registry.get('playerGold') ?? 0;
+    this._goldText = this.add.text(gx, barY + 10, String(gold), {
+      fontSize: '14px', color: '#C9A84C', fontFamily: 'serif',
+      stroke: '#000000', strokeThickness: 3,
+    }).setOrigin(0.5, 0).setDepth(DEPTH + 5).setScrollFactor(0);
+
+    // Подпись
+    this.add.text(gx, barY + 28, 'золото', {
+      fontSize: '9px', color: '#887755', fontFamily: 'serif',
+      stroke: '#000000', strokeThickness: 2,
+    }).setOrigin(0.5, 0).setDepth(DEPTH + 5).setScrollFactor(0);
+  }
+
+  // Вызывать после изменения золота
+  refreshGoldHUD() {
+    if (this._goldText) {
+      const gold = this.game.registry.get('playerGold') ?? 0;
+      this._goldText.setText(String(gold));
+    }
   }
 
   _addBreathingTween(sprite, period = 2800) {
