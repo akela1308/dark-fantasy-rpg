@@ -319,6 +319,14 @@
         "originX": 0.574887,
         "originY": 0.710875,
         "height": 228
+      },
+      {
+        "key": "prop_table3",
+        "x": 830,
+        "y": 800,
+        "originX": 0.5,
+        "originY": 0.82,
+        "height": 200
       }
     ],
     "torches": [
