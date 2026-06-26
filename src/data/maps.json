@@ -676,11 +676,11 @@
       },
       {
         "x": 698,
-        "y": 724,
+        "y": 734,
         "spriteKey": "map_dwarf_beer_drink",
         "portraitKey": "portrait_dwarf_beer",
         "name": "Брамм",
-        "height": 200,
+        "height": 156,
         "sway": false,
         "hoverPortrait": true,
         "ambientAnim": {
