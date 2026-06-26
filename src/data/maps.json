@@ -543,12 +543,18 @@
       {
         "x": 430,
         "y": 630,
-        "spriteKey": "map_cleaning_girl",
+        "spriteKey": "map_cleaning_girl_mop",
         "portraitKey": "portrait_cleaning_girl",
         "name": "Мира",
-        "height": 165,
-        "sway": true,
+        "height": 162,
+        "sway": false,
         "hoverPortrait": true,
+        "ambientAnim": {
+          "key": "mira_mop_floor",
+          "frames": 8,
+          "frameRate": 5,
+          "loop": true
+        },
         "altRoot": [
           { "requiresFlag": "bandit_intimidated", "dialogueIndex": 4 },
           { "requiresFlag": "bandit_paid",        "dialogueIndex": 5 },

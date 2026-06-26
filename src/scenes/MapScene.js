@@ -643,7 +643,7 @@ export class MapScene extends Phaser.Scene {
           end: (cfg.startFrame ?? 0) + (cfg.frames ?? 1) - 1,
         }),
         frameRate: cfg.frameRate ?? 3,
-        repeat: cfg.repeat ?? 0,
+        repeat: cfg.loop ? -1 : (cfg.repeat ?? 0),
       });
     }
 
@@ -655,6 +655,11 @@ export class MapScene extends Phaser.Scene {
     sprite.on(`animationcomplete-${animKey}`, () => {
       if (sprite.active) sprite.setFrame(idleFrame);
     });
+
+    if (cfg.loop) {
+      this.time.delayedCall(cfg.firstDelay ?? 0, playAmbient);
+      return;
+    }
 
     const interval = cfg.interval ?? 40000;
     this.time.delayedCall(cfg.firstDelay ?? interval, () => {

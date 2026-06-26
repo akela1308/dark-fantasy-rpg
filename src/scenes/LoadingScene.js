@@ -127,6 +127,7 @@ export class LoadingScene extends Phaser.Scene {
     img('map_bandit_warrior', 'maps/characters/bandit_warrior.png');
     img('map_bandit_archer',  'maps/characters/bandit_archer_map.png');
     img('map_cleaning_girl', 'maps/characters/cleaning_girl.png');
+    sheet('map_cleaning_girl_mop', 'maps/characters/cleaning_girl_mop_sheet.png', { frameWidth: 316, frameHeight: 392 });
     img('map_dwarf_beer',    'maps/characters/dwarf_beer.png');
     sheet('map_dwarf_beer_drink', 'maps/characters/dwarf_beer_drink_sheet.png', { frameWidth: 379, frameHeight: 520 });
     img('map_dwarf_beer2',   'maps/characters/dwarf_beer2.png');
