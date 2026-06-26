@@ -1,3 +1,5 @@
+import * as Phaser from 'phaser/dist/phaser.esm.js';
+
 /**
  * MapUnit — персонаж на карте мира.
  *
@@ -8,6 +10,9 @@
  * Legacy режим (config.paperdoll = false):
  *   skirtWalk: false  — покачивание всего тела ±2.5° (стандарт)
  *   skirtWalk: true   — еле заметный sway + scaleX (юбка/знахарка)
+ *
+ * Spritesheet режим (config.walkSpriteKey):
+ *   idle — обычная статичная картинка, walk — кадровая анимация ходьбы
  */
 export class MapUnit {
   constructor(scene, x, y, textureKey, config = {}) {
@@ -20,6 +25,11 @@ export class MapUnit {
     this._walkThreshold = config.walkThreshold ?? 10;
     this._skirtWalk     = config.skirtWalk     ?? false;
     this._legMode       = config.legMode       ?? 'split';
+    this._walkSpriteKey = config.walkSpriteKey ?? null;
+    this._walkAnimKey   = this._walkSpriteKey ? `${this._walkSpriteKey}_walk` : null;
+    this._walkFrames    = config.walkFrames    ?? 6;
+    this._walkFrameRate = config.walkFrameRate ?? 8;
+    this._walkPlaying   = false;
     this._bobTween      = null;
     this._leanTween     = null;
     this._legLTween     = null;
@@ -29,11 +39,36 @@ export class MapUnit {
 
     const h = config.height ?? 72;
 
-    if (config.paperdoll !== false && scene.textures.exists(textureKey + '_upper')) {
+    if (this._walkSpriteKey && scene.textures.exists(this._walkSpriteKey)) {
+      this._paperdoll = false;
+      this._useWalkFrames = true;
+      this._idleTextureKey = textureKey;
+      this.sprite = scene.add.sprite(x, y, textureKey).setOrigin(0.5, 1).setDepth(y);
+
+      this._baseScale = h / this.sprite.height;
+      const walkFrame = scene.textures.get(this._walkSpriteKey).get(0);
+      const walkContentH = config.walkFrameContentHeight ?? walkFrame.height;
+      this._walkScale = h / walkContentH;
+      this.sprite.setScale(this._baseScale);
+
+      if (!scene.anims.exists(this._walkAnimKey)) {
+        scene.anims.create({
+          key: this._walkAnimKey,
+          frames: scene.anims.generateFrameNumbers(this._walkSpriteKey, {
+            start: 0,
+            end: this._walkFrames - 1,
+          }),
+          frameRate: this._walkFrameRate,
+          repeat: -1,
+        });
+      }
+    } else if (config.paperdoll !== false && scene.textures.exists(textureKey + '_upper')) {
       this._paperdoll = true;
+      this._useWalkFrames = false;
       this._setupPaperdoll(x, y, textureKey, h);
     } else {
       this._paperdoll = false;
+      this._useWalkFrames = false;
       this.sprite = scene.add.image(x, y, textureKey).setOrigin(0.5, 1).setDepth(y);
       const scale = h / this.sprite.height;
       this.sprite.setScale(scale);
@@ -146,9 +181,16 @@ export class MapUnit {
   }
 
   _startWalkAnim() {
-    if (this._bobTween) return;
+    if (this._bobTween || this._walkPlaying) return;
 
-    if (this._paperdoll) {
+    if (this._useWalkFrames) {
+      this.sprite.stop();
+      this.sprite.setTexture(this._walkSpriteKey, 0);
+      this.sprite.setScale(this._walkScale);
+      this.sprite.setAngle(0);
+      this.sprite.play(this._walkAnimKey);
+      this._walkPlaying = true;
+    } else if (this._paperdoll) {
       const baseY = this._baseUpperY;
 
       // Верхнее тело: лёгкий bob ±2px
@@ -241,6 +283,10 @@ export class MapUnit {
         ease: 'Sine.easeInOut',
       });
     } else {
+      if (this._useWalkFrames) {
+        this.sprite.stop();
+        this.sprite.setTexture(this._idleTextureKey);
+      }
       this.sprite.setAngle(0);
       this.sprite.setScale(s);
       this._idleTween = this.scene.tweens.add({
@@ -265,6 +311,11 @@ export class MapUnit {
     if (this._legLTween) { this._legLTween.stop();  this._legLTween = null; }
     if (this._legRTween) { this._legRTween.stop();  this._legRTween = null; }
     if (this._dustTimer) { this._dustTimer.remove(); this._dustTimer = null; }
+    if (this._walkPlaying) {
+      this.sprite.stop();
+      this.sprite.setTexture(this._idleTextureKey);
+      this._walkPlaying = false;
+    }
 
     if (this._paperdoll) {
       const s = this._baseScale;

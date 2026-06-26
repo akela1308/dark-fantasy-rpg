@@ -1,0 +1,32 @@
+[
+  {
+    "id": "gold",
+    "name": "Золото",
+    "type": "currency",
+    "quantity": 0,
+    "icon": "icon_gold",
+    "stackable": true,
+    "description": "Монеты. Нужны для торговли."
+  },
+  {
+    "id": "healing_potion",
+    "name": "Зелье лечения",
+    "type": "consumable",
+    "quantity": 2,
+    "icon": "icon_healing_potion",
+    "stackable": true,
+    "healAmount": 30,
+    "description": "Восстанавливает 30 HP одному союзнику."
+  },
+  {
+    "id": "camp_flask",
+    "name": "Походная фляга",
+    "type": "consumable",
+    "quantity": 1,
+    "icon": "icon_drop",
+    "stackable": false,
+    "healAmount": 10,
+    "unlimited": true,
+    "description": "Восстанавливает 10 HP. Пополняется на привале."
+  }
+]

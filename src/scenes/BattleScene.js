@@ -9,6 +9,8 @@ import { PortraitPanel }  from '../ui/PortraitPanel.js';
 import { COLORS, XP, AI_DELAY } from '../utils/constants.js';
 import eventBus from '../utils/eventBus.js';
 
+import * as Phaser from 'phaser/dist/phaser.esm.js';
+
 import unitsData   from '../data/units.json';
 import enemiesData from '../data/enemies.json';
 import skillsData  from '../data/skills.json';
@@ -25,25 +27,45 @@ const SPRITE_IDS = [
 const HAS_BG = true; // поставь true когда добавишь battle_bg.png
 
 // ── Позиции юнитов в стиле Disciples II ──────────────────────────────────
-// Передний ряд (row=0): ниже, крупнее
-// Задний ряд  (row=1): выше, чуть меньше (перспектива)
-// Disciples II-style diagonal grid
-// Player: bottom-left → top-center-left
-// Enemy:  bottom-center-right → top-far-right
-// Зеркало врагов: ось x=700, формула 1400-player_x
-// Disciples II-стиль: фиксированный x на всю колонку → зазор между армиями одинаков на всех рядах.
+// Disciples II diagonal: задний ряд (row=1) смещён на 25px вверх относительно переднего.
 // Симметрия вокруг x=640:
-//   игрок front x=430  → 640-430=210  → враг front x=850  (=640+210)
-//   игрок back  x=260  → 640-260=380  → враг back  x=1020 (=640+380)
-// Зазор между передними рядами: 850-430=420px (одинаков на всех y-уровнях)
+//   игрок front x=450 → зазор 190 → враг front x=830
+//   игрок back  x=265 → зазор 375 → враг back  x=1015
+// Зазор между передними рядами: 380px. Шаг по вертикали: 150px.
+// col=0 (низ), col=1 (середина), col=2 (верх)
+// ── Disciples II diagonal layout ─────────────────────────────────────────────
+// ОБЕ армии идут по одной диагонали снизу-слева → вверху-справа (НЕ зеркально).
+// Враг = точная копия позиций игрока, сдвинутая на +415px по X.
+// Игрок: back(row=1) x=285-468, front(row=0) x=500-610
+// Враг:  front(row=0) x=700-883, back(row=1) x=915-1025
+//   → передний ряд врага (ближе к игроку) слева, задний — справа.
+// col=0 нижний (ближе к зрителю, y большее), col=2 верхний (y меньшее).
+// Запретная зона y < 230 (палатки): ни одна точка не нарушает ограничение.
 const UNIT_POSITIONS = {
   player: {
-    0: { 0: { x: 430, y: 505 }, 1: { x: 430, y: 400 }, 2: { x: 430, y: 300 } }, // передний ряд
-    1: { 0: { x: 260, y: 505 }, 1: { x: 260, y: 400 }, 2: { x: 260, y: 300 } }, // задний ряд
+    0: { // передний ряд (правее, ближе к врагу)
+      0: { x: 500, y: 550 },  // низ
+      1: { x: 560, y: 465 },  // середина
+      2: { x: 610, y: 385 },  // верх
+    },
+    1: { // задний ряд (левее, дальше от врага)
+      0: { x: 285, y: 590 },  // низ
+      1: { x: 380, y: 485 },  // середина
+      2: { x: 468, y: 385 },  // верх
+    },
   },
   enemy: {
-    0: { 0: { x: 850, y: 505 }, 1: { x: 850, y: 400 }, 2: { x: 850, y: 300 } }, // передний ряд
-    1: { 0: { x: 1020, y: 505 }, 1: { x: 1020, y: 400 }, 2: { x: 1020, y: 300 } }, // задний ряд
+    // r0 — ближний ряд (левее), r1 — дальний ряд (правее)
+    0: {
+      0: { x: 700, y: 550 },  // P r0c0 (500) + 200
+      1: { x: 760, y: 465 },  // P r0c1 (560) + 200
+      2: { x: 810, y: 385 },  // P r0c2 (610) + 200
+    },
+    1: {
+      0: { x: 915,  y: 590 },  // P r1c0 (285) + 630
+      1: { x: 1010, y: 485 },  // P r1c1 (380) + 630
+      2: { x: 1098, y: 385 },  // P r1c2 (468) + 630
+    },
   },
 };
 
@@ -79,6 +101,7 @@ export class BattleScene extends Phaser.Scene {
     this.input.keyboard.on('keydown-B', () => this._toggleBattleGrid());
     this.input.keyboard.on('keydown-G', () => this._toggleBattleCoordGrid());
     this.input.keyboard.on('keydown-H', () => this._toggleFineGrid());
+    this.input.keyboard.on('keydown-J', () => this._toggleJGrid());
     this.turnManager.init([...this.playerUnits, ...this.enemyUnits]);
     this._renderAll();
     // Инициализируем плеер здесь (ассеты уже в кэше после LoadingScene)
@@ -202,13 +225,14 @@ export class BattleScene extends Phaser.Scene {
         companion_brawler: 1.09, // самый крупный из игроков
       };
 
-      // Спрайт или прямоугольник
+      // Спрайт или прямоугольник (spriteKey позволяет тест-юнитам использовать чужой спрайт)
       let sprite;
-      const hasSprite = SPRITE_IDS.includes(unit.id);
+      const spriteKey = unit.spriteKey ?? unit.id;
+      const hasSprite = SPRITE_IDS.includes(spriteKey);
 
       if (hasSprite) {
-        sprite = this.add.image(x, y, unit.id).setOrigin(0.5, 1).setDepth(rowDepth);
-        const unitScale = SPRITE_SCALE[unit.id] ?? 1;
+        sprite = this.add.image(x, y, spriteKey).setOrigin(0.5, 1).setDepth(rowDepth);
+        const unitScale = SPRITE_SCALE[unit.id] ?? SPRITE_SCALE[spriteKey] ?? 1;
         const targetH = h * unitScale;  // isBoss не влияет на визуальный размер
         const ratio = sprite.width / sprite.height;
         sprite.setDisplaySize(targetH * ratio, targetH);
@@ -545,18 +569,12 @@ export class BattleScene extends Phaser.Scene {
         fontFamily: 'serif', fontSize: '26px', color: '#E8E8E8',
       }).setOrigin(0.5);
       this.game.registry.set('bandit_0_defeated', true);
-
-      // ── ЖЕЛЕЗНЫЙ РЕЖИМ: сохраняем после победы ──────────────────────
-      SaveSystem.save(
-        this.playerUnits,
-        this._fromMapKey,
-        this._fromSpawnId,
-        this.game.registry
-      );
     }
 
     const showButtons = () => {
       if (result === 'victory') {
+        // ── ЖЕЛЕЗНЫЙ РЕЖИМ: сохраняем после всех level-up бонусов ──────
+        SaveSystem.save(this.playerUnits, this._fromMapKey, this._fromSpawnId, this.game.registry);
         // Кнопка возврата на карту
         const btnMap = this.add.text(width/2, height/2 + 80, '[ На карту ]', {
           fontFamily: 'serif', fontSize: '26px', color: '#C9A84C',
@@ -598,7 +616,12 @@ export class BattleScene extends Phaser.Scene {
       const leveledUp = this.playerUnits.filter(u => u.canLevelUp(XP.THRESHOLD));
       if (leveledUp.length > 0) {
         this.time.delayedCall(800, () => {
-          this._showLevelUpScreen(leveledUp, showButtons);
+          this.scene.launch('LevelUpScene', {
+            leveledUnits:   leveledUp,
+            allPlayerUnits: this.playerUnits,
+            fromMapKey:     this._fromMapKey,
+            fromSpawnId:    this._fromSpawnId,
+          });
         });
       } else {
         this.time.delayedCall(800, showButtons);
@@ -606,173 +629,6 @@ export class BattleScene extends Phaser.Scene {
     } else {
       this.time.delayedCall(1200, showButtons);
     }
-  }
-
-  _showLevelUpScreen(units, onComplete) {
-    const unit = units[0];
-    const remaining = units.slice(1);
-    const W = this.scale.width;
-    const H = this.scale.height;
-    const elements = [];
-
-    // Затемняющий оверлей
-    const overlay = this.add.rectangle(W/2, H/2, W, H, 0x000000, 0.7)
-      .setDepth(90).setScrollFactor(0);
-    elements.push(overlay);
-
-    // Панель
-    const panel = this.add.rectangle(W/2, H/2, 580, 420, 0x07060a)
-      .setDepth(91).setScrollFactor(0).setAlpha(0.97);
-    elements.push(panel);
-
-    // Золотая рамка
-    const gfx = this.add.graphics().setDepth(92).setScrollFactor(0);
-    gfx.lineStyle(2, 0xd4a832, 0.9);
-    gfx.strokeRect(W/2 - 290, H/2 - 210, 580, 420);
-    // Угловые акценты
-    gfx.lineStyle(3, 0xd4a832, 1);
-    const cx = W/2 - 290, cy = H/2 - 210, cw = 580, ch = 420, ca = 18;
-    gfx.lineBetween(cx, cy, cx + ca, cy);
-    gfx.lineBetween(cx, cy, cx, cy + ca);
-    gfx.lineBetween(cx + cw, cy, cx + cw - ca, cy);
-    gfx.lineBetween(cx + cw, cy, cx + cw, cy + ca);
-    gfx.lineBetween(cx, cy + ch, cx + ca, cy + ch);
-    gfx.lineBetween(cx, cy + ch, cx, cy + ch - ca);
-    gfx.lineBetween(cx + cw, cy + ch, cx + cw - ca, cy + ch);
-    gfx.lineBetween(cx + cw, cy + ch, cx + cw, cy + ch - ca);
-    elements.push(gfx);
-
-    // Заголовок
-    elements.push(this.add.text(W/2, H/2 - 178, '❖ УРОВЕНЬ ПОВЫШЕН ❖', {
-      fontSize: '20px', color: '#d4a832', fontFamily: 'serif',
-    }).setOrigin(0.5).setDepth(92).setScrollFactor(0));
-
-    // Разделитель
-    const divGfx = this.add.graphics().setDepth(92).setScrollFactor(0);
-    divGfx.lineStyle(1, 0xd4a832, 0.4);
-    divGfx.lineBetween(W/2 - 220, H/2 - 155, W/2 + 220, H/2 - 155);
-    elements.push(divGfx);
-
-    // Имя юнита
-    elements.push(this.add.text(W/2, H/2 - 130, unit.name, {
-      fontSize: '26px', color: '#FFFFFF', fontFamily: 'serif',
-      stroke: '#000', strokeThickness: 2,
-    }).setOrigin(0.5).setDepth(92).setScrollFactor(0));
-
-    // Новый уровень
-    elements.push(this.add.text(W/2, H/2 - 98, `★ Уровень ${unit.level + 1} ★`, {
-      fontSize: '15px', color: '#aaaaaa', fontFamily: 'serif',
-    }).setOrigin(0.5).setDepth(92).setScrollFactor(0));
-
-    // Подпись
-    elements.push(this.add.text(W/2, H/2 - 62, 'Выберите бонус:', {
-      fontSize: '13px', color: '#888888', fontFamily: 'serif',
-    }).setOrigin(0.5).setDepth(92).setScrollFactor(0));
-
-    // Классовые бонусы — уникальные для каждого персонажа
-    const CLASS_BONUSES = {
-      hero_duelist: [
-        { key: 'damage',    label: 'Мастерство',  desc: '+3 к урону' },
-        { key: 'speed',     label: 'Инициатива',  desc: '+1 к инициативе' },
-        { key: 'commander', label: '⚔ Командир',  desc: 'Открывает 4-й слот в отряде' },
-      ],
-      companion_brawler: [
-        { key: 'hp',        label: 'Закалённость', desc: '+25 к максимальному HP' },
-        { key: 'armor',     label: 'Стойкость',    desc: '+5% к броне' },
-        { key: 'berserk',   label: 'Берсерк',      desc: '+5 к максимальному урону' },
-      ],
-      companion_healer: [
-        { key: 'hp',        label: 'Выносливость',  desc: '+20 к максимальному HP' },
-        { key: 'armor',     label: 'Оберег',        desc: '+3% к броне' },
-        { key: 'cooldown',  label: 'Концентрация',  desc: '-1 к откату всех навыков' },
-      ],
-    };
-    const bonuses = CLASS_BONUSES[unit.id] || [
-      { key: 'hp',     label: 'Закалённость', desc: '+20 к максимальному HP' },
-      { key: 'damage', label: 'Мастерство',   desc: '+3 к урону' },
-      { key: 'speed',  label: 'Инициатива',   desc: '+1 к инициативе' },
-    ];
-
-    const cleanup = () => elements.forEach(e => { try { e.destroy(); } catch (_) {} });
-
-    bonuses.forEach((bonus, i) => {
-      const by = H/2 - 10 + i * 75;
-
-      const btn = this.add.rectangle(W/2, by, 490, 60, 0x110e0a)
-        .setDepth(92).setScrollFactor(0).setInteractive({ useHandCursor: true });
-
-      const btnBorder = this.add.graphics().setDepth(92).setScrollFactor(0);
-      btnBorder.lineStyle(1, 0x4a3a1a, 0.7);
-      btnBorder.strokeRect(W/2 - 245, by - 30, 490, 60);
-
-      const lbl = this.add.text(W/2, by - 10, bonus.label, {
-        fontSize: '16px', color: '#d4a832', fontFamily: 'serif',
-      }).setOrigin(0.5).setDepth(93).setScrollFactor(0);
-
-      const desc = this.add.text(W/2, by + 13, bonus.desc, {
-        fontSize: '12px', color: '#887755', fontFamily: 'serif',
-      }).setOrigin(0.5).setDepth(93).setScrollFactor(0);
-
-      elements.push(btn, btnBorder, lbl, desc);
-
-      btn.on('pointerover', () => {
-        btn.setFillStyle(0x2a1e0a);
-        btnBorder.clear();
-        btnBorder.lineStyle(1, 0xd4a832, 0.8);
-        btnBorder.strokeRect(W/2 - 245, by - 30, 490, 60);
-        lbl.setColor('#FFD700');
-      });
-      btn.on('pointerout', () => {
-        btn.setFillStyle(0x110e0a);
-        btnBorder.clear();
-        btnBorder.lineStyle(1, 0x4a3a1a, 0.7);
-        btnBorder.strokeRect(W/2 - 245, by - 30, 490, 60);
-        lbl.setColor('#d4a832');
-      });
-      btn.on('pointerdown', () => {
-        unit.level++;
-        unit.xp = 0;
-        if (bonus.key === 'hp') {
-          const gain = unit.id === 'companion_brawler' ? 25 : 20;
-          unit.maxHp += gain;
-          unit.hp = Math.min(unit.hp + gain, unit.maxHp);
-          eventBus.emit('log', `${unit.name}: +${gain} к максимальному HP`);
-        } else if (bonus.key === 'damage') {
-          const dmg = unit.damage || { min: 10, max: 16 };
-          unit.damage = { min: dmg.min + 3, max: dmg.max + 3 };
-          eventBus.emit('log', `${unit.name}: +3 к урону`);
-        } else if (bonus.key === 'speed') {
-          unit.speed = (unit.speed || 5) + 1;
-          eventBus.emit('log', `${unit.name}: +1 к инициативе`);
-        } else if (bonus.key === 'armor') {
-          const gain = unit.id === 'companion_healer' ? 3 : 5;
-          unit.armor = Math.min(90, (unit.armor || 0) + gain);
-          eventBus.emit('log', `${unit.name}: +${gain}% к броне`);
-        } else if (bonus.key === 'berserk') {
-          unit.damage = { min: unit.damage.min, max: unit.damage.max + 5 };
-          eventBus.emit('log', `${unit.name}: +5 к максимальному урону`);
-        } else if (bonus.key === 'cooldown') {
-          // Снижаем максимальный откат всех скиллов на 1
-          unit._cdReduction = (unit._cdReduction || 0) + 1;
-          eventBus.emit('log', `${unit.name}: откаты навыков -1`);
-        } else if (bonus.key === 'commander') {
-          this.game.registry.set('commander_unlocked', true);
-          eventBus.emit('log', `${unit.name}: открыт слот Командира — отряд расширен!`);
-        }
-        eventBus.emit('level_up', { unit, choice: bonus.key });
-        cleanup();
-        if (remaining.length > 0) {
-          this._showLevelUpScreen(remaining, onComplete);
-        } else {
-          onComplete();
-        }
-      });
-    });
-
-    // Анимация появления панели
-    panel.setAlpha(0);
-    overlay.setAlpha(0);
-    this.tweens.add({ targets: [overlay, panel], alpha: { from: 0, to: 1 }, duration: 300 });
   }
 
   // ── EventBus ──────────────────────────────────────────────────────────
@@ -843,6 +699,38 @@ export class BattleScene extends Phaser.Scene {
     this.input.on('pointermove', (ptr) => {
       if (this._coordGrid) cursor.setText(`x:${Math.round(ptr.x)}  y:${Math.round(ptr.y)}`);
     });
+  }
+
+  _toggleJGrid() {
+    if (this._jGrid) {
+      this._jGrid.forEach(o => { try { o.destroy(); } catch {} });
+      this._jGrid = null;
+      return;
+    }
+    const W = 1280, H = 720, STEP = 20, DEPTH = 997;
+    const objs = [];
+    const gfx = this.add.graphics().setDepth(DEPTH).setScrollFactor(0);
+    for (let x = 0; x <= W; x += STEP) {
+      if (x % 100 === 0) gfx.lineStyle(1, 0xFFDD88, 0.45);
+      else                gfx.lineStyle(1, 0xFFDD88, 0.14);
+      gfx.lineBetween(x, 0, x, H);
+    }
+    for (let y = 0; y <= H; y += STEP) {
+      if (y % 100 === 0) gfx.lineStyle(1, 0xFFDD88, 0.45);
+      else                gfx.lineStyle(1, 0xFFDD88, 0.14);
+      gfx.lineBetween(0, y, W, y);
+    }
+    objs.push(gfx);
+    for (let x = 0; x <= W; x += 100) {
+      for (let y = 0; y <= H; y += 100) {
+        const lbl = this.add.text(x + 2, y + 2, `${x},${y}`, {
+          fontSize: '8px', color: '#FFDD88', fontFamily: 'monospace',
+          stroke: '#000', strokeThickness: 2,
+        }).setDepth(DEPTH + 1).setScrollFactor(0).setAlpha(0.75);
+        objs.push(lbl);
+      }
+    }
+    this._jGrid = objs;
   }
 
   _toggleBattleGrid() {

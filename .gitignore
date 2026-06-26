@@ -1,5 +1,11 @@
 node_modules/
 dist/
+build/
+.vite/
 .DS_Store
 *.local
 vite.config.js.timestamp-*.mjs
+vite.config.js.timestamp-*.js
+.env
+.env.local
+.env.production

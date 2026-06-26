@@ -41,7 +41,8 @@
       "Bash(curl *)",
       "Bash(screencapture -x /tmp/game_check.png)",
       "Bash(screencapture -x /tmp/game_map.png)",
-      "Bash(screencapture -x /tmp/game_fixed.png)"
+      "Bash(screencapture -x /tmp/game_fixed.png)",
+      "Bash(python3 *)"
     ]
   }
 }

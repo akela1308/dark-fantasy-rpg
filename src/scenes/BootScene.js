@@ -1,3 +1,5 @@
+import * as Phaser from 'phaser/dist/phaser.esm.js';
+
 export class BootScene extends Phaser.Scene {
   constructor() {
     super({ key: 'BootScene' });

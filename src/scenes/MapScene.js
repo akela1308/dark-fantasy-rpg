@@ -1,10 +1,13 @@
+import * as Phaser from 'phaser/dist/phaser.esm.js';
+
 import { MapUnit }       from '../entities/MapUnit.js';
 import { WalkableZones } from '../systems/WalkableZones.js';
 import { MusicPlayer }   from '../ui/MusicPlayer.js';
 import { DialoguePanel } from '../ui/DialoguePanel.js';
 import eventBus           from '../utils/eventBus.js';
 
-import MAP_CONFIGS from '../data/maps.json';
+import MAP_CONFIGS  from '../data/maps.json';
+import itemsData    from '../data/items.json';
 import { SaveSystem } from '../utils/SaveSystem.js';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -51,9 +54,9 @@ export class MapScene extends Phaser.Scene {
 
     // Внутри таверны персонажи крупнее (интерьер ближе к камере)
     const s = this.mapKey === 'tavern_inside' ? 1.25 : 1;
-    this.hero    = new MapUnit(this, spawn.x,       spawn.y, 'map_hero',    { height: Math.round(130 * s), speed: 130, idlePeriod: 2800, legMode: 'single' });
-    this.brawler = new MapUnit(this, spawn.x - 65,  spawn.y, 'map_brawler', { height: Math.round(148 * s), speed: 130, idlePeriod: 3400 });
-    this.healer  = new MapUnit(this, spawn.x - 120, spawn.y, 'map_healer',  { height: Math.round(118 * s), speed: 130, idlePeriod: 2200, paperdoll: false, skirtWalk: true });
+    this.hero    = new MapUnit(this, spawn.x,       spawn.y, 'map_hero',    { height: Math.round(130 * s), speed: 130, idlePeriod: 2800, paperdoll: false, walkSpriteKey: 'map_hero_walk_side', walkFrames: 8, walkFrameRate: 10, walkFrameContentHeight: 423 });
+    this.brawler = new MapUnit(this, spawn.x - 65,  spawn.y, 'map_brawler', { height: Math.round(136 * s), speed: 130, idlePeriod: 3400, paperdoll: false, walkSpriteKey: 'map_brawler_walk_side', walkFrames: 8, walkFrameRate: 8, walkFrameContentHeight: 414 });
+    this.healer  = new MapUnit(this, spawn.x - 120, spawn.y, 'map_healer',  { height: Math.round(128 * s), speed: 130, idlePeriod: 2200, paperdoll: false, walkSpriteKey: 'map_healer_walk_side', walkFrames: 8, walkFrameRate: 10, walkFrameContentHeight: 482 });
 
     this._heroTrail     = [];
     this._trailInterval = 0;
@@ -101,6 +104,13 @@ export class MapScene extends Phaser.Scene {
     });
 
     this._clickMarker = this.add.graphics().setDepth(20);
+
+    // ── Инвентарь: глубокая копия из items.json + синхронизация золота ──
+    this._inventory = JSON.parse(JSON.stringify(itemsData));
+    const savedGold = this.game.registry.get('playerGold') ?? 0;
+    const _goldItem = this._inventory.find(it => it.id === 'gold');
+    if (_goldItem) _goldItem.quantity = savedGold;
+
     this._buildHUD(cfg);
 
     // ─── Dev Grid (клавиша G) ────────────────────────────────────────────
@@ -113,6 +123,8 @@ export class MapScene extends Phaser.Scene {
 
     this.input.keyboard.on('keydown-G', () => this._toggleDevGrid());
     this.input.keyboard.on('keydown-H', () => this._toggleScreenGrid());
+    this.input.keyboard.on('keydown-B', () => this._toggleInvGrid());
+    this.input.keyboard.on('keydown-J', () => this._toggleFineGrid());
 
     // Курсор: показывает мировые координаты под мышью в dev-режиме
     this.input.on('pointermove', (ptr) => {
@@ -387,8 +399,8 @@ export class MapScene extends Phaser.Scene {
     const zoom  = this.cameras.main.zoom;
     const SW    = this.cameras.main.width;   // ширина экрана в пикселях (1280)
     const SH    = this.cameras.main.height;  // высота экрана в пикселях (720)
-    const STEP  = 100;
-    const DEPTH = 998;
+    const STEP  = 50;
+    const DEPTH = 15000;
     const objs  = [];
 
     const gfx = this.add.graphics().setScrollFactor(0).setDepth(DEPTH);
@@ -528,8 +540,10 @@ export class MapScene extends Phaser.Scene {
       if (npc.vanishKey && this.game.registry.get(npc.vanishKey)) return;
       const h = npc.height || 130;
       const tex = this.textures.get(npc.spriteKey);
-      const ratio = tex.getSourceImage().height > 0
-        ? h / tex.getSourceImage().height : 1;
+      const frameKey = npc.frame ?? (npc.ambientAnim ? 0 : '__BASE');
+      const frame = tex.get(frameKey) || tex.get('__BASE');
+      const texHeight = frame?.height || tex.getSourceImage().height;
+      const ratio = texHeight > 0 ? h / texHeight : 1;
 
       // Тень
       const shadow = this.add.ellipse(npc.x, npc.y + 8, 55, 16, 0x000000, 0.35).setDepth(1);
@@ -538,13 +552,15 @@ export class MapScene extends Phaser.Scene {
       // Компенсируем смещение: origin снизу поднимает спрайт, добавляем h/2 к y.
       const spriteOriginY = npc.sway ? 1 : 0.5;
       const spriteY       = npc.sway ? npc.y + h / 2 : npc.y;
-      const sprite = this.add.image(npc.x, spriteY, npc.spriteKey)
+      const spriteFactory = npc.ambientAnim ? this.add.sprite.bind(this.add) : this.add.image.bind(this.add);
+      const sprite = spriteFactory(npc.x, spriteY, npc.spriteKey, frameKey)
         .setOrigin(0.5, spriteOriginY)
         .setScale(ratio)
         .setDepth(npc.y)
         .setFlipX(npc.flipX || false)
         .setInteractive({ useHandCursor: true });
       this._addBreathingTween(sprite, 3000 + Math.random() * 600);
+      this._setupAmbientNpcAnimation(sprite, npc);
 
       // Пьяное покачивание (sway: true) — тело качается, ноги стоят на месте
       if (npc.sway) {
@@ -605,27 +621,88 @@ export class MapScene extends Phaser.Scene {
         this.healer.stopMove();
         // Помечаем разговор состоявшимся — при следующем визите NPC исчезнет
         if (npc.vanishKey) this.game.registry.set(npc.vanishKey, true);
-        this._showNpcDialogue(npc, 0);
+        this._showNpcDialogue(npc, this._resolveRootDialogue(npc));
       });
 
       this._npcs.push({ sprite, shadow, label, cfg: npc });
     });
   }
 
+  _setupAmbientNpcAnimation(sprite, npc) {
+    const cfg = npc.ambientAnim;
+    if (!cfg) return;
+
+    const animKey = cfg.key || `${npc.spriteKey}_ambient`;
+    const idleFrame = cfg.idleFrame ?? 0;
+
+    if (!this.anims.exists(animKey)) {
+      this.anims.create({
+        key: animKey,
+        frames: this.anims.generateFrameNumbers(npc.spriteKey, {
+          start: cfg.startFrame ?? 0,
+          end: (cfg.startFrame ?? 0) + (cfg.frames ?? 1) - 1,
+        }),
+        frameRate: cfg.frameRate ?? 3,
+        repeat: cfg.repeat ?? 0,
+      });
+    }
+
+    const playAmbient = () => {
+      if (!sprite.active || sprite.anims?.isPlaying || this._transitioning) return;
+      sprite.play(animKey);
+    };
+
+    sprite.on(`animationcomplete-${animKey}`, () => {
+      if (sprite.active) sprite.setFrame(idleFrame);
+    });
+
+    const interval = cfg.interval ?? 40000;
+    this.time.delayedCall(cfg.firstDelay ?? interval, () => {
+      playAmbient();
+      this.time.addEvent({
+        delay: interval,
+        loop: true,
+        callback: playAmbient,
+      });
+    });
+  }
+
+  // Выбирает начальный диалог на основе флагов (altRoot в данных NPC)
+  _resolveRootDialogue(npc) {
+    if (!npc.altRoot) return 0;
+    for (const alt of npc.altRoot) {
+      if (alt.requiresFlag && !this.game.registry.get(alt.requiresFlag)) continue;
+      if (alt.hideIfFlag  &&  this.game.registry.get(alt.hideIfFlag))  continue;
+      return alt.dialogueIndex;
+    }
+    return 0;
+  }
+
   _showNpcDialogue(npc, dialogueIndex) {
     const dlg = npc.dialogues[dialogueIndex] || npc.dialogues[0];
 
-    // Маппинг вариантов: некоторые открывают следующий диалог
-    const choices = dlg.choices.map((ch, i) => ({
-      label:    ch.label,
-      style:    ch.style || 'default',
+    // Фильтруем варианты по флагам, сохраняя исходный индекс для расчёта nextIdx
+    const visible = (dlg.choices || [])
+      .map((ch, origIdx) => ({ ch, origIdx }))
+      .filter(({ ch }) => {
+        if (ch.requiresFlag && !this.game.registry.get(ch.requiresFlag)) return false;
+        if (ch.hideIfFlag  &&  this.game.registry.get(ch.hideIfFlag))  return false;
+        return true;
+      });
+
+    const choices = visible.map(({ ch, origIdx }) => ({
+      label: ch.label,
+      style: ch.style || 'default',
       onSelect: () => {
-        // Если есть следующий диалог — показываем его, иначе просто закрываем
-        const nextIdx = dialogueIndex + 1 + i;
+        // Ставим флаг если задан
+        if (ch.setFlag) this.game.registry.set(ch.setFlag, true);
+        // ch.close — принудительно закрыть, не идти дальше
+        if (ch.close) return;
+        // ch.next — явный переход; иначе автоматический по позиции
+        const nextIdx = (ch.next !== undefined) ? ch.next : dialogueIndex + 1 + origIdx;
         if (npc.dialogues[nextIdx]) {
           this._showNpcDialogue(npc, nextIdx);
         }
-        // retreat и последний вариант — просто закрываем (hide уже вызван в DialoguePanel)
       },
     }));
 
@@ -692,11 +769,13 @@ export class MapScene extends Phaser.Scene {
     this._dialogue.show({
       portraitLeft:       'portrait_hero_duelist',
       portraitRight:      isWarrior ? 'portrait_bandit_warrior' : 'portrait_bandit_archer',
-      speakerName:        isWarrior ? 'Воин' : 'Арбалетчик',
+      speakerName:        isWarrior ? 'Головорез' : 'Тисс',
       speakerNameLeft:    'Дуэлянт',
-      text: '"Иди говори с нашим командиром. С нами нечего обсуждать."',
+      text: isWarrior
+        ? '"С командиром говори. Я словами плохо работаю."'
+        : '"Не подходи ближе. У меня палец устал, а тетива не любит дрожь."',
       choices: [
-        { label: 'Понял.', style: 'retreat', onSelect: () => {} },
+        { label: isWarrior ? 'Понял.' : 'Зову командира.', style: 'retreat', onSelect: () => {} },
       ],
     });
   }
@@ -730,26 +809,26 @@ export class MapScene extends Phaser.Scene {
     this._dialogue.show({
       portraitLeft:  'portrait_hero_duelist',
       portraitRight: 'portrait_bandit_commander',
-      speakerName:   'Командир разбойников',
-      text: '"Стоять. Дальше — только если заплатите жизнями. Последний шанс убраться."',
+      speakerName:   'Корвин Сухой',
+      text: '"Стой. Дальше дорога моя. Проход стоит денег. Спор стоит крови. Выбирай, что у тебя лишнее."',
       choices: [
         {
-          label:    'Атаковать!',
+          label:    'Атаковать.',
           style:    'attack',
           onSelect: () => this._startBattle(),
         },
         {
-          label:    'Мы просто проходим мимо, не ищем беды.',
+          label:    'Назови цену.',
           style:    'default',
           onSelect: () => this._banditLetThrough(bandit),
         },
         {
-          label:    '[Запугать] Убирайся с дороги, пока цел.',
+          label:    '[Запугать] С дороги.',
           style:    'threat',
           onSelect: () => this._tryIntimidate(bandit),
         },
         {
-          label:    'Поворачиваем назад.',
+          label:    'Мы вернемся позже.',
           style:    'retreat',
           onSelect: () => {
             bandit.encountered = false; // сбрасываем — если вернутся, диалог снова
@@ -761,6 +840,7 @@ export class MapScene extends Phaser.Scene {
   }
 
   _startBattle() {
+    this.game.registry.set('bandit_fight_started', true);
     this._transitioning = true;
     this.time.delayedCall(200, () => {
       this.cameras.main.fade(500, 0, 0, 0, false, (cam, progress) => {
@@ -776,17 +856,19 @@ export class MapScene extends Phaser.Scene {
 
   /** Бандит пропускает — за "дань" или просто пугается молчания */
   _banditLetThrough(bandit) {
-    // Второй диалог — бандит отступает
     this._dialogue.show({
       portraitLeft:  'portrait_hero_duelist',
       portraitRight: 'portrait_bandit_commander',
-      speakerName:   'Командир разбойников',
-      text: '"...Умно. Проходите. Но помните — дороги назад не будет."',
+      speakerName:   'Корвин Сухой',
+      text: '"Разум живет дольше гордости. Проходите. Но дорога назад будет стоить отдельно."',
       choices: [
         {
           label:    'Идём дальше.',
           style:    'default',
-          onSelect: () => this._banditRetreat(bandit),
+          onSelect: () => {
+            this.game.registry.set('bandit_paid', true);
+            this._banditRetreat(bandit);
+          },
         },
       ],
     });
@@ -799,13 +881,16 @@ export class MapScene extends Phaser.Scene {
       this._dialogue.show({
         portraitLeft:  'portrait_hero_duelist',
         portraitRight: 'portrait_bandit_commander',
-        speakerName:   'Командир разбойников',
-        text: '"...Вы не обычные путники. Отступить! Уходим!"',
+        speakerName:   'Корвин Сухой',
+        text: '"Глаза у тебя не путника. Ладно. Сегодня дорога проглотит гордость. Отходим."',
         choices: [
           {
-            label:    'Смотрим как бегут.',
+            label:    'Смотрим как отходят.',
             style:    'default',
-            onSelect: () => this._banditRetreat(bandit),
+            onSelect: () => {
+              this.game.registry.set('bandit_intimidated', true);
+              this._banditRetreat(bandit);
+            },
           },
         ],
       });
@@ -813,8 +898,8 @@ export class MapScene extends Phaser.Scene {
       this._dialogue.show({
         portraitLeft:  'portrait_hero_duelist',
         portraitRight: 'portrait_bandit_commander',
-        speakerName:   'Командир разбойников',
-        text: '"Хах! Слова — не оружие. Взять их!"',
+        speakerName:   'Корвин Сухой',
+        text: '"Слова тоньше кожи. Проверим, что под ней."',
         choices: [
           {
             label:    'Тогда в бой!',
@@ -975,17 +1060,17 @@ export class MapScene extends Phaser.Scene {
         // Командир
         const cmd = this._bandits[0]?.unit?.sprite;
         if (cmd && Phaser.Math.Distance.Between(ptr.worldX, ptr.worldY, cmd.x, cmd.y) < 70)
-          return { key: 'portrait_bandit_commander', label: 'Командир разбойников' };
+          return { key: 'portrait_bandit_commander', label: 'Корвин Сухой' };
 
         // Воин
         const wSprite = this._banditCompanions?.[0]?.sprite;
         if (wSprite && Phaser.Math.Distance.Between(ptr.worldX, ptr.worldY, wSprite.x, wSprite.y) < 65)
-          return { key: 'portrait_bandit_warrior', label: 'Воин' };
+          return { key: 'portrait_bandit_warrior', label: 'Головорез' };
 
         // Арбалетчик
         const aSprite = this._banditCompanions?.[1]?.sprite;
         if (aSprite && Phaser.Math.Distance.Between(ptr.worldX, ptr.worldY, aSprite.x, aSprite.y) < 65)
-          return { key: 'portrait_bandit_archer', label: 'Арбалетчик' };
+          return { key: 'portrait_bandit_archer', label: 'Тисс' };
 
         return null;
       };
@@ -1106,7 +1191,67 @@ export class MapScene extends Phaser.Scene {
     tabLine.lineStyle(1, 0x4a3f25, 0.6);
     tabLine.lineBetween(PX + 20, PY + 68, PX + PW - 20, PY + 68);
 
-    this._charSheetElements = [overlay, bg, bgImg, title, closeBtn, divLeft, divRight, tabLine, ...tabs];
+    // ── Левая панель: инвентарь ───────────────────────────────────────────────
+    // Калибровка по H-сетке: TL иконки 0 = canvas(201,139), TL иконки 1 = canvas(247,140)
+    // Шаг = 46px canvas, ячейка 42px, зазор 4px
+    const INV_SLOT_PX = 42;   // canvas px на ячейку
+    const INV_GAP_PX  = 4;    // canvas px зазор
+    const INV_COLS    = 6;
+    const INV_ROWS    = 9;
+    const INV_STEP    = INV_SLOT_PX + INV_GAP_PX;  // 46px шаг
+    const gridX0Scr   = 201;   // canvas px — левый край col 0 (TL иконки 0)
+    const gridY0Scr   = 139;   // canvas px — верхний край row 0 (TL иконки 0)
+
+    const invEls = [];
+
+    // Заголовок «ИНВЕНТАРЬ» — центр над сеткой инвентаря (canvas x=337, y=103)
+    invEls.push(
+      this.add.text(s(337), s(103), 'ИНВЕНТАРЬ', {
+        fontSize: `${s(11)}px`, color: '#d4a832', fontFamily: 'serif', letterSpacing: 2,
+      }).setOrigin(0.5, 0).setDepth(DEPTH+3).setScrollFactor(0).setVisible(false)
+    );
+
+    // Иконки и количество предметов
+    this._invGoldLabel = null;
+    (this._inventory || []).forEach((item, slotIdx) => {
+      if (slotIdx >= INV_COLS * INV_ROWS) return;
+      const row   = Math.floor(slotIdx / INV_COLS);
+      const col   = slotIdx % INV_COLS;
+      const cxScr = gridX0Scr + col * INV_STEP + INV_SLOT_PX / 2;   // canvas px
+      const cyScr = gridY0Scr + row * INV_STEP + INV_SLOT_PX / 2;   // canvas px
+      const ICON_PX = 38;
+
+      if (item.icon && this.textures.exists(item.icon)) {
+        invEls.push(
+          this.add.image(s(cxScr), s(cyScr), item.icon)
+            .setDisplaySize(s(ICON_PX), s(ICON_PX))
+            .setDepth(DEPTH+4).setScrollFactor(0).setVisible(false)
+        );
+      } else {
+        invEls.push(
+          this.add.text(s(cxScr), s(cyScr), item.name, {
+            fontSize: `${s(7)}px`, color: '#888877', fontFamily: 'serif',
+            wordWrap: { width: s(INV_SLOT_PX - 4) }, align: 'center',
+          }).setOrigin(0.5, 0.5).setDepth(DEPTH+4).setScrollFactor(0).setVisible(false)
+        );
+      }
+
+      // Количество — правый нижний угол слота
+      if (item.stackable || item.quantity > 1) {
+        const qtyLabel = this.add.text(
+          s(cxScr + INV_SLOT_PX / 2 - 2),
+          s(cyScr + INV_SLOT_PX / 2 - 2),
+          `${item.quantity}`,
+          { fontSize: `${s(8)}px`, color: '#CCCC66', fontFamily: 'monospace',
+            stroke: '#000000', strokeThickness: s(1.5) }
+        ).setOrigin(1, 1).setDepth(DEPTH+5).setScrollFactor(0).setVisible(false);
+        invEls.push(qtyLabel);
+        if (item.id === 'gold') this._invGoldLabel = qtyLabel;
+      }
+    });
+    // ──────────────────────────────────────────────────────────────────────────
+
+    this._charSheetElements = [overlay, bg, bgImg, title, closeBtn, divLeft, divRight, tabLine, ...tabs, ...invEls];
     this._charSheetTabs = tabs;
     this._charSheetChars = CHARS;
     this._charSheetPX = PX; this._charSheetPY = PY;
@@ -1120,73 +1265,123 @@ export class MapScene extends Phaser.Scene {
     const zoom = this.cameras.main.zoom;
     const W = this.cameras.main.width  / zoom;   // world units = canvas/zoom ≈ 1673
     const H = this.cameras.main.height / zoom;   // world units = canvas/zoom ≈ 941
-    const BAR_H = 130;
+    const BAR_H = 148;  // немного больше чтобы иконки 40px вписывались в ячейки
     const BAR_Y = H - BAR_H / 2;
     const DEPTH = 8000; // выше любого NPC (depth = npc.y, макс ~941)
 
-    // Изображение 1536×343 — сохраняем пропорции при высоте BAR_H
-    const imgW = Math.round(BAR_H * (1536 / 343));
-    this.add.image(W / 2, BAR_Y, 'bottom_panel')
+    // Изображение 866×288 — сохраняем пропорции при высоте BAR_H
+    const imgW = Math.round(BAR_H * (866 / 288));
+    this.add.image(W / 2, BAR_Y, 'bottom_panel1')
       .setDisplaySize(imgW, BAR_H)
       .setDepth(DEPTH).setScrollFactor(0);
 
     // 5 слотов выровнены по визуальным ячейкам изображения
-    const SLOT_FRACTIONS = [0.164, 0.332, 0.500, 0.668, 0.836];
+    const SLOT_SIZE = 64;  // screen pixels
+
+    // Фракции центров ячеек для bottom_panel1.png (866×288)
+    // Разделители на px: 121,250,377,504,622,854 → центры ячеек: 185,313,440,563,738
+    const SLOT_FRACTIONS = [0.2136, 0.3614, 0.5081, 0.6501, 0.8522];
     const SLOTS = [
-      { label: '',       action: null },
-      { label: '',       action: null },
-      { label: 'Отряд', action: () => this._showCharSheet(0) },
-      { label: '',       action: null },
-      { label: '',       action: null },
+      { label: '',      action: null },                             // 0 — золото (спец.обработка)
+      { label: '',      action: null },                             // 1 — пусто
+      { label: '',      action: () => this._showCharSheet(0) },   // 2 — инвентарь/отряд
+      { label: '',      action: null },                             // 3 — пусто
+      { label: '',      action: null },                             // 4 — пусто
     ];
 
-    const SLOT_W = Math.round(imgW * 0.11);
-    const SLOT_H = Math.round(BAR_H * 0.55);
+    const s = v => v / zoom;
+    const SLOT_W_WORLD = SLOT_SIZE / zoom;
     const imgStartX = W / 2 - imgW / 2;
+    // Шипы сверху смещают визуальный центр ячеек вниз на ~9% высоты панели
+    const ICON_CY = BAR_Y + BAR_H * 0.09;
+    const ICON_SZ = s(40);  // 40 canvas px для иконок
 
     SLOTS.forEach((slot, i) => {
       const sx = Math.round(imgStartX + SLOT_FRACTIONS[i] * imgW);
       const sy = BAR_Y;
 
-      const isEmpty = !slot.action;
-
-      // Невидимая интерактивная зона поверх слота
-      const hit = this.add.rectangle(sx, sy, SLOT_W, SLOT_H, 0x000000, 0)
+      // Хит-зона — одинаковый квадрат для всех слотов
+      const hit = this.add.rectangle(sx, sy, SLOT_W_WORLD, SLOT_W_WORLD, 0x000000, 0)
         .setDepth(DEPTH + 3).setScrollFactor(0);
 
-      // Слот 0: иконка золота
+      // ── Слот 0: золото ──
       if (i === 0) {
-        const iconSize = Math.round(SLOT_H * 0.65);
+        let goldIcon = null;
         if (this.textures.exists('icon_gold')) {
-          this.add.image(sx, sy - SLOT_H * 0.08, 'icon_gold')
-            .setDisplaySize(iconSize, iconSize)
-            .setDepth(DEPTH + 4).setScrollFactor(0);
+          goldIcon = this.add.image(sx - 4, ICON_CY - 7, 'icon_gold')
+            .setDisplaySize(ICON_SZ, ICON_SZ)
+            .setDepth(DEPTH + 4).setScrollFactor(0).setAlpha(0.85);
         }
-        const gold = this.game.registry.get('playerGold') ?? 0;
-        this._goldText = this.add.text(sx, sy + SLOT_H * 0.32, String(gold), {
-          fontSize: '11px', color: '#C9A84C', fontFamily: 'serif',
-          stroke: '#000000', strokeThickness: 2,
-        }).setOrigin(0.5, 0.5).setDepth(DEPTH + 5).setScrollFactor(0);
+        const pad = 6;
+        const tooltipY = ICON_CY - SLOT_W_WORLD * 0.72;
+        const tooltipText = this.add.text(sx, tooltipY, 'Золото: 0', {
+          fontSize: '12px', color: '#FFFFFF', fontFamily: 'serif',
+        }).setOrigin(0.5, 0.5).setDepth(DEPTH + 11).setScrollFactor(0).setVisible(false);
+        const tooltipBg = this.add.rectangle(sx, tooltipY, 90, 24, 0x000000, 0.88)
+          .setDepth(DEPTH + 10).setScrollFactor(0).setVisible(false);
+        hit.setInteractive({ useHandCursor: false });
+        hit.on('pointerover', () => {
+          const gold = this.game.registry.get('playerGold') ?? 0;
+          tooltipText.setText(`Золото: ${gold}`);
+          tooltipBg.setSize(tooltipText.width + pad * 2, tooltipText.height + pad * 2);
+          tooltipBg.setVisible(true); tooltipText.setVisible(true);
+          if (goldIcon) goldIcon.setAlpha(1);
+        });
+        hit.on('pointerout', () => {
+          tooltipBg.setVisible(false); tooltipText.setVisible(false);
+          if (goldIcon) goldIcon.setAlpha(0.85);
+        });
         return;
       }
 
-      if (isEmpty) return;
+      // ── Слот 2: инвентарь/отряд ──
+      if (i === 2) {
+        // Центр вычислен из измеренного TL world(811,850) + half s(40)=26 world
+        const INV_X = 837, INV_Y = 876;
+        const icon = this.add.image(INV_X, INV_Y, 'map_menu_button')
+          .setDisplaySize(ICON_SZ, ICON_SZ)
+          .setDepth(DEPTH + 4).setScrollFactor(0).setAlpha(0.65);
 
-      // Иконка кнопки внутри слота
-      const iconSize = Math.round(SLOT_H * 0.72);
-      const icon = this.add.image(sx, sy - SLOT_H * 0.08, 'map_menu_button')
-        .setDisplaySize(iconSize, iconSize)
+        const pad = 6;
+        const tooltipY = INV_Y - SLOT_W_WORLD * 0.72;
+        const tooltipText = this.add.text(INV_X, tooltipY, 'Инвентарь', {
+          fontSize: '12px', color: '#FFFFFF', fontFamily: 'serif',
+        }).setOrigin(0.5, 0.5).setDepth(DEPTH + 11).setScrollFactor(0).setVisible(false);
+        const tooltipBg = this.add.rectangle(INV_X, tooltipY, 90, 24, 0x000000, 0.88)
+          .setDepth(DEPTH + 10).setScrollFactor(0).setVisible(false);
+
+        hit.setInteractive({ useHandCursor: true });
+        hit.on('pointerover', () => {
+          icon.setAlpha(1);
+          tooltipBg.setSize(tooltipText.width + pad * 2, tooltipText.height + pad * 2);
+          tooltipBg.setVisible(true); tooltipText.setVisible(true);
+        });
+        hit.on('pointerout', () => {
+          icon.setAlpha(0.65);
+          tooltipBg.setVisible(false); tooltipText.setVisible(false);
+        });
+        hit.on('pointerdown', slot.action);
+        return;
+      }
+
+      if (!slot.action) return;  // пустой слот — ничего не рисуем
+
+      // ── Прочие активные слоты: иконка + подпись ──
+      const iconSz = Math.round(SLOT_SIZE * 0.65 / zoom);
+      const iconY  = sy;
+      const labelY = sy + SLOT_W_WORLD * 0.42;
+
+      const icon = this.add.image(sx, iconY, 'map_menu_button')
+        .setDisplaySize(iconSz, iconSz)
         .setDepth(DEPTH + 4).setScrollFactor(0).setAlpha(0.9);
 
-      // Подпись под иконкой
-      const label = this.add.text(sx, sy + SLOT_H * 0.32, slot.label, {
+      const label = this.add.text(sx, labelY, slot.label, {
         fontSize: '10px', color: '#C9A84C', fontFamily: 'serif',
         stroke: '#000000', strokeThickness: 2,
       }).setOrigin(0.5, 0.5).setDepth(DEPTH + 5).setScrollFactor(0);
 
-      // Hover-подсветка
-      const glow = this.add.rectangle(sx, sy, SLOT_W, SLOT_H, 0xC9A84C, 0)
-        .setDepth(DEPTH + 3).setScrollFactor(0);
+      const glow = this.add.rectangle(sx, sy, SLOT_W_WORLD, SLOT_W_WORLD, 0xC9A84C, 0)
+        .setDepth(DEPTH + 2).setScrollFactor(0);
 
       hit.setInteractive({ useHandCursor: true });
       hit.on('pointerover', () => { glow.setAlpha(0.15); icon.setAlpha(1); label.setColor('#FFD700'); });
@@ -1208,6 +1403,14 @@ export class MapScene extends Phaser.Scene {
   }
 
   _showCharSheet(idx = 0) {
+    // Синхронизируем золото из реестра при каждом открытии
+    const gold = this.game.registry.get('playerGold') ?? 0;
+    const goldItem = this._inventory?.find(it => it.id === 'gold');
+    if (goldItem && goldItem.quantity !== gold) {
+      goldItem.quantity = gold;
+      if (this._invGoldLabel) this._invGoldLabel.setText(`${gold}`);
+    }
+
     this._charSheetElements.forEach(e => e.setVisible(true));
     this._charSheetTabs.forEach((t,i) => t.setColor(i === idx ? '#d4a832' : '#666666'));
     this._renderCharContent(
@@ -1222,6 +1425,7 @@ export class MapScene extends Phaser.Scene {
     this._charSheetElements.forEach(e => e.setVisible(false));
     this._csContent.forEach(e => { try { e.destroy(); } catch {} });
     this._csContent = [];
+    this._destroyInvGrid();
   }
 
   _renderCharContent(ch, PX, PY, PW, PH, DEPTH) {
@@ -1251,33 +1455,42 @@ export class MapScene extends Phaser.Scene {
     }).setOrigin(0.5, 0).setDepth(DEPTH+5).setScrollFactor(0));
 
     // ── Правая зона: статы ──
-    const rx = s(880);
-    const ry = s(115);
-    const statsX = s(800);
+    // Координаты canvas (= screen_из_H_сетки / zoom ≈ screen * 1.307):
+    // ХАРАКТЕРИСТИКИ верх-лево: canvas(874, 105)
+    // Метки: canvas x=861, первая строка canvas y=175
+    // Значения: canvas x=979
+    const statsX     = s(861);
+    const statsValX  = s(979);
+    const statsLineR = s(1140);
+    const statsY0    = s(175);
+    const statsStep  = s(40);
+
     const stats = [
-      ['Уровень',  `${ch.lvl}`],
-      ['HP',       `${ch.hp} / ${ch.maxHp}`],
-      ['Урон',     ch.dmg],
+      ['Уровень',    `${ch.lvl}`],
+      ['HP',         `${ch.hp} / ${ch.maxHp}`],
+      ['Урон',       ch.dmg],
       ['Инициатива', `${ch.spd}`],
     ];
-    add(this.add.text(rx, ry - s(14), 'ХАРАКТЕРИСТИКИ', {
+
+    add(this.add.text(s(874), s(105), 'ХАРАКТЕРИСТИКИ', {
       fontSize: `${s(14)}px`, color: '#d4a832', fontFamily: 'serif', letterSpacing: 2
-    }).setDepth(DEPTH+5).setScrollFactor(0));
+    }).setOrigin(0, 0).setDepth(DEPTH+5).setScrollFactor(0));
 
     stats.forEach(([label, val], i) => {
-      add(this.add.text(statsX, ry + s(10) + i * s(40), label, {
+      const rowY = statsY0 + i * statsStep;
+      add(this.add.text(statsX, rowY, label, {
         fontSize: `${s(13)}px`, color: '#888877', fontFamily: 'serif'
       }).setDepth(DEPTH+5).setScrollFactor(0));
-      add(this.add.text(statsX + s(200), ry + s(10) + i * s(40), val, {
+      add(this.add.text(statsValX, rowY, val, {
         fontSize: `${s(15)}px`, color: '#CCCCCC', fontFamily: 'serif', fontStyle: 'bold'
-      }).setOrigin(1, 0).setDepth(DEPTH+5).setScrollFactor(0));
+      }).setOrigin(0, 0).setDepth(DEPTH+5).setScrollFactor(0));
       const lg = add(this.add.graphics().setDepth(DEPTH+4).setScrollFactor(0));
       lg.lineStyle(1, 0x333322, 0.5);
-      lg.lineBetween(statsX, ry + s(26) + i * s(40), statsX + s(200), ry + s(26) + i * s(40));
+      lg.lineBetween(statsX, rowY + s(22), statsLineR, rowY + s(22));
     });
 
     // Скиллы
-    const skillsY = ry + stats.length * s(40) + s(20);
+    const skillsY = statsY0 + stats.length * statsStep + s(24);
     add(this.add.text(statsX, skillsY, 'СКИЛЛЫ', {
       fontSize: `${s(14)}px`, color: '#d4a832', fontFamily: 'serif', letterSpacing: 2
     }).setDepth(DEPTH+5).setScrollFactor(0));
@@ -1287,9 +1500,101 @@ export class MapScene extends Phaser.Scene {
       }).setDepth(DEPTH+5).setScrollFactor(0));
     });
 
-    // ── Левая зона: заголовок инвентаря ──
-    add(this.add.text(s(300), s(100), 'ИНВЕНТАРЬ', {
-      fontSize: `${s(13)}px`, color: '#d4a832', fontFamily: 'serif', letterSpacing: 3
-    }).setOrigin(0.5, 0).setDepth(DEPTH+5).setScrollFactor(0));
+    // Левая зона (инвентарь) — сетка рисуется статично в _initCharacterSheet, не здесь.
+  }
+
+  // ── Отладочная сетка инвентаря (клавиша B) ──────────────────────────────
+  _destroyInvGrid() {
+    if (this._invGridObjs) {
+      this._invGridObjs.forEach(o => { try { o.destroy(); } catch {} });
+      this._invGridObjs = null;
+    }
+  }
+
+  _toggleInvGrid() {
+    if (!this._charSheetElements?.[0]?.visible) return;
+
+    if (this._invGridObjs) {
+      this._destroyInvGrid();
+      return;
+    }
+
+    const zoom = this.cameras.main.zoom;
+    const s    = v => v / zoom;
+    const DEPTH = 11000;
+
+    // Параметры сетки в canvas px (те же, что в _initCharacterSheet)
+    const INV_SLOT_PX = 42;
+    const INV_STEP    = 46;
+    const INV_COLS    = 6;
+    const INV_ROWS    = 9;
+    const gridX0Scr   = 201;
+    const gridY0Scr   = 139;
+
+    const objs = [];
+    const gfx = this.add.graphics().setDepth(DEPTH).setScrollFactor(0);
+    objs.push(gfx);
+
+    for (let row = 0; row < INV_ROWS; row++) {
+      for (let col = 0; col < INV_COLS; col++) {
+        const x0 = gridX0Scr + col * INV_STEP;
+        const y0 = gridY0Scr + row * INV_STEP;
+        gfx.lineStyle(1, 0xFFAA00, 0.7);
+        gfx.strokeRect(s(x0), s(y0), s(INV_SLOT_PX), s(INV_SLOT_PX));
+
+        // Номер слота в углу
+        const lbl = this.add.text(s(x0 + 2), s(y0 + 1),
+          `${row * INV_COLS + col}`,
+          { fontSize: `${s(7)}px`, color: '#FFAA00', fontFamily: 'monospace' }
+        ).setDepth(DEPTH+1).setScrollFactor(0);
+        objs.push(lbl);
+      }
+    }
+
+    this._invGridObjs = objs;
+  }
+
+  // J — мелкая мировая сетка с шагом 20 world-единиц (~15 canvas px)
+  // Говори «сдвинь на 3 квадрата вправо» = +60 world
+  _toggleFineGrid() {
+    if (this._fineGrid) {
+      this._fineGrid.forEach(o => { try { o.destroy(); } catch {} });
+      this._fineGrid = null;
+      return;
+    }
+
+    const STEP  = 20;   // 1 квадрат = 20 world units
+    const mapW  = 1672;
+    const mapH  = 941;
+    const DEPTH = 16000;
+    const objs  = [];
+
+    const gfx = this.add.graphics().setDepth(DEPTH);
+    gfx.lineStyle(1, 0xFFDD88, 0.18);
+    for (let x = 0; x <= mapW; x += STEP) {
+      // Каждые 5 квадратов (100 world) — чуть ярче
+      if (x % 100 === 0) gfx.lineStyle(1, 0xFFDD88, 0.45);
+      else                gfx.lineStyle(1, 0xFFDD88, 0.14);
+      gfx.lineBetween(x, 0, x, mapH);
+    }
+    for (let y = 0; y <= mapH; y += STEP) {
+      if (y % 100 === 0) gfx.lineStyle(1, 0xFFDD88, 0.45);
+      else                gfx.lineStyle(1, 0xFFDD88, 0.14);
+      gfx.lineBetween(0, y, mapW, y);
+    }
+    objs.push(gfx);
+
+    // Номера квадратов каждые 100 world (каждые 5 клеток)
+    for (let x = 0; x <= mapW; x += 100) {
+      for (let y = 0; y <= mapH; y += 100) {
+        const lbl = this.add.text(x + 2, y + 2, `${x},${y}`, {
+          fontSize: '8px', color: '#FFDD88', fontFamily: 'monospace',
+          stroke: '#000', strokeThickness: 2,
+        }).setDepth(DEPTH + 1).setAlpha(0.75);
+        objs.push(lbl);
+      }
+    }
+
+    this._fineGrid = objs;
   }
 }

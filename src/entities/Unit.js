@@ -23,8 +23,9 @@ export class Unit {
     this.xpKill   = data.xpKill  || 15;  // XP за убийство этого юнита
     this.regen    = data.regen    || 0;   // % HP восстанавливается в конце хода
     this.accuracy = data.accuracy ?? 75;  // базовая точность (0–100)
-    this.color    = data.color || 0xFFFFFF;
-    this.isBoss   = data.isBoss || false;
+    this.color     = data.color || 0xFFFFFF;
+    this.isBoss    = data.isBoss || false;
+    this.spriteKey = data.spriteKey || null; // для тест-юнитов: переопределить спрайт/портрет
 
     this.cooldowns  = {};   // { skillId: turnsLeft }
     this.movesLeft  = 1;

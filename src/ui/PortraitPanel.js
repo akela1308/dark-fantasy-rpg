@@ -84,12 +84,15 @@ export class PortraitPanel {
       this.scene.add.rectangle(cx, cy, cardW, cardH, 0x0a0810, 0)
         .setDepth(depth);
 
-      // Портрет
-      const portrait = this.scene.add.image(cx, cy - 14, `portrait_${unit.id}`)
+      // Портрет (тест-юниты со spriteKey используют портрет базового спрайта)
+      const portraitKey = `portrait_${unit.spriteKey ?? unit.id}`;
+      const portrait = this.scene.add.image(cx, cy - 14, portraitKey)
         .setDepth(depth + 1);
       const maxW = cardW - 4;
       const maxH = cardH - 36;
-      const baseScale = Math.min(maxW / portrait.width, maxH / portrait.height);
+      const baseScale = (portrait.width > 0 && portrait.height > 0)
+        ? Math.min(maxW / portrait.width, maxH / portrait.height)
+        : 0.5;
       portrait.setScale(baseScale);
 
       // activeBorder убран

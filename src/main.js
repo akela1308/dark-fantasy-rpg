@@ -1,8 +1,9 @@
-import Phaser from 'phaser';
+import * as Phaser from 'phaser/dist/phaser.esm.js';
 import { BootScene }    from './scenes/BootScene.js';
 import { LoadingScene } from './scenes/LoadingScene.js';
 import { MapScene }     from './scenes/MapScene.js';
 import { BattleScene }  from './scenes/BattleScene.js';
+import { LevelUpScene } from './scenes/LevelUpScene.js';
 import { GAME_WIDTH, GAME_HEIGHT } from './utils/constants.js';
 
 const config = {
@@ -14,7 +15,7 @@ const config = {
     default: 'arcade',
     arcade: { debug: false },
   },
-  scene: [BootScene, LoadingScene, MapScene, BattleScene],
+  scene: [BootScene, LoadingScene, MapScene, BattleScene, LevelUpScene],
   scale: {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.NO_CENTER,

@@ -1,3 +1,5 @@
+import * as Phaser from 'phaser/dist/phaser.esm.js';
+
 /**
  * LoadingScene — экран загрузки с картинкой по центру и прогресс баром.
  */
@@ -52,6 +54,7 @@ export class LoadingScene extends Phaser.Scene {
 
     // Хелпер: загружаем только если ещё нет в кэше
     const img  = (key, path) => { if (!this.textures.exists(key))   this.load.image(key, path); };
+    const sheet = (key, path, cfg) => { if (!this.textures.exists(key)) this.load.spritesheet(key, path, cfg); };
     const snd  = (key, path) => { if (!this.cache.audio.exists(key)) this.load.audio(key, path); };
 
     // Спрайты (бой)
@@ -76,6 +79,7 @@ export class LoadingScene extends Phaser.Scene {
     img('character_sheet_bg',   'ui/character_sheet_bg.png');
     img('map_menu_button',      'ui/map_menu_button.png');
     img('bottom_panel',         'ui/bottom_panel.png');
+    img('bottom_panel1',        'ui/bottom_panel1.png');
     img('panel_divider',        'ui/panel_divider.png');
     img('inventory_slot',       'ui/inventory_slot.png');
     img('icon_rapier_strike',   'ui/icon_rapier_strike.png');
@@ -96,9 +100,12 @@ export class LoadingScene extends Phaser.Scene {
 
     // Персонажи на карте
     img('map_hero',      'maps/characters/hero.png');
-    img('map_brawler',   'maps/characters/brawler.png');
+    img('map_brawler',   'maps/characters/brawler_idle_v3.png');
     img('map_healer',    'maps/characters/healer.png');
     img('map_bandit',    'maps/characters/bandit.png');
+    sheet('map_hero_walk_side', 'maps/characters/hero_walk_side_v2.png', { frameWidth: 320, frameHeight: 447 });
+    sheet('map_brawler_walk_side', 'maps/characters/brawler_walk_side_v3.png', { frameWidth: 260, frameHeight: 442 });
+    sheet('map_healer_walk_side', 'maps/characters/healer_walk_side_v2.png', { frameWidth: 292, frameHeight: 516 });
 
     // Paper doll части
     // Боец и компаньоны — split: upper + leg_l + leg_r (ноги раздельно)
@@ -121,6 +128,8 @@ export class LoadingScene extends Phaser.Scene {
     img('map_bandit_archer',  'maps/characters/bandit_archer_map.png');
     img('map_cleaning_girl', 'maps/characters/cleaning_girl.png');
     img('map_dwarf_beer',    'maps/characters/dwarf_beer.png');
+    sheet('map_dwarf_beer_drink', 'maps/characters/dwarf_beer_drink_sheet.png', { frameWidth: 379, frameHeight: 520 });
+    img('map_dwarf_beer2',   'maps/characters/dwarf_beer2.png');
     img('map_companion_brawler', 'maps/characters/companion_brawler.png');
     img('map_companion_healer',  'maps/characters/companion_healer.png');
 
@@ -156,6 +165,7 @@ export class LoadingScene extends Phaser.Scene {
     img('portrait_bandit_archer', 'portraits/bandit_archer_map.png');
     img('portrait_cleaning_girl','portraits/cleaning_girl.png');
     img('portrait_dwarf_beer',   'portraits/dwarf_beer.png');
+    img('portrait_dwarf_beer2',  'portraits/dwarf_beer2.png');
     img('portrait_companion_brawler', 'portraits/companion_brawler.png');
     img('portrait_companion_healer',  'portraits/companion_healer.png');
 

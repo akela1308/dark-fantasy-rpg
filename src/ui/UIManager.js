@@ -27,10 +27,10 @@ export class UIManager {
   // ── Лог событий ───────────────────────────────────────────────────────
 
   _createLogPanel() {
-    const x = 660, y = 540, w = 600, h = 160;  // лог — справа
+    const x = 660, y = 600, w = 600, h = 120;  // лог — справа
     this._logBg = this.scene.add.rectangle(x + w/2, y + h/2, w, h, 0x07060a, 0.9)
       .setStrokeStyle(1, 0x3a3020, 0.6).setDepth(3);
-    this.scene.add.text(x + 10, y + 6, 'ЛОГ БОЯ', { fontSize: '11px', color: '#555577', fontFamily: 'serif' }).setDepth(3);
+    this.scene.add.text(x + 10, y + 6, 'ЛОГ БОЯ', { fontSize: '11px', color: '#555577', fontFamily: 'serif' }).setScrollFactor(0).setDepth(3);
 
     // Кнопка свернуть/развернуть
     this._logCollapsed = false;
@@ -47,7 +47,7 @@ export class UIManager {
     });
 
     this._logContainer = this.scene.add.container(x + 10, y + 22).setDepth(3);
-    for (let i = 0; i < 7; i++) {
+    for (let i = 0; i < 5; i++) {
       const t = this.scene.add.text(0, i * 19, '', { fontSize: '13px', color: '#AAAAAA', fontFamily: 'serif' });
       this._logLines.push(t);
       this._logContainer.add(t);
@@ -65,7 +65,7 @@ export class UIManager {
   // ── Панель действий ───────────────────────────────────────────────────
 
   _createActionPanel() {
-    const x = 20, y = 540, w = 600, h = 160;  // скиллы — слева
+    const x = 20, y = 600, w = 600, h = 120;  // скиллы — слева
     this.scene.add.rectangle(x + w/2, y + h/2, w, h, 0x07060a, 0.9)
       .setStrokeStyle(1, 0x3a3020, 0.6).setDepth(3);
 
@@ -132,7 +132,7 @@ export class UIManager {
     const gap     = 12;
     const totalW  = buttons.length * (btnSize + gap) - gap;
     const startX  = 320 - totalW / 2;
-    const btnY    = 610;
+    const btnY    = 670;
 
     buttons.forEach((b, i) => {
       const bx = startX + i * (btnSize + gap) + btnSize / 2;
@@ -149,8 +149,8 @@ export class UIManager {
     };
 
     // Кнопка Пропустить — правый край левой панели
-    _addMiniIcon(525, 556, 'icon_broken_sword', 0.6);
-    const skip = this.scene.add.text(610, 548, 'Пропустить', {
+    _addMiniIcon(525, 616, 'icon_broken_sword', 0.6);
+    const skip = this.scene.add.text(610, 608, 'Пропустить', {
       fontSize: '13px', color: '#666666', fontFamily: 'serif',
     }).setOrigin(1, 0).setInteractive({ useHandCursor: true }).setDepth(3);
     skip.on('pointerover', () => skip.setColor('#AAAAAA'));
@@ -160,8 +160,8 @@ export class UIManager {
 
     // Кнопка Защита — правый край левой панели (x=610)
     const isDefending = unit.effects.some(e => e.type === 'defending');
-    _addMiniIcon(525, 576, 'icon_shield', isDefending ? 1.0 : 0.75);
-    const defend = this.scene.add.text(610, 568, isDefending ? 'Защита ✓' : 'Защита', {
+    _addMiniIcon(525, 636, 'icon_shield', isDefending ? 1.0 : 0.75);
+    const defend = this.scene.add.text(610, 628, isDefending ? 'Защита ✓' : 'Защита', {
       fontSize: '13px', color: isDefending ? '#44FF88' : '#8899AA', fontFamily: 'serif',
     }).setOrigin(1, 0).setInteractive({ useHandCursor: true }).setDepth(3);
     defend.on('pointerover', () => defend.setAlpha(0.7));
@@ -170,7 +170,7 @@ export class UIManager {
     this._actionBtns.push(defend);
 
     // Подсказка — левый край левой панели
-    const hint = this.scene.add.text(30, 548, 'Кликни по врагу для атаки:', {
+    const hint = this.scene.add.text(30, 608, 'Кликни по врагу для атаки:', {
       fontSize: '12px', color: '#555577', fontFamily: 'serif'
     }).setDepth(3);
     this._actionBtns.push(hint);
