@@ -363,6 +363,12 @@
         "originX": 0.5,
         "originY": 0.82,
         "height": 300
+      },
+      {
+        "key": "map_cleaning_bucket",
+        "x": 392,
+        "y": 707,
+        "height": 40
       }
     ],
     "torches": [
@@ -552,8 +558,9 @@
         "ambientAnim": {
           "key": "mira_mop_floor",
           "frames": 8,
-          "frameRate": 5,
-          "loop": true
+          "frameRate": 3,
+          "interval": 30000,
+          "firstDelay": 7000
         },
         "altRoot": [
           { "requiresFlag": "bandit_intimidated", "dialogueIndex": 4 },
