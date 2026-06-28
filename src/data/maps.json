@@ -371,6 +371,16 @@
         "height": 40
       }
     ],
+    "bookPickups": [
+      {
+        "bookId": "road_houses",
+        "x": 608,
+        "y": 352,
+        "height": 58,
+        "depth": 432,
+        "label": "Устав дорожных домов"
+      }
+    ],
     "torches": [
       {
         "x": 961,

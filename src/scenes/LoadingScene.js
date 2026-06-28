@@ -153,6 +153,14 @@ export class LoadingScene extends Phaser.Scene {
     img('icon_luck_horseshoe', 'ui/icon_luck_horseshoe.png');
     img('icon_drop',           'ui/icon_drop.png');
 
+    // Книги и записки
+    img('item_book_road_houses',     'items/book_road_houses.png');
+    img('item_book_lame_stag',       'items/book_lame_stag.png');
+    img('item_book_forgotten_seals', 'items/book_forgotten_seals.png');
+    img('item_book_korvin_tolls',    'items/book_korvin_tolls.png');
+    img('item_book_lowland_herbal',  'items/book_lowland_herbal.png');
+    img('ui_book_open_panel',        'items/book_open_panel.png');
+
         // Пропсы (интерьерные объекты)
     img('prop_table3',   'sprites/table3.png');
     img('prop_table4',   'sprites/table4.png');

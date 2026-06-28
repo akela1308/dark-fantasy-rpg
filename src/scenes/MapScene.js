@@ -8,6 +8,7 @@ import eventBus           from '../utils/eventBus.js';
 
 import MAP_CONFIGS  from '../data/maps.json';
 import itemsData    from '../data/items.json';
+import booksData    from '../data/books.json';
 import { SaveSystem } from '../utils/SaveSystem.js';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -90,6 +91,10 @@ export class MapScene extends Phaser.Scene {
     // Статические пропсы (мебель и предметы)
     this._spawnProps(cfg);
 
+    // Книги и записки на карте
+    this._bookPickups = [];
+    this._spawnBookPickups(cfg);
+
     // NPC (статичные, кликабельные)
     this._npcs = [];
     this._spawnNPCs(cfg);
@@ -97,6 +102,7 @@ export class MapScene extends Phaser.Scene {
     // Клик по карте
     this.input.on('pointerdown', (ptr) => {
       if (ptr.rightButtonDown()) return;
+      if (this._bookOverlay) return;
       if (this._dialogue?.active) return;   // диалог идёт — движение заблокировано
       const clamped = this.walkable.clamp(ptr.worldX, ptr.worldY);
       this.hero.moveTo(clamped.x, clamped.y);
@@ -110,6 +116,7 @@ export class MapScene extends Phaser.Scene {
     const savedGold = this.game.registry.get('playerGold') ?? 0;
     const _goldItem = this._inventory.find(it => it.id === 'gold');
     if (_goldItem) _goldItem.quantity = savedGold;
+    this._syncCollectedBooksToInventory();
 
     this._buildHUD(cfg);
 
@@ -532,6 +539,82 @@ export class MapScene extends Phaser.Scene {
         img.setScale(scale);
       }
     });
+  }
+
+  _spawnBookPickups(cfg) {
+    (cfg.bookPickups || []).forEach(p => {
+      const book = booksData.find(b => b.id === p.bookId);
+      if (!book) return;
+      if (book.collectFlag && this.game.registry.get(book.collectFlag)) return;
+      if (!this.textures.exists(book.icon)) return;
+
+      const img = this.add.image(p.x, p.y, book.icon)
+        .setOrigin(0.5, 0.5)
+        .setDepth(p.depth ?? p.y + 10)
+        .setInteractive({ useHandCursor: true });
+      if (p.height) img.setScale(p.height / img.height);
+
+      const label = this.add.text(p.x, p.y - (p.height ?? 50) / 2 - 10, p.label || book.shortName || book.title, {
+        fontFamily: 'serif', fontSize: '12px', color: '#D4AA60',
+        stroke: '#000', strokeThickness: 3,
+      }).setOrigin(0.5, 1).setDepth((p.depth ?? p.y + 10) + 1).setAlpha(0);
+
+      img.on('pointerover', () => { img.setTint(0xFFEEBB); label.setAlpha(1); });
+      img.on('pointerout',  () => { img.clearTint(); label.setAlpha(0); });
+      img.on('pointerdown', (pointer, localX, localY, event) => {
+        event?.stopPropagation();
+        if (this._transitioning || this._dialogue?.active || this._bookOverlay) return;
+        this.hero.stopMove();
+        this.brawler.stopMove();
+        this.healer.stopMove();
+        this._collectBookPickup(book, img, label);
+      });
+
+      this._bookPickups.push({ img, label, book });
+    });
+  }
+
+  _bookToInventoryItem(book) {
+    return {
+      id: `book_${book.id}`,
+      name: book.shortName || book.title,
+      type: 'book',
+      quantity: 1,
+      icon: book.icon,
+      stackable: false,
+      bookId: book.id,
+      description: book.description || book.title,
+    };
+  }
+
+  _syncCollectedBooksToInventory() {
+    booksData.forEach(book => {
+      if (book.collectFlag && this.game.registry.get(book.collectFlag)) {
+        this._addInventoryItem(this._bookToInventoryItem(book), { render: false });
+      }
+    });
+  }
+
+  _addInventoryItem(item, { render = true } = {}) {
+    if (!this._inventory) this._inventory = [];
+    if (this._inventory.some(it => it.id === item.id)) return false;
+    this._inventory.push(JSON.parse(JSON.stringify(item)));
+
+    if (render && this._charSheetElements && this._charSheetDEPTH !== undefined) {
+      const visible = !!this._charSheetElements[0]?.visible;
+      const slotIdx = this._inventory.length - 1;
+      const els = this._createInventoryItemElements(item, slotIdx, visible);
+      this._charSheetElements.push(...els);
+    }
+    return true;
+  }
+
+  _collectBookPickup(book, img, label) {
+    if (book.collectFlag) SaveSystem.setFlag(book.collectFlag, true, this.game.registry);
+    this._addInventoryItem(this._bookToInventoryItem(book));
+    img.destroy();
+    label.destroy();
+    this._showBookReader(book.id);
   }
 
   _spawnNPCs(cfg) {
@@ -1218,41 +1301,11 @@ export class MapScene extends Phaser.Scene {
 
     // Иконки и количество предметов
     this._invGoldLabel = null;
+    this._inventoryItemElements = [];
     (this._inventory || []).forEach((item, slotIdx) => {
       if (slotIdx >= INV_COLS * INV_ROWS) return;
-      const row   = Math.floor(slotIdx / INV_COLS);
-      const col   = slotIdx % INV_COLS;
-      const cxScr = gridX0Scr + col * INV_STEP + INV_SLOT_PX / 2;   // canvas px
-      const cyScr = gridY0Scr + row * INV_STEP + INV_SLOT_PX / 2;   // canvas px
-      const ICON_PX = 38;
-
-      if (item.icon && this.textures.exists(item.icon)) {
-        invEls.push(
-          this.add.image(s(cxScr), s(cyScr), item.icon)
-            .setDisplaySize(s(ICON_PX), s(ICON_PX))
-            .setDepth(DEPTH+4).setScrollFactor(0).setVisible(false)
-        );
-      } else {
-        invEls.push(
-          this.add.text(s(cxScr), s(cyScr), item.name, {
-            fontSize: `${s(7)}px`, color: '#888877', fontFamily: 'serif',
-            wordWrap: { width: s(INV_SLOT_PX - 4) }, align: 'center',
-          }).setOrigin(0.5, 0.5).setDepth(DEPTH+4).setScrollFactor(0).setVisible(false)
-        );
-      }
-
-      // Количество — правый нижний угол слота
-      if (item.stackable || item.quantity > 1) {
-        const qtyLabel = this.add.text(
-          s(cxScr + INV_SLOT_PX / 2 - 2),
-          s(cyScr + INV_SLOT_PX / 2 - 2),
-          `${item.quantity}`,
-          { fontSize: `${s(8)}px`, color: '#CCCC66', fontFamily: 'monospace',
-            stroke: '#000000', strokeThickness: s(1.5) }
-        ).setOrigin(1, 1).setDepth(DEPTH+5).setScrollFactor(0).setVisible(false);
-        invEls.push(qtyLabel);
-        if (item.id === 'gold') this._invGoldLabel = qtyLabel;
-      }
+      const itemEls = this._createInventoryItemElements(item, slotIdx, false);
+      invEls.push(...itemEls);
     });
     // ──────────────────────────────────────────────────────────────────────────
 
@@ -1264,6 +1317,188 @@ export class MapScene extends Phaser.Scene {
     this._charSheetDEPTH = DEPTH;
 
     this._initBottomBar();
+  }
+
+  _createInventoryItemElements(item, slotIdx, visible = false) {
+    const INV_SLOT_PX = 42;
+    const INV_STEP    = 46;
+    const INV_COLS    = 6;
+    const INV_ROWS    = 9;
+    const gridX0Scr   = 201;
+    const gridY0Scr   = 139;
+    if (slotIdx >= INV_COLS * INV_ROWS) return [];
+
+    const zoom = this.cameras.main.zoom;
+    const s = v => v / zoom;
+    const DEPTH = this._charSheetDEPTH ?? 10000;
+    const row   = Math.floor(slotIdx / INV_COLS);
+    const col   = slotIdx % INV_COLS;
+    const cxScr = gridX0Scr + col * INV_STEP + INV_SLOT_PX / 2;
+    const cyScr = gridY0Scr + row * INV_STEP + INV_SLOT_PX / 2;
+    const ICON_PX = 38;
+    const els = [];
+
+    let iconObj;
+    if (item.icon && this.textures.exists(item.icon)) {
+      iconObj = this.add.image(s(cxScr), s(cyScr), item.icon)
+        .setDisplaySize(s(ICON_PX), s(ICON_PX))
+        .setDepth(DEPTH + 4).setScrollFactor(0).setVisible(visible);
+    } else {
+      iconObj = this.add.text(s(cxScr), s(cyScr), item.name, {
+        fontSize: `${s(7)}px`, color: '#888877', fontFamily: 'serif',
+        wordWrap: { width: s(INV_SLOT_PX - 4) }, align: 'center',
+      }).setOrigin(0.5, 0.5).setDepth(DEPTH + 4).setScrollFactor(0).setVisible(visible);
+    }
+    els.push(iconObj);
+
+    if (item.type === 'book' && item.bookId) {
+      iconObj.setInteractive({ useHandCursor: true });
+      iconObj.on('pointerover', () => iconObj.setTint?.(0xFFEEBB));
+      iconObj.on('pointerout',  () => iconObj.clearTint?.());
+      iconObj.on('pointerdown', (pointer, localX, localY, event) => {
+        event?.stopPropagation();
+        this._showBookReader(item.bookId);
+      });
+    }
+
+    // Количество — правый нижний угол слота
+    if (item.stackable || item.quantity > 1) {
+      const qtyLabel = this.add.text(
+        s(cxScr + INV_SLOT_PX / 2 - 2),
+        s(cyScr + INV_SLOT_PX / 2 - 2),
+        `${item.quantity}`,
+        { fontSize: `${s(8)}px`, color: '#CCCC66', fontFamily: 'monospace',
+          stroke: '#000000', strokeThickness: s(1.5) }
+      ).setOrigin(1, 1).setDepth(DEPTH + 5).setScrollFactor(0).setVisible(visible);
+      els.push(qtyLabel);
+      if (item.id === 'gold') this._invGoldLabel = qtyLabel;
+    }
+
+    this._inventoryItemElements?.push(...els);
+    return els;
+  }
+
+  _showBookReader(bookId) {
+    if (this._bookOverlay) return;
+    const book = booksData.find(b => b.id === bookId);
+    if (!book) return;
+
+    if (book.readFlag) SaveSystem.setFlag(book.readFlag, true, this.game.registry);
+    if (this._dialogue?.active) this._dialogue.hide();
+    this.hero.stopMove();
+    this.brawler.stopMove();
+    this.healer.stopMove();
+
+    const zoom = this.cameras.main.zoom;
+    const s = v => v / zoom;
+    const DEPTH = 13000;
+    const group = this.add.group();
+    this._bookOverlay = group;
+    const add = (obj) => { group.add(obj); return obj; };
+
+    const closeReader = () => {
+      group.getChildren().forEach(obj => { try { obj.destroy(); } catch {} });
+      group.clear(true, true);
+      this._bookOverlay = null;
+    };
+
+    const overlay = add(this.add.rectangle(s(640), s(360), s(1280), s(720), 0x000000, 0.82)
+      .setDepth(DEPTH).setScrollFactor(0).setInteractive());
+    overlay.on('pointerdown', (pointer, localX, localY, event) => event?.stopPropagation());
+
+    add(this.add.image(s(640), s(380), 'ui_book_open_panel')
+      .setDisplaySize(s(930), s(704))
+      .setDepth(DEPTH + 1).setScrollFactor(0));
+
+    add(this.add.text(s(640), s(34), book.title, {
+      fontSize: `${Math.round(24 / zoom)}px`,
+      color: '#D4AA60',
+      fontFamily: 'serif',
+      stroke: '#000000',
+      strokeThickness: s(2),
+    }).setOrigin(0.5, 0).setDepth(DEPTH + 3).setScrollFactor(0));
+
+    add(this.add.text(s(640), s(70), book.author || '', {
+      fontSize: `${Math.round(12 / zoom)}px`,
+      color: '#8f7a55',
+      fontFamily: 'serif',
+    }).setOrigin(0.5, 0).setDepth(DEPTH + 3).setScrollFactor(0));
+
+    const leftText = add(this.add.text(s(245), s(152), '', {
+      fontSize: `${Math.round(14 / zoom)}px`,
+      color: '#2c1a0c',
+      fontFamily: 'serif',
+      wordWrap: { width: s(315), useAdvancedWrap: true },
+      lineSpacing: s(4),
+    }).setDepth(DEPTH + 3).setScrollFactor(0));
+
+    const rightText = add(this.add.text(s(720), s(152), '', {
+      fontSize: `${Math.round(14 / zoom)}px`,
+      color: '#2c1a0c',
+      fontFamily: 'serif',
+      wordWrap: { width: s(315), useAdvancedWrap: true },
+      lineSpacing: s(4),
+    }).setDepth(DEPTH + 3).setScrollFactor(0));
+
+    const pageLabel = add(this.add.text(s(640), s(664), '', {
+      fontSize: `${Math.round(12 / zoom)}px`,
+      color: '#6d5736',
+      fontFamily: 'serif',
+    }).setOrigin(0.5, 0.5).setDepth(DEPTH + 3).setScrollFactor(0));
+
+    let pageIndex = 0;
+    const pages = book.pages?.length ? book.pages : ['Страницы пусты.'];
+
+    const prevBtn = add(this.add.text(s(318), s(650), '‹ Назад', {
+      fontSize: `${Math.round(16 / zoom)}px`,
+      color: '#6d5736',
+      fontFamily: 'serif',
+      stroke: '#f0d8a0',
+      strokeThickness: s(0.5),
+    }).setOrigin(0.5).setDepth(DEPTH + 4).setScrollFactor(0).setInteractive({ useHandCursor: true }));
+
+    const nextBtn = add(this.add.text(s(962), s(650), 'Дальше ›', {
+      fontSize: `${Math.round(16 / zoom)}px`,
+      color: '#6d5736',
+      fontFamily: 'serif',
+      stroke: '#f0d8a0',
+      strokeThickness: s(0.5),
+    }).setOrigin(0.5).setDepth(DEPTH + 4).setScrollFactor(0).setInteractive({ useHandCursor: true }));
+
+    const closeBtn = add(this.add.text(s(1110), s(84), '×', {
+      fontSize: `${Math.round(34 / zoom)}px`,
+      color: '#C9A84C',
+      fontFamily: 'serif',
+      stroke: '#000000',
+      strokeThickness: s(2),
+    }).setOrigin(0.5).setDepth(DEPTH + 4).setScrollFactor(0).setInteractive({ useHandCursor: true }));
+
+    const renderPages = () => {
+      leftText.setText(pages[pageIndex] || '');
+      rightText.setText(pages[pageIndex + 1] || '');
+      pageLabel.setText(`${pageIndex + 1}-${Math.min(pageIndex + 2, pages.length)} / ${pages.length}`);
+      prevBtn.setAlpha(pageIndex > 0 ? 1 : 0.35);
+      nextBtn.setAlpha(pageIndex + 2 < pages.length ? 1 : 0.35);
+    };
+
+    prevBtn.on('pointerdown', (pointer, localX, localY, event) => {
+      event?.stopPropagation();
+      if (pageIndex <= 0) return;
+      pageIndex = Math.max(0, pageIndex - 2);
+      renderPages();
+    });
+    nextBtn.on('pointerdown', (pointer, localX, localY, event) => {
+      event?.stopPropagation();
+      if (pageIndex + 2 >= pages.length) return;
+      pageIndex += 2;
+      renderPages();
+    });
+    closeBtn.on('pointerdown', (pointer, localX, localY, event) => {
+      event?.stopPropagation();
+      closeReader();
+    });
+
+    renderPages();
   }
 
   _initBottomBar() {

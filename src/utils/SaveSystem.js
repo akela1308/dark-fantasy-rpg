@@ -9,6 +9,16 @@ const REGISTRY_FLAGS = [
   'bandit_0_defeated',
   'commander_unlocked',
   'drunkman_talked',
+  'book_road_houses_collected',
+  'book_road_houses_read',
+  'book_lame_stag_song_collected',
+  'book_lame_stag_song_read',
+  'book_forgotten_seals_collected',
+  'book_forgotten_seals_read',
+  'book_korvin_tolls_collected',
+  'book_korvin_tolls_read',
+  'book_lowland_herbal_collected',
+  'book_lowland_herbal_read',
 ];
 
 export const SaveSystem = {
@@ -113,6 +123,21 @@ export const SaveSystem = {
 
   getGold(registry) {
     return registry.get('playerGold') ?? 0;
+  },
+
+  // Выставить флаг и обновить его в текущем сохранении, если оно уже есть
+  setFlag(key, value, registry) {
+    registry.set(key, value);
+    if (!REGISTRY_FLAGS.includes(key)) return;
+    try {
+      const save = this.load();
+      if (save) {
+        save.flags = save.flags || {};
+        if (value) save.flags[key] = value;
+        else delete save.flags[key];
+        localStorage.setItem(SAVE_KEY, JSON.stringify(save));
+      }
+    } catch (e) {}
   },
 
   // Применить сохранённые статы к массиву PlayerUnit
