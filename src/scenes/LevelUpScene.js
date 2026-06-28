@@ -1,5 +1,6 @@
 import * as Phaser from 'phaser/dist/phaser.esm.js';
 import { SaveSystem } from '../utils/SaveSystem.js';
+import { applyProgressionChoice, getClassProgressionChoices } from '../systems/ClassProgression.js';
 import eventBus from '../utils/eventBus.js';
 
 const CLASS_BONUSES = {
@@ -90,7 +91,7 @@ export class LevelUpScene extends Phaser.Scene {
       fontSize: '13px', color: '#888888', fontFamily: 'serif',
     }).setOrigin(0.5).setDepth(92).setScrollFactor(0));
 
-    const bonuses = CLASS_BONUSES[unit.id] || [
+    const bonuses = getClassProgressionChoices(unit) || CLASS_BONUSES[unit.id] || [
       { key: 'hp',     label: 'Закалённость', desc: '+20 к максимальному HP' },
       { key: 'damage', label: 'Мастерство',   desc: '+3 к урону' },
       { key: 'speed',  label: 'Инициатива',   desc: '+1 к инициативе' },
@@ -152,6 +153,10 @@ export class LevelUpScene extends Phaser.Scene {
   _applyBonus(unit, bonus) {
     unit.level++;
     unit.xp = 0;
+    if (applyProgressionChoice(unit, bonus)) {
+      return;
+    }
+
     if (bonus.key === 'hp') {
       const gain = unit.id === 'companion_brawler' ? 25 : 20;
       unit.maxHp += gain;

@@ -16,6 +16,13 @@ export class SkillSystem {
     return this._skills[skillId] || null;
   }
 
+  canUse(skillId, caster) {
+    const skill = this._skills[skillId];
+    if (!skill || !caster) return false;
+    if (caster.isOnCooldown?.(skillId)) return false;
+    return this._hasRequiredResources(skill, caster);
+  }
+
   // Применить скилл. Возвращает true если успешно.
   use(skillId, caster, target) {
     const skill = this._skills[skillId];
@@ -24,15 +31,12 @@ export class SkillSystem {
       return false;
     }
 
-    // Проверка ресурса
-    if (skill.usesResource) {
-      const res = caster.resources[skill.usesResource] || 0;
-      if (res <= 0) {
-        eventBus.emit('log', `Нет ресурса: ${skill.usesResource}`);
-        return false;
-      }
-      caster.resources[skill.usesResource]--;
+    if (!this._hasRequiredResources(skill, caster)) {
+      eventBus.emit('log', `Не хватает ресурса для "${skill.name}"`);
+      return false;
     }
+
+    this._spendResources(skill, caster);
 
     // Выполнить эффект
     // skill.effect может быть функцией (commanders_roar) или строкой-типом из JSON
@@ -41,6 +45,8 @@ export class SkillSystem {
     } else {
       this._applyBuiltin(skill, caster, target);
     }
+
+    this._gainResources(skill, caster);
 
     // Установить откат
     if (skill.cooldown > 0) {
@@ -90,6 +96,57 @@ export class SkillSystem {
       target.addEffect({ type: 'covered_by', coveredBy: caster, duration: 1 });
       eventBus.emit('log', `${caster.name} прикрывает ${target.name}!`);
     }
+
+    this._applyStatuses(skill, caster, target);
+  }
+
+  _hasRequiredResources(skill, caster) {
+    if (skill.usesResource && (caster.resources?.[skill.usesResource] || 0) <= 0) {
+      return false;
+    }
+
+    const cost = skill.resourceCost || {};
+    return Object.entries(cost).every(([resourceId, amount]) => (
+      (caster.resources?.[resourceId] || 0) >= amount
+    ));
+  }
+
+  _spendResources(skill, caster) {
+    caster.resources = caster.resources || {};
+
+    if (skill.usesResource) {
+      caster.resources[skill.usesResource] = Math.max(0, (caster.resources[skill.usesResource] || 0) - 1);
+    }
+
+    Object.entries(skill.resourceCost || {}).forEach(([resourceId, amount]) => {
+      caster.resources[resourceId] = Math.max(0, (caster.resources[resourceId] || 0) - amount);
+    });
+  }
+
+  _gainResources(skill, caster) {
+    caster.resources = caster.resources || {};
+    Object.entries(skill.resourceGain || {}).forEach(([resourceId, amount]) => {
+      caster.resources[resourceId] = (caster.resources[resourceId] || 0) + amount;
+    });
+  }
+
+  _applyStatuses(skill, caster, target) {
+    const statuses = Array.isArray(skill.appliesStatus) ? skill.appliesStatus : [];
+    statuses.forEach(status => {
+      const receiver = status.target === 'self' ? caster : target;
+      if (!receiver) return;
+
+      receiver.addEffect({
+        type: status.type,
+        value: status.value,
+        duration: status.duration ?? 1,
+        sourceId: caster.id,
+      });
+
+      if (status.log !== false) {
+        eventBus.emit('log', `${receiver.name}: ${status.label || status.type}`);
+      }
+    });
   }
 
   // Зарегистрировать все скиллы из JSON

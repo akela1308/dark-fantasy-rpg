@@ -14,7 +14,13 @@ export class Unit {
     this.damage   = { ...data.damage };
     this.speed    = data.speed;
     this.position = { ...data.position }; // { row, col }
+    this.classId  = data.classId || null;
+    this.originId = data.originId || null;
+    this.branchId = data.branchId || null;
     this.skills   = [...(data.skills || [])];
+    this.passives = [...(data.passives || [])];
+    this.classTags = [...(data.classTags || [])];
+    this.classChoices = { ...(data.classChoices || {}) };
     this.resources = { ...(data.resources || {}) };
     this.ranged   = data.ranged || false;
     this.ignoreRows = data.ignoreRows || false;
@@ -88,7 +94,9 @@ export class Unit {
     const { min, max } = this.damage;
     const base = Math.floor(Math.random() * (max - min + 1)) + min;
     const rage  = this.effects.find(e => e.type === 'enraged');
-    return base + (rage ? rage.value : 0);
+    const weakened = this.effects.find(e => e.type === 'weakened');
+    const weakenedMultiplier = weakened ? (weakened.value ?? 0.75) : 1;
+    return Math.max(1, Math.round((base + (rage ? rage.value : 0)) * weakenedMultiplier));
   }
 
   // --- Базовая атака ---
@@ -141,6 +149,20 @@ export class Unit {
   addEffect(effect) {
     this.effects.push({ ...effect });
     eventBus.emit('effect_added', { unit: this, effect });
+  }
+
+  hasEffect(type) {
+    return this.effects.some(e => e.type === type);
+  }
+
+  getEffect(type) {
+    return this.effects.find(e => e.type === type) || null;
+  }
+
+  removeEffect(type) {
+    const before = this.effects.length;
+    this.effects = this.effects.filter(e => e.type !== type);
+    return before !== this.effects.length;
   }
 
   tickEffects() {

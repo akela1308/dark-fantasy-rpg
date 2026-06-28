@@ -27,14 +27,22 @@ export const SaveSystem = {
   save(playerUnits, mapKey, spawnId, registry) {
     try {
       const state = {
+        schemaVersion: 2,
         units: playerUnits.map(u => ({
           id:        u.id,
+          classId:   u.classId,
+          originId:  u.originId,
+          branchId:  u.branchId,
           hp:        u.hp,
           maxHp:     u.maxHp,
           damage:    { ...u.damage },
           armor:     u.armor,
           xp:        u.xp,
           level:     u.level,
+          skills:    [...(u.skills || [])],
+          passives:  [...(u.passives || [])],
+          classTags: [...(u.classTags || [])],
+          classChoices: { ...(u.classChoices || {}) },
           resources: { ...u.resources },
         })),
         mapKey,
@@ -153,6 +161,13 @@ export const SaveSystem = {
       u.armor     = s.armor;
       u.xp        = s.xp;
       u.level     = s.level;
+      u.classId   = s.classId ?? u.classId;
+      u.originId  = s.originId ?? u.originId;
+      u.branchId  = s.branchId ?? u.branchId;
+      u.skills    = Array.isArray(s.skills) ? [...s.skills] : u.skills;
+      u.passives  = Array.isArray(s.passives) ? [...s.passives] : u.passives;
+      u.classTags = Array.isArray(s.classTags) ? [...s.classTags] : u.classTags;
+      u.classChoices = s.classChoices ? { ...s.classChoices } : u.classChoices;
       u.resources = { ...u.resources, ...s.resources };
     });
   },

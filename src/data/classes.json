@@ -1,0 +1,86 @@
+[
+  {
+    "id": "fallen_duelist",
+    "unitId": "hero_duelist",
+    "name": "Падший Дуэлянт",
+    "role": "striker",
+    "resource": {
+      "id": "tempo",
+      "name": "Темп",
+      "max": 3,
+      "startsCombat": 0
+    },
+    "branches": [
+      {
+        "id": "honor_code",
+        "name": "Кодекс Чести",
+        "unlockLevel": 3,
+        "description": "Дуэльная ветка: старый закон, метки, парирование, ответные выпады, честная изоляция цели."
+      },
+      {
+        "id": "last_argument",
+        "name": "Последний Аргумент",
+        "unlockLevel": 3,
+        "description": "Пороховая ветка: пистоль, сбив инициативы, грязная дистанция, контроль одиночной цели."
+      }
+    ],
+    "tags": ["duel", "honor", "old_law", "pistol"],
+    "levelPlan": {}
+  },
+  {
+    "id": "brawler",
+    "unitId": "companion_brawler",
+    "name": "Боец",
+    "role": "defender_bruiser",
+    "resource": {
+      "id": "might",
+      "name": "Мощь",
+      "max": 3,
+      "startsCombat": 0
+    },
+    "branches": [
+      {
+        "id": "living_wall",
+        "name": "Живая Стена",
+        "unlockLevel": 3,
+        "description": "Защитная ветка: держать линию, прикрывать союзников, выдерживать натиск."
+      },
+      {
+        "id": "bonebreaker",
+        "name": "Костолом",
+        "unlockLevel": 3,
+        "description": "Агрессивная ветка: тяжелые удары, шатание, ломка защиты, давление дубиной."
+      }
+    ],
+    "tags": ["frontline", "club", "guard"],
+    "levelPlan": {}
+  },
+  {
+    "id": "healer",
+    "unitId": "companion_healer",
+    "name": "Знахарка",
+    "role": "support",
+    "resource": {
+      "id": "supplies",
+      "name": "Сборы",
+      "max": 3,
+      "startsCombat": 3
+    },
+    "branches": [
+      {
+        "id": "healers_hand",
+        "name": "Рука Лекаря",
+        "unlockLevel": 3,
+        "description": "Лечебная ветка: перевязки, настои, снятие состояний, спасение союзников."
+      },
+      {
+        "id": "bitter_tinctures",
+        "name": "Горькие Настои",
+        "unlockLevel": 3,
+        "description": "Мрачная ветка: слабость, дурман, корни, цена лечения и темная народная медицина."
+      }
+    ],
+    "tags": ["healing", "herbs", "tinctures"],
+    "levelPlan": {}
+  }
+]
