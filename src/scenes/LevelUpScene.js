@@ -1,13 +1,14 @@
 import * as Phaser from 'phaser/dist/phaser.esm.js';
 import { SaveSystem } from '../utils/SaveSystem.js';
 import { applyProgressionChoice, getClassProgressionChoices } from '../systems/ClassProgression.js';
+import { applyCommanderTraitChoice, getCommanderTraitChoices } from '../systems/CommanderTraits.js';
 import eventBus from '../utils/eventBus.js';
 
 const CLASS_BONUSES = {
   hero_duelist: [
     { key: 'damage',    label: 'Мастерство',  desc: '+3 к урону' },
     { key: 'speed',     label: 'Инициатива',  desc: '+1 к инициативе' },
-    { key: 'commander', label: '⚔ Командир',  desc: 'Открывает 4-й слот в отряде' },
+    { key: 'hp',        label: 'Выдержка',     desc: '+20 к максимальному HP' },
   ],
   companion_brawler: [
     { key: 'hp',        label: 'Закалённость', desc: '+25 к максимальному HP' },
@@ -43,22 +44,30 @@ export class LevelUpScene extends Phaser.Scene {
     const W = this.scale.width;
     const H = this.scale.height;
     const elements = [];
+    const bonuses = getCommanderTraitChoices(unit) || getClassProgressionChoices(unit) || CLASS_BONUSES[unit.id] || [
+      { key: 'hp',     label: 'Закалённость', desc: '+20 к максимальному HP' },
+      { key: 'damage', label: 'Мастерство',   desc: '+3 к урону' },
+      { key: 'speed',  label: 'Инициатива',   desc: '+1 к инициативе' },
+    ];
+    const compact = bonuses.length > 3;
+    const panelH = compact ? 520 : 420;
+    const panelTop = H/2 - panelH/2;
 
     const overlay = this.add.rectangle(W/2, H/2, W, H, 0x000000, 0.7)
       .setDepth(90).setScrollFactor(0);
     elements.push(overlay);
 
-    const panel = this.add.rectangle(W/2, H/2, 580, 420, 0x07060a)
+    const panel = this.add.rectangle(W/2, H/2, 580, panelH, 0x07060a)
       .setDepth(91).setScrollFactor(0).setAlpha(0.97);
     elements.push(panel);
 
     // Золотая рамка
     const gfx = this.add.graphics().setDepth(92).setScrollFactor(0);
     gfx.lineStyle(2, 0xd4a832, 0.9);
-    gfx.strokeRect(W/2 - 290, H/2 - 210, 580, 420);
+    gfx.strokeRect(W/2 - 290, panelTop, 580, panelH);
     const corners = this.add.graphics().setDepth(92).setScrollFactor(0);
     corners.lineStyle(3, 0xd4a832, 1);
-    const cx = W/2 - 290, cy = H/2 - 210, cw = 580, ch = 420, ca = 18;
+    const cx = W/2 - 290, cy = panelTop, cw = 580, ch = panelH, ca = 18;
     corners.lineBetween(cx,      cy,      cx + ca,      cy);
     corners.lineBetween(cx,      cy,      cx,            cy + ca);
     corners.lineBetween(cx + cw, cy,      cx + cw - ca,  cy);
@@ -91,30 +100,25 @@ export class LevelUpScene extends Phaser.Scene {
       fontSize: '13px', color: '#888888', fontFamily: 'serif',
     }).setOrigin(0.5).setDepth(92).setScrollFactor(0));
 
-    const bonuses = getClassProgressionChoices(unit) || CLASS_BONUSES[unit.id] || [
-      { key: 'hp',     label: 'Закалённость', desc: '+20 к максимальному HP' },
-      { key: 'damage', label: 'Мастерство',   desc: '+3 к урону' },
-      { key: 'speed',  label: 'Инициатива',   desc: '+1 к инициативе' },
-    ];
-
     const cleanup = () => elements.forEach(e => { try { e.destroy(); } catch (_) {} });
 
     bonuses.forEach((bonus, i) => {
-      const by = H/2 - 10 + i * 75;
+      const by = H/2 + (compact ? -42 : -10) + i * (compact ? 58 : 75);
+      const btnH = compact ? 50 : 60;
 
-      const btn = this.add.rectangle(W/2, by, 490, 60, 0x110e0a)
+      const btn = this.add.rectangle(W/2, by, 490, btnH, 0x110e0a)
         .setDepth(92).setScrollFactor(0).setInteractive({ useHandCursor: true });
 
       const btnBorder = this.add.graphics().setDepth(92).setScrollFactor(0);
       btnBorder.lineStyle(1, 0x4a3a1a, 0.7);
-      btnBorder.strokeRect(W/2 - 245, by - 30, 490, 60);
+      btnBorder.strokeRect(W/2 - 245, by - btnH/2, 490, btnH);
 
       const lbl = this.add.text(W/2, by - 10, bonus.label, {
-        fontSize: '16px', color: '#d4a832', fontFamily: 'serif',
+        fontSize: compact ? '15px' : '16px', color: '#d4a832', fontFamily: 'serif',
       }).setOrigin(0.5).setDepth(93).setScrollFactor(0);
 
       const desc = this.add.text(W/2, by + 13, bonus.desc, {
-        fontSize: '12px', color: '#887755', fontFamily: 'serif',
+        fontSize: compact ? '11px' : '12px', color: '#887755', fontFamily: 'serif',
       }).setOrigin(0.5).setDepth(93).setScrollFactor(0);
 
       elements.push(btn, btnBorder, lbl, desc);
@@ -123,14 +127,14 @@ export class LevelUpScene extends Phaser.Scene {
         btn.setFillStyle(0x2a1e0a);
         btnBorder.clear();
         btnBorder.lineStyle(1, 0xd4a832, 0.8);
-        btnBorder.strokeRect(W/2 - 245, by - 30, 490, 60);
+        btnBorder.strokeRect(W/2 - 245, by - btnH/2, 490, btnH);
         lbl.setColor('#FFD700');
       });
       btn.on('pointerout', () => {
         btn.setFillStyle(0x110e0a);
         btnBorder.clear();
         btnBorder.lineStyle(1, 0x4a3a1a, 0.7);
-        btnBorder.strokeRect(W/2 - 245, by - 30, 490, 60);
+        btnBorder.strokeRect(W/2 - 245, by - btnH/2, 490, btnH);
         lbl.setColor('#d4a832');
       });
       btn.on('pointerdown', () => {
@@ -153,6 +157,10 @@ export class LevelUpScene extends Phaser.Scene {
   _applyBonus(unit, bonus) {
     unit.level++;
     unit.xp = 0;
+    if (applyCommanderTraitChoice(unit, bonus, this.game.registry)) {
+      return;
+    }
+
     if (applyProgressionChoice(unit, bonus)) {
       return;
     }
@@ -179,9 +187,6 @@ export class LevelUpScene extends Phaser.Scene {
     } else if (bonus.key === 'cooldown') {
       unit._cdReduction = (unit._cdReduction || 0) + 1;
       eventBus.emit('log', `${unit.name}: откаты навыков -1`);
-    } else if (bonus.key === 'commander') {
-      this.game.registry.set('commander_unlocked', true);
-      eventBus.emit('log', `${unit.name}: открыт слот Командира — отряд расширен!`);
     }
   }
 

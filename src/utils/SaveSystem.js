@@ -33,6 +33,10 @@ export const SaveSystem = {
           classId:   u.classId,
           originId:  u.originId,
           branchId:  u.branchId,
+          isCommander: u.isCommander,
+          commanderTraits: [...(u.commanderTraits || [])],
+          commanderTags: [...(u.commanderTags || [])],
+          commanderChoices: { ...(u.commanderChoices || {}) },
           hp:        u.hp,
           maxHp:     u.maxHp,
           damage:    { ...u.damage },
@@ -164,6 +168,10 @@ export const SaveSystem = {
       u.classId   = s.classId ?? u.classId;
       u.originId  = s.originId ?? u.originId;
       u.branchId  = s.branchId ?? u.branchId;
+      u.isCommander = s.isCommander ?? u.isCommander;
+      u.commanderTraits = Array.isArray(s.commanderTraits) ? [...s.commanderTraits] : u.commanderTraits;
+      u.commanderTags = Array.isArray(s.commanderTags) ? [...s.commanderTags] : u.commanderTags;
+      u.commanderChoices = s.commanderChoices ? { ...s.commanderChoices } : u.commanderChoices;
       u.skills    = Array.isArray(s.skills) ? [...s.skills] : u.skills;
       u.passives  = Array.isArray(s.passives) ? [...s.passives] : u.passives;
       u.classTags = Array.isArray(s.classTags) ? [...s.classTags] : u.classTags;

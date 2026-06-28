@@ -17,6 +17,10 @@ export class Unit {
     this.classId  = data.classId || null;
     this.originId = data.originId || null;
     this.branchId = data.branchId || null;
+    this.isCommander = data.isCommander || false;
+    this.commanderTraits = [...(data.commanderTraits || [])];
+    this.commanderTags = [...(data.commanderTags || [])];
+    this.commanderChoices = { ...(data.commanderChoices || {}) };
     this.skills   = [...(data.skills || [])];
     this.passives = [...(data.passives || [])];
     this.classTags = [...(data.classTags || [])];
