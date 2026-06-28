@@ -1411,33 +1411,29 @@ export class MapScene extends Phaser.Scene {
       .setDepth(DEPTH + 1).setScrollFactor(0));
 
     add(this.add.text(s(640), s(34), book.title, {
-      fontSize: `${Math.round(24 / zoom)}px`,
+      fontSize: `${Math.round(23 / zoom)}px`,
       color: '#D4AA60',
       fontFamily: 'serif',
       stroke: '#000000',
       strokeThickness: s(2),
     }).setOrigin(0.5, 0).setDepth(DEPTH + 3).setScrollFactor(0));
 
-    add(this.add.text(s(640), s(70), book.author || '', {
+    const leftText = add(this.add.text(s(278), s(174), '', {
       fontSize: `${Math.round(12 / zoom)}px`,
-      color: '#8f7a55',
-      fontFamily: 'serif',
-    }).setOrigin(0.5, 0).setDepth(DEPTH + 3).setScrollFactor(0));
-
-    const leftText = add(this.add.text(s(245), s(152), '', {
-      fontSize: `${Math.round(14 / zoom)}px`,
       color: '#2c1a0c',
       fontFamily: 'serif',
-      wordWrap: { width: s(315), useAdvancedWrap: true },
-      lineSpacing: s(4),
+      fontStyle: 'bold',
+      wordWrap: { width: s(280), useAdvancedWrap: true },
+      lineSpacing: s(5),
     }).setDepth(DEPTH + 3).setScrollFactor(0));
 
-    const rightText = add(this.add.text(s(720), s(152), '', {
-      fontSize: `${Math.round(14 / zoom)}px`,
+    const rightText = add(this.add.text(s(722), s(174), '', {
+      fontSize: `${Math.round(12 / zoom)}px`,
       color: '#2c1a0c',
       fontFamily: 'serif',
-      wordWrap: { width: s(315), useAdvancedWrap: true },
-      lineSpacing: s(4),
+      fontStyle: 'bold',
+      wordWrap: { width: s(300), useAdvancedWrap: true },
+      lineSpacing: s(5),
     }).setDepth(DEPTH + 3).setScrollFactor(0));
 
     const pageLabel = add(this.add.text(s(640), s(664), '', {

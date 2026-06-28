@@ -374,10 +374,10 @@
     "bookPickups": [
       {
         "bookId": "road_houses",
-        "x": 608,
-        "y": 352,
-        "height": 58,
-        "depth": 432,
+        "x": 1273,
+        "y": 426,
+        "height": 32,
+        "depth": 445,
         "label": "Устав дорожных домов"
       }
     ],
