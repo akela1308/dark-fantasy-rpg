@@ -9,6 +9,8 @@ import eventBus           from '../utils/eventBus.js';
 import MAP_CONFIGS  from '../data/maps.json';
 import itemsData    from '../data/items.json';
 import booksData    from '../data/books.json';
+import unitsData    from '../data/units.json';
+import classesData  from '../data/classes.json';
 import { SaveSystem } from '../utils/SaveSystem.js';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1190,18 +1192,84 @@ export class MapScene extends Phaser.Scene {
 
   // ── Экран персонажа ──────────────────────────────────────────────────────
 
+  _buildCharacterSheetChars() {
+    const skillLabels = {
+      rapier_strike: 'Укол в уязвимость',
+      dueling_stance: 'Дуэльная стойка',
+      pistol_shot: 'Пистолет',
+      shield_cover: 'Прикрыть',
+      bandage: 'Перевязка',
+    };
+    const sheetMeta = {
+      hero_duelist: {
+        tabLabel: 'Герой',
+        portrait: 'portrait_hero_duelist',
+        sprite: 'hero_duelist',
+        mapSprite: 'map_hero',
+        desc: 'Бывший имперский дуэлянт. Мастер рапиры и пистолета.',
+      },
+      companion_brawler: {
+        tabLabel: 'Боец',
+        portrait: 'portrait_companion_brawler',
+        sprite: 'companion_brawler',
+        mapSprite: 'map_companion_brawler',
+        desc: 'Молчаливый верзила с дубиной. Стоит как стена.',
+      },
+      companion_healer: {
+        tabLabel: 'Знахарка',
+        portrait: 'portrait_companion_healer',
+        sprite: 'companion_healer',
+        mapSprite: 'map_companion_healer',
+        desc: 'Лечит раны настоями, корнями и упрямой рукой.',
+      },
+    };
+
+    return ['hero_duelist', 'companion_brawler', 'companion_healer']
+      .map(id => {
+        const unit = unitsData.find(u => u.id === id);
+        const meta = sheetMeta[id];
+        if (!unit || !meta) return null;
+        const cls = classesData.find(c => c.id === unit.classId || c.unitId === unit.id) || null;
+        const branch = cls?.branches?.find(b => b.id === unit.branchId) || null;
+        const unlockLevel = Math.min(...(cls?.branches || []).map(b => b.unlockLevel || 1));
+        const branchPreview = (cls?.branches || []).map(b => b.name).join(' / ');
+        const resourceId = cls?.resource?.id;
+        const resourceValue = resourceId ? (unit.resources?.[resourceId] ?? cls.resource.startsCombat ?? 0) : null;
+        const skills = (unit.skills || []).map(skillId => skillLabels[skillId] || skillId);
+        if (id === 'hero_duelist' && (unit.resources?.pistol_charges || 0) > 0) {
+          skills.push(`Пистолет (${unit.resources.pistol_charges} заряда)`);
+        }
+
+        return {
+          id,
+          tabLabel: meta.tabLabel,
+          portrait: meta.portrait,
+          name: unit.name,
+          sprite: meta.sprite,
+          mapSprite: meta.mapSprite,
+          hp: unit.hp,
+          maxHp: unit.maxHp,
+          dmg: `${unit.damage?.min ?? 0}–${unit.damage?.max ?? 0}`,
+          spd: unit.speed,
+          lvl: unit.level || 1,
+          armor: unit.armor ?? 0,
+          accuracy: unit.accuracy ?? 0,
+          className: cls?.name || 'Без класса',
+          branchName: branch?.name || 'Ветка не выбрана',
+          branchHint: branch?.description || `Выбор ветки откроется на ${unlockLevel || 3} уровне. Доступны: ${branchPreview || 'ветки в разработке'}.`,
+          resourceName: cls?.resource?.name || 'Ресурс',
+          resourceValue,
+          resourceMax: cls?.resource?.max ?? null,
+          isHero: Boolean(unit.isCommander),
+          skills,
+          desc: meta.desc || unit.description,
+        };
+      })
+      .filter(Boolean);
+  }
+
   _initCharacterSheet() {
-    const CHARS = [
-      { id: 'hero_duelist',      name: 'Падший Дуэлянт', sprite: 'hero_duelist',      mapSprite: 'map_hero', hp: 80,  maxHp: 80,  dmg: '12–18', spd: 7, lvl: 1,
-        skills: ['Укол в уязвимость', 'Дуэльная стойка', 'Пистолет (2 заряда)'],
-        desc: 'Бывший имперский дуэлянт. Мастер рапиры и пистолета.' },
-      { id: 'companion_brawler', name: 'Боец',            sprite: 'companion_brawler', mapSprite: 'map_companion_brawler', hp: 100, maxHp: 100, dmg: '10–16', spd: 5, lvl: 1,
-        skills: ['Прикрыть'],
-        desc: 'Верный защитник отряда. Принимает удары на себя.' },
-      { id: 'companion_healer',  name: 'Знахарка',        sprite: 'companion_healer',  mapSprite: 'map_companion_healer', hp: 50,  maxHp: 50,  dmg: '6–10',  spd: 4, lvl: 1,
-        skills: ['Перевязка'],
-        desc: 'Целительница с тёмным прошлым. Лечит раны отряда.' },
-    ];
+    const CHARS = this._buildCharacterSheetChars();
 
     const zoom = this.cameras.main.zoom;
     const s = v => v / zoom;
@@ -1276,20 +1344,32 @@ export class MapScene extends Phaser.Scene {
     // Контейнер для динамического контента
     this._csContent = [];
 
-    // Вкладки персонажей
+    // Вкладки отряда
     const tabs = [];
     CHARS.forEach((ch, i) => {
-      const tx = PX + 60 + i * 260;
-      const ty = PY + 46;
-      const tab = this.add.text(tx, ty, '', {
-        fontSize: '13px', color: i === 0 ? '#d4a832' : '#666666', fontFamily: 'serif'
-      }).setOrigin(0, 0).setDepth(DEPTH+4).setScrollFactor(0)
+      const tx = s(548 + i * 92);
+      const ty = s(146);
+      const tabBg = this.add.rectangle(tx, ty, s(82), s(24), 0x050505, i === 0 ? 0.78 : 0.36)
+        .setStrokeStyle(s(1), i === 0 ? 0xd4a832 : 0x4a3f25, i === 0 ? 0.95 : 0.55)
+        .setDepth(DEPTH+4).setScrollFactor(0)
         .setInteractive({ useHandCursor: true }).setVisible(false);
-      tab.on('pointerdown', () => {
-        tabs.forEach((t,j) => t.setColor(j === i ? '#d4a832' : '#666666'));
+      const tabText = this.add.text(tx, ty - s(1), ch.tabLabel, {
+        fontSize: `${s(10)}px`,
+        color: i === 0 ? '#d4a832' : '#777063',
+        fontFamily: 'serif',
+        stroke: '#000000',
+        strokeThickness: s(1.5),
+      }).setOrigin(0.5).setDepth(DEPTH+5).setScrollFactor(0)
+        .setInteractive({ useHandCursor: true }).setVisible(false);
+      const select = () => {
+        this._setCharacterSheetTabState(i);
         this._renderCharContent(CHARS[i], PX, PY, PW, PH, DEPTH);
-      });
-      tabs.push(tab);
+      };
+      tabBg.on('pointerdown', select);
+      tabText.on('pointerdown', select);
+      tabBg.on('pointerover', () => { if (this._charSheetSelectedIdx !== i) tabBg.setAlpha(0.58); });
+      tabBg.on('pointerout', () => { if (this._charSheetSelectedIdx !== i) tabBg.setAlpha(0.36); });
+      tabs.push({ bg: tabBg, text: tabText });
     });
 
     // Горизонтальная линия под вкладками
@@ -1327,9 +1407,10 @@ export class MapScene extends Phaser.Scene {
     });
     // ──────────────────────────────────────────────────────────────────────────
 
-    this._charSheetElements = [overlay, bg, bgImg, title, closeBg, closeBtn, divLeft, divRight, tabLine, ...tabs, ...invEls];
+    this._charSheetElements = [overlay, bg, bgImg, title, closeBg, closeBtn, divLeft, divRight, tabLine, ...tabs.flatMap(t => [t.bg, t.text]), ...invEls];
     this._charSheetTabs = tabs;
     this._charSheetChars = CHARS;
+    this._charSheetSelectedIdx = 0;
     this._charSheetPX = PX; this._charSheetPY = PY;
     this._charSheetPW = PW; this._charSheetPH = PH;
     this._charSheetDEPTH = DEPTH;
@@ -1592,7 +1673,8 @@ export class MapScene extends Phaser.Scene {
 
     // Фракции центров ячеек для bottom_panel1.png (866×288)
     // Разделители на px: 121,250,377,504,622,854 → центры ячеек: 185,313,440,563,738
-    const SLOT_FRACTIONS = [0.2136, 0.3614, 0.5081, 0.6501, 0.8522];
+    // Пятая ячейка визуально уже из-за правого декора, поэтому ее центр чуть левее.
+    const SLOT_FRACTIONS = [0.2136, 0.3614, 0.5081, 0.6501, 0.8150];
     const SLOTS = [
       { label: 'Кошель', icon: 'icon_gold', action: null, tooltip: () => `Золото: ${this.game.registry.get('playerGold') ?? 0}` },
       { label: 'Журнал', icon: 'icon_hand', action: null, tooltip: 'Журнал заданий появится позже' },
@@ -1705,6 +1787,18 @@ export class MapScene extends Phaser.Scene {
     return { shadow, sprite };
   }
 
+  _setCharacterSheetTabState(idx) {
+    this._charSheetSelectedIdx = idx;
+    const zoom = this.cameras.main.zoom;
+    const s = v => v / zoom;
+    this._charSheetTabs?.forEach((tab, i) => {
+      const active = i === idx;
+      tab.bg.setAlpha(active ? 0.78 : 0.36);
+      tab.bg.setStrokeStyle(s(active ? 1.2 : 1), active ? 0xd4a832 : 0x4a3f25, active ? 0.95 : 0.55);
+      tab.text.setColor(active ? '#d4a832' : '#777063');
+    });
+  }
+
   _showCharSheet(idx = 0) {
     // Синхронизируем золото из реестра при каждом открытии
     const gold = this.game.registry.get('playerGold') ?? 0;
@@ -1715,7 +1809,7 @@ export class MapScene extends Phaser.Scene {
     }
 
     this._charSheetElements.forEach(e => e.setVisible(true));
-    this._charSheetTabs.forEach((t,i) => t.setColor(i === idx ? '#d4a832' : '#666666'));
+    this._setCharacterSheetTabState(idx);
     this._renderCharContent(
       this._charSheetChars[idx],
       this._charSheetPX, this._charSheetPY,
@@ -1756,49 +1850,68 @@ export class MapScene extends Phaser.Scene {
       lineSpacing: s(2),
     }).setOrigin(0.5, 0).setDepth(DEPTH+5).setScrollFactor(0));
 
-    // ── Правая зона: статы ──
+    // ── Правая зона: класс, статы, умения ──
     // Координаты canvas (= screen_из_H_сетки / zoom ≈ screen * 1.307):
     // ХАРАКТЕРИСТИКИ верх-лево: canvas(874, 105)
     // Метки: canvas x=861, первая строка canvas y=175
     // Значения: canvas x=979
     const statsX     = s(864);
-    const statsValX  = s(984);
+    const statsValX  = s(956);
     const statsLineR = s(1134);
-    const statsY0    = s(175);
-    const statsStep  = s(42);
+    const rowStep    = s(30);
+
+    const sectionTitle = (x, y, text) => add(this.add.text(x, y, text, {
+      fontSize: `${s(13)}px`, color: '#d4a832', fontFamily: 'serif', letterSpacing: 2,
+      stroke: '#000000', strokeThickness: s(1.5),
+    }).setOrigin(0, 0).setDepth(DEPTH+5).setScrollFactor(0));
+
+    const infoRow = (y, label, val, valueColor = '#CCCCCC') => {
+      add(this.add.text(statsX, y, label, {
+        fontSize: `${s(11)}px`, color: '#888877', fontFamily: 'serif'
+      }).setDepth(DEPTH+5).setScrollFactor(0));
+      add(this.add.text(statsValX, y, val, {
+        fontSize: `${s(10.5)}px`, color: valueColor, fontFamily: 'serif', fontStyle: 'bold',
+        wordWrap: { width: s(178) },
+      }).setOrigin(0, 0).setDepth(DEPTH+5).setScrollFactor(0));
+      const lg = add(this.add.graphics().setDepth(DEPTH+4).setScrollFactor(0));
+      lg.lineStyle(1, 0x333322, 0.45);
+      lg.lineBetween(statsX, y + s(20), statsLineR, y + s(20));
+    };
+
+    sectionTitle(s(874), s(105), 'КЛАСС');
+    infoRow(s(144), 'Путь', ch.className);
+    infoRow(s(174), 'Ветка', ch.branchName, ch.branchName === 'Ветка не выбрана' ? '#9A8654' : '#CCCCCC');
+    const resourceText = ch.resourceMax ? `${ch.resourceValue ?? 0} / ${ch.resourceMax}` : `${ch.resourceValue ?? 0}`;
+    infoRow(s(204), ch.resourceName, resourceText, '#D4AA60');
+
+    const branchHint = ch.branchHint.length > 78 ? `${ch.branchHint.slice(0, 75)}...` : ch.branchHint;
+    add(this.add.text(statsX, s(232), branchHint, {
+      fontSize: `${s(9)}px`, color: '#777063', fontFamily: 'serif',
+      wordWrap: { width: s(245) }, lineSpacing: s(1),
+    }).setDepth(DEPTH+5).setScrollFactor(0));
+
+    const statsY0 = s(300);
 
     const stats = [
       ['Уровень',    `${ch.lvl}`],
       ['HP',         `${ch.hp} / ${ch.maxHp}`],
       ['Урон',       ch.dmg],
       ['Инициатива', `${ch.spd}`],
+      ['Броня',      `${ch.armor}`],
     ];
 
-    add(this.add.text(s(874), s(105), 'ХАРАКТЕРИСТИКИ', {
-      fontSize: `${s(14)}px`, color: '#d4a832', fontFamily: 'serif', letterSpacing: 2
-    }).setOrigin(0, 0).setDepth(DEPTH+5).setScrollFactor(0));
+    sectionTitle(s(874), s(266), 'ХАРАКТЕРИСТИКИ');
 
     stats.forEach(([label, val], i) => {
-      const rowY = statsY0 + i * statsStep;
-      add(this.add.text(statsX, rowY, label, {
-        fontSize: `${s(13)}px`, color: '#888877', fontFamily: 'serif'
-      }).setDepth(DEPTH+5).setScrollFactor(0));
-      add(this.add.text(statsValX, rowY, val, {
-        fontSize: `${s(15)}px`, color: '#CCCCCC', fontFamily: 'serif', fontStyle: 'bold'
-      }).setOrigin(0, 0).setDepth(DEPTH+5).setScrollFactor(0));
-      const lg = add(this.add.graphics().setDepth(DEPTH+4).setScrollFactor(0));
-      lg.lineStyle(1, 0x333322, 0.5);
-      lg.lineBetween(statsX, rowY + s(22), statsLineR, rowY + s(22));
+      infoRow(statsY0 + i * rowStep, label, val);
     });
 
     // Скиллы
-    const skillsY = statsY0 + stats.length * statsStep + s(32);
-    add(this.add.text(statsX, skillsY, 'СКИЛЛЫ', {
-      fontSize: `${s(14)}px`, color: '#d4a832', fontFamily: 'serif', letterSpacing: 2
-    }).setDepth(DEPTH+5).setScrollFactor(0));
+    const skillsY = statsY0 + stats.length * rowStep + s(26);
+    sectionTitle(statsX, skillsY, 'УМЕНИЯ');
     ch.skills.forEach((sk, i) => {
-      add(this.add.text(statsX, skillsY + s(24) + i * s(28), `• ${sk}`, {
-        fontSize: `${s(12)}px`, color: '#AAAAAA', fontFamily: 'serif',
+      add(this.add.text(statsX, skillsY + s(24) + i * s(22), `• ${sk}`, {
+        fontSize: `${s(10.5)}px`, color: '#AAAAAA', fontFamily: 'serif',
         wordWrap: { width: s(235) },
       }).setDepth(DEPTH+5).setScrollFactor(0));
     });
