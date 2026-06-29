@@ -1,10 +1,12 @@
 import * as Phaser from 'phaser/dist/phaser.esm.js';
 
 import { MapUnit }       from '../entities/MapUnit.js';
+import { PlayerUnit }    from '../entities/PlayerUnit.js';
 import { WalkableZones } from '../systems/WalkableZones.js';
 import { MusicPlayer }   from '../ui/MusicPlayer.js';
 import { DialoguePanel } from '../ui/DialoguePanel.js';
 import eventBus           from '../utils/eventBus.js';
+import { XP }             from '../utils/constants.js';
 
 import MAP_CONFIGS  from '../data/maps.json';
 import itemsData    from '../data/items.json';
@@ -134,6 +136,9 @@ export class MapScene extends Phaser.Scene {
     this.input.keyboard.on('keydown-H', () => this._toggleScreenGrid());
     this.input.keyboard.on('keydown-B', () => this._toggleInvGrid());
     this.input.keyboard.on('keydown-J', () => this._toggleFineGrid());
+    if (import.meta.env.DEV) {
+      this.input.keyboard.on('keydown-L', () => this._launchDevLevelUp());
+    }
 
     // Курсор: показывает мировые координаты под мышью в dev-режиме
     this.input.on('pointermove', (ptr) => {
@@ -195,6 +200,28 @@ export class MapScene extends Phaser.Scene {
       this._checkExits();
       this._checkTavernEntry();
     }
+  }
+
+  _launchDevLevelUp() {
+    if (this._transitioning || this.scene.isActive('LevelUpScene')) return;
+
+    const playerUnits = ['hero_duelist', 'companion_brawler', 'companion_healer']
+      .map(id => unitsData.find(u => u.id === id))
+      .filter(Boolean)
+      .map(data => new PlayerUnit(data));
+    SaveSystem.applyToUnits(playerUnits);
+
+    playerUnits.forEach(unit => {
+      const missingXp = Math.max(0, XP.THRESHOLD - (unit.xp || 0));
+      unit.addXP(missingXp || XP.THRESHOLD);
+    });
+
+    this.scene.launch('LevelUpScene', {
+      leveledUnits: playerUnits.filter(u => u.canLevelUp(XP.THRESHOLD)),
+      allPlayerUnits: playerUnits,
+      fromMapKey: this.mapKey,
+      fromSpawnId: this.spawnId,
+    });
   }
 
   // ─── Party ───────────────────────────────────────────────────────────────
