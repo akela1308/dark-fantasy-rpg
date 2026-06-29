@@ -996,16 +996,16 @@
     "bgKey": "map_elf_boloto1",
     "spawnPoints": {
       "default": {
-        "x": 330,
-        "y": 390
+        "x": 1500,
+        "y": 800
       },
       "from_road_boloto": {
-        "x": 330,
-        "y": 390
+        "x": 1500,
+        "y": 800
       },
       "from_right": {
         "x": 1500,
-        "y": 690
+        "y": 800
       }
     },
     "exits": [
