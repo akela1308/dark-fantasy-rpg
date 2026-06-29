@@ -1193,6 +1193,8 @@ export class MapScene extends Phaser.Scene {
   // ── Экран персонажа ──────────────────────────────────────────────────────
 
   _buildCharacterSheetChars() {
+    const save = SaveSystem.load();
+    const savedUnitsById = Object.fromEntries((save?.units || []).map(u => [u.id, u]));
     const skillLabels = {
       rapier_strike: 'Укол в уязвимость',
       dueling_stance: 'Дуэльная стойка',
@@ -1226,7 +1228,16 @@ export class MapScene extends Phaser.Scene {
 
     return ['hero_duelist', 'companion_brawler', 'companion_healer']
       .map(id => {
-        const unit = unitsData.find(u => u.id === id);
+        const baseUnit = unitsData.find(u => u.id === id);
+        const savedUnit = savedUnitsById[id] || {};
+        const unit = baseUnit ? {
+          ...baseUnit,
+          ...savedUnit,
+          damage: { ...(baseUnit.damage || {}), ...(savedUnit.damage || {}) },
+          resources: { ...(baseUnit.resources || {}), ...(savedUnit.resources || {}) },
+          skills: Array.isArray(savedUnit.skills) ? savedUnit.skills : baseUnit.skills,
+          passives: Array.isArray(savedUnit.passives) ? savedUnit.passives : baseUnit.passives,
+        } : null;
         const meta = sheetMeta[id];
         if (!unit || !meta) return null;
         const cls = classesData.find(c => c.id === unit.classId || c.unitId === unit.id) || null;

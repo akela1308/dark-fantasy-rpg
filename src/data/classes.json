@@ -25,7 +25,9 @@
       }
     ],
     "tags": ["duel", "honor", "old_law", "pistol"],
-    "levelPlan": {}
+    "levelPlan": {
+      "3": ["honor_code", "last_argument"]
+    }
   },
   {
     "id": "brawler",
@@ -53,7 +55,9 @@
       }
     ],
     "tags": ["frontline", "club", "guard"],
-    "levelPlan": {}
+    "levelPlan": {
+      "3": ["living_wall", "bonebreaker"]
+    }
   },
   {
     "id": "healer",
@@ -81,6 +85,8 @@
       }
     ],
     "tags": ["healing", "herbs", "tinctures"],
-    "levelPlan": {}
+    "levelPlan": {
+      "3": ["healers_hand", "bitter_tinctures"]
+    }
   }
 ]

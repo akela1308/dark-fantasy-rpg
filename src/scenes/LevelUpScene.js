@@ -49,6 +49,11 @@ export class LevelUpScene extends Phaser.Scene {
       { key: 'damage', label: 'Мастерство',   desc: '+3 к урону' },
       { key: 'speed',  label: 'Инициатива',   desc: '+1 к инициативе' },
     ];
+    const choiceKind = bonuses.some(b => b.type === 'branch')
+      ? 'Выберите путь класса:'
+      : bonuses.some(b => b.type === 'commanderTrait')
+        ? 'Выберите черту Героя:'
+        : 'Выберите бонус:';
     const compact = bonuses.length > 3;
     const panelH = compact ? 520 : 420;
     const panelTop = H/2 - panelH/2;
@@ -96,7 +101,7 @@ export class LevelUpScene extends Phaser.Scene {
       fontSize: '15px', color: '#aaaaaa', fontFamily: 'serif',
     }).setOrigin(0.5).setDepth(92).setScrollFactor(0));
 
-    elements.push(this.add.text(W/2, H/2 - 62, 'Выберите бонус:', {
+    elements.push(this.add.text(W/2, H/2 - 62, choiceKind, {
       fontSize: '13px', color: '#888888', fontFamily: 'serif',
     }).setOrigin(0.5).setDepth(92).setScrollFactor(0));
 
