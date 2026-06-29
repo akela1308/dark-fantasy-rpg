@@ -1041,6 +1041,14 @@
         "portraitKey": "portrait_swamp_elf_girl",
         "name": "Болотная Эльфийка",
         "height": 125,
+        "anchorFeet": true,
+        "breathing": {
+          "period": 3600,
+          "scaleYFrom": 0.992,
+          "scaleYTo": 1.035,
+          "scaleXFrom": 1.006,
+          "scaleXTo": 0.994
+        },
         "hoverPortrait": true,
         "dialogues": [
           {

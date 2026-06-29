@@ -659,10 +659,11 @@ export class MapScene extends Phaser.Scene {
       // Тень
       const shadow = this.add.ellipse(npc.x, npc.y + 8, 55, 16, 0x000000, 0.35).setDepth(1);
 
-      // Для sway-NPC: origin (0.5, 1) — вращение вокруг ног.
+      // Для sway/anchorFeet-NPC: origin (0.5, 1) — движение вокруг ног.
       // Компенсируем смещение: origin снизу поднимает спрайт, добавляем h/2 к y.
-      const spriteOriginY = npc.sway ? 1 : 0.5;
-      const spriteY       = npc.sway ? npc.y + h / 2 : npc.y;
+      const anchoredToFeet = npc.sway || npc.anchorFeet;
+      const spriteOriginY = anchoredToFeet ? 1 : 0.5;
+      const spriteY       = anchoredToFeet ? npc.y + h / 2 : npc.y;
       const spriteFactory = npc.ambientAnim ? this.add.sprite.bind(this.add) : this.add.image.bind(this.add);
       const sprite = spriteFactory(npc.x, spriteY, npc.spriteKey, frameKey)
         .setOrigin(0.5, spriteOriginY)
@@ -670,7 +671,8 @@ export class MapScene extends Phaser.Scene {
         .setDepth(npc.y)
         .setFlipX(npc.flipX || false)
         .setInteractive({ useHandCursor: true });
-      this._addBreathingTween(sprite, 3000 + Math.random() * 600);
+      const breath = npc.breathing || {};
+      this._addBreathingTween(sprite, breath.period || (3000 + Math.random() * 600), breath);
       this._setupAmbientNpcAnimation(sprite, npc);
 
       // Пьяное покачивание (sway: true) — тело качается, ноги стоят на месте
@@ -1792,14 +1794,25 @@ export class MapScene extends Phaser.Scene {
   }
 
 
-  _addBreathingTween(sprite, period = 2800) {
+  _addBreathingTween(sprite, period = 2800, cfg = {}) {
+    const baseScaleX = sprite.scaleX;
     const baseScaleY = sprite.scaleY;
-    this.tweens.add({
+    const tween = {
       targets: sprite,
-      scaleY: { from: baseScaleY * 0.998, to: baseScaleY * 1.022 },
+      scaleY: {
+        from: baseScaleY * (cfg.scaleYFrom ?? 0.998),
+        to:   baseScaleY * (cfg.scaleYTo   ?? 1.022),
+      },
       duration: period,
       yoyo: true, repeat: -1, ease: 'Sine.easeInOut',
-    });
+    };
+    if (cfg.scaleXFrom || cfg.scaleXTo) {
+      tween.scaleX = {
+        from: baseScaleX * (cfg.scaleXFrom ?? 1),
+        to:   baseScaleX * (cfg.scaleXTo   ?? 1),
+      };
+    }
+    this.tweens.add(tween);
   }
 
   _addCharacterSheetFigure(ch, add, DEPTH) {
