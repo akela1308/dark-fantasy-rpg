@@ -96,6 +96,7 @@ export class LoadingScene extends Phaser.Scene {
     img('map_swamp_map',     'maps/swamp_map.png');
     img('map_forest1',       'maps/forest1.png');
     img('map_elf_boloto',    'maps/elf_boloto.png');
+    img('map_elf_boloto1',   'maps/elf_boloto1.png');
     img('map_road_boloto',   'maps/road_boloto.png');
 
     // Персонажи на карте

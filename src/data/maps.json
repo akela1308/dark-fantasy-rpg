@@ -872,9 +872,23 @@
       "from_tavern": {
         "x": 1600,
         "y": 800
+      },
+      "from_elf_boloto1": {
+        "x": 240,
+        "y": 420
       }
     },
     "exits": [
+      {
+        "zone": {
+          "x": 0,
+          "y": 200,
+          "w": 200,
+          "h": 200
+        },
+        "toMap": "elf_boloto1",
+        "spawnId": "from_road_boloto"
+      },
       {
         "zone": {
           "x": 0,
@@ -897,6 +911,17 @@
       }
     ],
     "labels": [
+      {
+        "hoverZone": {
+          "x": 0,
+          "y": 200,
+          "w": 200,
+          "h": 200
+        },
+        "text": "← Эльфийское болото",
+        "screenX": 120,
+        "screenY": 210
+      },
       {
         "hoverZone": {
           "x": 0,
@@ -963,6 +988,66 @@
         "y": 920,
         "alpha": 0.25,
         "speedX": -0.12,
+        "depth": 1
+      }
+    ]
+  },
+  "elf_boloto1": {
+    "bgKey": "map_elf_boloto1",
+    "spawnPoints": {
+      "default": {
+        "x": 220,
+        "y": 420
+      },
+      "from_road_boloto": {
+        "x": 220,
+        "y": 420
+      },
+      "from_right": {
+        "x": 1500,
+        "y": 690
+      }
+    },
+    "exits": [
+      {
+        "zone": {
+          "x": 0,
+          "y": 330,
+          "w": 170,
+          "h": 250
+        },
+        "toMap": "road_boloto",
+        "spawnId": "from_elf_boloto1"
+      }
+    ],
+    "labels": [
+      {
+        "hoverZone": {
+          "x": 0,
+          "y": 330,
+          "w": 170,
+          "h": 250
+        },
+        "text": "← Болотная дорога",
+        "screenX": 110,
+        "screenY": 410
+      }
+    ],
+    "tavernEntry": null,
+    "bandits": false,
+    "fog": [
+      {
+        "key": "fog",
+        "y": 105,
+        "alpha": 0.18,
+        "speedX": 0.06,
+        "depth": 1
+      },
+      {
+        "key": "fog2",
+        "y": 820,
+        "alpha": 0.18,
+        "speedX": -0.08,
         "depth": 1
       }
     ]
