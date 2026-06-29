@@ -135,6 +135,7 @@ export class LoadingScene extends Phaser.Scene {
     img('map_dwarf_beer2',   'maps/characters/dwarf_beer2.png');
     img('map_companion_brawler', 'maps/characters/companion_brawler.png');
     img('map_companion_healer',  'maps/characters/companion_healer.png');
+    img('map_swamp_elf_girl',    'maps/characters/swamp_elf_girl.png');
 
     // Иконки скиллов и действий (dark_rpg_icons)
     img('icon_shield',         'ui/icon_shield.png');
@@ -179,6 +180,7 @@ export class LoadingScene extends Phaser.Scene {
     img('portrait_dwarf_beer2',  'portraits/dwarf_beer2.png');
     img('portrait_companion_brawler', 'portraits/companion_brawler.png');
     img('portrait_companion_healer',  'portraits/companion_healer.png');
+    img('portrait_swamp_elf_girl',    'portraits/swamp_elf_girl.png');
 
     // Туман
     img('fog',  'maps/fog.png');
