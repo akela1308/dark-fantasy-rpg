@@ -136,9 +136,8 @@ export class MapScene extends Phaser.Scene {
     this.input.keyboard.on('keydown-H', () => this._toggleScreenGrid());
     this.input.keyboard.on('keydown-B', () => this._toggleInvGrid());
     this.input.keyboard.on('keydown-J', () => this._toggleFineGrid());
-    if (import.meta.env.DEV) {
-      this.input.keyboard.on('keydown-L', () => this._launchDevLevelUp());
-    }
+    // TEMP: прод-тест прокачки. Убрать после проверки веток классов.
+    this.input.keyboard.on('keydown-L', () => this._launchDevLevelUp());
 
     // Курсор: показывает мировые координаты под мышью в dev-режиме
     this.input.on('pointermove', (ptr) => {
