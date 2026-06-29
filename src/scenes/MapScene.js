@@ -1192,13 +1192,13 @@ export class MapScene extends Phaser.Scene {
 
   _initCharacterSheet() {
     const CHARS = [
-      { id: 'hero_duelist',      name: 'Падший Дуэлянт', sprite: 'hero_duelist',       hp: 80,  maxHp: 80,  dmg: '12–18', spd: 7, lvl: 1,
+      { id: 'hero_duelist',      name: 'Падший Дуэлянт', sprite: 'hero_duelist',      mapSprite: 'map_hero', hp: 80,  maxHp: 80,  dmg: '12–18', spd: 7, lvl: 1,
         skills: ['Укол в уязвимость', 'Дуэльная стойка', 'Пистолет (2 заряда)'],
         desc: 'Бывший имперский дуэлянт. Мастер рапиры и пистолета.' },
-      { id: 'companion_brawler', name: 'Боец',            sprite: 'companion_brawler',  hp: 100, maxHp: 100, dmg: '10–16', spd: 5, lvl: 1,
+      { id: 'companion_brawler', name: 'Боец',            sprite: 'companion_brawler', mapSprite: 'map_companion_brawler', hp: 100, maxHp: 100, dmg: '10–16', spd: 5, lvl: 1,
         skills: ['Прикрыть'],
         desc: 'Верный защитник отряда. Принимает удары на себя.' },
-      { id: 'companion_healer',  name: 'Знахарка',        sprite: 'companion_healer',   hp: 50,  maxHp: 50,  dmg: '6–10',  spd: 4, lvl: 1,
+      { id: 'companion_healer',  name: 'Знахарка',        sprite: 'companion_healer',  mapSprite: 'map_companion_healer', hp: 50,  maxHp: 50,  dmg: '6–10',  spd: 4, lvl: 1,
         skills: ['Перевязка'],
         desc: 'Целительница с тёмным прошлым. Лечит раны отряда.' },
     ];
@@ -1240,13 +1240,31 @@ export class MapScene extends Phaser.Scene {
       fontSize: '17px', color: '#d4a832', fontFamily: 'serif', letterSpacing: 4
     }).setOrigin(0.5, 0).setDepth(DEPTH+3).setScrollFactor(0).setVisible(false);
 
-    // Кнопка X
-    const closeBtn = this.add.text(PX + PW - 14, PY + 14, '✕', {
-      fontSize: '22px', color: '#CCCCCC', fontFamily: 'serif'
-    }).setOrigin(1, 0).setDepth(DEPTH+3).setScrollFactor(0)
+    // Кнопка X — отдельная тёмная плашка, чтобы она не терялась на фоне.
+    const closeX = PX + PW - s(24);
+    const closeY = PY + s(24);
+    const closeBg = this.add.rectangle(closeX, closeY, s(34), s(34), 0x050505, 0.92)
+      .setStrokeStyle(s(1), 0x7b5b24, 0.95)
+      .setDepth(DEPTH+3).setScrollFactor(0)
       .setInteractive({ useHandCursor: true }).setVisible(false);
-    closeBtn.on('pointerover', () => closeBtn.setColor('#FFFFFF'));
-    closeBtn.on('pointerout',  () => closeBtn.setColor('#888888'));
+    const closeBtn = this.add.text(closeX, closeY - s(1), '×', {
+      fontSize: `${s(25)}px`, color: '#C9A84C', fontFamily: 'serif',
+      stroke: '#000000', strokeThickness: s(2),
+    }).setOrigin(0.5).setDepth(DEPTH+4).setScrollFactor(0)
+      .setInteractive({ useHandCursor: true }).setVisible(false);
+    const closeOver = () => {
+      closeBg.setStrokeStyle(s(1.5), 0xd4a832, 1);
+      closeBtn.setColor('#F3D27A');
+    };
+    const closeOut = () => {
+      closeBg.setStrokeStyle(s(1), 0x7b5b24, 0.95);
+      closeBtn.setColor('#C9A84C');
+    };
+    closeBg.on('pointerover', closeOver);
+    closeBtn.on('pointerover', closeOver);
+    closeBg.on('pointerout', closeOut);
+    closeBtn.on('pointerout', closeOut);
+    closeBg.on('pointerdown', () => this._hideCharSheet());
     closeBtn.on('pointerdown', () => this._hideCharSheet());
 
     // Разделитель (вертикальный)
@@ -1309,7 +1327,7 @@ export class MapScene extends Phaser.Scene {
     });
     // ──────────────────────────────────────────────────────────────────────────
 
-    this._charSheetElements = [overlay, bg, bgImg, title, closeBtn, divLeft, divRight, tabLine, ...tabs, ...invEls];
+    this._charSheetElements = [overlay, bg, bgImg, title, closeBg, closeBtn, divLeft, divRight, tabLine, ...tabs, ...invEls];
     this._charSheetTabs = tabs;
     this._charSheetChars = CHARS;
     this._charSheetPX = PX; this._charSheetPY = PY;
@@ -1351,10 +1369,18 @@ export class MapScene extends Phaser.Scene {
     }
     els.push(iconObj);
 
+    iconObj.setInteractive({ useHandCursor: item.type === 'book' || item.type === 'consumable' });
+    iconObj.on('pointerover', (pointer) => {
+      iconObj.setTint?.(0xFFEEBB);
+      this._showInventoryTooltip(item, pointer);
+    });
+    iconObj.on('pointermove', (pointer) => this._moveInventoryTooltip(pointer));
+    iconObj.on('pointerout', () => {
+      iconObj.clearTint?.();
+      this._hideInventoryTooltip();
+    });
+
     if (item.type === 'book' && item.bookId) {
-      iconObj.setInteractive({ useHandCursor: true });
-      iconObj.on('pointerover', () => iconObj.setTint?.(0xFFEEBB));
-      iconObj.on('pointerout',  () => iconObj.clearTint?.());
       iconObj.on('pointerdown', (pointer, localX, localY, event) => {
         event?.stopPropagation();
         this._showBookReader(item.bookId);
@@ -1376,6 +1402,56 @@ export class MapScene extends Phaser.Scene {
 
     this._inventoryItemElements?.push(...els);
     return els;
+  }
+
+  _showInventoryTooltip(item, pointer) {
+    this._hideInventoryTooltip();
+
+    const zoom = this.cameras.main.zoom;
+    const s = v => v / zoom;
+    const DEPTH = (this._charSheetDEPTH ?? 10000) + 20;
+    const actionText =
+      item.type === 'book' ? 'ЛКМ: читать' :
+      item.type === 'consumable' ? 'ЛКМ: использовать позже' :
+      item.type === 'currency' ? 'Кошель отряда' :
+      'Предмет';
+    const qtyText = item.stackable || item.quantity > 1 ? `\nКоличество: ${item.quantity}` : '';
+    const body = `${item.name}\n${item.description || 'Описание будет добавлено.'}${qtyText}\n${actionText}`;
+
+    const text = this.add.text(0, 0, body, {
+      fontSize: `${s(11)}px`,
+      color: '#DDD2AA',
+      fontFamily: 'serif',
+      lineSpacing: s(3),
+      wordWrap: { width: s(230) },
+    }).setDepth(DEPTH + 1).setScrollFactor(0);
+    const bg = this.add.rectangle(0, 0, s(258), text.height + s(22), 0x050505, 0.94)
+      .setStrokeStyle(s(1), 0x6f5728, 0.9)
+      .setDepth(DEPTH).setScrollFactor(0);
+
+    this._inventoryTooltipEls = [bg, text];
+    this._moveInventoryTooltip(pointer);
+  }
+
+  _moveInventoryTooltip(pointer) {
+    if (!this._inventoryTooltipEls) return;
+    const zoom = this.cameras.main.zoom;
+    const s = v => v / zoom;
+    const [bg, text] = this._inventoryTooltipEls;
+    const panelRight = (this._charSheetPX ?? 0) + (this._charSheetPW ?? 0);
+    const panelBottom = (this._charSheetPY ?? 0) + (this._charSheetPH ?? 0);
+    const bgW = bg.width;
+    const bgH = bg.height;
+    const x = Math.min(Math.max(pointer.x / zoom + s(18), (this._charSheetPX ?? 0) + s(22)), panelRight - bgW - s(18));
+    const y = Math.min(Math.max(pointer.y / zoom + s(18), (this._charSheetPY ?? 0) + s(76)), panelBottom - bgH / 2 - s(18));
+    bg.setPosition(x + bgW / 2, y + bgH / 2);
+    text.setPosition(x + s(12), y + s(10));
+  }
+
+  _hideInventoryTooltip() {
+    if (!this._inventoryTooltipEls) return;
+    this._inventoryTooltipEls.forEach(o => { try { o.destroy(); } catch {} });
+    this._inventoryTooltipEls = null;
   }
 
   _showBookReader(bookId) {
@@ -1518,11 +1594,11 @@ export class MapScene extends Phaser.Scene {
     // Разделители на px: 121,250,377,504,622,854 → центры ячеек: 185,313,440,563,738
     const SLOT_FRACTIONS = [0.2136, 0.3614, 0.5081, 0.6501, 0.8522];
     const SLOTS = [
-      { label: '',      action: null },                             // 0 — золото (спец.обработка)
-      { label: '',      action: null },                             // 1 — пусто
-      { label: '',      action: () => this._showCharSheet(0) },   // 2 — инвентарь/отряд
-      { label: '',      action: null },                             // 3 — пусто
-      { label: '',      action: null },                             // 4 — пусто
+      { label: 'Кошель', icon: 'icon_gold', action: null, tooltip: () => `Золото: ${this.game.registry.get('playerGold') ?? 0}` },
+      { label: 'Журнал', icon: 'icon_hand', action: null, tooltip: 'Журнал заданий появится позже' },
+      { label: 'Отряд', icon: 'map_menu_button', action: () => this._showCharSheet(0), tooltip: 'Отряд и инвентарь' },
+      { label: 'Карта', icon: 'icon_luck_horseshoe', action: null, tooltip: 'Карта мира появится позже' },
+      { label: 'Меню', icon: 'icon_skull', action: null, tooltip: 'Меню и настройки появятся позже' },
     ];
 
     const s = v => v / zoom;
@@ -1531,98 +1607,67 @@ export class MapScene extends Phaser.Scene {
     // Шипы сверху смещают визуальный центр ячеек вниз на ~9% высоты панели
     const ICON_CY = BAR_Y + BAR_H * 0.09;
     const ICON_SZ = s(40);  // 40 canvas px для иконок
+    const tooltipPad = s(7);
+    const makeTooltip = (x, y, textSource) => {
+      const txt = this.add.text(x, y, '', {
+        fontSize: `${s(11)}px`, color: '#F0E0B0', fontFamily: 'serif',
+        stroke: '#000000', strokeThickness: s(2),
+      }).setOrigin(0.5).setDepth(DEPTH + 11).setScrollFactor(0).setVisible(false);
+      const bg = this.add.rectangle(x, y, s(120), s(26), 0x000000, 0.9)
+        .setStrokeStyle(s(1), 0x6f5728, 0.9)
+        .setDepth(DEPTH + 10).setScrollFactor(0).setVisible(false);
+      return {
+        show: () => {
+          txt.setText(typeof textSource === 'function' ? textSource() : textSource);
+          bg.setSize(txt.width + tooltipPad * 2, txt.height + tooltipPad * 2);
+          bg.setVisible(true);
+          txt.setVisible(true);
+        },
+        hide: () => {
+          bg.setVisible(false);
+          txt.setVisible(false);
+        },
+      };
+    };
 
     SLOTS.forEach((slot, i) => {
       const sx = Math.round(imgStartX + SLOT_FRACTIONS[i] * imgW);
-      const sy = BAR_Y;
+      const sy = ICON_CY;
+      const enabled = Boolean(slot.action);
+      const baseAlpha = i === 0 ? 0.86 : enabled ? 0.72 : 0.38;
 
       // Хит-зона — одинаковый квадрат для всех слотов
       const hit = this.add.rectangle(sx, sy, SLOT_W_WORLD, SLOT_W_WORLD, 0x000000, 0)
         .setDepth(DEPTH + 3).setScrollFactor(0);
+      const icon = this.add.image(sx, sy - s(3), slot.icon)
+        .setDisplaySize(ICON_SZ, ICON_SZ)
+        .setDepth(DEPTH + 4).setScrollFactor(0).setAlpha(baseAlpha);
 
-      // ── Слот 0: золото ──
-      if (i === 0) {
-        let goldIcon = null;
-        if (this.textures.exists('icon_gold')) {
-          goldIcon = this.add.image(sx - 4, ICON_CY - 7, 'icon_gold')
-            .setDisplaySize(ICON_SZ, ICON_SZ)
-            .setDepth(DEPTH + 4).setScrollFactor(0).setAlpha(0.85);
-        }
-        const pad = 6;
-        const tooltipY = ICON_CY - SLOT_W_WORLD * 0.72;
-        const tooltipText = this.add.text(sx, tooltipY, 'Золото: 0', {
-          fontSize: '12px', color: '#FFFFFF', fontFamily: 'serif',
-        }).setOrigin(0.5, 0.5).setDepth(DEPTH + 11).setScrollFactor(0).setVisible(false);
-        const tooltipBg = this.add.rectangle(sx, tooltipY, 90, 24, 0x000000, 0.88)
-          .setDepth(DEPTH + 10).setScrollFactor(0).setVisible(false);
-        hit.setInteractive({ useHandCursor: false });
-        hit.on('pointerover', () => {
-          const gold = this.game.registry.get('playerGold') ?? 0;
-          tooltipText.setText(`Золото: ${gold}`);
-          tooltipBg.setSize(tooltipText.width + pad * 2, tooltipText.height + pad * 2);
-          tooltipBg.setVisible(true); tooltipText.setVisible(true);
-          if (goldIcon) goldIcon.setAlpha(1);
-        });
-        hit.on('pointerout', () => {
-          tooltipBg.setVisible(false); tooltipText.setVisible(false);
-          if (goldIcon) goldIcon.setAlpha(0.85);
-        });
-        return;
-      }
-
-      // ── Слот 2: инвентарь/отряд ──
-      if (i === 2) {
-        // Центр вычислен из измеренного TL world(811,850) + half s(40)=26 world
-        const INV_X = 837, INV_Y = 876;
-        const icon = this.add.image(INV_X, INV_Y, 'map_menu_button')
-          .setDisplaySize(ICON_SZ, ICON_SZ)
-          .setDepth(DEPTH + 4).setScrollFactor(0).setAlpha(0.65);
-
-        const pad = 6;
-        const tooltipY = INV_Y - SLOT_W_WORLD * 0.72;
-        const tooltipText = this.add.text(INV_X, tooltipY, 'Инвентарь', {
-          fontSize: '12px', color: '#FFFFFF', fontFamily: 'serif',
-        }).setOrigin(0.5, 0.5).setDepth(DEPTH + 11).setScrollFactor(0).setVisible(false);
-        const tooltipBg = this.add.rectangle(INV_X, tooltipY, 90, 24, 0x000000, 0.88)
-          .setDepth(DEPTH + 10).setScrollFactor(0).setVisible(false);
-
-        hit.setInteractive({ useHandCursor: true });
-        hit.on('pointerover', () => {
-          icon.setAlpha(1);
-          tooltipBg.setSize(tooltipText.width + pad * 2, tooltipText.height + pad * 2);
-          tooltipBg.setVisible(true); tooltipText.setVisible(true);
-        });
-        hit.on('pointerout', () => {
-          icon.setAlpha(0.65);
-          tooltipBg.setVisible(false); tooltipText.setVisible(false);
-        });
-        hit.on('pointerdown', slot.action);
-        return;
-      }
-
-      if (!slot.action) return;  // пустой слот — ничего не рисуем
-
-      // ── Прочие активные слоты: иконка + подпись ──
-      const iconSz = Math.round(SLOT_SIZE * 0.65 / zoom);
-      const iconY  = sy;
-      const labelY = sy + SLOT_W_WORLD * 0.42;
-
-      const icon = this.add.image(sx, iconY, 'map_menu_button')
-        .setDisplaySize(iconSz, iconSz)
-        .setDepth(DEPTH + 4).setScrollFactor(0).setAlpha(0.9);
-
-      const label = this.add.text(sx, labelY, slot.label, {
-        fontSize: '10px', color: '#C9A84C', fontFamily: 'serif',
-        stroke: '#000000', strokeThickness: 2,
+      const label = this.add.text(sx, sy + s(30), slot.label, {
+        fontSize: `${s(8)}px`,
+        color: enabled || i === 0 ? '#C9A84C' : '#796941',
+        fontFamily: 'serif',
+        stroke: '#000000', strokeThickness: s(2),
       }).setOrigin(0.5, 0.5).setDepth(DEPTH + 5).setScrollFactor(0);
 
       const glow = this.add.rectangle(sx, sy, SLOT_W_WORLD, SLOT_W_WORLD, 0xC9A84C, 0)
         .setDepth(DEPTH + 2).setScrollFactor(0);
+      const tooltip = makeTooltip(sx, sy - SLOT_W_WORLD * 0.72, slot.tooltip);
 
-      hit.setInteractive({ useHandCursor: true });
-      hit.on('pointerover', () => { glow.setAlpha(0.15); icon.setAlpha(1); label.setColor('#FFD700'); });
-      hit.on('pointerout',  () => { glow.setAlpha(0);    icon.setAlpha(0.9); label.setColor('#C9A84C'); });
-      hit.on('pointerdown', slot.action);
+      hit.setInteractive({ useHandCursor: enabled });
+      hit.on('pointerover', () => {
+        glow.setAlpha(enabled ? 0.16 : 0.08);
+        icon.setAlpha(enabled || i === 0 ? 1 : 0.55);
+        label.setColor(enabled || i === 0 ? '#FFD98A' : '#9A8654');
+        tooltip.show();
+      });
+      hit.on('pointerout', () => {
+        glow.setAlpha(0);
+        icon.setAlpha(baseAlpha);
+        label.setColor(enabled || i === 0 ? '#C9A84C' : '#796941');
+        tooltip.hide();
+      });
+      if (slot.action) hit.on('pointerdown', slot.action);
     });
 
   }
@@ -1636,6 +1681,28 @@ export class MapScene extends Phaser.Scene {
       duration: period,
       yoyo: true, repeat: -1, ease: 'Sine.easeInOut',
     });
+  }
+
+  _addCharacterSheetFigure(ch, add, DEPTH) {
+    const zoom = this.cameras.main.zoom;
+    const s = v => v / zoom;
+    const key = ch.mapSprite && this.textures.exists(ch.mapSprite) ? ch.mapSprite : ch.sprite;
+    const footX = s(640);
+    const footY = s(470);
+    const targetH = s(285);
+
+    const shadow = add(this.add.ellipse(footX, footY + s(6), s(112), s(18), 0x000000, 0.45)
+      .setDepth(DEPTH + 4).setScrollFactor(0));
+
+    const sprite = add(this.add.image(footX, footY, key)
+      .setOrigin(0.5, 1)
+      .setDepth(DEPTH + 5)
+      .setScrollFactor(0));
+    const ratio = sprite.width / Math.max(1, sprite.height);
+    sprite.setDisplaySize(targetH * ratio, targetH);
+    this._addBreathingTween(sprite, 3200);
+
+    return { shadow, sprite };
   }
 
   _showCharSheet(idx = 0) {
@@ -1661,6 +1728,7 @@ export class MapScene extends Phaser.Scene {
     this._charSheetElements.forEach(e => e.setVisible(false));
     this._csContent.forEach(e => { try { e.destroy(); } catch {} });
     this._csContent = [];
+    this._hideInventoryTooltip();
     this._destroyInvGrid();
   }
 
@@ -1672,22 +1740,20 @@ export class MapScene extends Phaser.Scene {
     const s = v => v / zoom;
     const add = (obj) => { this._csContent.push(obj); return obj; };
 
-    // ── Центральная зона: спрайт персонажа ──
-    const sprite = add(this.add.image(s(575), s(340), ch.sprite)
-      .setOrigin(0.5, 0.5).setDepth(DEPTH+5).setScrollFactor(0));
-    const naturalRatio = sprite.width / sprite.height;
-    const displayH = s(370);
-    sprite.setDisplaySize(displayH * naturalRatio, displayH);
+    // ── Центральная зона: игровая миниатюра персонажа ──
+    this._addCharacterSheetFigure(ch, add, DEPTH);
 
     // Имя персонажа
-    add(this.add.text(s(630), s(490), ch.name, {
-      fontSize: `${s(18)}px`, color: '#d4a832', fontFamily: 'serif'
+    add(this.add.text(s(640), s(493), ch.name, {
+      fontSize: `${s(18)}px`, color: '#d4a832', fontFamily: 'serif',
+      stroke: '#000000', strokeThickness: s(2),
     }).setOrigin(0.5, 0).setDepth(DEPTH+5).setScrollFactor(0));
 
     // Описание
-    add(this.add.text(s(630), s(518), ch.desc, {
-      fontSize: `${s(12)}px`, color: '#888877', fontFamily: 'serif',
-      wordWrap: { width: s(260) }, align: 'center'
+    add(this.add.text(s(640), s(520), ch.desc, {
+      fontSize: `${s(11)}px`, color: '#888877', fontFamily: 'serif',
+      wordWrap: { width: s(235) }, align: 'center',
+      lineSpacing: s(2),
     }).setOrigin(0.5, 0).setDepth(DEPTH+5).setScrollFactor(0));
 
     // ── Правая зона: статы ──
@@ -1695,11 +1761,11 @@ export class MapScene extends Phaser.Scene {
     // ХАРАКТЕРИСТИКИ верх-лево: canvas(874, 105)
     // Метки: canvas x=861, первая строка canvas y=175
     // Значения: canvas x=979
-    const statsX     = s(861);
-    const statsValX  = s(979);
-    const statsLineR = s(1140);
+    const statsX     = s(864);
+    const statsValX  = s(984);
+    const statsLineR = s(1134);
     const statsY0    = s(175);
-    const statsStep  = s(40);
+    const statsStep  = s(42);
 
     const stats = [
       ['Уровень',    `${ch.lvl}`],
@@ -1726,13 +1792,14 @@ export class MapScene extends Phaser.Scene {
     });
 
     // Скиллы
-    const skillsY = statsY0 + stats.length * statsStep + s(24);
+    const skillsY = statsY0 + stats.length * statsStep + s(32);
     add(this.add.text(statsX, skillsY, 'СКИЛЛЫ', {
       fontSize: `${s(14)}px`, color: '#d4a832', fontFamily: 'serif', letterSpacing: 2
     }).setDepth(DEPTH+5).setScrollFactor(0));
     ch.skills.forEach((sk, i) => {
-      add(this.add.text(statsX, skillsY + s(18) + i * s(26), `• ${sk}`, {
-        fontSize: `${s(13)}px`, color: '#AAAAAA', fontFamily: 'serif'
+      add(this.add.text(statsX, skillsY + s(24) + i * s(28), `• ${sk}`, {
+        fontSize: `${s(12)}px`, color: '#AAAAAA', fontFamily: 'serif',
+        wordWrap: { width: s(235) },
       }).setDepth(DEPTH+5).setScrollFactor(0));
     });
 
