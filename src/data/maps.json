@@ -1036,11 +1036,11 @@
     "npcs": [
       {
         "x": 330,
-        "y": 370,
+        "y": 270,
         "spriteKey": "map_swamp_elf_girl",
         "portraitKey": "portrait_swamp_elf_girl",
         "name": "Болотная Эльфийка",
-        "height": 170,
+        "height": 125,
         "hoverPortrait": true,
         "dialogues": [
           {
