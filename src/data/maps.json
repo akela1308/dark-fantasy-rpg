@@ -1050,6 +1050,9 @@
           "scaleXTo": 0.994
         },
         "hoverPortrait": true,
+        "altRoot": [
+          { "requiresFlag": "swamp_elf_guardians_defeated", "dialogueIndex": 5 }
+        ],
         "dialogues": [
           {
             "text": "\"Не шагайте глубже без слова. Здесь доски помнят вес ног, а вода — вес обещаний.\"",
@@ -1061,6 +1064,12 @@
               {
                 "label": "Что это за место?",
                 "style": "default"
+              },
+              {
+                "label": "Отойди. Мы пройдем силой.",
+                "style": "attack",
+                "startBattle": "swamp_elf_guardians",
+                "startedFlag": "swamp_elf_guardians_started"
               },
               {
                 "label": "Мы просто идем дорогой.",
@@ -1115,6 +1124,16 @@
                 "label": "Запомнить ее предупреждение.",
                 "style": "default",
                 "setFlag": "swamp_elf_warning_heard",
+                "close": true
+              }
+            ]
+          },
+          {
+            "text": "\"Вода приняла кровь и не стала чище. Идите, пока тропа еще делает вид, что помнит ваши шаги.\"",
+            "choices": [
+              {
+                "label": "Уйти.",
+                "style": "retreat",
                 "close": true
               }
             ]

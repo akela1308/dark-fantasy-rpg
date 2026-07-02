@@ -14,6 +14,7 @@ import * as Phaser from 'phaser/dist/phaser.esm.js';
 import unitsData   from '../data/units.json';
 import enemiesData from '../data/enemies.json';
 import skillsData  from '../data/skills.json';
+import battlesData from '../data/battles.json';
 import { SaveSystem } from '../utils/SaveSystem.js';
 
 const SPRITE_IDS = [
@@ -23,6 +24,9 @@ const SPRITE_IDS = [
   'bandit_commander',
   'bandit_brawler',
   'bandit_archer',
+  'kikimora',
+  'swamp_knight',
+  'swamp_elf_battle',
 ];
 const HAS_BG = true; // поставь true когда добавишь battle_bg.png
 
@@ -80,11 +84,18 @@ export class BattleScene extends Phaser.Scene {
   init(data) {
     this._fromMapKey  = data?.fromMapKey  || 'map1';
     this._fromSpawnId = data?.fromSpawnId || 'default';
+    this._battleId    = data?.battleId    || 'bandit_patrol';
+    this._battleConfig = battlesData.find(b => b.id === this._battleId) || null;
+    this._battleBgKey = this._battleConfig?.backgroundKey || 'battle_bg';
   }
 
   preload() {
     if (HAS_BG) this.load.image('battle_bg', 'battle_bg.png');
+    if (this._battleConfig?.backgroundKey && this._battleConfig?.backgroundPath) {
+      this.load.image(this._battleConfig.backgroundKey, this._battleConfig.backgroundPath);
+    }
     SPRITE_IDS.forEach(id => this.load.image(id, `sprites/${id}.png`));
+    SPRITE_IDS.forEach(id => this.load.image(`portrait_${id}`, `portraits/${id}.png`));
     // Ассеты загружены в LoadingScene — здесь ничего не грузим
   }
 
@@ -124,7 +135,8 @@ export class BattleScene extends Phaser.Scene {
   _initUnits() {
     this.playerUnits = unitsData.map(d => new PlayerUnit(d));
     SaveSystem.applyToUnits(this.playerUnits);   // восстановить HP/XP/level из сохранения
-    this.enemyUnits  = enemiesData.map(d => new EnemyUnit(d));
+    const enemySource = this._battleConfig?.enemies || enemiesData;
+    this.enemyUnits  = enemySource.map(d => new EnemyUnit(JSON.parse(JSON.stringify(d))));
     this.grid.placeAll([...this.playerUnits, ...this.enemyUnits]);
   }
 
@@ -142,7 +154,7 @@ export class BattleScene extends Phaser.Scene {
 
   _drawBg() {
     if (HAS_BG) {
-      this.add.image(640, 360, 'battle_bg').setDisplaySize(1280, 720).setDepth(0);
+      this.add.image(640, 360, this._battleBgKey).setDisplaySize(1280, 720).setDepth(0);
     } else {
       // Атмосферный градиент-заглушка
       const bg = this.add.graphics();
@@ -223,12 +235,15 @@ export class BattleScene extends Phaser.Scene {
         bandit_commander:  0.97, // командир — обычный размер
         bandit_brawler:    1.06, // крупнее, но не гигант
         companion_brawler: 1.09, // самый крупный из игроков
+        kikimora:          1.14,
+        swamp_knight:      1.06,
+        swamp_elf_battle:  0.88,
       };
 
       // Спрайт или прямоугольник (spriteKey позволяет тест-юнитам использовать чужой спрайт)
       let sprite;
       const spriteKey = unit.spriteKey ?? unit.id;
-      const hasSprite = SPRITE_IDS.includes(spriteKey);
+      const hasSprite = this.textures.exists(spriteKey);
 
       if (hasSprite) {
         sprite = this.add.image(x, y, spriteKey).setOrigin(0.5, 1).setDepth(rowDepth);
@@ -568,7 +583,7 @@ export class BattleScene extends Phaser.Scene {
       this.add.text(width/2, height/2, `Получено XP: ${XP.WIN_HERO}`, {
         fontFamily: 'serif', fontSize: '26px', color: '#E8E8E8',
       }).setOrigin(0.5);
-      this.game.registry.set('bandit_0_defeated', true);
+      this.game.registry.set(this._battleConfig?.victoryFlag || 'bandit_0_defeated', true);
     }
 
     const showButtons = () => {

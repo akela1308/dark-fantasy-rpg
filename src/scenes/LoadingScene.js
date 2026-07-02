@@ -60,7 +60,8 @@ export class LoadingScene extends Phaser.Scene {
     // Спрайты (бой)
     const sprites = [
       'hero_duelist','companion_brawler','companion_healer',
-      'bandit_commander','bandit_brawler','bandit_archer'
+      'bandit_commander','bandit_brawler','bandit_archer',
+      'kikimora','swamp_knight','swamp_elf_battle'
     ];
     sprites.forEach(id => img(id, `sprites/${id}.png`));
 
@@ -69,6 +70,7 @@ export class LoadingScene extends Phaser.Scene {
 
     // Фон боя и UI
     img('battle_bg',    'battle_bg.png');
+    img('battle_bg_swamp', 'battle_bg_swamp.png');
     img('dialog_frame', 'ui/dialog_frame.png');
 
     // UI ассеты (портреты, скиллы, панели)

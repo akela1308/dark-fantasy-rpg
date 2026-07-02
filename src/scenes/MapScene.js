@@ -820,6 +820,13 @@ export class MapScene extends Phaser.Scene {
       onSelect: () => {
         // Ставим флаг если задан
         if (ch.setFlag) this.game.registry.set(ch.setFlag, true);
+        if (ch.startBattle) {
+          this._startBattle({
+            battleId: ch.startBattle,
+            startedFlag: ch.startedFlag,
+          });
+          return;
+        }
         // ch.close — принудительно закрыть, не идти дальше
         if (ch.close) return;
         // ch.next — явный переход; иначе автоматический по позиции
@@ -963,15 +970,17 @@ export class MapScene extends Phaser.Scene {
     });
   }
 
-  _startBattle() {
-    this.game.registry.set('bandit_fight_started', true);
+  _startBattle(options = {}) {
+    const battleId = options.battleId || 'bandit_patrol';
+    const startedFlag = options.startedFlag || (battleId === 'bandit_patrol' ? 'bandit_fight_started' : `${battleId}_started`);
+    this.game.registry.set(startedFlag, true);
     this._transitioning = true;
     this.time.delayedCall(200, () => {
       this.cameras.main.fade(500, 0, 0, 0, false, (cam, progress) => {
         if (progress === 1) {
           this.scene.start('LoadingScene', {
             destination: 'BattleScene',
-            destinationData: { fromMapKey: this.mapKey, fromSpawnId: this.spawnId },
+            destinationData: { fromMapKey: this.mapKey, fromSpawnId: this.spawnId, battleId },
           });
         }
       });
