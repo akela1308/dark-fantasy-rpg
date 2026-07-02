@@ -230,7 +230,10 @@ export class MapScene extends Phaser.Scene {
     if (!this.hero.moving) return;
     const idx = Math.max(0, this._heroTrail.length - stepsBack);
     const pos = this._heroTrail[idx];
-    if (pos) unit.moveTo(pos.x, pos.y);
+    if (pos) {
+      const clamped = this.walkable.clamp(pos.x, pos.y);
+      unit.moveTo(clamped.x, clamped.y);
+    }
   }
 
   _separateParty() {
@@ -248,6 +251,9 @@ export class MapScene extends Phaser.Scene {
         const push = MIN - dist;
         b.sprite.x += (dx / dist) * push;
         b.sprite.y += (dy / dist) * push;
+        const clamped = this.walkable.clamp(b.sprite.x, b.sprite.y);
+        b.sprite.x = clamped.x;
+        b.sprite.y = clamped.y;
         b.shadow.setPosition(b.sprite.x, b.sprite.y + 2);
         // Если юнит стоит — обновляем цель чтобы не было обратного движения
         if (!b.moving) {
