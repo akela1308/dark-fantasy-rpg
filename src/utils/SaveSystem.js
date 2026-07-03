@@ -19,6 +19,7 @@ const REGISTRY_FLAGS = [
   'book_korvin_tolls_read',
   'book_lowland_herbal_collected',
   'book_lowland_herbal_read',
+  'inspect_map1_road_satchel_collected',
 ];
 
 export const SaveSystem = {

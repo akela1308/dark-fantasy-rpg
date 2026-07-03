@@ -36,6 +36,74 @@
         "y": 525
       }
     ],
+    "foregrounds": [
+      {
+        "x": 1218,
+        "y": 636,
+        "key": "fg_lantern_map1",
+        "height": 230,
+        "depth": 2500
+      }
+    ],
+    "inspectables": [
+      {
+        "id": "map1_road_satchel",
+        "x": 735,
+        "y": 606,
+        "key": "item_road_satchel",
+        "height": 44,
+        "depth": 626,
+        "label": "Брошенный рюкзак",
+        "title": "Брошенный рюкзак",
+        "text": "Промокшая дорожная сумка лежит у края тракта так, будто владелец снял ее на один вдох и больше не вернулся. Внутри пахнет дымом, кислой кожей и мокрой бумагой.",
+        "takeLabel": "Забрать найденное.",
+        "collectFlag": "inspect_map1_road_satchel_collected",
+        "rewards": [
+          {
+            "id": "road_apple",
+            "name": "Сморщенное яблоко",
+            "type": "misc",
+            "quantity": 1,
+            "icon": "item_withered_apple",
+            "stackable": false,
+            "description": "Последний дорожный запас. Есть можно, но лучше сначала подумать."
+          },
+          {
+            "id": "road_note",
+            "name": "Сырая записка",
+            "type": "note",
+            "quantity": 1,
+            "icon": "item_pilgrim_tag",
+            "stackable": false,
+            "description": "Обрывок с размазанной строкой: «у ворот не называй настоящего имени»."
+          }
+        ]
+      },
+      {
+        "id": "map1_withered_apple",
+        "x": 430,
+        "y": 660,
+        "key": "item_withered_apple",
+        "height": 22,
+        "depth": 675,
+        "label": "Сморщенное яблоко",
+        "title": "Сморщенное яблоко",
+        "text": "Яблоко темное, с жесткой кожицей и следом маленьких зубов. Кто-то ел его на ходу и бросил ровно перед тем, как дорога ушла в руины.",
+        "inspectLabel": "Оставить."
+      },
+      {
+        "id": "map1_pilgrim_tag",
+        "x": 980,
+        "y": 548,
+        "key": "item_pilgrim_tag",
+        "height": 28,
+        "depth": 570,
+        "label": "Метка паломника",
+        "title": "Метка паломника",
+        "text": "Тонкая жестяная метка с выцарапанным знаком дерева. Такие привязывают к сумкам те, кто идет к Ветхим Домам и надеется, что его узнают хотя бы мертвым.",
+        "inspectLabel": "Отойти."
+      }
+    ],
     "fog": [
       {
         "key": "fog",

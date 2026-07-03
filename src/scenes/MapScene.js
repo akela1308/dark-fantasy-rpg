@@ -99,9 +99,16 @@ export class MapScene extends Phaser.Scene {
     this._bookPickups = [];
     this._spawnBookPickups(cfg);
 
+    // Малые интерактивные предметы окружения
+    this._inspectables = [];
+    this._spawnInspectables(cfg);
+
     // NPC (статичные, кликабельные)
     this._npcs = [];
     this._spawnNPCs(cfg);
+
+    // Передний слой для объектов, за которыми должен проходить отряд
+    this._spawnForegrounds(cfg);
 
     // Клик по карте
     this.input.on('pointerdown', (ptr) => {
@@ -121,6 +128,7 @@ export class MapScene extends Phaser.Scene {
     const _goldItem = this._inventory.find(it => it.id === 'gold');
     if (_goldItem) _goldItem.quantity = savedGold;
     this._syncCollectedBooksToInventory();
+    this._syncCollectedInspectablesToInventory();
 
     this._buildHUD(cfg);
 
@@ -567,11 +575,22 @@ export class MapScene extends Phaser.Scene {
     (cfg.props || []).forEach(p => {
       const img = this.add.image(p.x, p.y, p.key)
         .setOrigin(p.originX ?? 0.5, p.originY ?? 1)
-        .setDepth(p.y + 1); // depth по Y — поверх всего что выше по экрану
+        .setDepth(p.depth ?? p.y + 1); // depth по Y — поверх всего что выше по экрану
       if (p.height) {
         const scale = p.height / img.height;
         img.setScale(scale);
       }
+    });
+  }
+
+  _spawnForegrounds(cfg) {
+    (cfg.foregrounds || []).forEach(p => {
+      if (!this.textures.exists(p.key)) return;
+      const img = this.add.image(p.x, p.y, p.key)
+        .setOrigin(p.originX ?? 0.5, p.originY ?? 1)
+        .setDepth(p.depth ?? 2500);
+      if (p.height) img.setScale(p.height / img.height);
+      if (p.alpha !== undefined) img.setAlpha(p.alpha);
     });
   }
 
@@ -608,6 +627,83 @@ export class MapScene extends Phaser.Scene {
     });
   }
 
+  _spawnInspectables(cfg) {
+    (cfg.inspectables || []).forEach(p => {
+      if (p.collectFlag && this.game.registry.get(p.collectFlag)) return;
+      if (!this.textures.exists(p.key)) return;
+
+      const depth = p.depth ?? p.y + 10;
+      const h = p.height ?? 42;
+      const img = this.add.image(p.x, p.y, p.key)
+        .setOrigin(p.originX ?? 0.5, p.originY ?? 0.5)
+        .setDepth(depth)
+        .setInteractive({ useHandCursor: true });
+      img.setScale(h / img.height);
+
+      const label = this.add.text(p.x, p.y - h / 2 - 8, p.label || p.title || 'Осмотреть', {
+        fontFamily: 'serif', fontSize: '12px', color: '#D4AA60',
+        stroke: '#000', strokeThickness: 3,
+      }).setOrigin(0.5, 1).setDepth(depth + 1).setAlpha(0);
+
+      img.on('pointerover', () => { img.setTint(0xFFEEBB); label.setAlpha(1); });
+      img.on('pointerout',  () => { img.clearTint(); label.setAlpha(0); });
+      img.on('pointerdown', (pointer, localX, localY, event) => {
+        event?.stopPropagation();
+        if (this._transitioning || this._dialogue?.active || this._bookOverlay) return;
+        this.hero.stopMove();
+        this.brawler.stopMove();
+        this.healer.stopMove();
+        this._showInspectable(p, img, label);
+      });
+
+      this._inspectables.push({ img, label, data: p });
+    });
+  }
+
+  _showInspectable(item, img, label) {
+    const hasRewards = Array.isArray(item.rewards) && item.rewards.length > 0 && item.collectFlag;
+    const choices = [];
+
+    if (hasRewards) {
+      choices.push({
+        label: item.takeLabel || 'Забрать найденное.',
+        style: 'default',
+        onSelect: () => {
+          SaveSystem.setFlag(item.collectFlag, true, this.game.registry);
+          item.rewards.forEach(reward => this._addInventoryItem(this._inspectableRewardToInventoryItem(reward)));
+          img.destroy();
+          label.destroy();
+        },
+      });
+    }
+
+    choices.push({
+      label: item.inspectLabel || (hasRewards ? 'Оставить.' : 'Отойти.'),
+      style: 'retreat',
+      onSelect: () => {},
+    });
+
+    this._dialogue.show({
+      portraitLeft: 'portrait_hero_duelist',
+      speakerNameLeft: 'Герой',
+      speakerName: item.title || item.label || 'Находка',
+      text: item.text || 'Здесь пока нечего прочитать.',
+      choices,
+    });
+  }
+
+  _inspectableRewardToInventoryItem(reward) {
+    return {
+      id: reward.id,
+      name: reward.name,
+      type: reward.type || 'misc',
+      quantity: reward.quantity ?? 1,
+      icon: reward.icon,
+      stackable: reward.stackable ?? false,
+      description: reward.description || reward.name,
+    };
+  }
+
   _bookToInventoryItem(book) {
     return {
       id: `book_${book.id}`,
@@ -626,6 +722,17 @@ export class MapScene extends Phaser.Scene {
       if (book.collectFlag && this.game.registry.get(book.collectFlag)) {
         this._addInventoryItem(this._bookToInventoryItem(book), { render: false });
       }
+    });
+  }
+
+  _syncCollectedInspectablesToInventory() {
+    Object.values(MAP_CONFIGS).forEach(cfg => {
+      (cfg.inspectables || []).forEach(item => {
+        if (!item.collectFlag || !this.game.registry.get(item.collectFlag)) return;
+        (item.rewards || []).forEach(reward => {
+          this._addInventoryItem(this._inspectableRewardToInventoryItem(reward), { render: false });
+        });
+      });
     });
   }
 

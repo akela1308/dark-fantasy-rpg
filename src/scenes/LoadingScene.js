@@ -100,6 +100,7 @@ export class LoadingScene extends Phaser.Scene {
     img('map_elf_boloto',    'maps/elf_boloto.png');
     img('map_elf_boloto1',   'maps/elf_boloto1.png');
     img('map_road_boloto',   'maps/road_boloto.png');
+    img('fg_lantern_map1',    'maps/foreground_lantern_map1.png');
 
     // Персонажи на карте
     img('map_hero',      'maps/characters/hero.png');
@@ -164,6 +165,9 @@ export class LoadingScene extends Phaser.Scene {
     img('item_book_korvin_tolls',    'items/book_korvin_tolls.png');
     img('item_book_lowland_herbal',  'items/book_lowland_herbal.png');
     img('ui_book_open_panel',        'items/book_open_panel.png');
+    img('item_road_satchel',         'items/road_satchel.png');
+    img('item_withered_apple',       'items/withered_apple.png');
+    img('item_pilgrim_tag',          'items/pilgrim_tag.png');
 
         // Пропсы (интерьерные объекты)
     img('prop_table3',   'sprites/table3.png');
