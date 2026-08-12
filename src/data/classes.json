@@ -38,7 +38,8 @@
       "id": "might",
       "name": "Мощь",
       "max": 3,
-      "startsCombat": 0
+      "startsCombat": 0,
+      "gainOnBasicAttack": 1
     },
     "branches": [
       {

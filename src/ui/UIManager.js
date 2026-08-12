@@ -111,6 +111,7 @@ export class UIManager {
       dueling_stance: 'icon_dueling_stance',
       pistol_shot:    'icon_pistol',
       shield_cover:   'icon_might',          // боец: прикрыть
+      heavy_strike:   'icon_might',          // боец: тяжёлый удар
       bandage:        'icon_heart',           // знахарка: перевязка
       aimed_shot:     'icon_bow',             // лучник: прицельный выстрел
     };

@@ -32,7 +32,7 @@ export class PlayerUnit extends Unit {
       eventBus.emit('log', `Нет зарядов пистолета!`);
       return false;
     }
-    this.resources.pistol_charges--;
+    // Заряд списывает сам SkillSystem через usesResource — не дублируем здесь.
     return skillSystem.use('pistol_shot', this, target);
   }
 

@@ -49,6 +49,7 @@ export const SaveSystem = {
           classTags: [...(u.classTags || [])],
           classChoices: { ...(u.classChoices || {}) },
           resources: { ...u.resources },
+          _cdReduction: u._cdReduction || 0,
         })),
         mapKey,
         spawnId,
@@ -178,6 +179,7 @@ export const SaveSystem = {
       u.classTags = Array.isArray(s.classTags) ? [...s.classTags] : u.classTags;
       u.classChoices = s.classChoices ? { ...s.classChoices } : u.classChoices;
       u.resources = { ...u.resources, ...s.resources };
+      u._cdReduction = s._cdReduction ?? u._cdReduction ?? 0;
     });
   },
 };

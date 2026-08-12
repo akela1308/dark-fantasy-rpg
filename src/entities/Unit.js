@@ -1,4 +1,5 @@
 import eventBus from '../utils/eventBus.js';
+import { getClassDef } from '../systems/ClassProgression.js';
 
 /**
  * Unit — базовый класс для всех юнитов (игрок и враги).
@@ -66,6 +67,18 @@ export class Unit {
     const defending = this.effects.find(e => e.type === 'defending');
     let reduced = defending ? Math.round(amount * 0.5) : amount;
 
+    // Отметка (Дуэлянт): усиливает входящий урон
+    const marked = this.effects.find(e => e.type === 'marked');
+    if (marked) {
+      reduced = Math.round(reduced * (marked.value ?? 1.2));
+    }
+
+    // Прикрытие (Боец): ослабляет входящий урон
+    const guarded = this.effects.find(e => e.type === 'guarded');
+    if (guarded) {
+      reduced = Math.round(reduced * (guarded.value ?? 0.8));
+    }
+
     // Броня: % редукция (Disciples II формула: урон × (1 - ARMOR/100))
     if (this.armor > 0) {
       reduced = Math.max(1, Math.round(reduced * (1 - this.armor / 100)));
@@ -105,8 +118,10 @@ export class Unit {
 
   // --- Базовая атака ---
   attack(target) {
-    // ── Шанс попадания (на основе разницы скоростей) ──
-    const hitChance = Math.max(50, Math.min(95, 70 + (this.speed - target.speed) * 4));
+    // ── Шанс попадания (разница скоростей + отклонение accuracy от базовых 75) ──
+    const hitChance = Math.max(50, Math.min(95,
+      70 + (this.speed - target.speed) * 4 + (this.accuracy - 75) * 0.3
+    ));
     if (Math.random() * 100 > hitChance) {
       eventBus.emit('log', `${this.name} промахивается по ${target.name}!`);
       eventBus.emit('unit_missed', { unit: target });
@@ -127,6 +142,14 @@ export class Unit {
     // Lifesteal
     if (this.lifesteal > 0 && actual > 0) {
       this.heal(this.lifesteal);
+    }
+
+    // Накопление ресурса класса базовой атакой (Боец: Мощь)
+    const cls = getClassDef(this);
+    const gain = cls?.resource?.gainOnBasicAttack;
+    if (gain && actual > 0) {
+      const { id, max } = cls.resource;
+      this.resources[id] = Math.min(max, (this.resources[id] || 0) + gain);
     }
 
     return actual;

@@ -203,8 +203,11 @@ export class BattleScene extends Phaser.Scene {
       const h = BASE_HEIGHT;
       const isActive = unit === active;
 
-      // Глубина: передний ряд (row=0) поверх заднего (row=1)
-      const rowDepth = unit.position.row === 0 ? 3 : 2;
+      // Глубина по «ногам» (painter's algorithm): кто стоит ниже на экране
+      // (больший y = ближе к зрителю), тот рисуется поверх. Это не даёт дальнему
+      // юниту перекрывать ближнего внутри одного ряда. При равном y передний
+      // ряд (row=0) чуть выше заднего.
+      const rowDepth = y + (unit.position.row === 0 ? 0.5 : 0);
 
       // Тонкое кольцо под ногами — только контур, без заливки
       const ringColor = unit.type === 'player' ? 0x44AAFF : 0xFF4422;
@@ -268,10 +271,11 @@ export class BattleScene extends Phaser.Scene {
       const pct      = Math.max(0, unit.hp / unit.maxHp);
       const barColor = pct > 0.5 ? 0x44CC44 : pct > 0.25 ? 0xCCAA00 : 0xCC2222;
 
+      // HP-бары всегда поверх всех спрайтов (макс. глубина спрайта ≈ 590)
       const barBg = this.add.rectangle(x, barY, barW, barH, 0x111111, 0.85)
-        .setDepth(rowDepth + 1);
+        .setDepth(rowDepth + 600);
       const barFill = this.add.rectangle(x - barW / 2, barY, barW * pct, barH, barColor)
-        .setOrigin(0, 0.5).setDepth(rowDepth + 2);
+        .setOrigin(0, 0.5).setDepth(rowDepth + 601);
 
       unit._hpBar    = barFill;
       unit._hpBarBg  = barBg;
@@ -380,7 +384,7 @@ export class BattleScene extends Phaser.Scene {
 
   _animHeal(unit) {
     if (!unit._sprite) return;
-    const glow = this.add.ellipse(unit._spriteX, unit._spriteY, 90, 90, 0x44FF88, 0.45);
+    const glow = this.add.ellipse(unit._spriteX, unit._spriteY, 90, 90, 0x44FF88, 0.45).setDepth(900);
     this.tweens.add({
       targets: glow, alpha: 0, scaleX: 2.2, scaleY: 2.2,
       duration: 550, ease: 'Power2',
@@ -389,7 +393,7 @@ export class BattleScene extends Phaser.Scene {
     const txt = this.add.text(unit._spriteX, unit._spriteY - 20, '+HP', {
       fontSize: '17px', color: '#44FF88', fontFamily: 'serif',
       stroke: '#000', strokeThickness: 2
-    }).setOrigin(0.5);
+    }).setOrigin(0.5).setDepth(1300);
     this.tweens.add({
       targets: txt, y: unit._spriteY - 65, alpha: 0,
       duration: 750, ease: 'Power2',
@@ -407,7 +411,7 @@ export class BattleScene extends Phaser.Scene {
       unit._spriteY - 20,
       label,
       { fontSize: size, color, fontFamily: 'serif', stroke: '#000', strokeThickness: 3 }
-    ).setOrigin(0.5);
+    ).setOrigin(0.5).setDepth(1300);
     this.tweens.add({
       targets: txt,
       y:       unit._spriteY - (isCrit ? 90 : 70),
@@ -428,7 +432,7 @@ export class BattleScene extends Phaser.Scene {
       'Промах!',
       { fontSize: '16px', color: '#AAAAAA', fontFamily: 'serif',
         stroke: '#000', strokeThickness: 2 }
-    ).setOrigin(0.5).setAlpha(0.85);
+    ).setOrigin(0.5).setAlpha(0.85).setDepth(1300);
     this.tweens.add({
       targets: txt,
       y: unit._spriteY - 55,
@@ -566,7 +570,10 @@ export class BattleScene extends Phaser.Scene {
   _endBattle(result) {
     this.battleOver = true;
     const { width, height } = this.scale;
-    this.add.rectangle(width/2, height/2, width, height, 0x000000, 0.75);
+    // Оверлей результата поверх всего (юниты теперь имеют глубину по Y ~385-590,
+    // HP-бары ~1190) — затемнение и текст должны быть выше них.
+    const OVERLAY_DEPTH = 2000;
+    this.add.rectangle(width/2, height/2, width, height, 0x000000, 0.75).setDepth(OVERLAY_DEPTH);
 
     const title = result === 'victory' ? 'ПОБЕДА' : 'ВЫ ПАЛИ';
     const color = result === 'victory' ? '#C9A84C' : '#CC2222';
@@ -574,7 +581,7 @@ export class BattleScene extends Phaser.Scene {
     const t = this.add.text(width/2, height/2 - 80, title, {
       fontFamily: 'serif', fontSize: '72px', color,
       stroke: '#000', strokeThickness: 4,
-    }).setOrigin(0.5).setAlpha(0);
+    }).setOrigin(0.5).setAlpha(0).setDepth(OVERLAY_DEPTH + 1);
     this.tweens.add({ targets: t, alpha: 1, duration: 600 });
 
     if (result === 'victory') {
@@ -582,7 +589,7 @@ export class BattleScene extends Phaser.Scene {
       this.playerUnits.slice(1).forEach(u => u.addXP(XP.WIN_COMPANION));
       this.add.text(width/2, height/2, `Получено XP: ${XP.WIN_HERO}`, {
         fontFamily: 'serif', fontSize: '26px', color: '#E8E8E8',
-      }).setOrigin(0.5);
+      }).setOrigin(0.5).setDepth(OVERLAY_DEPTH + 1);
       this.game.registry.set(this._battleConfig?.victoryFlag || 'bandit_0_defeated', true);
     }
 
@@ -593,7 +600,7 @@ export class BattleScene extends Phaser.Scene {
         // Кнопка возврата на карту
         const btnMap = this.add.text(width/2, height/2 + 80, '[ На карту ]', {
           fontFamily: 'serif', fontSize: '26px', color: '#C9A84C',
-        }).setOrigin(0.5).setInteractive({ useHandCursor: true });
+        }).setOrigin(0.5).setDepth(OVERLAY_DEPTH + 1).setInteractive({ useHandCursor: true });
         btnMap.on('pointerover', () => btnMap.setColor('#FFD700'));
         btnMap.on('pointerout',  () => btnMap.setColor('#C9A84C'));
         btnMap.on('pointerdown', () => {
@@ -610,11 +617,11 @@ export class BattleScene extends Phaser.Scene {
         this.add.text(width/2, height/2, 'Сохранение уничтожено.\nВсё начинается заново.', {
           fontFamily: 'serif', fontSize: '22px', color: '#888888',
           align: 'center', lineSpacing: 8,
-        }).setOrigin(0.5);
+        }).setOrigin(0.5).setDepth(OVERLAY_DEPTH + 1);
 
         const btnRestart = this.add.text(width/2, height/2 + 100, '[ Начать заново ]', {
           fontFamily: 'serif', fontSize: '26px', color: '#CC4444',
-        }).setOrigin(0.5).setInteractive({ useHandCursor: true });
+        }).setOrigin(0.5).setDepth(OVERLAY_DEPTH + 1).setInteractive({ useHandCursor: true });
         btnRestart.on('pointerover', () => btnRestart.setColor('#FF6666'));
         btnRestart.on('pointerout',  () => btnRestart.setColor('#CC4444'));
         btnRestart.on('pointerdown', () => {

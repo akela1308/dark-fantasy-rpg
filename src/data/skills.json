@@ -2,11 +2,15 @@
   {
     "id": "rapier_strike",
     "name": "Укол в уязвимость",
-    "description": "Точный удар рапирой. Урон ×1.8",
+    "description": "Точный удар рапирой. Урон ×1.8, помечает цель",
     "type": "active",
     "targetType": "enemy_single",
     "cooldown": 1,
-    "damageMultiplier": 1.8
+    "damageMultiplier": 1.8,
+    "resourceGain": { "tempo": 1 },
+    "appliesStatus": [
+      { "type": "marked", "value": 1.2, "duration": 2 }
+    ]
   },
   {
     "id": "dueling_stance",
@@ -27,6 +31,7 @@
     "targetType": "enemy_single",
     "cooldown": 0,
     "usesResource": "pistol_charges",
+    "resourceCost": { "tempo": 1 },
     "damage": { "min": 22, "max": 28 },
     "ignoreRows": true
   },
@@ -43,20 +48,35 @@
   {
     "id": "shield_cover",
     "name": "Прикрыть",
-    "description": "Принять следующий удар на себя вместо союзника",
+    "description": "Принять следующий удар на себя вместо союзника, накапливает Мощь",
     "type": "active",
     "targetType": "ally_single",
     "cooldown": 0,
     "usesResource": "cover_uses",
-    "effect": "cover"
+    "effect": "cover",
+    "resourceGain": { "might": 1 },
+    "appliesStatus": [
+      { "type": "guarded", "value": 0.8, "duration": 2, "target": "self" }
+    ]
+  },
+  {
+    "id": "heavy_strike",
+    "name": "Тяжёлый удар",
+    "description": "Мощный удар дубиной на накопленной Мощи. Урон ×1.6",
+    "type": "active",
+    "targetType": "enemy_single",
+    "cooldown": 1,
+    "damageMultiplier": 1.6,
+    "resourceCost": { "might": 2 }
   },
   {
     "id": "bandage",
     "name": "Перевязка",
-    "description": "Лечит 20 HP выбранному союзнику",
+    "description": "Лечит 20 HP выбранному союзнику, тратит Сборы",
     "type": "active",
     "targetType": "ally_single",
     "cooldown": 2,
-    "healAmount": 20
+    "healAmount": 20,
+    "resourceCost": { "supplies": 1 }
   }
 ]

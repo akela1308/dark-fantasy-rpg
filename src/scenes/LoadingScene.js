@@ -100,6 +100,10 @@ export class LoadingScene extends Phaser.Scene {
     img('map_elf_boloto',    'maps/elf_boloto.png');
     img('map_elf_boloto1',   'maps/elf_boloto1.png');
     img('map_road_boloto',   'maps/road_boloto.png');
+    img('map_kingthrone',    'maps/kingthrone.png');
+    img('map_road_to_village', 'maps/road_to_village.png');
+    img('map_gate',          'maps/gate.png');
+    img('map_village',       'maps/village.png');
     img('fg_lantern_map1',    'maps/foreground_lantern_map1.png');
 
     // Персонажи на карте
@@ -139,6 +143,10 @@ export class LoadingScene extends Phaser.Scene {
     img('map_companion_brawler', 'maps/characters/companion_brawler.png');
     img('map_companion_healer',  'maps/characters/companion_healer.png');
     img('map_swamp_elf_girl',    'maps/characters/swamp_elf_girl.png');
+    img('map_mountain_king',     'maps/characters/mountain_king.png');
+    img('map_guard',             'maps/characters/guard.png');
+    img('map_archer_guard',      'maps/characters/archer_guard.png');
+    img('map_recruit',           'maps/characters/recruit.png');
 
     // Иконки скиллов и действий (dark_rpg_icons)
     img('icon_shield',         'ui/icon_shield.png');
@@ -187,6 +195,10 @@ export class LoadingScene extends Phaser.Scene {
     img('portrait_companion_brawler', 'portraits/companion_brawler.png');
     img('portrait_companion_healer',  'portraits/companion_healer.png');
     img('portrait_swamp_elf_girl',    'portraits/swamp_elf_girl.png');
+    img('portrait_mountain_king',     'portraits/mountain_king.png');
+    img('portrait_guard',             'portraits/guard.png');
+    img('portrait_archer_guard',      'portraits/archer_guard.png');
+    img('portrait_recruit',           'portraits/recruit.png');
 
     // Туман
     img('fog',  'maps/fog.png');

@@ -33,26 +33,18 @@
     "lanterns": [
       {
         "x": 1218,
-        "y": 525
+        "y": 560
       }
     ],
-    "foregrounds": [
-      {
-        "x": 1218,
-        "y": 636,
-        "key": "fg_lantern_map1",
-        "height": 230,
-        "depth": 2500
-      }
-    ],
+    "foregrounds": [],
     "inspectables": [
       {
         "id": "map1_road_satchel",
-        "x": 735,
-        "y": 606,
+        "x": 336,
+        "y": 628,
         "key": "item_road_satchel",
-        "height": 44,
-        "depth": 626,
+        "height": 38,
+        "depth": 630,
         "label": "Брошенный рюкзак",
         "title": "Брошенный рюкзак",
         "text": "Промокшая дорожная сумка лежит у края тракта так, будто владелец снял ее на один вдох и больше не вернулся. Внутри пахнет дымом, кислой кожей и мокрой бумагой.",
@@ -848,6 +840,10 @@
       "from_elf": {
         "x": 1480,
         "y": 650
+      },
+      "from_village": {
+        "x": 1480,
+        "y": 650
       }
     },
     "exits": [
@@ -868,8 +864,8 @@
           "w": 124,
           "h": 245
         },
-        "toMap": "elf_boloto",
-        "spawnId": "from_left"
+        "toMap": "road_to_village",
+        "spawnId": "from_forest"
       },
       {
         "zone": {
@@ -901,7 +897,7 @@
           "w": 607,
           "h": 250
         },
-        "text": "↓ Болото эльфов",
+        "text": "↓ Дорога к деревне",
         "screenX": 1385,
         "screenY": 902
       },
@@ -1238,6 +1234,10 @@
       "from_left": {
         "x": 180,
         "y": 580
+      },
+      "from_kingthrone": {
+        "x": 600,
+        "y": 430
       }
     },
     "exits": [
@@ -1249,6 +1249,16 @@
           "h": 250
         },
         "toMap": "forest1",
+        "spawnId": "from_mountains"
+      },
+      {
+        "zone": {
+          "x": 530,
+          "y": 250,
+          "w": 150,
+          "h": 110
+        },
+        "toMap": "kingthrone",
         "spawnId": "from_mountains"
       }
     ],
@@ -1263,6 +1273,17 @@
         "text": "← Лес",
         "screenX": 90,
         "screenY": 465
+      },
+      {
+        "hoverZone": {
+          "x": 530,
+          "y": 250,
+          "w": 150,
+          "h": 110
+        },
+        "text": "↑ Тронный зал",
+        "screenX": 600,
+        "screenY": 225
       }
     ],
     "tavernEntry": null,
@@ -1307,5 +1328,433 @@
     ],
     "tavernEntry": null,
     "bandits": false
+  },
+  "kingthrone": {
+    "bgKey": "map_kingthrone",
+    "spawnPoints": {
+      "default": {
+        "x": 600,
+        "y": 720
+      },
+      "from_mountains": {
+        "x": 600,
+        "y": 720
+      }
+    },
+    "exits": [
+      {
+        "zone": {
+          "x": 740,
+          "y": 800,
+          "w": 220,
+          "h": 90
+        },
+        "toMap": "mountains_map",
+        "spawnId": "from_kingthrone"
+      }
+    ],
+    "labels": [
+      {
+        "hoverZone": {
+          "x": 740,
+          "y": 800,
+          "w": 220,
+          "h": 90
+        },
+        "text": "↓ Назад в горы",
+        "screenX": 850,
+        "screenY": 800
+      }
+    ],
+    "tavernEntry": null,
+    "bandits": false,
+    "lanterns": [
+      {
+        "x": 540,
+        "y": 300
+      },
+      {
+        "x": 1060,
+        "y": 320
+      },
+      {
+        "x": 690,
+        "y": 285
+      },
+      {
+        "x": 915,
+        "y": 285
+      }
+    ],
+    "npcs": [
+      {
+        "x": 800,
+        "y": 450,
+        "spriteKey": "map_mountain_king",
+        "portraitKey": "portrait_mountain_king",
+        "name": "Горный Король",
+        "height": 258,
+        "hoverPortrait": true,
+        "dialogues": [
+          {
+            "text": "Каменный трон тяжело дышит под тем, кто давно перестал быть просто дворфом. Горный Король поднимает голову — трещины на его лице тлеют тусклым красным. «К закрытому проходу пришёл, чужак. У прохода есть цена, у горы — память. Что тебе нужно от моего долга?»",
+            "choices": [
+              {
+                "label": "Мне нужен путь через перевал.",
+                "next": 1,
+                "style": "default"
+              },
+              {
+                "label": "Кто ты такой?",
+                "next": 2,
+                "style": "default"
+              },
+              {
+                "label": "Я не хотел тревожить гору.",
+                "next": 3,
+                "style": "default"
+              }
+            ]
+          },
+          {
+            "text": "«Перевал заперт не камнем — уговором. Те, кто прошёл до тебя, оставили здесь имя или кусок памяти. Золота гора не берёт: она берёт то, что нельзя вернуть. Готов забыть что-то, чтобы идти дальше?»",
+            "choices": [
+              {
+                "label": "Я обдумаю эту цену.",
+                "style": "default",
+                "setFlag": "mountain_king_price_known",
+                "close": true
+              },
+              {
+                "label": "Ни один путь не стоит такой платы.",
+                "style": "default",
+                "close": true
+              }
+            ]
+          },
+          {
+            "text": "«Я держал этот клан, когда империя ещё умела считать долги. Теперь я сам стал долгом — камень, цепь и печать. Меня не свергают и не хоронят. Меня ждут, пока я не расплачусь до конца.»",
+            "choices": [
+              {
+                "label": "Чем ты расплачиваешься?",
+                "next": 4,
+                "style": "default"
+              },
+              {
+                "label": "Довольно.",
+                "style": "default",
+                "close": true
+              }
+            ]
+          },
+          {
+            "text": "«Гору тревожат не шаги, а вопросы. Ступай. Но знай: она уже услышала твоё имя — и запомнила его лучше тебя.»",
+            "choices": [
+              {
+                "label": "Уйти.",
+                "style": "default",
+                "close": true
+              }
+            ]
+          },
+          {
+            "text": "«Памятью. Каждый, кто уходит за перевал, уносит частицу того, что я стерегу. Однажды не останется ничего — и проход откроется сам, без ключа и без меня. Ты хочешь приблизить этот день?»",
+            "choices": [
+              {
+                "label": "Может быть.",
+                "style": "default",
+                "setFlag": "mountain_king_spoken",
+                "close": true
+              },
+              {
+                "label": "Нет. Пусть гора помнит.",
+                "style": "default",
+                "setFlag": "mountain_king_spoken",
+                "close": true
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "road_to_village": {
+    "bgKey": "map_road_to_village",
+    "spawnPoints": {
+      "default": { "x": 250, "y": 640 },
+      "from_forest": { "x": 250, "y": 640 },
+      "from_gate": { "x": 1450, "y": 500 }
+    },
+    "exits": [
+      {
+        "zone": { "x": 0, "y": 560, "w": 110, "h": 175 },
+        "toMap": "forest1",
+        "spawnId": "from_village"
+      },
+      {
+        "zone": { "x": 1560, "y": 430, "w": 112, "h": 165 },
+        "toMap": "gate",
+        "spawnId": "from_road"
+      }
+    ],
+    "labels": [
+      {
+        "hoverZone": { "x": 0, "y": 560, "w": 170, "h": 175 },
+        "text": "← Лес",
+        "screenX": 100,
+        "screenY": 560
+      },
+      {
+        "hoverZone": { "x": 1470, "y": 430, "w": 202, "h": 165 },
+        "text": "Врата →",
+        "screenX": 1555,
+        "screenY": 470
+      }
+    ],
+    "tavernEntry": null,
+    "bandits": false,
+    "lanterns": [
+      { "x": 185, "y": 450 },
+      { "x": 1465, "y": 430 }
+    ],
+    "npcs": [
+      {
+        "x": 430,
+        "y": 620,
+        "spriteKey": "map_wanderer",
+        "portraitKey": "portrait_wanderer",
+        "name": "Путник на распутье",
+        "height": 150,
+        "hoverPortrait": true,
+        "dialogues": [
+          {
+            "text": "Человек в дорожном плаще сидит у столба с указателями, не разжигая огня. «Дальше — врата и деревня. Тихая. Слишком тихая для тех, кто помнит, какой она была.»",
+            "choices": [
+              { "label": "Что случилось с деревней?", "next": 1, "style": "default" },
+              { "label": "Кто ты?", "next": 2, "style": "default" },
+              { "label": "Пойду дальше.", "style": "default", "close": true }
+            ]
+          },
+          {
+            "text": "«Ничего громкого. Просто из неё всё чаще уходят и всё реже возвращаются. Говорят, у часовни по ночам зажигают свет — а служить в ней некому.»",
+            "choices": [
+              { "label": "Запомнить.", "style": "default", "setFlag": "village_rumor_known", "close": true }
+            ]
+          },
+          {
+            "text": "«Никто. Тот, кто идёт против течения людей: они — из деревни, я — в деревню. Значит, у одного из нас неверные сведения.»",
+            "choices": [
+              { "label": "Уйти.", "style": "default", "close": true }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "gate": {
+    "bgKey": "map_gate",
+    "spawnPoints": {
+      "default": { "x": 200, "y": 600 },
+      "from_road": { "x": 200, "y": 600 },
+      "from_village": { "x": 1150, "y": 640 }
+    },
+    "exits": [
+      {
+        "zone": { "x": 0, "y": 480, "w": 110, "h": 300 },
+        "toMap": "road_to_village",
+        "spawnId": "from_gate"
+      },
+      {
+        "zone": { "x": 1250, "y": 500, "w": 110, "h": 240 },
+        "toMap": "village",
+        "spawnId": "from_gate"
+      }
+    ],
+    "labels": [
+      {
+        "hoverZone": { "x": 0, "y": 480, "w": 160, "h": 300 },
+        "text": "← Дорога",
+        "screenX": 100,
+        "screenY": 560
+      },
+      {
+        "hoverZone": { "x": 1210, "y": 300, "w": 300, "h": 400 },
+        "text": "Врата города →",
+        "screenX": 1330,
+        "screenY": 320
+      }
+    ],
+    "tavernEntry": null,
+    "bandits": false,
+    "lanterns": [
+      { "x": 140, "y": 430 },
+      { "x": 1190, "y": 530 },
+      { "x": 1445, "y": 470 }
+    ],
+    "npcs": [
+      {
+        "x": 1140,
+        "y": 625,
+        "spriteKey": "map_guard",
+        "portraitKey": "portrait_guard",
+        "name": "Стражник врат",
+        "height": 182,
+        "flipX": true,
+        "hoverPortrait": true,
+        "dialogues": [
+          {
+            "text": "Стражник опускает алебарду поперёк дороги — не враждебно, но и не приглашающе. «Врата открыты для тех, у кого есть дело или имя. У тебя что?»",
+            "choices": [
+              { "label": "У меня есть дело.", "next": 1, "style": "default" },
+              { "label": "Что за деревня за вратами?", "next": 2, "style": "default" },
+              { "label": "Просто прохожу.", "next": 3, "style": "default" }
+            ]
+          },
+          {
+            "text": "«Дело так дело. Проходи, но руки держи на виду. У нас не любят тех, кто прячет ладони — особенно после того, что стало с прежним старостой.»",
+            "choices": [
+              { "label": "Войти.", "style": "default", "setFlag": "gate_passed", "close": true }
+            ]
+          },
+          {
+            "text": "«Была деревня как деревня: колодец, часовня, ярмарка. Теперь — колодец, часовня и слухи. Люди держатся клятв, потому что больше держаться не за что.»",
+            "choices": [
+              { "label": "Понятно.", "style": "default", "close": true }
+            ]
+          },
+          {
+            "text": "«Проходят все. Возвращаются не все. Гляди под ноги и не отвечай тем, кто спросит твоё имя первым.»",
+            "choices": [
+              { "label": "Войти.", "style": "default", "close": true }
+            ]
+          }
+        ]
+      },
+      {
+        "x": 980,
+        "y": 600,
+        "spriteKey": "map_archer_guard",
+        "portraitKey": "portrait_archer_guard",
+        "name": "Дозорный",
+        "height": 172,
+        "flipX": true,
+        "hoverPortrait": true,
+        "dialogues": [
+          {
+            "text": "Лучник на посту не сводит глаз с дороги за твоей спиной. «Пришёл один? Тогда ты либо смел, либо не знаешь, что творится на трактах. Оба варианта скверные.»",
+            "choices": [
+              { "label": "Что творится на трактах?", "next": 1, "style": "default" },
+              { "label": "Я не один.", "next": 2, "style": "default" },
+              { "label": "Промолчать.", "style": "default", "close": true }
+            ]
+          },
+          {
+            "text": "«Разбойники держат дорогу лучше, чем закон. А теперь ещё и люди с печатями пошли — тихие, вежливые. И после них кто-нибудь обязательно забывает своё имя.»",
+            "choices": [
+              { "label": "Люди с печатями?", "style": "default", "setFlag": "seal_people_rumor", "close": true }
+            ]
+          },
+          {
+            "text": "«Тогда держи своих при себе. Здесь пропадают целыми отрядами — и никто даже не спорит, чей это был долг.»",
+            "choices": [
+              { "label": "Уйти.", "style": "default", "close": true }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "village": {
+    "bgKey": "map_village",
+    "spawnPoints": {
+      "default": { "x": 850, "y": 780 },
+      "from_gate": { "x": 850, "y": 780 }
+    },
+    "exits": [
+      {
+        "zone": { "x": 700, "y": 800, "w": 320, "h": 141 },
+        "toMap": "gate",
+        "spawnId": "from_village"
+      }
+    ],
+    "labels": [
+      {
+        "hoverZone": { "x": 700, "y": 800, "w": 320, "h": 141 },
+        "text": "↓ К вратам",
+        "screenX": 860,
+        "screenY": 800
+      }
+    ],
+    "tavernEntry": null,
+    "bandits": false,
+    "lanterns": [
+      { "x": 95, "y": 500 },
+      { "x": 1560, "y": 500 },
+      { "x": 1090, "y": 345 }
+    ],
+    "npcs": [
+      {
+        "x": 380,
+        "y": 630,
+        "spriteKey": "map_recruit",
+        "portraitKey": "portrait_recruit",
+        "name": "Мирко, ополченец",
+        "height": 166,
+        "hoverPortrait": true,
+        "dialogues": [
+          {
+            "text": "Юноша в наспех подогнанной кольчуге сжимает меч, которым едва умеет пользоваться. «Я записался в ополчение. Врата, дозор, всё как положено. Только защищать уже почти некого.»",
+            "choices": [
+              { "label": "Почему уходят люди?", "next": 1, "style": "default" },
+              { "label": "Тебе бы уйти отсюда.", "next": 2, "style": "default" },
+              { "label": "Держись, парень.", "style": "default", "setFlag": "mirko_encouraged", "close": true }
+            ]
+          },
+          {
+            "text": "«Земля больше не родит как раньше. Скотина болеет. А по ночам с той стороны леса тянет гарью, хотя ничего не горит. Староста молчит и жжёт свечи у запечатанной двери.»",
+            "choices": [
+              { "label": "Запечатанной двери?", "style": "default", "setFlag": "village_sealed_door", "close": true }
+            ]
+          },
+          {
+            "text": "«И куда? На дорогу, где пропадают отрядами? Нет. Уж лучше стоять у своих ворот. Хотя бы знаешь, за что держишь меч.»",
+            "choices": [
+              { "label": "Как знаешь.", "style": "default", "close": true }
+            ]
+          }
+        ]
+      },
+      {
+        "x": 665,
+        "y": 700,
+        "spriteKey": "map_cleaning_girl",
+        "portraitKey": "portrait_cleaning_girl",
+        "name": "Женщина у колодца",
+        "height": 150,
+        "hoverPortrait": true,
+        "dialogues": [
+          {
+            "text": "Женщина вытягивает ведро из колодца и подолгу смотрит в воду, прежде чем зачерпнуть. «Вода стала тяжёлой. Не грязной — тяжёлой. Будто помнит больше нашего.»",
+            "choices": [
+              { "label": "Что с водой?", "next": 1, "style": "default" },
+              { "label": "Здесь безопасно?", "next": 2, "style": "default" },
+              { "label": "Оставить её.", "style": "default", "close": true }
+            ]
+          },
+          {
+            "text": "«Кто её знает. Старики говорят: когда вода начинает помнить, где-то рядом сломалась печать. Я в это не верю. Но пить из колодца перестала.»",
+            "choices": [
+              { "label": "Запомнить.", "style": "default", "setFlag": "well_water_omen", "close": true }
+            ]
+          },
+          {
+            "text": "«Безопасно? За стенами — стража, за часовней — свечи, за свечами — молчание. Выбирай, что из этого тебя успокоит.»",
+            "choices": [
+              { "label": "Уйти.", "style": "default", "close": true }
+            ]
+          }
+        ]
+      }
+    ]
   }
 }

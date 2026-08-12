@@ -42,7 +42,11 @@
       "Bash(screencapture -x /tmp/game_check.png)",
       "Bash(screencapture -x /tmp/game_map.png)",
       "Bash(screencapture -x /tmp/game_fixed.png)",
-      "Bash(python3 *)"
+      "Bash(python3 *)",
+      "Read(//Users/maksimilin/Desktop/Dark Fantasy/**)",
+      "Bash(ls -la ../maps)",
+      "Bash(ls -la public/maps)",
+      "Bash(ls -la public/maps/characters)"
     ]
   }
 }

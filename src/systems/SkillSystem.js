@@ -1,4 +1,5 @@
 import eventBus from '../utils/eventBus.js';
+import { getClassDef } from './ClassProgression.js';
 
 /**
  * SkillSystem — регистрирует скиллы и применяет их эффекты.
@@ -125,8 +126,11 @@ export class SkillSystem {
 
   _gainResources(skill, caster) {
     caster.resources = caster.resources || {};
+    const classResource = getClassDef(caster)?.resource;
     Object.entries(skill.resourceGain || {}).forEach(([resourceId, amount]) => {
-      caster.resources[resourceId] = (caster.resources[resourceId] || 0) + amount;
+      const next = (caster.resources[resourceId] || 0) + amount;
+      const cap  = classResource?.id === resourceId ? classResource.max : null;
+      caster.resources[resourceId] = cap != null ? Math.min(cap, next) : next;
     });
   }
 

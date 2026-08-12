@@ -1350,6 +1350,7 @@ export class MapScene extends Phaser.Scene {
       dueling_stance: 'Дуэльная стойка',
       pistol_shot: 'Пистолет',
       shield_cover: 'Прикрыть',
+      heavy_strike: 'Тяжёлый удар',
       bandage: 'Перевязка',
     };
     const sheetMeta = {

@@ -39,7 +39,7 @@
     "classId": "brawler",
     "originId": null,
     "branchId": null,
-    "skills": ["shield_cover"],
+    "skills": ["shield_cover", "heavy_strike"],
     "passives": [],
     "resources": { "cover_uses": 1, "might": 0 },
     "color": 12632256,
