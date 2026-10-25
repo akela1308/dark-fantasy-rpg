@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/26c79563-1112-4b7d-8b25-0976447dc194",
+ "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: twirls the sword once lazily and grins. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. HANDS CANON: one straight sword in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+ "img": "bandit_commander/k_battle.png",
+ "last": "bandit_commander/k_battle.png",
+ "sec": 4
+}

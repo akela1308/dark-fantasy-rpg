@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/091e1fd0-91fb-44d9-88ca-683e4694f7d2",
+ "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: one small hand axe in the rear hand, the front hand a bare fist; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+ "img": "dwarf_beer2/k_battle.png",
+ "last": "dwarf_beer2/k_battle.png",
+ "sec": 4
+}

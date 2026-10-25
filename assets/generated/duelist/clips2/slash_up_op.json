@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/f3262b25-e380-4e10-95d4-3b2fea0695ae",
+ "prompt": "Slow motion. One single smooth movement for the whole clip: from his guard he raises the rapier arm high above his head, winding up for a slashing cut, the blade pointing up and back. No other gestures. HANDS CANON: the thin rapier stays in his front hand on the right side of the image, ONE single flintlock pistol stays in his rear hand on the left side of the image, low near the hip. Never swap, never duplicate the weapons. ",
+ "img": "../k_idle.png",
+ "last": "../k_slash_up.png",
+ "sec": 4
+}

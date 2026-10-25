@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/7f6d9d6d-b842-43da-9cb2-b91be6a7faea",
+ "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: nervously shifts his weight. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+ "img": "recruit/k_idle.png",
+ "last": "recruit/k_idle.png",
+ "sec": 4
+}

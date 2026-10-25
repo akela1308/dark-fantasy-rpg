@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/eda4489f-bb8b-4455-8ef3-3b21cb7c6bf6",
+ "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: breathes heavily, stone shoulders rising. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+ "img": "mountain_king/k_idle.png",
+ "last": "mountain_king/k_idle.png",
+ "sec": 4
+}

@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/1c74f624-5c22-4307-800d-834374d33f51",
+ "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: checks the arrows in the quiver. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+ "img": "archer_guard/k_idle.png",
+ "last": "archer_guard/k_idle.png",
+ "sec": 4
+}

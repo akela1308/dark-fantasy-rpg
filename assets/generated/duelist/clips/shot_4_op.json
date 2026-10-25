@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/1c26d416-ab04-410c-8954-651a8f9ce26f",
+ "prompt": "He brings the pistol down to stomach height. Only this one simple continuous motion from the first pose to the last pose, nothing else happens, no extra gestures, no pauses filled with other moves. The rapier stays in the hand on the right side of the image and the single pistol stays in the hand on the left side of the image for the whole clip, never two pistols, never two swords. No flash, no smoke, no sparks.",
+ "img": "../k_s3.png",
+ "last": "../k_s4.png",
+ "sec": 4
+}

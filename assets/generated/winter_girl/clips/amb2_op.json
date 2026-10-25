@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/ca11a8fd-e197-4977-b956-22f6b6c73203",
+ "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: looks to the side, hair moving. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. HANDS CANON: one staff with a stone on top in the rear hand, the front hand free; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+ "img": "winter_girl/k_battle.png",
+ "last": "winter_girl/k_battle.png",
+ "sec": 4
+}

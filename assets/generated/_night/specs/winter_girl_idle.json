@@ -1,0 +1,1 @@
+{"slug": "winter_girl", "anim": "idle", "base": "winter_girl/k_battle.png", "body": 300, "segments": [{"clip": "winter_girl/clips/bidle_v2.mp4", "from": 0, "to": 95, "frames": 96}], "loop": true, "left": 0.85, "right": 1.0}

@@ -1,0 +1,4 @@
+{"slug":"duelist","anim":"slash","base":"duelist/k_idle.png","body":304,"overwrite":true,
+ "segments":[{"clip":"duelist/clips2/slash_up_v2.mp4","from":0,"to":95,"frames":10},
+             {"clip":"duelist/clips2/slash_cut_v2.mp4","from":0,"to":30,"frames":8},
+             {"clip":"duelist/clips2/slash_out_v2.mp4","from":0,"to":26,"frames":5}]}

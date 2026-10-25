@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/c4b13a92-eab8-4a26-8dd3-3028ab45eab4",
+ "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: shifts from foot to foot. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+ "img": "guard/k_idle.png",
+ "last": "guard/k_idle.png",
+ "sec": 4
+}

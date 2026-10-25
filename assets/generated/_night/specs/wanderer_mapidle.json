@@ -1,0 +1,1 @@
+{"slug": "wanderer", "anim": "mapidle", "base": "wanderer/k_idle.png", "body": 260, "segments": [{"clip": "wanderer/clips/idle_v2.mp4", "from": 0, "to": 22, "frames": 24}, {"clip": "wanderer/clips/idle_v2.mp4", "from": 22, "to": 0, "frames": 24}], "loop": false, "left": 0.6, "right": 0.75, "target": "map"}

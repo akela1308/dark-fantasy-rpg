@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/b69520ac-4eef-4b69-8ee0-1768572efc7a",
+ "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: laughs heartily, shoulders shaking. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+ "img": "dwarf_beer1/k_idle.png",
+ "last": "dwarf_beer1/k_idle.png",
+ "sec": 4
+}

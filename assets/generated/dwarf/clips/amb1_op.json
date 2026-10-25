@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/79bac744-389f-449a-8378-1011e18c4f65",
+ "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: knocks the axe on the shield rim. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. HANDS CANON: one round wooden shield on the front arm, one axe in the rear hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+ "img": "dwarf/k_battle.png",
+ "last": "dwarf/k_battle.png",
+ "sec": 4
+}

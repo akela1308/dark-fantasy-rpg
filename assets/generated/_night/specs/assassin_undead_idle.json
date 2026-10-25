@@ -1,0 +1,1 @@
+{"slug": "assassin_undead", "anim": "idle", "base": "assassin_undead/k_battle.png", "body": 300, "segments": [{"clip": "assassin_undead/clips/bidle_v2.mp4", "from": 0, "to": 95, "frames": 96}], "loop": true, "left": 0.85, "right": 1.0, "overwrite": true, "xfade": 12}

@@ -22,4 +22,6 @@ const config = {
   },
 };
 
-new Phaser.Game(config);
+const game = new Phaser.Game(config);
+// Только в dev: доступ к игре из консоли браузера для отладки
+if (import.meta.env.DEV) window.__game = game;

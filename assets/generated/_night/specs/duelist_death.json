@@ -1,0 +1,1 @@
+{"slug":"duelist","anim":"death","base":"duelist/k_idle.png","body":304,"left":1.5,"overwrite":true,"segments":[{"clip":"duelist/clips2/death_v1.mp4","from":0,"to":60,"frames":26}]}

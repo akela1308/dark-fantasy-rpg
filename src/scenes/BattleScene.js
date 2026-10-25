@@ -16,6 +16,7 @@ import enemiesData from '../data/enemies.json';
 import skillsData  from '../data/skills.json';
 import battlesData from '../data/battles.json';
 import { SaveSystem } from '../utils/SaveSystem.js';
+import { getBattleAnimConfig, ensureBattleAnims, hasBattleAnims, loadBattleAnimSheets, animOrigin } from '../systems/BattleAnimations.js';
 
 const SPRITE_IDS = [
   'hero_duelist',
@@ -96,6 +97,9 @@ export class BattleScene extends Phaser.Scene {
     }
     SPRITE_IDS.forEach(id => this.load.image(id, `sprites/${id}.png`));
     SPRITE_IDS.forEach(id => this.load.image(`portrait_${id}`, `portraits/${id}.png`));
+    // Покадровые анимации: только для тех, кто участвует в этом бою
+    const enemySource = this._battleConfig?.enemies || enemiesData;
+    loadBattleAnimSheets(this, [...unitsData, ...enemySource].flatMap(u => [u.id, u.spriteKey]).filter(Boolean));
     // Ассеты загружены в LoadingScene — здесь ничего не грузим
   }
 
@@ -129,6 +133,7 @@ export class BattleScene extends Phaser.Scene {
     this.grid        = new BattleGrid();
     this.battleLog   = [];
     this.battleOver  = false;
+    this._animLock   = false;
     this._pendingSkill = null;
   }
 
@@ -197,7 +202,15 @@ export class BattleScene extends Phaser.Scene {
     const active = this.turnManager.active;
 
     [...this.playerUnits, ...this.enemyUnits].forEach(unit => {
-      if (!unit.isAlive) return;
+      if (!unit.isAlive) {
+        // Анимированный спрайт живёт вне _unitSprites: убираем его после твина смерти
+        if (unit._animSprite) {
+          const dead = unit._animSprite;
+          unit._animSprite = null;
+          this.time.delayedCall(500, () => dead.destroy());
+        }
+        return;
+      }
 
       const { x, y } = this._getPos(unit);
       const h = BASE_HEIGHT;
@@ -246,9 +259,17 @@ export class BattleScene extends Phaser.Scene {
       // Спрайт или прямоугольник (spriteKey позволяет тест-юнитам использовать чужой спрайт)
       let sprite;
       const spriteKey = unit.spriteKey ?? unit.id;
-      const hasSprite = this.textures.exists(spriteKey);
+      const animCfg = getBattleAnimConfig(unit.id) ?? getBattleAnimConfig(unit.spriteKey);
+      const animated = hasBattleAnims(this, animCfg);
+      const hasSprite = animated || this.textures.exists(spriteKey);
 
-      if (hasSprite) {
+      if (animated) {
+        // Покадровый спрайт (смотрит вправо, без flipX) переживает перерисовку,
+        // иначе анимация обрывалась бы после каждого хода.
+        const targetH = h * (SPRITE_SCALE[unit.id] ?? 1) * 0.94;
+        sprite = this._ensureAnimSprite(unit, animCfg, targetH / (animCfg.anims.idle.bodyHeight ?? animCfg.bodyHeight));
+        sprite.setPosition(x, y).setDepth(rowDepth);
+      } else if (hasSprite) {
         sprite = this.add.image(x, y, spriteKey).setOrigin(0.5, 1).setDepth(rowDepth);
         const unitScale = SPRITE_SCALE[unit.id] ?? SPRITE_SCALE[spriteKey] ?? 1;
         const targetH = h * unitScale;  // isBoss не влияет на визуальный размер
@@ -285,18 +306,18 @@ export class BattleScene extends Phaser.Scene {
       this._unitSprites.push(barBg, barFill);
 
       // Интерактивность
-      if (unit.type === 'enemy') {
+      if (unit.type === 'enemy' && !animated) {
         sprite.setInteractive({ useHandCursor: true });
         sprite.on('pointerdown', () => this._onEnemyClick(unit));
         sprite.on('pointerover', () => sprite.setAlpha(0.8));
         sprite.on('pointerout',  () => sprite.setAlpha(1.0));
       }
-      if (unit.type === 'player') {
+      if (unit.type === 'player' && !animated) {
         sprite.setInteractive({ useHandCursor: true });
         sprite.on('pointerdown', () => this._onAllyClick(unit));
       }
 
-      this._unitSprites.push(sprite);
+      if (!animated) this._unitSprites.push(sprite);
 
       unit._sprite  = sprite;
       unit._hpText  = null;
@@ -326,6 +347,122 @@ export class BattleScene extends Phaser.Scene {
   // ══════════════════════════════════════════════════════════════════════
   // АНИМАЦИИ
   // ══════════════════════════════════════════════════════════════════════
+
+  _ensureAnimSprite(unit, cfg, scale) {
+    if (unit._animSprite?.active) return unit._animSprite;
+    ensureBattleAnims(this, cfg);
+    const idle = cfg.anims.idle;
+    const flip = unit.type === 'enemy';   // все кадры нарисованы лицом вправо, враги смотрят влево
+    const spr = this.add.sprite(0, 0, idle.key, 0)
+      .setOrigin(...animOrigin(cfg, idle, flip))
+      .setFlipX(flip)
+      .setScale(scale);
+    spr.play({ key: idle.key, startFrame: Phaser.Math.Between(0, idle.frames - 1) });
+    // Обработчики вешаются один раз: спрайт не пересоздаётся при перерисовке
+    spr.setInteractive({ useHandCursor: true });
+    if (unit.type === 'enemy') {
+      spr.on('pointerdown', () => this._onEnemyClick(unit));
+      spr.on('pointerover', () => spr.setAlpha(0.8));
+      spr.on('pointerout',  () => spr.setAlpha(1.0));
+    } else {
+      spr.on('pointerdown', () => this._onAllyClick(unit));
+    }
+    unit._animSprite = spr;
+    unit._animCfg = cfg;
+    return spr;
+  }
+
+  // Имя анимации для действия юнита (null, если у юнита нет такой анимации)
+  _actionAnim(unit, actionId) {
+    if (!unit._animSprite?.active || !unit._animCfg) return null;
+    return unit._animCfg.actions?.[actionId] ?? null;
+  }
+
+  // Реакция (hit / death / victory / block), если такая анимация есть
+  _react(unit, name, onDone) {
+    if (!unit._animSprite?.active || !unit._animCfg?.anims[name]) return false;
+    if (name === 'hit' && unit._animBusy) return false;   // урон не прерывает собственный удар
+    this._playUnitAnim(unit, name, null, onDone);
+    return true;
+  }
+
+  /**
+   * Проиграть анимацию действия. onHit вызывается на кадре удара (hitFrame),
+   * в конце спрайт плавно возвращается в стойку.
+   */
+  _playUnitAnim(unit, name, onHit, onDone) {
+    const spr = unit._animSprite;
+    const cfg = unit._animCfg;
+    const a = cfg.anims[name];
+    const reaction = ['hit', 'death', 'victory', 'block'].includes(name);
+    if (!reaction) unit._animBusy = true;
+    let hit = false;
+    const fireHit = () => {
+      if (hit) return;
+      hit = true;
+      if (a.muzzle) this._fxMuzzle(spr, a);
+      onHit?.();
+    };
+    const onUpdate = (_anim, frame) => {
+      if (frame.index - 1 >= (a.hitFrame ?? 0)) fireHit();
+    };
+    spr.off('animationupdate');
+    spr.off('animationcomplete');
+    spr.setOrigin(...animOrigin(cfg, a, spr.flipX));
+    spr.play(a.key);
+    spr.on('animationupdate', onUpdate);
+    spr.once('animationcomplete', () => {
+      spr.off('animationupdate', onUpdate);
+      fireHit();
+      if (!reaction) unit._animBusy = false;
+      onDone?.();
+      if (!a.hold) this._returnToIdle(unit);   // смерть и победа держат последний кадр
+    });
+  }
+
+  _returnToIdle(unit) {
+    const spr = unit._animSprite;
+    if (!spr?.active) return;
+    const cfg = unit._animCfg;
+    // Последний кадр действия плавно растворяется поверх стойки: позы не совпадают точно
+    const ghost = this.add.image(spr.x, spr.y, spr.texture.key, spr.frame.name)
+      .setOrigin(spr.originX, spr.originY).setScale(spr.scaleX).setDepth(spr.depth + 0.1);
+    this.tweens.add({ targets: ghost, alpha: 0, duration: 180, onComplete: () => ghost.destroy() });
+    spr.setOrigin(...animOrigin(cfg, cfg.anims.idle, spr.flipX));
+    spr.play({ key: cfg.anims.idle.key, startFrame: 0 });
+  }
+
+  // Вспышка и дым выстрела у дула (в спрайтах их нет, их рисует игра)
+  _fxMuzzle(spr, a) {
+    const s = spr.scaleX;
+    const mxLocal = spr.flipX ? a.frameWidth - a.muzzle.x : a.muzzle.x;
+    const mx = spr.x + (mxLocal - spr.originX * a.frameWidth) * s;
+    const my = spr.y + (a.muzzle.y - spr.originY * a.frameHeight) * s;
+    const d = spr.depth + 1;
+    const glow  = this.add.ellipse(mx + 6, my, 30, 16, 0xFFB040, 0.85).setDepth(d);
+    const core  = this.add.ellipse(mx + 3, my, 12, 7, 0xFFF4C0, 1).setDepth(d + 0.1);
+    this.tweens.add({
+      targets: [glow, core], scaleX: 1.8, scaleY: 1.4, alpha: 0,
+      duration: 110, ease: 'Power2',
+      onComplete: () => { glow.destroy(); core.destroy(); },
+    });
+    for (let i = 0; i < 6; i++) {
+      const puff = this.add.circle(mx + Phaser.Math.Between(0, 8), my + Phaser.Math.Between(-3, 3),
+        Phaser.Math.Between(4, 7), 0xB8B0A4, 0.55).setDepth(d - 0.2);
+      this.tweens.add({
+        targets: puff,
+        x: puff.x + Phaser.Math.Between(10, 34),
+        y: puff.y - Phaser.Math.Between(8, 26),
+        scale: Phaser.Math.FloatBetween(2.2, 3.4),
+        alpha: 0,
+        delay: i * 25,
+        duration: Phaser.Math.Between(600, 900),
+        ease: 'Sine.easeOut',
+        onComplete: () => puff.destroy(),
+      });
+    }
+    this.cameras.main.shake(90, 0.003);
+  }
 
   _playAttackAnim(attacker, target) {
     if (!attacker._sprite || !target._sprite) return;
@@ -371,6 +508,16 @@ export class BattleScene extends Phaser.Scene {
     if (!unit._sprite) return;
     // Camera shake на смерть
     this.cameras.main.shake(250, 0.009);
+    // Покадровая смерть: падает и лежит, потом тело медленно растворяется
+    if (unit._animSprite?.active && unit._animCfg?.anims.death) {
+      const spr = unit._animSprite;
+      unit._animSprite = null;          // перерисовка больше не трогает этот спрайт
+      spr.disableInteractive();
+      this._playUnitAnim({ _animSprite: spr, _animCfg: unit._animCfg }, 'death', null, () => {
+        this.tweens.add({ targets: spr, alpha: 0, delay: 900, duration: 700, onComplete: () => spr.destroy() });
+      });
+      return;
+    }
     // grid.remove() вызывается синхронно в _afterPlayerAction/_finishTurn,
     // чтобы не зависеть от onComplete (который не срабатывает при destroy спрайта)
     this.tweens.add({
@@ -469,29 +616,45 @@ export class BattleScene extends Phaser.Scene {
   }
 
   _onEnemyClick(target) {
-    if (this.battleOver) return;
+    if (this.battleOver || this._animLock) return;
     if (!this.turnManager.isPlayerTurn()) return;
     const actor = this.turnManager.active;
     if (!actor || actor.type !== 'player') return;
 
     if (this._pendingSkill) {
-      const sk = this.skillSystem.get(this._pendingSkill);
+      const skillId = this._pendingSkill;
+      const sk = this.skillSystem.get(skillId);
       if (sk && sk.targetType === 'enemy_single') {
-        this._playAttackAnim(actor, target);
-        actor.handleSkill(this._pendingSkill, target, this.skillSystem);
         this._pendingSkill = null;
-        this._afterPlayerAction();
+        const anim = this.skillSystem.canUse(skillId, actor) ? this._actionAnim(actor, skillId) : null;
+        this._performAction(actor, target, anim, () => actor.handleSkill(skillId, target, this.skillSystem));
         return;
       }
     }
 
-    this._playAttackAnim(actor, target);
-    actor.handleAttack(target, this.skillSystem);
-    this._afterPlayerAction();
+    this._performAction(actor, target, this._actionAnim(actor, 'basic'),
+      () => actor.handleAttack(target, this.skillSystem));
+  }
+
+  // Действие с анимацией: урон засчитывается на кадре удара, до конца хода ввод заблокирован
+  _performAction(actor, target, anim, apply) {
+    if (!anim) {
+      this._playAttackAnim(actor, target);
+      apply();
+      this._afterPlayerAction();
+      return;
+    }
+    this._animLock = true;
+    this._clearTargetHighlight();
+    this._playUnitAnim(actor, anim, () => {
+      this._animLock = false;
+      apply();
+      this._afterPlayerAction();
+    });
   }
 
   _onAllyClick(target) {
-    if (this.battleOver) return;
+    if (this.battleOver || this._animLock) return;
     if (!this.turnManager.isPlayerTurn()) return;
     if (!this._pendingSkill) return;
     const actor = this.turnManager.active;
@@ -504,7 +667,7 @@ export class BattleScene extends Phaser.Scene {
   }
 
   _onSkillSelect(skillId) {
-    if (!this.turnManager.isPlayerTurn()) return;
+    if (this._animLock || !this.turnManager.isPlayerTurn()) return;
     const actor = this.turnManager.active;
     if (!actor) return;
     const sk = this.skillSystem.get(skillId);
@@ -542,6 +705,18 @@ export class BattleScene extends Phaser.Scene {
         return;
       }
       const target = actor.findTarget(this.playerUnits, this.grid);
+      const anim = target ? this._actionAnim(actor, 'basic') : null;
+      if (anim) {
+        // Урон по кадру удара, ход заканчивается после анимации
+        this._animLock = true;
+        this._playUnitAnim(actor, anim, () => {
+          actor.decideAction(this.playerUnits, this.skillSystem, this.grid);
+        }, () => {
+          this._animLock = false;
+          this._finishTurn();
+        });
+        return;
+      }
       if (target) this._playAttackAnim(actor, target);
       actor.decideAction(this.playerUnits, this.skillSystem, this.grid);
       this.time.delayedCall(180, () => this._finishTurn());
@@ -585,6 +760,7 @@ export class BattleScene extends Phaser.Scene {
     this.tweens.add({ targets: t, alpha: 1, duration: 600 });
 
     if (result === 'victory') {
+      this.playerUnits.filter(u => u.isAlive).forEach(u => this._react(u, 'victory'));
       this.playerUnits[0].addXP(XP.WIN_HERO);
       this.playerUnits.slice(1).forEach(u => u.addXP(XP.WIN_COMPANION));
       this.add.text(width/2, height/2, `Получено XP: ${XP.WIN_HERO}`, {
@@ -791,6 +967,7 @@ export class BattleScene extends Phaser.Scene {
     eventBus.on('turn_started',  unit => this.ui?.highlightActive(unit));
 
     eventBus.on('unit_damaged', ({ unit, amount, isCrit }) => {
+      if (unit.isAlive) this._react(unit, 'hit');
       this._animHit(unit, !!isCrit);
       this._animDamageNumber(unit, amount, !!isCrit);
       this._updateHpBar(unit);
@@ -829,7 +1006,7 @@ export class BattleScene extends Phaser.Scene {
     });
 
     eventBus.on('skip_turn', () => {
-      if (!this.turnManager.isPlayerTurn()) return;
+      if (this._animLock || !this.turnManager.isPlayerTurn()) return;
       this.turnManager.skipTurn();
       this._renderAll();
       this.ui.update();
@@ -838,10 +1015,11 @@ export class BattleScene extends Phaser.Scene {
 
     // Защита: юнит получает эффект defending на 1 ход (~50% урона)
     eventBus.on('defend_action', () => {
-      if (!this.turnManager.isPlayerTurn()) return;
+      if (this._animLock || !this.turnManager.isPlayerTurn()) return;
       const unit = this.turnManager.active;
       if (!unit || unit.type !== 'player') return;
       unit.addEffect({ type: 'defending', value: 0.5, duration: 2 }); // duration=2: снимается после след. хода
+      this._react(unit, 'block');
       eventBus.emit('log', `${unit.name} принимает оборонительную стойку!`);
       this.turnManager.skipTurn();
       this._renderAll();

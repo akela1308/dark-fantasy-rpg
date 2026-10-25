@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/c8258f2b-c084-483a-b7ca-12a4ada00316",
+ "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: mops the floor with a few strokes. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+ "img": "cleaning_girl/k_idle.png",
+ "last": "cleaning_girl/k_idle.png",
+ "sec": 4
+}

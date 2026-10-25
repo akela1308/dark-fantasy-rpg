@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/d444b197-7290-4872-9a78-ada44438f51e",
+ "prompt": "Slow motion. He collapses from the wound: drops to the knees and falls onto his back on the ground, the rapier and the pistol fall next to his hands. HANDS CANON: the thin rapier stays in his front hand on the right side of the image, ONE single flintlock pistol stays in his rear hand on the left side of the image. Never swap, never duplicate the weapons.",
+ "img": "duelist/k_hit.png",
+ "last": "duelist/k_dead.png",
+ "sec": 4
+}

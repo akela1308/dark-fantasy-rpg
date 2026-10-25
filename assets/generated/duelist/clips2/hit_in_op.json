@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/cbb94fc6-59bf-4999-a81c-14470fd07017",
+ "prompt": "Slow motion. He is struck: the torso bends back and away to the left, head down in pain, weight on the back foot. HANDS CANON: the thin rapier stays in his front hand on the right side of the image, ONE single flintlock pistol stays in his rear hand on the left side of the image. Never swap, never duplicate the weapons.",
+ "img": "duelist/k_idle.png",
+ "last": "duelist/k_hit.png",
+ "sec": 4
+}

@@ -9,3 +9,14 @@ vite.config.js.timestamp-*.js
 .env
 .env.local
 .env.production
+
+# Рабочие файлы генерации анимаций (живут локально, в git не нужны: исходные видео, покадровые папки, превью)
+assets/generated/**/*.mp4
+assets/generated/**/*.gif
+assets/generated/pilot_duelist/
+assets/generated/**/final/*/
+assets/generated/**/out/
+assets/generated/**/out3/
+assets/generated/_night/qa/
+assets/generated/_night/*.log
+assets/generated/_check/

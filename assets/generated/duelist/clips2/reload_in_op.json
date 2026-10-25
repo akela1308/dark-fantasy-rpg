@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/0bfd51a8-a0e8-460f-8c13-a065383464c4",
+ "prompt": "Slow motion. One single smooth movement: he brings the pistol up to his chest, barrel up, and pulls back the hammer with his thumb. HANDS CANON: the thin rapier stays in his front hand on the right side of the image, ONE single flintlock pistol stays in his rear hand on the left side of the image. Never swap, never duplicate the weapons.",
+ "img": "duelist/k_idle.png",
+ "last": "duelist/k_reload.png",
+ "sec": 4
+}

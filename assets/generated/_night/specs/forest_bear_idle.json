@@ -1,0 +1,1 @@
+{"slug": "forest_bear", "anim": "idle", "base": "forest_bear/k_battle.png", "body": 300, "segments": [{"clip": "forest_bear/clips/bidle_v2.mp4", "from": 0, "to": 95, "frames": 96}], "loop": true, "left": 0.85, "right": 1.0}

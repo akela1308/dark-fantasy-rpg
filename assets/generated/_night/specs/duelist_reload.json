@@ -1,0 +1,1 @@
+{"slug":"duelist","anim":"reload","base":"duelist/k_idle.png","body":304,"segments":[{"clip":"duelist/clips2/reload_in_v2.mp4","from":0,"to":95,"frames":20},{"clip":"duelist/clips2/reload_in_v2.mp4","from":95,"to":0,"frames":12}]}

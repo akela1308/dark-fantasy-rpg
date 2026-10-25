@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/b35d2cdd-88c0-4d88-a515-9a47893e4e1e",
+ "prompt": "He lowers the pistol to his hip and settles into guard. Only this one simple continuous motion from the first pose to the last pose, nothing else happens, no extra gestures, no pauses filled with other moves. The rapier stays in the hand on the right side of the image and the single pistol stays in the hand on the left side of the image for the whole clip, never two pistols, never two swords. No flash, no smoke, no sparks.",
+ "img": "../k_s4.png",
+ "last": "../k_idle.png",
+ "sec": 4
+}

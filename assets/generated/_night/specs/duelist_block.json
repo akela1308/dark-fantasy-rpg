@@ -1,0 +1,4 @@
+{"slug":"duelist","anim":"block","base":"duelist/k_idle.png","body":304,
+ "segments":[{"clip":"duelist/clips2/block_in_v1.mp4","from":0,"to":44,"frames":8},
+             {"clip":"duelist/clips2/block_in_v1.mp4","from":44,"to":52,"frames":6},
+             {"clip":"duelist/clips2/block_in_v1.mp4","from":44,"to":0,"frames":8}]}

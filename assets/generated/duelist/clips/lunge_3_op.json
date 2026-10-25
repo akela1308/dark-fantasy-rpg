@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/5dd2fd66-2b9b-4247-a977-a137aed66cd5",
+ "prompt": "He rises out of the lunge, weight moving back, the rapier arm bending back. Only this one simple continuous motion from the first pose to the last pose, nothing else happens, no extra gestures, no pauses filled with other moves. The rapier stays in the hand on the right side of the image and the single pistol stays in the hand on the left side of the image for the whole clip, never two pistols, never two swords. No flash, no smoke, no sparks.",
+ "img": "../k_lunge.png",
+ "last": "../k_l4.png",
+ "sec": 4
+}

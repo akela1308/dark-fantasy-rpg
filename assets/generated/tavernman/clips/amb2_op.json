@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/f3abf0f7-90f0-435c-b2a2-201e30067a30",
+ "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: stretches his back. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+ "img": "tavernman/k_idle.png",
+ "last": "tavernman/k_idle.png",
+ "sec": 4
+}

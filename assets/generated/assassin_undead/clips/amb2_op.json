@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/74f52662-207a-494e-b169-554ec1f331af",
+ "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: slowly raises one blade and looks at it. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. HANDS CANON: one curved poison blade in each hand, exactly two blades, a bow on the back; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+ "img": "assassin_undead/k_battle.png",
+ "last": "assassin_undead/k_battle.png",
+ "sec": 4
+}

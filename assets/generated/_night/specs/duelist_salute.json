@@ -1,0 +1,1 @@
+{"slug":"duelist","anim":"salute","base":"duelist/k_idle.png","body":304,"segments":[{"clip":"duelist/clips2/salute_in_v1.mp4","from":0,"to":62,"frames":14},{"clip":"duelist/clips2/salute_in_v1.mp4","from":62,"to":72,"frames":6},{"clip":"duelist/clips2/salute_in_v1.mp4","from":62,"to":0,"frames":12}]}

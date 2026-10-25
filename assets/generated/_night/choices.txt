@@ -1,0 +1,87 @@
+healer bidle 2
+bandit_archer bidle 1 | v2: зелёная вспышка у арбалета
+kikimora bidle 1 | v2: цикл не замкнут; рамка расширена вправо (когти обрезались)
+cleaning_girl idle 1 | v2: меняется одежда
+dwarf_beer1 idle 1
+swamp_knight bidle 1
+adventurer bidle 1 | v2: арбалет меняет форму
+bandit_brawler bidle 2 | v1: дубина превращается в шипастую булаву
+bandit_commander bidle 1
+brawler bidle 1
+cleaning_girl bidle 2 | v1: волосы резко взлетают
+dog bidle 1 | v2: белые пятна на груди
+dog idle 2
+drunkman bidle 2 | v1: бутылка уезжает, цикл не замкнут
+drunkman idle 1 | v2: появляется шляпа
+dwarf_beer1 bidle 1
+dwarf_beer2 bidle 2
+dwarf_beer2 idle 2 | v1: облачко у головы
+dwarf_beer3 bidle 1
+dwarf_beer3 idle 1 | v2: белое облачко на голове
+guard idle 1
+shield bidle 2
+swamp_elf bidle 2 | v1: в стойке натягивает лук (лишнее действие)
+tavernman bidle 1
+archer_guard bidle 1 | оба варианта натягивают лук в стойке: взяты кадры 0-20 туда-обратно (цикл 2 с)
+archer_guard idle 1
+mountain_king bidle 1 | v2: у молота появляется вторая головка
+mountain_king idle 1 | v2: размахивает молотом
+recruit bidle 2 | v1: лишний взмах кулаком
+recruit idle 1
+bandit_brawler bidle 2 | кадры 11-25 выкинуты: облачко пара изо рта
+mountain_king idle 1 | кадры 12-36 выкинуты: пар на груди; рамка шире слева
+assassin bidle 2 | v1: размахивает клинками в стойке
+assassin_undead bidle 2 | v1: облачко
+dwarf bidle 1
+jester bidle 2 | v1: свечение у лица
+swamp_elf_girl idle 1
+tavernman idle 1
+dog bidle 1 | цикл склеен плавным переходом (xfade 12)
+tavernman bidle 1 | цикл склеен плавным переходом (xfade 12)
+wanderer idle 2 | в обоих дым из трубки: взяты кадры 0-22 туда-обратно
+winter_girl bidle 2 | v1: дымка у руки
+winter_monster bidle 1 | v2: появляется цепной кистень (чужое оружие)
+winter_queen bidle 2 | v1: плащ сильно хлопает
+assassin_undead bidle 2 | цикл склеен плавным переходом (xfade 12)
+forest_bear bidle 2 | v1: сильно задирает лапу
+guard bidle 1
+vurdalak bidle 1 | v2: высоко задирает когти
+winter_archer bidle 1 | оба натягивают лук в стойке: кадры 0-18 туда-обратно
+bandit_archer amb1 1 | v2: арбалет превращается в лук
+bandit_archer amb2 2
+bandit_brawler amb2 1 | v2: дубина превращается в булаву
+dwarf_beer1 amb1 2 | брызги пены: оторванные капли вырезаны
+dwarf_beer1 amb2 1 | v2: слишком размашисто
+dwarf_beer1 amb3 2
+dwarf_beer3 amb1 2
+dwarf_beer3 amb2 2
+healer amb1 2
+healer amb2 1 | v2: лишние движения
+kikimora amb1 2
+cleaning_girl amb1 2 | v1: швабра уезжает слишком далеко
+cleaning_girl amb2 2
+cleaning_girl amb3 2
+kikimora amb2 1 | v2: коготь превращается в серп
+rowan bidle 1
+tavernman amb1 2
+agna idle 2
+swamp_elf amb1 1
+swamp_elf amb2 2 | v1: искры в конце
+til idle 2 | v1: открывает рот
+agna bidle 1
+lyo bidle 2
+lyo idle 1 | v2: лишние движения
+ryzh bidle 2
+ryzh idle 2
+til bidle 1 | v2: белое пятно
+brawler amb1 1 | v2: в конце дубина в другом положении
+brawler amb2 1
+dog amb1 2
+dog amb2 1 | v2: голова деформируется
+dog amb3 1
+drunkman amb1 2 | v1: появляется шляпа
+drunkman amb2 1 | конец обрезан на 84-м кадре (в конце пропадает мешок)
+drunkman amb3 1 | конец обрезан на 84-м кадре
+tavernman amb2 2
+tavernman amb3 2
+rowan bidle 1 | в середине выпад: взяты кадры 0-20 туда-обратно

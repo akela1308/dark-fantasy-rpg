@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/885f8df4-4e25-4910-b7a9-e474fbf61b6d",
+ "prompt": "Slow motion. One single smooth movement: he lowers the rapier from the salute back into his guard. HANDS CANON: the thin rapier stays in his front hand on the right side of the image, ONE single flintlock pistol stays in his rear hand on the left side of the image. Never swap, never duplicate the weapons.",
+ "img": "duelist/k_stance.png",
+ "last": "duelist/k_idle.png",
+ "sec": 4
+}

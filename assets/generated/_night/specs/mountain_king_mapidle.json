@@ -1,0 +1,1 @@
+{"slug": "mountain_king", "anim": "mapidle", "base": "mountain_king/k_idle.png", "body": 260, "segments": [{"clip": "mountain_king/clips/idle_v1.mp4", "from": 0, "to": 95, "frames": 96}], "loop": true, "left": 0.85, "right": 0.75, "target": "map", "overwrite": true, "drop": [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36]}

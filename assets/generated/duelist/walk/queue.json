@@ -1,0 +1,4 @@
+[
+ {"name":"walk_a","first":"k_walk.png","last":"k_walk.png","prompt":"He walks in place on the spot, like on a treadmill: a steady, natural, realistic walking cycle with weight shifting from foot to foot, slight up and down motion of the body, arms swinging in opposition to the legs, the coat and hair moving with each step. His body stays in exactly the same place in the frame, he does not travel across the frame."},
+ {"name":"walk_b","first":"k_walk.png","last":"k_walk.png","prompt":"Calm confident walk in place on the spot, like on a treadmill, realistic gait with clear heel strike and toe push-off, natural arm swing, the tattered coat sways behind him. He stays centered in the frame, he does not move forward."}
+]

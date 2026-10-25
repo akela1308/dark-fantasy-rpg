@@ -30,6 +30,13 @@ export class MapUnit {
     this._walkFrames    = config.walkFrames    ?? 6;
     this._walkFrameRate = config.walkFrameRate ?? 8;
     this._walkPlaying   = false;
+    // Анимированная стойка (спрайт-лист). Если не задана, работает старая статичная картинка с «дыханием» твином.
+    this._idleSpriteKey = config.idleSpriteKey ?? null;
+    this._idleAnimKey   = this._idleSpriteKey ? `${this._idleSpriteKey}_idle` : null;
+    this._idleFrames    = config.idleFrames    ?? 1;
+    this._idleFrameRate = config.idleFrameRate ?? 24;
+    // Сдвиг точки опоры стойки, чтобы фигура не прыгала вбок при смене «ходьба → стойка» (0.5 = центр кадра)
+    this._idleOriginX   = config.idleOriginX   ?? 0.5;
     this._bobTween      = null;
     this._leanTween     = null;
     this._legLTween     = null;
@@ -50,6 +57,21 @@ export class MapUnit {
       const walkContentH = config.walkFrameContentHeight ?? walkFrame.height;
       this._walkScale = h / walkContentH;
       this.sprite.setScale(this._baseScale);
+
+      if (this._idleSpriteKey && scene.textures.exists(this._idleSpriteKey)) {
+        const idleFrame = scene.textures.get(this._idleSpriteKey).get(0);
+        this._idleScale = h / (config.idleFrameContentHeight ?? idleFrame.height);
+        if (!scene.anims.exists(this._idleAnimKey)) {
+          scene.anims.create({
+            key: this._idleAnimKey,
+            frames: scene.anims.generateFrameNumbers(this._idleSpriteKey, { start: 0, end: this._idleFrames - 1 }),
+            frameRate: this._idleFrameRate,
+            repeat: -1,
+          });
+        }
+      } else {
+        this._idleSpriteKey = null;
+      }
 
       if (!scene.anims.exists(this._walkAnimKey)) {
         scene.anims.create({
@@ -145,6 +167,7 @@ export class MapUnit {
     this.targetY = this.sprite.y;
     this.moving  = false;
     this._stopWalkAnim();
+    if (this._idleSpriteKey) this._startIdleAnim();
   }
 
   update(delta) {
@@ -167,6 +190,7 @@ export class MapUnit {
       this.sprite.x += (dx / dist) * step;
       this.sprite.y += (dy / dist) * step;
       this.sprite.setFlipX(dx < 0);
+      this._syncOrigin();
 
       if (!this.moving && dist > this._walkThreshold) {
         this.moving = true;
@@ -189,6 +213,7 @@ export class MapUnit {
       this.sprite.setScale(this._walkScale);
       this.sprite.setAngle(0);
       this.sprite.play(this._walkAnimKey);
+      this._syncOrigin();
       this._walkPlaying = true;
     } else if (this._paperdoll) {
       const baseY = this._baseUpperY;
@@ -259,16 +284,28 @@ export class MapUnit {
     const side = (Math.floor(this.scene.time.now / 200) % 2 === 0) ? -10 : 10;
     const x = this.sprite.x + side + Phaser.Math.Between(-4, 4);
     const y = this.sprite.y + 4;
-    const dust = this.scene.add.ellipse(x, y, 22, 9, 0x9a8060, 0.7).setDepth(this.sprite.y - 2);
+    // Мягкая пыль: бледнее и медленнее тает
+    const dust = this.scene.add.ellipse(x, y, 18, 7, 0x9a8060, 0.32).setDepth(this.sprite.y - 2);
     this.scene.tweens.add({
-      targets: dust, alpha: 0, scaleX: 2.8, scaleY: 0.2, y: y - 4,
-      duration: 380, ease: 'Power2', onComplete: () => dust.destroy(),
+      targets: dust, alpha: 0, scaleX: 2.4, scaleY: 0.5, y: y - 3,
+      duration: 650, ease: 'Sine.easeOut', onComplete: () => dust.destroy(),
     });
   }
 
   _startIdleAnim() {
     if (this._idleTween) return;
     const s = this._baseScale;
+
+    if (this._useWalkFrames && this._idleSpriteKey) {
+      if (this.sprite.anims?.currentAnim?.key === this._idleAnimKey && this.sprite.anims.isPlaying) return;
+      this.sprite.stop();
+      this.sprite.setTexture(this._idleSpriteKey, 0);
+      this.sprite.setScale(this._idleScale);
+      this.sprite.setAngle(0);
+      this.sprite.play({ key: this._idleAnimKey, startFrame: 0 });
+      this._syncOrigin();
+      return;
+    }
 
     if (this._paperdoll) {
       this._upper.setScale(s).setPosition(0, this._baseUpperY);
@@ -299,6 +336,12 @@ export class MapUnit {
     }
   }
 
+  _syncOrigin() {
+    if (!this._idleSpriteKey) return;
+    const ox = this.sprite.texture.key === this._idleSpriteKey ? this._idleOriginX : 0.5;
+    this.sprite.setOrigin(this.sprite.flipX ? 1 - ox : ox, 1);
+  }
+
   _stopIdleAnim() {
     if (this._idleTween)   { this._idleTween.stop();   this._idleTween   = null; }
     if (this._breathTween) { this._breathTween.stop();  this._breathTween = null; }
@@ -314,6 +357,7 @@ export class MapUnit {
     if (this._walkPlaying) {
       this.sprite.stop();
       this.sprite.setTexture(this._idleTextureKey);
+      this._syncOrigin();
       this._walkPlaying = false;
     }
 
@@ -325,7 +369,9 @@ export class MapUnit {
       this._upper.setScale(s).setPosition(0, this._baseUpperY);
     } else {
       this.sprite.setAngle(0);
-      this.sprite.setScale(this._baseScale);
+      // Анимированная стойка имеет свой масштаб: не сбрасывать его, если она уже играет
+      const idleFramesOn = this._idleSpriteKey && this.sprite.texture.key === this._idleSpriteKey;
+      this.sprite.setScale(idleFramesOn ? this._idleScale : this._baseScale);
     }
   }
 

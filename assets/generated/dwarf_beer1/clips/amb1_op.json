@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/32744d00-c5a2-4c0a-9b94-bb98c3784653",
+ "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: drinks a long gulp of beer from the mug. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+ "img": "dwarf_beer1/k_idle.png",
+ "last": "dwarf_beer1/k_idle.png",
+ "sec": 4
+}

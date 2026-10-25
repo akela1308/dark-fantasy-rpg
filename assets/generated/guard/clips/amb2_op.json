@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/cf10361d-9b8c-483a-a1c3-309cca5ddd3f",
+ "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: adjusts his helmet. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+ "img": "guard/k_idle.png",
+ "last": "guard/k_idle.png",
+ "sec": 4
+}

@@ -1,0 +1,7 @@
+[
+ {"name":"lunge_in","first":"../k_idle.png","last":"../k_lunge.png","prompt":"Slow motion. From his guard he performs one single fencing lunge toward the right: the front foot steps forward and the rapier arm extends straight forward, ending at full extension."},
+ {"name":"lunge_out","first":"../k_lunge.png","last":"../k_idle.png","prompt":"Slow motion. From full lunge extension he recovers straight back into his guard stance: the front foot comes back and the rapier arm bends back to guard."},
+ {"name":"shot_in","first":"../k_idle.png","last":"../k_aim.png","prompt":"Slow motion. He raises the pistol across his chest and extends the arm to aim to the right."},
+ {"name":"shot_fire","first":"../k_aim.png","last":"../k_s3.png","prompt":"Slow motion. The pistol fires and the recoil pushes his pistol arm up and back."},
+ {"name":"shot_out","first":"../k_s3.png","last":"../k_idle.png","prompt":"Slow motion. He lowers the pistol down to his hip and settles back into his guard stance."}
+]

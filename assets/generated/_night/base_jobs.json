@@ -1,0 +1,361 @@
+[
+ {
+  "slug": "brawler",
+  "out": "brawler/k_battle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/sprites/companion_brawler.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Pose: a ready combat stance, three-quarter view. The character faces the RIGHT side of the image: the face, the chest and the toes are turned to the right, he looks to the right. WEAPONS: a heavy wooden club in the front hand, the rear hand a bare fist. The front hand is the hand on the right side of the image."
+ },
+ {
+  "slug": "shield",
+  "out": "shield/k_battle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/sprites/companion_shield.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Pose: a ready combat stance, three-quarter view. The character faces the RIGHT side of the image: the face, the chest and the toes are turned to the right, he looks to the right. WEAPONS: one big spiked club held with both hands in front of him. The front hand is the hand on the right side of the image."
+ },
+ {
+  "slug": "healer",
+  "out": "healer/k_battle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/sprites/companion_healer.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Pose: a ready combat stance, three-quarter view. The character faces the RIGHT side of the image: the face, the chest and the toes are turned to the right, he looks to the right. WEAPONS: the gnarled wooden staff in the rear hand, a small bundle of dried herbs in the front hand. The front hand is the hand on the right side of the image."
+ },
+ {
+  "slug": "bandit_commander",
+  "out": "bandit_commander/k_battle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/sprites/bandit_commander.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Pose: a ready combat stance, three-quarter view. The character faces the RIGHT side of the image: the face, the chest and the toes are turned to the right, he looks to the right. WEAPONS: one straight sword in the front hand, the rear hand empty. The front hand is the hand on the right side of the image."
+ },
+ {
+  "slug": "bandit_brawler",
+  "out": "bandit_brawler/k_battle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/sprites/bandit_brawler.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Pose: a ready combat stance, three-quarter view. The character faces the RIGHT side of the image: the face, the chest and the toes are turned to the right, he looks to the right. WEAPONS: one big wooden club held with both hands. The front hand is the hand on the right side of the image."
+ },
+ {
+  "slug": "bandit_archer",
+  "out": "bandit_archer/k_battle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/sprites/bandit_archer.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Pose: a ready combat stance, three-quarter view. The character faces the RIGHT side of the image: the face, the chest and the toes are turned to the right, he looks to the right. WEAPONS: one crossbow held with both hands, pointing to the right. The front hand is the hand on the right side of the image."
+ },
+ {
+  "slug": "swamp_knight",
+  "out": "swamp_knight/k_battle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/sprites/swamp_knight.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Pose: a ready combat stance, three-quarter view. The character faces the RIGHT side of the image: the face, the chest and the toes are turned to the right, he looks to the right. WEAPONS: one long sword in the front hand, the rear hand empty. The front hand is the hand on the right side of the image."
+ },
+ {
+  "slug": "kikimora",
+  "out": "kikimora/k_battle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/sprites/kikimora.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Pose: a ready combat stance, three-quarter view. The character faces the RIGHT side of the image: the face, the chest and the toes are turned to the right, he looks to the right. WEAPONS: no weapon, long claws on both hands. The front hand is the hand on the right side of the image."
+ },
+ {
+  "slug": "swamp_elf",
+  "out": "swamp_elf/k_battle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/sprites/swamp_elf_battle.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Pose: a ready combat stance, three-quarter view. The character faces the RIGHT side of the image: the face, the chest and the toes are turned to the right, he looks to the right. WEAPONS: one bow held in the front hand, the rear hand free to draw the string. The front hand is the hand on the right side of the image."
+ },
+ {
+  "slug": "dwarf_beer1",
+  "out": "dwarf_beer1/k_idle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/maps/characters/dwarf_beer.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Keep the same pose and the same facing direction as in the reference: sitting on the stool, holding a beer mug."
+ },
+ {
+  "slug": "dwarf_beer1",
+  "out": "dwarf_beer1/k_battle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/maps/characters/dwarf_beer.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Pose: a ready combat stance, three-quarter view. The character faces the RIGHT side of the image: the face, the chest and the toes are turned to the right, he looks to the right. WEAPONS: a beer mug in the front hand, one small hand axe in the rear hand. The front hand is the hand on the right side of the image."
+ },
+ {
+  "slug": "dwarf_beer2",
+  "out": "dwarf_beer2/k_idle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/maps/characters/dwarf_beer2.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Keep the same pose and the same facing direction as in the reference: sitting on the stool."
+ },
+ {
+  "slug": "dwarf_beer2",
+  "out": "dwarf_beer2/k_battle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/maps/characters/dwarf_beer2.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Pose: a ready combat stance, three-quarter view. The character faces the RIGHT side of the image: the face, the chest and the toes are turned to the right, he looks to the right. WEAPONS: one small hand axe in the rear hand, the front hand a bare fist. The front hand is the hand on the right side of the image."
+ },
+ {
+  "slug": "dwarf_beer3",
+  "out": "dwarf_beer3/k_idle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/арты/Таверна/Dwarf_beer3.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Keep the same pose and the same facing direction as in the reference: sitting on the stool."
+ },
+ {
+  "slug": "dwarf_beer3",
+  "out": "dwarf_beer3/k_battle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/арты/Таверна/Dwarf_beer3.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Pose: a ready combat stance, three-quarter view. The character faces the RIGHT side of the image: the face, the chest and the toes are turned to the right, he looks to the right. WEAPONS: one heavy wooden stool leg used as a club in the front hand, the rear hand a bare fist. The front hand is the hand on the right side of the image."
+ },
+ {
+  "slug": "cleaning_girl",
+  "out": "cleaning_girl/k_idle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/maps/characters/cleaning_girl.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Keep the same pose and the same facing direction as in the reference: standing with the mop, no bucket."
+ },
+ {
+  "slug": "cleaning_girl",
+  "out": "cleaning_girl/k_battle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/maps/characters/cleaning_girl.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Pose: a ready combat stance, three-quarter view. The character faces the RIGHT side of the image: the face, the chest and the toes are turned to the right, he looks to the right. WEAPONS: the long wooden mop held with both hands like a staff. The front hand is the hand on the right side of the image."
+ },
+ {
+  "slug": "tavernman",
+  "out": "tavernman/k_idle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/maps/characters/tavernman.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Keep the same pose and the same facing direction as in the reference: standing."
+ },
+ {
+  "slug": "tavernman",
+  "out": "tavernman/k_battle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/maps/characters/tavernman.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Pose: a ready combat stance, three-quarter view. The character faces the RIGHT side of the image: the face, the chest and the toes are turned to the right, he looks to the right. WEAPONS: one meat cleaver in the front hand, the rear hand empty. The front hand is the hand on the right side of the image."
+ },
+ {
+  "slug": "wanderer",
+  "out": "wanderer/k_idle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/maps/characters/map_wanderer.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Keep the same pose and the same facing direction as in the reference: sitting on the chair with his pipe."
+ },
+ {
+  "slug": "adventurer",
+  "out": "adventurer/k_battle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/арты/Таверна/Adventurer_battle.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Pose: a ready combat stance, three-quarter view. The character faces the RIGHT side of the image: the face, the chest and the toes are turned to the right, he looks to the right. WEAPONS: one small crossbow in the front hand pointing to the right, one long knife in the rear hand. The front hand is the hand on the right side of the image."
+ },
+ {
+  "slug": "dog",
+  "out": "dog/k_idle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/maps/characters/dog.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Keep the same pose and the same facing direction as in the reference: standing."
+ },
+ {
+  "slug": "dog",
+  "out": "dog/k_battle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/maps/characters/dog.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Pose: a ready combat stance, three-quarter view. The character faces the RIGHT side of the image: the face, the chest and the toes are turned to the right, he looks to the right. WEAPONS: no weapon, fangs. The front hand is the hand on the right side of the image."
+ },
+ {
+  "slug": "drunkman",
+  "out": "drunkman/k_idle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/maps/characters/drunkman.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Keep the same pose and the same facing direction as in the reference: standing."
+ },
+ {
+  "slug": "drunkman",
+  "out": "drunkman/k_battle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/maps/characters/drunkman.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Pose: a ready combat stance, three-quarter view. The character faces the RIGHT side of the image: the face, the chest and the toes are turned to the right, he looks to the right. WEAPONS: one glass bottle in the front hand, the rear hand a bare fist. The front hand is the hand on the right side of the image."
+ },
+ {
+  "slug": "guard",
+  "out": "guard/k_idle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/maps/characters/guard.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Keep the same pose and the same facing direction as in the reference: standing with the halberd upright."
+ },
+ {
+  "slug": "guard",
+  "out": "guard/k_battle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/maps/characters/guard.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Pose: a ready combat stance, three-quarter view. The character faces the RIGHT side of the image: the face, the chest and the toes are turned to the right, he looks to the right. WEAPONS: one halberd held with both hands. The front hand is the hand on the right side of the image."
+ },
+ {
+  "slug": "archer_guard",
+  "out": "archer_guard/k_idle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/maps/characters/archer_guard.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Keep the same pose and the same facing direction as in the reference: standing with the bow."
+ },
+ {
+  "slug": "archer_guard",
+  "out": "archer_guard/k_battle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/maps/characters/archer_guard.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Pose: a ready combat stance, three-quarter view. The character faces the RIGHT side of the image: the face, the chest and the toes are turned to the right, he looks to the right. WEAPONS: one longbow held in the front hand, the rear hand free to draw the string. The front hand is the hand on the right side of the image."
+ },
+ {
+  "slug": "recruit",
+  "out": "recruit/k_idle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/maps/characters/recruit.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Keep the same pose and the same facing direction as in the reference: standing with the sword."
+ },
+ {
+  "slug": "recruit",
+  "out": "recruit/k_battle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/maps/characters/recruit.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Pose: a ready combat stance, three-quarter view. The character faces the RIGHT side of the image: the face, the chest and the toes are turned to the right, he looks to the right. WEAPONS: one short sword in the front hand, the rear hand empty. The front hand is the hand on the right side of the image."
+ },
+ {
+  "slug": "mountain_king",
+  "out": "mountain_king/k_idle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/maps/characters/mountain_king.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Keep the same pose and the same facing direction as in the reference: standing with the hammer."
+ },
+ {
+  "slug": "mountain_king",
+  "out": "mountain_king/k_battle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/maps/characters/mountain_king.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Pose: a ready combat stance, three-quarter view. The character faces the RIGHT side of the image: the face, the chest and the toes are turned to the right, he looks to the right. WEAPONS: one huge war hammer in the front hand. The front hand is the hand on the right side of the image."
+ },
+ {
+  "slug": "swamp_elf_girl",
+  "out": "swamp_elf_girl/k_idle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/maps/characters/swamp_elf_girl.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Keep the same pose and the same facing direction as in the reference: standing with the bow."
+ },
+ {
+  "slug": "dwarf",
+  "out": "dwarf/k_battle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/арты/Горы/Dwarf.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Pose: a ready combat stance, three-quarter view. The character faces the RIGHT side of the image: the face, the chest and the toes are turned to the right, he looks to the right. WEAPONS: one round wooden shield on the front arm, one axe in the rear hand. The front hand is the hand on the right side of the image."
+ },
+ {
+  "slug": "assassin",
+  "out": "assassin/k_battle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/арты/Assasin.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Pose: a ready combat stance, three-quarter view. The character faces the RIGHT side of the image: the face, the chest and the toes are turned to the right, he looks to the right. WEAPONS: one curved blade in each hand, exactly two blades. The front hand is the hand on the right side of the image."
+ },
+ {
+  "slug": "assassin_undead",
+  "out": "assassin_undead/k_battle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/арты/Assasin_Undead.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Pose: a ready combat stance, three-quarter view. The character faces the RIGHT side of the image: the face, the chest and the toes are turned to the right, he looks to the right. WEAPONS: one curved poison blade in each hand, exactly two blades, a bow on the back. The front hand is the hand on the right side of the image."
+ },
+ {
+  "slug": "jester",
+  "out": "jester/k_battle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/арты/Shut.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Pose: a ready combat stance, three-quarter view. The character faces the RIGHT side of the image: the face, the chest and the toes are turned to the right, he looks to the right. WEAPONS: one marotte staff with a carved head in the front hand, the rear hand empty. The front hand is the hand on the right side of the image."
+ },
+ {
+  "slug": "winter_girl",
+  "out": "winter_girl/k_battle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/арты/Winter/WinterGirl.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Pose: a ready combat stance, three-quarter view. The character faces the RIGHT side of the image: the face, the chest and the toes are turned to the right, he looks to the right. WEAPONS: one staff with a stone on top in the rear hand, the front hand free. The front hand is the hand on the right side of the image."
+ },
+ {
+  "slug": "winter_queen",
+  "out": "winter_queen/k_battle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/арты/Winter/Winter_Queen.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Pose: a ready combat stance, three-quarter view. The character faces the RIGHT side of the image: the face, the chest and the toes are turned to the right, he looks to the right. WEAPONS: one small sphere floating above the front hand, no other weapon. The front hand is the hand on the right side of the image."
+ },
+ {
+  "slug": "winter_monster",
+  "out": "winter_monster/k_battle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/арты/Winter/WinterMonster.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Pose: a ready combat stance, three-quarter view. The character faces the RIGHT side of the image: the face, the chest and the toes are turned to the right, he looks to the right. WEAPONS: one gnarled wooden snag club in the front hand. The front hand is the hand on the right side of the image."
+ },
+ {
+  "slug": "vurdalak",
+  "out": "vurdalak/k_battle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/арты/Winter/Vurdalak.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Pose: a ready combat stance, three-quarter view. The character faces the RIGHT side of the image: the face, the chest and the toes are turned to the right, he looks to the right. WEAPONS: no weapon, long claws on both hands. The front hand is the hand on the right side of the image."
+ },
+ {
+  "slug": "forest_bear",
+  "out": "forest_bear/k_battle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/арты/Winter/Forest_bear.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Pose: a ready combat stance, three-quarter view. The character faces the RIGHT side of the image: the face, the chest and the toes are turned to the right, he looks to the right. WEAPONS: no weapon, claws and jaws. The front hand is the hand on the right side of the image."
+ },
+ {
+  "slug": "winter_archer",
+  "out": "winter_archer/k_battle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/арты/Winter/winter_archer.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Pose: a ready combat stance, three-quarter view. The character faces the RIGHT side of the image: the face, the chest and the toes are turned to the right, he looks to the right. WEAPONS: one bow held in the front hand, the rear hand free to draw the string. The front hand is the hand on the right side of the image."
+ },
+ {
+  "slug": "rowan",
+  "out": "rowan/k_battle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/maps/characters/map_wanderer.png",
+  "prompt": "STANDING UP, not sitting. Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Pose: a ready combat stance, three-quarter view. The character faces the RIGHT side of the image: the face, the chest and the toes are turned to the right, he looks to the right. WEAPONS: one long knife in the front hand, the rear hand empty. The front hand is the hand on the right side of the image."
+ },
+ {
+  "slug": "agna",
+  "out": "agna/k_art.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/maps/characters/tavernman.png",
+  "prompt": "A NEW original character, NOT the person in the reference image: only copy the painting style, colors and level of detail. EXACTLY ONE single figure, not a character sheet, no turnaround, no second view. a tired woman of about fifty, innkeeper, plain dark dress with a stained apron, grey-streaked hair tied back, tired eyes, strong hands. Full body, standing, three-quarter view, the whole figure visible, about 75% of the image height. Flat solid uniform pure chroma green background (#00FF00), no shadow, no floor, no text, no watermark."
+ },
+ {
+  "slug": "agna",
+  "out": "agna/portrait.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/арты/Таверна/TavernMan_portair.png",
+  "aspect": "1:1",
+  "prompt": "A NEW original character portrait, NOT the person in the reference image: only copy the portrait style, dark background, warm light on the face and the frame style. a tired woman of about fifty, innkeeper, plain dark dress with a stained apron, grey-streaked hair tied back, tired eyes, strong hands. Head and shoulders."
+ },
+ {
+  "slug": "agna",
+  "out": "agna/k_battle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/assets/generated/agna/k_art.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Pose: a ready combat stance, three-quarter view. The character faces the RIGHT side of the image: the face, the chest and the toes are turned to the right. WEAPONS: one heavy iron frying pan in the front hand, the rear hand empty. The front hand is the hand on the right side of the image."
+ },
+ {
+  "slug": "ryzh",
+  "out": "ryzh/k_art.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/maps/characters/tavernman.png",
+  "prompt": "A NEW original character, NOT the person in the reference image: only copy the painting style, colors and level of detail. EXACTLY ONE single figure, not a character sheet, no turnaround, no second view. a big broad red-haired man of about forty-five, red beard, village elder, wearing a sheepskin coat over a linen shirt, belt, boots. Full body, standing, three-quarter view, the whole figure visible, about 75% of the image height. Flat solid uniform pure chroma green background (#00FF00), no shadow, no floor, no text, no watermark."
+ },
+ {
+  "slug": "ryzh",
+  "out": "ryzh/portrait.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/арты/Таверна/TavernMan_portair.png",
+  "aspect": "1:1",
+  "prompt": "A NEW original character portrait, NOT the person in the reference image: only copy the portrait style, dark background, warm light on the face and the frame style. a big broad red-haired man of about forty-five, red beard, village elder, wearing a sheepskin coat over a linen shirt, belt, boots. Head and shoulders."
+ },
+ {
+  "slug": "lyo",
+  "out": "lyo/k_art.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/maps/characters/tavernman.png",
+  "prompt": "A NEW original character, NOT the person in the reference image: only copy the painting style, colors and level of detail. EXACTLY ONE single figure, not a character sheet, no turnaround, no second view. a short old swamp elder, grey-green layered robes of moss and cloth, his face looks like tree bark, knotted wooden walking stick. Full body, standing, three-quarter view, the whole figure visible, about 75% of the image height. Flat solid uniform pure chroma green background (#00FF00), no shadow, no floor, no text, no watermark."
+ },
+ {
+  "slug": "lyo",
+  "out": "lyo/portrait.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/арты/Таверна/TavernMan_portair.png",
+  "aspect": "1:1",
+  "prompt": "A NEW original character portrait, NOT the person in the reference image: only copy the portrait style, dark background, warm light on the face and the frame style. a short old swamp elder, grey-green layered robes of moss and cloth, his face looks like tree bark, knotted wooden walking stick. Head and shoulders."
+ },
+ {
+  "slug": "lyo",
+  "out": "lyo/k_battle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/assets/generated/lyo/k_art.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Pose: a ready combat stance, three-quarter view. The character faces the RIGHT side of the image: the face, the chest and the toes are turned to the right. WEAPONS: the knotted wooden walking stick in the rear hand, the front hand free for a gesture. The front hand is the hand on the right side of the image."
+ },
+ {
+  "slug": "til",
+  "out": "til/k_art.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/maps/characters/tavernman.png",
+  "prompt": "A NEW original character, NOT the person in the reference image: only copy the painting style, colors and level of detail. EXACTLY ONE single figure, not a character sheet, no turnaround, no second view. a blacksmith, former army sapper, muscular man of about forty, leather apron, rolled sleeves, a burn scar covering half of his face. Full body, standing, three-quarter view, the whole figure visible, about 75% of the image height. Flat solid uniform pure chroma green background (#00FF00), no shadow, no floor, no text, no watermark."
+ },
+ {
+  "slug": "til",
+  "out": "til/portrait.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/арты/Таверна/TavernMan_portair.png",
+  "aspect": "1:1",
+  "prompt": "A NEW original character portrait, NOT the person in the reference image: only copy the portrait style, dark background, warm light on the face and the frame style. a blacksmith, former army sapper, muscular man of about forty, leather apron, rolled sleeves, a burn scar covering half of his face. Head and shoulders."
+ },
+ {
+  "slug": "til",
+  "out": "til/k_battle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/assets/generated/til/k_art.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Pose: a ready combat stance, three-quarter view. The character faces the RIGHT side of the image: the face, the chest and the toes are turned to the right. WEAPONS: one blacksmith hammer in the front hand, the rear hand empty. The front hand is the hand on the right side of the image."
+ },
+ {
+  "slug": "swamp_guard",
+  "out": "swamp_guard/k_art.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/maps/characters/tavernman.png",
+  "prompt": "A NEW original character, NOT the person in the reference image: only copy the painting style, colors and level of detail. EXACTLY ONE single figure, not a character sheet, no turnaround, no second view. a swamp elf woman warrior, a different person from the young swamp exile: older, stern face with green tattoos, braided dark hair, mossy leather armor with reed plates. Full body, standing, three-quarter view, the whole figure visible, about 75% of the image height. Flat solid uniform pure chroma green background (#00FF00), no shadow, no floor, no text, no watermark."
+ },
+ {
+  "slug": "swamp_guard",
+  "out": "swamp_guard/portrait.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/арты/Таверна/TavernMan_portair.png",
+  "aspect": "1:1",
+  "prompt": "A NEW original character portrait, NOT the person in the reference image: only copy the portrait style, dark background, warm light on the face and the frame style. a swamp elf woman warrior, a different person from the young swamp exile: older, stern face with green tattoos, braided dark hair, mossy leather armor with reed plates. Head and shoulders."
+ },
+ {
+  "slug": "cat",
+  "out": "cat/k_idle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/арты/Сфе.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Keep the same pose and the same facing direction as in the reference: sitting calmly."
+ }
+]

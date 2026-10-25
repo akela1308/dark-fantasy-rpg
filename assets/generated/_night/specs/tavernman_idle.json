@@ -1,0 +1,1 @@
+{"slug": "tavernman", "anim": "idle", "base": "tavernman/k_battle.png", "body": 300, "segments": [{"clip": "tavernman/clips/bidle_v1.mp4", "from": 0, "to": 95, "frames": 96}], "loop": true, "left": 0.85, "right": 1.0, "overwrite": true, "xfade": 12}

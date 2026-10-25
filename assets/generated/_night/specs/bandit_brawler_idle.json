@@ -1,0 +1,1 @@
+{"slug": "bandit_brawler", "anim": "idle", "base": "bandit_brawler/k_battle.png", "body": 300, "segments": [{"clip": "bandit_brawler/clips/bidle_v2.mp4", "from": 0, "to": 95, "frames": 96}], "loop": true, "left": 0.85, "right": 1.0, "overwrite": true, "drop": [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]}

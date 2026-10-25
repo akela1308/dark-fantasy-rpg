@@ -1,0 +1,2774 @@
+[
+ {
+  "stage": 0,
+  "name": "duelist/clips2/block_in",
+  "first": "duelist/k_idle.png",
+  "last": "duelist/k_block.png",
+  "prompt": "Slow motion. One single smooth movement: from his guard he raises the rapier into a high horizontal parry at head height. HANDS CANON: the thin rapier stays in his front hand on the right side of the image, ONE single flintlock pistol stays in his rear hand on the left side of the image. Never swap, never duplicate the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 0,
+  "name": "duelist/clips2/block_out",
+  "first": "duelist/k_block.png",
+  "last": "duelist/k_idle.png",
+  "prompt": "Slow motion. One single smooth movement: he lowers the rapier from the high parry back into his guard. HANDS CANON: the thin rapier stays in his front hand on the right side of the image, ONE single flintlock pistol stays in his rear hand on the left side of the image. Never swap, never duplicate the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 0,
+  "name": "duelist/clips2/hit_in",
+  "first": "duelist/k_idle.png",
+  "last": "duelist/k_hit.png",
+  "prompt": "Slow motion. He is struck: the torso bends back and away to the left, head down in pain, weight on the back foot. HANDS CANON: the thin rapier stays in his front hand on the right side of the image, ONE single flintlock pistol stays in his rear hand on the left side of the image. Never swap, never duplicate the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 0,
+  "name": "duelist/clips2/hit_out",
+  "first": "duelist/k_hit.png",
+  "last": "duelist/k_idle.png",
+  "prompt": "Slow motion. One single smooth movement: he recovers from the blow and straightens back into his guard. HANDS CANON: the thin rapier stays in his front hand on the right side of the image, ONE single flintlock pistol stays in his rear hand on the left side of the image. Never swap, never duplicate the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 0,
+  "name": "duelist/clips2/death",
+  "first": "duelist/k_hit.png",
+  "last": "duelist/k_dead.png",
+  "prompt": "Slow motion. He collapses from the wound: drops to the knees and falls onto his back on the ground, the rapier and the pistol fall next to his hands. HANDS CANON: the thin rapier stays in his front hand on the right side of the image, ONE single flintlock pistol stays in his rear hand on the left side of the image. Never swap, never duplicate the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 0,
+  "name": "duelist/clips2/victory",
+  "first": "duelist/k_idle.png",
+  "last": "duelist/k_victory.png",
+  "prompt": "Slow motion. One single smooth movement: he raises the rapier high above his head in triumph, the pistol hand rests on his hip. HANDS CANON: the thin rapier stays in his front hand on the right side of the image, ONE single flintlock pistol stays in his rear hand on the left side of the image. Never swap, never duplicate the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 0,
+  "name": "duelist/clips2/salute_in",
+  "first": "duelist/k_idle.png",
+  "last": "duelist/k_stance.png",
+  "prompt": "Slow motion. One single smooth movement: he turns sideways into a narrow fencing stance and raises the rapier vertically in front of his face in a duelist salute. HANDS CANON: the thin rapier stays in his front hand on the right side of the image, ONE single flintlock pistol stays in his rear hand on the left side of the image. Never swap, never duplicate the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 0,
+  "name": "duelist/clips2/salute_out",
+  "first": "duelist/k_stance.png",
+  "last": "duelist/k_idle.png",
+  "prompt": "Slow motion. One single smooth movement: he lowers the rapier from the salute back into his guard. HANDS CANON: the thin rapier stays in his front hand on the right side of the image, ONE single flintlock pistol stays in his rear hand on the left side of the image. Never swap, never duplicate the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 0,
+  "name": "duelist/clips2/reload_in",
+  "first": "duelist/k_idle.png",
+  "last": "duelist/k_reload.png",
+  "prompt": "Slow motion. One single smooth movement: he brings the pistol up to his chest, barrel up, and pulls back the hammer with his thumb. HANDS CANON: the thin rapier stays in his front hand on the right side of the image, ONE single flintlock pistol stays in his rear hand on the left side of the image. Never swap, never duplicate the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 0,
+  "name": "duelist/clips2/reload_out",
+  "first": "duelist/k_reload.png",
+  "last": "duelist/k_idle.png",
+  "prompt": "Slow motion. One single smooth movement: he lowers the pistol back to his hip into his guard. HANDS CANON: the thin rapier stays in his front hand on the right side of the image, ONE single flintlock pistol stays in his rear hand on the left side of the image. Never swap, never duplicate the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "healer/clips/bidle",
+  "first": "healer/k_battle.png",
+  "last": "healer/k_battle.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: the gnarled wooden staff in the rear hand, a small bundle of dried herbs in the front hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "bandit_brawler/clips/bidle",
+  "first": "bandit_brawler/k_battle.png",
+  "last": "bandit_brawler/k_battle.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: one big wooden club held with both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "bandit_archer/clips/bidle",
+  "first": "bandit_archer/k_battle.png",
+  "last": "bandit_archer/k_battle.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: one crossbow held with both hands, pointing to the right; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "swamp_knight/clips/bidle",
+  "first": "swamp_knight/k_battle.png",
+  "last": "swamp_knight/k_battle.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: one long sword in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "kikimora/clips/bidle",
+  "first": "kikimora/k_battle.png",
+  "last": "kikimora/k_battle.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: no weapon, long claws on both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "swamp_elf/clips/bidle",
+  "first": "swamp_elf/k_battle.png",
+  "last": "swamp_elf/k_battle.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: one bow held in the front hand, the rear hand free to draw the string; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "dwarf_beer1/clips/idle",
+  "first": "dwarf_beer1/k_idle.png",
+  "last": "dwarf_beer1/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the character stays in place in the same pose, breathes slowly and calmly, the chest rises and falls, a slight shift of weight, clothes, cloak and hair move gently. No steps, no gestures, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "dwarf_beer1/clips/bidle",
+  "first": "dwarf_beer1/k_battle.png",
+  "last": "dwarf_beer1/k_battle.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: a beer mug in the front hand, one small hand axe in the rear hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "dwarf_beer2/clips/bidle",
+  "first": "dwarf_beer2/k_battle.png",
+  "last": "dwarf_beer2/k_battle.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: one small hand axe in the rear hand, the front hand a bare fist; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "dwarf_beer3/clips/idle",
+  "first": "dwarf_beer3/k_idle.png",
+  "last": "dwarf_beer3/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the character stays in place in the same pose, breathes slowly and calmly, the chest rises and falls, a slight shift of weight, clothes, cloak and hair move gently. No steps, no gestures, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "dwarf_beer3/clips/bidle",
+  "first": "dwarf_beer3/k_battle.png",
+  "last": "dwarf_beer3/k_battle.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: one heavy wooden stool leg used as a club in the front hand, the rear hand a bare fist; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "cleaning_girl/clips/idle",
+  "first": "cleaning_girl/k_idle.png",
+  "last": "cleaning_girl/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the character stays in place in the same pose, breathes slowly and calmly, the chest rises and falls, a slight shift of weight, clothes, cloak and hair move gently. No steps, no gestures, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "cleaning_girl/clips/bidle",
+  "first": "cleaning_girl/k_battle.png",
+  "last": "cleaning_girl/k_battle.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: the long wooden mop held with both hands like a staff; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "tavernman/clips/idle",
+  "first": "tavernman/k_idle.png",
+  "last": "tavernman/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the character stays in place in the same pose, breathes slowly and calmly, the chest rises and falls, a slight shift of weight, clothes, cloak and hair move gently. No steps, no gestures, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "tavernman/clips/bidle",
+  "first": "tavernman/k_battle.png",
+  "last": "tavernman/k_battle.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: one meat cleaver in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "wanderer/clips/idle",
+  "first": "wanderer/k_idle.png",
+  "last": "wanderer/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the character stays in place in the same pose, breathes slowly and calmly, the chest rises and falls, a slight shift of weight, clothes, cloak and hair move gently. No steps, no gestures, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "dog/clips/idle",
+  "first": "dog/k_idle.png",
+  "last": "dog/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the animal stays in place in the same pose, breathes calmly, the flanks rise and fall, small natural movements of the ears and tail. No steps, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "dog/clips/bidle",
+  "first": "dog/k_battle.png",
+  "last": "dog/k_battle.png",
+  "prompt": "Idle loop for the whole clip: the animal stays in place in the same pose, breathes calmly, the flanks rise and fall, small natural movements of the ears and tail. No steps, no turning. The last frame is exactly the same pose as the first. HANDS CANON: no weapon, fangs; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "drunkman/clips/idle",
+  "first": "drunkman/k_idle.png",
+  "last": "drunkman/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the character stays in place in the same pose, breathes slowly and calmly, the chest rises and falls, a slight shift of weight, clothes, cloak and hair move gently. No steps, no gestures, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "brawler/clips/bidle",
+  "first": "brawler/k_battle.png",
+  "last": "brawler/k_battle.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: a heavy wooden club in the front hand, the rear hand a bare fist; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "shield/clips/bidle",
+  "first": "shield/k_battle.png",
+  "last": "shield/k_battle.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: one big spiked club held with both hands in front of him; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "bandit_commander/clips/bidle",
+  "first": "bandit_commander/k_battle.png",
+  "last": "bandit_commander/k_battle.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: one straight sword in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "dwarf_beer2/clips/idle",
+  "first": "dwarf_beer2/k_idle.png",
+  "last": "dwarf_beer2/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the character stays in place in the same pose, breathes slowly and calmly, the chest rises and falls, a slight shift of weight, clothes, cloak and hair move gently. No steps, no gestures, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "adventurer/clips/bidle",
+  "first": "adventurer/k_battle.png",
+  "last": "adventurer/k_battle.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: one small crossbow in the front hand pointing to the right, one long knife in the rear hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "drunkman/clips/bidle",
+  "first": "drunkman/k_battle.png",
+  "last": "drunkman/k_battle.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: one glass bottle in the front hand, the rear hand a bare fist; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "guard/clips/idle",
+  "first": "guard/k_idle.png",
+  "last": "guard/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the character stays in place in the same pose, breathes slowly and calmly, the chest rises and falls, a slight shift of weight, clothes, cloak and hair move gently. No steps, no gestures, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "archer_guard/clips/idle",
+  "first": "archer_guard/k_idle.png",
+  "last": "archer_guard/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the character stays in place in the same pose, breathes slowly and calmly, the chest rises and falls, a slight shift of weight, clothes, cloak and hair move gently. No steps, no gestures, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "archer_guard/clips/bidle",
+  "first": "archer_guard/k_battle.png",
+  "last": "archer_guard/k_battle.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: one longbow held in the front hand, the rear hand free to draw the string; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "recruit/clips/idle",
+  "first": "recruit/k_idle.png",
+  "last": "recruit/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the character stays in place in the same pose, breathes slowly and calmly, the chest rises and falls, a slight shift of weight, clothes, cloak and hair move gently. No steps, no gestures, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "recruit/clips/bidle",
+  "first": "recruit/k_battle.png",
+  "last": "recruit/k_battle.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: one short sword in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "mountain_king/clips/idle",
+  "first": "mountain_king/k_idle.png",
+  "last": "mountain_king/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the character stays in place in the same pose, breathes slowly and calmly, the chest rises and falls, a slight shift of weight, clothes, cloak and hair move gently. No steps, no gestures, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "mountain_king/clips/bidle",
+  "first": "mountain_king/k_battle.png",
+  "last": "mountain_king/k_battle.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: one huge war hammer in the front hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "swamp_elf_girl/clips/idle",
+  "first": "swamp_elf_girl/k_idle.png",
+  "last": "swamp_elf_girl/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the character stays in place in the same pose, breathes slowly and calmly, the chest rises and falls, a slight shift of weight, clothes, cloak and hair move gently. No steps, no gestures, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "dwarf/clips/bidle",
+  "first": "dwarf/k_battle.png",
+  "last": "dwarf/k_battle.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: one round wooden shield on the front arm, one axe in the rear hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "assassin/clips/bidle",
+  "first": "assassin/k_battle.png",
+  "last": "assassin/k_battle.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: one curved blade in each hand, exactly two blades; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "assassin_undead/clips/bidle",
+  "first": "assassin_undead/k_battle.png",
+  "last": "assassin_undead/k_battle.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: one curved poison blade in each hand, exactly two blades, a bow on the back; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "jester/clips/bidle",
+  "first": "jester/k_battle.png",
+  "last": "jester/k_battle.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: one marotte staff with a carved head in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "winter_girl/clips/bidle",
+  "first": "winter_girl/k_battle.png",
+  "last": "winter_girl/k_battle.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: one staff with a stone on top in the rear hand, the front hand free; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "winter_queen/clips/bidle",
+  "first": "winter_queen/k_battle.png",
+  "last": "winter_queen/k_battle.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: one small sphere floating above the front hand, no other weapon; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "winter_monster/clips/bidle",
+  "first": "winter_monster/k_battle.png",
+  "last": "winter_monster/k_battle.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: one gnarled wooden snag club in the front hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "vurdalak/clips/bidle",
+  "first": "vurdalak/k_battle.png",
+  "last": "vurdalak/k_battle.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: no weapon, long claws on both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "forest_bear/clips/bidle",
+  "first": "forest_bear/k_battle.png",
+  "last": "forest_bear/k_battle.png",
+  "prompt": "Idle loop for the whole clip: the animal stays in place in the same pose, breathes calmly, the flanks rise and fall, small natural movements of the ears and tail. No steps, no turning. The last frame is exactly the same pose as the first. HANDS CANON: no weapon, claws and jaws; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "winter_archer/clips/bidle",
+  "first": "winter_archer/k_battle.png",
+  "last": "winter_archer/k_battle.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: one bow held in the front hand, the rear hand free to draw the string; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "cat/clips/idle",
+  "first": "cat/k_idle.png",
+  "last": "cat/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the animal stays in place in the same pose, breathes calmly, the flanks rise and fall, small natural movements of the ears and tail. No steps, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "cat/clips/bidle",
+  "first": "cat/k_battle.png",
+  "last": "cat/k_battle.png",
+  "prompt": "Idle loop for the whole clip: the animal stays in place in the same pose, breathes calmly, the flanks rise and fall, small natural movements of the ears and tail. No steps, no turning. The last frame is exactly the same pose as the first. HANDS CANON: no weapon, claws; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "guard/clips/bidle",
+  "first": "guard/k_battle.png",
+  "last": "guard/k_battle.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: one halberd held with both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "rowan/clips/bidle",
+  "first": "rowan/k_battle.png",
+  "last": "rowan/k_battle.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: one long knife in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "agna/clips/idle",
+  "first": "agna/k_idle.png",
+  "last": "agna/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the character stays in place in the same pose, breathes slowly and calmly, the chest rises and falls, a slight shift of weight, clothes, cloak and hair move gently. No steps, no gestures, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "lyo/clips/idle",
+  "first": "lyo/k_idle.png",
+  "last": "lyo/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the character stays in place in the same pose, breathes slowly and calmly, the chest rises and falls, a slight shift of weight, clothes, cloak and hair move gently. No steps, no gestures, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "til/clips/idle",
+  "first": "til/k_idle.png",
+  "last": "til/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the character stays in place in the same pose, breathes slowly and calmly, the chest rises and falls, a slight shift of weight, clothes, cloak and hair move gently. No steps, no gestures, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "agna/clips/bidle",
+  "first": "agna/k_battle.png",
+  "last": "agna/k_battle.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: one heavy iron frying pan in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "ryzh/clips/idle",
+  "first": "ryzh/k_idle.png",
+  "last": "ryzh/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the character stays in place in the same pose, breathes slowly and calmly, the chest rises and falls, a slight shift of weight, clothes, cloak and hair move gently. No steps, no gestures, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "ryzh/clips/bidle",
+  "first": "ryzh/k_battle.png",
+  "last": "ryzh/k_battle.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: one wood axe in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "lyo/clips/bidle",
+  "first": "lyo/k_battle.png",
+  "last": "lyo/k_battle.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: the knotted wooden walking stick in the rear hand, the front hand free for a gesture; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "til/clips/bidle",
+  "first": "til/k_battle.png",
+  "last": "til/k_battle.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: one blacksmith hammer in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "healer/clips/amb1",
+  "first": "healer/k_battle.png",
+  "last": "healer/k_battle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: smells the bundle of herbs in her hand. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. HANDS CANON: the gnarled wooden staff in the rear hand, a small bundle of dried herbs in the front hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "healer/clips/amb2",
+  "first": "healer/k_battle.png",
+  "last": "healer/k_battle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: looks around warily, leaning on her staff. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. HANDS CANON: the gnarled wooden staff in the rear hand, a small bundle of dried herbs in the front hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "bandit_brawler/clips/amb1",
+  "first": "bandit_brawler/k_battle.png",
+  "last": "bandit_brawler/k_battle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: beats the club into his open palm. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. HANDS CANON: one big wooden club held with both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "bandit_brawler/clips/amb2",
+  "first": "bandit_brawler/k_battle.png",
+  "last": "bandit_brawler/k_battle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: spits to the side and growls. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. HANDS CANON: one big wooden club held with both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "bandit_archer/clips/amb1",
+  "first": "bandit_archer/k_battle.png",
+  "last": "bandit_archer/k_battle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: checks the crossbow string. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. HANDS CANON: one crossbow held with both hands, pointing to the right; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "bandit_archer/clips/amb2",
+  "first": "bandit_archer/k_battle.png",
+  "last": "bandit_archer/k_battle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: looks around through the hood. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. HANDS CANON: one crossbow held with both hands, pointing to the right; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "swamp_knight/clips/amb1",
+  "first": "swamp_knight/k_battle.png",
+  "last": "swamp_knight/k_battle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: slowly lifts the sword and looks at the blade. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. HANDS CANON: one long sword in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "swamp_knight/clips/amb2",
+  "first": "swamp_knight/k_battle.png",
+  "last": "swamp_knight/k_battle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: heavy breath, water drips, he shifts his weight. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. HANDS CANON: one long sword in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "kikimora/clips/amb1",
+  "first": "kikimora/k_battle.png",
+  "last": "kikimora/k_battle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: twitches her head like a bird and sniffs the air. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. HANDS CANON: no weapon, long claws on both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "kikimora/clips/amb2",
+  "first": "kikimora/k_battle.png",
+  "last": "kikimora/k_battle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: flexes her long claws and hisses. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. HANDS CANON: no weapon, long claws on both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "swamp_elf/clips/amb1",
+  "first": "swamp_elf/k_battle.png",
+  "last": "swamp_elf/k_battle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: looks around listening, ears twitching. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. HANDS CANON: one bow held in the front hand, the rear hand free to draw the string; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "swamp_elf/clips/amb2",
+  "first": "swamp_elf/k_battle.png",
+  "last": "swamp_elf/k_battle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: runs her fingers along the bowstring. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. HANDS CANON: one bow held in the front hand, the rear hand free to draw the string; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "dwarf_beer1/clips/amb1",
+  "first": "dwarf_beer1/k_idle.png",
+  "last": "dwarf_beer1/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: drinks a long gulp of beer from the mug. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "dwarf_beer1/clips/amb2",
+  "first": "dwarf_beer1/k_idle.png",
+  "last": "dwarf_beer1/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: laughs heartily, shoulders shaking. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "dwarf_beer1/clips/amb3",
+  "first": "dwarf_beer1/k_idle.png",
+  "last": "dwarf_beer1/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: wipes the foam from his beard. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "dwarf_beer3/clips/amb1",
+  "first": "dwarf_beer3/k_idle.png",
+  "last": "dwarf_beer3/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: scratches his beard thoughtfully. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "dwarf_beer3/clips/amb2",
+  "first": "dwarf_beer3/k_idle.png",
+  "last": "dwarf_beer3/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: laughs, slapping his knee. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "cleaning_girl/clips/amb1",
+  "first": "cleaning_girl/k_idle.png",
+  "last": "cleaning_girl/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: mops the floor with a few strokes. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "cleaning_girl/clips/amb2",
+  "first": "cleaning_girl/k_idle.png",
+  "last": "cleaning_girl/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: stops and wipes her forehead with her forearm. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "cleaning_girl/clips/amb3",
+  "first": "cleaning_girl/k_idle.png",
+  "last": "cleaning_girl/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: leans on the mop handle and sighs. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "tavernman/clips/amb1",
+  "first": "tavernman/k_idle.png",
+  "last": "tavernman/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: folds his arms on his chest. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "tavernman/clips/amb2",
+  "first": "tavernman/k_idle.png",
+  "last": "tavernman/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: stretches his back. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "tavernman/clips/amb3",
+  "first": "tavernman/k_idle.png",
+  "last": "tavernman/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: looks around the room slowly. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "wanderer/clips/amb1",
+  "first": "wanderer/k_idle.png",
+  "last": "wanderer/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: smokes his pipe, the chest rising. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "wanderer/clips/amb2",
+  "first": "wanderer/k_idle.png",
+  "last": "wanderer/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: slowly turns his hooded head to look around. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "dog/clips/amb1",
+  "first": "dog/k_idle.png",
+  "last": "dog/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: wags its tail. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "dog/clips/amb2",
+  "first": "dog/k_idle.png",
+  "last": "dog/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: scratches behind the ear with a hind leg. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "dog/clips/amb3",
+  "first": "dog/k_idle.png",
+  "last": "dog/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: lowers its head and sniffs the ground. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "drunkman/clips/amb1",
+  "first": "drunkman/k_idle.png",
+  "last": "drunkman/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: sways to the left and then to the right. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "drunkman/clips/amb2",
+  "first": "drunkman/k_idle.png",
+  "last": "drunkman/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: throws up one arm and shouts something. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "drunkman/clips/amb3",
+  "first": "drunkman/k_idle.png",
+  "last": "drunkman/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: takes a swig from the bottle. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "brawler/clips/amb1",
+  "first": "brawler/k_battle.png",
+  "last": "brawler/k_battle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: rolls his shoulders and cracks his neck. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. HANDS CANON: a heavy wooden club in the front hand, the rear hand a bare fist; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "brawler/clips/amb2",
+  "first": "brawler/k_battle.png",
+  "last": "brawler/k_battle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: taps the club on his palm, looking at the enemy. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. HANDS CANON: a heavy wooden club in the front hand, the rear hand a bare fist; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "shield/clips/amb1",
+  "first": "shield/k_battle.png",
+  "last": "shield/k_battle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: shifts his weight from foot to foot. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. HANDS CANON: one big spiked club held with both hands in front of him; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "shield/clips/amb2",
+  "first": "shield/k_battle.png",
+  "last": "shield/k_battle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: rests the spiked club on his shoulder and lowers it again. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. HANDS CANON: one big spiked club held with both hands in front of him; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "bandit_commander/clips/amb1",
+  "first": "bandit_commander/k_battle.png",
+  "last": "bandit_commander/k_battle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: points the sword forward as if giving an order. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. HANDS CANON: one straight sword in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "bandit_commander/clips/amb2",
+  "first": "bandit_commander/k_battle.png",
+  "last": "bandit_commander/k_battle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: twirls the sword once lazily and grins. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. HANDS CANON: one straight sword in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "dwarf_beer2/clips/amb1",
+  "first": "dwarf_beer2/k_idle.png",
+  "last": "dwarf_beer2/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: bangs his fist on his knee and laughs. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "dwarf_beer2/clips/amb2",
+  "first": "dwarf_beer2/k_idle.png",
+  "last": "dwarf_beer2/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: strokes his beard and nods. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "adventurer/clips/amb1",
+  "first": "adventurer/k_battle.png",
+  "last": "adventurer/k_battle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: checks the edge of the knife. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. HANDS CANON: one small crossbow in the front hand pointing to the right, one long knife in the rear hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "adventurer/clips/amb2",
+  "first": "adventurer/k_battle.png",
+  "last": "adventurer/k_battle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: looks around from under the hood. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. HANDS CANON: one small crossbow in the front hand pointing to the right, one long knife in the rear hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "guard/clips/amb1",
+  "first": "guard/k_idle.png",
+  "last": "guard/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: shifts from foot to foot. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "guard/clips/amb2",
+  "first": "guard/k_idle.png",
+  "last": "guard/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: adjusts his helmet. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "guard/clips/amb3",
+  "first": "guard/k_idle.png",
+  "last": "guard/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: looks to the side and back. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "archer_guard/clips/amb1",
+  "first": "archer_guard/k_idle.png",
+  "last": "archer_guard/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: looks into the distance shading his eyes. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "archer_guard/clips/amb2",
+  "first": "archer_guard/k_idle.png",
+  "last": "archer_guard/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: checks the arrows in the quiver. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "recruit/clips/amb1",
+  "first": "recruit/k_idle.png",
+  "last": "recruit/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: nervously shifts his weight. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "recruit/clips/amb2",
+  "first": "recruit/k_idle.png",
+  "last": "recruit/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: looks at his sword and grips it tighter. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "mountain_king/clips/amb1",
+  "first": "mountain_king/k_idle.png",
+  "last": "mountain_king/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: breathes heavily, stone shoulders rising. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "mountain_king/clips/amb2",
+  "first": "mountain_king/k_idle.png",
+  "last": "mountain_king/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: rests the hammer on the ground and lifts it again. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "swamp_elf_girl/clips/amb1",
+  "first": "swamp_elf_girl/k_idle.png",
+  "last": "swamp_elf_girl/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: looks around listening. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "swamp_elf_girl/clips/amb2",
+  "first": "swamp_elf_girl/k_idle.png",
+  "last": "swamp_elf_girl/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: touches her hair. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "dwarf/clips/amb1",
+  "first": "dwarf/k_battle.png",
+  "last": "dwarf/k_battle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: knocks the axe on the shield rim. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. HANDS CANON: one round wooden shield on the front arm, one axe in the rear hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "dwarf/clips/amb2",
+  "first": "dwarf/k_battle.png",
+  "last": "dwarf/k_battle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: strokes his beard. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. HANDS CANON: one round wooden shield on the front arm, one axe in the rear hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "assassin/clips/amb1",
+  "first": "assassin/k_battle.png",
+  "last": "assassin/k_battle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: spins one blade in his fingers. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. HANDS CANON: one curved blade in each hand, exactly two blades; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "assassin/clips/amb2",
+  "first": "assassin/k_battle.png",
+  "last": "assassin/k_battle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: looks around crouching slightly. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. HANDS CANON: one curved blade in each hand, exactly two blades; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "assassin_undead/clips/amb1",
+  "first": "assassin_undead/k_battle.png",
+  "last": "assassin_undead/k_battle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: tilts the head with a creaking motion. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. HANDS CANON: one curved poison blade in each hand, exactly two blades, a bow on the back; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "assassin_undead/clips/amb2",
+  "first": "assassin_undead/k_battle.png",
+  "last": "assassin_undead/k_battle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: slowly raises one blade and looks at it. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. HANDS CANON: one curved poison blade in each hand, exactly two blades, a bow on the back; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "jester/clips/amb1",
+  "first": "jester/k_battle.png",
+  "last": "jester/k_battle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: bows mockingly. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. HANDS CANON: one marotte staff with a carved head in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "jester/clips/amb2",
+  "first": "jester/k_battle.png",
+  "last": "jester/k_battle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: shakes the marotte and giggles. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. HANDS CANON: one marotte staff with a carved head in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "winter_girl/clips/amb1",
+  "first": "winter_girl/k_battle.png",
+  "last": "winter_girl/k_battle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: raises her free hand in a slow gesture. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. HANDS CANON: one staff with a stone on top in the rear hand, the front hand free; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "winter_girl/clips/amb2",
+  "first": "winter_girl/k_battle.png",
+  "last": "winter_girl/k_battle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: looks to the side, hair moving. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. HANDS CANON: one staff with a stone on top in the rear hand, the front hand free; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "winter_queen/clips/amb1",
+  "first": "winter_queen/k_battle.png",
+  "last": "winter_queen/k_battle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: slowly turns her head. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. HANDS CANON: one small sphere floating above the front hand, no other weapon; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "winter_queen/clips/amb2",
+  "first": "winter_queen/k_battle.png",
+  "last": "winter_queen/k_battle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: raises the hand with the sphere a little. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. HANDS CANON: one small sphere floating above the front hand, no other weapon; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "winter_monster/clips/amb1",
+  "first": "winter_monster/k_battle.png",
+  "last": "winter_monster/k_battle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: sniffs the air, shaking the antlers. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. HANDS CANON: one gnarled wooden snag club in the front hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "winter_monster/clips/amb2",
+  "first": "winter_monster/k_battle.png",
+  "last": "winter_monster/k_battle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: growls and shifts its weight. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. HANDS CANON: one gnarled wooden snag club in the front hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "vurdalak/clips/amb1",
+  "first": "vurdalak/k_battle.png",
+  "last": "vurdalak/k_battle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: twitches its head. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. HANDS CANON: no weapon, long claws on both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "vurdalak/clips/amb2",
+  "first": "vurdalak/k_battle.png",
+  "last": "vurdalak/k_battle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: flexes the claws. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. HANDS CANON: no weapon, long claws on both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "forest_bear/clips/amb1",
+  "first": "forest_bear/k_battle.png",
+  "last": "forest_bear/k_battle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: sniffs the air. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. HANDS CANON: no weapon, claws and jaws; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "forest_bear/clips/amb2",
+  "first": "forest_bear/k_battle.png",
+  "last": "forest_bear/k_battle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: shakes its head and growls. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. HANDS CANON: no weapon, claws and jaws; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "winter_archer/clips/amb1",
+  "first": "winter_archer/k_battle.png",
+  "last": "winter_archer/k_battle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: blows on his cold fingers. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. HANDS CANON: one bow held in the front hand, the rear hand free to draw the string; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "winter_archer/clips/amb2",
+  "first": "winter_archer/k_battle.png",
+  "last": "winter_archer/k_battle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: looks into the distance. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. HANDS CANON: one bow held in the front hand, the rear hand free to draw the string; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "rowan/clips/amb1",
+  "first": "rowan/k_battle.png",
+  "last": "rowan/k_battle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: checks the edge of the knife. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. HANDS CANON: one long knife in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "rowan/clips/amb2",
+  "first": "rowan/k_battle.png",
+  "last": "rowan/k_battle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: looks around warily from under the hood. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. HANDS CANON: one long knife in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "agna/clips/amb1",
+  "first": "agna/k_idle.png",
+  "last": "agna/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: wipes her hands on the apron. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "agna/clips/amb2",
+  "first": "agna/k_idle.png",
+  "last": "agna/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: crosses her arms and sighs. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "lyo/clips/amb1",
+  "first": "lyo/k_idle.png",
+  "last": "lyo/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: leans on the stick and listens. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "lyo/clips/amb2",
+  "first": "lyo/k_idle.png",
+  "last": "lyo/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: slowly raises a hand as if blessing. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "til/clips/amb1",
+  "first": "til/k_idle.png",
+  "last": "til/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: wipes soot from his forehead. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "til/clips/amb2",
+  "first": "til/k_idle.png",
+  "last": "til/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: taps the hammer on his palm. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "cat/clips/amb1",
+  "first": "cat/k_idle.png",
+  "last": "cat/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: washes its face with a paw. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "cat/clips/amb2",
+  "first": "cat/k_idle.png",
+  "last": "cat/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: stretches and sits down. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "ryzh/clips/amb1",
+  "first": "ryzh/k_idle.png",
+  "last": "ryzh/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: strokes his red beard. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "ryzh/clips/amb2",
+  "first": "ryzh/k_idle.png",
+  "last": "ryzh/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: looks around and nods to himself. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "healer/clips/attack",
+  "first": "healer/k_battle.png",
+  "last": "healer/k_battle.png",
+  "prompt": "One single spell cast to the right: raises the hand and the staff or item, makes one strong pushing gesture toward the right, then returns to the same ready stance. No glow, no particles. One strike only. HANDS CANON: the gnarled wooden staff in the rear hand, a small bundle of dried herbs in the front hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "healer/clips/hit",
+  "first": "healer/k_battle.png",
+  "last": "healer/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: the gnarled wooden staff in the rear hand, a small bundle of dried herbs in the front hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "healer/clips/death",
+  "first": "healer/k_battle.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: the gnarled wooden staff in the rear hand, a small bundle of dried herbs in the front hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "healer/clips/victory",
+  "first": "healer/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: the gnarled wooden staff in the rear hand, a small bundle of dried herbs in the front hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "healer/clips/cast2",
+  "first": "healer/k_battle.png",
+  "last": "healer/k_battle.png",
+  "prompt": "A healing or blessing cast: raises the hand slowly with a calm gesture toward the left, holds it for a moment, then returns to the same ready stance. No glow, no particles. HANDS CANON: the gnarled wooden staff in the rear hand, a small bundle of dried herbs in the front hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "bandit_brawler/clips/attack",
+  "first": "bandit_brawler/k_battle.png",
+  "last": "bandit_brawler/k_battle.png",
+  "prompt": "One single heavy attack to the right: a long wind-up, one powerful blow forward to the right with the whole weight of the body, a short recoil, then back into the same ready stance. One strike only. HANDS CANON: one big wooden club held with both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "bandit_brawler/clips/hit",
+  "first": "bandit_brawler/k_battle.png",
+  "last": "bandit_brawler/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one big wooden club held with both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "bandit_brawler/clips/death",
+  "first": "bandit_brawler/k_battle.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one big wooden club held with both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "bandit_brawler/clips/victory",
+  "first": "bandit_brawler/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one big wooden club held with both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "bandit_brawler/clips/power",
+  "first": "bandit_brawler/k_battle.png",
+  "last": "bandit_brawler/k_battle.png",
+  "prompt": "One single crushing overhead smash to the right with the weapon raised high above the head, a heavy impact, then back into the same ready stance. HANDS CANON: one big wooden club held with both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "bandit_archer/clips/attack",
+  "first": "bandit_archer/k_battle.png",
+  "last": "bandit_archer/k_battle.png",
+  "prompt": "One single shot to the right: raises the crossbow and aims to the right, shoots with a small recoil, then returns to the same ready stance. One strike only. HANDS CANON: one crossbow held with both hands, pointing to the right; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "bandit_archer/clips/hit",
+  "first": "bandit_archer/k_battle.png",
+  "last": "bandit_archer/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one crossbow held with both hands, pointing to the right; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "bandit_archer/clips/death",
+  "first": "bandit_archer/k_battle.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one crossbow held with both hands, pointing to the right; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "bandit_archer/clips/victory",
+  "first": "bandit_archer/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one crossbow held with both hands, pointing to the right; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "bandit_archer/clips/reload",
+  "first": "bandit_archer/k_battle.png",
+  "last": "bandit_archer/k_battle.png",
+  "prompt": "Reloading: lowers the crossbow, pulls the string back with effort and loads a bolt, then returns to the same ready stance. HANDS CANON: one crossbow held with both hands, pointing to the right; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "swamp_knight/clips/attack",
+  "first": "swamp_knight/k_battle.png",
+  "last": "swamp_knight/k_battle.png",
+  "prompt": "One single attack to the right: a short wind-up, one fast strong strike forward to the right with the weapon, then a recovery back into the same ready stance. One strike only. HANDS CANON: one long sword in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "swamp_knight/clips/hit",
+  "first": "swamp_knight/k_battle.png",
+  "last": "swamp_knight/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one long sword in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "swamp_knight/clips/death",
+  "first": "swamp_knight/k_battle.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one long sword in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "swamp_knight/clips/victory",
+  "first": "swamp_knight/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one long sword in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "swamp_knight/clips/power",
+  "first": "swamp_knight/k_battle.png",
+  "last": "swamp_knight/k_battle.png",
+  "prompt": "One single powerful special attack to the right: a big two-handed overhead wind-up and a crushing blow forward to the right, then back into the same ready stance. HANDS CANON: one long sword in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "kikimora/clips/attack",
+  "first": "kikimora/k_battle.png",
+  "last": "kikimora/k_battle.png",
+  "prompt": "One single attack to the right: lunges forward to the right slashing with the claws or the weapon, then recovers back into the same stance. One strike only. HANDS CANON: no weapon, long claws on both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "kikimora/clips/hit",
+  "first": "kikimora/k_battle.png",
+  "last": "kikimora/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: no weapon, long claws on both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "kikimora/clips/death",
+  "first": "kikimora/k_battle.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: no weapon, long claws on both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "kikimora/clips/victory",
+  "first": "kikimora/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: no weapon, long claws on both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "kikimora/clips/power",
+  "first": "kikimora/k_battle.png",
+  "last": "kikimora/k_battle.png",
+  "prompt": "A ferocious roar: throws the head back and roars, then a double slash forward to the right, then back into the same stance. HANDS CANON: no weapon, long claws on both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "swamp_elf/clips/attack",
+  "first": "swamp_elf/k_battle.png",
+  "last": "swamp_elf/k_battle.png",
+  "prompt": "One single bow shot to the right: draws the bowstring back to the cheek, aims to the right, releases, then lowers the bow back into the same ready stance. One strike only. HANDS CANON: one bow held in the front hand, the rear hand free to draw the string; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "swamp_elf/clips/hit",
+  "first": "swamp_elf/k_battle.png",
+  "last": "swamp_elf/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one bow held in the front hand, the rear hand free to draw the string; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "swamp_elf/clips/death",
+  "first": "swamp_elf/k_battle.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one bow held in the front hand, the rear hand free to draw the string; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "swamp_elf/clips/victory",
+  "first": "swamp_elf/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one bow held in the front hand, the rear hand free to draw the string; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "dwarf_beer1/clips/attack",
+  "first": "dwarf_beer1/k_battle.png",
+  "last": "dwarf_beer1/k_battle.png",
+  "prompt": "One single clumsy, unskilled attack to the right: an awkward wide swing with the item in the hand, nearly losing balance, then back into the same stance. One strike only. HANDS CANON: a beer mug in the front hand, one small hand axe in the rear hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "dwarf_beer1/clips/hit",
+  "first": "dwarf_beer1/k_battle.png",
+  "last": "dwarf_beer1/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: a beer mug in the front hand, one small hand axe in the rear hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "dwarf_beer1/clips/death",
+  "first": "dwarf_beer1/k_battle.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: a beer mug in the front hand, one small hand axe in the rear hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "dwarf_beer1/clips/victory",
+  "first": "dwarf_beer1/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: a beer mug in the front hand, one small hand axe in the rear hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "dwarf_beer2/clips/attack",
+  "first": "dwarf_beer2/k_battle.png",
+  "last": "dwarf_beer2/k_battle.png",
+  "prompt": "One single clumsy, unskilled attack to the right: an awkward wide swing with the item in the hand, nearly losing balance, then back into the same stance. One strike only. HANDS CANON: one small hand axe in the rear hand, the front hand a bare fist; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "dwarf_beer2/clips/hit",
+  "first": "dwarf_beer2/k_battle.png",
+  "last": "dwarf_beer2/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one small hand axe in the rear hand, the front hand a bare fist; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "dwarf_beer2/clips/death",
+  "first": "dwarf_beer2/k_battle.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one small hand axe in the rear hand, the front hand a bare fist; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "dwarf_beer2/clips/victory",
+  "first": "dwarf_beer2/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one small hand axe in the rear hand, the front hand a bare fist; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "dwarf_beer3/clips/attack",
+  "first": "dwarf_beer3/k_battle.png",
+  "last": "dwarf_beer3/k_battle.png",
+  "prompt": "One single clumsy, unskilled attack to the right: an awkward wide swing with the item in the hand, nearly losing balance, then back into the same stance. One strike only. HANDS CANON: one heavy wooden stool leg used as a club in the front hand, the rear hand a bare fist; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "dwarf_beer3/clips/hit",
+  "first": "dwarf_beer3/k_battle.png",
+  "last": "dwarf_beer3/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one heavy wooden stool leg used as a club in the front hand, the rear hand a bare fist; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "dwarf_beer3/clips/death",
+  "first": "dwarf_beer3/k_battle.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one heavy wooden stool leg used as a club in the front hand, the rear hand a bare fist; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "dwarf_beer3/clips/victory",
+  "first": "dwarf_beer3/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one heavy wooden stool leg used as a club in the front hand, the rear hand a bare fist; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "cleaning_girl/clips/attack",
+  "first": "cleaning_girl/k_battle.png",
+  "last": "cleaning_girl/k_battle.png",
+  "prompt": "One single clumsy, unskilled attack to the right: an awkward wide swing with the item in the hand, nearly losing balance, then back into the same stance. One strike only. HANDS CANON: the long wooden mop held with both hands like a staff; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "cleaning_girl/clips/hit",
+  "first": "cleaning_girl/k_battle.png",
+  "last": "cleaning_girl/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: the long wooden mop held with both hands like a staff; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "cleaning_girl/clips/death",
+  "first": "cleaning_girl/k_battle.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: the long wooden mop held with both hands like a staff; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "cleaning_girl/clips/victory",
+  "first": "cleaning_girl/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: the long wooden mop held with both hands like a staff; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "tavernman/clips/attack",
+  "first": "tavernman/k_battle.png",
+  "last": "tavernman/k_battle.png",
+  "prompt": "One single clumsy, unskilled attack to the right: an awkward wide swing with the item in the hand, nearly losing balance, then back into the same stance. One strike only. HANDS CANON: one meat cleaver in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "tavernman/clips/hit",
+  "first": "tavernman/k_battle.png",
+  "last": "tavernman/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one meat cleaver in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "tavernman/clips/death",
+  "first": "tavernman/k_battle.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one meat cleaver in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "tavernman/clips/victory",
+  "first": "tavernman/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one meat cleaver in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "dog/clips/attack",
+  "first": "dog/k_battle.png",
+  "last": "dog/k_battle.png",
+  "prompt": "One single attack to the right: the animal lunges forward to the right and snaps its jaws or swipes a paw, then steps back into the same stance. One strike only. HANDS CANON: no weapon, fangs; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "dog/clips/hit",
+  "first": "dog/k_battle.png",
+  "last": "dog/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: no weapon, fangs; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "dog/clips/death",
+  "first": "dog/k_battle.png",
+  "prompt": "Is fatally struck from the right: the animal staggers, collapses onto its side and lies still on the ground at the end of the clip. HANDS CANON: no weapon, fangs; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "dog/clips/victory",
+  "first": "dog/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: no weapon, fangs; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "brawler/clips/attack",
+  "first": "brawler/k_battle.png",
+  "last": "brawler/k_battle.png",
+  "prompt": "One single heavy attack to the right: a long wind-up, one powerful blow forward to the right with the whole weight of the body, a short recoil, then back into the same ready stance. One strike only. HANDS CANON: a heavy wooden club in the front hand, the rear hand a bare fist; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "brawler/clips/hit",
+  "first": "brawler/k_battle.png",
+  "last": "brawler/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: a heavy wooden club in the front hand, the rear hand a bare fist; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "brawler/clips/death",
+  "first": "brawler/k_battle.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: a heavy wooden club in the front hand, the rear hand a bare fist; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "brawler/clips/victory",
+  "first": "brawler/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: a heavy wooden club in the front hand, the rear hand a bare fist; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "brawler/clips/power",
+  "first": "brawler/k_battle.png",
+  "last": "brawler/k_battle.png",
+  "prompt": "One single crushing overhead smash to the right with the weapon raised high above the head, a heavy impact, then back into the same ready stance. HANDS CANON: a heavy wooden club in the front hand, the rear hand a bare fist; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "shield/clips/attack",
+  "first": "shield/k_battle.png",
+  "last": "shield/k_battle.png",
+  "prompt": "One single heavy attack to the right: a long wind-up, one powerful blow forward to the right with the whole weight of the body, a short recoil, then back into the same ready stance. One strike only. HANDS CANON: one big spiked club held with both hands in front of him; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "shield/clips/hit",
+  "first": "shield/k_battle.png",
+  "last": "shield/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one big spiked club held with both hands in front of him; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "shield/clips/death",
+  "first": "shield/k_battle.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one big spiked club held with both hands in front of him; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "shield/clips/victory",
+  "first": "shield/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one big spiked club held with both hands in front of him; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "shield/clips/power",
+  "first": "shield/k_battle.png",
+  "last": "shield/k_battle.png",
+  "prompt": "One single crushing overhead smash to the right with the weapon raised high above the head, a heavy impact, then back into the same ready stance. HANDS CANON: one big spiked club held with both hands in front of him; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "bandit_commander/clips/attack",
+  "first": "bandit_commander/k_battle.png",
+  "last": "bandit_commander/k_battle.png",
+  "prompt": "One single attack to the right: a short wind-up, one fast strong strike forward to the right with the weapon, then a recovery back into the same ready stance. One strike only. HANDS CANON: one straight sword in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "bandit_commander/clips/hit",
+  "first": "bandit_commander/k_battle.png",
+  "last": "bandit_commander/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one straight sword in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "bandit_commander/clips/death",
+  "first": "bandit_commander/k_battle.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one straight sword in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "bandit_commander/clips/victory",
+  "first": "bandit_commander/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one straight sword in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "bandit_commander/clips/power",
+  "first": "bandit_commander/k_battle.png",
+  "last": "bandit_commander/k_battle.png",
+  "prompt": "One single powerful special attack to the right: a big two-handed overhead wind-up and a crushing blow forward to the right, then back into the same ready stance. HANDS CANON: one straight sword in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "adventurer/clips/attack",
+  "first": "adventurer/k_battle.png",
+  "last": "adventurer/k_battle.png",
+  "prompt": "One single shot to the right: raises the crossbow and aims to the right, shoots with a small recoil, then returns to the same ready stance. One strike only. HANDS CANON: one small crossbow in the front hand pointing to the right, one long knife in the rear hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "adventurer/clips/hit",
+  "first": "adventurer/k_battle.png",
+  "last": "adventurer/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one small crossbow in the front hand pointing to the right, one long knife in the rear hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "adventurer/clips/death",
+  "first": "adventurer/k_battle.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one small crossbow in the front hand pointing to the right, one long knife in the rear hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "adventurer/clips/victory",
+  "first": "adventurer/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one small crossbow in the front hand pointing to the right, one long knife in the rear hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "adventurer/clips/reload",
+  "first": "adventurer/k_battle.png",
+  "last": "adventurer/k_battle.png",
+  "prompt": "Reloading: lowers the crossbow, pulls the string back with effort and loads a bolt, then returns to the same ready stance. HANDS CANON: one small crossbow in the front hand pointing to the right, one long knife in the rear hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "drunkman/clips/attack",
+  "first": "drunkman/k_battle.png",
+  "last": "drunkman/k_battle.png",
+  "prompt": "One single clumsy, unskilled attack to the right: an awkward wide swing with the item in the hand, nearly losing balance, then back into the same stance. One strike only. HANDS CANON: one glass bottle in the front hand, the rear hand a bare fist; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "drunkman/clips/hit",
+  "first": "drunkman/k_battle.png",
+  "last": "drunkman/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one glass bottle in the front hand, the rear hand a bare fist; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "drunkman/clips/death",
+  "first": "drunkman/k_battle.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one glass bottle in the front hand, the rear hand a bare fist; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "drunkman/clips/victory",
+  "first": "drunkman/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one glass bottle in the front hand, the rear hand a bare fist; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "archer_guard/clips/attack",
+  "first": "archer_guard/k_battle.png",
+  "last": "archer_guard/k_battle.png",
+  "prompt": "One single bow shot to the right: draws the bowstring back to the cheek, aims to the right, releases, then lowers the bow back into the same ready stance. One strike only. HANDS CANON: one longbow held in the front hand, the rear hand free to draw the string; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "archer_guard/clips/hit",
+  "first": "archer_guard/k_battle.png",
+  "last": "archer_guard/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one longbow held in the front hand, the rear hand free to draw the string; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "archer_guard/clips/death",
+  "first": "archer_guard/k_battle.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one longbow held in the front hand, the rear hand free to draw the string; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "archer_guard/clips/victory",
+  "first": "archer_guard/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one longbow held in the front hand, the rear hand free to draw the string; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "recruit/clips/attack",
+  "first": "recruit/k_battle.png",
+  "last": "recruit/k_battle.png",
+  "prompt": "One single attack to the right: a short wind-up, one fast strong strike forward to the right with the weapon, then a recovery back into the same ready stance. One strike only. HANDS CANON: one short sword in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "recruit/clips/hit",
+  "first": "recruit/k_battle.png",
+  "last": "recruit/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one short sword in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "recruit/clips/death",
+  "first": "recruit/k_battle.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one short sword in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "recruit/clips/victory",
+  "first": "recruit/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one short sword in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "recruit/clips/power",
+  "first": "recruit/k_battle.png",
+  "last": "recruit/k_battle.png",
+  "prompt": "One single powerful special attack to the right: a big two-handed overhead wind-up and a crushing blow forward to the right, then back into the same ready stance. HANDS CANON: one short sword in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "mountain_king/clips/attack",
+  "first": "mountain_king/k_battle.png",
+  "last": "mountain_king/k_battle.png",
+  "prompt": "One single heavy attack to the right: a long wind-up, one powerful blow forward to the right with the whole weight of the body, a short recoil, then back into the same ready stance. One strike only. HANDS CANON: one huge war hammer in the front hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "mountain_king/clips/hit",
+  "first": "mountain_king/k_battle.png",
+  "last": "mountain_king/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one huge war hammer in the front hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "mountain_king/clips/death",
+  "first": "mountain_king/k_battle.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one huge war hammer in the front hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "mountain_king/clips/victory",
+  "first": "mountain_king/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one huge war hammer in the front hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "mountain_king/clips/power",
+  "first": "mountain_king/k_battle.png",
+  "last": "mountain_king/k_battle.png",
+  "prompt": "One single crushing overhead smash to the right with the weapon raised high above the head, a heavy impact, then back into the same ready stance. HANDS CANON: one huge war hammer in the front hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "dwarf/clips/attack",
+  "first": "dwarf/k_battle.png",
+  "last": "dwarf/k_battle.png",
+  "prompt": "One single attack to the right: a short wind-up, one fast strong strike forward to the right with the weapon, then a recovery back into the same ready stance. One strike only. HANDS CANON: one round wooden shield on the front arm, one axe in the rear hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "dwarf/clips/hit",
+  "first": "dwarf/k_battle.png",
+  "last": "dwarf/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one round wooden shield on the front arm, one axe in the rear hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "dwarf/clips/death",
+  "first": "dwarf/k_battle.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one round wooden shield on the front arm, one axe in the rear hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "dwarf/clips/victory",
+  "first": "dwarf/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one round wooden shield on the front arm, one axe in the rear hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "dwarf/clips/power",
+  "first": "dwarf/k_battle.png",
+  "last": "dwarf/k_battle.png",
+  "prompt": "One single powerful special attack to the right: a big two-handed overhead wind-up and a crushing blow forward to the right, then back into the same ready stance. HANDS CANON: one round wooden shield on the front arm, one axe in the rear hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "assassin/clips/attack",
+  "first": "assassin/k_battle.png",
+  "last": "assassin/k_battle.png",
+  "prompt": "One single attack to the right: a short wind-up, one fast strong strike forward to the right with the weapon, then a recovery back into the same ready stance. One strike only. HANDS CANON: one curved blade in each hand, exactly two blades; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "assassin/clips/hit",
+  "first": "assassin/k_battle.png",
+  "last": "assassin/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one curved blade in each hand, exactly two blades; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "assassin/clips/death",
+  "first": "assassin/k_battle.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one curved blade in each hand, exactly two blades; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "assassin/clips/victory",
+  "first": "assassin/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one curved blade in each hand, exactly two blades; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "assassin/clips/power",
+  "first": "assassin/k_battle.png",
+  "last": "assassin/k_battle.png",
+  "prompt": "One single powerful special attack to the right: a big two-handed overhead wind-up and a crushing blow forward to the right, then back into the same ready stance. HANDS CANON: one curved blade in each hand, exactly two blades; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "assassin_undead/clips/attack",
+  "first": "assassin_undead/k_battle.png",
+  "last": "assassin_undead/k_battle.png",
+  "prompt": "One single attack to the right: a short wind-up, one fast strong strike forward to the right with the weapon, then a recovery back into the same ready stance. One strike only. HANDS CANON: one curved poison blade in each hand, exactly two blades, a bow on the back; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "assassin_undead/clips/hit",
+  "first": "assassin_undead/k_battle.png",
+  "last": "assassin_undead/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one curved poison blade in each hand, exactly two blades, a bow on the back; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "assassin_undead/clips/death",
+  "first": "assassin_undead/k_battle.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one curved poison blade in each hand, exactly two blades, a bow on the back; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "assassin_undead/clips/victory",
+  "first": "assassin_undead/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one curved poison blade in each hand, exactly two blades, a bow on the back; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "assassin_undead/clips/power",
+  "first": "assassin_undead/k_battle.png",
+  "last": "assassin_undead/k_battle.png",
+  "prompt": "One single powerful special attack to the right: a big two-handed overhead wind-up and a crushing blow forward to the right, then back into the same ready stance. HANDS CANON: one curved poison blade in each hand, exactly two blades, a bow on the back; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "jester/clips/attack",
+  "first": "jester/k_battle.png",
+  "last": "jester/k_battle.png",
+  "prompt": "One single spell cast to the right: raises the hand and the staff or item, makes one strong pushing gesture toward the right, then returns to the same ready stance. No glow, no particles. One strike only. HANDS CANON: one marotte staff with a carved head in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "jester/clips/hit",
+  "first": "jester/k_battle.png",
+  "last": "jester/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one marotte staff with a carved head in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "jester/clips/death",
+  "first": "jester/k_battle.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one marotte staff with a carved head in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "jester/clips/victory",
+  "first": "jester/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one marotte staff with a carved head in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "jester/clips/cast2",
+  "first": "jester/k_battle.png",
+  "last": "jester/k_battle.png",
+  "prompt": "A healing or blessing cast: raises the hand slowly with a calm gesture toward the left, holds it for a moment, then returns to the same ready stance. No glow, no particles. HANDS CANON: one marotte staff with a carved head in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "winter_girl/clips/attack",
+  "first": "winter_girl/k_battle.png",
+  "last": "winter_girl/k_battle.png",
+  "prompt": "One single spell cast to the right: raises the hand and the staff or item, makes one strong pushing gesture toward the right, then returns to the same ready stance. No glow, no particles. One strike only. HANDS CANON: one staff with a stone on top in the rear hand, the front hand free; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "winter_girl/clips/hit",
+  "first": "winter_girl/k_battle.png",
+  "last": "winter_girl/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one staff with a stone on top in the rear hand, the front hand free; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "winter_girl/clips/death",
+  "first": "winter_girl/k_battle.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one staff with a stone on top in the rear hand, the front hand free; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "winter_girl/clips/victory",
+  "first": "winter_girl/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one staff with a stone on top in the rear hand, the front hand free; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "winter_girl/clips/cast2",
+  "first": "winter_girl/k_battle.png",
+  "last": "winter_girl/k_battle.png",
+  "prompt": "A healing or blessing cast: raises the hand slowly with a calm gesture toward the left, holds it for a moment, then returns to the same ready stance. No glow, no particles. HANDS CANON: one staff with a stone on top in the rear hand, the front hand free; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "winter_queen/clips/attack",
+  "first": "winter_queen/k_battle.png",
+  "last": "winter_queen/k_battle.png",
+  "prompt": "One single spell cast to the right: raises the hand and the staff or item, makes one strong pushing gesture toward the right, then returns to the same ready stance. No glow, no particles. One strike only. HANDS CANON: one small sphere floating above the front hand, no other weapon; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "winter_queen/clips/hit",
+  "first": "winter_queen/k_battle.png",
+  "last": "winter_queen/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one small sphere floating above the front hand, no other weapon; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "winter_queen/clips/death",
+  "first": "winter_queen/k_battle.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one small sphere floating above the front hand, no other weapon; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "winter_queen/clips/victory",
+  "first": "winter_queen/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one small sphere floating above the front hand, no other weapon; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "winter_queen/clips/cast2",
+  "first": "winter_queen/k_battle.png",
+  "last": "winter_queen/k_battle.png",
+  "prompt": "A healing or blessing cast: raises the hand slowly with a calm gesture toward the left, holds it for a moment, then returns to the same ready stance. No glow, no particles. HANDS CANON: one small sphere floating above the front hand, no other weapon; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "winter_monster/clips/attack",
+  "first": "winter_monster/k_battle.png",
+  "last": "winter_monster/k_battle.png",
+  "prompt": "One single attack to the right: lunges forward to the right slashing with the claws or the weapon, then recovers back into the same stance. One strike only. HANDS CANON: one gnarled wooden snag club in the front hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "winter_monster/clips/hit",
+  "first": "winter_monster/k_battle.png",
+  "last": "winter_monster/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one gnarled wooden snag club in the front hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "winter_monster/clips/death",
+  "first": "winter_monster/k_battle.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one gnarled wooden snag club in the front hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "winter_monster/clips/victory",
+  "first": "winter_monster/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one gnarled wooden snag club in the front hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "winter_monster/clips/power",
+  "first": "winter_monster/k_battle.png",
+  "last": "winter_monster/k_battle.png",
+  "prompt": "A ferocious roar: throws the head back and roars, then a double slash forward to the right, then back into the same stance. HANDS CANON: one gnarled wooden snag club in the front hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "vurdalak/clips/attack",
+  "first": "vurdalak/k_battle.png",
+  "last": "vurdalak/k_battle.png",
+  "prompt": "One single attack to the right: lunges forward to the right slashing with the claws or the weapon, then recovers back into the same stance. One strike only. HANDS CANON: no weapon, long claws on both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "vurdalak/clips/hit",
+  "first": "vurdalak/k_battle.png",
+  "last": "vurdalak/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: no weapon, long claws on both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "vurdalak/clips/death",
+  "first": "vurdalak/k_battle.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: no weapon, long claws on both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "vurdalak/clips/victory",
+  "first": "vurdalak/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: no weapon, long claws on both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "vurdalak/clips/power",
+  "first": "vurdalak/k_battle.png",
+  "last": "vurdalak/k_battle.png",
+  "prompt": "A ferocious roar: throws the head back and roars, then a double slash forward to the right, then back into the same stance. HANDS CANON: no weapon, long claws on both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "forest_bear/clips/attack",
+  "first": "forest_bear/k_battle.png",
+  "last": "forest_bear/k_battle.png",
+  "prompt": "One single attack to the right: the animal lunges forward to the right and snaps its jaws or swipes a paw, then steps back into the same stance. One strike only. HANDS CANON: no weapon, claws and jaws; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "forest_bear/clips/hit",
+  "first": "forest_bear/k_battle.png",
+  "last": "forest_bear/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: no weapon, claws and jaws; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "forest_bear/clips/death",
+  "first": "forest_bear/k_battle.png",
+  "prompt": "Is fatally struck from the right: the animal staggers, collapses onto its side and lies still on the ground at the end of the clip. HANDS CANON: no weapon, claws and jaws; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "forest_bear/clips/victory",
+  "first": "forest_bear/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: no weapon, claws and jaws; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "winter_archer/clips/attack",
+  "first": "winter_archer/k_battle.png",
+  "last": "winter_archer/k_battle.png",
+  "prompt": "One single bow shot to the right: draws the bowstring back to the cheek, aims to the right, releases, then lowers the bow back into the same ready stance. One strike only. HANDS CANON: one bow held in the front hand, the rear hand free to draw the string; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "winter_archer/clips/hit",
+  "first": "winter_archer/k_battle.png",
+  "last": "winter_archer/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one bow held in the front hand, the rear hand free to draw the string; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "winter_archer/clips/death",
+  "first": "winter_archer/k_battle.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one bow held in the front hand, the rear hand free to draw the string; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "winter_archer/clips/victory",
+  "first": "winter_archer/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one bow held in the front hand, the rear hand free to draw the string; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "guard/clips/attack",
+  "first": "guard/k_battle.png",
+  "last": "guard/k_battle.png",
+  "prompt": "One single attack to the right: a short wind-up, one fast strong strike forward to the right with the weapon, then a recovery back into the same ready stance. One strike only. HANDS CANON: one halberd held with both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "guard/clips/hit",
+  "first": "guard/k_battle.png",
+  "last": "guard/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one halberd held with both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "guard/clips/death",
+  "first": "guard/k_battle.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one halberd held with both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "guard/clips/victory",
+  "first": "guard/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one halberd held with both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "guard/clips/power",
+  "first": "guard/k_battle.png",
+  "last": "guard/k_battle.png",
+  "prompt": "One single powerful special attack to the right: a big two-handed overhead wind-up and a crushing blow forward to the right, then back into the same ready stance. HANDS CANON: one halberd held with both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "rowan/clips/attack",
+  "first": "rowan/k_battle.png",
+  "last": "rowan/k_battle.png",
+  "prompt": "One single attack to the right: a short wind-up, one fast strong strike forward to the right with the weapon, then a recovery back into the same ready stance. One strike only. HANDS CANON: one long knife in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "rowan/clips/hit",
+  "first": "rowan/k_battle.png",
+  "last": "rowan/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one long knife in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "rowan/clips/death",
+  "first": "rowan/k_battle.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one long knife in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "rowan/clips/victory",
+  "first": "rowan/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one long knife in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "rowan/clips/power",
+  "first": "rowan/k_battle.png",
+  "last": "rowan/k_battle.png",
+  "prompt": "One single powerful special attack to the right: a big two-handed overhead wind-up and a crushing blow forward to the right, then back into the same ready stance. HANDS CANON: one long knife in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "agna/clips/attack",
+  "first": "agna/k_battle.png",
+  "last": "agna/k_battle.png",
+  "prompt": "One single clumsy, unskilled attack to the right: an awkward wide swing with the item in the hand, nearly losing balance, then back into the same stance. One strike only. HANDS CANON: one heavy iron frying pan in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "agna/clips/hit",
+  "first": "agna/k_battle.png",
+  "last": "agna/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one heavy iron frying pan in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "agna/clips/death",
+  "first": "agna/k_battle.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one heavy iron frying pan in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "agna/clips/victory",
+  "first": "agna/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one heavy iron frying pan in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "ryzh/clips/attack",
+  "first": "ryzh/k_battle.png",
+  "last": "ryzh/k_battle.png",
+  "prompt": "One single clumsy, unskilled attack to the right: an awkward wide swing with the item in the hand, nearly losing balance, then back into the same stance. One strike only. HANDS CANON: one wood axe in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "ryzh/clips/hit",
+  "first": "ryzh/k_battle.png",
+  "last": "ryzh/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one wood axe in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "ryzh/clips/death",
+  "first": "ryzh/k_battle.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one wood axe in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "ryzh/clips/victory",
+  "first": "ryzh/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one wood axe in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "lyo/clips/attack",
+  "first": "lyo/k_battle.png",
+  "last": "lyo/k_battle.png",
+  "prompt": "One single spell cast to the right: raises the hand and the staff or item, makes one strong pushing gesture toward the right, then returns to the same ready stance. No glow, no particles. One strike only. HANDS CANON: the knotted wooden walking stick in the rear hand, the front hand free for a gesture; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "lyo/clips/hit",
+  "first": "lyo/k_battle.png",
+  "last": "lyo/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: the knotted wooden walking stick in the rear hand, the front hand free for a gesture; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "lyo/clips/death",
+  "first": "lyo/k_battle.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: the knotted wooden walking stick in the rear hand, the front hand free for a gesture; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "lyo/clips/victory",
+  "first": "lyo/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: the knotted wooden walking stick in the rear hand, the front hand free for a gesture; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "lyo/clips/cast2",
+  "first": "lyo/k_battle.png",
+  "last": "lyo/k_battle.png",
+  "prompt": "A healing or blessing cast: raises the hand slowly with a calm gesture toward the left, holds it for a moment, then returns to the same ready stance. No glow, no particles. HANDS CANON: the knotted wooden walking stick in the rear hand, the front hand free for a gesture; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "til/clips/attack",
+  "first": "til/k_battle.png",
+  "last": "til/k_battle.png",
+  "prompt": "One single attack to the right: a short wind-up, one fast strong strike forward to the right with the weapon, then a recovery back into the same ready stance. One strike only. HANDS CANON: one blacksmith hammer in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "til/clips/hit",
+  "first": "til/k_battle.png",
+  "last": "til/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one blacksmith hammer in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "til/clips/death",
+  "first": "til/k_battle.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one blacksmith hammer in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "til/clips/victory",
+  "first": "til/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one blacksmith hammer in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "til/clips/power",
+  "first": "til/k_battle.png",
+  "last": "til/k_battle.png",
+  "prompt": "One single powerful special attack to the right: a big two-handed overhead wind-up and a crushing blow forward to the right, then back into the same ready stance. HANDS CANON: one blacksmith hammer in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ }
+]

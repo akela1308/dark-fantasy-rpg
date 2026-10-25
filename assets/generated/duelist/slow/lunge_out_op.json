@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/7e858a5a-9c4f-4e78-99d0-c3a5c36f8b19",
+ "prompt": "Slow motion. From full lunge extension he recovers straight back into his guard stance: the front foot comes back and the rapier arm bends back to guard. The whole movement is one steady continuous motion at constant speed that fills the entire clip from the first frame to the last frame: it never finishes early, never pauses, never goes back, never repeats. No extra gestures, no flourishes, the rapier never lifts up vertically. The rapier stays in the hand on the right side of the image and the single pistol in the hand on the left side of the image for the whole clip, never two pistols, never two swords. No flash, no smoke, no sparks.",
+ "img": "../k_lunge.png",
+ "last": "../k_idle.png",
+ "sec": 4
+}

@@ -1,0 +1,1 @@
+{"slug": "archer_guard", "anim": "idle", "base": "archer_guard/k_battle.png", "body": 300, "segments": [{"clip": "archer_guard/clips/bidle_v1.mp4", "from": 0, "to": 20, "frames": 24}, {"clip": "archer_guard/clips/bidle_v1.mp4", "from": 20, "to": 0, "frames": 24}], "loop": false, "left": 0.6, "right": 0.8}

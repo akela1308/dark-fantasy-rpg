@@ -14,6 +14,8 @@ import booksData    from '../data/books.json';
 import unitsData    from '../data/units.json';
 import classesData  from '../data/classes.json';
 import { SaveSystem } from '../utils/SaveSystem.js';
+import { getNpcAnimConfig, attachNpcAnimations } from '../systems/NpcAnimations.js';
+import { MapAmbience } from '../systems/MapAmbience.js';
 
 // ─────────────────────────────────────────────────────────────────────────────
 export class MapScene extends Phaser.Scene {
@@ -59,7 +61,7 @@ export class MapScene extends Phaser.Scene {
 
     // Внутри таверны персонажи крупнее (интерьер ближе к камере)
     const s = this.mapKey === 'tavern_inside' ? 1.25 : 1;
-    this.hero    = new MapUnit(this, spawn.x,       spawn.y, 'map_hero',    { height: Math.round(130 * s), speed: 130, idlePeriod: 2800, paperdoll: false, walkSpriteKey: 'map_hero_walk_side', walkFrames: 8, walkFrameRate: 10, walkFrameContentHeight: 423 });
+    this.hero    = new MapUnit(this, spawn.x,       spawn.y, 'map_hero',    { height: Math.round(130 * s), speed: 130, idlePeriod: 2800, paperdoll: false, walkSpriteKey: 'map_hero_walk_side', walkFrames: 29, walkFrameRate: 24, walkFrameContentHeight: 251, idleSpriteKey: 'map_hero_stand', idleFrames: 96, idleFrameRate: 24, idleFrameContentHeight: 251, idleOriginX: 0.56 });
     this.brawler = new MapUnit(this, spawn.x - 65,  spawn.y, 'map_brawler', { height: Math.round(136 * s), speed: 130, idlePeriod: 3400, paperdoll: false, walkSpriteKey: 'map_brawler_walk_side', walkFrames: 8, walkFrameRate: 8, walkFrameContentHeight: 414 });
     this.healer  = new MapUnit(this, spawn.x - 120, spawn.y, 'map_healer',  { height: Math.round(128 * s), speed: 130, idlePeriod: 2200, paperdoll: false, walkSpriteKey: 'map_healer_walk_side', walkFrames: 8, walkFrameRate: 10, walkFrameContentHeight: 482 });
 
@@ -109,6 +111,9 @@ export class MapScene extends Phaser.Scene {
 
     // Передний слой для объектов, за которыми должен проходить отряд
     this._spawnForegrounds(cfg);
+
+    // Оживление мира: птицы, свет окон, дым, листья/снег/светлячки, вода (src/data/ambience.json)
+    this._ambience = new MapAmbience(this, this.mapKey, this.hero);
 
     // Клик по карте
     this.input.on('pointerdown', (ptr) => {
@@ -164,7 +169,7 @@ export class MapScene extends Phaser.Scene {
   update(time, delta) {
     // Скроллинг тумана
     if (this._fogLayers) {
-      this._fogLayers.forEach(t => { t.tilePositionX += t._speedX; });
+      this._fogLayers.forEach(t => { t.tilePositionX += t._speedX * delta / 16.67; }); // по времени, а не по кадрам: плавно при любом FPS
     }
 
     this.hero.update(delta);
@@ -777,7 +782,8 @@ export class MapScene extends Phaser.Scene {
       const anchoredToFeet = npc.sway || npc.anchorFeet;
       const spriteOriginY = anchoredToFeet ? 1 : 0.5;
       const spriteY       = anchoredToFeet ? npc.y + h / 2 : npc.y;
-      const spriteFactory = npc.ambientAnim ? this.add.sprite.bind(this.add) : this.add.image.bind(this.add);
+      const animated = !!getNpcAnimConfig(npc.spriteKey)?.idle;   // покадровая стойка и бытовые движения
+      const spriteFactory = (npc.ambientAnim || animated) ? this.add.sprite.bind(this.add) : this.add.image.bind(this.add);
       const sprite = spriteFactory(npc.x, spriteY, npc.spriteKey, frameKey)
         .setOrigin(0.5, spriteOriginY)
         .setScale(ratio)
@@ -785,11 +791,16 @@ export class MapScene extends Phaser.Scene {
         .setFlipX(npc.flipX || false)
         .setInteractive({ useHandCursor: true });
       const breath = npc.breathing || {};
-      this._addBreathingTween(sprite, breath.period || (3000 + Math.random() * 600), breath);
-      this._setupAmbientNpcAnimation(sprite, npc);
+      if (animated) {
+        // Ноги: у sway/anchorFeet это spriteY, у остальных низ картинки
+        attachNpcAnimations(this, sprite, npc, h, anchoredToFeet ? spriteY : npc.y + h / 2);
+      } else {
+        this._addBreathingTween(sprite, breath.period || (3000 + Math.random() * 600), breath);
+        this._setupAmbientNpcAnimation(sprite, npc);
+      }
 
       // Пьяное покачивание (sway: true) — тело качается, ноги стоят на месте
-      if (npc.sway) {
+      if (npc.sway && !animated) {
         // Вращение вокруг нижнего центра (ног) — x не двигаем
         this.tweens.add({
           targets:  sprite,

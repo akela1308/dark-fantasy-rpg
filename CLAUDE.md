@@ -397,3 +397,11 @@ For anyone (human or AI) picking this project up:
 8. One directory up: `MORTIS_CLASS_AUDIT.md`, `MORTIS_NPC_CLASSES.md`, `MORTIS_NEXT_STEPS.md` — the
    most current design/implementation status for the class system; read before making any class,
    resource, or status-effect change, since they supersede older docs on this topic.
+
+## Generated art: weapon/hand canon (MANDATORY)
+
+Before generating or approving ANY character image, pose, animation or sprite, read
+`assets/generated/КАНОН_ОРУЖИЯ.md`. Each character holds each weapon in the same hand in every frame
+(Duelist: rapier in the front hand on the right side of the screen, single flintlock pistol in the rear hand).
+Every keyframe and every clip is checked frame by frame for swapped, doubled, missing or reshaped weapons;
+any such frame is rejected. Muzzle flash, smoke and sparks are engine effects, never baked into sprites.

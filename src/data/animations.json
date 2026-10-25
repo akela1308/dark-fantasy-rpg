@@ -1,0 +1,797 @@
+{
+ "adventurer": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/adventurer_idle_v1.webp",
+    "frameWidth": 484,
+    "frameHeight": 328,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.5275,
+    "originY": 0.9758,
+    "bodyHeight": 300,
+    "key": "adventurer_idle_v1",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "Хольт, Искатель (бой)"
+ },
+ "archer_guard": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/archer_guard_idle_v1.webp",
+    "frameWidth": 420,
+    "frameHeight": 340,
+    "frames": 48,
+    "fps": 24,
+    "originX": 0.4286,
+    "originY": 0.972,
+    "bodyHeight": 300,
+    "key": "archer_guard_idle_v1",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "Бран, лучник-страж"
+ },
+ "assassin": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/assassin_idle_v1.webp",
+    "frameWidth": 482,
+    "frameHeight": 289,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.4278,
+    "originY": 0.9885,
+    "bodyHeight": 300,
+    "key": "assassin_idle_v1",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "Гаст"
+ },
+ "assassin_undead": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/assassin_undead_idle_v1.webp",
+    "frameWidth": 474,
+    "frameHeight": 331,
+    "frames": 83,
+    "fps": 24,
+    "originX": 0.5382,
+    "originY": 0.9731,
+    "bodyHeight": 300,
+    "key": "assassin_undead_idle_v1",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "Гаст Забытый"
+ },
+ "bandit_archer": {
+  "anims": {
+   "amb1": {
+    "file": "sprites/battle/bandit_archer_amb1_v1.webp",
+    "frameWidth": 417,
+    "frameHeight": 316,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.5042,
+    "originY": 0.9856,
+    "bodyHeight": 300,
+    "key": "bandit_archer_amb1_v1"
+   },
+   "amb2": {
+    "file": "sprites/battle/bandit_archer_amb2_v1.webp",
+    "frameWidth": 417,
+    "frameHeight": 316,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.5042,
+    "originY": 0.9856,
+    "bodyHeight": 300,
+    "key": "bandit_archer_amb2_v1"
+   },
+   "idle": {
+    "file": "sprites/battle/bandit_archer_idle_v1.webp",
+    "frameWidth": 462,
+    "frameHeight": 316,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.5522,
+    "originY": 0.9856,
+    "bodyHeight": 300,
+    "key": "bandit_archer_idle_v1",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "Тисс (стрелок Корвина)"
+ },
+ "bandit_brawler": {
+  "anims": {
+   "amb2": {
+    "file": "sprites/battle/bandit_brawler_amb2_v1.webp",
+    "frameWidth": 480,
+    "frameHeight": 339,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4383,
+    "originY": 0.9796,
+    "bodyHeight": 300,
+    "key": "bandit_brawler_amb2_v1"
+   },
+   "idle": {
+    "file": "sprites/battle/bandit_brawler_idle_v1.webp",
+    "frameWidth": 510,
+    "frameHeight": 339,
+    "frames": 80,
+    "fps": 24,
+    "originX": 0.4134,
+    "originY": 0.9796,
+    "bodyHeight": 300,
+    "key": "bandit_brawler_idle_v1",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "Головорез"
+ },
+ "bandit_commander": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/bandit_commander_idle_v1.webp",
+    "frameWidth": 475,
+    "frameHeight": 309,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.4208,
+    "originY": 0.9739,
+    "bodyHeight": 300,
+    "key": "bandit_commander_idle_v1",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "Корвин Сухой (Главарь)"
+ },
+ "companion_brawler": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/brawler_idle_v1.webp",
+    "frameWidth": 493,
+    "frameHeight": 304,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.4406,
+    "originY": 0.9751,
+    "bodyHeight": 300,
+    "key": "brawler_idle_v1",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "Ворнаг (Боец)"
+ },
+ "cleaning_girl": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/cleaning_girl_idle_v1.webp",
+    "frameWidth": 494,
+    "frameHeight": 317,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.4432,
+    "originY": 0.9722,
+    "bodyHeight": 300,
+    "key": "cleaning_girl_idle_v1",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "Мира, уборщица"
+ },
+ "dog": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/dog_idle_v1.webp",
+    "frameWidth": 510,
+    "frameHeight": 314,
+    "frames": 83,
+    "fps": 24,
+    "originX": 0.4607,
+    "originY": 0.9762,
+    "bodyHeight": 300,
+    "key": "dog_idle_v1",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "Пёс"
+ },
+ "drunkman": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/drunkman_idle_v1.webp",
+    "frameWidth": 474,
+    "frameHeight": 306,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.4211,
+    "originY": 0.9747,
+    "bodyHeight": 300,
+    "key": "drunkman_idle_v1",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "Савко, пьяница-ключник"
+ },
+ "hero_duelist": {
+  "anims": {
+   "block": {
+    "file": "sprites/battle/duelist_block_v1.webp",
+    "frameWidth": 551,
+    "frameHeight": 317,
+    "frames": 22,
+    "fps": 24,
+    "originX": 0.4504,
+    "originY": 0.9882,
+    "bodyHeight": 304,
+    "key": "duelist_block_v1"
+   },
+   "death": {
+    "file": "sprites/battle/duelist_death_v1.webp",
+    "frameWidth": 551,
+    "frameHeight": 317,
+    "frames": 26,
+    "fps": 24,
+    "originX": 0.4504,
+    "originY": 0.9882,
+    "bodyHeight": 304,
+    "key": "duelist_death_v1",
+    "hold": true
+   },
+   "hit": {
+    "file": "sprites/battle/duelist_hit_v1.webp",
+    "frameWidth": 551,
+    "frameHeight": 317,
+    "frames": 15,
+    "fps": 24,
+    "originX": 0.4504,
+    "originY": 0.9882,
+    "bodyHeight": 304,
+    "key": "duelist_hit_v1"
+   },
+   "reload": {
+    "file": "sprites/battle/duelist_reload_v1.webp",
+    "frameWidth": 551,
+    "frameHeight": 317,
+    "frames": 32,
+    "fps": 24,
+    "originX": 0.4504,
+    "originY": 0.9882,
+    "bodyHeight": 304,
+    "key": "duelist_reload_v1"
+   },
+   "slash": {
+    "file": "sprites/battle/duelist_slash_v1.webp",
+    "frameWidth": 551,
+    "frameHeight": 317,
+    "frames": 23,
+    "fps": 24,
+    "originX": 0.4504,
+    "originY": 0.9882,
+    "bodyHeight": 304,
+    "key": "duelist_slash_v1",
+    "hitFrame": 17
+   },
+   "victory": {
+    "file": "sprites/battle/duelist_victory_v1.webp",
+    "frameWidth": 551,
+    "frameHeight": 317,
+    "frames": 16,
+    "fps": 24,
+    "originX": 0.4504,
+    "originY": 0.9882,
+    "bodyHeight": 304,
+    "key": "duelist_victory_v1",
+    "hold": true
+   },
+   "idle": {
+    "key": "duelist_idle",
+    "file": "sprites/battle/duelist_idle_v1.png",
+    "frameWidth": 315,
+    "frameHeight": 315,
+    "frames": 96,
+    "fps": 24,
+    "loop": true,
+    "originX": 0.37,
+    "originY": 0.987,
+    "bodyHeight": 304
+   },
+   "lunge": {
+    "key": "duelist_lunge",
+    "file": "sprites/battle/duelist_lunge_v1.png",
+    "frameWidth": 563,
+    "frameHeight": 315,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.441,
+    "originY": 0.987,
+    "bodyHeight": 304,
+    "hitFrame": 12
+   },
+   "shot": {
+    "key": "duelist_shot",
+    "file": "sprites/battle/duelist_shot_v1.png",
+    "frameWidth": 327,
+    "frameHeight": 315,
+    "frames": 36,
+    "fps": 24,
+    "originX": 0.353,
+    "originY": 0.987,
+    "bodyHeight": 304,
+    "hitFrame": 17,
+    "muzzle": {
+     "x": 238,
+     "y": 52
+    }
+   }
+  },
+  "actions": {
+   "basic": "slash",
+   "rapier_strike": "lunge",
+   "pistol_shot": "shot",
+   "aimed_shot": "shot"
+  },
+  "name": "Падший Дуэлянт"
+ },
+ "dwarf": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/dwarf_idle_v1.webp",
+    "frameWidth": 499,
+    "frameHeight": 315,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.4493,
+    "originY": 0.9734,
+    "bodyHeight": 300,
+    "key": "dwarf_idle_v1",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "Дагмар, дварф-воин"
+ },
+ "dwarf_beer1": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/dwarf_beer1_idle_v1.webp",
+    "frameWidth": 485,
+    "frameHeight": 312,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.4342,
+    "originY": 0.9771,
+    "bodyHeight": 300,
+    "key": "dwarf_beer1_idle_v1",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "Брамм Медная Борода"
+ },
+ "dwarf_beer2": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/dwarf_beer2_idle_v1.webp",
+    "frameWidth": 491,
+    "frameHeight": 316,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.4385,
+    "originY": 0.9744,
+    "bodyHeight": 300,
+    "key": "dwarf_beer2_idle_v1",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "Орт Камнеглух"
+ },
+ "dwarf_beer3": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/dwarf_beer3_idle_v1.webp",
+    "frameWidth": 485,
+    "frameHeight": 312,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.4342,
+    "originY": 0.9919,
+    "bodyHeight": 300,
+    "key": "dwarf_beer3_idle_v1",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "Хальвар, седой старейшина"
+ },
+ "forest_bear": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/forest_bear_idle_v1.webp",
+    "frameWidth": 509,
+    "frameHeight": 294,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.4612,
+    "originY": 0.9719,
+    "bodyHeight": 300,
+    "key": "forest_bear_idle_v1",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "Лесной Дед"
+ },
+ "guard": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/guard_idle_v1.webp",
+    "frameWidth": 508,
+    "frameHeight": 317,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.4602,
+    "originY": 0.9749,
+    "bodyHeight": 300,
+    "key": "guard_idle_v1",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "Стражник врат"
+ },
+ "companion_healer": {
+  "anims": {
+   "amb1": {
+    "file": "sprites/battle/healer_amb1_v1.webp",
+    "frameWidth": 479,
+    "frameHeight": 320,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.439,
+    "originY": 0.9698,
+    "bodyHeight": 300,
+    "key": "healer_amb1_v1"
+   },
+   "amb2": {
+    "file": "sprites/battle/healer_amb2_v1.webp",
+    "frameWidth": 479,
+    "frameHeight": 320,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.439,
+    "originY": 0.9698,
+    "bodyHeight": 300,
+    "key": "healer_amb2_v1"
+   },
+   "idle": {
+    "file": "sprites/battle/healer_idle_v1.webp",
+    "frameWidth": 497,
+    "frameHeight": 294,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.4725,
+    "originY": 0.9711,
+    "bodyHeight": 300,
+    "key": "healer_idle_v1",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "Тая (Знахарка)"
+ },
+ "jester": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/jester_idle_v1.webp",
+    "frameWidth": 497,
+    "frameHeight": 324,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.3979,
+    "originY": 0.972,
+    "bodyHeight": 300,
+    "key": "jester_idle_v1",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "Пересмешник, шут Королевы"
+ },
+ "kikimora": {
+  "anims": {
+   "amb1": {
+    "file": "sprites/battle/kikimora_amb1_v1.webp",
+    "frameWidth": 462,
+    "frameHeight": 319,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4168,
+    "originY": 0.9821,
+    "bodyHeight": 300,
+    "key": "kikimora_amb1_v1"
+   },
+   "amb2": {
+    "file": "sprites/battle/kikimora_amb2_v1.webp",
+    "frameWidth": 462,
+    "frameHeight": 319,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4168,
+    "originY": 0.9821,
+    "bodyHeight": 300,
+    "key": "kikimora_amb2_v1"
+   },
+   "idle": {
+    "file": "sprites/battle/kikimora_idle_v1.webp",
+    "frameWidth": 494,
+    "frameHeight": 293,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.3586,
+    "originY": 0.9837,
+    "bodyHeight": 300,
+    "key": "kikimora_idle_v1",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "Кикимора"
+ },
+ "mountain_king": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/mountain_king_idle_v1.webp",
+    "frameWidth": 420,
+    "frameHeight": 312,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.4289,
+    "originY": 0.9907,
+    "bodyHeight": 300,
+    "key": "mountain_king_idle_v1",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "Горный король"
+ },
+ "recruit": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/recruit_idle_v1.webp",
+    "frameWidth": 419,
+    "frameHeight": 343,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.4298,
+    "originY": 0.9717,
+    "bodyHeight": 300,
+    "key": "recruit_idle_v1",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "Мирко, рекрут"
+ },
+ "rowan": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/rowan_idle_v1.webp",
+    "frameWidth": 491,
+    "frameHeight": 315,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.4389,
+    "originY": 0.9757,
+    "bodyHeight": 300,
+    "key": "rowan_idle_v1",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "Рован в бою (по арту map_wanderer)"
+ },
+ "companion_shield": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/shield_idle_v1.webp",
+    "frameWidth": 494,
+    "frameHeight": 306,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.4437,
+    "originY": 0.9751,
+    "bodyHeight": 300,
+    "key": "shield_idle_v1",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "Щитоносец"
+ },
+ "swamp_elf_battle": {
+  "anims": {
+   "amb1": {
+    "file": "sprites/battle/swamp_elf_amb1_v1.webp",
+    "frameWidth": 480,
+    "frameHeight": 325,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4379,
+    "originY": 0.9732,
+    "bodyHeight": 300,
+    "key": "swamp_elf_amb1_v1"
+   },
+   "amb2": {
+    "file": "sprites/battle/swamp_elf_amb2_v1.webp",
+    "frameWidth": 480,
+    "frameHeight": 325,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4379,
+    "originY": 0.9732,
+    "bodyHeight": 300,
+    "key": "swamp_elf_amb2_v1"
+   },
+   "idle": {
+    "file": "sprites/battle/swamp_elf_idle_v1.webp",
+    "frameWidth": 493,
+    "frameHeight": 299,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.4412,
+    "originY": 0.9732,
+    "bodyHeight": 300,
+    "key": "swamp_elf_idle_v1",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "Ресса в бою (арт swamp_elf_battle)"
+ },
+ "swamp_knight": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/swamp_knight_idle_v1.webp",
+    "frameWidth": 494,
+    "frameHeight": 320,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.4437,
+    "originY": 0.9732,
+    "bodyHeight": 300,
+    "key": "swamp_knight_idle_v1",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "Болотный рыцарь"
+ },
+ "tavernman": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/tavernman_idle_v1.webp",
+    "frameWidth": 518,
+    "frameHeight": 338,
+    "frames": 83,
+    "fps": 24,
+    "originX": 0.423,
+    "originY": 0.9713,
+    "bodyHeight": 300,
+    "key": "tavernman_idle_v1",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "Ворн, хозяин таверны"
+ },
+ "vurdalak": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/vurdalak_idle_v1.webp",
+    "frameWidth": 505,
+    "frameHeight": 300,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.4546,
+    "originY": 0.976,
+    "bodyHeight": 300,
+    "key": "vurdalak_idle_v1",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "Висельный чтец"
+ },
+ "winter_archer": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/winter_archer_idle_v1.webp",
+    "frameWidth": 555,
+    "frameHeight": 332,
+    "frames": 48,
+    "fps": 24,
+    "originX": 0.46,
+    "originY": 0.9724,
+    "bodyHeight": 300,
+    "key": "winter_archer_idle_v1",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "Ульв, северный лучник"
+ },
+ "winter_girl": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/winter_girl_idle_v1.webp",
+    "frameWidth": 509,
+    "frameHeight": 312,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.4613,
+    "originY": 0.9741,
+    "bodyHeight": 300,
+    "key": "winter_girl_idle_v1",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "Инна, снежная дева"
+ },
+ "winter_monster": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/winter_monster_idle_v1.webp",
+    "frameWidth": 483,
+    "frameHeight": 282,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.4326,
+    "originY": 0.9913,
+    "bodyHeight": 300,
+    "key": "winter_monster_idle_v1",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "Оленье чудовище"
+ },
+ "winter_queen": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/winter_queen_idle_v1.webp",
+    "frameWidth": 494,
+    "frameHeight": 293,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.4753,
+    "originY": 0.9747,
+    "bodyHeight": 300,
+    "key": "winter_queen_idle_v1",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "Зимняя королева"
+ }
+}

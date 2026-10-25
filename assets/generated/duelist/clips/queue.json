@@ -1,0 +1,11 @@
+[
+ {"name":"lunge_1","first":"../k_idle.png","last":"../k_l2.png","prompt":"He starts a fencing lunge: steps forward to the right and begins to extend the rapier arm."},
+ {"name":"lunge_2","first":"../k_l2.png","last":"../k_lunge.png","prompt":"He drives forward into the full deep lunge, the rapier arm extends fully, the coat flies back."},
+ {"name":"lunge_3","first":"../k_lunge.png","last":"../k_l4.png","prompt":"He rises out of the lunge, weight moving back, the rapier arm bending back."},
+ {"name":"lunge_4","first":"../k_l4.png","last":"../k_idle.png","prompt":"He settles back into his guard stance, the coat settling."},
+ {"name":"shot_1","first":"../k_idle.png","last":"../k_s1.png","prompt":"He raises the pistol up to his chest, elbow bent."},
+ {"name":"shot_2","first":"../k_s1.png","last":"../k_aim.png","prompt":"He extends the pistol arm and aims to the right."},
+ {"name":"shot_3","first":"../k_aim.png","last":"../k_s3.png","prompt":"The pistol fires and the recoil kicks his arm up and back."},
+ {"name":"shot_4","first":"../k_s3.png","last":"../k_s4.png","prompt":"He brings the pistol down to stomach height."},
+ {"name":"shot_5","first":"../k_s4.png","last":"../k_idle.png","prompt":"He lowers the pistol to his hip and settles into guard."}
+]

@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/e0b8ee16-a636-4028-a9f9-d0faa11fd4ea",
+ "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: rests the spiked club on his shoulder and lowers it again. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. HANDS CANON: one big spiked club held with both hands in front of him; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+ "img": "shield/k_battle.png",
+ "last": "shield/k_battle.png",
+ "sec": 4
+}

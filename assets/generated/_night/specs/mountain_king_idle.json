@@ -1,0 +1,1 @@
+{"slug": "mountain_king", "anim": "idle", "base": "mountain_king/k_battle.png", "body": 300, "segments": [{"clip": "mountain_king/clips/bidle_v1.mp4", "from": 0, "to": 95, "frames": 96}], "loop": true, "left": 0.6, "right": 0.8}

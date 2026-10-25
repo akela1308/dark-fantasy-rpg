@@ -1,0 +1,1 @@
+{"slug": "winter_archer", "anim": "idle", "base": "winter_archer/k_battle.png", "body": 300, "segments": [{"clip": "winter_archer/clips/bidle_v1.mp4", "from": 0, "to": 18, "frames": 24}, {"clip": "winter_archer/clips/bidle_v1.mp4", "from": 18, "to": 0, "frames": 24}], "loop": false, "left": 0.85, "right": 1.0}

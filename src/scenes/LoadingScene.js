@@ -111,7 +111,8 @@ export class LoadingScene extends Phaser.Scene {
     img('map_brawler',   'maps/characters/brawler_idle_v3.png');
     img('map_healer',    'maps/characters/healer.png');
     img('map_bandit',    'maps/characters/bandit.png');
-    sheet('map_hero_walk_side', 'maps/characters/hero_walk_side_v2.png', { frameWidth: 320, frameHeight: 447 });
+    sheet('map_hero_walk_side', 'maps/characters/hero_walk_side_v3.png', { frameWidth: 181, frameHeight: 260 }); // v3: Veo, 29 кадров, 24 fps (старый v2 оставлен в папке)
+    sheet('map_hero_stand', 'maps/characters/hero_stand_v1.png', { frameWidth: 149, frameHeight: 260 }); // стойка на карте без оружия в руках, 96 кадров
     sheet('map_brawler_walk_side', 'maps/characters/brawler_walk_side_v3.png', { frameWidth: 260, frameHeight: 442 });
     sheet('map_healer_walk_side', 'maps/characters/healer_walk_side_v2.png', { frameWidth: 292, frameHeight: 516 });
 

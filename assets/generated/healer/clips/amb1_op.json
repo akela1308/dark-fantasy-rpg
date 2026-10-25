@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/0f937229-9f70-4f4d-b054-57cefd845bc1",
+ "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: smells the bundle of herbs in her hand. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. HANDS CANON: the gnarled wooden staff in the rear hand, a small bundle of dried herbs in the front hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+ "img": "healer/k_battle.png",
+ "last": "healer/k_battle.png",
+ "sec": 4
+}

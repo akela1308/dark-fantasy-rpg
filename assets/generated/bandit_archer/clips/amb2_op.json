@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/0c9a2add-5b5a-4658-8952-ebcbaacb570d",
+ "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: looks around through the hood. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. HANDS CANON: one crossbow held with both hands, pointing to the right; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+ "img": "bandit_archer/k_battle.png",
+ "last": "bandit_archer/k_battle.png",
+ "sec": 4
+}

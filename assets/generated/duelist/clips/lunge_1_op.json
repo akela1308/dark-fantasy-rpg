@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/e4e71af2-8b34-4c72-a05b-e76714836372",
+ "prompt": "He starts a fencing lunge: steps forward to the right and begins to extend the rapier arm. Only this one simple continuous motion from the first pose to the last pose, nothing else happens, no extra gestures, no pauses filled with other moves. The rapier stays in the hand on the right side of the image and the single pistol stays in the hand on the left side of the image for the whole clip, never two pistols, never two swords. No flash, no smoke, no sparks.",
+ "img": "../k_idle.png",
+ "last": "../k_l2.png",
+ "sec": 4
+}

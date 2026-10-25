@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/e492e170-9459-4c0d-9e0d-d23f33125c2c",
+ "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: stops and wipes her forehead with her forearm. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+ "img": "cleaning_girl/k_idle.png",
+ "last": "cleaning_girl/k_idle.png",
+ "sec": 4
+}
