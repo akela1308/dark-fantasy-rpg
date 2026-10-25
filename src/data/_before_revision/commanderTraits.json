@@ -1,0 +1,52 @@
+[
+  {
+    "id": "commander",
+    "name": "Командир",
+    "desc": "Позволяет взять еще одного спутника в команду, если встретится подходящий персонаж.",
+    "unlockLevel": 2,
+    "effects": [
+      { "type": "registryFlag", "key": "commander_unlocked", "value": true }
+    ],
+    "tags": ["party_limit", "leadership"]
+  },
+  {
+    "id": "second_strike",
+    "name": "Второй выпад",
+    "desc": "Боевой путь командира: +1 к минимальному и максимальному урону.",
+    "unlockLevel": 2,
+    "effects": [
+      { "type": "damage", "min": 1, "max": 1 }
+    ],
+    "tags": ["melee", "tempo"]
+  },
+  {
+    "id": "shooting_knack",
+    "name": "Стрелковая сноровка",
+    "desc": "Путь стрелка: +1 заряд для пистоля или будущего стрелкового оружия.",
+    "unlockLevel": 2,
+    "effects": [
+      { "type": "resource", "resourceId": "pistol_charges", "amount": 1 }
+    ],
+    "tags": ["shot", "ranged"]
+  },
+  {
+    "id": "secret_literacy",
+    "name": "Тайная грамота",
+    "desc": "Позволяет разбирать сложные книги, печати и оккультные записи.",
+    "unlockLevel": 2,
+    "effects": [
+      { "type": "tag", "tag": "secret_literacy" }
+    ],
+    "tags": ["lore", "books", "seals"]
+  },
+  {
+    "id": "first_signs",
+    "name": "Первые знаки",
+    "desc": "Слабый оккультный путь: почти не дает силы сейчас, но открывает будущую магию.",
+    "unlockLevel": 2,
+    "effects": [
+      { "type": "tag", "tag": "first_signs" }
+    ],
+    "tags": ["occult", "magic"]
+  }
+]

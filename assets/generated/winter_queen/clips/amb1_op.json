@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/b233ffea-4aa7-41aa-8d92-6645632379aa",
+ "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: slowly turns her head. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. HANDS CANON: one small sphere floating above the front hand, no other weapon; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+ "img": "winter_queen/k_battle.png",
+ "last": "winter_queen/k_battle.png",
+ "sec": 4
+}

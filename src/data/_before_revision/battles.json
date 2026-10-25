@@ -1,0 +1,69 @@
+[
+  {
+    "id": "swamp_elf_guardians",
+    "backgroundKey": "battle_bg_swamp",
+    "backgroundPath": "battle_bg_swamp.png",
+    "victoryFlag": "swamp_elf_guardians_defeated",
+    "enemies": [
+      {
+        "id": "swamp_knight",
+        "name": "Болотный Рыцарь",
+        "type": "enemy",
+        "hp": 115,
+        "maxHp": 115,
+        "damage": { "min": 13, "max": 19 },
+        "speed": 4,
+        "armor": 30,
+        "regen": 2,
+        "accuracy": 72,
+        "xpKill": 45,
+        "position": { "row": 0, "col": 0 },
+        "skills": [],
+        "ranged": false,
+        "color": 6985258,
+        "isBoss": false,
+        "description": "Латник, увязший в чужой клятве. Держит переднюю линию болотного договора."
+      },
+      {
+        "id": "kikimora",
+        "name": "Кикимора",
+        "type": "enemy",
+        "hp": 70,
+        "maxHp": 70,
+        "damage": { "min": 12, "max": 19 },
+        "speed": 8,
+        "armor": 8,
+        "regen": 4,
+        "accuracy": 76,
+        "xpKill": 35,
+        "position": { "row": 0, "col": 2 },
+        "skills": [],
+        "ranged": false,
+        "ignoreRows": true,
+        "color": 5794361,
+        "isBoss": false,
+        "description": "Хранительница нарушенного договора. Быстрая, злая, бьет туда, где строй тоньше."
+      },
+      {
+        "id": "swamp_elf_battle",
+        "name": "Болотная Эльфийка",
+        "type": "enemy",
+        "hp": 80,
+        "maxHp": 80,
+        "damage": { "min": 9, "max": 15 },
+        "speed": 7,
+        "armor": 10,
+        "regen": 0,
+        "accuracy": 84,
+        "xpKill": 40,
+        "position": { "row": 1, "col": 1 },
+        "skills": [],
+        "ranged": true,
+        "ignoreRows": true,
+        "color": 6135611,
+        "isBoss": false,
+        "description": "Стражница старой воды. Не держит строй силой, но направляет его взглядом."
+      }
+    ]
+  }
+]
