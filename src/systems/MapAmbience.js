@@ -60,6 +60,41 @@ export class MapAmbience {
     if (c.fog2) this._fog2();
     if (c.birds) this._scheduleBirds(c.birds);
     if (c.birds?.perch?.length) this._scheduleCrowPerch(c.birds);
+    if (c.wind !== false) this._wind();
+  }
+
+  // ── Ветер: вырезанные деревья и кусты (props с именем tree/oak/pine/bush...) качаются
+  //    вокруг основания, слабо и неравномерно, с порывами. Фон карты не трогается.
+  _wind() {
+    const sc = this.scene;
+    const RE = /^prop_.*(tree|oak|pine|birch|willow|bush|spruce|fir|branch|reed)/i;
+    const trees = new Set();
+    const scan = () => {
+      sc.children.list.forEach(o => {
+        if (trees.has(o) || o.type !== 'Image' || !RE.test(o.texture?.key || '')) return;
+        // ось поворота: середина основания (картинка не сдвигается)
+        const nx = o.x + (0.5 - o.originX) * o.displayWidth;
+        const ny = o.y + (1 - o.originY) * o.displayHeight;
+        o.setOrigin(0.5, 1).setPosition(nx, ny);
+        o._windPhase = Math.random() * 6.28;
+        o._windAmp = 0.5 + Math.random() * 0.5;   // градусы
+        trees.add(o);
+      });
+    };
+    [300, 1500, 4000, 9000].forEach(d => sc.time.delayedCall(d, scan));   // props грузятся лениво
+    let gust = 0, gustTarget = 0, t = 0;
+    sc.time.addEvent({ delay: 2500, loop: true, callback: () => {
+      gustTarget = Math.random() < 0.25 ? 1 + Math.random() : Math.random() * 0.3;   // иногда порыв
+    } });
+    sc.events.on('update', (_t, d) => {
+      if (!trees.size) return;
+      t += d / 1000;
+      gust += (gustTarget - gust) * Math.min(1, d / 1200);
+      trees.forEach(o => {
+        if (!o.active) { trees.delete(o); return; }
+        o.angle = o._windAmp * (0.6 * Math.sin(t * 1.1 + o._windPhase) + 0.4 * Math.sin(t * 2.3 + o._windPhase * 1.7)) * (0.6 + gust);
+      });
+    });
   }
 
   // ── Свет окон и огней: мягкое свечение (ADD), яркость и размер плавают ───
