@@ -18,7 +18,8 @@ export class PortraitPanel {
   preload() {
     const all = [...this.playerUnits, ...this.enemyUnits];
     all.forEach(u => {
-      this.scene.load.image(`portrait_${u.id}`, `portraits/${u.id}.png`);
+      const pk = u.spriteKey ?? u.id;   // портрет ищется по тому же ключу, что и в create()
+      this.scene.load.image(`portrait_${pk}`, `portraits/${pk}.png`);
     });
     if (!this.scene.textures.exists('portrait_frame')) {
       this.scene.load.image('portrait_frame', 'ui/portrait_frame.png');

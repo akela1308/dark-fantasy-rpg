@@ -115,6 +115,11 @@ export class BattleScene extends Phaser.Scene {
       ...Object.values(this._battleConfig?.enemiesBySize || {}).flat(),
     ];
     loadBattleAnimSheets(this, [...unitsData, ...enemySource].flatMap(u => [u.id, u.spriteKey]).filter(Boolean));
+    // Портреты участников по spriteKey (у тварей бестиария id вида hamlet_dogs_2, а портрет по spriteKey)
+    [...unitsData, ...enemySource].forEach(u => {
+      const pk = u.spriteKey ?? u.id;
+      if (!this.textures.exists(`portrait_${pk}`)) this.load.image(`portrait_${pk}`, `portraits/${pk}.png`);
+    });
     // Ассеты загружены в LoadingScene - здесь ничего не грузим
   }
 
