@@ -317,3 +317,9 @@ lyo victory 1
 til attack 1
 til death 1
 til hit 1 | v2: белые линии
+til power 2 | v1: брызги и наковальня
+til victory 1
+wild_dog attack 1 | рамка шире
+wild_dog death 1 | v2: вспышка
+wild_dog hit 1 | v2: голова становится волчьей
+wild_dog victory 1

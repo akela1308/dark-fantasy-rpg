@@ -48,3 +48,5 @@ vurdalak attack
 winter_queen victory
 vurdalak power
 winter_archer hit
+cat old_bidle
+cat old_idle

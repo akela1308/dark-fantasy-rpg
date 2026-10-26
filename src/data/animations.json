@@ -2512,6 +2512,30 @@
     "bodyHeight": 300,
     "key": "til_idle_v1",
     "loop": true
+   },
+   "power": {
+    "file": "sprites/battle/til_power_v1.webp",
+    "frameWidth": 585,
+    "frameHeight": 329,
+    "frames": 38,
+    "fps": 24,
+    "originX": 0.4796,
+    "originY": 0.9758,
+    "bodyHeight": 300,
+    "key": "til_power_v1",
+    "hitFrame": 14
+   },
+   "victory": {
+    "file": "sprites/battle/til_victory_v1.webp",
+    "frameWidth": 555,
+    "frameHeight": 329,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4602,
+    "originY": 0.9758,
+    "bodyHeight": 300,
+    "key": "til_victory_v1",
+    "hold": true
    }
   },
   "actions": {
@@ -2596,6 +2620,41 @@
  },
  "wild_dog": {
   "anims": {
+   "attack": {
+    "file": "sprites/battle/wild_dog_attack_v1.webp",
+    "frameWidth": 657,
+    "frameHeight": 360,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.5829,
+    "originY": 0.9732,
+    "bodyHeight": 300,
+    "key": "wild_dog_attack_v1",
+    "hitFrame": 7
+   },
+   "death": {
+    "file": "sprites/battle/wild_dog_death_v1.webp",
+    "frameWidth": 657,
+    "frameHeight": 360,
+    "frames": 30,
+    "fps": 24,
+    "originX": 0.5829,
+    "originY": 0.9732,
+    "bodyHeight": 300,
+    "key": "wild_dog_death_v1",
+    "hold": true
+   },
+   "hit": {
+    "file": "sprites/battle/wild_dog_hit_v1.webp",
+    "frameWidth": 657,
+    "frameHeight": 360,
+    "frames": 14,
+    "fps": 24,
+    "originX": 0.5829,
+    "originY": 0.9732,
+    "bodyHeight": 300,
+    "key": "wild_dog_hit_v1"
+   },
    "idle": {
     "file": "sprites/battle/wild_dog_idle_v1.webp",
     "frameWidth": 510,
@@ -2607,9 +2666,23 @@
     "bodyHeight": 300,
     "key": "wild_dog_idle_v1",
     "loop": true
+   },
+   "victory": {
+    "file": "sprites/battle/wild_dog_victory_v1.webp",
+    "frameWidth": 657,
+    "frameHeight": 360,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.5829,
+    "originY": 0.9732,
+    "bodyHeight": 300,
+    "key": "wild_dog_victory_v1",
+    "hold": true
    }
   },
-  "actions": {},
+  "actions": {
+   "basic": "attack"
+  },
   "name": "Одичавший пёс (бестиарий)"
  },
  "winter_archer": {

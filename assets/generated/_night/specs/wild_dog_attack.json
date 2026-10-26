@@ -1,0 +1,1 @@
+{"slug": "wild_dog", "anim": "attack", "base": "wild_dog/k_battle.png", "body": 300, "segments": [{"clip": "wild_dog/clips/attack_v1.mp4", "from": 0, "to": 95, "frames": 29}], "hit": "auto", "right": 1.6, "left": 1.3}
