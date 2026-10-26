@@ -79,6 +79,41 @@
  },
  "agna": {
   "anims": {
+   "attack": {
+    "file": "sprites/battle/agna_attack_v1.webp",
+    "frameWidth": 589,
+    "frameHeight": 331,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.3783,
+    "originY": 0.9773,
+    "bodyHeight": 300,
+    "key": "agna_attack_v1",
+    "hitFrame": 11
+   },
+   "death": {
+    "file": "sprites/battle/agna_death_v1.webp",
+    "frameWidth": 589,
+    "frameHeight": 331,
+    "frames": 30,
+    "fps": 24,
+    "originX": 0.3783,
+    "originY": 0.9773,
+    "bodyHeight": 300,
+    "key": "agna_death_v1",
+    "hold": true
+   },
+   "hit": {
+    "file": "sprites/battle/agna_hit_v1.webp",
+    "frameWidth": 522,
+    "frameHeight": 331,
+    "frames": 14,
+    "fps": 24,
+    "originX": 0.4268,
+    "originY": 0.9773,
+    "bodyHeight": 300,
+    "key": "agna_hit_v1"
+   },
    "idle": {
     "file": "sprites/battle/agna_idle_v1.webp",
     "frameWidth": 480,
@@ -90,9 +125,23 @@
     "bodyHeight": 300,
     "key": "agna_idle_v1",
     "loop": true
+   },
+   "victory": {
+    "file": "sprites/battle/agna_victory_v1.webp",
+    "frameWidth": 522,
+    "frameHeight": 331,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4268,
+    "originY": 0.9773,
+    "bodyHeight": 300,
+    "key": "agna_victory_v1",
+    "hold": true
    }
   },
-  "actions": {},
+  "actions": {
+   "basic": "attack"
+  },
   "name": "Агна, хозяйка «Трёх столбов» (новая, предварительно)"
  },
  "archer_guard": {
@@ -1952,6 +2001,30 @@
     "bodyHeight": 300,
     "key": "rowan_idle_v1",
     "loop": true
+   },
+   "power": {
+    "file": "sprites/battle/rowan_power_v1.webp",
+    "frameWidth": 614,
+    "frameHeight": 343,
+    "frames": 38,
+    "fps": 24,
+    "originX": 0.3815,
+    "originY": 0.974,
+    "bodyHeight": 300,
+    "key": "rowan_power_v1",
+    "hitFrame": 18
+   },
+   "victory": {
+    "file": "sprites/battle/rowan_victory_v1.webp",
+    "frameWidth": 534,
+    "frameHeight": 343,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4387,
+    "originY": 0.974,
+    "bodyHeight": 300,
+    "key": "rowan_victory_v1",
+    "hold": true
    }
   },
   "actions": {

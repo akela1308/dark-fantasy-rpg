@@ -299,3 +299,9 @@ guard victory 1 | v2: двойной топор алебарды
 rowan attack 1
 rowan death 1
 rowan hit 2
+agna attack 2 | v1: размашисто, ныряет
+agna death 2 | v1: в конце садится
+agna hit 1
+agna victory 1
+rowan power 1 | v2: нож меняет руку
+rowan victory 1

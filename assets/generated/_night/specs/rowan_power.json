@@ -1,0 +1,1 @@
+{"slug": "rowan", "anim": "power", "base": "rowan/k_battle.png", "body": 300, "segments": [{"clip": "rowan/clips/power_v1.mp4", "from": 0, "to": 95, "frames": 38}], "hit": "auto", "right": 1.4, "left": 1.0}
