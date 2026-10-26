@@ -614,6 +614,18 @@
     "key": "boar_attack_v1",
     "hitFrame": 17
    },
+   "death": {
+    "file": "sprites/battle/boar_death_v1.webp",
+    "frameWidth": 564,
+    "frameHeight": 317,
+    "frames": 30,
+    "fps": 24,
+    "originX": 0.4862,
+    "originY": 0.9812,
+    "bodyHeight": 300,
+    "key": "boar_death_v1",
+    "hold": true
+   },
    "hit": {
     "file": "sprites/battle/boar_hit_v1.webp",
     "frameWidth": 564,
@@ -636,6 +648,18 @@
     "bodyHeight": 300,
     "key": "boar_idle_v1",
     "loop": true
+   },
+   "victory": {
+    "file": "sprites/battle/boar_victory_v1.webp",
+    "frameWidth": 564,
+    "frameHeight": 317,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4862,
+    "originY": 0.9812,
+    "bodyHeight": 300,
+    "key": "boar_victory_v1",
+    "hold": true
    }
   },
   "actions": {
@@ -1939,6 +1963,41 @@
  },
  "mavka": {
   "anims": {
+   "attack": {
+    "file": "sprites/battle/mavka_attack_v1.webp",
+    "frameWidth": 590,
+    "frameHeight": 329,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4924,
+    "originY": 0.9722,
+    "bodyHeight": 300,
+    "key": "mavka_attack_v1",
+    "hitFrame": 7
+   },
+   "death": {
+    "file": "sprites/battle/mavka_death_v1.webp",
+    "frameWidth": 590,
+    "frameHeight": 329,
+    "frames": 30,
+    "fps": 24,
+    "originX": 0.4924,
+    "originY": 0.9722,
+    "bodyHeight": 300,
+    "key": "mavka_death_v1",
+    "hold": true
+   },
+   "hit": {
+    "file": "sprites/battle/mavka_hit_v1.webp",
+    "frameWidth": 554,
+    "frameHeight": 329,
+    "frames": 14,
+    "fps": 24,
+    "originX": 0.4603,
+    "originY": 0.9722,
+    "bodyHeight": 300,
+    "key": "mavka_hit_v1"
+   },
    "idle": {
     "file": "sprites/battle/mavka_idle_v1.webp",
     "frameWidth": 509,
@@ -1950,9 +2009,23 @@
     "bodyHeight": 300,
     "key": "mavka_idle_v1",
     "loop": true
+   },
+   "victory": {
+    "file": "sprites/battle/mavka_victory_v1.webp",
+    "frameWidth": 554,
+    "frameHeight": 329,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4603,
+    "originY": 0.9722,
+    "bodyHeight": 300,
+    "key": "mavka_victory_v1",
+    "hold": true
    }
   },
-  "actions": {},
+  "actions": {
+   "basic": "attack"
+  },
   "name": "Мавка (бестиарий)"
  },
  "mountain_king": {

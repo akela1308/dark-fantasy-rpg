@@ -331,3 +331,9 @@ grey_wolf victory 1
 boar attack 2 | рамка шире
 boar hit 1 | брызги вырезаются
 boar hit 1 | кадры 1 и 3 выкинуты (стрела и брызги)
+boar death 2 | v1: копьё выпадает. Вепрь на боевой позе почти во весь кадр: края туши срезаны (см. deferred)
+boar victory 1
+mavka attack 1
+mavka death 1 | v2: вспышка
+mavka hit 1 | v2: белые линии
+mavka victory 2 | v1: зелёная искра

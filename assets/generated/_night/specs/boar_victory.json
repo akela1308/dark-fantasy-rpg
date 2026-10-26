@@ -1,0 +1,1 @@
+{"slug": "boar", "anim": "victory", "base": "boar/k_battle.png", "body": 300, "segments": [{"clip": "boar/clips/victory_v1.mp4", "from": 3, "to": 95, "frames": 29}], "hold": true, "left": 1.4, "right": 1.4}
