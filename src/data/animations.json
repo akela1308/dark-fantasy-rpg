@@ -602,6 +602,29 @@
  },
  "boar": {
   "anims": {
+   "attack": {
+    "file": "sprites/battle/boar_attack_v1.webp",
+    "frameWidth": 564,
+    "frameHeight": 317,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4862,
+    "originY": 0.9812,
+    "bodyHeight": 300,
+    "key": "boar_attack_v1",
+    "hitFrame": 17
+   },
+   "hit": {
+    "file": "sprites/battle/boar_hit_v1.webp",
+    "frameWidth": 564,
+    "frameHeight": 317,
+    "frames": 12,
+    "fps": 24,
+    "originX": 0.4862,
+    "originY": 0.9812,
+    "bodyHeight": 300,
+    "key": "boar_hit_v1"
+   },
    "idle": {
     "file": "sprites/battle/boar_idle_v1.webp",
     "frameWidth": 518,
@@ -615,7 +638,9 @@
     "loop": true
    }
   },
-  "actions": {},
+  "actions": {
+   "basic": "attack"
+  },
   "name": "Вепрь Старого Бора (бестиарий)"
  },
  "companion_brawler": {
@@ -1405,6 +1430,41 @@
  },
  "grey_wolf": {
   "anims": {
+   "attack": {
+    "file": "sprites/battle/grey_wolf_attack_v1.webp",
+    "frameWidth": 569,
+    "frameHeight": 320,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.5847,
+    "originY": 0.9695,
+    "bodyHeight": 300,
+    "key": "grey_wolf_attack_v1",
+    "hitFrame": 5
+   },
+   "death": {
+    "file": "sprites/battle/grey_wolf_death_v1.webp",
+    "frameWidth": 569,
+    "frameHeight": 320,
+    "frames": 30,
+    "fps": 24,
+    "originX": 0.5847,
+    "originY": 0.9695,
+    "bodyHeight": 300,
+    "key": "grey_wolf_death_v1",
+    "hold": true
+   },
+   "hit": {
+    "file": "sprites/battle/grey_wolf_hit_v1.webp",
+    "frameWidth": 569,
+    "frameHeight": 320,
+    "frames": 14,
+    "fps": 24,
+    "originX": 0.5847,
+    "originY": 0.9695,
+    "bodyHeight": 300,
+    "key": "grey_wolf_hit_v1"
+   },
    "idle": {
     "file": "sprites/battle/grey_wolf_idle_v1.webp",
     "frameWidth": 481,
@@ -1416,9 +1476,23 @@
     "bodyHeight": 300,
     "key": "grey_wolf_idle_v1",
     "loop": true
+   },
+   "victory": {
+    "file": "sprites/battle/grey_wolf_victory_v1.webp",
+    "frameWidth": 569,
+    "frameHeight": 320,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.5847,
+    "originY": 0.9695,
+    "bodyHeight": 300,
+    "key": "grey_wolf_victory_v1",
+    "hold": true
    }
   },
-  "actions": {},
+  "actions": {
+   "basic": "attack"
+  },
   "name": "Серый волк (бестиарий)"
  },
  "guard": {

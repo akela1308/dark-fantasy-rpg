@@ -1,0 +1,1 @@
+{"slug": "grey_wolf", "anim": "attack", "base": "grey_wolf/k_battle.png", "body": 300, "segments": [{"clip": "grey_wolf/clips/attack_v1.mp4", "from": 0, "to": 95, "frames": 29}], "hit": "auto", "right": 1.6, "left": 1.3}

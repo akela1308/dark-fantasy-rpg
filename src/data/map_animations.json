@@ -779,6 +779,37 @@
    14000
   ]
  },
+ "map_cat": {
+  "slug": "cat",
+  "idle": {
+   "file": "maps/characters/anim/cat_mapidle_v1.webp",
+   "frameWidth": 351,
+   "frameHeight": 286,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.4453,
+   "originY": 0.9718,
+   "bodyHeight": 260,
+   "key": "cat_mapidle_v1"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/cat_mapamb1_v1.webp",
+    "frameWidth": 416,
+    "frameHeight": 286,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4384,
+    "originY": 0.9718,
+    "bodyHeight": 260,
+    "key": "cat_mapamb1_v1"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
  "map_til": {
   "slug": "til",
   "idle": {

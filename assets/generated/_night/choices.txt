@@ -323,3 +323,11 @@ wild_dog attack 1 | рамка шире
 wild_dog death 1 | v2: вспышка
 wild_dog hit 1 | v2: голова становится волчьей
 wild_dog victory 1
+cat idle 1
+grey_wolf attack 1 | рамка шире
+grey_wolf death 1 | v2: волк кувыркается
+grey_wolf hit 1
+grey_wolf victory 1
+boar attack 2 | рамка шире
+boar hit 1 | брызги вырезаются
+boar hit 1 | кадры 1 и 3 выкинуты (стрела и брызги)
