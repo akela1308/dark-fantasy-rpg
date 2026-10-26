@@ -341,3 +341,9 @@ drowned death 2
 drowned hit 1
 kobold attack 2 | v1: появляется клинок вместо кирки; на базе кирки нет, кобл бьёт кулаком (предварительно)
 mavka cast2 2
+bandit_brawler death_r2 2 | повтор удался: дубина осталась деревянной
+dog death_r2 1
+dog victory_r2 2
+drowned victory 2
+kobold hit 2 | v1: появляется кирка; белые искры вырезаются
+kobold hit 2 | кадр 1 выкинут (искра)

@@ -3289,5 +3289,108 @@
   "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one small pickaxe in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
   "sec": 4,
   "n": 2
+ },
+ {
+  "name": "dog/clips/victory_r2",
+  "first": "dog/k_battle.png",
+  "prompt": "Victory: the animal stays on all four legs the whole clip, lifts its head and barks or roars once, then stands proudly still. It never stands up on its hind legs, never changes its body shape. The dog barks once with its head raised. No glow, no light, no sparks, no splashes, no impact lines, no effects of any kind. HANDS CANON: no weapon, fangs; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "stage": 5,
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "dog/clips/death_r2",
+  "first": "dog/k_battle.png",
+  "prompt": "The dog is fatally wounded: its legs give way and it slowly lies down on its side on the ground and stays still. It stays a normal dog the whole clip. No glow, no light, no sparks, no splashes, no impact lines, no effects of any kind. HANDS CANON: no weapon, fangs; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "stage": 5,
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "bandit_brawler/clips/power_r2",
+  "first": "bandit_brawler/k_battle.png",
+  "last": "bandit_brawler/k_battle.png",
+  "prompt": "One single crushing overhead smash to the right with the weapon raised high above the head, a heavy impact, then back into the same ready stance. The weapon is the SAME plain wooden club for the whole clip: plain wood, no metal, no spikes, it never changes shape. No glow, no light, no sparks, no splashes, no impact lines, no effects of any kind. HANDS CANON: one big wooden club held with both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "stage": 5,
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "bandit_brawler/clips/death_r2",
+  "first": "bandit_brawler/k_battle.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. The weapon is the SAME plain wooden club the whole clip: plain wood, no metal, no spikes. No glow, no light, no sparks, no splashes, no impact lines, no effects of any kind. HANDS CANON: one big wooden club held with both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "stage": 5,
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "kikimora/clips/attack_r2",
+  "first": "kikimora/k_battle.png",
+  "last": "kikimora/k_battle.png",
+  "prompt": "One single attack to the right: she lunges forward and rakes with her bare clawed hands, then recovers into the same stance. Her hands are EMPTY: no blades, no sickles, no weapons, only her own long claws. No glow, no light, no sparks, no splashes, no impact lines, no effects of any kind.",
+  "stage": 5,
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "healer/clips/victory_r2",
+  "first": "healer/k_battle.png",
+  "prompt": "Victory: she straightens up, lifts the herbs bundle a little and nods with a tired smile, then holds still. The staff stays plain dark wood the whole clip. No glow, no light, no sparks, no splashes, no impact lines, no effects of any kind. HANDS CANON: the gnarled wooden staff in the rear hand, a small bundle of dried herbs in the front hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "stage": 5,
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "healer/walk/stand_r2",
+  "first": "healer/walk/k_stand.png",
+  "last": "healer/walk/k_stand.png",
+  "prompt": "Stands still and breathes slowly and calmly, chest and shoulders rise and fall slightly, clothes move very gently, a small natural shift of weight. Subtle idle loop, ends in exactly the same pose. Does not walk, does not turn, does not gesture. Camera locked, no zoom. The staff stays plain dark wood. No glow, no light, no sparks, no splashes, no impact lines, no effects of any kind.",
+  "stage": 5,
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "bandit_commander/clips/amb1_r2",
+  "first": "bandit_commander/k_battle.png",
+  "last": "bandit_commander/k_battle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: he slowly points his sword forward as if giving an order, then lowers it. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. EXACTLY ONE sword in the whole clip, held in the front hand; the other hand is empty. No glow, no light, no sparks, no splashes, no impact lines, no effects of any kind.",
+  "stage": 5,
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "winter_queen/clips/death_r2",
+  "first": "winter_queen/k_battle.png",
+  "prompt": "She is fatally struck: she sways, sinks to her knees and falls, ending lying flat on the ground, completely still. She does not sit up. No glow, no light, no sparks, no splashes, no impact lines, no effects of any kind. HANDS CANON: one small sphere floating above the front hand, no other weapon; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "stage": 5,
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "swamp_elf/clips/hit_r2",
+  "first": "swamp_elf/k_battle.png",
+  "last": "swamp_elf/k_battle.png",
+  "prompt": "She flinches from one blow coming from the right: the body jerks back, the bow is LOWERED, she does NOT draw the bow, then she recovers into the same stance. No glow, no light, no sparks, no splashes, no impact lines, no effects of any kind. HANDS CANON: one bow held in the front hand, the rear hand free to draw the string; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "stage": 5,
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "archer_guard/clips/hit_r2",
+  "first": "archer_guard/k_battle.png",
+  "last": "archer_guard/k_battle.png",
+  "prompt": "He flinches from one blow coming from the right: the body jerks back, the bow is LOWERED, he does NOT draw the bow, then he recovers into the same stance. No glow, no light, no sparks, no splashes, no impact lines, no effects of any kind. HANDS CANON: one longbow held in the front hand, the rear hand free to draw the string; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "stage": 5,
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "winter_archer/clips/hit_r2",
+  "first": "winter_archer/k_battle.png",
+  "last": "winter_archer/k_battle.png",
+  "prompt": "He flinches from one blow coming from the right: the body jerks back, the bow is LOWERED, he does NOT draw the bow, then he recovers into the same stance. No glow, no light, no sparks, no splashes, no impact lines, no effects of any kind. HANDS CANON: one bow held in the front hand, the rear hand free to draw the string; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "stage": 5,
+  "sec": 4,
+  "n": 2
  }
 ]

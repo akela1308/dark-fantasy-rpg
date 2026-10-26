@@ -61,6 +61,8 @@ ACTION = {"attack": 1.2, "power": 1.6, "cast2": 1.5, "reload": 1.6, "hit": 0.6, 
 
 
 def spec_for(slug, clip, var, kv):
+    src_clip = clip                      # файл клипа (может быть повтор *_r2)
+    clip = clip.split("_r")[0]           # тип анимации для шаблона и имени листа
     t = dict(T["amb" if clip.startswith("amb") else clip])
     base = t.pop("base", None)
     if clip.startswith("amb"):
@@ -74,11 +76,11 @@ def spec_for(slug, clip, var, kv):
         a, b = best_loop(f"{GEN}/{slug}/clips/walk_v{var}.mp4".replace("/clips/", "/walk/"))
         fr = b - a + 1
     if clip in ACTION and "from" not in kv and kv.pop("trim", "1") == "1":
-        a, b = motion_range(f"{GEN}/{slug}/clips/{clip}_v{var}.mp4")
+        a, b = motion_range(f"{GEN}/{slug}/clips/{src_clip}_v{var}.mp4")
         fr = min(b - a + 1, max(12, round(ACTION[clip] * 24)))   # длительность действия по типу (ускорение)
         if clip == "victory": b = min(95, b + 12)                 # победа: задержка на финальной позе
     sub = "walk" if clip in ("walk", "stand") else "clips"
-    s["segments"] = [dict(clip=f"{slug}/{sub}/{clip}_v{var}.mp4", **{"from": a, "to": b, "frames": fr})]
+    s["segments"] = [dict(clip=f"{slug}/{sub}/{src_clip}_v{var}.mp4", **{"from": a, "to": b, "frames": fr})]
     if kv.pop("pingpong", None):   # туда и обратно: кадры a..b, потом обратно
         s["segments"] = [dict(clip=s["segments"][0]["clip"], **{"from": a, "to": b, "frames": fr // 2}),
                          dict(clip=s["segments"][0]["clip"], **{"from": b, "to": a, "frames": fr - fr // 2})]

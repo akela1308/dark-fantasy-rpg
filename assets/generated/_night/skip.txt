@@ -52,3 +52,6 @@ cat old_bidle
 cat old_idle
 drowned attack
 drowned power
+bandit_brawler power_r2
+kobold death
+kobold victory

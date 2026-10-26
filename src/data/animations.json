@@ -480,6 +480,18 @@
     "key": "bandit_brawler_attack_v1",
     "hitFrame": 10
    },
+   "death": {
+    "file": "sprites/battle/bandit_brawler_death_v1.webp",
+    "frameWidth": 600,
+    "frameHeight": 339,
+    "frames": 30,
+    "fps": 24,
+    "originX": 0.3514,
+    "originY": 0.9796,
+    "bodyHeight": 300,
+    "key": "bandit_brawler_death_v1",
+    "hold": true
+   },
    "hit": {
     "file": "sprites/battle/bandit_brawler_hit_v1.webp",
     "frameWidth": 510,
@@ -838,6 +850,18 @@
     "key": "dog_attack_v1",
     "hitFrame": 5
    },
+   "death": {
+    "file": "sprites/battle/dog_death_v1.webp",
+    "frameWidth": 624,
+    "frameHeight": 342,
+    "frames": 30,
+    "fps": 24,
+    "originX": 0.5163,
+    "originY": 0.9742,
+    "bodyHeight": 300,
+    "key": "dog_death_v1",
+    "hold": true
+   },
    "hit": {
     "file": "sprites/battle/dog_hit_v1.webp",
     "frameWidth": 624,
@@ -860,6 +884,18 @@
     "bodyHeight": 300,
     "key": "dog_idle_v1",
     "loop": true
+   },
+   "victory": {
+    "file": "sprites/battle/dog_victory_v1.webp",
+    "frameWidth": 624,
+    "frameHeight": 342,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.5163,
+    "originY": 0.9742,
+    "bodyHeight": 300,
+    "key": "dog_victory_v1",
+    "hold": true
    }
   },
   "actions": {
@@ -903,6 +939,18 @@
     "bodyHeight": 300,
     "key": "drowned_idle_v1",
     "loop": true
+   },
+   "victory": {
+    "file": "sprites/battle/drowned_victory_v1.webp",
+    "frameWidth": 555,
+    "frameHeight": 319,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.46,
+    "originY": 0.9699,
+    "bodyHeight": 300,
+    "key": "drowned_victory_v1",
+    "hold": true
    }
   },
   "actions": {},
@@ -1900,6 +1948,17 @@
     "bodyHeight": 300,
     "key": "kobold_attack_v1",
     "hitFrame": 6
+   },
+   "hit": {
+    "file": "sprites/battle/kobold_hit_v1.webp",
+    "frameWidth": 547,
+    "frameHeight": 321,
+    "frames": 13,
+    "fps": 24,
+    "originX": 0.4529,
+    "originY": 0.9695,
+    "bodyHeight": 300,
+    "key": "kobold_hit_v1"
    },
    "idle": {
     "file": "sprites/battle/kobold_idle_v1.webp",
