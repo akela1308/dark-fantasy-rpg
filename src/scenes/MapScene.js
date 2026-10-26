@@ -3,6 +3,8 @@ import * as Phaser from 'phaser/dist/phaser.esm.js';
 import { MapUnit }       from '../entities/MapUnit.js';
 import { PlayerUnit }    from '../entities/PlayerUnit.js';
 import { WalkableZones } from '../systems/WalkableZones.js';
+import { findPath } from '../systems/Pathfinding.js';
+import WALK_GRIDS from '../data/walkgrid.json';
 import { MusicPlayer }   from '../ui/MusicPlayer.js';
 import { DialoguePanel } from '../ui/DialoguePanel.js';
 import eventBus           from '../utils/eventBus.js';
@@ -79,7 +81,8 @@ export class MapScene extends Phaser.Scene {
     }
 
     // Зоны хождения - создаём ДО клампинга спавна
-    this.walkable = new WalkableZones(this.mapKey, cfg.walk);
+    // Сетка ходьбы: ручная маска из walkgrid.json, иначе из прямоугольников walk
+    this.walkable = new WalkableZones(this.mapKey, cfg.walk, WALK_GRIDS[this.mapKey]);
     // this.walkable.drawDebug(this); // раскомментируй для отладки зон
 
     // Клампим спавн на случай если он вне walkable зоны
@@ -90,6 +93,15 @@ export class MapScene extends Phaser.Scene {
     this.hero    = new MapUnit(this, spawn.x,       spawn.y, 'map_hero',    { height: Math.round(130 * s), speed: 130, idlePeriod: 2800, paperdoll: false, walkSpriteKey: 'map_hero_walk_side', walkFrames: 29, walkFrameRate: 24, walkFrameContentHeight: 251, idleSpriteKey: 'map_hero_stand', idleFrames: 96, idleFrameRate: 24, idleFrameContentHeight: 251, idleOriginX: 0.56 });
     this.brawler = new MapUnit(this, spawn.x - 65,  spawn.y, 'map_brawler', { height: Math.round(136 * s), speed: 130, idlePeriod: 3400, paperdoll: false, walkSpriteKey: 'map_brawler_walk_v4', walkFrames: 23, walkFrameRate: 24, walkFrameContentHeight: 251, idleSpriteKey: 'map_brawler_stand_v1', idleFrames: 95, idleFrameRate: 24, idleFrameContentHeight: 251 });
     this.healer  = new MapUnit(this, spawn.x - 120, spawn.y, 'map_healer',  { height: Math.round(128 * s), speed: 130, idlePeriod: 2200, paperdoll: false, walkSpriteKey: 'map_healer_walk_v3', walkFrames: 25, walkFrameRate: 24, walkFrameContentHeight: 274, idleSpriteKey: 'map_healer_stand_v1', idleFrames: 95, idleFrameRate: 24, idleFrameContentHeight: 274 }); // 274: в высоту кадра входит посох выше головы
+
+    // Спутники за героем, но только на проходимых клетках (у края карты сдвиг уводил их за кадр)
+    [[this.brawler, 65], [this.healer, 120]].forEach(([u, dx]) => {
+      const p = this.walkable.clamp(spawn.x - dx, spawn.y);
+      const ok = findPath(this.walkable, spawn.x, spawn.y, p.x, p.y, { maxSnap: 0 }) ? p : this.walkable.clamp(spawn.x, spawn.y);
+      u.sprite.x = u.targetX = ok.x;
+      u.sprite.y = u.targetY = ok.y;
+      u.shadow?.setPosition(ok.x, ok.y + 2);
+    });
 
     this._heroTrail     = [];
     this._trailInterval = 0;
@@ -179,9 +191,7 @@ export class MapScene extends Phaser.Scene {
     this.input.on('pointerdown', (ptr, over = []) => {
       if (ptr.rightButtonDown()) return;
       if (this._uiBlocksMapClick(over)) return;
-      const clamped = this.walkable.clamp(ptr.worldX, ptr.worldY);
-      this.hero.moveTo(clamped.x, clamped.y);
-      this._showClickMarker(clamped.x, clamped.y);
+      this._walkHeroTo(ptr.worldX, ptr.worldY);
     });
 
     this._clickMarker = this.add.graphics().setDepth(20);
@@ -212,7 +222,7 @@ export class MapScene extends Phaser.Scene {
     if (import.meta.env.DEV) {
       this.input.keyboard.on('keydown-G', () => this._toggleDevGrid());
       this.input.keyboard.on('keydown-H', () => this._toggleScreenGrid());
-      this.input.keyboard.on('keydown-B', () => this._toggleInvGrid());
+      this.input.keyboard.on('keydown-B', () => { if (!window.__mapEditor?.active) this._toggleInvGrid(); });
       this.input.keyboard.on('keydown-J', () => this._toggleFineGrid());
     }
     // TEMP: прод-тест прокачки. Убрать после проверки веток классов.
@@ -369,7 +379,7 @@ export class MapScene extends Phaser.Scene {
     const pos = this._heroTrail[idx];
     if (pos) {
       const clamped = this.walkable.clamp(pos.x, pos.y);
-      unit.moveTo(clamped.x, clamped.y);
+      this._walkCompanionTo(unit, clamped.x, clamped.y);
     }
   }
 
@@ -386,11 +396,13 @@ export class MapScene extends Phaser.Scene {
       const dist = Math.sqrt(dx * dx + dy * dy);
       if (dist < MIN && dist > 0.1) {
         const push = MIN - dist;
-        b.sprite.x += (dx / dist) * push;
-        b.sprite.y += (dy / dist) * push;
-        const clamped = this.walkable.clamp(b.sprite.x, b.sprite.y);
-        b.sprite.x = clamped.x;
-        b.sprite.y = clamped.y;
+        const nx = b.sprite.x + (dx / dist) * push;
+        const ny = b.sprite.y + (dy / dist) * push;
+        // Толчок не должен уводить за угол стены: и сам сдвиг, и дорога от новой точки к цели чистые
+        const w = this.walkable;
+        if (!w.lineClear(b.sprite.x, b.sprite.y, nx, ny) || (b.moving && !w.lineClear(nx, ny, b.targetX, b.targetY))) continue;
+        b.sprite.x = nx;
+        b.sprite.y = ny;
         b.shadow.setPosition(b.sprite.x, b.sprite.y + 2);
         // Если юнит стоит - обновляем цель чтобы не было обратного движения
         if (!b.moving) {
@@ -1743,6 +1755,36 @@ export class MapScene extends Phaser.Scene {
   }
 
   // ─── HUD ─────────────────────────────────────────────────────────────────
+
+  /** Герой идёт к точке по пути. Нет пути (клик в лес, небо, крышу далеко от дороги): стоит, знак «нельзя». */
+  _walkHeroTo(x, y) {
+    if (window.__mapEditor?.active) return false;   // редактор зон: клики рисуют маску
+    const res = findPath(this.walkable, this.hero.x, this.hero.y, x, y);
+    if (!res) { this._showNoGoMarker(x, y); return false; }
+    this.hero.followPath(res.points);
+    const end = res.points[res.points.length - 1];
+    this._showClickMarker(end.x, end.y);
+    return true;
+  }
+
+  /** Спутник к точке следа: напрямую, если по прямой проходимо, иначе в обход. */
+  _walkCompanionTo(unit, x, y) {
+    if (this.walkable.lineClear(unit.x, unit.y, x, y, 4)) { unit.moveTo(x, y); return; }
+    // Уже идёт в обход к той же точке: путь не пересчитываем каждый кадр
+    if (unit._path && unit._pathGoal && Math.hypot(unit._pathGoal.x - x, unit._pathGoal.y - y) < 40) return;
+    const res = findPath(this.walkable, unit.x, unit.y, x, y);
+    if (!res) return;
+    unit.followPath(res.points);
+    unit._pathGoal = { x, y };
+  }
+
+  _showNoGoMarker(x, y) {
+    const g = this.add.graphics().setDepth(20);
+    g.lineStyle(3, 0xA03028, 0.9);
+    g.strokeCircle(x, y, 13);
+    g.lineBetween(x - 9, y - 9, x + 9, y + 9);
+    this.tweens.add({ targets: g, alpha: 0, delay: 250, duration: 450, onComplete: () => g.destroy() });
+  }
 
   _showClickMarker(x, y) {
     this._clickMarker.clear();

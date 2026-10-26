@@ -153,7 +153,16 @@ export class MapUnit {
   get x() { return this.sprite.x; }
   get y() { return this.sprite.y; }
 
+  /** Идти по точкам пути (Pathfinding): отрезок за отрезком, без остановки на поворотах. */
+  followPath(points) {
+    if (!points?.length) return;
+    this._path = points.slice(1);
+    this.targetX = points[0].x;
+    this.targetY = points[0].y;
+  }
+
   moveTo(tx, ty) {
+    this._path = null;
     const dx = tx - this.sprite.x;
     const dy = ty - this.sprite.y;
     if (Math.sqrt(dx * dx + dy * dy) > 15) {
@@ -163,6 +172,7 @@ export class MapUnit {
   }
 
   stopMove() {
+    this._path = null;
     this.targetX = this.sprite.x;
     this.targetY = this.sprite.y;
     this.moving  = false;
@@ -171,6 +181,15 @@ export class MapUnit {
   }
 
   update(delta) {
+    // Дошёл до поворота: встаём точно в точку пути (не срезая угол) и берём следующую
+    const reach = Math.max(1, this.speed * (delta / 1000));
+    while (this._path?.length && Math.hypot(this.targetX - this.sprite.x, this.targetY - this.sprite.y) <= reach) {
+      this.sprite.x = this.targetX;
+      this.sprite.y = this.targetY;
+      const p = this._path.shift();
+      this.targetX = p.x;
+      this.targetY = p.y;
+    }
     const dx   = this.targetX - this.sprite.x;
     const dy   = this.targetY - this.sprite.y;
     const dist = Math.sqrt(dx * dx + dy * dy);

@@ -1,5 +1,6 @@
 import * as Phaser from 'phaser/dist/phaser.esm.js';
 import MAP_CONFIGS from '../data/maps.json';
+import { loadSheetOnce } from '../utils/loadOnce.js';
 import { Sfx } from '../systems/Sfx.js';
 import { PartySystem } from '../systems/PartySystem.js';
 
@@ -226,30 +227,8 @@ export function preloadCompanionSheets(scene, only) {
   Object.entries(SHEETS).forEach(([id, list]) => {
     if (!only.includes(id)) return;
     list.forEach(([key, file, frameWidth, frameHeight]) => {
-      if (scene.textures.exists(key) || isPending(key)) return;
-      markPending(scene, key);
-      scene.load.spritesheet(key, file, { frameWidth, frameHeight });
-      n++;
+      if (loadSheetOnce(scene, key, file, { frameWidth, frameHeight })) n++;
     });
   });
   return n;
-}
-
-// Лист, который уже качает загрузчик другой сцены. У каждой сцены свой загрузчик, и textures.exists
-// не видит файл в пути: без этой метки быстрый переход ставил тот же ключ второй раз
-// («Texture key already in use»). Файл ушедшей сцены всё равно дописывается в текстуры.
-const pendingSheets = new Map();
-const PENDING_TTL = 60000;
-
-function isPending(key) {
-  const t = pendingSheets.get(key);
-  if (t && performance.now() - t < PENDING_TTL) return true;
-  pendingSheets.delete(key);
-  return false;
-}
-
-function markPending(scene, key) {
-  pendingSheets.set(key, performance.now());
-  scene.textures.once(`addtexture-${key}`, () => pendingSheets.delete(key));
-  scene.load.on('loaderror', f => { if (f.key === key) pendingSheets.delete(key); });
 }

@@ -11,29 +11,29 @@
         "y": 640
       },
       "from_right": {
-        "x": 1530,
-        "y": 480
+        "x": 1465,
+        "y": 380
       },
       "from_three_pillars": {
-        "x": 80,
-        "y": 686
+        "x": 100,
+        "y": 660
       },
       "from_dead_road": {
-        "x": 1521,
-        "y": 502
+        "x": 1550,
+        "y": 525
       },
       "from_ruin_crypt": {
-        "x": 1253,
-        "y": 542
+        "x": 585,
+        "y": 548
       }
     },
     "exits": [
       {
         "zone": {
-          "x": 1588,
-          "y": 360,
-          "w": 84,
-          "h": 165
+          "x": 1420,
+          "y": 236,
+          "w": 100,
+          "h": 90
         },
         "toMap": "tavern_map",
         "spawnId": "from_left"
@@ -41,35 +41,32 @@
       {
         "zone": {
           "x": 0,
-          "y": 626,
-          "w": 18,
-          "h": 120
+          "y": 590,
+          "w": 76,
+          "h": 160
         },
         "toMap": "three_pillars",
-        "spawnId": "from_map1",
-        "auto": true
+        "spawnId": "from_map1"
       },
       {
         "zone": {
-          "x": 1461,
-          "y": 432,
-          "w": 120,
-          "h": 18
+          "x": 1596,
+          "y": 455,
+          "w": 76,
+          "h": 130
         },
         "toMap": "dead_road",
-        "spawnId": "from_map1",
-        "auto": true
+        "spawnId": "from_map1"
       },
       {
         "zone": {
-          "x": 1193,
-          "y": 472,
-          "w": 120,
-          "h": 18
+          "x": 545,
+          "y": 400,
+          "w": 84,
+          "h": 96
         },
         "toMap": "ruin_crypt",
-        "spawnId": "from_map1",
-        "auto": true
+        "spawnId": "from_map1"
       }
     ],
     "labels": [
@@ -282,24 +279,24 @@
         "y": 820
       },
       "tavern_exit": {
-        "x": 1350,
-        "y": 560
+        "x": 1500,
+        "y": 575
       },
       "from_road_boloto": {
-        "x": 310,
-        "y": 380
+        "x": 100,
+        "y": 450
       },
       "from_forest": {
         "x": 1450,
         "y": 750
       },
       "from_north_road": {
-        "x": 295,
-        "y": 500
+        "x": 160,
+        "y": 420
       },
       "from_tavern_cellar": {
-        "x": 625,
-        "y": 585
+        "x": 590,
+        "y": 520
       }
     },
     "exits": [
@@ -316,9 +313,9 @@
       {
         "zone": {
           "x": 0,
-          "y": 130,
-          "w": 220,
-          "h": 390
+          "y": 380,
+          "w": 76,
+          "h": 150
         },
         "toMap": "road_boloto",
         "spawnId": "from_tavern"
@@ -335,27 +332,25 @@
       },
       {
         "zone": {
-          "x": 235,
-          "y": 430,
-          "w": 120,
-          "h": 18
+          "x": 110,
+          "y": 296,
+          "w": 100,
+          "h": 84
         },
         "toMap": "north_road",
         "spawnId": "from_tavern_map",
-        "auto": true,
         "lockedIfFlag": "north_closed",
         "lockedText": "Северный тракт перекрыт."
       },
       {
         "zone": {
-          "x": 565,
-          "y": 515,
-          "w": 120,
-          "h": 18
+          "x": 548,
+          "y": 400,
+          "w": 84,
+          "h": 84
         },
         "toMap": "tavern_cellar",
         "spawnId": "from_tavern_map",
-        "auto": true,
         "requiresFlag": "cellar_open",
         "lockedText": "Люк заперт. Ключ у Савко."
       }
@@ -419,10 +414,10 @@
     ],
     "tavernEntry": {
       "zone": {
-        "x": 1440,
-        "y": 368,
-        "w": 232,
-        "h": 175
+        "x": 1452,
+        "y": 440,
+        "w": 100,
+        "h": 96
       },
       "toMap": "tavern_inside",
       "spawnId": "default"
@@ -680,8 +675,8 @@
         "y": 680
       },
       "from_tavern_rooms": {
-        "x": 493,
-        "y": 428
+        "x": 478,
+        "y": 400
       }
     },
     "exits": [
@@ -697,14 +692,13 @@
       },
       {
         "zone": {
-          "x": 433,
-          "y": 358,
-          "w": 120,
-          "h": 18
+          "x": 430,
+          "y": 290,
+          "w": 96,
+          "h": 90
         },
         "toMap": "tavern_rooms",
-        "spawnId": "from_tavern_inside",
-        "auto": true
+        "spawnId": "from_tavern_inside"
       }
     ],
     "labels": [
@@ -2502,8 +2496,8 @@
         "y": 720
       },
       "from_winter_forest": {
-        "x": 820,
-        "y": 470
+        "x": 1480,
+        "y": 545
       }
     },
     "exits": [
@@ -2519,14 +2513,13 @@
       },
       {
         "zone": {
-          "x": 760,
+          "x": 1450,
           "y": 400,
-          "w": 120,
-          "h": 18
+          "w": 100,
+          "h": 100
         },
         "toMap": "winter_forest",
         "spawnId": "from_kingthrone",
-        "auto": true,
         "lockedIfFlag": "north_closed",
         "lockedText": "Снег ещё не сошёл с перевала."
       }
@@ -2931,8 +2924,8 @@
         "y": 640
       },
       "from_gatehouse": {
-        "x": 705,
-        "y": 540
+        "x": 1210,
+        "y": 640
       }
     },
     "exits": [
@@ -2958,14 +2951,13 @@
       },
       {
         "zone": {
-          "x": 645,
-          "y": 470,
-          "w": 120,
-          "h": 18
+          "x": 1170,
+          "y": 530,
+          "w": 84,
+          "h": 84
         },
         "toMap": "gatehouse",
-        "spawnId": "from_gate",
-        "auto": true
+        "spawnId": "from_gate"
       }
     ],
     "labels": [
@@ -3498,40 +3490,38 @@
     "walkTemplate": "diagonal",
     "spawnPoints": {
       "from_three_pillars": {
-        "x": 1510,
-        "y": 620
+        "x": 1545,
+        "y": 300
       },
       "default": {
-        "x": 1508,
-        "y": 603
+        "x": 1370,
+        "y": 370
       },
       "from_old_mill": {
-        "x": 835,
-        "y": 730
+        "x": 110,
+        "y": 735
       }
     },
     "exits": [
       {
         "zone": {
-          "x": 1572,
-          "y": 540,
-          "w": 100,
+          "x": 1596,
+          "y": 190,
+          "w": 76,
           "h": 160
         },
         "toMap": "three_pillars",
-        "spawnId": "from_south_post",
-        "auto": true
+        "spawnId": "from_south_post"
       },
       {
         "zone": {
-          "x": 775,
-          "y": 782,
-          "w": 120,
-          "h": 18
+          "x": 0,
+          "y": 660,
+          "w": 70,
+          "h": 200
         },
         "toMap": "old_mill",
-        "spawnId": "from_south_post",
-        "auto": true
+        "spawnId": "from_south_post"
       }
     ],
     "labels": [
@@ -4013,70 +4003,66 @@
     "walkTemplate": "y_fork",
     "spawnPoints": {
       "from_south_post": {
-        "x": 160,
-        "y": 620
+        "x": 100,
+        "y": 470
       },
       "from_map1": {
-        "x": 1510,
-        "y": 620
+        "x": 1570,
+        "y": 470
       },
       "from_three_pillars_inside": {
-        "x": 1150,
-        "y": 530
+        "x": 1090,
+        "y": 372
       },
       "default": {
-        "x": 160,
-        "y": 620
+        "x": 100,
+        "y": 470
       },
       "from_burned_hamlet": {
-        "x": 835,
-        "y": 730
+        "x": 800,
+        "y": 650
       }
     },
     "exits": [
       {
         "zone": {
           "x": 0,
-          "y": 540,
-          "w": 100,
-          "h": 160
+          "y": 395,
+          "w": 76,
+          "h": 155
         },
         "toMap": "south_post",
-        "spawnId": "from_three_pillars",
-        "auto": true
+        "spawnId": "from_three_pillars"
       },
       {
         "zone": {
-          "x": 1572,
-          "y": 540,
-          "w": 100,
-          "h": 160
+          "x": 1596,
+          "y": 395,
+          "w": 76,
+          "h": 155
         },
         "toMap": "map1",
-        "spawnId": "from_three_pillars",
-        "auto": true
+        "spawnId": "from_three_pillars"
       },
       {
         "zone": {
-          "x": 1090,
-          "y": 440,
-          "w": 120,
-          "h": 24
+          "x": 1048,
+          "y": 250,
+          "w": 84,
+          "h": 84
         },
         "toMap": "three_pillars_inside",
-        "spawnId": "from_three_pillars",
-        "auto": true
+        "spawnId": "from_three_pillars"
       },
       {
         "zone": {
-          "x": 775,
-          "y": 782,
-          "w": 120,
-          "h": 18
+          "x": 690,
+          "y": 712,
+          "w": 220,
+          "h": 84
         },
         "toMap": "burned_hamlet",
-        "spawnId": "from_three_pillars",
-        "auto": true
+        "spawnId": "from_three_pillars"
       }
     ],
     "labels": [
@@ -4831,25 +4817,24 @@
     "walkTemplate": "room",
     "spawnPoints": {
       "from_three_pillars": {
-        "x": 840,
-        "y": 800
+        "x": 1170,
+        "y": 400
       },
       "default": {
-        "x": 840,
-        "y": 800
+        "x": 1170,
+        "y": 400
       }
     },
     "exits": [
       {
         "zone": {
-          "x": 760,
-          "y": 880,
-          "w": 160,
-          "h": 61
+          "x": 1128,
+          "y": 250,
+          "w": 84,
+          "h": 96
         },
         "toMap": "three_pillars",
-        "spawnId": "from_three_pillars_inside",
-        "auto": true
+        "spawnId": "from_three_pillars_inside"
       }
     ],
     "labels": [
@@ -4936,55 +4921,52 @@
     "walkTemplate": "y_fork",
     "spawnPoints": {
       "from_south_post": {
-        "x": 840,
-        "y": 330
+        "x": 960,
+        "y": 95
       },
       "from_mill_inside": {
-        "x": 1150,
+        "x": 1165,
         "y": 530
       },
       "from_burned_hamlet": {
-        "x": 1510,
-        "y": 620
+        "x": 1560,
+        "y": 590
       },
       "default": {
-        "x": 840,
-        "y": 330
+        "x": 960,
+        "y": 95
       }
     },
     "exits": [
       {
         "zone": {
-          "x": 760,
-          "y": 200,
-          "w": 160,
-          "h": 60
+          "x": 930,
+          "y": 0,
+          "w": 130,
+          "h": 84
         },
         "toMap": "south_post",
-        "spawnId": "from_old_mill",
-        "auto": true
+        "spawnId": "from_old_mill"
       },
       {
         "zone": {
-          "x": 1090,
-          "y": 440,
-          "w": 120,
-          "h": 24
+          "x": 1124,
+          "y": 384,
+          "w": 84,
+          "h": 96
         },
         "toMap": "mill_inside",
-        "spawnId": "from_old_mill",
-        "auto": true
+        "spawnId": "from_old_mill"
       },
       {
         "zone": {
-          "x": 1572,
-          "y": 540,
-          "w": 100,
-          "h": 160
+          "x": 1596,
+          "y": 490,
+          "w": 76,
+          "h": 190
         },
         "toMap": "burned_hamlet",
-        "spawnId": "from_old_mill",
-        "auto": true
+        "spawnId": "from_old_mill"
       }
     ],
     "labels": [
@@ -5592,25 +5574,24 @@
     "walkTemplate": "room",
     "spawnPoints": {
       "from_old_mill": {
-        "x": 840,
-        "y": 800
+        "x": 430,
+        "y": 545
       },
       "default": {
-        "x": 840,
-        "y": 800
+        "x": 430,
+        "y": 545
       }
     },
     "exits": [
       {
         "zone": {
-          "x": 760,
-          "y": 880,
-          "w": 160,
-          "h": 61
+          "x": 300,
+          "y": 396,
+          "w": 100,
+          "h": 104
         },
         "toMap": "old_mill",
-        "spawnId": "from_mill_inside",
-        "auto": true
+        "spawnId": "from_mill_inside"
       }
     ],
     "labels": [
@@ -5657,55 +5638,52 @@
     "walkTemplate": "ring",
     "spawnPoints": {
       "from_old_mill": {
-        "x": 160,
-        "y": 620
+        "x": 95,
+        "y": 545
       },
       "from_three_pillars": {
         "x": 840,
-        "y": 330
+        "y": 125
       },
       "from_hermit_cave": {
-        "x": 1510,
-        "y": 620
+        "x": 1560,
+        "y": 565
       },
       "default": {
-        "x": 160,
-        "y": 620
+        "x": 95,
+        "y": 545
       }
     },
     "exits": [
       {
         "zone": {
           "x": 0,
-          "y": 540,
-          "w": 100,
-          "h": 160
+          "y": 450,
+          "w": 76,
+          "h": 200
         },
         "toMap": "old_mill",
-        "spawnId": "from_burned_hamlet",
-        "auto": true
+        "spawnId": "from_burned_hamlet"
       },
       {
         "zone": {
-          "x": 760,
-          "y": 200,
-          "w": 160,
-          "h": 60
+          "x": 775,
+          "y": 0,
+          "w": 130,
+          "h": 84
         },
         "toMap": "three_pillars",
-        "spawnId": "from_burned_hamlet",
-        "auto": true
+        "spawnId": "from_burned_hamlet"
       },
       {
         "zone": {
-          "x": 1572,
-          "y": 540,
-          "w": 100,
-          "h": 160
+          "x": 1596,
+          "y": 480,
+          "w": 76,
+          "h": 170
         },
         "toMap": "hermit_cave",
-        "spawnId": "from_burned_hamlet",
-        "auto": true
+        "spawnId": "from_burned_hamlet"
       }
     ],
     "labels": [
@@ -6998,40 +6976,38 @@
     "walkTemplate": "diagonal",
     "spawnPoints": {
       "from_map1": {
-        "x": 840,
-        "y": 800
+        "x": 90,
+        "y": 750
       },
       "from_gallows_hill": {
-        "x": 1510,
-        "y": 620
+        "x": 1560,
+        "y": 245
       },
       "default": {
-        "x": 840,
-        "y": 800
+        "x": 90,
+        "y": 750
       }
     },
     "exits": [
       {
         "zone": {
-          "x": 760,
-          "y": 880,
-          "w": 160,
-          "h": 61
+          "x": 0,
+          "y": 630,
+          "w": 76,
+          "h": 250
         },
         "toMap": "map1",
-        "spawnId": "from_dead_road",
-        "auto": true
+        "spawnId": "from_dead_road"
       },
       {
         "zone": {
-          "x": 1572,
-          "y": 540,
-          "w": 100,
-          "h": 160
+          "x": 1596,
+          "y": 130,
+          "w": 76,
+          "h": 210
         },
         "toMap": "gallows_hill",
-        "spawnId": "from_dead_road",
-        "auto": true
+        "spawnId": "from_dead_road"
       }
     ],
     "labels": [
@@ -14168,55 +14144,52 @@
     "walkTemplate": "y_fork",
     "spawnPoints": {
       "from_kingthrone": {
-        "x": 840,
-        "y": 800
+        "x": 835,
+        "y": 660
       },
       "from_frozen_lake": {
-        "x": 160,
-        "y": 620
+        "x": 440,
+        "y": 400
       },
       "from_winter_grad_gate": {
-        "x": 840,
-        "y": 330
+        "x": 835,
+        "y": 140
       },
       "default": {
-        "x": 840,
-        "y": 800
+        "x": 835,
+        "y": 660
       }
     },
     "exits": [
       {
         "zone": {
-          "x": 760,
-          "y": 880,
-          "w": 160,
-          "h": 61
+          "x": 720,
+          "y": 706,
+          "w": 240,
+          "h": 84
         },
         "toMap": "kingthrone",
-        "spawnId": "from_winter_forest",
-        "auto": true
+        "spawnId": "from_winter_forest"
       },
       {
         "zone": {
-          "x": 0,
-          "y": 540,
+          "x": 300,
+          "y": 270,
           "w": 100,
-          "h": 160
+          "h": 100
         },
         "toMap": "frozen_lake",
-        "spawnId": "from_winter_forest",
-        "auto": true
+        "spawnId": "from_winter_forest"
       },
       {
         "zone": {
-          "x": 760,
-          "y": 200,
-          "w": 160,
-          "h": 60
+          "x": 775,
+          "y": 0,
+          "w": 110,
+          "h": 84
         },
         "toMap": "winter_grad_gate",
-        "spawnId": "from_winter_forest",
-        "auto": true
+        "spawnId": "from_winter_forest"
       }
     ],
     "labels": [
@@ -17143,40 +17116,38 @@
     "walkTemplate": "ring",
     "spawnPoints": {
       "from_north_road": {
-        "x": 840,
-        "y": 800
+        "x": 1520,
+        "y": 830
       },
       "from_outpost_inside": {
-        "x": 1150,
-        "y": 530
+        "x": 1525,
+        "y": 790
       },
       "default": {
-        "x": 840,
-        "y": 800
+        "x": 1520,
+        "y": 830
       }
     },
     "exits": [
       {
         "zone": {
-          "x": 760,
-          "y": 880,
-          "w": 160,
-          "h": 61
+          "x": 1596,
+          "y": 760,
+          "w": 76,
+          "h": 150
         },
         "toMap": "north_road",
-        "spawnId": "from_old_outpost",
-        "auto": true
+        "spawnId": "from_old_outpost"
       },
       {
         "zone": {
-          "x": 1090,
-          "y": 440,
-          "w": 120,
-          "h": 24
+          "x": 1478,
+          "y": 640,
+          "w": 90,
+          "h": 100
         },
         "toMap": "outpost_inside",
-        "spawnId": "from_old_outpost",
-        "auto": true
+        "spawnId": "from_old_outpost"
       }
     ],
     "labels": [

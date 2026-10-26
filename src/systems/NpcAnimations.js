@@ -10,6 +10,7 @@
  */
 import * as Phaser from 'phaser/dist/phaser.esm.js';
 import mapAnimData from '../data/map_animations.json';
+import { loadSheetOnce, whenTextures } from '../utils/loadOnce.js';
 
 export function getNpcAnimConfig(spriteKey) {
   return mapAnimData[spriteKey] ?? null;
@@ -66,8 +67,14 @@ export function attachNpcAnimations(scene, sprite, npc, h, feetY) {
 
   const missing = all.filter(a => !scene.textures.exists(a.key));
   if (!missing.length) { start(); return true; }
-  missing.forEach(a => scene.load.spritesheet(a.key, a.file, { frameWidth: a.frameWidth, frameHeight: a.frameHeight }));
-  scene.load.once('complete', start);
-  if (!scene.load.isLoading()) scene.load.start();
+  let started = false;
+  const once = () => { if (!started) { started = true; start(); } };
+  const queued = missing.filter(a => loadSheetOnce(scene, a.key, a.file, { frameWidth: a.frameWidth, frameHeight: a.frameHeight }));
+  // Листы могла уже качать прошлая сцена: ждём сами текстуры, а свою загрузку на случай ошибки файла
+  whenTextures(scene, missing.map(a => a.key), once);
+  if (queued.length) {
+    scene.load.once('complete', once);
+    if (!scene.load.isLoading()) scene.load.start();
+  }
   return true;
 }
