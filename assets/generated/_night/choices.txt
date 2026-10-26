@@ -230,3 +230,24 @@ shield death 1
 shield power 1
 shield victory 1
 brawler power 2 | кадр 17 выкинут (вспышка)
+adventurer death 2 | v1: в конце садится
+adventurer hit 2 | v1: белые линии
+adventurer reload 2
+adventurer victory 1
+archer_guard attack 1
+archer_guard death 2 | v1: в конце садится
+archer_guard victory 1
+drunkman attack 1 | v2: появляется меч
+drunkman death 1 | v2: встаёт, появляется сумка
+drunkman hit 2
+drunkman victory 2
+mountain_king attack 1 | v2: второй молот
+recruit attack 1
+recruit death 1 | v2: в конце садится
+recruit hit 1 | v2: меч переходит в другую руку
+recruit victory 1
+dwarf attack 1 | v2: топор меняет руку
+mountain_king power 1 | кадры со вспышкой удара выкидываются вырезкой
+mountain_king power 1 | кадры 21-22 выкинуты (брызги удара), рамка выше (молот обрезался)
+mountain_king attack 1 | рамка выше
+dwarf attack 1 | кадр 8 выкинут (вспышка)

@@ -24,6 +24,29 @@
     "key": "adventurer_attack_v1",
     "hitFrame": 3
    },
+   "death": {
+    "file": "sprites/battle/adventurer_death_v1.webp",
+    "frameWidth": 583,
+    "frameHeight": 328,
+    "frames": 30,
+    "fps": 24,
+    "originX": 0.6084,
+    "originY": 0.9758,
+    "bodyHeight": 300,
+    "key": "adventurer_death_v1",
+    "hold": true
+   },
+   "hit": {
+    "file": "sprites/battle/adventurer_hit_v1.webp",
+    "frameWidth": 484,
+    "frameHeight": 328,
+    "frames": 14,
+    "fps": 24,
+    "originX": 0.5275,
+    "originY": 0.9758,
+    "bodyHeight": 300,
+    "key": "adventurer_hit_v1"
+   },
    "idle": {
     "file": "sprites/battle/adventurer_idle_v1.webp",
     "frameWidth": 484,
@@ -35,6 +58,18 @@
     "bodyHeight": 300,
     "key": "adventurer_idle_v1",
     "loop": true
+   },
+   "victory": {
+    "file": "sprites/battle/adventurer_victory_v1.webp",
+    "frameWidth": 484,
+    "frameHeight": 328,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.5275,
+    "originY": 0.9758,
+    "bodyHeight": 300,
+    "key": "adventurer_victory_v1",
+    "hold": true
    }
   },
   "actions": {
@@ -62,6 +97,30 @@
  },
  "archer_guard": {
   "anims": {
+   "attack": {
+    "file": "sprites/battle/archer_guard_attack_v1.webp",
+    "frameWidth": 619,
+    "frameHeight": 340,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4104,
+    "originY": 0.972,
+    "bodyHeight": 300,
+    "key": "archer_guard_attack_v1",
+    "hitFrame": 15
+   },
+   "death": {
+    "file": "sprites/battle/archer_guard_death_v1.webp",
+    "frameWidth": 619,
+    "frameHeight": 340,
+    "frames": 30,
+    "fps": 24,
+    "originX": 0.4104,
+    "originY": 0.972,
+    "bodyHeight": 300,
+    "key": "archer_guard_death_v1",
+    "hold": true
+   },
    "idle": {
     "file": "sprites/battle/archer_guard_idle_v1.webp",
     "frameWidth": 420,
@@ -73,9 +132,23 @@
     "bodyHeight": 300,
     "key": "archer_guard_idle_v1",
     "loop": true
+   },
+   "victory": {
+    "file": "sprites/battle/archer_guard_victory_v1.webp",
+    "frameWidth": 554,
+    "frameHeight": 340,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4585,
+    "originY": 0.972,
+    "bodyHeight": 300,
+    "key": "archer_guard_victory_v1",
+    "hold": true
    }
   },
-  "actions": {},
+  "actions": {
+   "basic": "attack"
+  },
   "name": "Бран, лучник-страж"
  },
  "assassin": {
@@ -619,6 +692,41 @@
  },
  "drunkman": {
   "anims": {
+   "attack": {
+    "file": "sprites/battle/drunkman_attack_v1.webp",
+    "frameWidth": 595,
+    "frameHeight": 333,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.3647,
+    "originY": 0.9735,
+    "bodyHeight": 300,
+    "key": "drunkman_attack_v1",
+    "hitFrame": 8
+   },
+   "death": {
+    "file": "sprites/battle/drunkman_death_v1.webp",
+    "frameWidth": 595,
+    "frameHeight": 333,
+    "frames": 30,
+    "fps": 24,
+    "originX": 0.3647,
+    "originY": 0.9735,
+    "bodyHeight": 300,
+    "key": "drunkman_death_v1",
+    "hold": true
+   },
+   "hit": {
+    "file": "sprites/battle/drunkman_hit_v1.webp",
+    "frameWidth": 516,
+    "frameHeight": 333,
+    "frames": 14,
+    "fps": 24,
+    "originX": 0.4205,
+    "originY": 0.9735,
+    "bodyHeight": 300,
+    "key": "drunkman_hit_v1"
+   },
    "idle": {
     "file": "sprites/battle/drunkman_idle_v1.webp",
     "frameWidth": 474,
@@ -630,9 +738,23 @@
     "bodyHeight": 300,
     "key": "drunkman_idle_v1",
     "loop": true
+   },
+   "victory": {
+    "file": "sprites/battle/drunkman_victory_v1.webp",
+    "frameWidth": 516,
+    "frameHeight": 333,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4205,
+    "originY": 0.9735,
+    "bodyHeight": 300,
+    "key": "drunkman_victory_v1",
+    "hold": true
    }
   },
-  "actions": {},
+  "actions": {
+   "basic": "attack"
+  },
   "name": "Савко, пьяница-ключник"
  },
  "hero_duelist": {
@@ -768,6 +890,18 @@
     "bodyHeight": 300,
     "key": "dwarf_amb2_v1"
    },
+   "attack": {
+    "file": "sprites/battle/dwarf_attack_v1.webp",
+    "frameWidth": 626,
+    "frameHeight": 343,
+    "frames": 28,
+    "fps": 24,
+    "originX": 0.3893,
+    "originY": 0.9717,
+    "bodyHeight": 300,
+    "key": "dwarf_attack_v1",
+    "hitFrame": 8
+   },
    "idle": {
     "file": "sprites/battle/dwarf_idle_v1.webp",
     "frameWidth": 499,
@@ -781,7 +915,9 @@
     "loop": true
    }
   },
-  "actions": {},
+  "actions": {
+   "basic": "attack"
+  },
   "name": "Дагмар, дварф-воин"
  },
  "dwarf_beer1": {
@@ -1322,6 +1458,18 @@
  },
  "mountain_king": {
   "anims": {
+   "attack": {
+    "file": "sprites/battle/mountain_king_attack_v1.webp",
+    "frameWidth": 554,
+    "frameHeight": 312,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.369,
+    "originY": 0.9907,
+    "bodyHeight": 300,
+    "key": "mountain_king_attack_v1",
+    "hitFrame": 12
+   },
    "idle": {
     "file": "sprites/battle/mountain_king_idle_v1.webp",
     "frameWidth": 420,
@@ -1333,13 +1481,62 @@
     "bodyHeight": 300,
     "key": "mountain_king_idle_v1",
     "loop": true
+   },
+   "power": {
+    "file": "sprites/battle/mountain_king_power_v1.webp",
+    "frameWidth": 554,
+    "frameHeight": 312,
+    "frames": 36,
+    "fps": 24,
+    "originX": 0.369,
+    "originY": 0.9907,
+    "bodyHeight": 300,
+    "key": "mountain_king_power_v1",
+    "hitFrame": 20
    }
   },
-  "actions": {},
+  "actions": {
+   "basic": "attack"
+  },
   "name": "Горный король"
  },
  "recruit": {
   "anims": {
+   "attack": {
+    "file": "sprites/battle/recruit_attack_v1.webp",
+    "frameWidth": 626,
+    "frameHeight": 343,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.3925,
+    "originY": 0.9717,
+    "bodyHeight": 300,
+    "key": "recruit_attack_v1",
+    "hitFrame": 12
+   },
+   "death": {
+    "file": "sprites/battle/recruit_death_v1.webp",
+    "frameWidth": 626,
+    "frameHeight": 343,
+    "frames": 30,
+    "fps": 24,
+    "originX": 0.3925,
+    "originY": 0.9717,
+    "bodyHeight": 300,
+    "key": "recruit_death_v1",
+    "hold": true
+   },
+   "hit": {
+    "file": "sprites/battle/recruit_hit_v1.webp",
+    "frameWidth": 545,
+    "frameHeight": 343,
+    "frames": 14,
+    "fps": 24,
+    "originX": 0.4508,
+    "originY": 0.9717,
+    "bodyHeight": 300,
+    "key": "recruit_hit_v1"
+   },
    "idle": {
     "file": "sprites/battle/recruit_idle_v1.webp",
     "frameWidth": 419,
@@ -1351,9 +1548,23 @@
     "bodyHeight": 300,
     "key": "recruit_idle_v1",
     "loop": true
+   },
+   "victory": {
+    "file": "sprites/battle/recruit_victory_v1.webp",
+    "frameWidth": 545,
+    "frameHeight": 343,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4508,
+    "originY": 0.9717,
+    "bodyHeight": 300,
+    "key": "recruit_victory_v1",
+    "hold": true
    }
   },
-  "actions": {},
+  "actions": {
+   "basic": "attack"
+  },
   "name": "Мирко, рекрут"
  },
  "rowan": {

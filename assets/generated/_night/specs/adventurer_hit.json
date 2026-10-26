@@ -1,0 +1,1 @@
+{"slug": "adventurer", "anim": "hit", "base": "adventurer/k_battle.png", "body": 300, "segments": [{"clip": "adventurer/clips/hit_v2.mp4", "from": 0, "to": 95, "frames": 14}]}

@@ -1,0 +1,1 @@
+{"slug": "archer_guard", "anim": "death", "base": "archer_guard/k_battle.png", "body": 300, "segments": [{"clip": "archer_guard/clips/death_v2.mp4", "from": 0, "to": 95, "frames": 30}], "left": 1.5, "right": 1.3, "hold": true}

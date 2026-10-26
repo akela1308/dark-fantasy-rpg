@@ -75,7 +75,7 @@ def clean(a, warm):
     return a.clip(0, 255).astype(np.uint8)
 
 
-def base_box(base_png, left=0.85, right=1.0):
+def base_box(base_png, left=0.85, right=1.0, top=0.22):
     """Рамка персонажа в координатах видео 1280x720 по базовой позе."""
     im = Image.open(base_png).convert("RGB").resize((1280, 720), Image.LANCZOS)
     a = key(im)[..., 3] > 128
@@ -86,7 +86,7 @@ def base_box(base_png, left=0.85, right=1.0):
     fx = (feet.min() + feet.max()) / 2
     # запас: справа больше (удары вперёд), слева на падение, сверху на поднятое оружие
     bx0 = max(0, int(fx - left * bh)); bx1 = min(1280, int(fx + right * bh))
-    by0 = max(0, int(y0 - 0.22 * bh)); by1 = min(720, int(y1 + 0.03 * bh) + 2)
+    by0 = max(0, int(y0 - top * bh)); by1 = min(720, int(y1 + 0.03 * bh) + 2)
     return dict(box=[bx0, by0, bx1, by1], body=int(bh), feet_x=float(fx), feet_y=int(y1))
 
 
@@ -112,7 +112,7 @@ def qa_sheet(frames, path, bg, per=8, scale=0.8):
 
 def main(spec):
     slug, anim, ver = spec["slug"], spec["anim"], spec.get("ver", 1)
-    bx = base_box(os.path.join(GEN, spec["base"]), spec.get("left", 0.85), spec.get("right", 1.0))
+    bx = base_box(os.path.join(GEN, spec["base"]), spec.get("left", 0.85), spec.get("right", 1.0), spec.get("top", 0.22))
     x0, y0, x1, y1 = bx["box"]
     s = spec.get("body", 300) / bx["body"]
     W, H = int((x1 - x0) * s), int((y1 - y0) * s)

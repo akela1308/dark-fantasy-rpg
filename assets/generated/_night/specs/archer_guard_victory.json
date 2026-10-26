@@ -1,0 +1,1 @@
+{"slug": "archer_guard", "anim": "victory", "base": "archer_guard/k_battle.png", "body": 300, "segments": [{"clip": "archer_guard/clips/victory_v1.mp4", "from": 0, "to": 95, "frames": 29}], "hold": true}

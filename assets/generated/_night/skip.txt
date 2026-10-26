@@ -35,3 +35,8 @@ swamp_elf hit
 dog death
 dog victory
 shield hit
+archer_guard hit
+mountain_king death
+mountain_king hit
+recruit power
+mountain_king victory
