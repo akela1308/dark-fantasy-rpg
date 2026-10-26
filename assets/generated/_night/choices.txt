@@ -215,3 +215,18 @@ tavernman attack 1 | кадр 9 выкинут (тесак вытягивает�
 dog hit 2 | кадр 2 выкинут (вспышка)
 dog attack 1 | рамка шире
 tavernman victory 2
+bandit_commander attack 2 | v1: появляется круглый щит
+bandit_commander death 2
+bandit_commander hit 2
+bandit_commander power 2
+bandit_commander victory 1
+adventurer attack 1
+brawler attack 2 | v1: дубина исчезает в ударе
+brawler death 2 | v1: брызги
+brawler hit 1
+brawler power 2 | v1: белый серп-эффект
+shield attack 2 | v1: фиолетовый отлив дубины
+shield death 1
+shield power 1
+shield victory 1
+brawler power 2 | кадр 17 выкинут (вспышка)

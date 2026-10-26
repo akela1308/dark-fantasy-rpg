@@ -34,3 +34,4 @@ kikimora power
 swamp_elf hit
 dog death
 dog victory
+shield hit

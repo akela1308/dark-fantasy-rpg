@@ -12,6 +12,18 @@
     "bodyHeight": 300,
     "key": "adventurer_amb2_v1"
    },
+   "attack": {
+    "file": "sprites/battle/adventurer_attack_v1.webp",
+    "frameWidth": 528,
+    "frameHeight": 328,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.5682,
+    "originY": 0.9758,
+    "bodyHeight": 300,
+    "key": "adventurer_attack_v1",
+    "hitFrame": 3
+   },
    "idle": {
     "file": "sprites/battle/adventurer_idle_v1.webp",
     "frameWidth": 484,
@@ -25,7 +37,9 @@
     "loop": true
    }
   },
-  "actions": {},
+  "actions": {
+   "basic": "attack"
+  },
   "name": "Хольт, Искатель (бой)"
  },
  "agna": {
@@ -290,6 +304,41 @@
  },
  "bandit_commander": {
   "anims": {
+   "attack": {
+    "file": "sprites/battle/bandit_commander_attack_v1.webp",
+    "frameWidth": 608,
+    "frameHeight": 336,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.3574,
+    "originY": 0.9735,
+    "bodyHeight": 300,
+    "key": "bandit_commander_attack_v1",
+    "hitFrame": 10
+   },
+   "death": {
+    "file": "sprites/battle/bandit_commander_death_v1.webp",
+    "frameWidth": 607,
+    "frameHeight": 336,
+    "frames": 30,
+    "fps": 24,
+    "originX": 0.3579,
+    "originY": 0.9735,
+    "bodyHeight": 300,
+    "key": "bandit_commander_death_v1",
+    "hold": true
+   },
+   "hit": {
+    "file": "sprites/battle/bandit_commander_hit_v1.webp",
+    "frameWidth": 517,
+    "frameHeight": 336,
+    "frames": 14,
+    "fps": 24,
+    "originX": 0.4203,
+    "originY": 0.9735,
+    "bodyHeight": 300,
+    "key": "bandit_commander_hit_v1"
+   },
    "idle": {
     "file": "sprites/battle/bandit_commander_idle_v1.webp",
     "frameWidth": 475,
@@ -301,9 +350,35 @@
     "bodyHeight": 300,
     "key": "bandit_commander_idle_v1",
     "loop": true
+   },
+   "power": {
+    "file": "sprites/battle/bandit_commander_power_v1.webp",
+    "frameWidth": 608,
+    "frameHeight": 336,
+    "frames": 38,
+    "fps": 24,
+    "originX": 0.3574,
+    "originY": 0.9735,
+    "bodyHeight": 300,
+    "key": "bandit_commander_power_v1",
+    "hitFrame": 14
+   },
+   "victory": {
+    "file": "sprites/battle/bandit_commander_victory_v1.webp",
+    "frameWidth": 517,
+    "frameHeight": 336,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4203,
+    "originY": 0.9735,
+    "bodyHeight": 300,
+    "key": "bandit_commander_victory_v1",
+    "hold": true
    }
   },
-  "actions": {},
+  "actions": {
+   "basic": "attack"
+  },
   "name": "Корвин Сухой (Главарь)"
  },
  "boar": {
@@ -348,6 +423,41 @@
     "bodyHeight": 300,
     "key": "brawler_amb2_v1"
    },
+   "attack": {
+    "file": "sprites/battle/brawler_attack_v1.webp",
+    "frameWidth": 592,
+    "frameHeight": 331,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.3988,
+    "originY": 0.9735,
+    "bodyHeight": 300,
+    "key": "brawler_attack_v1",
+    "hitFrame": 10
+   },
+   "death": {
+    "file": "sprites/battle/brawler_death_v1.webp",
+    "frameWidth": 592,
+    "frameHeight": 331,
+    "frames": 30,
+    "fps": 24,
+    "originX": 0.3988,
+    "originY": 0.9735,
+    "bodyHeight": 300,
+    "key": "brawler_death_v1",
+    "hold": true
+   },
+   "hit": {
+    "file": "sprites/battle/brawler_hit_v1.webp",
+    "frameWidth": 536,
+    "frameHeight": 331,
+    "frames": 14,
+    "fps": 24,
+    "originX": 0.4405,
+    "originY": 0.9735,
+    "bodyHeight": 300,
+    "key": "brawler_hit_v1"
+   },
    "idle": {
     "file": "sprites/battle/brawler_idle_v1.webp",
     "frameWidth": 493,
@@ -359,9 +469,24 @@
     "bodyHeight": 300,
     "key": "brawler_idle_v1",
     "loop": true
+   },
+   "power": {
+    "file": "sprites/battle/brawler_power_v1.webp",
+    "frameWidth": 592,
+    "frameHeight": 331,
+    "frames": 37,
+    "fps": 24,
+    "originX": 0.3988,
+    "originY": 0.9735,
+    "bodyHeight": 300,
+    "key": "brawler_power_v1",
+    "hitFrame": 16
    }
   },
-  "actions": {},
+  "actions": {
+   "basic": "attack",
+   "heavy_strike": "power"
+  },
   "name": "Ворнаг (Боец)"
  },
  "cleaning_girl": {
@@ -1302,6 +1427,30 @@
     "bodyHeight": 300,
     "key": "shield_amb2_v1"
    },
+   "attack": {
+    "file": "sprites/battle/shield_attack_v1.webp",
+    "frameWidth": 610,
+    "frameHeight": 333,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.3905,
+    "originY": 0.9739,
+    "bodyHeight": 300,
+    "key": "shield_attack_v1",
+    "hitFrame": 13
+   },
+   "death": {
+    "file": "sprites/battle/shield_death_v1.webp",
+    "frameWidth": 610,
+    "frameHeight": 333,
+    "frames": 30,
+    "fps": 24,
+    "originX": 0.3905,
+    "originY": 0.9739,
+    "bodyHeight": 300,
+    "key": "shield_death_v1",
+    "hold": true
+   },
    "idle": {
     "file": "sprites/battle/shield_idle_v1.webp",
     "frameWidth": 494,
@@ -1313,9 +1462,36 @@
     "bodyHeight": 300,
     "key": "shield_idle_v1",
     "loop": true
+   },
+   "power": {
+    "file": "sprites/battle/shield_power_v1.webp",
+    "frameWidth": 610,
+    "frameHeight": 333,
+    "frames": 38,
+    "fps": 24,
+    "originX": 0.3905,
+    "originY": 0.9739,
+    "bodyHeight": 300,
+    "key": "shield_power_v1",
+    "hitFrame": 23
+   },
+   "victory": {
+    "file": "sprites/battle/shield_victory_v1.webp",
+    "frameWidth": 537,
+    "frameHeight": 333,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4436,
+    "originY": 0.9739,
+    "bodyHeight": 300,
+    "key": "shield_victory_v1",
+    "hold": true
    }
   },
-  "actions": {},
+  "actions": {
+   "basic": "attack",
+   "heavy_strike": "power"
+  },
   "name": "Щитоносец"
  },
  "swamp_elf_battle": {

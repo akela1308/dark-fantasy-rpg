@@ -11,7 +11,7 @@ jobs.json: [{"name": "brawler/clips/idle", "first": "brawler/k_idle.png", "last"
 Остановить: создать файл _night/STOP."""
 import json, os, sys, time, subprocess, datetime
 
-LIMIT = 420   # ~1350 $ по поправке 16 (Veo 4 с × 2 вар. ≈ 3,2 $)
+LIMIT = 410   # ~1350 $ по поправке 16 вместе с картинками (Veo 4 с × 2 вар. ≈ 3,2 $)
 BASE = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "assets", "generated"))
 C = os.path.join(os.path.dirname(os.path.abspath(__file__)), "veo_client.py")
 PY = sys.executable
