@@ -4769,7 +4769,7 @@
   },
   "three_pillars_inside": {
     "bgKey": "map_three_pillars_inside",
-    "image": "maps/gen/_placeholder.png",
+    "image": "maps/gen/three_pillars_inside_pick.jpg",
     "name": "Дорожный дом «Три столба», зал",
     "region": "Юг",
     "level": 1,
@@ -6640,7 +6640,7 @@
   },
   "tavern_rooms": {
     "bgKey": "map_tavern_rooms",
-    "image": "maps/gen/_placeholder.png",
+    "image": "maps/gen/tavern_rooms_pick.jpg",
     "name": "Комнаты наверху",
     "region": "Дорога",
     "level": 1,

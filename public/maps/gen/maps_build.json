@@ -2381,6 +2381,9 @@
    }
   ]
  },
+ "three_pillars_inside": {
+  "image": "maps/gen/three_pillars_inside_pick.jpg"
+ },
  "map1": {
   "props": [
    {
@@ -2720,6 +2723,9 @@
     "occluder": true
    }
   ]
+ },
+ "tavern_rooms": {
+  "image": "maps/gen/tavern_rooms_pick.jpg"
  },
  "tavern_cellar": {
   "image": "maps/gen/tavern_cellar_pick.jpg",
