@@ -1,5 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
 import { checkAll, loadWalkData } from './walkgrid.mjs';
 import { WalkableZones } from '../src/systems/WalkableZones.js';
 import { findPath } from '../src/systems/Pathfinding.js';
@@ -32,4 +33,25 @@ test('поиск пути обходит препятствие и не срез
   for (let i = 0; i < w.cells.length; i++) if (Math.floor(i / 70) < 10) w.cells[i] = 0;
   w.setCells(w.cells);
   assert.equal(findPath(w, 600, 600, 600, 30), null);
+});
+
+test('маршрут начала игры: зоны выходов не меньше 64×64 экранных px и не заходят под HUD', () => {
+  const { maps } = loadWalkData();
+  const ui = JSON.parse(fs.readFileSync(new URL('../src/data/ui.json', import.meta.url)));
+  const zoom = Math.min(1280 / 1672, 720 / 941);
+  const min = ui.exits.minHitPx / zoom;
+  const bad = [];
+  for (const key of START_ROUTE) {
+    const cfg = maps[key];
+    for (const e of [...(cfg.exits || []), ...(cfg.tavernEntry ? [cfg.tavernEntry] : [])]) {
+      const z = e.zone;
+      const w = Math.max(z.w, min), h = Math.max(z.h, min);
+      const hit = { x: z.x + z.w / 2 - w / 2, y: z.y + z.h / 2 - h / 2, w, h };
+      for (const [x, y, rw, rh] of ui.hud) {
+        if (hit.x < x + rw && hit.x + hit.w > x && hit.y < y + rh && hit.y + hit.h > y) bad.push(`${key} → ${e.toMap} под HUD`);
+      }
+      if (e.auto) bad.push(`${key} → ${e.toMap} стоит автоматически, не по картинке`);
+    }
+  }
+  assert.deepEqual(bad, []);
 });

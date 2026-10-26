@@ -5,6 +5,8 @@ import { PlayerUnit }    from '../entities/PlayerUnit.js';
 import { WalkableZones } from '../systems/WalkableZones.js';
 import { findPath } from '../systems/Pathfinding.js';
 import WALK_GRIDS from '../data/walkgrid.json';
+import { ExitMarkers } from '../ui/ExitMarkers.js';
+import UI from '../data/ui.json';
 import { MusicPlayer }   from '../ui/MusicPlayer.js';
 import { DialoguePanel } from '../ui/DialoguePanel.js';
 import eventBus           from '../utils/eventBus.js';
@@ -128,8 +130,10 @@ export class MapScene extends Phaser.Scene {
     if (cfg.bandits) this._spawnBandits(cfg);
 
     // Hover-надписи для POI
+    // Метки выходов: стрелки у края, свечение у дверей, подпись и курсор при наведении (старые подписи labels не нужны)
     this._hoverLabels = [];
-    this._setupLabels(cfg);
+    this._exitMarkers = new ExitMarkers(this, cfg, MAP_CONFIGS, exit => this._exitLocked(exit));
+    this.input.on('pointermove', (ptr, over) => this._exitMarkers?.onPointerMove(ptr, over));
 
     // Диалоговая панель (in-world overlay)
     this._dialogue = new DialoguePanel(this);
@@ -191,6 +195,8 @@ export class MapScene extends Phaser.Scene {
     this.input.on('pointerdown', (ptr, over = []) => {
       if (ptr.rightButtonDown()) return;
       if (this._uiBlocksMapClick(over)) return;
+      const exit = this._exitMarkers?.exitAt(ptr.worldX, ptr.worldY);
+      if (exit && this._walkToExit(exit)) return;
       this._walkHeroTo(ptr.worldX, ptr.worldY);
     });
 
@@ -1692,13 +1698,48 @@ export class MapScene extends Phaser.Scene {
 
   // ─── Transitions ─────────────────────────────────────────────────────────
 
+  _exitLocked(exit) {
+    const reg = this.game.registry;
+    return !!((exit.lockedIfFlag && reg.get(exit.lockedIfFlag)) || (exit.requiresFlag && !reg.get(exit.requiresFlag)));
+  }
+
+  /** Клик по выходу: герой идёт к ближайшей достижимой клетке внутри зоны выхода. */
+  _walkToExit(item) {
+    if (window.__mapEditor?.active) return false;
+    const w = this.walkable, z = item.zone;
+    const heroCell = w.open(w.cellOf(this.hero.x, this.hero.y)) ? w.cellOf(this.hero.x, this.hero.y) : w.nearestCell(this.hero.x, this.hero.y);
+    if (heroCell < 0) return false;
+    // Клетка цели в глубине зоны (герой останавливается в паре px от точки, на границе выход не сработал бы)
+    let best = null, bestD = Infinity;
+    for (const m of [8, 0]) {
+      for (let i = 0; i < w.cells.length; i++) {
+        if (!w.cells[i] || w.comp[i] !== w.comp[heroCell]) continue;
+        const p = w.center(i);
+        if (p.x < z.x + m || p.x > z.x + z.w - m || p.y < z.y + m || p.y > z.y + z.h - m) continue;
+        const d = Math.hypot(p.x - this.hero.x, p.y - this.hero.y);
+        if (d < bestD) { bestD = d; best = p; }
+      }
+      if (best) break;
+    }
+    if (!best) return false;
+    const res = findPath(w, this.hero.x, this.hero.y, best.x, best.y);
+    if (!res) return false;
+    this.hero.followPath(res.points);
+    this._showClickMarker(best.x, best.y);
+    return true;
+  }
+
+  /** Прямоугольники HUD в мировых px: подписи выходов их обходят. */
+  hudRects() {
+    return UI.hud.map(([x, y, w, h]) => new Phaser.Geom.Rectangle(x, y, w, h));
+  }
+
   _checkExits() {
     const cfg = MAP_CONFIGS[this.mapKey];
     for (const exit of (cfg.exits || [])) {
       if (this._inZone(this.hero.x, this.hero.y, exit.zone)) {
         if (!MAP_CONFIGS[exit.toMap]) continue;
-        const locked = (exit.lockedIfFlag && this.game.registry.get(exit.lockedIfFlag))
-          || (exit.requiresFlag && !this.game.registry.get(exit.requiresFlag));
+        const locked = this._exitLocked(exit);
         if (locked) {
           this._showLockedExit(exit);
           return;
@@ -1814,19 +1855,16 @@ export class MapScene extends Phaser.Scene {
       { id: 'companion_brawler', key: 'portrait_companion_brawler', label: 'Ворнаг' },
       { id: 'companion_healer',  key: 'portrait_companion_healer',  label: 'Тая' },
     ].filter(p => party.includes(p.id));
-    // Портреты: только PNG + подпись, никаких рамок и прямоугольников
-    const cardW  = 150, cardH = 130;
-    const startY = 210;
-    const gapY   = 175;  // гарантирует зазор 45px между картами
+    // Портреты: ряд под плеером в левом верхнем углу (колонка вдоль левого края закрывала выходы с карты)
+    const cardW  = 100, cardH = 100;
+    const startX = 58, gapX = 110, cy = 100;
     const UI_DEPTH = 9000; // всегда поверх персонажей карты
     portraits.forEach((p, i) => {
-      const cy = startY + i * gapY;
-      const cx = cardW / 2;
+      const cx = startX + i * gapX;
       const img = this.add.image(cx, cy, p.key).setDepth(UI_DEPTH).setScrollFactor(0).setInteractive();
       img.setScale(Math.min(cardW / img.width, cardH / img.height));
-      // Подпись в середине зазора между портретами
-      this.add.text(cx, cy + cardH / 2 + (gapY - cardH) / 2, p.label, {
-        fontSize: '13px', color: '#BBBBAA', fontFamily: 'serif',
+      this.add.text(cx, cy + cardH / 2 + 12, p.label, {
+        fontSize: '15px', color: '#BBBBAA', fontFamily: 'serif', stroke: '#000000', strokeThickness: 3,
       }).setOrigin(0.5, 0.5).setDepth(UI_DEPTH).setScrollFactor(0);
     });
 
