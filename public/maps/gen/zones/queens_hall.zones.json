@@ -1,0 +1,42 @@
+{
+ "map": "queens_hall",
+ "template": "room",
+ "walk": [
+  {
+   "x": 180,
+   "y": 300,
+   "w": 1312,
+   "h": 491
+  },
+  {
+   "x": 746,
+   "y": 771,
+   "w": 180,
+   "h": 150
+  }
+ ],
+ "exits": [
+  {
+   "zone": {
+    "x": 760,
+    "y": 880,
+    "w": 160,
+    "h": 61
+   },
+   "toMap": "grad_square",
+   "spawnId": "from_queens_hall"
+  }
+ ],
+ "spawnPoints": {
+  "from_grad_square": {
+   "x": 838,
+   "y": 780
+  },
+  "default": {
+   "x": 838,
+   "y": 780
+  }
+ },
+ "npcs": [],
+ "auto": true
+}

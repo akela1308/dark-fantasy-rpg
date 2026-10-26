@@ -1,0 +1,42 @@
+{
+ "map": "outpost_inside",
+ "template": "room",
+ "walk": [
+  {
+   "x": 180,
+   "y": 300,
+   "w": 1312,
+   "h": 491
+  },
+  {
+   "x": 746,
+   "y": 771,
+   "w": 180,
+   "h": 150
+  }
+ ],
+ "exits": [
+  {
+   "zone": {
+    "x": 760,
+    "y": 880,
+    "w": 160,
+    "h": 61
+   },
+   "toMap": "old_outpost",
+   "spawnId": "from_outpost_inside"
+  }
+ ],
+ "spawnPoints": {
+  "from_old_outpost": {
+   "x": 838,
+   "y": 780
+  },
+  "default": {
+   "x": 838,
+   "y": 780
+  }
+ },
+ "npcs": [],
+ "auto": true
+}

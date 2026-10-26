@@ -913,11 +913,7 @@
               }
             ]
           }
-        ],
-        "dialogue": "rowan",
-        "showIf": {
-          "notFlag": "rowan_gone"
-        }
+        ]
       },
       {
         "x": 1120,
@@ -1139,8 +1135,7 @@
               }
             ]
           }
-        ],
-        "dialogue": "mira"
+        ]
       },
       {
         "x": 896,
@@ -1174,9 +1169,7 @@
               }
             ]
           }
-        ],
-        "dialogue": "dwarves",
-        "dialogueStart": "ort"
+        ]
       },
       {
         "x": 698,
@@ -1239,9 +1232,7 @@
               }
             ]
           }
-        ],
-        "dialogue": "dwarves",
-        "dialogueStart": "bramm"
+        ]
       },
       {
         "id": "taya",
@@ -1288,55 +1279,6 @@
         "showIf": {
           "flag": "bandit_archer_recruitable",
           "notFlag": "tiss_recruited"
-        }
-      },
-      {
-        "id": "korvin_men",
-        "name": "Люди Корвина",
-        "x": 760,
-        "y": 690,
-        "spriteKey": "map_bandit_warrior",
-        "portraitKey": "portrait_bandit_warrior",
-        "height": 150,
-        "dialogue": "dwarves",
-        "dialogueStart": "korvin_men",
-        "showIf": {
-          "any": [
-            {
-              "flag": "bandit_paid"
-            },
-            {
-              "flag": "bandit_intimidated"
-            }
-          ],
-          "flag": "cnt_visits_tavern_inside_3",
-          "notFlag": [
-            "korvin_men_gone",
-            "bandit_commander_killed",
-            "korvin_debt_active"
-          ]
-        }
-      },
-      {
-        "id": "halvar",
-        "name": "Хальвар",
-        "x": 600,
-        "y": 760,
-        "spriteKey": "map_dwarf_beer",
-        "portraitKey": "portrait_dwarf_beer",
-        "height": 140,
-        "dialogue": "dwarves",
-        "dialogueStart": "halvar",
-        "showIf": {
-          "any": [
-            {
-              "flag": "mountain_pass_peaceful"
-            },
-            {
-              "flag": "mountain_pass_defeated"
-            }
-          ],
-          "notFlag": "halvar_message"
         }
       }
     ],
@@ -2316,13 +2258,8 @@
         "battleId": "mountain_pass",
         "name": "Латники клятвы",
         "behaviour": "loner",
-        "dialogue": "mountains",
-        "dialogueStart": "pass",
         "showIf": {
-          "notFlag": [
-            "mountain_pass_peaceful",
-            "mountain_pass_defeated"
-          ]
+          "notFlag": "mountain_pass_peaceful"
         },
         "x": 1101,
         "y": 573
@@ -2684,9 +2621,7 @@
               }
             ]
           }
-        ],
-        "dialogue": "mountains",
-        "dialogueStart": "king"
+        ]
       }
     ],
     "walk": [
@@ -3155,12 +3090,7 @@
               }
             ]
           }
-        ],
-        "dialogue": "village",
-        "dialogueStart": "bran",
-        "showIf": {
-          "notFlag": "bran_recruited"
-        }
+        ]
       },
       {
         "id": "deserter",
@@ -3407,12 +3337,7 @@
               }
             ]
           }
-        ],
-        "dialogue": "village",
-        "dialogueStart": "mirko",
-        "showIf": {
-          "notFlag": "mirko_recruited"
-        }
+        ]
       },
       {
         "x": 665,
@@ -6996,15 +6921,8 @@
         "battleId": "sealed_basement",
         "name": "Дверь со знаком",
         "behaviour": "loner",
-        "dialogue": "cellar",
-        "showIf": {
-          "notFlag": [
-            "basement_cleared",
-            "basement_left_closed"
-          ]
-        },
-        "x": 836,
-        "y": 870
+        "x": 898,
+        "y": 564
       }
     ],
     "battleBg": "Tavern_battle4"
@@ -8635,8 +8553,8 @@
             "bandit_commander_killed"
           ]
         },
-        "x": 1098,
-        "y": 485
+        "x": 892,
+        "y": 602
       }
     ],
     "battleBg": "Forest_Battle"
@@ -9058,8 +8976,8 @@
         "name": "Три камня",
         "behaviour": "loner",
         "dialogue": "altar",
-        "x": 136,
-        "y": 354
+        "x": 892,
+        "y": 602
       }
     ],
     "battleBg": "Forest_Battle"
@@ -10677,8 +10595,8 @@
             "chapel_cult_defeated"
           ]
         },
-        "x": 902,
-        "y": 521
+        "x": 888,
+        "y": 580
       }
     ],
     "battleBg": "Village_battle2"
@@ -12803,8 +12721,8 @@
           "notFlag": "swamp_deal_kept",
           "notCompanion": "ressa"
         },
-        "x": 1098,
-        "y": 485
+        "x": 892,
+        "y": 602
       }
     ],
     "battleBg": "Boloto_battle"

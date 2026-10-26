@@ -18,6 +18,7 @@ python3 tools/build_maps_json.py --apply    применить к src/data/maps.
   props: записи с occluder: true заменяются целиком, остальные (мебель Контента) сохраняются.
 """
 import json, os, re, sys
+from PIL import Image
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SPEC = os.path.expanduser("~/Documents/Claude/Projects/Mortis/РЕВИЗИЯ_2026-10/world/maps_spec.json")
@@ -40,8 +41,12 @@ def build(only=None):
         if only and lid not in only:
             continue
         e = {}
-        if os.path.exists(os.path.join(GEN, f"{lid}_pick.png")):
-            e["image"] = f"maps/gen/{lid}_pick.png"
+        png = os.path.join(GEN, f"{lid}_pick.png"); jpg = os.path.join(GEN, f"{lid}_pick.jpg")
+        if os.path.exists(png):
+            # игре JPG (PNG 2-3 МБ, а LoadingScene грузит все карты сразу); пересобирается, если PNG новее
+            if not os.path.exists(jpg) or os.path.getmtime(jpg) < os.path.getmtime(png):
+                Image.open(png).convert("RGB").save(jpg, quality=88, optimize=True)
+            e["image"] = f"maps/gen/{lid}_pick.jpg"
         zp = os.path.join(GEN, "zones", f"{lid}.zones.json")
         if os.path.exists(zp) and loc["status"] == "new":
             z = json.load(open(zp))
@@ -63,7 +68,7 @@ def block_g_ready():
     if not os.path.exists(PROGRESS):
         return False
     for line in open(PROGRESS, encoding="utf-8"):
-        if re.search(r"Блок\s*Г", line) and "ГОТОВО" in line:
+        if re.search(r"[Бб]лок\s*Г", line) and "ГОТОВО" in line:
             return True
     return False
 
