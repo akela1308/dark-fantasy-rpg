@@ -305,3 +305,9 @@ agna hit 1
 agna victory 1
 rowan power 1 | v2: нож меняет руку
 rowan victory 1
+lyo attack 2
+lyo hit 2 | v1: искры
+ryzh attack 2
+ryzh death 1
+ryzh hit 2
+ryzh victory 2 | v1: двойной топор

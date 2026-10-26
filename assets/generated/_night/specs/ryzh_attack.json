@@ -1,0 +1,1 @@
+{"slug": "ryzh", "anim": "attack", "base": "ryzh/k_battle.png", "body": 300, "segments": [{"clip": "ryzh/clips/attack_v2.mp4", "from": 0, "to": 95, "frames": 29}], "hit": "auto", "right": 1.4, "left": 1.0}

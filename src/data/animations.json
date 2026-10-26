@@ -1786,6 +1786,29 @@
  },
  "lyo": {
   "anims": {
+   "attack": {
+    "file": "sprites/battle/lyo_attack_v1.webp",
+    "frameWidth": 532,
+    "frameHeight": 329,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.5639,
+    "originY": 0.9734,
+    "bodyHeight": 300,
+    "key": "lyo_attack_v1",
+    "hitFrame": 8
+   },
+   "hit": {
+    "file": "sprites/battle/lyo_hit_v1.webp",
+    "frameWidth": 488,
+    "frameHeight": 329,
+    "frames": 14,
+    "fps": 24,
+    "originX": 0.5233,
+    "originY": 0.9734,
+    "bodyHeight": 300,
+    "key": "lyo_hit_v1"
+   },
    "idle": {
     "file": "sprites/battle/lyo_idle_v1.webp",
     "frameWidth": 488,
@@ -1799,7 +1822,9 @@
     "loop": true
    }
   },
-  "actions": {},
+  "actions": {
+   "basic": "attack"
+  },
   "name": "Лё, болотный старейшина (новый, предварительно)"
  },
  "mavka": {
@@ -2034,6 +2059,41 @@
  },
  "ryzh": {
   "anims": {
+   "attack": {
+    "file": "sprites/battle/ryzh_attack_v1.webp",
+    "frameWidth": 600,
+    "frameHeight": 337,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.3902,
+    "originY": 0.9737,
+    "bodyHeight": 300,
+    "key": "ryzh_attack_v1",
+    "hitFrame": 9
+   },
+   "death": {
+    "file": "sprites/battle/ryzh_death_v1.webp",
+    "frameWidth": 600,
+    "frameHeight": 337,
+    "frames": 30,
+    "fps": 24,
+    "originX": 0.3902,
+    "originY": 0.9737,
+    "bodyHeight": 300,
+    "key": "ryzh_death_v1",
+    "hold": true
+   },
+   "hit": {
+    "file": "sprites/battle/ryzh_hit_v1.webp",
+    "frameWidth": 533,
+    "frameHeight": 337,
+    "frames": 14,
+    "fps": 24,
+    "originX": 0.4393,
+    "originY": 0.9737,
+    "bodyHeight": 300,
+    "key": "ryzh_hit_v1"
+   },
    "idle": {
     "file": "sprites/battle/ryzh_idle_v1.webp",
     "frameWidth": 490,
@@ -2045,9 +2105,23 @@
     "bodyHeight": 300,
     "key": "ryzh_idle_v1",
     "loop": true
+   },
+   "victory": {
+    "file": "sprites/battle/ryzh_victory_v1.webp",
+    "frameWidth": 533,
+    "frameHeight": 337,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4393,
+    "originY": 0.9737,
+    "bodyHeight": 300,
+    "key": "ryzh_victory_v1",
+    "hold": true
    }
   },
-  "actions": {},
+  "actions": {
+   "basic": "attack"
+  },
   "name": "Рыж, староста Придорожного (новый, предварительно)"
  },
  "companion_shield": {

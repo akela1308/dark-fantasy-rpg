@@ -1,0 +1,1 @@
+{"slug": "ryzh", "anim": "death", "base": "ryzh/k_battle.png", "body": 300, "segments": [{"clip": "ryzh/clips/death_v1.mp4", "from": 0, "to": 95, "frames": 30}], "left": 1.5, "right": 1.3, "hold": true}
