@@ -7,8 +7,6 @@ duelist shot_2
 duelist shot_3
 duelist shot_4
 duelist shot_5
-cat bidle
-cat idle
 bandit_brawler amb1
 swamp_knight amb1
 swamp_knight amb2

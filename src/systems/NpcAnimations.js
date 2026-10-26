@@ -1,5 +1,5 @@
 /**
- * NpcAnimations — покадровые анимации NPC на карте (стойка по кругу + случайные бытовые движения).
+ * NpcAnimations: покадровые анимации NPC на карте (стойка по кругу + случайные бытовые движения).
  *
  * Данные: src/data/map_animations.json (собирается tools/night_map_manifest.py), ключ = spriteKey NPC
  * из maps.json. Листы лежат в public/maps/characters/anim/ и грузятся только для NPC текущей карты,
@@ -26,7 +26,7 @@ function ensureAnim(scene, a, loop) {
 }
 
 /**
- * Подключить анимации к NPC-спрайту. h — высота NPC из maps.json, feetY — где стоят ноги.
+ * Подключить анимации к NPC-спрайту. h: высота NPC из maps.json, feetY: где стоят ноги.
  * Возвращает true, если у NPC есть анимации (тогда старые твины дыхания/покачивания не нужны).
  */
 export function attachNpcAnimations(scene, sprite, npc, h, feetY) {

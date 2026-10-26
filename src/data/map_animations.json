@@ -652,5 +652,423 @@
    6000,
    14000
   ]
+ },
+ "map_agna": {
+  "slug": "agna",
+  "idle": {
+   "file": "maps/characters/anim/agna_mapidle_v1.webp",
+   "frameWidth": 351,
+   "frameHeight": 282,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.4453,
+   "originY": 0.9819,
+   "bodyHeight": 260,
+   "key": "agna_mapidle_v1"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/agna_mapamb1_v1.webp",
+    "frameWidth": 415,
+    "frameHeight": 282,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4391,
+    "originY": 0.9819,
+    "bodyHeight": 260,
+    "key": "agna_mapamb1_v1"
+   },
+   {
+    "file": "maps/characters/anim/agna_mapamb2_v1.webp",
+    "frameWidth": 415,
+    "frameHeight": 282,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4391,
+    "originY": 0.9819,
+    "bodyHeight": 260,
+    "key": "agna_mapamb2_v1"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
+ "map_ryzh": {
+  "slug": "ryzh",
+  "idle": {
+   "file": "maps/characters/anim/ryzh_mapidle_v1.webp",
+   "frameWidth": 350,
+   "frameHeight": 273,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.4458,
+   "originY": 0.9858,
+   "bodyHeight": 260,
+   "key": "ryzh_mapidle_v1"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/ryzh_mapamb1_v1.webp",
+    "frameWidth": 394,
+    "frameHeight": 273,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4626,
+    "originY": 0.9858,
+    "bodyHeight": 260,
+    "key": "ryzh_mapamb1_v1"
+   },
+   {
+    "file": "maps/characters/anim/ryzh_mapamb2_v1.webp",
+    "frameWidth": 394,
+    "frameHeight": 273,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4626,
+    "originY": 0.9858,
+    "bodyHeight": 260,
+    "key": "ryzh_mapamb2_v1"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
+ "map_le": {
+  "slug": "lyo",
+  "idle": {
+   "file": "maps/characters/anim/lyo_mapidle_v1.webp",
+   "frameWidth": 350,
+   "frameHeight": 285,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.4461,
+   "originY": 0.9738,
+   "bodyHeight": 260,
+   "key": "lyo_mapidle_v1"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/lyo_mapamb1_v1.webp",
+    "frameWidth": 382,
+    "frameHeight": 285,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4765,
+    "originY": 0.9738,
+    "bodyHeight": 260,
+    "key": "lyo_mapamb1_v1"
+   },
+   {
+    "file": "maps/characters/anim/lyo_mapamb2_v1.webp",
+    "frameWidth": 382,
+    "frameHeight": 285,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4765,
+    "originY": 0.9738,
+    "bodyHeight": 260,
+    "key": "lyo_mapamb2_v1"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
+ "map_til": {
+  "slug": "til",
+  "idle": {
+   "file": "maps/characters/anim/til_mapidle_v1.webp",
+   "frameWidth": 350,
+   "frameHeight": 272,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.4461,
+   "originY": 0.9977,
+   "bodyHeight": 260,
+   "key": "til_mapidle_v1"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/til_mapamb1_v1.webp",
+    "frameWidth": 416,
+    "frameHeight": 272,
+    "frames": 64,
+    "fps": 24,
+    "originX": 0.4382,
+    "originY": 0.9977,
+    "bodyHeight": 260,
+    "key": "til_mapamb1_v1"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
+ "map_adventurer": {
+  "slug": "wanderer",
+  "idle": {
+   "file": "maps/characters/anim/wanderer_mapidle_v1.webp",
+   "frameWidth": 350,
+   "frameHeight": 290,
+   "frames": 48,
+   "fps": 24,
+   "originX": 0.4457,
+   "originY": 0.9744,
+   "bodyHeight": 260,
+   "key": "wanderer_mapidle_v1"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/wanderer_mapamb2_v1.webp",
+    "frameWidth": 416,
+    "frameHeight": 290,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.438,
+    "originY": 0.9744,
+    "bodyHeight": 260,
+    "key": "wanderer_mapamb2_v1"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
+ "map_wild_dog": {
+  "slug": "wild_dog",
+  "idle": {
+   "file": "maps/characters/anim/wild_dog_mapidle_v1.webp",
+   "frameWidth": 350,
+   "frameHeight": 312,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.4458,
+   "originY": 0.9732,
+   "bodyHeight": 260,
+   "key": "wild_dog_mapidle_v1"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/wild_dog_mapamb1_v1.webp",
+    "frameWidth": 569,
+    "frameHeight": 312,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.5833,
+    "originY": 0.9732,
+    "bodyHeight": 260,
+    "key": "wild_dog_mapamb1_v1"
+   },
+   {
+    "file": "maps/characters/anim/wild_dog_mapamb2_v1.webp",
+    "frameWidth": 569,
+    "frameHeight": 312,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.5833,
+    "originY": 0.9732,
+    "bodyHeight": 260,
+    "key": "wild_dog_mapamb2_v1"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
+ "map_grey_wolf": {
+  "slug": "grey_wolf",
+  "idle": {
+   "file": "maps/characters/anim/grey_wolf_mapidle_v1.webp",
+   "frameWidth": 493,
+   "frameHeight": 277,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.5849,
+   "originY": 0.9707,
+   "bodyHeight": 260,
+   "key": "grey_wolf_mapidle_v1"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/grey_wolf_mapamb1_v1.webp",
+    "frameWidth": 493,
+    "frameHeight": 277,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.5849,
+    "originY": 0.9707,
+    "bodyHeight": 260,
+    "key": "grey_wolf_mapamb1_v1"
+   },
+   {
+    "file": "maps/characters/anim/grey_wolf_mapamb2_v1.webp",
+    "frameWidth": 493,
+    "frameHeight": 277,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.5849,
+    "originY": 0.9707,
+    "bodyHeight": 260,
+    "key": "grey_wolf_mapamb2_v1"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
+ "map_boar": {
+  "slug": "boar",
+  "idle": {
+   "file": "maps/characters/anim/boar_mapidle_v1.webp",
+   "frameWidth": 489,
+   "frameHeight": 275,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.486,
+   "originY": 0.9802,
+   "bodyHeight": 260,
+   "key": "boar_mapidle_v1"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/boar_mapamb1_v1.webp",
+    "frameWidth": 489,
+    "frameHeight": 275,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.486,
+    "originY": 0.9802,
+    "bodyHeight": 260,
+    "key": "boar_mapamb1_v1"
+   },
+   {
+    "file": "maps/characters/anim/boar_mapamb2_v1.webp",
+    "frameWidth": 489,
+    "frameHeight": 275,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.486,
+    "originY": 0.9802,
+    "bodyHeight": 260,
+    "key": "boar_mapamb2_v1"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
+ "map_mavka": {
+  "slug": "mavka",
+  "idle": {
+   "file": "maps/characters/anim/mavka_mapidle_v1.webp",
+   "frameWidth": 351,
+   "frameHeight": 285,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.445,
+   "originY": 0.9726,
+   "bodyHeight": 260,
+   "key": "mavka_mapidle_v1"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/mavka_mapamb2_v1.webp",
+    "frameWidth": 416,
+    "frameHeight": 285,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.438,
+    "originY": 0.9726,
+    "bodyHeight": 260,
+    "key": "mavka_mapamb2_v1"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
+ "map_drowned": {
+  "slug": "drowned",
+  "idle": {
+   "file": "maps/characters/anim/drowned_mapidle_v1.webp",
+   "frameWidth": 351,
+   "frameHeight": 276,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.4449,
+   "originY": 0.9715,
+   "bodyHeight": 260,
+   "key": "drowned_mapidle_v1"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/drowned_mapamb2_v1.webp",
+    "frameWidth": 415,
+    "frameHeight": 276,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4388,
+    "originY": 0.9715,
+    "bodyHeight": 260,
+    "key": "drowned_mapamb2_v1"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
+ "map_kobold": {
+  "slug": "kobold",
+  "idle": {
+   "file": "maps/characters/anim/kobold_mapidle_v1.webp",
+   "frameWidth": 350,
+   "frameHeight": 278,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.4458,
+   "originY": 0.9702,
+   "bodyHeight": 260,
+   "key": "kobold_mapidle_v1"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/kobold_mapamb1_v1.webp",
+    "frameWidth": 415,
+    "frameHeight": 278,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4387,
+    "originY": 0.9702,
+    "bodyHeight": 260,
+    "key": "kobold_mapamb1_v1"
+   },
+   {
+    "file": "maps/characters/anim/kobold_mapamb2_v1.webp",
+    "frameWidth": 415,
+    "frameHeight": 278,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4387,
+    "originY": 0.9702,
+    "bodyHeight": 260,
+    "key": "kobold_mapamb2_v1"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
  }
 }

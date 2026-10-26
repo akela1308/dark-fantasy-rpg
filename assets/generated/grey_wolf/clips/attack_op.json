@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/0cdcb6d6-0e27-46f8-b048-df6b2edcf7ea",
+ "prompt": "One single attack to the right: the animal lunges forward to the right and snaps its jaws or swipes a paw, then steps back into the same stance. One strike only. HANDS CANON: no weapon, fangs; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+ "img": "grey_wolf/k_battle.png",
+ "last": "grey_wolf/k_battle.png",
+ "sec": 4
+}
