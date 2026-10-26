@@ -6,6 +6,7 @@ import { BattleScene }  from './scenes/BattleScene.js';
 import { LevelUpScene } from './scenes/LevelUpScene.js';
 import { ChapterEndScene } from './scenes/ChapterEndScene.js';
 import { GAME_WIDTH, GAME_HEIGHT } from './utils/constants.js';
+import { Store } from './utils/storeAdapter.js';
 
 const config = {
   type: Phaser.AUTO,
@@ -23,6 +24,9 @@ const config = {
   },
 };
 
-const game = new Phaser.Game(config);
-// Только в dev: доступ к игре из консоли браузера для отладки
-if (import.meta.env.DEV) window.__game = game;
+// Десктоп (Tauri): сохранения поднимаются из файлов до старта игры
+Store.init().finally(() => {
+  const game = new Phaser.Game(config);
+  // Только в dev: доступ к игре из консоли браузера для отладки
+  if (import.meta.env.DEV) window.__game = game;
+});

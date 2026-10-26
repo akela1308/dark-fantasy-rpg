@@ -8,12 +8,15 @@
     "build": "vite build",
     "preview": "vite preview",
     "deploy": "gh-pages -d dist",
-    "test": "node --test 'test/*.test.mjs'"
+    "test": "node --test 'test/*.test.mjs'",
+    "tauri": "tauri",
+    "build:tauri": "vite build --outDir dist-tauri --emptyOutDir"
   },
   "dependencies": {
     "phaser": "^3.80.1"
   },
   "devDependencies": {
+    "@tauri-apps/cli": "^2.12.4",
     "gh-pages": "^6.1.1",
     "vite": "^5.2.0"
   }

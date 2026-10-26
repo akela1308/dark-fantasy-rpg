@@ -5,8 +5,15 @@
 //  возвращает к последнему отдыху. Режим Железо: поражение стирает сохранение.
 // ─────────────────────────────────────────────────────────────────────────────
 
-const SAVE_KEY = 'darkfantasy_ironman_v1';
-const REST_KEY = 'darkfantasy_rest_v3';   // снимок на последнем отдыхе (Хроника)
+import { Store } from './storeAdapter.js';
+
+// Три слота. Слот 1 хранится под старым ключом, чтобы старые сохранения читались.
+export const SLOTS = [1, 2, 3];
+const SLOT_KEY = 'mortis_slot';
+const saveKeyFor = slot => (slot === 1 ? 'darkfantasy_ironman_v1' : `darkfantasy_slot${slot}`);
+const restKeyFor = slot => (slot === 1 ? 'darkfantasy_rest_v3' : `darkfantasy_rest_slot${slot}`);
+function currentSlot() { return Number(Store.get(SLOT_KEY)) || 1; }
+const keys = () => ({ SAVE_KEY: saveKeyFor(currentSlot()), REST_KEY: restKeyFor(currentSlot()) });
 export const START_GOLD = 12;
 export const START_MAP = 'south_post';
 export const START_SPAWN = 'default';
@@ -63,10 +70,23 @@ function serializeUnit(u) {
 }
 
 function write(key, obj) {
-  localStorage.setItem(key, JSON.stringify(obj));
+  Store.set(key, JSON.stringify(obj));
 }
 
 export const SaveSystem = {
+  // ── Слоты ───────────────────────────────────────────────────────────────
+  getSlot() { return currentSlot(); },
+  setSlot(n) { Store.set(SLOT_KEY, String(n)); },
+  /** Короткое описание слота для титула: null, если пусто. */
+  slotInfo(n) {
+    try {
+      const raw = Store.get(saveKeyFor(n));
+      if (!raw) return null;
+      const s = JSON.parse(raw);
+      return { level: s.world?.partyLevel || 1, mapKey: s.mapKey, mode: s.mode, savedAt: s.savedAt };
+    } catch (e) { return null; }
+  },
+
 
   // Полное сохранение: юниты (сливаются с уже сохранёнными по id) + всё состояние мира
   save(playerUnits, mapKey, spawnId, registry) {
@@ -92,13 +112,16 @@ export const SaveSystem = {
         world,
         savedAt: Date.now(),
       };
-      write(SAVE_KEY, state);
+      write(keys().SAVE_KEY, state);
       return true;
     } catch (e) {
       console.warn('[SaveSystem] Не удалось сохранить:', e);
       return false;
     }
   },
+
+  /** Записать готовый объект сохранения в текущий слот. */
+  writeRaw(save) { write(keys().SAVE_KEY, save); },
 
   // Сохранить только мир (флаги, золото, партию), юниты не трогать
   saveWorld(registry, mapKey, spawnId) {
@@ -112,7 +135,7 @@ export const SaveSystem = {
       if (!save) return;
       save.mapKey  = mapKey;
       save.spawnId = spawnId;
-      write(SAVE_KEY, save);
+      write(keys().SAVE_KEY, save);
     } catch (e) {
       console.warn('[SaveSystem] Не удалось обновить позицию:', e);
     }
@@ -120,7 +143,7 @@ export const SaveSystem = {
 
   load() {
     try {
-      const raw = localStorage.getItem(SAVE_KEY);
+      const raw = Store.get(keys().SAVE_KEY);
       return raw ? JSON.parse(raw) : null;
     } catch (e) {
       console.warn('[SaveSystem] Не удалось загрузить:', e);
@@ -130,8 +153,8 @@ export const SaveSystem = {
 
   deleteSave() {
     try {
-      localStorage.removeItem(SAVE_KEY);
-      localStorage.removeItem(REST_KEY);
+      Store.remove(keys().SAVE_KEY);
+      Store.remove(keys().REST_KEY);
     } catch (e) {
       console.warn('[SaveSystem] Не удалось удалить:', e);
     }
@@ -139,7 +162,7 @@ export const SaveSystem = {
 
   hasSave() {
     try {
-      return localStorage.getItem(SAVE_KEY) !== null;
+      return Store.get(keys().SAVE_KEY) !== null;
     } catch (e) {
       return false;
     }
@@ -149,13 +172,13 @@ export const SaveSystem = {
   saveRestPoint() {
     try {
       const save = this.load();
-      if (save) write(REST_KEY, save);
+      if (save) write(keys().REST_KEY, save);
     } catch (e) {}
   },
 
   loadRestPoint() {
     try {
-      const raw = localStorage.getItem(REST_KEY);
+      const raw = Store.get(keys().REST_KEY);
       return raw ? JSON.parse(raw) : null;
     } catch (e) { return null; }
   },
@@ -164,8 +187,8 @@ export const SaveSystem = {
   restoreRestPoint() {
     const rest = this.loadRestPoint();
     try {
-      if (rest) write(SAVE_KEY, rest);
-      else localStorage.removeItem(SAVE_KEY);
+      if (rest) write(keys().SAVE_KEY, rest);
+      else Store.remove(keys().SAVE_KEY);
     } catch (e) {}
     return rest;
   },
@@ -211,7 +234,7 @@ export const SaveSystem = {
       if (save) {
         save.gold = registry.get('playerGold');
         if (save.world) save.world.playerGold = save.gold;
-        write(SAVE_KEY, save);
+        write(keys().SAVE_KEY, save);
       }
     } catch (e) {}
   },
@@ -228,7 +251,7 @@ export const SaveSystem = {
         save.world = save.world || {};
         if (value) save.world[key] = value;
         else delete save.world[key];
-        write(SAVE_KEY, save);
+        write(keys().SAVE_KEY, save);
       }
     } catch (e) {}
   },

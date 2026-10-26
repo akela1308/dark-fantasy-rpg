@@ -1,5 +1,5 @@
 import * as Phaser from 'phaser/dist/phaser.esm.js';
-import { SaveSystem, START_MAP, START_SPAWN } from '../utils/SaveSystem.js';
+import { SaveSystem, START_MAP, START_SPAWN, SLOTS } from '../utils/SaveSystem.js';
 
 export class BootScene extends Phaser.Scene {
   constructor() {
@@ -130,6 +130,22 @@ export class BootScene extends Phaser.Scene {
     };
 
     btn.on('pointerdown', startGame);
+
+    // Три слота сохранений (04_ТЕХПЛАН 2.2): клик выбирает слот
+    const NAMES = { south_post: 'Застава', three_pillars: 'Три столба', map1: 'Руины', tavern_map: 'Лось', tavern_inside: 'Лось', forest1: 'Чёрный Лес' };
+    const cur = SaveSystem.getSlot();
+    SLOTS.forEach((n, i) => {
+      const info = SaveSystem.slotInfo(n);
+      const label = info ? `Слот ${n}: ур. ${info.level}, ${NAMES[info.mapKey] || info.mapKey}` : `Слот ${n}: пусто`;
+      const t = this.add.text(cx + (i - 1) * 300, H - 24, label, {
+        fontFamily: 'serif', fontSize: '13px', color: n === cur ? '#d4a832' : '#6a6352',
+      }).setOrigin(0.5).setInteractive({ useHandCursor: true });
+      t.on('pointerdown', (p, x, y, ev) => {
+        ev?.stopPropagation?.();
+        SaveSystem.setSlot(n);
+        this.scene.restart();
+      });
+    });
 
     // Режим новой игры: Хроника (по умолчанию) или Железо (02_ДИЗАЙН 2.4)
     if (!SaveSystem.hasSave()) {

@@ -21,3 +21,6 @@ assets/generated/_night/qa/
 assets/generated/_night/*.log
 assets/generated/_check/
 __pycache__/
+dist-tauri/
+src-tauri/target/
+src-tauri/gen/

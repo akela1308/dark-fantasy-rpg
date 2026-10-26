@@ -119,6 +119,8 @@ export class MapScene extends Phaser.Scene {
     // Диалоги из src/data/dialogues/*.json с условиями и репутацией (блок Г)
     this._ws = new WorldState(this.game.registry);
     this._lastGold = SaveSystem.getGold(this.game.registry);
+    // Хроника: автосохранение при входе на карту (02_ДИЗАЙН 2.4)
+    if (this.game.registry.get('gameMode') !== 'iron') SaveSystem.saveWorld(this.game.registry, this.mapKey, this.spawnId);
     this.game.registry.set(`${this.mapKey}_visited`, true);
     { const v = this._ws.inc(`visits_${this.mapKey}`); this.game.registry.set(`cnt_visits_${this.mapKey}_${v}`, true); }
     // Пошлина: заплатил Корвину один раз, дальше каждый проход лесом 10 монет, пока он жив и без сделки (03_ДИАЛОГИ 6.3)
@@ -1366,7 +1368,7 @@ export class MapScene extends Phaser.Scene {
           reg.set(`trait_${t}`, hero.commanderTraits.includes(t));
           reg.set('mountain_king_paid_memory', true);
           reg.set('north_closed', false);
-          localStorage.setItem('darkfantasy_ironman_v1', JSON.stringify(save));
+          SaveSystem.writeRaw(save);
           SaveSystem.saveWorld(reg, this.mapKey, this.spawnId);
           this._toast(`Забыто: ${TRAIT_LABELS[t] || t}. Перевал открыт.`);
         },
