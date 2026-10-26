@@ -1,0 +1,1 @@
+{"slug": "winter_monster", "anim": "power", "base": "winter_monster/k_battle.png", "body": 300, "segments": [{"clip": "winter_monster/clips/power_v1.mp4", "from": 2, "to": 79, "frames": 38}], "hit": "auto", "right": 1.4, "left": 1.0}

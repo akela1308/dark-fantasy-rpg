@@ -1,0 +1,1 @@
+{"slug": "winter_queen", "anim": "hit", "base": "winter_queen/k_battle.png", "body": 300, "segments": [{"clip": "winter_queen/clips/hit_v2.mp4", "from": 0, "to": 36, "frames": 14}], "overwrite": true, "drop": [2, 3, 4]}

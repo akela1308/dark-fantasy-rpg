@@ -1,0 +1,1 @@
+{"slug": "vurdalak", "anim": "hit", "base": "vurdalak/k_battle.png", "body": 300, "segments": [{"clip": "vurdalak/clips/hit_v1.mp4", "from": 0, "to": 95, "frames": 14}]}

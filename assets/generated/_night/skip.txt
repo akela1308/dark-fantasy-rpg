@@ -44,3 +44,7 @@ assassin hit
 assassin attack
 winter_girl hit
 winter_girl victory
+winter_monster victory
+winter_queen death
+vurdalak attack
+winter_queen victory

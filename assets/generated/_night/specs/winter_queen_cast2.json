@@ -1,0 +1,1 @@
+{"slug": "winter_queen", "anim": "cast2", "base": "winter_queen/k_battle.png", "body": 300, "segments": [{"clip": "winter_queen/clips/cast2_v1.mp4", "from": 0, "to": 95, "frames": 36}], "hit": "auto"}

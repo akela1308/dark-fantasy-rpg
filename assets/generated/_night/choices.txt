@@ -274,3 +274,12 @@ winter_girl death 2 | v1: в конце встаёт
 winter_queen attack 1 | v2: большая вспышка
 jester cast2 2 | кадр каста 16
 assassin_undead power 1 | кадр 28 выкинут (белая дуга)
+winter_monster attack 2 | v1: белый серп
+winter_monster death 1 | v2: голубое свечение
+winter_monster hit 2 | v1: белые линии
+winter_queen cast2 1
+vurdalak hit 1
+vurdalak victory 1
+winter_monster power 1 | v2: белые искры
+winter_queen hit 2
+winter_queen hit 2 | кадры 2-4 выкинуты (искры)

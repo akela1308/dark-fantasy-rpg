@@ -2176,6 +2176,17 @@
     "bodyHeight": 300,
     "key": "vurdalak_amb2_v1"
    },
+   "hit": {
+    "file": "sprites/battle/vurdalak_hit_v1.webp",
+    "frameWidth": 549,
+    "frameHeight": 327,
+    "frames": 14,
+    "fps": 24,
+    "originX": 0.4545,
+    "originY": 0.9733,
+    "bodyHeight": 300,
+    "key": "vurdalak_hit_v1"
+   },
    "idle": {
     "file": "sprites/battle/vurdalak_idle_v1.webp",
     "frameWidth": 505,
@@ -2187,6 +2198,18 @@
     "bodyHeight": 300,
     "key": "vurdalak_idle_v1",
     "loop": true
+   },
+   "victory": {
+    "file": "sprites/battle/vurdalak_victory_v1.webp",
+    "frameWidth": 549,
+    "frameHeight": 327,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4545,
+    "originY": 0.9733,
+    "bodyHeight": 300,
+    "key": "vurdalak_victory_v1",
+    "hold": true
    }
   },
   "actions": {},
@@ -2330,6 +2353,41 @@
     "bodyHeight": 300,
     "key": "winter_monster_amb2_v1"
    },
+   "attack": {
+    "file": "sprites/battle/winter_monster_attack_v1.webp",
+    "frameWidth": 547,
+    "frameHeight": 307,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4152,
+    "originY": 0.9897,
+    "bodyHeight": 300,
+    "key": "winter_monster_attack_v1",
+    "hitFrame": 8
+   },
+   "death": {
+    "file": "sprites/battle/winter_monster_death_v1.webp",
+    "frameWidth": 547,
+    "frameHeight": 307,
+    "frames": 30,
+    "fps": 24,
+    "originX": 0.4152,
+    "originY": 0.9897,
+    "bodyHeight": 300,
+    "key": "winter_monster_death_v1",
+    "hold": true
+   },
+   "hit": {
+    "file": "sprites/battle/winter_monster_hit_v1.webp",
+    "frameWidth": 526,
+    "frameHeight": 307,
+    "frames": 14,
+    "fps": 24,
+    "originX": 0.4318,
+    "originY": 0.9897,
+    "bodyHeight": 300,
+    "key": "winter_monster_hit_v1"
+   },
    "idle": {
     "file": "sprites/battle/winter_monster_idle_v1.webp",
     "frameWidth": 483,
@@ -2341,9 +2399,23 @@
     "bodyHeight": 300,
     "key": "winter_monster_idle_v1",
     "loop": true
+   },
+   "power": {
+    "file": "sprites/battle/winter_monster_power_v1.webp",
+    "frameWidth": 547,
+    "frameHeight": 307,
+    "frames": 38,
+    "fps": 24,
+    "originX": 0.4152,
+    "originY": 0.9897,
+    "bodyHeight": 300,
+    "key": "winter_monster_power_v1",
+    "hitFrame": 26
    }
   },
-  "actions": {},
+  "actions": {
+   "basic": "attack"
+  },
   "name": "Оленье чудовище"
  },
  "winter_queen": {
@@ -2369,6 +2441,29 @@
     "originY": 0.9731,
     "bodyHeight": 300,
     "key": "winter_queen_amb2_v1"
+   },
+   "cast2": {
+    "file": "sprites/battle/winter_queen_cast2_v1.webp",
+    "frameWidth": 538,
+    "frameHeight": 319,
+    "frames": 36,
+    "fps": 24,
+    "originX": 0.4744,
+    "originY": 0.9731,
+    "bodyHeight": 300,
+    "key": "winter_queen_cast2_v1",
+    "hitFrame": 3
+   },
+   "hit": {
+    "file": "sprites/battle/winter_queen_hit_v1.webp",
+    "frameWidth": 538,
+    "frameHeight": 319,
+    "frames": 11,
+    "fps": 24,
+    "originX": 0.4744,
+    "originY": 0.9731,
+    "bodyHeight": 300,
+    "key": "winter_queen_hit_v1"
    },
    "idle": {
     "file": "sprites/battle/winter_queen_idle_v1.webp",
