@@ -1,0 +1,1 @@
+{"slug": "brawler", "anim": "victory", "base": "brawler/k_battle.png", "body": 300, "segments": [{"clip": "brawler/clips/victory_v1.mp4", "from": 0, "to": 50, "frames": 24}], "hold": true, "overwrite": true}

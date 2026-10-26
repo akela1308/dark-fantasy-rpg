@@ -394,13 +394,13 @@
     "file": "sprites/battle/bandit_archer_attack_v1.webp",
     "frameWidth": 507,
     "frameHeight": 316,
-    "frames": 29,
+    "frames": 24,
     "fps": 24,
     "originX": 0.5917,
     "originY": 0.9856,
     "bodyHeight": 300,
     "key": "bandit_archer_attack_v1",
-    "hitFrame": 3
+    "hitFrame": 8
    },
    "death": {
     "file": "sprites/battle/bandit_archer_death_v1.webp",
@@ -761,6 +761,18 @@
     "bodyHeight": 300,
     "key": "brawler_power_v1",
     "hitFrame": 16
+   },
+   "victory": {
+    "file": "sprites/battle/brawler_victory_v1.webp",
+    "frameWidth": 536,
+    "frameHeight": 331,
+    "frames": 24,
+    "fps": 24,
+    "originX": 0.4405,
+    "originY": 0.9735,
+    "bodyHeight": 300,
+    "key": "brawler_victory_v1",
+    "hold": true
    }
   },
   "actions": {
@@ -1751,6 +1763,18 @@
     "bodyHeight": 300,
     "key": "healer_idle_v1",
     "loop": true
+   },
+   "victory": {
+    "file": "sprites/battle/healer_victory_v1.webp",
+    "frameWidth": 541,
+    "frameHeight": 320,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4718,
+    "originY": 0.9698,
+    "bodyHeight": 300,
+    "key": "healer_victory_v1",
+    "hold": true
    }
   },
   "actions": {

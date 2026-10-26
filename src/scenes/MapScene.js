@@ -84,7 +84,7 @@ export class MapScene extends Phaser.Scene {
     const s = this.mapKey === 'tavern_inside' ? 1.25 : 1;
     this.hero    = new MapUnit(this, spawn.x,       spawn.y, 'map_hero',    { height: Math.round(130 * s), speed: 130, idlePeriod: 2800, paperdoll: false, walkSpriteKey: 'map_hero_walk_side', walkFrames: 29, walkFrameRate: 24, walkFrameContentHeight: 251, idleSpriteKey: 'map_hero_stand', idleFrames: 96, idleFrameRate: 24, idleFrameContentHeight: 251, idleOriginX: 0.56 });
     this.brawler = new MapUnit(this, spawn.x - 65,  spawn.y, 'map_brawler', { height: Math.round(136 * s), speed: 130, idlePeriod: 3400, paperdoll: false, walkSpriteKey: 'map_brawler_walk_v4', walkFrames: 23, walkFrameRate: 24, walkFrameContentHeight: 251, idleSpriteKey: 'map_brawler_stand_v1', idleFrames: 95, idleFrameRate: 24, idleFrameContentHeight: 251 });
-    this.healer  = new MapUnit(this, spawn.x - 120, spawn.y, 'map_healer',  { height: Math.round(128 * s), speed: 130, idlePeriod: 2200, paperdoll: false, walkSpriteKey: 'map_healer_walk_v3', walkFrames: 25, walkFrameRate: 24, walkFrameContentHeight: 274 }); // 274: в высоту кадра входит посох выше головы
+    this.healer  = new MapUnit(this, spawn.x - 120, spawn.y, 'map_healer',  { height: Math.round(128 * s), speed: 130, idlePeriod: 2200, paperdoll: false, walkSpriteKey: 'map_healer_walk_v3', walkFrames: 25, walkFrameRate: 24, walkFrameContentHeight: 274, idleSpriteKey: 'map_healer_stand_v1', idleFrames: 95, idleFrameRate: 24, idleFrameContentHeight: 274 }); // 274: в высоту кадра входит посох выше головы
 
     this._heroTrail     = [];
     this._trailInterval = 0;

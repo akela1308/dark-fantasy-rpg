@@ -125,6 +125,7 @@ export class LoadingScene extends Phaser.Scene {
     sheet('map_brawler_walk_v4', 'maps/characters/anim/brawler_walk_v1.webp', { frameWidth: 376, frameHeight: 269 });
     sheet('map_brawler_stand_v1', 'maps/characters/anim/brawler_stand_v1.webp', { frameWidth: 301, frameHeight: 268 });
     sheet('map_healer_walk_v3', 'maps/characters/anim/healer_walk_v1.webp', { frameWidth: 376, frameHeight: 274 });
+    sheet('map_healer_stand_v1', 'maps/characters/anim/healer_stand_v1.webp', { frameWidth: 300, frameHeight: 274 });
 
     // Paper doll части
     // Боец и компаньоны - split: upper + leg_l + leg_r (ноги раздельно)

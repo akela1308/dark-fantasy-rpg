@@ -71,11 +71,12 @@ def spec_for(slug, clip, var, kv):
         if slug in MAPCH: t["anim"] = "map" + clip     # карта: mapamb1.., бой: amb1..
     base = base or "k_battle"
     s = dict(slug=slug, anim=t.pop("anim", clip), base=f"{slug}/{base}.png", body=300 if t.get("target", "battle") == "battle" else (251 if clip in ("walk", "stand") else 260))
+    explicit = "from" in kv or "to" in kv   # явный диапазон кадров отключает автообрезку
     fr = t.pop("frames"); a = int(kv.pop("from", 0)); b = int(kv.pop("to", 95)); fr = int(kv.pop("frames", fr))
-    if clip == "walk" and "from" not in kv:
+    if clip == "walk" and not explicit:
         a, b = best_loop(f"{GEN}/{slug}/clips/walk_v{var}.mp4".replace("/clips/", "/walk/"))
         fr = b - a + 1
-    if clip in ACTION and "from" not in kv and kv.pop("trim", "1") == "1":
+    if clip in ACTION and not explicit and kv.pop("trim", "1") == "1":
         a, b = motion_range(f"{GEN}/{slug}/clips/{src_clip}_v{var}.mp4")
         fr = min(b - a + 1, max(12, round(ACTION[clip] * 24)))   # длительность действия по типу (ускорение)
         if clip == "victory": b = min(95, b + 12)                 # победа: задержка на финальной позе

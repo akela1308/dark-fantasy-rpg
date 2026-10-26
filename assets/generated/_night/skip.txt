@@ -55,3 +55,4 @@ drowned power
 bandit_brawler power_r2
 kobold death
 kobold victory
+kikimora attack_r2
