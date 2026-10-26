@@ -87,7 +87,11 @@ export class DialogueRunner {
     });
 
     // Эффекты узла после текста: флаг «уже встречались» не прячет реплику, которая его ставит
-    if (node.effects) applyEffects(node.effects, this.ws, this.hooks);
+    if (node.effects) {
+      applyEffects(node.effects, this.ws, this.hooks);
+      // Награда и флаги узла пишутся сразу: F5 посреди реплики не повторит её
+      this.hooks.onEffects?.();
+    }
     if (node.effects?.openParty) { this.hooks.openParty?.(); return; }
 
     const visible = (node.choices || []).filter(ch => checkRequires(ch.showIf, this.ws).ok);

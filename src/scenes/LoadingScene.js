@@ -76,7 +76,6 @@ export class LoadingScene extends Phaser.Scene {
     img('dialog_frame', 'ui/dialog_frame.png');
 
     // UI ассеты (портреты, скиллы, панели)
-    img('portrait_frame',       'ui/portrait_frame.png');
     img('skill_button',         'ui/skill_button.png');
     img('hp_bar_frame',         'ui/hp_bar_frame.png');
     img('panel_frame',          'ui/panel_frame.png');
@@ -227,10 +226,30 @@ export function preloadCompanionSheets(scene, only) {
   Object.entries(SHEETS).forEach(([id, list]) => {
     if (!only.includes(id)) return;
     list.forEach(([key, file, frameWidth, frameHeight]) => {
-      if (scene.textures.exists(key)) return;
+      if (scene.textures.exists(key) || isPending(key)) return;
+      markPending(scene, key);
       scene.load.spritesheet(key, file, { frameWidth, frameHeight });
       n++;
     });
   });
   return n;
+}
+
+// Лист, который уже качает загрузчик другой сцены. У каждой сцены свой загрузчик, и textures.exists
+// не видит файл в пути: без этой метки быстрый переход ставил тот же ключ второй раз
+// («Texture key already in use»). Файл ушедшей сцены всё равно дописывается в текстуры.
+const pendingSheets = new Map();
+const PENDING_TTL = 60000;
+
+function isPending(key) {
+  const t = pendingSheets.get(key);
+  if (t && performance.now() - t < PENDING_TTL) return true;
+  pendingSheets.delete(key);
+  return false;
+}
+
+function markPending(scene, key) {
+  pendingSheets.set(key, performance.now());
+  scene.textures.once(`addtexture-${key}`, () => pendingSheets.delete(key));
+  scene.load.on('loaderror', f => { if (f.key === key) pendingSheets.delete(key); });
 }

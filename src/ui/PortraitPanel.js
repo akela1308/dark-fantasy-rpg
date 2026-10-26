@@ -4,6 +4,9 @@
  * Враги: справа, 3 портрета сверху вниз.
  * Под каждым: HP бар + "HP/maxHP".
  */
+// Список файлов из public/portraits (vite.config.js). Без файла остаётся заглушка, а не 404
+export const HAS_PORTRAIT = key => typeof __PORTRAITS__ === 'undefined' || __PORTRAITS__.includes(key);
+
 export class PortraitPanel {
   constructor(scene, playerUnits, enemyUnits) {
     this.scene       = scene;
@@ -19,11 +22,8 @@ export class PortraitPanel {
     const all = [...this.playerUnits, ...this.enemyUnits];
     all.forEach(u => {
       const pk = u.spriteKey ?? u.id;   // портрет ищется по тому же ключу, что и в create()
-      this.scene.load.image(`portrait_${pk}`, `portraits/${pk}.png`);
+      if (HAS_PORTRAIT(pk)) this.scene.load.image(`portrait_${pk}`, `portraits/${pk}.png`);
     });
-    if (!this.scene.textures.exists('portrait_frame')) {
-      this.scene.load.image('portrait_frame', 'ui/portrait_frame.png');
-    }
     if (!this.scene.textures.exists('hp_bar_frame')) {
       this.scene.load.image('hp_bar_frame', 'ui/hp_bar_frame.png');
     }

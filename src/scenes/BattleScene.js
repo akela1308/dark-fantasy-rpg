@@ -5,7 +5,7 @@ import { SkillSystem }  from '../systems/SkillSystem.js';
 import { BattleGrid }   from '../systems/BattleGrid.js';
 import { UIManager }    from '../ui/UIManager.js';
 import { MusicPlayer }    from '../ui/MusicPlayer.js';
-import { PortraitPanel }  from '../ui/PortraitPanel.js';
+import { PortraitPanel, HAS_PORTRAIT } from '../ui/PortraitPanel.js';
 import { COLORS, XP, AI_DELAY } from '../utils/constants.js';
 import eventBus from '../utils/eventBus.js';
 
@@ -122,7 +122,7 @@ export class BattleScene extends Phaser.Scene {
     // Портреты участников по spriteKey (у тварей бестиария id вида hamlet_dogs_2, а портрет по spriteKey)
     [...unitsData, ...enemySource].forEach(u => {
       const pk = u.spriteKey ?? u.id;
-      if (!this.textures.exists(`portrait_${pk}`)) this.load.image(`portrait_${pk}`, `portraits/${pk}.png`);
+      if (!this.textures.exists(`portrait_${pk}`) && HAS_PORTRAIT(pk)) this.load.image(`portrait_${pk}`, `portraits/${pk}.png`);
     });
     // Ассеты загружены в LoadingScene - здесь ничего не грузим
   }
@@ -138,10 +138,15 @@ export class BattleScene extends Phaser.Scene {
     this.portraits.create();
     this._bindEvents();
     Sfx.bindBattle(this);
-    this.input.keyboard.on('keydown-B', () => this._toggleBattleGrid());
-    this.input.keyboard.on('keydown-G', () => this._toggleBattleCoordGrid());
-    this.input.keyboard.on('keydown-H', () => this._toggleFineGrid());
-    this.input.keyboard.on('keydown-J', () => this._toggleJGrid());
+    if (import.meta.env.DEV) {
+      this.input.keyboard.on('keydown-B', () => this._toggleBattleGrid());
+      this.input.keyboard.on('keydown-G', () => this._toggleBattleCoordGrid());
+      this.input.keyboard.on('keydown-H', () => this._toggleFineGrid());
+      this.input.keyboard.on('keydown-J', () => this._toggleJGrid());
+    }
+    // Esc и правый клик снимают выбранный навык
+    this.input.keyboard.on('keydown-ESC', () => this._cancelPendingSkill());
+    this.input.on('pointerdown', p => { if (p.rightButtonDown()) this._cancelPendingSkill(); });
     this.turnManager.init([...this.playerUnits, ...this.enemyUnits]);
     this._renderAll();
     // Инициализируем плеер здесь (ассеты уже в кэше после LoadingScene)
@@ -470,7 +475,7 @@ export class BattleScene extends Phaser.Scene {
     const cfg = unit._animCfg;
     // Последний кадр действия плавно растворяется поверх стойки: позы не совпадают точно
     const ghost = this.add.image(spr.x, spr.y, spr.texture.key, spr.frame.name)
-      .setOrigin(spr.originX, spr.originY).setScale(spr.scaleX).setDepth(spr.depth + 0.1);
+      .setOrigin(spr.originX, spr.originY).setScale(spr.scaleX).setFlipX(spr.flipX).setDepth(spr.depth + 0.1);
     this.tweens.add({ targets: ghost, alpha: 0, duration: 180, onComplete: () => ghost.destroy() });
     spr.setOrigin(...animOrigin(cfg, cfg.anims.idle, spr.flipX));
     spr.play({ key: cfg.anims.idle.key, startFrame: 0 });
@@ -540,7 +545,7 @@ export class BattleScene extends Phaser.Scene {
     // Цветовая вспышка: крит - красная, обычный - белая
     if (unit._sprite.setTint) {
       unit._sprite.setTint(isCrit ? 0xFF2222 : 0xFFFFFF);
-      this.time.delayedCall(isCrit ? 220 : 160, () => { if (unit._sprite) unit._sprite.clearTint(); });
+      this.time.delayedCall(isCrit ? 220 : 160, () => { unit._sprite?.clearTint?.(); });
     }
     // Camera shake на крит
     if (isCrit) {
@@ -649,13 +654,13 @@ export class BattleScene extends Phaser.Scene {
       : this.enemyUnits.filter(u => isActive(u));
     const tint = isAlly ? 0x88FFCC : 0xFFDD55;
     targets.forEach(u => {
-      if (u._sprite) u._sprite.setTint(tint);
+      u._sprite?.setTint?.(tint);
     });
   }
 
   _clearTargetHighlight() {
     [...(this.playerUnits || []), ...(this.enemyUnits || [])].forEach(u => {
-      if (u._sprite) u._sprite.clearTint();
+      u._sprite?.clearTint?.();
       if (u.surrendered) u._sprite?.setTint?.(0x777777);
     });
   }
@@ -677,10 +682,21 @@ export class BattleScene extends Phaser.Scene {
     if (this._pendingSkill) {
       const skillId = this._pendingSkill;
       const sk = this.skillSystem.get(skillId);
-      if (sk && sk.targetType === 'enemy_single') {
+      if (sk && sk.targetType !== 'enemy_single') {
+        // Навык на союзника: клик по врагу не превращается в обычную атаку
+        eventBus.emit('log', `«${sk.name}» применяется к союзнику. Esc или повторный клик по навыку снимает выбор`);
+        return;
+      }
+      if (sk) {
+        const reason = this.skillSystem.unavailableReason(skillId, actor);
+        if (reason) {
+          // Ход не сгорает: навык просто нельзя применить
+          eventBus.emit('log', `«${sk.name}» недоступен: ${reason}`);
+          this._cancelPendingSkill();
+          return;
+        }
         this._pendingSkill = null;
-        const anim = this.skillSystem.canUse(skillId, actor) ? this._actionAnim(actor, skillId) : null;
-        this._performAction(actor, target, anim, () => actor.handleSkill(skillId, target, this.skillSystem));
+        this._performAction(actor, target, this._actionAnim(actor, skillId), () => actor.handleSkill(skillId, target, this.skillSystem));
         return;
       }
     }
@@ -713,19 +729,34 @@ export class BattleScene extends Phaser.Scene {
     const actor = this.turnManager.active;
     const sk = this.skillSystem.get(this._pendingSkill);
     if (sk && (sk.targetType === 'ally_single' || sk.targetType === 'self')) {
+      const reason = this.skillSystem.unavailableReason(this._pendingSkill, actor);
+      if (reason) { eventBus.emit('log', `«${sk.name}» недоступен: ${reason}`); this._cancelPendingSkill(); return; }
       actor.handleSkill(this._pendingSkill, target, this.skillSystem);
       this._pendingSkill = null;
       this._afterPlayerAction();
     }
   }
 
+  _cancelPendingSkill() {
+    if (!this._pendingSkill || this.battleOver) return;
+    this._pendingSkill = null;
+    this._clearTargetHighlight();
+    if (this.turnManager.isPlayerTurn()) this._highlightTargets('enemy_single');
+    this.ui.update();
+  }
+
   _onSkillSelect(skillId) {
-    if (this._animLock || !this.turnManager.isPlayerTurn()) return;
+    if (this.battleOver || this._animLock || !this.turnManager.isPlayerTurn()) return;
     const actor = this.turnManager.active;
     if (!actor) return;
     const sk = this.skillSystem.get(skillId);
     if (!sk) return;
+    // Повторный клик по выбранному навыку снимает выбор
+    if (this._pendingSkill === skillId) { this._cancelPendingSkill(); return; }
+    const reason = this.skillSystem.unavailableReason(skillId, actor);
+    if (reason) { eventBus.emit('log', `«${sk.name}» недоступен: ${reason}`); return; }
     if (sk.targetType === 'self') {
+      this._pendingSkill = null;
       actor.handleSkill(skillId, actor, this.skillSystem);
       this._afterPlayerAction();
     } else {
@@ -739,6 +770,7 @@ export class BattleScene extends Phaser.Scene {
   // ── После хода ────────────────────────────────────────────────────────
 
   _afterPlayerAction() {
+    this._pendingSkill = null;
     this._clearTargetHighlight();
     this._checkSurrenders();
     if (this._checkEnd()) return;
@@ -851,7 +883,11 @@ export class BattleScene extends Phaser.Scene {
     // Оверлей результата поверх всего (юниты теперь имеют глубину по Y ~385-590,
     // HP-бары ~1190) - затемнение и текст должны быть выше них.
     const OVERLAY_DEPTH = 2000;
-    this.add.rectangle(width/2, height/2, width, height, 0x000000, 0.75).setDepth(OVERLAY_DEPTH);
+    // Затемнение ловит клики: кнопки боя под ним больше не работают
+    this.add.rectangle(width/2, height/2, width, height, 0x000000, 0.75).setDepth(OVERLAY_DEPTH).setInteractive();
+    this._pendingSkill = null;
+    this._clearTargetHighlight();
+    this.ui.hideActions();
 
     const iron = this.game.registry.get('gameMode') === 'iron';
     const title = result === 'victory' ? 'ПОБЕДА' : 'ВЫ ПАЛИ';
@@ -1155,7 +1191,8 @@ export class BattleScene extends Phaser.Scene {
     });
 
     eventBus.on('skip_turn', () => {
-      if (this._animLock || !this.turnManager.isPlayerTurn()) return;
+      if (this.battleOver || this._animLock || !this.turnManager.isPlayerTurn()) return;
+      this._pendingSkill = null;
       this.turnManager.skipTurn();
       this._renderAll();
       this.ui.update();
@@ -1164,13 +1201,14 @@ export class BattleScene extends Phaser.Scene {
 
     // Защита: юнит получает эффект defending на 1 ход (~50% урона)
     eventBus.on('defend_action', () => {
-      if (this._animLock || !this.turnManager.isPlayerTurn()) return;
+      if (this.battleOver || this._animLock || !this.turnManager.isPlayerTurn()) return;
+      this._pendingSkill = null;
       const unit = this.turnManager.active;
       if (!unit || unit.type !== 'player') return;
       unit.addEffect({ type: 'defending', value: 0.5, duration: 2 }); // duration=2: снимается после след. хода
       this._react(unit, 'block');
-      eventBus.emit('log', `${unit.name} принимает оборонительную стойку!`);
-      this.turnManager.skipTurn();
+      eventBus.emit('log', `${unit.name} встаёт в защиту: до следующего хода урон вдвое меньше`);
+      this.turnManager.skipTurn(true);
       this._renderAll();
       this.ui.update();
       if (!this.turnManager.isPlayerTurn()) this._runAITurn();

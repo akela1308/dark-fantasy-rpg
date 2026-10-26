@@ -81,6 +81,7 @@ export class UIManager {
   // ── Обновление UI ─────────────────────────────────────────────────────
 
   update() {
+    if (this.scene.battleOver) { this.hideActions(); return; }
     this._updateTurnLabel();
     this._updateActionButtons();
     this._updateBorders();
@@ -98,10 +99,11 @@ export class UIManager {
   }
 
   _updateActionButtons() {
+    this._hideTooltip();
     this._actionBtns.forEach(b => b.destroy());
     this._actionBtns = [];
 
-    if (!this.turnManager.isPlayerTurn()) return;
+    if (this.scene.battleOver || !this.turnManager.isPlayerTurn()) return;
     const unit = this.turnManager.active;
     if (!unit) return;
 
@@ -118,15 +120,21 @@ export class UIManager {
 
     // Собираем все скиллы включая пистолет
     const buttons = [];
-    unit.skills.forEach(skillId => {
+    const ss = this.scene.skillSystem;
+    const pending = this.scene._pendingSkill;
+    const skillIds = [...unit.skills];
+    // Пистолет одной кнопкой: заряды пишутся под ней, а не отдельной кнопкой
+    if ((unit.resources?.pistol_charges || 0) > 0 && !skillIds.includes('pistol_shot')) skillIds.push('pistol_shot');
+    skillIds.forEach(skillId => {
       const skill = skillsData.find(s => s.id === skillId);
       if (!skill) return;
-      const onCD = unit.isOnCooldown(skillId);
-      buttons.push({ skillId, label: skill.name, desc: skill.description || null, icon: SKILL_ICONS[skillId] || null, sub: onCD ? `КД ${unit.cooldowns[skillId]}` : null, tint: onCD ? 0x444444 : null, cb: onCD ? null : () => eventBus.emit('skill_selected', skillId) });
+      const reason = ss?.unavailableReason(skillId, unit) ?? (unit.isOnCooldown(skillId) ? `КД ${unit.cooldowns[skillId]}` : null);
+      const charges = skill.usesResource ? unit.resources?.[skill.usesResource] : undefined;
+      const sub = reason ?? (charges !== undefined ? `×${charges}` : null);
+      const desc = [skill.description, reason ? `Недоступно: ${reason}` : null].filter(Boolean).join('\n') || null;
+      buttons.push({ skillId, label: skill.name, desc, icon: SKILL_ICONS[skillId] || null, sub, tint: reason ? 0x444444 : null,
+        selected: pending === skillId, cb: reason ? null : () => eventBus.emit('skill_selected', skillId) });
     });
-    if ((unit.resources?.pistol_charges || 0) > 0) {
-      buttons.push({ skillId: 'pistol_shot', label: 'Пистолет', icon: 'icon_pistol', sub: `×${unit.resources.pistol_charges}`, tint: null, cb: () => eventBus.emit('skill_selected', 'pistol_shot') });
-    }
 
     // Горизонтальный ряд иконок - центр левой панели (x=20+300=320)
     const btnSize = 64;
@@ -137,7 +145,7 @@ export class UIManager {
 
     buttons.forEach((b, i) => {
       const bx = startX + i * (btnSize + gap) + btnSize / 2;
-      this._addIconBtn(bx, btnY, b.label, b.icon, b.sub, b.tint, b.cb, b.desc);
+      this._addIconBtn(bx, btnY, b.label, b.icon, b.sub, b.tint, b.cb, b.desc, b.selected);
     });
 
     // Вспомогательная функция: маленькая иконка слева от текста
@@ -177,9 +185,17 @@ export class UIManager {
     this._actionBtns.push(hint);
   }
 
-  _addIconBtn(x, y, label, iconKey, sub, tint, cb, desc) {
+  _addIconBtn(x, y, label, iconKey, sub, tint, cb, desc, selected = false) {
     const size   = 64;
     const active = !!cb;
+
+    // Выбранный навык: золотое свечение вокруг ниши
+    if (selected) {
+      const glow = this.scene.add.rectangle(x, y, size + 8, size + 8)
+        .setStrokeStyle(3, 0xd4a832, 1).setDepth(5);
+      this.scene.tweens.add({ targets: glow, alpha: 0.45, duration: 600, yoyo: true, repeat: -1 });
+      this._actionBtns.push(glow);
+    }
 
     // Иконка скилла (под рамкой)
     if (iconKey && this.scene.textures.exists(iconKey)) {
@@ -208,6 +224,13 @@ export class UIManager {
         fontSize: '10px', color: '#888888', fontFamily: 'serif',
       }).setOrigin(0.5, 0).setDepth(4);
       this._actionBtns.push(s);
+    }
+
+    if (desc && !active) {
+      // Недоступный навык всё равно объясняет, почему
+      frame.setInteractive();
+      frame.on('pointerover', () => this._showTooltip(x, y - 42, desc));
+      frame.on('pointerout', () => this._hideTooltip());
     }
 
     if (active) {
@@ -262,9 +285,20 @@ export class UIManager {
     this._actionBtns.push(btn);
   }
 
+  /** Конец боя: убрать кнопки, подсказку, подпись хода и кольцо активного юнита. */
+  hideActions() {
+    this._hideTooltip();
+    this._actionBtns.forEach(b => b.destroy());
+    this._actionBtns = [];
+    this._borders.forEach(b => b.destroy());
+    this._borders = [];
+    this._turnLabel?.setVisible(false);
+  }
+
   // ── Подсветка активного юнита ──────────────────────────────────────────
 
   highlightActive(unit) {
+    if (this.scene.battleOver) return;
     this._updateBorders();
   }
 

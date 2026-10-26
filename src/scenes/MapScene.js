@@ -53,6 +53,10 @@ export class MapScene extends Phaser.Scene {
     SaveSystem.applyFlagsToRegistry(this.game.registry);
 
     this._transitioning = false;
+    // Сцена переиспользуется: окна прошлой карты уничтожены вместе с ней, ссылки на них сбрасываем
+    this._journalObjs   = null;
+    this._bookOverlay   = null;
+    this._charSheetOpen = false;
     this._exitCooldown  = 2200;  // мс после спавна - выходы не срабатывают
 
     const cfg   = MAP_CONFIGS[this.mapKey];
@@ -172,10 +176,9 @@ export class MapScene extends Phaser.Scene {
     MapEditor.attach(this, cfg); // dev-редактор зон: только с ?dev=1, клавиша E
 
     // Клик по карте
-    this.input.on('pointerdown', (ptr) => {
+    this.input.on('pointerdown', (ptr, over = []) => {
       if (ptr.rightButtonDown()) return;
-      if (this._bookOverlay) return;
-      if (this._dialogue?.active || this._journalObjs) return;   // диалог или журнал: движение заблокировано
+      if (this._uiBlocksMapClick(over)) return;
       const clamped = this.walkable.clamp(ptr.worldX, ptr.worldY);
       this.hero.moveTo(clamped.x, clamped.y);
       this._showClickMarker(clamped.x, clamped.y);
@@ -184,7 +187,8 @@ export class MapScene extends Phaser.Scene {
     this._clickMarker = this.add.graphics().setDepth(20);
 
     // ── Инвентарь: глубокая копия из items.json + синхронизация золота ──
-    this._inventory = JSON.parse(JSON.stringify(itemsData));
+    // Стартовый набор: золото и то, что есть с начала. Квестовые предметы добавит _syncWorldItems, когда они появятся
+    this._inventory = JSON.parse(JSON.stringify(itemsData)).filter(it => it.id === 'gold' || it.quantity > 0);
     const savedGold = this.game.registry.get('playerGold') ?? 0;
     const _goldItem = this._inventory.find(it => it.id === 'gold');
     if (_goldItem) _goldItem.quantity = savedGold;
@@ -205,10 +209,12 @@ export class MapScene extends Phaser.Scene {
       stroke: '#000', strokeThickness: 2,
     }).setDepth(999).setScrollFactor(0).setAlpha(0);
 
-    this.input.keyboard.on('keydown-G', () => this._toggleDevGrid());
-    this.input.keyboard.on('keydown-H', () => this._toggleScreenGrid());
-    this.input.keyboard.on('keydown-B', () => this._toggleInvGrid());
-    this.input.keyboard.on('keydown-J', () => this._toggleFineGrid());
+    if (import.meta.env.DEV) {
+      this.input.keyboard.on('keydown-G', () => this._toggleDevGrid());
+      this.input.keyboard.on('keydown-H', () => this._toggleScreenGrid());
+      this.input.keyboard.on('keydown-B', () => this._toggleInvGrid());
+      this.input.keyboard.on('keydown-J', () => this._toggleFineGrid());
+    }
     // TEMP: прод-тест прокачки. Убрать после проверки веток классов.
     if (import.meta.env?.DEV) this.input.keyboard.on('keydown-L', () => this._launchDevLevelUp());
 
@@ -891,14 +897,36 @@ export class MapScene extends Phaser.Scene {
     this._showBookReader(book.id);
   }
 
+  /** Появление по флагам и условиям (блок Г): showIfFlag, hideIfFlag, showIf. */
+  _npcConditionsMet(npc) {
+    if (npc.showIfFlag && !this.game.registry.get(npc.showIfFlag)) return false;
+    if (npc.hideIfFlag && this.game.registry.get(npc.hideIfFlag)) return false;
+    if (npc.showIf && this._ws && !checkRequires(npc.showIf, this._ws).ok) return false;
+    return true;
+  }
+
+  /** После диалога или боя: убрать NPC, чьё условие больше не выполняется, и показать новых. */
+  _refreshNpcs() {
+    if (!this._npcs) return;
+    this._npcs = this._npcs.filter(n => {
+      if (this._npcConditionsMet(n.cfg)) return true;
+      [n.sprite, n.shadow, n.label, n.hoverImg, n.hoverName].forEach(o => {
+        if (!o) return;
+        this.tweens.killTweensOf(o);
+        o.disableInteractive?.();
+        this.tweens.add({ targets: o, alpha: 0, duration: 400, onComplete: () => o.destroy() });
+      });
+      return false;
+    });
+    this._spawnNPCs(MAP_CONFIGS[this.mapKey]);
+  }
+
   _spawnNPCs(cfg) {
     (cfg.npcs || []).forEach(npc => {
+      if (this._npcs.some(n => n.cfg === npc)) return;   // уже на карте (повторный вызов из _refreshNpcs)
       // NPC с vanishKey исчезает навсегда после разговора (флаг сохраняется в registry)
       if (npc.vanishKey && this.game.registry.get(npc.vanishKey)) return;
-      // Появление по флагам и условиям (блок Г): showIfFlag, hideIfFlag, showIf
-      if (npc.showIfFlag && !this.game.registry.get(npc.showIfFlag)) return;
-      if (npc.hideIfFlag && this.game.registry.get(npc.hideIfFlag)) return;
-      if (npc.showIf && this._ws && !checkRequires(npc.showIf, this._ws).ok) return;
+      if (!this._npcConditionsMet(npc)) return;
       // Нет арта: временная фигура (серый силуэт), имя видно при наведении
       if (!this.textures.exists(npc.spriteKey)) this._ensureNpcPlaceholder(npc);
       const h = npc.height || 130;
@@ -999,7 +1027,7 @@ export class MapScene extends Phaser.Scene {
         this._showNpcDialogue(npc, this._resolveRootDialogue(npc));
       });
 
-      this._npcs.push({ sprite, shadow, label, cfg: npc });
+      this._npcs.push({ sprite, shadow, label, cfg: npc, hoverImg: _hImg, hoverName: _hName });
     });
   }
 
@@ -1287,12 +1315,22 @@ export class MapScene extends Phaser.Scene {
         this.scene.start('ChapterEndScene', { fromMapKey: 'tavern_map', fromSpawnId: 'tavern_exit' });
       }),
       openParty: () => this._showPartyManager(),
-      onClose: () => SaveSystem.saveWorld(reg, this.mapKey, this.spawnId),
+      onEffects: () => SaveSystem.saveWorld(reg, this.mapKey, this.spawnId),
+      onClose: () => { SaveSystem.saveWorld(reg, this.mapKey, this.spawnId); this._refreshNpcs(); },
     };
   }
 
   /** Журнал квестов: текущий этап каждого открытого квеста (без нового арта). */
+  /** Клик по HUD, окну или во время перехода не двигает героя. */
+  _uiBlocksMapClick(over) {
+    if (this._transitioning || this._bookOverlay || this._journalObjs || this._charSheetOpen) return true;
+    if (this._dialogue?.active) return true;
+    // Всё, что приколото к экрану (HUD, плеер, окна), перехватывает клик
+    return over.some(o => o.scrollFactorX === 0);
+  }
+
   _toggleJournal() {
+    if (!this._journalObjs && this._charSheetOpen) this._hideCharSheet();   // одно окно за раз
     if (this._journalObjs) {
       this._journalObjs.forEach(o => o.destroy());
       this._journalObjs = null;
@@ -1742,7 +1780,7 @@ export class MapScene extends Phaser.Scene {
     portraits.forEach((p, i) => {
       const cy = startY + i * gapY;
       const cx = cardW / 2;
-      const img = this.add.image(cx, cy, p.key).setDepth(UI_DEPTH).setScrollFactor(0);
+      const img = this.add.image(cx, cy, p.key).setDepth(UI_DEPTH).setScrollFactor(0).setInteractive();
       img.setScale(Math.min(cardW / img.width, cardH / img.height));
       // Подпись в середине зазора между портретами
       this.add.text(cx, cy + cardH / 2 + (gapY - cardH) / 2, p.label, {
@@ -2300,7 +2338,8 @@ export class MapScene extends Phaser.Scene {
     const imgW = Math.round(BAR_H * (866 / 288));
     this.add.image(W / 2, BAR_Y, 'bottom_panel1')
       .setDisplaySize(imgW, BAR_H)
-      .setDepth(DEPTH).setScrollFactor(0);
+      .setDepth(DEPTH).setScrollFactor(0)
+      .setInteractive();   // панель целиком ловит клики, чтобы они не уходили в карту
 
     // 5 слотов выровнены по визуальным ячейкам изображения
     const SLOT_SIZE = 64;  // screen pixels
@@ -2445,6 +2484,8 @@ export class MapScene extends Phaser.Scene {
   }
 
   _showCharSheet(idx = 0) {
+    if (this._journalObjs) this._toggleJournal();   // одно окно за раз
+    this._charSheetOpen = true;
     // Синхронизируем золото из реестра при каждом открытии
     const gold = this.game.registry.get('playerGold') ?? 0;
     const goldItem = this._inventory?.find(it => it.id === 'gold');
@@ -2464,6 +2505,7 @@ export class MapScene extends Phaser.Scene {
   }
 
   _hideCharSheet() {
+    this._charSheetOpen = false;
     this._charSheetElements.forEach(e => e.setVisible(false));
     this._csContent.forEach(e => { try { e.destroy(); } catch {} });
     this._csContent = [];

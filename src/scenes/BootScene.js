@@ -11,6 +11,8 @@ export class BootScene extends Phaser.Scene {
   }
 
   create() {
+    // Сцена переиспользуется (после смерти в Железе титул открывается снова)
+    this._starting = false;
     const W = 1280, H = 720;
     const cx = W / 2, cy = H / 2;
 

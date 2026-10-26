@@ -32,7 +32,7 @@ const config = {
   scene: [BootScene, LoadingScene, MapScene, BattleScene, LevelUpScene, ChapterEndScene],
   scale: {
     mode: Phaser.Scale.FIT,
-    autoCenter: Phaser.Scale.NO_CENTER,
+    autoCenter: Phaser.Scale.CENTER_BOTH,
   },
 };
 

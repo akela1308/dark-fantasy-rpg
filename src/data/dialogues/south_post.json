@@ -49,8 +49,8 @@
     },
     "after_fight": {
       "speaker": "narrator",
-      "text": "На телеге мешок с монетами (12) и пустой футляр для писем с имперским знаком. Записка-обрывок: «...седьмой пост не отвечает с осени. Везу приказ о...» дальше оторвано.",
-      "effects": { "clearFlag": "road_looters_pending", "setFlag": ["courier_letter_found", "road_looters_done", "road_looters_won"], "giveGold": 12 }
+      "text": "На телеге, кроме мешка с монетами, пустой футляр для писем с имперским знаком. Записка-обрывок: «...седьмой пост не отвечает с осени. Везу приказ о...» дальше оторвано.",
+      "effects": { "clearFlag": "road_looters_pending", "setFlag": ["courier_letter_found", "road_looters_done", "road_looters_won"] }
     },
 
     "vornag": {

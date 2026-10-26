@@ -72,8 +72,8 @@ export class TurnManager {
     eventBus.emit('phase_changed', this.phase);
   }
 
-  skipTurn() {
-    eventBus.emit('log', `${this.active?.name} пропускает ход`);
+  skipTurn(silent = false) {
+    if (!silent) eventBus.emit('log', `${this.active?.name} пропускает ход`);
     this.nextTurn();
   }
 
