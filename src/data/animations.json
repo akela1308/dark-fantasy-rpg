@@ -433,6 +433,18 @@
  },
  "dog": {
   "anims": {
+   "attack": {
+    "file": "sprites/battle/dog_attack_v1.webp",
+    "frameWidth": 624,
+    "frameHeight": 342,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.5163,
+    "originY": 0.9742,
+    "bodyHeight": 300,
+    "key": "dog_attack_v1",
+    "hitFrame": 5
+   },
    "hit": {
     "file": "sprites/battle/dog_hit_v1.webp",
     "frameWidth": 624,
@@ -457,7 +469,9 @@
     "loop": true
    }
   },
-  "actions": {},
+  "actions": {
+   "basic": "attack"
+  },
   "name": "Пёс"
  },
  "drowned": {
@@ -1509,6 +1523,18 @@
     "bodyHeight": 300,
     "key": "tavernman_idle_v1",
     "loop": true
+   },
+   "victory": {
+    "file": "sprites/battle/tavernman_victory_v1.webp",
+    "frameWidth": 518,
+    "frameHeight": 338,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.423,
+    "originY": 0.9713,
+    "bodyHeight": 300,
+    "key": "tavernman_victory_v1",
+    "hold": true
    }
   },
   "actions": {

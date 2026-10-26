@@ -253,6 +253,8 @@ HIT = ("Is struck by one blow coming from the right: the body jerks back and awa
 DEATH = ("Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, "
          "lying still on the ground at the end of the clip. The weapons fall next to the body.")
 DEATH_BEAST = "Is fatally struck from the right: the animal staggers, collapses onto its side and lies still on the ground at the end of the clip."
+VICTORY_BEAST = ("Victory: the animal stays on all four legs the whole clip, lifts its head and barks or roars once, "
+                 "then stands proudly still. It never stands up on its hind legs, never changes its body shape.")
 VICTORY = ("Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps.")
 
 DUELIST = [
@@ -294,7 +296,7 @@ def veo_jobs():
         j.append(dict(stage=3, name=f"{s}/clips/attack", first=fb, last=fb, prompt=ATTACK[k] + " One strike only." + h))
         j.append(dict(stage=3, name=f"{s}/clips/hit", first=fb, last=fb, prompt=HIT + h))
         j.append(dict(stage=3, name=f"{s}/clips/death", first=fb, prompt=(DEATH_BEAST if beast else DEATH) + h))
-        j.append(dict(stage=3, name=f"{s}/clips/victory", first=fb, prompt=VICTORY + h))
+        j.append(dict(stage=3, name=f"{s}/clips/victory", first=fb, prompt=(VICTORY_BEAST if beast else VICTORY) + h))
         if k in SPECIAL:
             nm, p = SPECIAL[k]
             j.append(dict(stage=3, name=f"{s}/clips/{nm}", first=fb, last=fb, prompt=p + h))

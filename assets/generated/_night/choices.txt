@@ -213,3 +213,5 @@ tavernman death 1
 tavernman hit 1
 tavernman attack 1 | кадр 9 выкинут (тесак вытягивается в меч)
 dog hit 2 | кадр 2 выкинут (вспышка)
+dog attack 1 | рамка шире
+tavernman victory 2

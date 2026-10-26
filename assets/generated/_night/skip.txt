@@ -32,3 +32,5 @@ bandit_brawler power
 kikimora attack
 kikimora power
 swamp_elf hit
+dog death
+dog victory

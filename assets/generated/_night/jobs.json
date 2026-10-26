@@ -2799,7 +2799,7 @@
   "stage": 3,
   "name": "forest_bear/clips/victory",
   "first": "forest_bear/k_battle.png",
-  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: no weapon, claws and jaws; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "prompt": "Victory: the animal stays on all four legs the whole clip, lifts its head and barks or roars once, then stands proudly still. It never stands up on its hind legs, never changes its body shape. HANDS CANON: no weapon, claws and jaws; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
   "sec": 4,
   "n": 2
  },
@@ -3107,7 +3107,7 @@
   "stage": 3,
   "name": "wild_dog/clips/victory",
   "first": "wild_dog/k_battle.png",
-  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: no weapon, fangs; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "prompt": "Victory: the animal stays on all four legs the whole clip, lifts its head and barks or roars once, then stands proudly still. It never stands up on its hind legs, never changes its body shape. HANDS CANON: no weapon, fangs; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
   "sec": 4,
   "n": 2
  },
@@ -3141,7 +3141,7 @@
   "stage": 3,
   "name": "grey_wolf/clips/victory",
   "first": "grey_wolf/k_battle.png",
-  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: no weapon, fangs; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "prompt": "Victory: the animal stays on all four legs the whole clip, lifts its head and barks or roars once, then stands proudly still. It never stands up on its hind legs, never changes its body shape. HANDS CANON: no weapon, fangs; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
   "sec": 4,
   "n": 2
  },
@@ -3175,7 +3175,7 @@
   "stage": 3,
   "name": "boar/clips/victory",
   "first": "boar/k_battle.png",
-  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: no weapon, tusks; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "prompt": "Victory: the animal stays on all four legs the whole clip, lifts its head and barks or roars once, then stands proudly still. It never stands up on its hind legs, never changes its body shape. HANDS CANON: no weapon, tusks; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
   "sec": 4,
   "n": 2
  },
