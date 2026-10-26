@@ -1,0 +1,1161 @@
+{
+ "map1": [
+  {
+   "key": "prop_map1_obelisk_lantern",
+   "src": "maps/props/map1/obelisk_lantern.png",
+   "x": 1163,
+   "y": 645,
+   "originX": 0,
+   "originY": 0.9806,
+   "occluder": true
+  },
+  {
+   "key": "prop_map1_lantern_post",
+   "src": "maps/props/map1/lantern_post.png",
+   "x": 1458,
+   "y": 495,
+   "originX": 0,
+   "originY": 0.9684,
+   "occluder": true
+  }
+ ],
+ "tavern_map": [
+  {
+   "key": "prop_tavern_map_well",
+   "src": "maps/props/tavern_map/well.png",
+   "x": 369,
+   "y": 512,
+   "originX": 0,
+   "originY": 0.9842,
+   "occluder": true
+  },
+  {
+   "key": "prop_tavern_map_wayside_cross",
+   "src": "maps/props/tavern_map/wayside_cross.png",
+   "x": 222,
+   "y": 700,
+   "originX": 0,
+   "originY": 1.0483,
+   "occluder": true
+  },
+  {
+   "key": "prop_tavern_map_lantern_post",
+   "src": "maps/props/tavern_map/lantern_post.png",
+   "x": 1518,
+   "y": 685,
+   "originX": 0,
+   "originY": 0.9674,
+   "occluder": true
+  }
+ ],
+ "tavern_inside": [
+  {
+   "key": "prop_tavern_inside_stool_1",
+   "src": "maps/props/tavern_inside/stool_1.png",
+   "x": 903,
+   "y": 390,
+   "originX": 0,
+   "originY": 1.0455,
+   "occluder": true
+  },
+  {
+   "key": "prop_tavern_inside_stool_2",
+   "src": "maps/props/tavern_inside/stool_2.png",
+   "x": 950,
+   "y": 405,
+   "originX": 0,
+   "originY": 0.9697,
+   "occluder": true
+  },
+  {
+   "key": "prop_tavern_inside_stool_3",
+   "src": "maps/props/tavern_inside/stool_3.png",
+   "x": 996,
+   "y": 420,
+   "originX": 0,
+   "originY": 0.9531,
+   "occluder": true
+  },
+  {
+   "key": "prop_tavern_inside_stool_4",
+   "src": "maps/props/tavern_inside/stool_4.png",
+   "x": 1038,
+   "y": 445,
+   "originX": 0,
+   "originY": 0.9559,
+   "occluder": true
+  },
+  {
+   "key": "prop_tavern_inside_stool_6",
+   "src": "maps/props/tavern_inside/stool_6.png",
+   "x": 1151,
+   "y": 487,
+   "originX": 0,
+   "originY": 0.9538,
+   "occluder": true
+  },
+  {
+   "key": "prop_tavern_inside_bar_end_a",
+   "src": "maps/props/tavern_inside/bar_end_a.png",
+   "x": 1200,
+   "y": 425,
+   "originX": 0,
+   "originY": 0.9559,
+   "occluder": true
+  },
+  {
+   "key": "prop_tavern_inside_bar_end_b",
+   "src": "maps/props/tavern_inside/bar_end_b.png",
+   "x": 1270,
+   "y": 450,
+   "originX": 0,
+   "originY": 0.9545,
+   "occluder": true
+  }
+ ],
+ "forest1": [
+  {
+   "key": "prop_forest1_bare_tree",
+   "src": "maps/props/forest1/bare_tree.png",
+   "x": 885,
+   "y": 695,
+   "originX": 0,
+   "originY": 1.0,
+   "occluder": true
+  },
+  {
+   "key": "prop_forest1_signpost",
+   "src": "maps/props/forest1/signpost.png",
+   "x": 1245,
+   "y": 568,
+   "originX": 0,
+   "originY": 0.9758,
+   "occluder": true
+  }
+ ],
+ "road_to_village": [
+  {
+   "key": "prop_road_to_village_signpost",
+   "src": "maps/props/road_to_village/signpost.png",
+   "x": 1347,
+   "y": 450,
+   "originX": 0,
+   "originY": 0.9815,
+   "occluder": true
+  },
+  {
+   "key": "prop_road_to_village_lantern_post",
+   "src": "maps/props/road_to_village/lantern_post.png",
+   "x": 1457,
+   "y": 445,
+   "originX": 0,
+   "originY": 1.0222,
+   "occluder": true
+  },
+  {
+   "key": "prop_road_to_village_crow_stump",
+   "src": "maps/props/road_to_village/crow_stump.png",
+   "x": 336,
+   "y": 650,
+   "originX": 0,
+   "originY": 0.9762,
+   "occluder": true
+  }
+ ],
+ "village": [
+  {
+   "key": "prop_village_well",
+   "src": "maps/props/village/well.png",
+   "x": 549,
+   "y": 732,
+   "originX": 0,
+   "originY": 0.9832,
+   "occluder": true
+  }
+ ],
+ "road_boloto": [
+  {
+   "key": "prop_road_boloto_dead_tree",
+   "src": "maps/props/road_boloto/dead_tree.png",
+   "x": 323,
+   "y": 475,
+   "originX": 0,
+   "originY": 0.979,
+   "occluder": true
+  },
+  {
+   "key": "prop_road_boloto_dead_tree_2",
+   "src": "maps/props/road_boloto/dead_tree_2.png",
+   "x": 910,
+   "y": 662,
+   "originX": 0,
+   "originY": 0.9634,
+   "occluder": true
+  },
+  {
+   "key": "prop_road_boloto_lantern_post",
+   "src": "maps/props/road_boloto/lantern_post.png",
+   "x": 1307,
+   "y": 718,
+   "originX": 0,
+   "originY": 0.9681,
+   "occluder": true
+  }
+ ],
+ "south_post": [
+  {
+   "key": "prop_south_post_occ_1",
+   "src": "maps/props/south_post/occ_1.png",
+   "x": 548,
+   "y": 561,
+   "originX": 0,
+   "originY": 0.9982,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_south_post_occ_2",
+   "src": "maps/props/south_post/occ_2.png",
+   "x": 916,
+   "y": 377,
+   "originX": 0,
+   "originY": 0.9967,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_south_post_occ_3",
+   "src": "maps/props/south_post/occ_3.png",
+   "x": 889,
+   "y": 689,
+   "originX": 0,
+   "originY": 0.9804,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_south_post_occ_4",
+   "src": "maps/props/south_post/occ_4.png",
+   "x": 692,
+   "y": 940,
+   "originX": 0,
+   "originY": 0.995,
+   "occluder": true,
+   "auto": true
+  }
+ ],
+ "three_pillars": [
+  {
+   "key": "prop_three_pillars_occ_1",
+   "src": "maps/props/three_pillars/occ_1.png",
+   "x": 82,
+   "y": 363,
+   "originX": 0,
+   "originY": 0.9973,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_three_pillars_occ_2",
+   "src": "maps/props/three_pillars/occ_2.png",
+   "x": 617,
+   "y": 308,
+   "originX": 0,
+   "originY": 0.9968,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_three_pillars_occ_3",
+   "src": "maps/props/three_pillars/occ_3.png",
+   "x": 0,
+   "y": 404,
+   "originX": 0,
+   "originY": 0.991,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_three_pillars_occ_4",
+   "src": "maps/props/three_pillars/occ_4.png",
+   "x": 853,
+   "y": 474,
+   "originX": 0,
+   "originY": 0.9944,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_three_pillars_occ_5",
+   "src": "maps/props/three_pillars/occ_5.png",
+   "x": 393,
+   "y": 375,
+   "originX": 0,
+   "originY": 0.9828,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_three_pillars_occ_6",
+   "src": "maps/props/three_pillars/occ_6.png",
+   "x": 1362,
+   "y": 420,
+   "originX": 0,
+   "originY": 0.9892,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_three_pillars_occ_7",
+   "src": "maps/props/three_pillars/occ_7.png",
+   "x": 747,
+   "y": 489,
+   "originX": 0,
+   "originY": 0.9936,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_three_pillars_occ_8",
+   "src": "maps/props/three_pillars/occ_8.png",
+   "x": 884,
+   "y": 506,
+   "originX": 0,
+   "originY": 0.9896,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_three_pillars_occ_9",
+   "src": "maps/props/three_pillars/occ_9.png",
+   "x": 1049,
+   "y": 633,
+   "originX": 0,
+   "originY": 0.9931,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_three_pillars_occ_10",
+   "src": "maps/props/three_pillars/occ_10.png",
+   "x": 0,
+   "y": 940,
+   "originX": 0,
+   "originY": 0.9977,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_three_pillars_occ_11",
+   "src": "maps/props/three_pillars/occ_11.png",
+   "x": 614,
+   "y": 724,
+   "originX": 0,
+   "originY": 0.9931,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_three_pillars_occ_12",
+   "src": "maps/props/three_pillars/occ_12.png",
+   "x": 146,
+   "y": 697,
+   "originX": 0,
+   "originY": 0.9841,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_three_pillars_occ_13",
+   "src": "maps/props/three_pillars/occ_13.png",
+   "x": 982,
+   "y": 818,
+   "originX": 0,
+   "originY": 0.9942,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_three_pillars_occ_14",
+   "src": "maps/props/three_pillars/occ_14.png",
+   "x": 665,
+   "y": 823,
+   "originX": 0,
+   "originY": 0.9895,
+   "occluder": true,
+   "auto": true
+  }
+ ],
+ "old_mill": [
+  {
+   "key": "prop_old_mill_occ_1",
+   "src": "maps/props/old_mill/occ_1.png",
+   "x": 579,
+   "y": 204,
+   "originX": 0,
+   "originY": 0.9951,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_old_mill_occ_2",
+   "src": "maps/props/old_mill/occ_2.png",
+   "x": 0,
+   "y": 940,
+   "originX": 0,
+   "originY": 0.9988,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_old_mill_occ_3",
+   "src": "maps/props/old_mill/occ_3.png",
+   "x": 287,
+   "y": 545,
+   "originX": 0,
+   "originY": 0.9968,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_old_mill_occ_4",
+   "src": "maps/props/old_mill/occ_4.png",
+   "x": 1217,
+   "y": 940,
+   "originX": 0,
+   "originY": 0.9981,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_old_mill_occ_5",
+   "src": "maps/props/old_mill/occ_5.png",
+   "x": 532,
+   "y": 643,
+   "originX": 0,
+   "originY": 0.9872,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_old_mill_occ_6",
+   "src": "maps/props/old_mill/occ_6.png",
+   "x": 497,
+   "y": 940,
+   "originX": 0,
+   "originY": 0.9967,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_old_mill_occ_7",
+   "src": "maps/props/old_mill/occ_7.png",
+   "x": 1023,
+   "y": 894,
+   "originX": 0,
+   "originY": 0.9894,
+   "occluder": true,
+   "auto": true
+  }
+ ],
+ "burned_hamlet": [
+  {
+   "key": "prop_burned_hamlet_occ_1",
+   "src": "maps/props/burned_hamlet/occ_1.png",
+   "x": 937,
+   "y": 329,
+   "originX": 0,
+   "originY": 0.997,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_burned_hamlet_occ_2",
+   "src": "maps/props/burned_hamlet/occ_2.png",
+   "x": 0,
+   "y": 444,
+   "originX": 0,
+   "originY": 0.9977,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_burned_hamlet_occ_3",
+   "src": "maps/props/burned_hamlet/occ_3.png",
+   "x": 900,
+   "y": 492,
+   "originX": 0,
+   "originY": 0.9952,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_burned_hamlet_occ_4",
+   "src": "maps/props/burned_hamlet/occ_4.png",
+   "x": 193,
+   "y": 432,
+   "originX": 0,
+   "originY": 0.9846,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_burned_hamlet_occ_5",
+   "src": "maps/props/burned_hamlet/occ_5.png",
+   "x": 693,
+   "y": 527,
+   "originX": 0,
+   "originY": 0.9912,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_burned_hamlet_occ_6",
+   "src": "maps/props/burned_hamlet/occ_6.png",
+   "x": 0,
+   "y": 940,
+   "originX": 0,
+   "originY": 0.998,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_burned_hamlet_occ_7",
+   "src": "maps/props/burned_hamlet/occ_7.png",
+   "x": 778,
+   "y": 531,
+   "originX": 0,
+   "originY": 0.9892,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_burned_hamlet_occ_8",
+   "src": "maps/props/burned_hamlet/occ_8.png",
+   "x": 1326,
+   "y": 940,
+   "originX": 0,
+   "originY": 0.9976,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_burned_hamlet_occ_9",
+   "src": "maps/props/burned_hamlet/occ_9.png",
+   "x": 215,
+   "y": 709,
+   "originX": 0,
+   "originY": 0.9923,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_burned_hamlet_occ_10",
+   "src": "maps/props/burned_hamlet/occ_10.png",
+   "x": 1230,
+   "y": 723,
+   "originX": 0,
+   "originY": 0.9853,
+   "occluder": true,
+   "auto": true
+  }
+ ],
+ "dead_road": [
+  {
+   "key": "prop_dead_road_occ_1",
+   "src": "maps/props/dead_road/occ_1.png",
+   "x": 1265,
+   "y": 199,
+   "originX": 0,
+   "originY": 0.995,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_dead_road_occ_2",
+   "src": "maps/props/dead_road/occ_2.png",
+   "x": 1559,
+   "y": 343,
+   "originX": 0,
+   "originY": 0.9955,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_dead_road_occ_3",
+   "src": "maps/props/dead_road/occ_3.png",
+   "x": 1480,
+   "y": 432,
+   "originX": 0,
+   "originY": 0.9952,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_dead_road_occ_4",
+   "src": "maps/props/dead_road/occ_4.png",
+   "x": 1368,
+   "y": 510,
+   "originX": 0,
+   "originY": 0.9953,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_dead_road_occ_5",
+   "src": "maps/props/dead_road/occ_5.png",
+   "x": 1593,
+   "y": 426,
+   "originX": 0,
+   "originY": 0.989,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_dead_road_occ_6",
+   "src": "maps/props/dead_road/occ_6.png",
+   "x": 1257,
+   "y": 591,
+   "originX": 0,
+   "originY": 0.996,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_dead_road_occ_7",
+   "src": "maps/props/dead_road/occ_7.png",
+   "x": 1159,
+   "y": 670,
+   "originX": 0,
+   "originY": 0.9961,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_dead_road_occ_8",
+   "src": "maps/props/dead_road/occ_8.png",
+   "x": 1520,
+   "y": 679,
+   "originX": 0,
+   "originY": 0.9921,
+   "occluder": true,
+   "auto": true
+  }
+ ],
+ "gallows_hill": [
+  {
+   "key": "prop_gallows_hill_occ_1",
+   "src": "maps/props/gallows_hill/occ_1.png",
+   "x": 0,
+   "y": 391,
+   "originX": 0,
+   "originY": 0.9974,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_gallows_hill_occ_2",
+   "src": "maps/props/gallows_hill/occ_2.png",
+   "x": 1370,
+   "y": 428,
+   "originX": 0,
+   "originY": 0.9977,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_gallows_hill_occ_3",
+   "src": "maps/props/gallows_hill/occ_3.png",
+   "x": 790,
+   "y": 648,
+   "originX": 0,
+   "originY": 0.9965,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_gallows_hill_occ_4",
+   "src": "maps/props/gallows_hill/occ_4.png",
+   "x": 1269,
+   "y": 543,
+   "originX": 0,
+   "originY": 0.988,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_gallows_hill_occ_5",
+   "src": "maps/props/gallows_hill/occ_5.png",
+   "x": 312,
+   "y": 560,
+   "originX": 0,
+   "originY": 0.9898,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_gallows_hill_occ_6",
+   "src": "maps/props/gallows_hill/occ_6.png",
+   "x": 0,
+   "y": 731,
+   "originX": 0,
+   "originY": 0.9959,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_gallows_hill_occ_7",
+   "src": "maps/props/gallows_hill/occ_7.png",
+   "x": 1291,
+   "y": 726,
+   "originX": 0,
+   "originY": 0.9959,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_gallows_hill_occ_8",
+   "src": "maps/props/gallows_hill/occ_8.png",
+   "x": 549,
+   "y": 643,
+   "originX": 0,
+   "originY": 0.9911,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_gallows_hill_occ_9",
+   "src": "maps/props/gallows_hill/occ_9.png",
+   "x": 344,
+   "y": 779,
+   "originX": 0,
+   "originY": 0.9881,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_gallows_hill_occ_10",
+   "src": "maps/props/gallows_hill/occ_10.png",
+   "x": 1162,
+   "y": 759,
+   "originX": 0,
+   "originY": 0.9844,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_gallows_hill_occ_11",
+   "src": "maps/props/gallows_hill/occ_11.png",
+   "x": 511,
+   "y": 785,
+   "originX": 0,
+   "originY": 0.9857,
+   "occluder": true,
+   "auto": true
+  }
+ ],
+ "village_fields": [
+  {
+   "key": "prop_village_fields_occ_1",
+   "src": "maps/props/village_fields/occ_1.png",
+   "x": 960,
+   "y": 144,
+   "originX": 0,
+   "originY": 0.9931,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_village_fields_occ_2",
+   "src": "maps/props/village_fields/occ_2.png",
+   "x": 1627,
+   "y": 122,
+   "originX": 0,
+   "originY": 0.9833,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_village_fields_occ_3",
+   "src": "maps/props/village_fields/occ_3.png",
+   "x": 893,
+   "y": 193,
+   "originX": 0,
+   "originY": 0.992,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_village_fields_occ_4",
+   "src": "maps/props/village_fields/occ_4.png",
+   "x": 525,
+   "y": 322,
+   "originX": 0,
+   "originY": 0.9921,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_village_fields_occ_5",
+   "src": "maps/props/village_fields/occ_5.png",
+   "x": 1170,
+   "y": 398,
+   "originX": 0,
+   "originY": 0.9926,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_village_fields_occ_6",
+   "src": "maps/props/village_fields/occ_6.png",
+   "x": 1512,
+   "y": 529,
+   "originX": 0,
+   "originY": 0.996,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_village_fields_occ_7",
+   "src": "maps/props/village_fields/occ_7.png",
+   "x": 716,
+   "y": 446,
+   "originX": 0,
+   "originY": 0.9921,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_village_fields_occ_8",
+   "src": "maps/props/village_fields/occ_8.png",
+   "x": 0,
+   "y": 539,
+   "originX": 0,
+   "originY": 0.9944,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_village_fields_occ_9",
+   "src": "maps/props/village_fields/occ_9.png",
+   "x": 329,
+   "y": 737,
+   "originX": 0,
+   "originY": 0.9965,
+   "occluder": true,
+   "auto": true
+  }
+ ],
+ "forest_camp": [
+  {
+   "key": "prop_forest_camp_occ_1",
+   "src": "maps/props/forest_camp/occ_1.png",
+   "x": 1176,
+   "y": 539,
+   "originX": 0,
+   "originY": 0.9964,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_forest_camp_occ_2",
+   "src": "maps/props/forest_camp/occ_2.png",
+   "x": 850,
+   "y": 417,
+   "originX": 0,
+   "originY": 0.9808,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_forest_camp_occ_3",
+   "src": "maps/props/forest_camp/occ_3.png",
+   "x": 686,
+   "y": 436,
+   "originX": 0,
+   "originY": 0.9855,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_forest_camp_occ_4",
+   "src": "maps/props/forest_camp/occ_4.png",
+   "x": 766,
+   "y": 502,
+   "originX": 0,
+   "originY": 0.9907,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_forest_camp_occ_5",
+   "src": "maps/props/forest_camp/occ_5.png",
+   "x": 889,
+   "y": 550,
+   "originX": 0,
+   "originY": 0.9878,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_forest_camp_occ_6",
+   "src": "maps/props/forest_camp/occ_6.png",
+   "x": 700,
+   "y": 574,
+   "originX": 0,
+   "originY": 0.9881,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_forest_camp_occ_7",
+   "src": "maps/props/forest_camp/occ_7.png",
+   "x": 703,
+   "y": 789,
+   "originX": 0,
+   "originY": 0.9946,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_forest_camp_occ_8",
+   "src": "maps/props/forest_camp/occ_8.png",
+   "x": 944,
+   "y": 828,
+   "originX": 0,
+   "originY": 0.9947,
+   "occluder": true,
+   "auto": true
+  }
+ ],
+ "forest_altar": [
+  {
+   "key": "prop_forest_altar_occ_1",
+   "src": "maps/props/forest_altar/occ_1.png",
+   "x": 859,
+   "y": 403,
+   "originX": 0,
+   "originY": 0.9958,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_forest_altar_occ_2",
+   "src": "maps/props/forest_altar/occ_2.png",
+   "x": 182,
+   "y": 338,
+   "originX": 0,
+   "originY": 0.9937,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_forest_altar_occ_3",
+   "src": "maps/props/forest_altar/occ_3.png",
+   "x": 812,
+   "y": 519,
+   "originX": 0,
+   "originY": 0.9922,
+   "occluder": true,
+   "auto": true
+  }
+ ],
+ "forest_deep": [
+  {
+   "key": "prop_forest_deep_occ_1",
+   "src": "maps/props/forest_deep/occ_1.png",
+   "x": 1046,
+   "y": 714,
+   "originX": 0,
+   "originY": 0.9828,
+   "occluder": true,
+   "auto": true
+  }
+ ],
+ "ravine": [
+  {
+   "key": "prop_ravine_occ_1",
+   "src": "maps/props/ravine/occ_1.png",
+   "x": 0,
+   "y": 940,
+   "originX": 0,
+   "originY": 0.9989,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_ravine_occ_2",
+   "src": "maps/props/ravine/occ_2.png",
+   "x": 261,
+   "y": 392,
+   "originX": 0,
+   "originY": 0.9975,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_ravine_occ_3",
+   "src": "maps/props/ravine/occ_3.png",
+   "x": 1018,
+   "y": 389,
+   "originX": 0,
+   "originY": 0.9909,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_ravine_occ_4",
+   "src": "maps/props/ravine/occ_4.png",
+   "x": 1106,
+   "y": 361,
+   "originX": 0,
+   "originY": 0.9811,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_ravine_occ_5",
+   "src": "maps/props/ravine/occ_5.png",
+   "x": 1169,
+   "y": 567,
+   "originX": 0,
+   "originY": 0.996,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_ravine_occ_6",
+   "src": "maps/props/ravine/occ_6.png",
+   "x": 472,
+   "y": 534,
+   "originX": 0,
+   "originY": 0.9942,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_ravine_occ_7",
+   "src": "maps/props/ravine/occ_7.png",
+   "x": 739,
+   "y": 571,
+   "originX": 0,
+   "originY": 0.9952,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_ravine_occ_8",
+   "src": "maps/props/ravine/occ_8.png",
+   "x": 695,
+   "y": 508,
+   "originX": 0,
+   "originY": 0.9929,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_ravine_occ_9",
+   "src": "maps/props/ravine/occ_9.png",
+   "x": 1182,
+   "y": 940,
+   "originX": 0,
+   "originY": 0.9979,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_ravine_occ_10",
+   "src": "maps/props/ravine/occ_10.png",
+   "x": 1554,
+   "y": 648,
+   "originX": 0,
+   "originY": 0.9825,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_ravine_occ_11",
+   "src": "maps/props/ravine/occ_11.png",
+   "x": 430,
+   "y": 940,
+   "originX": 0,
+   "originY": 0.9969,
+   "occluder": true,
+   "auto": true
+  }
+ ],
+ "drowned_village": [
+  {
+   "key": "prop_drowned_village_occ_1",
+   "src": "maps/props/drowned_village/occ_1.png",
+   "x": 1336,
+   "y": 130,
+   "originX": 0,
+   "originY": 0.9924,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_drowned_village_occ_2",
+   "src": "maps/props/drowned_village/occ_2.png",
+   "x": 1386,
+   "y": 148,
+   "originX": 0,
+   "originY": 0.9933,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_drowned_village_occ_3",
+   "src": "maps/props/drowned_village/occ_3.png",
+   "x": 1367,
+   "y": 131,
+   "originX": 0,
+   "originY": 0.9848,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_drowned_village_occ_4",
+   "src": "maps/props/drowned_village/occ_4.png",
+   "x": 611,
+   "y": 414,
+   "originX": 0,
+   "originY": 0.9938,
+   "occluder": true,
+   "auto": true
+  }
+ ],
+ "swamp_obelisk": [
+  {
+   "key": "prop_swamp_obelisk_occ_1",
+   "src": "maps/props/swamp_obelisk/occ_1.png",
+   "x": 850,
+   "y": 641,
+   "originX": 0,
+   "originY": 0.9984,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_swamp_obelisk_occ_2",
+   "src": "maps/props/swamp_obelisk/occ_2.png",
+   "x": 0,
+   "y": 784,
+   "originX": 0,
+   "originY": 0.9984,
+   "occluder": true,
+   "auto": true
+  },
+  {
+   "key": "prop_swamp_obelisk_occ_3",
+   "src": "maps/props/swamp_obelisk/occ_3.png",
+   "x": 139,
+   "y": 745,
+   "originX": 0,
+   "originY": 0.993,
+   "occluder": true,
+   "auto": true
+  }
+ ]
+}
