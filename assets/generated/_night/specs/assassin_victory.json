@@ -1,0 +1,1 @@
+{"slug": "assassin", "anim": "victory", "base": "assassin/k_battle.png", "body": 300, "segments": [{"clip": "assassin/clips/victory_v1.mp4", "from": 0, "to": 91, "frames": 29}], "hold": true}

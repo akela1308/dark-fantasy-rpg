@@ -1,0 +1,1 @@
+{"slug": "winter_girl", "anim": "cast2", "base": "winter_girl/k_battle.png", "body": 300, "segments": [{"clip": "winter_girl/clips/cast2_v2.mp4", "from": 0, "to": 95, "frames": 36}], "hit": "auto"}

@@ -255,3 +255,22 @@ dwarf death 1
 dwarf hit 1
 dwarf power 1
 dwarf victory 1
+assassin death 1 | v2: клинки торчат, встаёт
+assassin power 2 | v1: клинок пропадает
+assassin victory 1 | v2: белая дуга
+assassin_undead attack 2
+assassin_undead death 2 | v1: красное лицо, встаёт
+assassin_undead hit 1
+assassin_undead victory 2 | v1: зелёная дымка
+assassin_undead power 1 | v2: белая дуга
+jester attack 1
+jester cast2 2
+jester death 2 | v1: стоит на четвереньках и встаёт
+jester hit 2
+jester victory 2
+winter_girl attack 2
+winter_girl cast2 2
+winter_girl death 2 | v1: в конце встаёт
+winter_queen attack 1 | v2: большая вспышка
+jester cast2 2 | кадр каста 16
+assassin_undead power 1 | кадр 28 выкинут (белая дуга)

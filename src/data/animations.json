@@ -164,6 +164,18 @@
     "bodyHeight": 300,
     "key": "assassin_amb2_v1"
    },
+   "death": {
+    "file": "sprites/battle/assassin_death_v1.webp",
+    "frameWidth": 561,
+    "frameHeight": 315,
+    "frames": 30,
+    "fps": 24,
+    "originX": 0.3995,
+    "originY": 0.9858,
+    "bodyHeight": 300,
+    "key": "assassin_death_v1",
+    "hold": true
+   },
    "idle": {
     "file": "sprites/battle/assassin_idle_v1.webp",
     "frameWidth": 482,
@@ -175,6 +187,30 @@
     "bodyHeight": 300,
     "key": "assassin_idle_v1",
     "loop": true
+   },
+   "power": {
+    "file": "sprites/battle/assassin_power_v1.webp",
+    "frameWidth": 561,
+    "frameHeight": 315,
+    "frames": 38,
+    "fps": 24,
+    "originX": 0.3995,
+    "originY": 0.9858,
+    "bodyHeight": 300,
+    "key": "assassin_power_v1",
+    "hitFrame": 11
+   },
+   "victory": {
+    "file": "sprites/battle/assassin_victory_v1.webp",
+    "frameWidth": 524,
+    "frameHeight": 315,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4277,
+    "originY": 0.9858,
+    "bodyHeight": 300,
+    "key": "assassin_victory_v1",
+    "hold": true
    }
   },
   "actions": {},
@@ -204,6 +240,41 @@
     "bodyHeight": 300,
     "key": "assassin_undead_amb2_v1"
    },
+   "attack": {
+    "file": "sprites/battle/assassin_undead_attack_v1.webp",
+    "frameWidth": 520,
+    "frameHeight": 331,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.5774,
+    "originY": 0.9731,
+    "bodyHeight": 300,
+    "key": "assassin_undead_attack_v1",
+    "hitFrame": 14
+   },
+   "death": {
+    "file": "sprites/battle/assassin_undead_death_v1.webp",
+    "frameWidth": 601,
+    "frameHeight": 331,
+    "frames": 30,
+    "fps": 24,
+    "originX": 0.6357,
+    "originY": 0.9731,
+    "bodyHeight": 300,
+    "key": "assassin_undead_death_v1",
+    "hold": true
+   },
+   "hit": {
+    "file": "sprites/battle/assassin_undead_hit_v1.webp",
+    "frameWidth": 474,
+    "frameHeight": 331,
+    "frames": 14,
+    "fps": 24,
+    "originX": 0.5382,
+    "originY": 0.9731,
+    "bodyHeight": 300,
+    "key": "assassin_undead_hit_v1"
+   },
    "idle": {
     "file": "sprites/battle/assassin_undead_idle_v1.webp",
     "frameWidth": 474,
@@ -215,9 +286,35 @@
     "bodyHeight": 300,
     "key": "assassin_undead_idle_v1",
     "loop": true
+   },
+   "power": {
+    "file": "sprites/battle/assassin_undead_power_v1.webp",
+    "frameWidth": 520,
+    "frameHeight": 331,
+    "frames": 37,
+    "fps": 24,
+    "originX": 0.5774,
+    "originY": 0.9731,
+    "bodyHeight": 300,
+    "key": "assassin_undead_power_v1",
+    "hitFrame": 20
+   },
+   "victory": {
+    "file": "sprites/battle/assassin_undead_victory_v1.webp",
+    "frameWidth": 474,
+    "frameHeight": 331,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.5382,
+    "originY": 0.9731,
+    "bodyHeight": 300,
+    "key": "assassin_undead_victory_v1",
+    "hold": true
    }
   },
-  "actions": {},
+  "actions": {
+   "basic": "attack"
+  },
   "name": "Гаст Забытый"
  },
  "bandit_archer": {
@@ -902,6 +999,29 @@
     "key": "dwarf_attack_v1",
     "hitFrame": 8
    },
+   "death": {
+    "file": "sprites/battle/dwarf_death_v1.webp",
+    "frameWidth": 626,
+    "frameHeight": 343,
+    "frames": 30,
+    "fps": 24,
+    "originX": 0.3893,
+    "originY": 0.9717,
+    "bodyHeight": 300,
+    "key": "dwarf_death_v1",
+    "hold": true
+   },
+   "hit": {
+    "file": "sprites/battle/dwarf_hit_v1.webp",
+    "frameWidth": 543,
+    "frameHeight": 343,
+    "frames": 14,
+    "fps": 24,
+    "originX": 0.4488,
+    "originY": 0.9717,
+    "bodyHeight": 300,
+    "key": "dwarf_hit_v1"
+   },
    "idle": {
     "file": "sprites/battle/dwarf_idle_v1.webp",
     "frameWidth": 499,
@@ -913,6 +1033,30 @@
     "bodyHeight": 300,
     "key": "dwarf_idle_v1",
     "loop": true
+   },
+   "power": {
+    "file": "sprites/battle/dwarf_power_v1.webp",
+    "frameWidth": 626,
+    "frameHeight": 343,
+    "frames": 38,
+    "fps": 24,
+    "originX": 0.3893,
+    "originY": 0.9717,
+    "bodyHeight": 300,
+    "key": "dwarf_power_v1",
+    "hitFrame": 22
+   },
+   "victory": {
+    "file": "sprites/battle/dwarf_victory_v1.webp",
+    "frameWidth": 543,
+    "frameHeight": 343,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4488,
+    "originY": 0.9717,
+    "bodyHeight": 300,
+    "key": "dwarf_victory_v1",
+    "hold": true
    }
   },
   "actions": {
@@ -1311,6 +1455,53 @@
     "bodyHeight": 300,
     "key": "jester_amb2_v1"
    },
+   "attack": {
+    "file": "sprites/battle/jester_attack_v1.webp",
+    "frameWidth": 579,
+    "frameHeight": 324,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.3415,
+    "originY": 0.972,
+    "bodyHeight": 300,
+    "key": "jester_attack_v1",
+    "hitFrame": 11
+   },
+   "cast2": {
+    "file": "sprites/battle/jester_cast2_v1.webp",
+    "frameWidth": 497,
+    "frameHeight": 324,
+    "frames": 36,
+    "fps": 24,
+    "originX": 0.3979,
+    "originY": 0.972,
+    "bodyHeight": 300,
+    "key": "jester_cast2_v1",
+    "hitFrame": 16
+   },
+   "death": {
+    "file": "sprites/battle/jester_death_v1.webp",
+    "frameWidth": 579,
+    "frameHeight": 324,
+    "frames": 30,
+    "fps": 24,
+    "originX": 0.3415,
+    "originY": 0.972,
+    "bodyHeight": 300,
+    "key": "jester_death_v1",
+    "hold": true
+   },
+   "hit": {
+    "file": "sprites/battle/jester_hit_v1.webp",
+    "frameWidth": 497,
+    "frameHeight": 324,
+    "frames": 14,
+    "fps": 24,
+    "originX": 0.3979,
+    "originY": 0.972,
+    "bodyHeight": 300,
+    "key": "jester_hit_v1"
+   },
    "idle": {
     "file": "sprites/battle/jester_idle_v1.webp",
     "frameWidth": 497,
@@ -1322,9 +1513,23 @@
     "bodyHeight": 300,
     "key": "jester_idle_v1",
     "loop": true
+   },
+   "victory": {
+    "file": "sprites/battle/jester_victory_v1.webp",
+    "frameWidth": 497,
+    "frameHeight": 324,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.3979,
+    "originY": 0.972,
+    "bodyHeight": 300,
+    "key": "jester_victory_v1",
+    "hold": true
    }
   },
-  "actions": {},
+  "actions": {
+   "basic": "attack"
+  },
   "name": "Пересмешник, шут Королевы"
  },
  "kikimora": {
@@ -2058,6 +2263,42 @@
     "bodyHeight": 300,
     "key": "winter_girl_amb2_v1"
    },
+   "attack": {
+    "file": "sprites/battle/winter_girl_attack_v1.webp",
+    "frameWidth": 626,
+    "frameHeight": 340,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4405,
+    "originY": 0.9716,
+    "bodyHeight": 300,
+    "key": "winter_girl_attack_v1",
+    "hitFrame": 7
+   },
+   "cast2": {
+    "file": "sprites/battle/winter_girl_cast2_v1.webp",
+    "frameWidth": 554,
+    "frameHeight": 340,
+    "frames": 36,
+    "fps": 24,
+    "originX": 0.4607,
+    "originY": 0.9716,
+    "bodyHeight": 300,
+    "key": "winter_girl_cast2_v1",
+    "hitFrame": 35
+   },
+   "death": {
+    "file": "sprites/battle/winter_girl_death_v1.webp",
+    "frameWidth": 626,
+    "frameHeight": 340,
+    "frames": 30,
+    "fps": 24,
+    "originX": 0.4405,
+    "originY": 0.9716,
+    "bodyHeight": 300,
+    "key": "winter_girl_death_v1",
+    "hold": true
+   },
    "idle": {
     "file": "sprites/battle/winter_girl_idle_v1.webp",
     "frameWidth": 509,
@@ -2071,7 +2312,9 @@
     "loop": true
    }
   },
-  "actions": {},
+  "actions": {
+   "basic": "attack"
+  },
   "name": "Инна, снежная дева"
  },
  "winter_monster": {

@@ -41,3 +41,6 @@ mountain_king hit
 recruit power
 mountain_king victory
 assassin hit
+assassin attack
+winter_girl hit
+winter_girl victory
