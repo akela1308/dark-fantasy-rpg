@@ -29,3 +29,6 @@ drowned amb1
 mavka amb1
 healer stand
 bandit_brawler power
+kikimora attack
+kikimora power
+swamp_elf hit

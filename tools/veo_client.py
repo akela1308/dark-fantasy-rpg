@@ -50,17 +50,24 @@ def opt(args, name, default):
     return default
 
 def image(args):
-    aspect = opt(args, "--aspect", "16:9")
+    # --size 1K/2K/4K (по умолчанию 2K), --nostyle: без спрайтового префикса STYLE (для карт)
+    aspect = opt(args, "--aspect", "16:9"); size = opt(args, "--size", "2K")
+    nostyle = "--nostyle" in args
+    if nostyle: args.remove("--nostyle")
     prompt, out, refs = args[0], args[1], args[2:]
-    parts = [{"text": STYLE + prompt}] + [{"inlineData": {"mimeType": "image/jpeg", "data": b64img(r)}} for r in refs]
+    parts = [{"text": ("" if nostyle else STYLE) + prompt}] + [{"inlineData": {"mimeType": "image/jpeg", "data": b64img(r)}} for r in refs]
     body = {"contents": [{"role": "user", "parts": parts}],
-            "generationConfig": {"responseModalities": ["TEXT", "IMAGE"], "imageConfig": {"aspectRatio": aspect, "imageSize": "2K"}}}
+            "generationConfig": {"responseModalities": ["TEXT", "IMAGE"], "imageConfig": {"aspectRatio": aspect, "imageSize": size}}}
     r = call(IMG, body, token())
-    for p in (r.get("candidates") or [{}])[0].get("content", {}).get("parts", []):
-        if p.get("inlineData", {}).get("data"):
-            open(out, "wb").write(base64.b64decode(p["inlineData"]["data"]))
-            open(os.path.splitext(out)[0] + "_prompt.txt", "w").write(prompt + "\nrefs: " + ", ".join(refs))
-            print("ok", out); return
+    # С TEXT+IMAGE модель отдаёт сначала черновик-«мысль» в 1K (1376x768), потом финал в 2K.
+    # Раньше брался первый кусок, поэтому вместо 2K приходил 1K. Берём последний не-мысленный.
+    imgs = [p for p in (r.get("candidates") or [{}])[0].get("content", {}).get("parts", [])
+            if p.get("inlineData", {}).get("data")]
+    final = [p for p in imgs if not p.get("thought")] or imgs
+    if final:
+        open(out, "wb").write(base64.b64decode(final[-1]["inlineData"]["data"]))
+        open(os.path.splitext(out)[0] + "_prompt.txt", "w").write(prompt + "\nrefs: " + ", ".join(refs))
+        print("ok", out); return
     raise SystemExit("картинки нет: " + json.dumps(r)[:400])
 
 def vsubmit(args):

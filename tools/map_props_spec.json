@@ -1,0 +1,305 @@
+{
+ "map1": {
+  "image": "public/maps/map1.png",
+  "objects": [
+   {
+    "id": "obelisk_lantern",
+    "box": [
+     1163,
+     493,
+     1234,
+     652
+    ],
+    "base": 645,
+    "desc": "the tall stone obelisk shrine with the hanging lantern standing in the middle"
+   },
+   {
+    "id": "lantern_post",
+    "box": [
+     1456,
+     403,
+     1500,
+     500
+    ],
+    "base": 495,
+    "desc": "the thin vertical wooden stake and the small glowing lantern standing on the ground at its left",
+    "method": "rects",
+    "rects": [
+     [
+      1481,
+      404,
+      1495,
+      498
+     ],
+     [
+      1459,
+      443,
+      1475,
+      482
+     ]
+    ]
+   }
+  ]
+ },
+ "tavern_map": {
+  "image": "public/maps/tavern_map.png",
+  "objects": [
+   {
+    "id": "well",
+    "box": [
+     368,
+     318,
+     527,
+     522
+    ],
+    "base": 512,
+    "desc": "the stone well with its wooden roof and the wooden buckets next to it"
+   },
+   {
+    "id": "wayside_cross",
+    "box": [
+     218,
+     546,
+     317,
+     706
+    ],
+    "base": 700,
+    "desc": "the wooden wayside cross post with the hanging lantern and the plank"
+   },
+   {
+    "id": "lantern_post",
+    "box": [
+     1513,
+     593,
+     1574,
+     692
+    ],
+    "base": 685,
+    "desc": "the tall thin dark wooden pole with a short arm at the top and the glowing lantern hanging from it (the pole stands on the right, the lantern hangs on its left side)",
+    "method": "rects",
+    "rects": [
+     [
+      1549,
+      597,
+      1566,
+      690
+     ],
+     [
+      1530,
+      597,
+      1566,
+      606
+     ],
+     [
+      1519,
+      606,
+      1539,
+      642
+     ]
+    ]
+   }
+  ]
+ },
+ "tavern_inside": {
+  "image": "public/maps/tavern_inside.png",
+  "objects": [
+   {
+    "id": "stool_1",
+    "box": [
+     903,
+     318,
+     947,
+     394
+    ],
+    "base": 390,
+    "desc": "the single round wooden bar stool in the middle (only this one stool)"
+   },
+   {
+    "id": "stool_2",
+    "box": [
+     948,
+     338,
+     997,
+     410
+    ],
+    "base": 405,
+    "desc": "the single round wooden bar stool in the middle (only this one stool)",
+    "nb_from": "stool_1"
+   },
+   {
+    "id": "stool_3",
+    "box": [
+     993,
+     358,
+     1040,
+     424
+    ],
+    "base": 420,
+    "desc": "the single round wooden bar stool in the middle (only this one stool)"
+   },
+   {
+    "id": "stool_4",
+    "box": [
+     1038,
+     378,
+     1084,
+     449
+    ],
+    "base": 445,
+    "desc": "the single round wooden bar stool in the middle (only this one stool)"
+   },
+   {
+    "id": "stool_6",
+    "box": [
+     1150,
+     421,
+     1202,
+     492
+    ],
+    "base": 487,
+    "desc": "the single round wooden bar stool in the middle (only this one stool)"
+   },
+   {
+    "id": "bar_end_a",
+    "box": [
+     1200,
+     350,
+     1270,
+     432
+    ],
+    "base": 425,
+    "desc": "the wooden bar counter (its top and its front side)"
+   },
+   {
+    "id": "bar_end_b",
+    "box": [
+     1270,
+     362,
+     1342,
+     456
+    ],
+    "base": 450,
+    "desc": "the wooden bar counter (its top and its front side)"
+   }
+  ]
+ },
+ "forest1": {
+  "image": "public/maps/forest1.png",
+  "objects": [
+   {
+    "id": "sapling",
+    "box": [
+     830,
+     543,
+     942,
+     702
+    ],
+    "base": 695,
+    "desc": "the bare leafless young tree with thin branches standing in the middle"
+   },
+   {
+    "id": "signpost",
+    "box": [
+     1241,
+     443,
+     1352,
+     574
+    ],
+    "base": 568,
+    "desc": "the wooden signpost with two direction boards"
+   }
+  ]
+ },
+ "road_to_village": {
+  "image": "public/maps/road_to_village.png",
+  "objects": [
+   {
+    "id": "signpost",
+    "box": [
+     1343,
+     288,
+     1407,
+     456
+    ],
+    "base": 450,
+    "desc": "the tall wooden signpost with several direction boards"
+   },
+   {
+    "id": "lantern_post",
+    "box": [
+     1450,
+     298,
+     1507,
+     451
+    ],
+    "base": 445,
+    "desc": "the wooden post with the hanging lantern"
+   },
+   {
+    "id": "crow_stump",
+    "box": [
+     336,
+     523,
+     412,
+     656
+    ],
+    "base": 650,
+    "desc": "the broken tree stump with the crow sitting on top"
+   }
+  ]
+ },
+ "village": {
+  "image": "public/maps/village.png",
+  "objects": [
+   {
+    "id": "well",
+    "box": [
+     546,
+     553,
+     702,
+     740
+    ],
+    "base": 732,
+    "desc": "the wooden well with its little shingled roof and the stone ring"
+   }
+  ]
+ },
+ "road_boloto": {
+  "image": "public/maps/road_boloto.png",
+  "objects": [
+   {
+    "id": "dead_tree",
+    "box": [
+     293,
+     318,
+     462,
+     479
+    ],
+    "base": 475,
+    "desc": "the bare dead tree with its trunk and all its branches in the middle"
+   },
+   {
+    "id": "dead_tree_2",
+    "box": [
+     870,
+     533,
+     970,
+     669
+    ],
+    "base": 662,
+    "desc": "the bare dead young tree with its thin branches in the middle"
+   },
+   {
+    "id": "lantern_post",
+    "box": [
+     1303,
+     618,
+     1347,
+     723
+    ],
+    "base": 718,
+    "desc": "the wooden post with the small lantern"
+   }
+  ]
+ }
+}

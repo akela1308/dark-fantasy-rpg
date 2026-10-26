@@ -366,6 +366,29 @@
  },
  "cleaning_girl": {
   "anims": {
+   "attack": {
+    "file": "sprites/battle/cleaning_girl_attack_v1.webp",
+    "frameWidth": 640,
+    "frameHeight": 345,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.3719,
+    "originY": 0.971,
+    "bodyHeight": 300,
+    "key": "cleaning_girl_attack_v1",
+    "hitFrame": 6
+   },
+   "hit": {
+    "file": "sprites/battle/cleaning_girl_hit_v1.webp",
+    "frameWidth": 538,
+    "frameHeight": 345,
+    "frames": 14,
+    "fps": 24,
+    "originX": 0.4424,
+    "originY": 0.971,
+    "bodyHeight": 300,
+    "key": "cleaning_girl_hit_v1"
+   },
    "idle": {
     "file": "sprites/battle/cleaning_girl_idle_v1.webp",
     "frameWidth": 494,
@@ -379,7 +402,9 @@
     "loop": true
    }
   },
-  "actions": {},
+  "actions": {
+   "basic": "attack"
+  },
   "name": "Мира, уборщица"
  },
  "dog": {
@@ -587,6 +612,41 @@
  },
  "dwarf_beer1": {
   "anims": {
+   "attack": {
+    "file": "sprites/battle/dwarf_beer1_attack_v1.webp",
+    "frameWidth": 608,
+    "frameHeight": 340,
+    "frames": 27,
+    "fps": 24,
+    "originX": 0.3765,
+    "originY": 0.9746,
+    "bodyHeight": 300,
+    "key": "dwarf_beer1_attack_v1",
+    "hitFrame": 5
+   },
+   "death": {
+    "file": "sprites/battle/dwarf_beer1_death_v1.webp",
+    "frameWidth": 608,
+    "frameHeight": 340,
+    "frames": 30,
+    "fps": 24,
+    "originX": 0.3765,
+    "originY": 0.9746,
+    "bodyHeight": 300,
+    "key": "dwarf_beer1_death_v1",
+    "hold": true
+   },
+   "hit": {
+    "file": "sprites/battle/dwarf_beer1_hit_v1.webp",
+    "frameWidth": 528,
+    "frameHeight": 340,
+    "frames": 14,
+    "fps": 24,
+    "originX": 0.4336,
+    "originY": 0.9746,
+    "bodyHeight": 300,
+    "key": "dwarf_beer1_hit_v1"
+   },
    "idle": {
     "file": "sprites/battle/dwarf_beer1_idle_v1.webp",
     "frameWidth": 485,
@@ -598,13 +658,62 @@
     "bodyHeight": 300,
     "key": "dwarf_beer1_idle_v1",
     "loop": true
+   },
+   "victory": {
+    "file": "sprites/battle/dwarf_beer1_victory_v1.webp",
+    "frameWidth": 528,
+    "frameHeight": 340,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4336,
+    "originY": 0.9746,
+    "bodyHeight": 300,
+    "key": "dwarf_beer1_victory_v1",
+    "hold": true
    }
   },
-  "actions": {},
+  "actions": {
+   "basic": "attack"
+  },
   "name": "Брамм Медная Борода"
  },
  "dwarf_beer2": {
   "anims": {
+   "attack": {
+    "file": "sprites/battle/dwarf_beer2_attack_v1.webp",
+    "frameWidth": 616,
+    "frameHeight": 344,
+    "frames": 28,
+    "fps": 24,
+    "originX": 0.3799,
+    "originY": 0.9729,
+    "bodyHeight": 300,
+    "key": "dwarf_beer2_attack_v1",
+    "hitFrame": 4
+   },
+   "death": {
+    "file": "sprites/battle/dwarf_beer2_death_v1.webp",
+    "frameWidth": 616,
+    "frameHeight": 344,
+    "frames": 30,
+    "fps": 24,
+    "originX": 0.3799,
+    "originY": 0.9729,
+    "bodyHeight": 300,
+    "key": "dwarf_beer2_death_v1",
+    "hold": true
+   },
+   "hit": {
+    "file": "sprites/battle/dwarf_beer2_hit_v1.webp",
+    "frameWidth": 534,
+    "frameHeight": 344,
+    "frames": 14,
+    "fps": 24,
+    "originX": 0.4383,
+    "originY": 0.9729,
+    "bodyHeight": 300,
+    "key": "dwarf_beer2_hit_v1"
+   },
    "idle": {
     "file": "sprites/battle/dwarf_beer2_idle_v1.webp",
     "frameWidth": 491,
@@ -616,13 +725,62 @@
     "bodyHeight": 300,
     "key": "dwarf_beer2_idle_v1",
     "loop": true
+   },
+   "victory": {
+    "file": "sprites/battle/dwarf_beer2_victory_v1.webp",
+    "frameWidth": 534,
+    "frameHeight": 344,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4383,
+    "originY": 0.9729,
+    "bodyHeight": 300,
+    "key": "dwarf_beer2_victory_v1",
+    "hold": true
    }
   },
-  "actions": {},
+  "actions": {
+   "basic": "attack"
+  },
   "name": "Орт Камнеглух"
  },
  "dwarf_beer3": {
   "anims": {
+   "attack": {
+    "file": "sprites/battle/dwarf_beer3_attack_v1.webp",
+    "frameWidth": 604,
+    "frameHeight": 340,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.379,
+    "originY": 0.9893,
+    "bodyHeight": 300,
+    "key": "dwarf_beer3_attack_v1",
+    "hitFrame": 6
+   },
+   "death": {
+    "file": "sprites/battle/dwarf_beer3_death_v1.webp",
+    "frameWidth": 604,
+    "frameHeight": 340,
+    "frames": 30,
+    "fps": 24,
+    "originX": 0.379,
+    "originY": 0.9893,
+    "bodyHeight": 300,
+    "key": "dwarf_beer3_death_v1",
+    "hold": true
+   },
+   "hit": {
+    "file": "sprites/battle/dwarf_beer3_hit_v1.webp",
+    "frameWidth": 528,
+    "frameHeight": 340,
+    "frames": 13,
+    "fps": 24,
+    "originX": 0.4335,
+    "originY": 0.9893,
+    "bodyHeight": 300,
+    "key": "dwarf_beer3_hit_v1"
+   },
    "idle": {
     "file": "sprites/battle/dwarf_beer3_idle_v1.webp",
     "frameWidth": 485,
@@ -634,9 +792,23 @@
     "bodyHeight": 300,
     "key": "dwarf_beer3_idle_v1",
     "loop": true
+   },
+   "victory": {
+    "file": "sprites/battle/dwarf_beer3_victory_v1.webp",
+    "frameWidth": 528,
+    "frameHeight": 340,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4335,
+    "originY": 0.9893,
+    "bodyHeight": 300,
+    "key": "dwarf_beer3_victory_v1",
+    "hold": true
    }
   },
-  "actions": {},
+  "actions": {
+   "basic": "attack"
+  },
   "name": "Хальвар, седой старейшина"
  },
  "forest_bear": {
@@ -869,6 +1041,29 @@
     "bodyHeight": 300,
     "key": "kikimora_amb2_v1"
    },
+   "death": {
+    "file": "sprites/battle/kikimora_death_v1.webp",
+    "frameWidth": 567,
+    "frameHeight": 319,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.3396,
+    "originY": 0.9821,
+    "bodyHeight": 300,
+    "key": "kikimora_death_v1",
+    "hold": true
+   },
+   "hit": {
+    "file": "sprites/battle/kikimora_hit_v1.webp",
+    "frameWidth": 537,
+    "frameHeight": 319,
+    "frames": 14,
+    "fps": 24,
+    "originX": 0.3585,
+    "originY": 0.9821,
+    "bodyHeight": 300,
+    "key": "kikimora_hit_v1"
+   },
    "idle": {
     "file": "sprites/battle/kikimora_idle_v1.webp",
     "frameWidth": 494,
@@ -880,6 +1075,18 @@
     "bodyHeight": 300,
     "key": "kikimora_idle_v1",
     "loop": true
+   },
+   "victory": {
+    "file": "sprites/battle/kikimora_victory_v1.webp",
+    "frameWidth": 537,
+    "frameHeight": 319,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.3585,
+    "originY": 0.9821,
+    "bodyHeight": 300,
+    "key": "kikimora_victory_v1",
+    "hold": true
    }
   },
   "actions": {},
@@ -1086,6 +1293,30 @@
     "bodyHeight": 300,
     "key": "swamp_elf_amb2_v1"
    },
+   "attack": {
+    "file": "sprites/battle/swamp_elf_attack_v1.webp",
+    "frameWidth": 579,
+    "frameHeight": 325,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4083,
+    "originY": 0.9732,
+    "bodyHeight": 300,
+    "key": "swamp_elf_attack_v1",
+    "hitFrame": 11
+   },
+   "death": {
+    "file": "sprites/battle/swamp_elf_death_v1.webp",
+    "frameWidth": 579,
+    "frameHeight": 325,
+    "frames": 30,
+    "fps": 24,
+    "originX": 0.4083,
+    "originY": 0.9732,
+    "bodyHeight": 300,
+    "key": "swamp_elf_death_v1",
+    "hold": true
+   },
    "idle": {
     "file": "sprites/battle/swamp_elf_idle_v1.webp",
     "frameWidth": 493,
@@ -1097,9 +1328,23 @@
     "bodyHeight": 300,
     "key": "swamp_elf_idle_v1",
     "loop": true
+   },
+   "victory": {
+    "file": "sprites/battle/swamp_elf_victory_v1.webp",
+    "frameWidth": 536,
+    "frameHeight": 325,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4411,
+    "originY": 0.9732,
+    "bodyHeight": 300,
+    "key": "swamp_elf_victory_v1",
+    "hold": true
    }
   },
-  "actions": {},
+  "actions": {
+   "basic": "attack"
+  },
   "name": "Ресса в бою (арт swamp_elf_battle)"
  },
  "swamp_knight": {

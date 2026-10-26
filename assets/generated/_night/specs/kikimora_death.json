@@ -1,0 +1,1 @@
+{"slug": "kikimora", "anim": "death", "base": "kikimora/k_battle.png", "body": 300, "segments": [{"clip": "kikimora/clips/death_v1.mp4", "from": 0, "to": 95, "frames": 30}], "left": 1.5, "right": 1.6, "hold": true, "overwrite": true, "drop": [1]}

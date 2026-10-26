@@ -1,0 +1,1 @@
+{"slug": "kikimora", "anim": "hit", "base": "kikimora/k_battle.png", "body": 300, "segments": [{"clip": "kikimora/clips/hit_v1.mp4", "from": 0, "to": 95, "frames": 14}], "right": 1.15}

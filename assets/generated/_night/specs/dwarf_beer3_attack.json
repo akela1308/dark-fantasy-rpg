@@ -1,0 +1,1 @@
+{"slug": "dwarf_beer3", "anim": "attack", "base": "dwarf_beer3/k_battle.png", "body": 300, "segments": [{"clip": "dwarf_beer3/clips/attack_v1.mp4", "from": 4, "to": 95, "frames": 29}], "hit": "auto", "right": 1.4, "left": 1.0}
