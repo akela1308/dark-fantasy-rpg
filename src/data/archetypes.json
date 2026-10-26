@@ -1,0 +1,14 @@
+{
+  "_doc": "Архетипы врагов (NPC-классы), 01_БАЛАНС раздел 6, balance/model.py. Значение [база на 1 уровне, прирост за уровень].",
+  "archetypes": {
+    "blade":     { "name": "Клинок",   "hp": [44, 11], "dmin": [9, 2.2],  "dmax": [14, 2.8], "speed": 5, "armor": [8, 1],    "acc": [74, 1], "row": 0, "ranged": false, "skills": ["enemy_heavy"],  "xpW": 1.0 },
+    "warden":    { "name": "Страж",    "hp": [62, 12], "dmin": [8, 1.8],  "dmax": [12, 2.2], "speed": 3, "armor": [25, 1.5], "acc": [72, 1], "row": 0, "ranged": false, "skills": [],               "xpW": 1.1, "armorCap": 50 },
+    "watcher":   { "name": "Дозорный", "hp": [34, 8],  "dmin": [10, 2.2], "dmax": [15, 2.8], "speed": 6, "armor": [5, 1],    "acc": [82, 1], "row": 1, "ranged": true,  "skills": ["enemy_volley"], "xpW": 1.0 },
+    "whisperer": { "name": "Шептун",   "hp": [36, 8],  "dmin": [9, 2.0],  "dmax": [13, 2.6], "speed": 6, "armor": [4, 1],    "acc": [80, 1], "row": 1, "ranged": true,  "skills": [],               "xpW": 1.1 },
+    "brute":     { "name": "Чудовище", "hp": [78, 14], "dmin": [13, 2.4], "dmax": [20, 3.2], "speed": 4, "armor": [10, 1],   "acc": [72, 1], "row": 0, "ranged": false, "skills": [],               "xpW": 1.6, "regen": 3 },
+    "wolf":      { "name": "Волк",     "hp": [28, 7],  "dmin": [7, 1.5],  "dmax": [11, 2.0], "speed": 7, "armor": [0, 0],    "acc": [78, 1], "row": 0, "ranged": false, "skills": [],               "xpW": 0.6 }
+  },
+  "armorCapDefault": 45,
+  "elite": { "hp": 1.25, "dmg": 1.15, "armor": 4 },
+  "boss":  { "hp": 1.5, "dmg": 1.15, "speed": 1, "armor": 5, "skills": ["boss_fury"] }
+}

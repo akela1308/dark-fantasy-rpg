@@ -1,5 +1,6 @@
 import { PHASE } from '../utils/constants.js';
 import eventBus from '../utils/eventBus.js';
+import { effectiveSpeed, isActive } from './CombatRules.js';
 
 /**
  * TurnManager - управляет очерёдностью ходов.
@@ -16,7 +17,8 @@ export class TurnManager {
 
   // Инициализировать очередь из всех юнитов
   init(allUnits) {
-    this.queue = [...allUnits].sort((a, b) => b.speed - a.speed);
+    this.all = [...allUnits];
+    this.queue = this._order();
     this.index = 0;
     this.turn  = 0;
     this.phase = PHASE.PLAYER_INPUT;
@@ -32,8 +34,10 @@ export class TurnManager {
 
     this.index++;
     if (this.index >= this.queue.length) {
+      // Новый раунд: порядок пересчитывается (корни меняют инициативу)
       this.index = 0;
       this.turn++;
+      this.queue = this._order();
     }
 
     this._advanceToNextAlive();
@@ -44,7 +48,7 @@ export class TurnManager {
     let attempts = 0;
     while (attempts < this.queue.length) {
       const unit = this.queue[this.index];
-      if (unit && unit.isAlive) {
+      if (unit && isActive(unit)) {
         this.active = unit;
         this._setPhase(unit);
         eventBus.emit('turn_started', unit);
@@ -56,6 +60,10 @@ export class TurnManager {
     // Все мертвы - конец
     this.phase = PHASE.END;
     eventBus.emit('all_dead');
+  }
+
+  _order() {
+    return [...(this.all || this.queue)].sort((a, b) => effectiveSpeed(b) - effectiveSpeed(a));
   }
 
   _setPhase(unit) {

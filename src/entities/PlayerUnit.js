@@ -14,7 +14,7 @@ export class PlayerUnit extends Unit {
 
   // Вызывается при выборе игроком действия "Атака"
   handleAttack(target, skillSystem) {
-    return this.attack(target);
+    return this.attack(target, { basic: true });
   }
 
   // Вызывается при выборе скилла

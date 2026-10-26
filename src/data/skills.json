@@ -2,14 +2,22 @@
   {
     "id": "rapier_strike",
     "name": "Укол в уязвимость",
-    "description": "Точный удар рапирой. Урон ×1.8, помечает цель",
+    "description": "Точный удар рапирой. Урон ×1.8, метка на 2 хода, +1 Темп",
     "type": "active",
     "targetType": "enemy_single",
     "cooldown": 1,
     "damageMultiplier": 1.8,
-    "resourceGain": { "tempo": 1 },
+    "resourceGain": {
+      "tempo": 1
+    },
     "appliesStatus": [
-      { "type": "marked", "value": 1.2, "duration": 2 }
+      {
+        "type": "marked",
+        "value": 1.25,
+        "duration": 2,
+        "onHit": true,
+        "label": "метка"
+      }
     ]
   },
   {
@@ -26,14 +34,20 @@
   {
     "id": "pistol_shot",
     "name": "Выстрел из пистолета",
-    "description": "Игнорирует ряды. 22–28 урона",
+    "description": "Игнорирует ряды. 20-26 урона, +2 за уровень",
     "type": "active",
     "targetType": "enemy_single",
     "cooldown": 0,
     "usesResource": "pistol_charges",
-    "resourceCost": { "tempo": 1 },
-    "damage": { "min": 22, "max": 28 },
-    "ignoreRows": true
+    "resourceCost": {
+      "tempo": 1
+    },
+    "damage": {
+      "min": 20,
+      "max": 26
+    },
+    "ignoreRows": true,
+    "damagePerLevel": 2
   },
   {
     "id": "aimed_shot",
@@ -54,9 +68,16 @@
     "cooldown": 0,
     "usesResource": "cover_uses",
     "effect": "cover",
-    "resourceGain": { "might": 1 },
+    "resourceGain": {
+      "might": 1
+    },
     "appliesStatus": [
-      { "type": "guarded", "value": 0.8, "duration": 2, "target": "self" }
+      {
+        "type": "guarded",
+        "value": 0.8,
+        "duration": 2,
+        "target": "self"
+      }
     ]
   },
   {
@@ -67,16 +88,193 @@
     "targetType": "enemy_single",
     "cooldown": 1,
     "damageMultiplier": 1.6,
-    "resourceCost": { "might": 2 }
+    "resourceCost": {
+      "might": 2
+    }
   },
   {
     "id": "bandage",
     "name": "Перевязка",
-    "description": "Лечит 20 HP выбранному союзнику, тратит Сборы",
+    "description": "Лечит 18 HP (+3 за уровень) выбранному союзнику, тратит Сборы",
     "type": "active",
     "targetType": "ally_single",
     "cooldown": 2,
-    "healAmount": 20,
-    "resourceCost": { "supplies": 1 }
+    "healAmount": 18,
+    "resourceCost": {
+      "supplies": 1
+    },
+    "healPerLevel": 3
+  },
+  {
+    "id": "challenge",
+    "name": "Вызов",
+    "description": "Метка на 3 хода: ваши удары по цели не промахиваются и бьют на 40% сильнее",
+    "type": "active",
+    "targetType": "enemy_single",
+    "cooldown": 3,
+    "effect": "challenge",
+    "ignoreRows": true,
+    "appliesStatus": [
+      {
+        "type": "challenged",
+        "value": 1.4,
+        "duration": 3,
+        "label": "вызов"
+      }
+    ]
+  },
+  {
+    "id": "last_argument_shot",
+    "name": "Последний Аргумент",
+    "description": "Тратит весь Темп: урон ×(1 + 0.5 × Темп), без учёта брони. Раз в бой",
+    "type": "active",
+    "targetType": "enemy_single",
+    "cooldown": 0,
+    "oncePerBattle": true,
+    "effect": "finisher",
+    "finisherPerTempo": 0.5,
+    "ignoreArmor": 1,
+    "resourceCost": {
+      "tempo": 1
+    }
+  },
+  {
+    "id": "bitter_poultice",
+    "name": "Горькая припарка",
+    "description": "Снять один статус и вылечить 8 HP. 1 Сбор",
+    "type": "active",
+    "targetType": "ally_single",
+    "cooldown": 1,
+    "effect": "cleanse_heal",
+    "healAmount": 8,
+    "resourceCost": {
+      "supplies": 1
+    }
+  },
+  {
+    "id": "resin_brew",
+    "name": "Отвар живицы",
+    "description": "Лечит всех союзников на половину Перевязки. 2 Сбора",
+    "type": "active",
+    "targetType": "self",
+    "cooldown": 3,
+    "effect": "heal_all",
+    "healFrom": "bandage",
+    "healFraction": 0.5,
+    "resourceCost": {
+      "supplies": 2
+    }
+  },
+  {
+    "id": "dope_smoke",
+    "name": "Дурманный дым",
+    "description": "Цель ослаблена на 2 хода. 1 Сбор",
+    "type": "active",
+    "targetType": "enemy_single",
+    "cooldown": 2,
+    "ignoreRows": true,
+    "effect": "status",
+    "resourceCost": {
+      "supplies": 1
+    },
+    "appliesStatus": [
+      {
+        "type": "weakened",
+        "value": 0.75,
+        "duration": 2,
+        "label": "слабость"
+      }
+    ]
+  },
+  {
+    "id": "strangle_root",
+    "name": "Корень-удавка",
+    "description": "Цель теряет 4 инициативы до конца боя (босс 2). 1 Сбор",
+    "type": "active",
+    "targetType": "enemy_single",
+    "cooldown": 3,
+    "ignoreRows": true,
+    "effect": "status",
+    "resourceCost": {
+      "supplies": 1
+    },
+    "appliesStatus": [
+      {
+        "type": "rooted",
+        "value": 4,
+        "duration": 99,
+        "label": "корни"
+      }
+    ]
+  },
+  {
+    "id": "enemy_heavy",
+    "name": "Тяжёлый удар",
+    "description": "Удар ×1.5",
+    "type": "active",
+    "targetType": "enemy_single",
+    "cooldown": 2,
+    "damageMultiplier": 1.5,
+    "ai": {
+      "chance": 0.6
+    }
+  },
+  {
+    "id": "enemy_volley",
+    "name": "Прицельный залп",
+    "description": "Выстрел с меткой",
+    "type": "active",
+    "targetType": "enemy_single",
+    "cooldown": 2,
+    "damageMultiplier": 1.0,
+    "ai": {
+      "chance": 0.5
+    },
+    "appliesStatus": [
+      {
+        "type": "marked",
+        "value": 1.25,
+        "duration": 2,
+        "onHit": true,
+        "label": "метка"
+      }
+    ]
+  },
+  {
+    "id": "boss_fury",
+    "name": "Ярость",
+    "description": "Ниже половины HP действует дважды за раунд",
+    "type": "passive",
+    "targetType": "self",
+    "cooldown": 0
+  },
+  {
+    "id": "first_sign",
+    "name": "Знак",
+    "description": "Метка на цель без атаки. Раз в бой",
+    "type": "active",
+    "targetType": "enemy_single",
+    "cooldown": 0,
+    "oncePerBattle": true,
+    "ignoreRows": true,
+    "effect": "status",
+    "appliesStatus": [
+      {
+        "type": "marked",
+        "value": 1.25,
+        "duration": 3,
+        "label": "знак"
+      }
+    ]
+  },
+  {
+    "id": "seal_word",
+    "name": "Слово Печати",
+    "description": "8 + уровень урона по всему заднему ряду врага без учёта брони. Раз в бой",
+    "type": "active",
+    "targetType": "self",
+    "cooldown": 0,
+    "oncePerBattle": true,
+    "effect": "seal_word"
   }
 ]

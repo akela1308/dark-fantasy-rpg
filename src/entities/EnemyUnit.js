@@ -1,9 +1,10 @@
 import { Unit } from './Unit.js';
 import eventBus from '../utils/eventBus.js';
+import { reachableTargets, isActive } from '../systems/CombatRules.js';
 
 /**
- * EnemyUnit - юнит под управлением ИИ.
- * Логика: атаковать слабейшего доступного игрового юнита.
+ * EnemyUnit - юнит под управлением ИИ (01_БАЛАНС 2, модель balance/sim.py).
+ * Цель: самый раненый из досягаемых; дальние предпочитают задний ряд.
  */
 export class EnemyUnit extends Unit {
   constructor(data) {
@@ -12,36 +13,56 @@ export class EnemyUnit extends Unit {
     this.passiveBonus = data.passiveBonus || 0;
   }
 
-  // Определить цель: слабейший живой игровой юнит в досягаемости
-  findTarget(playerUnits, grid) {
-    const alive = playerUnits.filter(u => u.isAlive);
-    if (!alive.length) return null;
-
-    // Если дальнобойный или игнорирует ряды - бьёт всех
+  findTarget(playerUnits) {
+    const targets = reachableTargets(this, playerUnits);
+    if (!targets.length) return null;
+    const weakest = list => list.reduce((a, b) => (b.hp < a.hp ? b : a));
     if (this.ranged || this.ignoreRows) {
-      return alive.sort((a, b) => a.hp - b.hp)[0];
+      const back = targets.filter(t => t.position.row === 1);
+      if (back.length) return weakest(back);
     }
-
-    // Ближний бой: сначала передний ряд (row 0)
-    const front = alive.filter(u => u.position.row === 0);
-    if (front.length) return front.sort((a, b) => a.hp - b.hp)[0];
-
-    // Если переднего ряда нет - задний
-    return alive.sort((a, b) => a.hp - b.hp)[0];
+    return weakest(targets);
   }
 
-  // ИИ-ход: выбрать действие и выполнить
-  decideAction(playerUnits, skillSystem, grid) {
-    const target = this.findTarget(playerUnits, grid);
-    if (!target) return;
+  /**
+   * Ход ИИ. Возвращает описание действия { type, target } или null.
+   * allies: своя сторона (для рёва и лечения Шептуна).
+   */
+  decideAction(playerUnits, skillSystem, grid, allies = null) {
+    const own = allies || this._allies || [this];
+    const target = this.findTarget(playerUnits);
+    if (!target) return null;
 
-    // Мини-босс: Боевой рёв при HP < 50%
+    // Босс: боевой рёв при HP < 50%
     if (this.isBoss && this.hp < this.maxHp * 0.5 && !this.isOnCooldown('commanders_roar')) {
       skillSystem.use('commanders_roar', this, null);
-      return;
+      return { type: 'roar', target: null };
     }
 
-    // Базовая атака
-    this.attack(target);
+    // Шептун: лечит самого раненого союзника ниже 60%
+    if (this.arch === 'whisperer' && !this.isOnCooldown('enemy_heal')) {
+      const wounded = own.filter(a => isActive(a) && a.hp / a.maxHp < 0.6);
+      if (wounded.length) {
+        const w = wounded.reduce((a, b) => (b.hp / b.maxHp < a.hp / a.maxHp ? b : a));
+        const amount = Math.round(w.maxHp * 0.15);
+        w.heal(amount);
+        this.cooldowns.enemy_heal = 2;
+        eventBus.emit('log', `${this.name} шепчет над ${w.name}: +${amount} HP`);
+        return { type: 'heal', target: w };
+      }
+    }
+
+    // Навыки архетипа с вероятностью и откатом
+    for (const id of ['enemy_heavy', 'enemy_volley']) {
+      if (!this.skills.includes(id) || this.isOnCooldown(id)) continue;
+      const sk = skillSystem.get(id);
+      if (sk && Math.random() < (sk.ai?.chance ?? 0.5)) {
+        skillSystem.use(id, this, target);
+        return { type: 'skill', skillId: id, target };
+      }
+    }
+
+    this.attack(target, { basic: true });
+    return { type: 'attack', target };
   }
 }

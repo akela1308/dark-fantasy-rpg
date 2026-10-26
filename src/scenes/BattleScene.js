@@ -17,7 +17,7 @@ import skillsData  from '../data/skills.json';
 import battlesData from '../data/battles.json';
 import { SaveSystem } from '../utils/SaveSystem.js';
 import { PartySystem } from '../systems/PartySystem.js';
-import { enemiesForParty, lootPerEnemy } from '../systems/CombatRules.js';
+import { enemiesForParty, lootPerEnemy, meleeReach, isActive, shouldSurrender, hasFury, RULES } from '../systems/CombatRules.js';
 import { getBattleAnimConfig, ensureBattleAnims, hasBattleAnims, loadBattleAnimSheets, animOrigin } from '../systems/BattleAnimations.js';
 
 const SPRITE_IDS = [
@@ -150,6 +150,13 @@ export class BattleScene extends Phaser.Scene {
       ? enemiesForParty(this._battleConfig, this.playerUnits.length)
       : enemiesData;
     this.enemyUnits  = enemySource.map(d => new EnemyUnit(JSON.parse(JSON.stringify(d))));
+    // Стороны знают друг друга (тонкий строй, рёв, лечение всех)
+    this.playerUnits.forEach(u => {
+      u._allies = this.playerUnits; u._foes = this.enemyUnits;
+      const base = unitsData.find(d => d.id === u.id)?.resources || {};
+      u.prepareForBattle(base);
+    });
+    this.enemyUnits.forEach(u => { u._allies = this.enemyUnits; u._foes = this.playerUnits; });
     this.grid.placeAll([...this.playerUnits, ...this.enemyUnits]);
   }
 
@@ -327,6 +334,7 @@ export class BattleScene extends Phaser.Scene {
 
       if (!animated) this._unitSprites.push(sprite);
 
+      if (unit.surrendered) { sprite.setTint?.(0x777777); sprite.disableInteractive?.(); }
       unit._sprite  = sprite;
       unit._hpText  = null;
       unit._spriteX = x;
@@ -610,7 +618,7 @@ export class BattleScene extends Phaser.Scene {
     const isAlly = type === 'ally_single';
     const targets = isAlly
       ? this.playerUnits.filter(u => u.isAlive)
-      : this.enemyUnits.filter(u => u.isAlive);
+      : this.enemyUnits.filter(u => isActive(u));
     const tint = isAlly ? 0x88FFCC : 0xFFDD55;
     targets.forEach(u => {
       if (u._sprite) u._sprite.setTint(tint);
@@ -620,6 +628,7 @@ export class BattleScene extends Phaser.Scene {
   _clearTargetHighlight() {
     [...(this.playerUnits || []), ...(this.enemyUnits || [])].forEach(u => {
       if (u._sprite) u._sprite.clearTint();
+      if (u.surrendered) u._sprite?.setTint?.(0x777777);
     });
   }
 
@@ -628,6 +637,14 @@ export class BattleScene extends Phaser.Scene {
     if (!this.turnManager.isPlayerTurn()) return;
     const actor = this.turnManager.active;
     if (!actor || actor.type !== 'player') return;
+
+    if (!isActive(target)) return;
+    const pendingSk = this._pendingSkill ? this.skillSystem.get(this._pendingSkill) : null;
+    const rangedAct = actor.ranged || actor.ignoreRows || (pendingSk?.targetType === 'enemy_single' && pendingSk.ignoreRows);
+    if (!rangedAct && !meleeReach(actor, target, this.enemyUnits).ok) {
+      eventBus.emit('log', `${target.name} за строем: до заднего ряда не дотянуться, пока впереди стоят двое`);
+      return;
+    }
 
     if (this._pendingSkill) {
       const skillId = this._pendingSkill;
@@ -695,7 +712,16 @@ export class BattleScene extends Phaser.Scene {
 
   _afterPlayerAction() {
     this._clearTargetHighlight();
+    this._checkSurrenders();
     if (this._checkEnd()) return;
+    // Второй выпад: базовая атака убила цель, тот же герой действует ещё раз
+    const actor = this.turnManager.active;
+    if (actor?._extraAction) {
+      actor._extraAction = false;
+      this._renderAll();
+      this.ui.update();
+      return;
+    }
     this.turnManager.nextTurn();
     // Синхронно убираем мёртвых из грида (onComplete tween ненадёжен)
     [...this.playerUnits, ...this.enemyUnits].forEach(u => { if (!u.isAlive) this.grid.remove(u); });
@@ -714,24 +740,38 @@ export class BattleScene extends Phaser.Scene {
       }
       const target = actor.findTarget(this.playerUnits, this.grid);
       const anim = target ? this._actionAnim(actor, 'basic') : null;
+      // Ярость босса: ниже половины HP второе действие в том же ходу
+      const afterAction = () => {
+        if (!this.battleOver && !this._furyUsed && hasFury(actor) && this.playerUnits.some(u => u.isAlive)) {
+          this._furyUsed = true;
+          eventBus.emit('log', `${actor.name} в ярости и бьёт ещё раз!`);
+          this._checkSurrenders();
+          if (this._checkEnd()) return;
+          this._runAITurn();
+          return;
+        }
+        this._furyUsed = false;
+        this._finishTurn();
+      };
       if (anim) {
         // Урон по кадру удара, ход заканчивается после анимации
         this._animLock = true;
         this._playUnitAnim(actor, anim, () => {
-          actor.decideAction(this.playerUnits, this.skillSystem, this.grid);
+          actor.decideAction(this.playerUnits, this.skillSystem, this.grid, this.enemyUnits);
         }, () => {
           this._animLock = false;
-          this._finishTurn();
+          afterAction();
         });
         return;
       }
       if (target) this._playAttackAnim(actor, target);
-      actor.decideAction(this.playerUnits, this.skillSystem, this.grid);
-      this.time.delayedCall(180, () => this._finishTurn());
+      actor.decideAction(this.playerUnits, this.skillSystem, this.grid, this.enemyUnits);
+      this.time.delayedCall(180, afterAction);
     });
   }
 
   _finishTurn() {
+    this._checkSurrenders();
     if (this._checkEnd()) return;
     this.turnManager.nextTurn();
     [...this.playerUnits, ...this.enemyUnits].forEach(u => { if (!u.isAlive) this.grid.remove(u); });
@@ -742,11 +782,28 @@ export class BattleScene extends Phaser.Scene {
 
   // ── Конец боя ─────────────────────────────────────────────────────────
 
+  // Сдача: человек с canSurrender при HP < 20%, когда командир пал или сдался
+  _checkSurrenders() {
+    this.enemyUnits.forEach(u => {
+      if (shouldSurrender(u, this.enemyUnits)) {
+        u.surrendered = true;
+        eventBus.emit('log', `${u.name} бросает оружие и сдаётся`);
+        const spr = u._animSprite || u._sprite;
+        spr?.setTint?.(0x777777);
+        spr?.disableInteractive?.();
+      }
+    });
+  }
+
   _checkEnd() {
-    const allEnemiesDead = this.enemyUnits.every(u => !u.isAlive);
-    const heroAlive      = this.playerUnits[0]?.isAlive;
-    if (allEnemiesDead) { this._endBattle('victory'); return true; }
-    if (!heroAlive)      { this._endBattle('defeat');  return true; }
+    if (this.battleOver) return true;
+    // Сдавшиеся не мешают победе
+    const enemiesDown = this.enemyUnits.every(u => !isActive(u));
+    // Хроника: поражение, когда лежат все. Железо: когда пал герой.
+    const iron = this.game.registry.get('gameMode') === 'iron';
+    const lost = iron ? !this.playerUnits[0]?.isAlive : this.playerUnits.every(u => !u.isAlive);
+    if (enemiesDown) { this._endBattle('victory'); return true; }
+    if (lost)        { this._endBattle('defeat');  return true; }
     return false;
   }
 
@@ -758,6 +815,7 @@ export class BattleScene extends Phaser.Scene {
     const OVERLAY_DEPTH = 2000;
     this.add.rectangle(width/2, height/2, width, height, 0x000000, 0.75).setDepth(OVERLAY_DEPTH);
 
+    const iron = this.game.registry.get('gameMode') === 'iron';
     const title = result === 'victory' ? 'ПОБЕДА' : 'ВЫ ПАЛИ';
     const color = result === 'victory' ? '#C9A84C' : '#CC2222';
 
@@ -769,6 +827,20 @@ export class BattleScene extends Phaser.Scene {
 
     if (result === 'victory') {
       this.playerUnits.filter(u => u.isAlive).forEach(u => this._react(u, 'victory'));
+      // Хроника: упавшие встают с 1 HP и раной (maxHp ×0.8 до отдыха)
+      this.playerUnits.filter(u => !u.isAlive).forEach(u => {
+        u.isAlive = true;
+        u.baseMaxHp = u.baseMaxHp ?? u.maxHp;
+        u.injured = true;
+        u.maxHp = Math.round(u.baseMaxHp * RULES.INJURY_MULT);
+        u.hp = 1;
+        eventBus.emit('log', `${u.name}: рана, до отдыха максимум HP ${u.maxHp}`);
+      });
+      // Сдавшиеся: решение «добить / отпустить» показывает карта (03_ДИАЛОГИ 6.7)
+      const surrendered = this.enemyUnits.filter(u => u.surrendered && u.isAlive).map(u => u.id);
+      this.game.registry.set('lastSurrendered', surrendered);
+      this.game.registry.set('lastBattleId', this._battleId);
+      if (surrendered.length) eventBus.emit('battle_surrender_choice', surrendered);
       this.playerUnits[0].addXP(XP.WIN_HERO);
       this.playerUnits.slice(1).forEach(u => u.addXP(XP.WIN_COMPANION));
       this.add.text(width/2, height/2, `Получено XP: ${XP.WIN_HERO}`, {
@@ -801,6 +873,32 @@ export class BattleScene extends Phaser.Scene {
           this.scene.start('LoadingScene', {
             destination: 'MapScene',
             destinationData: { mapKey: this._fromMapKey, spawnId: this._fromSpawnId },
+          });
+        });
+      } else if (!iron) {
+        // ── ХРОНИКА: поражение возвращает к последнему отдыху ─────────────
+        const rest = SaveSystem.restoreRestPoint();
+        this.add.text(width/2, height/2, rest
+          ? 'Дорога оборвалась.\nВы очнулись у последнего привала.'
+          : 'Дорога оборвалась.\nОтдыха ещё не было: всё сначала.', {
+          fontFamily: 'serif', fontSize: '22px', color: '#888888',
+          align: 'center', lineSpacing: 8,
+        }).setOrigin(0.5).setDepth(OVERLAY_DEPTH + 1);
+        const btnBack = this.add.text(width/2, height/2 + 100, '[ К последнему привалу ]', {
+          fontFamily: 'serif', fontSize: '26px', color: '#C9A84C',
+        }).setOrigin(0.5).setDepth(OVERLAY_DEPTH + 1).setInteractive({ useHandCursor: true });
+        btnBack.on('pointerover', () => btnBack.setColor('#FFD700'));
+        btnBack.on('pointerout',  () => btnBack.setColor('#C9A84C'));
+        btnBack.on('pointerdown', () => {
+          eventBus.clear();
+          if (rest) {
+            SaveSystem.applyFlagsToRegistry(this.game.registry, { force: true });
+          } else {
+            SaveSystem.newGame(this.game.registry, { mode: 'chronicle' });
+          }
+          this.scene.start('LoadingScene', {
+            destination: 'MapScene',
+            destinationData: rest ? { mapKey: rest.mapKey, spawnId: rest.spawnId } : { mapKey: 'south_post', spawnId: 'default' },
           });
         });
       } else {
@@ -1014,11 +1112,8 @@ export class BattleScene extends Phaser.Scene {
 
     eventBus.on('skill_selected', skillId => this._onSkillSelect(skillId));
 
-    eventBus.on('commanders_roar', caster => {
-      // Все живые враги (кроме самого Командира) получают ярость: +5 к урону на 2 хода
-      this.enemyUnits.filter(u => u.isAlive && u !== caster).forEach(u => {
-        u.addEffect({ type: 'enraged', value: 5, duration: 2 });
-      });
+    eventBus.on('commanders_roar', () => {
+      // Ярость союзникам выдаёт сам навык (SkillSystem), здесь только эффект камеры
       this.cameras.main.shake(350, 0.010);
     });
 

@@ -130,6 +130,22 @@ export class BootScene extends Phaser.Scene {
     };
 
     btn.on('pointerdown', startGame);
+
+    // Режим новой игры: Хроника (по умолчанию) или Железо (02_ДИЗАЙН 2.4)
+    if (!SaveSystem.hasSave()) {
+      this._mode = 'chronicle';
+      const label = () => this._mode === 'iron'
+        ? 'Режим: Железо (смерть героя стирает сохранение)'
+        : 'Режим: Хроника (поражение возвращает к привалу)';
+      const modeTxt = this.add.text(cx, H - 48, label(), {
+        fontFamily: 'serif', fontSize: '14px', color: '#8a7f68',
+      }).setOrigin(0.5).setInteractive({ useHandCursor: true });
+      modeTxt.on('pointerdown', (p, x, y, ev) => {
+        ev?.stopPropagation?.();
+        this._mode = this._mode === 'iron' ? 'chronicle' : 'iron';
+        modeTxt.setText(label());
+      });
+    }
     this.input.keyboard.on('keydown', () => {
       if (this.time.now > 1800) startGame();
     });
