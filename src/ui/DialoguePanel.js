@@ -4,6 +4,8 @@
  * Рамка рендерится с сохранением пропорций - без растяжки.
  * Портреты по краям экрана, независимо от рамки.
  */
+import { Sfx } from '../systems/Sfx.js';
+
 export class DialoguePanel {
   constructor(scene) {
     this.scene   = scene;
@@ -12,6 +14,7 @@ export class DialoguePanel {
   }
 
   show(cfg) {
+    if (!this._active) Sfx.play(this.scene, 'page');
     this.hide();
     this._active = true;
 

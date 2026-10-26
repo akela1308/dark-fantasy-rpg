@@ -19,6 +19,7 @@ import MAP_CONFIGS from '../data/maps.json';
 import { SaveSystem } from '../utils/SaveSystem.js';
 import { PartySystem } from '../systems/PartySystem.js';
 import { applyItemBonuses } from '../systems/Items.js';
+import { Sfx } from '../systems/Sfx.js';
 import { enemiesForParty, lootPerEnemy, meleeReach, isActive, shouldSurrender, hasFury, RULES } from '../systems/CombatRules.js';
 import { getBattleAnimConfig, ensureBattleAnims, hasBattleAnims, loadBattleAnimSheets, animOrigin } from '../systems/BattleAnimations.js';
 
@@ -127,6 +128,7 @@ export class BattleScene extends Phaser.Scene {
     this.portraits = new PortraitPanel(this, this.playerUnits, this.enemyUnits);
     this.portraits.create();
     this._bindEvents();
+    Sfx.bindBattle(this);
     this.input.keyboard.on('keydown-B', () => this._toggleBattleGrid());
     this.input.keyboard.on('keydown-G', () => this._toggleBattleCoordGrid());
     this.input.keyboard.on('keydown-H', () => this._toggleFineGrid());

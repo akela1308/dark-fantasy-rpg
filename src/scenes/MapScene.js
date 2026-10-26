@@ -23,6 +23,7 @@ import { MapEncounters } from '../systems/MapEncounters.js';
 import { checkRequires } from '../systems/DialogueConditions.js';
 import { journal, outcomesSeen } from '../systems/QuestLog.js';
 import { repLines } from '../systems/Reputation.js';
+import { Sfx } from '../systems/Sfx.js';
 import traitsData from '../data/commanderTraits.json';
 
 const TRAIT_LABELS = Object.fromEntries(traitsData.map(t => [t.id, t.name]));
@@ -117,6 +118,7 @@ export class MapScene extends Phaser.Scene {
     this._dialogue = new DialoguePanel(this);
     // Диалоги из src/data/dialogues/*.json с условиями и репутацией (блок Г)
     this._ws = new WorldState(this.game.registry);
+    this._lastGold = SaveSystem.getGold(this.game.registry);
     this.game.registry.set(`${this.mapKey}_visited`, true);
     { const v = this._ws.inc(`visits_${this.mapKey}`); this.game.registry.set(`cnt_visits_${this.mapKey}_${v}`, true); }
     // Пошлина: заплатил Корвину один раз, дальше каждый проход лесом 10 монет, пока он жив и без сделки (03_ДИАЛОГИ 6.3)
@@ -259,6 +261,15 @@ export class MapScene extends Phaser.Scene {
 
     this._updateLabelHovers();
     this._encounters?.update(delta, this.hero);
+    // Шаги героя: дерево в помещениях, снег на Севере, трава снаружи
+    if (this.hero.moving) {
+      this._stepT = (this._stepT || 0) + delta;
+      if (this._stepT > 420) {
+        this._stepT = 0;
+        const c = MAP_CONFIGS[this.mapKey];
+        Sfx.play(this, c.kind === 'interior' || this.mapKey === 'tavern_inside' ? 'step_wood' : c.region === 'Север' ? 'step_snow' : 'step_grass');
+      }
+    }
 
     if (this._exitCooldown > 0) this._exitCooldown -= delta;
 
@@ -1256,7 +1267,12 @@ export class MapScene extends Phaser.Scene {
       recruit: id => this._recruit(id),
       dismiss: id => { PartySystem.bench(reg, id); this._applyPartyVisibility(); },
       transition: (map, spawn) => this._transitionTo(map, spawn),
-      refresh: () => { this._refreshGoldHud(); this._syncWorldItems(); },
+      refresh: () => {
+        const g = SaveSystem.getGold(reg);
+        if (this._lastGold !== undefined && g !== this._lastGold) Sfx.play(this, 'coins');
+        this._lastGold = g;
+        this._refreshGoldHud(); this._syncWorldItems();
+      },
       rest: () => this._rest(),
       dismissForever: id => { PartySystem.dismiss(reg, id); this._applyPartyVisibility(true); this._toast('Спутник ушёл'); },
       loseTrait: () => this.time.delayedCall(120, () => this._chooseTraitToLose()),
@@ -1666,6 +1682,7 @@ export class MapScene extends Phaser.Scene {
     this.hero.stopMove();
     this.brawler.stopMove();
     this.healer.stopMove();
+    Sfx.play(this, 'door');
     // Обновить позицию в сохранении при переходе между картами
     SaveSystem.updatePosition(mapKey, spawnId);
     this.cameras.main.fade(600, 0, 0, 0, false, (cam, progress) => {

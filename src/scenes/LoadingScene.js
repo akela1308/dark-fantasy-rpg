@@ -1,5 +1,6 @@
 import * as Phaser from 'phaser/dist/phaser.esm.js';
 import MAP_CONFIGS from '../data/maps.json';
+import { Sfx } from '../systems/Sfx.js';
 
 /**
  * LoadingScene - экран загрузки с картинкой по центру и прогресс баром.
@@ -209,6 +210,9 @@ export class LoadingScene extends Phaser.Scene {
     img('portrait_guard',             'portraits/guard.png');
     img('portrait_archer_guard',      'portraits/archer_guard.png');
     img('portrait_recruit',           'portraits/recruit.png');
+
+    // Звуковые эффекты (src/data/sfx.json)
+    Sfx.preload(this);
 
     // Туман
     img('fog',  'maps/fog.png');

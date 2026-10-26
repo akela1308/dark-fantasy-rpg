@@ -1,0 +1,58 @@
+{
+  "_doc": "Звуковые эффекты (13_ПРОМПТ шаг 7). Файлы CC0 из Kenney RPG Audio и Impact Sounds, источники в CREDITS.md. volume 0..1, master общий множитель.",
+  "master": 0.7,
+  "sounds": {
+    "hit": {
+      "file": "audio/sfx/hit.mp3",
+      "volume": 0.55
+    },
+    "crit": {
+      "file": "audio/sfx/crit.mp3",
+      "volume": 0.7
+    },
+    "miss": {
+      "file": "audio/sfx/miss.mp3",
+      "volume": 0.45
+    },
+    "shot": {
+      "file": "audio/sfx/shot.mp3",
+      "volume": 0.7
+    },
+    "heal": {
+      "file": "audio/sfx/heal.mp3",
+      "volume": 0.5
+    },
+    "death": {
+      "file": "audio/sfx/death.mp3",
+      "volume": 0.6
+    },
+    "block": {
+      "file": "audio/sfx/block.mp3",
+      "volume": 0.5
+    },
+    "door": {
+      "file": "audio/sfx/door.mp3",
+      "volume": 0.5
+    },
+    "coins": {
+      "file": "audio/sfx/coins.mp3",
+      "volume": 0.5
+    },
+    "page": {
+      "file": "audio/sfx/page.mp3",
+      "volume": 0.35
+    },
+    "step_wood": {
+      "file": "audio/sfx/step_wood.mp3",
+      "volume": 0.3
+    },
+    "step_snow": {
+      "file": "audio/sfx/step_snow.mp3",
+      "volume": 0.3
+    },
+    "step_grass": {
+      "file": "audio/sfx/step_grass.mp3",
+      "volume": 0.25
+    }
+  }
+}
