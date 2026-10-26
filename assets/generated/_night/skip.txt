@@ -56,3 +56,5 @@ bandit_brawler power_r2
 kobold death
 kobold victory
 kikimora attack_r2
+bandit_commander amb1_r2
+winter_queen death_r2

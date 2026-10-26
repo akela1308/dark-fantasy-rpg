@@ -170,6 +170,17 @@
     "key": "archer_guard_death_v1",
     "hold": true
    },
+   "hit": {
+    "file": "sprites/battle/archer_guard_hit_v1.webp",
+    "frameWidth": 554,
+    "frameHeight": 340,
+    "frames": 16,
+    "fps": 24,
+    "originX": 0.4585,
+    "originY": 0.972,
+    "bodyHeight": 300,
+    "key": "archer_guard_hit_v1"
+   },
    "idle": {
     "file": "sprites/battle/archer_guard_idle_v1.webp",
     "frameWidth": 420,
@@ -2567,6 +2578,17 @@
     "key": "swamp_elf_death_v1",
     "hold": true
    },
+   "hit": {
+    "file": "sprites/battle/swamp_elf_hit_v1.webp",
+    "frameWidth": 536,
+    "frameHeight": 325,
+    "frames": 16,
+    "fps": 24,
+    "originX": 0.4411,
+    "originY": 0.9732,
+    "bodyHeight": 300,
+    "key": "swamp_elf_hit_v1"
+   },
    "idle": {
     "file": "sprites/battle/swamp_elf_idle_v1.webp",
     "frameWidth": 493,
@@ -3000,6 +3022,17 @@
     "bodyHeight": 300,
     "key": "winter_archer_death_v1",
     "hold": true
+   },
+   "hit": {
+    "file": "sprites/battle/winter_archer_hit_v1.webp",
+    "frameWidth": 555,
+    "frameHeight": 332,
+    "frames": 16,
+    "fps": 24,
+    "originX": 0.46,
+    "originY": 0.9724,
+    "bodyHeight": 300,
+    "key": "winter_archer_hit_v1"
    },
    "idle": {
     "file": "sprites/battle/winter_archer_idle_v1.webp",

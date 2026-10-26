@@ -1,0 +1,1 @@
+{"slug": "swamp_elf", "anim": "hit", "base": "swamp_elf/k_battle.png", "body": 300, "segments": [{"clip": "swamp_elf/clips/hit_r2_v1.mp4", "from": 0, "to": 22, "frames": 8}, {"clip": "swamp_elf/clips/hit_r2_v1.mp4", "from": 22, "to": 0, "frames": 8}]}
