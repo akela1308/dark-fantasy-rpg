@@ -8,6 +8,18 @@ import { ChapterEndScene } from './scenes/ChapterEndScene.js';
 import { GAME_WIDTH, GAME_HEIGHT } from './utils/constants.js';
 import { Store } from './utils/storeAdapter.js';
 
+// В собранной игре все PNG перекодированы в WebP (vite.config.js, png-to-webp): подменяем путь при загрузке
+if (typeof __PNG_AS_WEBP__ !== 'undefined' && __PNG_AS_WEBP__) {
+  const L = Phaser.Loader.LoaderPlugin.prototype;
+  const addFile = L.addFile;
+  L.addFile = function (file) {
+    [].concat(file).forEach(f => {
+      if (f && typeof f.url === 'string' && f.url.endsWith('.png')) f.url = f.url.slice(0, -4) + '.webp';
+    });
+    return addFile.call(this, file);
+  };
+}
+
 const config = {
   type: Phaser.AUTO,
   width:  GAME_WIDTH,

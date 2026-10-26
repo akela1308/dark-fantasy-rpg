@@ -21,7 +21,7 @@ import { PartySystem } from '../systems/PartySystem.js';
 import { applyItemBonuses } from '../systems/Items.js';
 import { Sfx } from '../systems/Sfx.js';
 import { enemiesForParty, lootPerEnemy, meleeReach, isActive, shouldSurrender, hasFury, RULES } from '../systems/CombatRules.js';
-import { getBattleAnimConfig, ensureBattleAnims, hasBattleAnims, loadBattleAnimSheets, animOrigin } from '../systems/BattleAnimations.js';
+import { getBattleAnimConfig, ensureBattleAnims, hasBattleAnims, loadBattleAnimSheets, battleAnimReady, animOrigin } from '../systems/BattleAnimations.js';
 
 const SPRITE_IDS = [
   'hero_duelist',
@@ -114,7 +114,11 @@ export class BattleScene extends Phaser.Scene {
       ...(this._battleConfig?.enemies || enemiesData),
       ...Object.values(this._battleConfig?.enemiesBySize || {}).flat(),
     ];
-    loadBattleAnimSheets(this, [...unitsData, ...enemySource].flatMap(u => [u.id, u.spriteKey]).filter(Boolean));
+    // Из своих только те, кто в отряде (а не все, кого можно нанять)
+    const party = PartySystem.getParty(this.game.registry);
+    const partyData = unitsData.filter(u => party.includes(u.id));
+    this._animUnitIds = [...partyData, ...enemySource].flatMap(u => [u.id, u.spriteKey]).filter(Boolean);
+    loadBattleAnimSheets(this, this._animUnitIds);
     // Портреты участников по spriteKey (у тварей бестиария id вида hamlet_dogs_2, а портрет по spriteKey)
     [...unitsData, ...enemySource].forEach(u => {
       const pk = u.spriteKey ?? u.id;
@@ -143,6 +147,8 @@ export class BattleScene extends Phaser.Scene {
     // Инициализируем плеер здесь (ассеты уже в кэше после LoadingScene)
     this.music = new MusicPlayer(this);
     this.music.create();
+    // Удары, смерть и победа догружаются в фоне; пока листа нет, действие идёт без покадровой анимации
+    if (loadBattleAnimSheets(this, this._animUnitIds || [], false)) this.load.start();
   }
 
   // ── Инициализация ─────────────────────────────────────────────────────
@@ -412,12 +418,13 @@ export class BattleScene extends Phaser.Scene {
   // Имя анимации для действия юнита (null, если у юнита нет такой анимации)
   _actionAnim(unit, actionId) {
     if (!unit._animSprite?.active || !unit._animCfg) return null;
-    return unit._animCfg.actions?.[actionId] ?? null;
+    const name = unit._animCfg.actions?.[actionId];
+    return name && battleAnimReady(this, unit._animCfg, name) ? name : null;
   }
 
   // Реакция (hit / death / victory / block), если такая анимация есть
   _react(unit, name, onDone) {
-    if (!unit._animSprite?.active || !unit._animCfg?.anims[name]) return false;
+    if (!unit._animSprite?.active || !battleAnimReady(this, unit._animCfg, name)) return false;
     if (name === 'hit' && unit._animBusy) return false;   // урон не прерывает собственный удар
     this._playUnitAnim(unit, name, null, onDone);
     return true;
@@ -546,7 +553,7 @@ export class BattleScene extends Phaser.Scene {
     // Camera shake на смерть
     this.cameras.main.shake(250, 0.009);
     // Покадровая смерть: падает и лежит, потом тело медленно растворяется
-    if (unit._animSprite?.active && unit._animCfg?.anims.death) {
+    if (unit._animSprite?.active && battleAnimReady(this, unit._animCfg, 'death')) {
       const spr = unit._animSprite;
       unit._animSprite = null;          // перерисовка больше не трогает этот спрайт
       spr.disableInteractive();

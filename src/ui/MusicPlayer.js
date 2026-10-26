@@ -52,7 +52,7 @@ export class MusicPlayer {
 
     // Если трек не загружен - грузим его сейчас (ленивая загрузка)
     if (!this.scene.cache.audio.exists(track.key)) {
-      this.scene.load.audio(track.key, `audio/${track.file}`);
+      this.scene.load.audio(track.key, `audio/web/${track.file}`); // web: те же треки в 96 кбит/с
       this.scene.load.once(`filecomplete-audio-${track.key}`, () => {
         this._playTrack(track);
       });

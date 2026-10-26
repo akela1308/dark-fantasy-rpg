@@ -92,24 +92,25 @@ export class LoadingScene extends Phaser.Scene {
     img('bleeding_curse',       'ui/bleeding_curse.png');
     img('healing_magic',        'ui/healing_magic.png');
 
-    // Карты мира
-    img('map_map1',          'maps/map1.png');
-    img('map_tavern_map',    'maps/tavern_map.png');
-    img('map_tavern_inside', 'maps/tavern_inside.png');
-    img('map_mountains_map', 'maps/mountains_map.png');
-    img('map_swamp_map',     'maps/swamp_map.png');
-    img('map_forest1',       'maps/forest1.png');
-    img('map_elf_boloto',    'maps/elf_boloto.png');
-    img('map_elf_boloto1',   'maps/elf_boloto1.png');
-    img('map_road_boloto',   'maps/road_boloto.png');
-    img('map_kingthrone',    'maps/kingthrone.png');
-    img('map_road_to_village', 'maps/road_to_village.png');
-    img('map_gate',          'maps/gate.png');
-    img('map_village',       'maps/village.png');
-    // Карты из maps.json с полем image (новые локации и временная картинка): ключ img:<путь>
-    Object.values(MAP_CONFIGS).forEach(cfg => {
-      if (cfg.image && !this.textures.exists(cfg.bgKey)) img(`img:${cfg.image}`, cfg.image);
-    });
+    // Карты мира: грузим только фон той карты, куда идём (остальные догрузятся при переходе)
+    const OLD_MAP_IMAGES = {
+      map_map1: 'maps/map1.png', map_tavern_map: 'maps/tavern_map.png', map_tavern_inside: 'maps/tavern_inside.png',
+      map_mountains_map: 'maps/mountains_map.png', map_swamp_map: 'maps/swamp_map.png', map_forest1: 'maps/forest1.png',
+      map_elf_boloto: 'maps/elf_boloto.png', map_elf_boloto1: 'maps/elf_boloto1.png', map_road_boloto: 'maps/road_boloto.png',
+      map_kingthrone: 'maps/kingthrone.png', map_road_to_village: 'maps/road_to_village.png', map_gate: 'maps/gate.png',
+      map_village: 'maps/village.png',
+    };
+    const destMap = this._destination === 'MapScene' ? MAP_CONFIGS[this._destinationData?.mapKey] : null;
+    if (destMap) {
+      // Фоны прошлых карт выгружаем, чтобы не копить видеопамять (каждый 2K-фон около 17 МБ)
+      Object.values(MAP_CONFIGS).forEach(cfg => {
+        if (cfg === destMap) return;
+        [cfg.bgKey, cfg.image && `img:${cfg.image}`].forEach(k => { if (k && this.textures.exists(k)) this.textures.remove(k); });
+      });
+      if (OLD_MAP_IMAGES[destMap.bgKey]) img(destMap.bgKey, OLD_MAP_IMAGES[destMap.bgKey]);
+      // Карты из maps.json с полем image (новые локации и временная картинка): ключ img:<путь>
+      if (destMap.image && !OLD_MAP_IMAGES[destMap.bgKey] && !this.textures.exists(destMap.bgKey)) img(`img:${destMap.image}`, destMap.image);
+    }
     img('fg_lantern_map1',    'maps/foreground_lantern_map1.png');
 
     // Персонажи на карте
@@ -221,7 +222,7 @@ export class LoadingScene extends Phaser.Scene {
 
     // Аудио: только первый трек сразу, остальные - при необходимости (ленивая загрузка)
     // Это экономит ~50 МБ при первом старте
-    snd('track_ashes2', 'audio/Ashes of Velanth 2.mp3');
+    snd('track_ashes2', 'audio/web/Ashes of Velanth 2.mp3');
     // Остальные треки грузятся в MusicPlayer когда понадобятся
 
     // Запускаем музыку как только загрузится первый трек

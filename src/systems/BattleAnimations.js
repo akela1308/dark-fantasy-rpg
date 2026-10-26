@@ -19,21 +19,39 @@ import animationsData from '../data/animations.json';
 
 export const BATTLE_ANIMS = animationsData;
 
+// Бытовые движения (amb1, amb2...) в бою не играются, их листы не грузим
+const inBattle = ([name]) => !name.startsWith('amb');
+const battleAnims = cfg => Object.entries(cfg.anims).filter(inBattle).map(([, a]) => a);
+
 export function getBattleAnimConfig(unitId) {
   return BATTLE_ANIMS[unitId] ?? null;
 }
 
-/** Загрузка листов только для юнитов этого боя (BattleScene.preload). */
-export function loadBattleAnimSheets(scene, unitIds) {
+/**
+ * Загрузка листов только для юнитов этого боя. first = true: стойка и урон (нужны сразу, BattleScene.preload),
+ * first = false: остальное (удары, смерть, победа), догружается в фоне уже во время боя.
+ */
+const FIRST = ['idle', 'hit'];
+export function loadBattleAnimSheets(scene, unitIds, first = true) {
+  let queued = 0;
   unitIds.forEach(id => {
     const cfg = BATTLE_ANIMS[id];
     if (!cfg) return;
-    Object.values(cfg.anims).forEach(a => {
-      if (!scene.textures.exists(a.key)) {
-        scene.load.spritesheet(a.key, a.file, { frameWidth: a.frameWidth, frameHeight: a.frameHeight });
-      }
+    Object.entries(cfg.anims).filter(inBattle).forEach(([name, a]) => {
+      if (FIRST.includes(name) !== first || scene.textures.exists(a.key)) return;
+      scene.load.spritesheet(a.key, a.file, { frameWidth: a.frameWidth, frameHeight: a.frameHeight });
+      queued++;
     });
   });
+  return queued;
+}
+
+/** Анимация загружена и готова к проигрыванию (лист мог ещё не догрузиться). */
+export function battleAnimReady(scene, cfg, name) {
+  const a = cfg?.anims[name];
+  if (!a || !scene.textures.exists(a.key)) return false;
+  if (!scene.anims.exists(a.key)) ensureBattleAnims(scene, cfg);
+  return true;
 }
 
 /** Точка опоры кадра: у врагов спрайт отражён, поэтому originX зеркальный. */
@@ -56,7 +74,7 @@ export function ensureBattleAnims(scene, cfg) {
   });
 }
 
-/** Все листы героя загружены? Если нет, бой рисует старую статичную картинку. */
+/** Стойка героя загружена? Если нет, бой рисует старую статичную картинку. Остальное догружается. */
 export function hasBattleAnims(scene, cfg) {
-  return !!cfg && Object.values(cfg.anims).every(a => scene.textures.exists(a.key));
+  return !!cfg && !!cfg.anims.idle && scene.textures.exists(cfg.anims.idle.key);
 }
