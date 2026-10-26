@@ -120,6 +120,10 @@ export class LoadingScene extends Phaser.Scene {
     sheet('map_hero_stand', 'maps/characters/hero_stand_v1.png', { frameWidth: 149, frameHeight: 260 }); // стойка на карте без оружия в руках, 96 кадров
     sheet('map_brawler_walk_side', 'maps/characters/brawler_walk_side_v3.png', { frameWidth: 260, frameHeight: 442 });
     sheet('map_healer_walk_side', 'maps/characters/healer_walk_side_v2.png', { frameWidth: 292, frameHeight: 516 });
+    // Ночь 26.10: новые ходьба и стойка Ворнага и Таи (Veo, вид сбоку, как у Дуэлянта). Старые листы оставлены.
+    sheet('map_brawler_walk_v4', 'maps/characters/anim/brawler_walk_v1.webp', { frameWidth: 376, frameHeight: 269 });
+    sheet('map_brawler_stand_v1', 'maps/characters/anim/brawler_stand_v1.webp', { frameWidth: 301, frameHeight: 268 });
+    sheet('map_healer_walk_v3', 'maps/characters/anim/healer_walk_v1.webp', { frameWidth: 376, frameHeight: 274 });
 
     // Paper doll части
     // Боец и компаньоны - split: upper + leg_l + leg_r (ноги раздельно)

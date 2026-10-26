@@ -1,0 +1,1 @@
+{"slug": "healer", "anim": "walk", "base": "healer/walk/k_walk.png", "body": 251, "segments": [{"clip": "healer/walk/walk_v2.mp4", "from": 45, "to": 70, "frames": 26}], "loop": true, "target": "map", "left": 0.75, "right": 0.75}

@@ -1,0 +1,1 @@
+{"slug": "bandit_warrior_map", "anim": "walk", "base": "bandit_warrior_map/walk/k_walk.png", "body": 251, "segments": [{"clip": "bandit_warrior_map/walk/walk_v2.mp4", "from": 23, "to": 56, "frames": 34}], "loop": true, "target": "map", "left": 0.75, "right": 0.75}

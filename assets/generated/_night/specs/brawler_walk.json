@@ -1,0 +1,1 @@
+{"slug": "brawler", "anim": "walk", "base": "brawler/walk/k_walk.png", "body": 251, "segments": [{"clip": "brawler/walk/walk_v2.mp4", "from": 23, "to": 52, "frames": 30}], "loop": true, "target": "map", "left": 0.75, "right": 0.75, "overwrite": true, "xfade": 6}

@@ -156,3 +156,10 @@ wild_dog amb1 2 | рамка шире
 wild_dog amb2 1 | v2: голова превращается в волчью; рамка шире
 bandit_brawler attack 1 | рамка шире справа (дубина обрезалась), кадр 18 выкинут (дубина меняет форму)
 healer death 1 | кадр 5 выкинут (белая полоса)
+brawler walk 2
+healer walk 2
+bandit_map walk 2
+bandit_warrior_map walk 2
+bandit_archer_map walk 1
+brawler stand 2 | v1: белая точка
+brawler walk 2 | дубина в конце цикла в другом положении: склейка плавным переходом (xfade 6)
