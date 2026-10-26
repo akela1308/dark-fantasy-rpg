@@ -174,7 +174,7 @@ export class MapScene extends Phaser.Scene {
     this._buildHUD(cfg);
 
     // Возврат с боя, начатого из диалога: продолжение разговора (пощада, сдача, награда)
-    this.time.delayedCall(700, () => this._resumePendingBattle());
+    this.time.delayedCall(700, () => this._resumePendingBattle() || this._runOnEnter(cfg));
 
     // ─── Dev Grid (клавиша G) ────────────────────────────────────────────
     this._devGrid = null;
@@ -1378,20 +1378,37 @@ export class MapScene extends Phaser.Scene {
     });
   }
 
+  /** Сцена при входе на карту (поле onEnter): первая подходящая, один раз. */
+  _runOnEnter(cfg) {
+    const reg = this.game.registry;
+    for (const e of (cfg.onEnter || [])) {
+      if (e.once && reg.get(e.once)) continue;
+      if (e.showIf && !checkRequires(e.showIf, this._ws).ok) continue;
+      if (!this._runner.has(e.dialogue)) continue;
+      if (e.once) reg.set(e.once, true);
+      this.hero.stopMove();
+      this._runner.start(e.dialogue, e.node || null);
+      return true;
+    }
+    return false;
+  }
+
   _resumePendingBattle() {
     const reg = this.game.registry;
     const pb = reg.get('pendingBattle');
-    if (!pb || reg.get('lastBattleId') !== pb.battleId) return;
+    if (!pb || reg.get('lastBattleId') !== pb.battleId) return false;
     const result = reg.get('lastBattleResult');
     reg.remove('pendingBattle');
-    if (result !== 'victory') return;
+    if (result !== 'victory') return false;
     if (pb.encounterId) reg.set(`enc_${pb.encounterId}_done`, true);
     (reg.get('lastSurrendered') || []).forEach(id => reg.set(`surrendered_${id}`, true));
     (reg.get('lastBattleDead') || []).forEach(id => reg.set(`dead_${id}`, true));
     if (pb.onWin && pb.dlg) {
       this.hero.stopMove();
       this._runner.start(pb.dlg, pb.onWin);
+      return true;
     }
+    return false;
   }
 
   _refreshGoldHud() {

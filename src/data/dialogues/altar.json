@@ -1,0 +1,87 @@
+{
+  "id": "altar",
+  "source": "03_ДИАЛОГИ_И_КВЕСТЫ_v0.2, раздел 8; 06_КВЕСТЫ 7.3",
+  "speakers": {
+    "narrator": { "name": "" },
+    "rowan": { "name": "Рован", "portrait": "portrait_wanderer" },
+    "stone": { "name": "Голос камня" },
+    "taya": { "name": "Тая", "portrait": "portrait_companion_healer" },
+    "vornag": { "name": "Ворнаг", "portrait": "portrait_companion_brawler" }
+  },
+  "start": [
+    { "showIf": { "any": [ { "flag": "seal_taken" }, { "flag": "seal_left" } ] }, "node": "after" },
+    { "showIf": { "any": [ { "flag": "altar_shadows_defeated" }, { "flag": "altar_peaceful" } ] }, "node": "ring" },
+    { "node": "stones" }
+  ],
+  "nodes": {
+    "stones": {
+      "speaker": "narrator",
+      "text": "Три камня. На одном знак, похожий на печать письма. На втором имя, которое не читается дважды подряд. Третий пустой. Между камнями кольцо из чёрного металла на плоском камне.",
+      "choices": [
+        { "label": "Обойти камни: знак, имя, пустота.", "requires": { "flag": "rowan_seal_hint" }, "reason": "порядок знает Рован", "effects": { "setFlag": "altar_peaceful", "giveXp": "battle:altar_shadows" }, "next": "ring" },
+        { "label": "Подойти к кольцу напрямую.", "style": "attack", "startBattle": { "battleId": "altar_shadows", "onWin": "ring" } },
+        { "label": "Уйти.", "style": "retreat", "close": true }
+      ]
+    },
+    "ring": {
+      "speaker": "narrator",
+      "text": "Кольцо из чёрного металла лежит на плоском камне.",
+      "lines": [
+        { "showIf": { "flag": "rowan_joins_to_altar" }, "speaker": "narrator", "text": "Рован стоит у края и не подходит." }
+      ],
+      "choices": [
+        { "label": "Надеть.", "effects": { "setFlag": ["seal_taken", "seal_worn", "seal_name_debt"] }, "next": "worn" },
+        { "label": "Взять, не надевая.", "effects": { "setFlag": "seal_taken" }, "next": "taken" },
+        { "label": "Оставить.", "effects": { "setFlag": "seal_left" }, "next": "left" },
+        { "label": "Отдать Ровану.", "showIf": { "flag": "rowan_joins_to_altar", "notFlag": "rowan_already_paid" }, "next": "rowan" }
+      ]
+    },
+    "worn": {
+      "speaker": "narrator",
+      "text": "«Холод. Не в пальце, в затылке. Вы помните, что должны что-то вспомнить, и не помните что.»",
+      "next": "taya_check"
+    },
+    "taken": {
+      "speaker": "narrator",
+      "text": "Кольцо в кармане греет. Цена отложена.",
+      "next": "taya_check"
+    },
+    "taya_check": {
+      "goto": [ { "showIf": { "companion": "companion_healer" }, "node": "taya_warn" } ]
+    },
+    "taya_warn": {
+      "speaker": "taya",
+      "text": "«У вас пальцы холодные. Как у Савко. Я такое видела один раз, у него же. Похоже на лихорадку, только наоборот: не горит, а остывает.»",
+      "effects": { "setFlag": "taya_seal_warning" }
+    },
+    "left": {
+      "goto": [
+        { "showIf": { "flag": "rowan_joins_to_altar" }, "node": "rowan_leaves" },
+        { "node": "stone_voice" }
+      ]
+    },
+    "rowan_leaves": {
+      "speaker": "rowan",
+      "text": "«Вы первый. Все остальные брали.»",
+      "effects": { "setFlag": "rowan_gone" }
+    },
+    "stone_voice": {
+      "speaker": "stone",
+      "text": "«Тогда назови имя, которое оставишь вместо кольца.»",
+      "choices": [
+        { "label": "Назвать своё.", "effects": { "setFlag": "hero_name_spoken" }, "close": true },
+        { "label": "Назвать имя спутника.", "effects": { "setFlag": "companion_named_to_stone" }, "close": true }
+      ]
+    },
+    "rowan": {
+      "speaker": "rowan",
+      "text": "«Оно меня не узнаёт. Я уже заплатил. Видимо, тем, чем оно платят.»",
+      "effects": { "setFlag": "rowan_already_paid" },
+      "next": "ring"
+    },
+    "after": {
+      "speaker": "narrator",
+      "text": "Три камня молчат."
+    }
+  }
+}

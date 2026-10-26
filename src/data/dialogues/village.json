@@ -1,0 +1,113 @@
+{
+  "id": "village",
+  "source": "03_ДИАЛОГИ_И_КВЕСТЫ_v0.2, раздел 10; 06_КВЕСТЫ 6.2, 6.3",
+  "speakers": {
+    "narrator": { "name": "" },
+    "ryzh": { "name": "Староста Рыж", "portrait": null },
+    "taya": { "name": "Тая", "portrait": "portrait_companion_healer" },
+    "deserter": { "name": "Стражник-беглец", "portrait": "portrait_guard" },
+    "korvin": { "name": "Корвин Сухой", "portrait": "portrait_bandit_commander" },
+    "guard": { "name": "Стражник врат", "portrait": "portrait_guard" }
+  },
+  "start": [ { "node": "gate_state" } ],
+  "nodes": {
+    "gate_state": {
+      "effects": { "setFlag": "gate_passed" },
+      "goto": [
+        { "showIf": { "flag": "bandit_deal_legitimize" }, "node": "gate_legit" },
+        { "showIf": { "flag": "bandit_commander_spared" }, "node": "gate_spared" },
+        { "showIf": { "flag": "bandit_commander_killed" }, "node": "gate_killed" }
+      ]
+    },
+    "gate_killed": {
+      "speaker": "guard",
+      "text": "«Корвина нет. Теперь каждый с дубиной думает, что он Корвин. Вчера трое приходили.»"
+    },
+    "gate_spared": {
+      "speaker": "korvin",
+      "text": "«Я теперь здесь. Деревня кормит, я смотрю на дорогу. Как раньше. Как до того, как.»"
+    },
+    "gate_legit": {
+      "speaker": "taya",
+      "text": "«Вы это сделали. Вы сделали его законом.»"
+    },
+
+    "deserter": {
+      "speaker": "deserter",
+      "text": "Бывший солдат седьмого поста. Он говорит, что приказ, который возили гонцы, был один и тот же каждые полгода: «держать пост до смены». Смены не было три года. Пост ушёл сам.",
+      "effects": { "setFlag": "deserter_told" },
+      "choices": [
+        { "label": "Вскрыть письмо.", "showIf": { "notFlag": "letter_opened" }, "effects": { "setFlag": "letter_opened", "rep": { "law": -1 } }, "next": "letter_read" },
+        { "label": "Не вскрывать.", "close": true }
+      ]
+    },
+    "letter_read": {
+      "speaker": "narrator",
+      "text": "«Держать пост до смены.»"
+    },
+
+    "well": {
+      "speaker": "taya",
+      "text": "«Не пейте. Пожалуйста. Я потом объясню.»",
+      "effects": { "setFlag": "well_water_omen" }
+    },
+
+    "ryzh": {
+      "speaker": "taya",
+      "text": "«Староста. Ваша дочь умерла от воды. Я это сказала тогда. Я говорю это сейчас.»",
+      "lines": [
+        { "speaker": "ryzh", "text": "«Ты сказала это при людях. Люди пьют из колодца. Что мне было, сказать им, что я их травлю ради болота?»" }
+      ],
+      "choices": [
+        { "label": "«Скажи им правду. Я прослежу.»", "effects": { "setFlag": ["well_truth_told", "taya_loyal"], "rep": { "law": 1 }, "giveXp": "minor" }, "next": "r_truth" },
+        { "label": "«Молчи. Я поговорю с болотом сам.»", "effects": { "setFlag": "swamp_deal_kept", "rep": { "word": 1 }, "giveXp": "minor" }, "next": "r_silent" },
+        { "label": "«[Страх 2] Ты будешь платить мне, а не болоту.»", "requires": { "rep_fear": 2 }, "effects": { "setFlag": ["village_tribute", "taya_leaves"], "dismiss": "companion_healer", "giveXp": "minor" }, "close": true }
+      ]
+    },
+    "r_truth": {
+      "speaker": "taya",
+      "text": "«Спасибо. Не знаю, за что. Но спасибо.»"
+    },
+    "r_silent": {
+      "speaker": "taya",
+      "text": "«Вы выбрали деревню, а не правду. Я бы, наверно, тоже. Легче от этого не стало.»"
+    },
+    "ryzh_alone": {
+      "speaker": "ryzh",
+      "text": "Староста Рыж занят и не хочет говорить с чужими.",
+      "choices": [
+        { "label": "«Болото просит зерно.»", "showIf": { "flag": "swamp_deal_offered", "notFlag": "swamp_deal_kept" }, "effects": { "setFlag": "swamp_deal_kept", "giveGold": 20, "giveXp": "minor" }, "next": "grain" },
+        { "label": "Уйти.", "style": "retreat", "close": true }
+      ]
+    },
+    "grain": {
+      "speaker": "ryzh",
+      "text": "Рыж обещает платить болоту зерном и отдаёт двадцать монет дани.",
+      "choices": [
+        { "label": "Простить дань.", "effects": { "cost": 20, "rep": { "word": 1 } }, "close": true },
+        { "label": "Взять.", "close": true }
+      ]
+    },
+
+    "chapel": {
+      "speaker": "narrator",
+      "text": "Свет в часовне. Внутри Хранитель свечей и Чтецы читают имена из приходской книги вслух.",
+      "choices": [
+        { "label": "[Тайная грамота] Прочесть книгу раньше них и вырвать страницу с живыми.", "requires": { "trait": "secret_literacy" }, "effects": { "setFlag": ["chapel_peaceful", "chapel_cult_defeated_peace"], "giveXp": "battle:chapel_cult" }, "next": "chapel_holt" },
+        { "label": "[Страх 3] Заставить их читать имена людей Корвина.", "requires": { "rep_fear": 3 }, "effects": { "setFlag": "cult_turned", "giveXp": "battle:chapel_cult" }, "close": true },
+        { "label": "[Атаковать]", "startBattle": { "battleId": "chapel_cult", "onWin": "chapel_holt" } },
+        { "label": "Уйти.", "style": "retreat", "close": true }
+      ]
+    },
+    "chapel_holt": {
+      "goto": [
+        { "showIf": { "companion": "holt", "trait": "secret_literacy" }, "node": "holt_name" }
+      ]
+    },
+    "holt_name": {
+      "speaker": "narrator",
+      "text": "Хольт: «Найди вычеркнутое. Третья страница, снизу.» Вы читаете имя вслух. Хольт: «Лейна.»",
+      "effects": { "setFlag": "holt_sister_named", "giveXp": 15 }
+    }
+  }
+}

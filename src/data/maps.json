@@ -336,7 +336,7 @@
         "toMap": "tavern_cellar",
         "spawnId": "from_tavern_map",
         "auto": true,
-        "requiresFlag": "savko_key_given",
+        "requiresFlag": "cellar_open",
         "lockedText": "Люк заперт. Ключ у Савко."
       }
     ],
@@ -541,7 +541,11 @@
               }
             ]
           }
-        ]
+        ],
+        "dialogue": "savko",
+        "showIf": {
+          "notFlag": "savko_gone"
+        }
       }
     ],
     "walk": [
@@ -2897,6 +2901,19 @@
             ]
           }
         ]
+      },
+      {
+        "id": "deserter",
+        "name": "Стражник-беглец",
+        "x": 420,
+        "y": 620,
+        "spriteKey": "map_guard",
+        "portraitKey": "portrait_guard",
+        "height": 150,
+        "dialogue": "village",
+        "dialogueStart": "deserter",
+        "hoverPortrait": true,
+        "flipX": true
       }
     ],
     "walk": [
@@ -2912,7 +2929,14 @@
     "level": 5,
     "kind": "outdoor",
     "walkTemplate": "diagonal",
-    "battleBg": "Grad_battle"
+    "battleBg": "Grad_battle",
+    "onEnter": [
+      {
+        "dialogue": "village",
+        "node": "gate_state",
+        "once": "gate_state_seen"
+      }
+    ]
   },
   "village": {
     "bgKey": "map_village",
@@ -3197,7 +3221,17 @@
     "level": 5,
     "kind": "outdoor",
     "walkTemplate": "ring",
-    "battleBg": "Village_battle1"
+    "battleBg": "Village_battle1",
+    "onEnter": [
+      {
+        "dialogue": "village",
+        "node": "well",
+        "once": "well_water_omen",
+        "showIf": {
+          "companion": "companion_healer"
+        }
+      }
+    ]
   },
   "south_post": {
     "bgKey": "map_south_post",
@@ -4756,8 +4790,9 @@
       {
         "id": "altar_shadows",
         "battleId": "altar_shadows",
-        "name": "Тени у трёх камней",
+        "name": "Три камня",
         "behaviour": "loner",
+        "dialogue": "altar",
         "x": 892,
         "y": 602
       }
@@ -5256,10 +5291,13 @@
         "battleId": "chapel_cult",
         "name": "Свет в часовне",
         "behaviour": "loner",
+        "dialogue": "village",
+        "dialogueStart": "chapel",
         "showIf": {
           "notFlag": [
             "chapel_peaceful",
-            "cult_turned"
+            "cult_turned",
+            "chapel_cult_defeated"
           ]
         },
         "x": 888,
@@ -5328,7 +5366,38 @@
     ],
     "tavernEntry": null,
     "bandits": false,
-    "npcs": [],
+    "npcs": [
+      {
+        "id": "ryzh",
+        "name": "Староста Рыж",
+        "x": 840,
+        "y": 520,
+        "spriteKey": "map_ryzh",
+        "portraitKey": null,
+        "height": 150,
+        "dialogue": "village",
+        "dialogueStart": "ryzh_alone"
+      },
+      {
+        "id": "ryzh_taya",
+        "name": "Тая и староста",
+        "x": 980,
+        "y": 560,
+        "spriteKey": "map_companion_healer",
+        "portraitKey": "portrait_companion_healer",
+        "height": 140,
+        "dialogue": "village",
+        "dialogueStart": "ryzh",
+        "showIf": {
+          "companion": "companion_healer",
+          "notFlag": [
+            "well_truth_told",
+            "swamp_deal_kept",
+            "village_tribute"
+          ]
+        }
+      }
+    ],
     "props": [],
     "encounters": [],
     "battleBg": "Village_battle1"

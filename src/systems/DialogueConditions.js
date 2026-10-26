@@ -68,7 +68,7 @@ export function applyEffects(e, ws, hooks = {}) {
   if (e.giveGold) ws.addGold(e.giveGold);
   if (e.giveItem) arr(e.giveItem).forEach(i => ws.giveItem(typeof i === 'string' ? i : i.id, i.n || 1));
   if (e.takeItem) arr(e.takeItem).forEach(i => ws.takeItem(typeof i === 'string' ? i : i.id, i.n || 1));
-  if (e.counter) arr(e.counter).forEach(c => ws.inc(c));
+  if (e.counter) arr(e.counter).forEach(c => { const v = ws.inc(c); ws.setFlag(`cnt_${c}_${v}`, true); });
   if (e.recruit) arr(e.recruit).forEach(id => hooks.recruit?.(id));
   if (e.dismiss) arr(e.dismiss).forEach(id => hooks.dismiss?.(id));
   if (e.giveXp) hooks.giveXp?.(e.giveXp);

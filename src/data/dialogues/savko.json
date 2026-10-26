@@ -1,0 +1,253 @@
+{
+  "id": "savko",
+  "source": "реплики Савко v0.1 из maps.json; 03_ДИАЛОГИ_И_КВЕСТЫ_v0.2, разделы 7.1, 9, 17",
+  "speakers": {
+    "savko": {
+      "name": "Савко",
+      "portrait": "portrait_drunkman"
+    },
+    "taya": {
+      "name": "Тая",
+      "portrait": "portrait_companion_healer"
+    },
+    "vorn": {
+      "name": "Ворн",
+      "portrait": "portrait_tavernman"
+    }
+  },
+  "start": [
+    {
+      "showIf": {
+        "flag": "bandit_commander_killed",
+        "notFlag": "savko_korvin_toast"
+      },
+      "node": "korvin_dead"
+    },
+    {
+      "showIf": {
+        "flag": "reader_spared",
+        "notFlag": "savko_reader_told"
+      },
+      "node": "reader_alive"
+    },
+    {
+      "showIf": {
+        "flag": "reader_killed",
+        "notFlag": "savko_reader_told"
+      },
+      "node": "reader_dead"
+    },
+    {
+      "node": "root"
+    }
+  ],
+  "nodes": {
+    "root": {
+      "speaker": "savko",
+      "text": "\"Не стой в дверях... Сквозняк несет с севера. А с севера редко несет доброе. Слыхал про запечатанный подвал?\"",
+      "effects": {
+        "setFlag": "savko_met"
+      },
+      "choices": [
+        {
+          "label": "Ты там был?",
+          "next": "was"
+        },
+        {
+          "label": "Почему ты пьешь?",
+          "next": "behind"
+        },
+        {
+          "label": "[3 монеты] Выпить с ним.",
+          "showIf": {
+            "flag": "savko_believed",
+            "notFlag": [
+              "savko_key_given",
+              "savko_gone"
+            ]
+          },
+          "requires": {
+            "gold": 3
+          },
+          "effects": {
+            "cost": 3,
+            "counter": "savko_drinks"
+          },
+          "next": "drink"
+        },
+        {
+          "label": "Тая, поговори с ним.",
+          "showIf": {
+            "flag": "savko_believed",
+            "notFlag": [
+              "savko_key_given",
+              "savko_gone"
+            ]
+          },
+          "requires": {
+            "companion": "companion_healer"
+          },
+          "next": "taya_talk"
+        },
+        {
+          "label": "[Страх 2] Где ключ от подвала?",
+          "showIf": {
+            "flag": "savko_believed",
+            "notFlag": [
+              "savko_key_given",
+              "savko_gone"
+            ]
+          },
+          "requires": {
+            "rep_fear": 2
+          },
+          "next": "threat"
+        },
+        {
+          "label": "Не сейчас.",
+          "style": "retreat",
+          "close": true
+        }
+      ]
+    },
+    "was": {
+      "speaker": "savko",
+      "text": "\"Был? Нет. Бывают в гостях. А я держал фонарь, когда дверь запирали. Черное железо. Холодная ручка. И тишина, которая ждала, пока мы назовем имена.\"",
+      "choices": [
+        {
+          "label": "Что за дверью?",
+          "next": "behind"
+        }
+      ]
+    },
+    "behind": {
+      "speaker": "savko",
+      "text": "\"Не знаю. И потому еще жив. Знаю только: если услышишь слово 'Печать', не отвечай сразу. Сначала вспомни свое имя.\"",
+      "choices": [
+        {
+          "label": "Запомню.",
+          "effects": {
+            "setFlag": "savko_believed"
+          },
+          "close": true
+        }
+      ]
+    },
+    "drink": {
+      "goto": [
+        {
+          "showIf": {
+            "flag": "cnt_savko_drinks_3"
+          },
+          "node": "key_drunk"
+        },
+        {
+          "node": "drink_more"
+        }
+      ]
+    },
+    "drink_more": {
+      "speaker": "savko",
+      "text": "Савко пьёт молча и смотрит на север.",
+      "effects": {
+        "giveXp": "quest"
+      }
+    },
+    "key_drunk": {
+      "speaker": "savko",
+      "text": "«Ключ у меня. Во сне. То есть вот.» «Не стало. То есть он стал другим. Дверь бросил, дорогу взял. Корвином звали. Зовут.»",
+      "effects": {
+        "setFlag": [
+          "savko_key_given",
+          "korvin_was_warden",
+          "cellar_open"
+        ],
+        "giveItem": "savko_key",
+        "giveXp": "quest"
+      }
+    },
+    "taya_talk": {
+      "speaker": "savko",
+      "text": "«Ей отдам. У неё руки тёплые, она не оттуда.»",
+      "effects": {
+        "setFlag": [
+          "savko_key_given",
+          "cellar_open"
+        ],
+        "giveItem": "savko_key",
+        "rep": {
+          "word": 1
+        },
+        "giveXp": "quest"
+      },
+      "lines": [
+        {
+          "speaker": "taya",
+          "text": "«Он пьян, но не пуст. У таких страх пахнет иначе.»"
+        }
+      ]
+    },
+    "threat": {
+      "speaker": "savko",
+      "text": "Савко показывает люк за дровами и уходит в ночь. Ключа он не отдал.",
+      "effects": {
+        "setFlag": [
+          "savko_gone",
+          "vorn_wary",
+          "hatch_known"
+        ],
+        "rep": {
+          "fear": 1
+        }
+      },
+      "goto": [
+        {
+          "showIf": {
+            "any": [
+              {
+                "companion": "companion_brawler"
+              },
+              {
+                "flag": "brawler_bonebreaker"
+              }
+            ]
+          },
+          "node": "hatch_broken"
+        }
+      ]
+    },
+    "hatch_broken": {
+      "speaker": "savko",
+      "text": "Ворнаг ломает замок люка.",
+      "effects": {
+        "setFlag": "cellar_open"
+      }
+    },
+    "korvin_dead": {
+      "speaker": "savko",
+      "text": "«Убили десятника? Он мне когда-то фонарь держал. Да, он. Молодой был. Ну, выпьем. За фонарь.»",
+      "effects": {
+        "setFlag": "savko_korvin_toast"
+      },
+      "next": "root"
+    },
+    "reader_alive": {
+      "speaker": "savko",
+      "text": "«Ты ходил трактом? Там таблички. Ты читал?» «Значит, он ещё читает. Хорошо. Пусть.»",
+      "effects": {
+        "setFlag": "savko_reader_told"
+      },
+      "next": "root"
+    },
+    "reader_dead": {
+      "speaker": "savko",
+      "text": "«Ты ходил трактом? Там таблички. Ты читал?» «Теперь не прочтёшь.»",
+      "effects": {
+        "setFlag": [
+          "savko_reader_told",
+          "savko_gone"
+        ]
+      }
+    }
+  }
+}
