@@ -118,6 +118,18 @@ export class MapScene extends Phaser.Scene {
     // Диалоги из src/data/dialogues/*.json с условиями и репутацией (блок Г)
     this._ws = new WorldState(this.game.registry);
     this.game.registry.set(`${this.mapKey}_visited`, true);
+    // Пошлина: заплатил Корвину один раз, дальше каждый проход лесом 10 монет, пока он жив и без сделки (03_ДИАЛОГИ 6.3)
+    {
+      const reg = this.game.registry;
+      if (this.mapKey === 'forest1' && reg.get('road_open_personal_only') && !reg.get('bandit_commander_killed')
+          && !reg.get('korvin_debt_active') && !reg.get('bandit_commander_spared')) {
+        const toll = Math.min(10, SaveSystem.getGold(reg));
+        if (toll > 0) {
+          SaveSystem.addGold(-toll, reg);
+          this.time.delayedCall(900, () => this._toast(`Люди Корвина берут пошлину: ${toll} монет`));
+        }
+      }
+    }
     this._runner = new DialogueRunner(this, this._dialogue, this._ws, this._dialogueHooks());
     // Необязательные встречи бестиария (стая, логово, патруль, западня, одиночка, ватага)
     this._encounters = new MapEncounters(this, cfg.encounters, this._ws, {
