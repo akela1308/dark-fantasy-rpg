@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/3196e3c5-ddc9-4eb9-a5a8-0ed1f5949f7f",
+ "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: one small pickaxe in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+ "img": "kobold/k_battle.png",
+ "last": "kobold/k_battle.png",
+ "sec": 4
+}

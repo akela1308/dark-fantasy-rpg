@@ -1,0 +1,2 @@
+Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, clothes and colors. Full body visible from head to feet, nothing cut off, centered, about 75% of the image height. Flat solid uniform pure chroma green background (#00FF00), no shadow, no floor, no other figures, no text. Pose: standing calmly, three-quarter view, facing the RIGHT side of the image, hands reaching slightly forward.
+refs: assets/generated/mavka/k_art_crop.png

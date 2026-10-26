@@ -1,6 +1,17 @@
 {
  "adventurer": {
   "anims": {
+   "amb2": {
+    "file": "sprites/battle/adventurer_amb2_v1.webp",
+    "frameWidth": 439,
+    "frameHeight": 328,
+    "frames": 64,
+    "fps": 24,
+    "originX": 0.4788,
+    "originY": 0.9758,
+    "bodyHeight": 300,
+    "key": "adventurer_amb2_v1"
+   },
    "idle": {
     "file": "sprites/battle/adventurer_idle_v1.webp",
     "frameWidth": 484,
@@ -16,6 +27,24 @@
   },
   "actions": {},
   "name": "Хольт, Искатель (бой)"
+ },
+ "agna": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/agna_idle_v1.webp",
+    "frameWidth": 480,
+    "frameHeight": 304,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.4271,
+    "originY": 0.979,
+    "bodyHeight": 300,
+    "key": "agna_idle_v1",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "Агна, хозяйка «Трёх столбов» (новая, предварительно)"
  },
  "archer_guard": {
   "anims": {
@@ -37,6 +66,17 @@
  },
  "assassin": {
   "anims": {
+   "amb2": {
+    "file": "sprites/battle/assassin_amb2_v1.webp",
+    "frameWidth": 479,
+    "frameHeight": 315,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4386,
+    "originY": 0.9858,
+    "bodyHeight": 300,
+    "key": "assassin_amb2_v1"
+   },
    "idle": {
     "file": "sprites/battle/assassin_idle_v1.webp",
     "frameWidth": 482,
@@ -55,6 +95,28 @@
  },
  "assassin_undead": {
   "anims": {
+   "amb1": {
+    "file": "sprites/battle/assassin_undead_amb1_v1.webp",
+    "frameWidth": 430,
+    "frameHeight": 331,
+    "frames": 64,
+    "fps": 24,
+    "originX": 0.4894,
+    "originY": 0.9731,
+    "bodyHeight": 300,
+    "key": "assassin_undead_amb1_v1"
+   },
+   "amb2": {
+    "file": "sprites/battle/assassin_undead_amb2_v1.webp",
+    "frameWidth": 430,
+    "frameHeight": 331,
+    "frames": 64,
+    "fps": 24,
+    "originX": 0.4894,
+    "originY": 0.9731,
+    "bodyHeight": 300,
+    "key": "assassin_undead_amb2_v1"
+   },
    "idle": {
     "file": "sprites/battle/assassin_undead_idle_v1.webp",
     "frameWidth": 474,
@@ -160,6 +222,28 @@
  },
  "companion_brawler": {
   "anims": {
+   "amb1": {
+    "file": "sprites/battle/brawler_amb1_v1.webp",
+    "frameWidth": 480,
+    "frameHeight": 331,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4379,
+    "originY": 0.9735,
+    "bodyHeight": 300,
+    "key": "brawler_amb1_v1"
+   },
+   "amb2": {
+    "file": "sprites/battle/brawler_amb2_v1.webp",
+    "frameWidth": 480,
+    "frameHeight": 331,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4379,
+    "originY": 0.9735,
+    "bodyHeight": 300,
+    "key": "brawler_amb2_v1"
+   },
    "idle": {
     "file": "sprites/battle/brawler_idle_v1.webp",
     "frameWidth": 493,
@@ -352,6 +436,17 @@
  },
  "dwarf": {
   "anims": {
+   "amb2": {
+    "file": "sprites/battle/dwarf_amb2_v1.webp",
+    "frameWidth": 480,
+    "frameHeight": 343,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4384,
+    "originY": 0.9717,
+    "bodyHeight": 300,
+    "key": "dwarf_amb2_v1"
+   },
    "idle": {
     "file": "sprites/battle/dwarf_idle_v1.webp",
     "frameWidth": 499,
@@ -424,6 +519,28 @@
  },
  "forest_bear": {
   "anims": {
+   "amb1": {
+    "file": "sprites/battle/forest_bear_amb1_v1.webp",
+    "frameWidth": 479,
+    "frameHeight": 320,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4385,
+    "originY": 0.9706,
+    "bodyHeight": 300,
+    "key": "forest_bear_amb1_v1"
+   },
+   "amb2": {
+    "file": "sprites/battle/forest_bear_amb2_v1.webp",
+    "frameWidth": 479,
+    "frameHeight": 320,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4385,
+    "originY": 0.9706,
+    "bodyHeight": 300,
+    "key": "forest_bear_amb2_v1"
+   },
    "idle": {
     "file": "sprites/battle/forest_bear_idle_v1.webp",
     "frameWidth": 509,
@@ -482,6 +599,29 @@
     "bodyHeight": 300,
     "key": "healer_amb2_v1"
    },
+   "attack": {
+    "file": "sprites/battle/healer_attack_v1.webp",
+    "frameWidth": 541,
+    "frameHeight": 320,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4718,
+    "originY": 0.9698,
+    "bodyHeight": 300,
+    "key": "healer_attack_v1",
+    "hitFrame": 10
+   },
+   "hit": {
+    "file": "sprites/battle/healer_hit_v1.webp",
+    "frameWidth": 541,
+    "frameHeight": 320,
+    "frames": 13,
+    "fps": 24,
+    "originX": 0.4718,
+    "originY": 0.9698,
+    "bodyHeight": 300,
+    "key": "healer_hit_v1"
+   },
    "idle": {
     "file": "sprites/battle/healer_idle_v1.webp",
     "frameWidth": 497,
@@ -495,11 +635,35 @@
     "loop": true
    }
   },
-  "actions": {},
+  "actions": {
+   "basic": "attack"
+  },
   "name": "Тая (Знахарка)"
  },
  "jester": {
   "anims": {
+   "amb1": {
+    "file": "sprites/battle/jester_amb1_v1.webp",
+    "frameWidth": 467,
+    "frameHeight": 324,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4234,
+    "originY": 0.972,
+    "bodyHeight": 300,
+    "key": "jester_amb1_v1"
+   },
+   "amb2": {
+    "file": "sprites/battle/jester_amb2_v1.webp",
+    "frameWidth": 467,
+    "frameHeight": 324,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4234,
+    "originY": 0.972,
+    "bodyHeight": 300,
+    "key": "jester_amb2_v1"
+   },
    "idle": {
     "file": "sprites/battle/jester_idle_v1.webp",
     "frameWidth": 497,
@@ -556,6 +720,24 @@
   "actions": {},
   "name": "Кикимора"
  },
+ "lyo": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/lyo_idle_v1.webp",
+    "frameWidth": 488,
+    "frameHeight": 329,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.5233,
+    "originY": 0.9734,
+    "bodyHeight": 300,
+    "key": "lyo_idle_v1",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "Лё, болотный старейшина (новый, предварительно)"
+ },
  "mountain_king": {
   "anims": {
    "idle": {
@@ -594,14 +776,36 @@
  },
  "rowan": {
   "anims": {
+   "amb1": {
+    "file": "sprites/battle/rowan_amb1_v1.webp",
+    "frameWidth": 480,
+    "frameHeight": 343,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.438,
+    "originY": 0.974,
+    "bodyHeight": 300,
+    "key": "rowan_amb1_v1"
+   },
+   "amb2": {
+    "file": "sprites/battle/rowan_amb2_v1.webp",
+    "frameWidth": 480,
+    "frameHeight": 343,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.438,
+    "originY": 0.974,
+    "bodyHeight": 300,
+    "key": "rowan_amb2_v1"
+   },
    "idle": {
     "file": "sprites/battle/rowan_idle_v1.webp",
-    "frameWidth": 491,
-    "frameHeight": 315,
-    "frames": 95,
+    "frameWidth": 534,
+    "frameHeight": 343,
+    "frames": 48,
     "fps": 24,
-    "originX": 0.4389,
-    "originY": 0.9757,
+    "originX": 0.4387,
+    "originY": 0.974,
     "bodyHeight": 300,
     "key": "rowan_idle_v1",
     "loop": true
@@ -610,8 +814,37 @@
   "actions": {},
   "name": "Рован в бою (по арту map_wanderer)"
  },
+ "ryzh": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/ryzh_idle_v1.webp",
+    "frameWidth": 490,
+    "frameHeight": 310,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.4396,
+    "originY": 0.9738,
+    "bodyHeight": 300,
+    "key": "ryzh_idle_v1",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "Рыж, староста Придорожного (новый, предварительно)"
+ },
  "companion_shield": {
   "anims": {
+   "amb2": {
+    "file": "sprites/battle/shield_amb2_v1.webp",
+    "frameWidth": 479,
+    "frameHeight": 333,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4386,
+    "originY": 0.9739,
+    "bodyHeight": 300,
+    "key": "shield_amb2_v1"
+   },
    "idle": {
     "file": "sprites/battle/shield_idle_v1.webp",
     "frameWidth": 494,
@@ -704,8 +937,48 @@
   "actions": {},
   "name": "Ворн, хозяин таверны"
  },
+ "til": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/til_idle_v1.webp",
+    "frameWidth": 510,
+    "frameHeight": 302,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.4607,
+    "originY": 0.978,
+    "bodyHeight": 300,
+    "key": "til_idle_v1",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "Тил, кузнец, бывший сапёр (новый, предварительно)"
+ },
  "vurdalak": {
   "anims": {
+   "amb1": {
+    "file": "sprites/battle/vurdalak_amb1_v1.webp",
+    "frameWidth": 479,
+    "frameHeight": 327,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.439,
+    "originY": 0.9733,
+    "bodyHeight": 300,
+    "key": "vurdalak_amb1_v1"
+   },
+   "amb2": {
+    "file": "sprites/battle/vurdalak_amb2_v1.webp",
+    "frameWidth": 479,
+    "frameHeight": 327,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.439,
+    "originY": 0.9733,
+    "bodyHeight": 300,
+    "key": "vurdalak_amb2_v1"
+   },
    "idle": {
     "file": "sprites/battle/vurdalak_idle_v1.webp",
     "frameWidth": 505,
@@ -724,6 +997,17 @@
  },
  "winter_archer": {
   "anims": {
+   "amb2": {
+    "file": "sprites/battle/winter_archer_amb2_v1.webp",
+    "frameWidth": 479,
+    "frameHeight": 332,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4387,
+    "originY": 0.9724,
+    "bodyHeight": 300,
+    "key": "winter_archer_amb2_v1"
+   },
    "idle": {
     "file": "sprites/battle/winter_archer_idle_v1.webp",
     "frameWidth": 555,
@@ -742,6 +1026,28 @@
  },
  "winter_girl": {
   "anims": {
+   "amb1": {
+    "file": "sprites/battle/winter_girl_amb1_v1.webp",
+    "frameWidth": 480,
+    "frameHeight": 340,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4379,
+    "originY": 0.9716,
+    "bodyHeight": 300,
+    "key": "winter_girl_amb1_v1"
+   },
+   "amb2": {
+    "file": "sprites/battle/winter_girl_amb2_v1.webp",
+    "frameWidth": 480,
+    "frameHeight": 340,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4379,
+    "originY": 0.9716,
+    "bodyHeight": 300,
+    "key": "winter_girl_amb2_v1"
+   },
    "idle": {
     "file": "sprites/battle/winter_girl_idle_v1.webp",
     "frameWidth": 509,
@@ -760,6 +1066,17 @@
  },
  "winter_monster": {
   "anims": {
+   "amb2": {
+    "file": "sprites/battle/winter_monster_amb2_v1.webp",
+    "frameWidth": 479,
+    "frameHeight": 307,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4385,
+    "originY": 0.9897,
+    "bodyHeight": 300,
+    "key": "winter_monster_amb2_v1"
+   },
    "idle": {
     "file": "sprites/battle/winter_monster_idle_v1.webp",
     "frameWidth": 483,
@@ -778,6 +1095,28 @@
  },
  "winter_queen": {
   "anims": {
+   "amb1": {
+    "file": "sprites/battle/winter_queen_amb1_v1.webp",
+    "frameWidth": 480,
+    "frameHeight": 319,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4383,
+    "originY": 0.9731,
+    "bodyHeight": 300,
+    "key": "winter_queen_amb1_v1"
+   },
+   "amb2": {
+    "file": "sprites/battle/winter_queen_amb2_v1.webp",
+    "frameWidth": 480,
+    "frameHeight": 319,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4383,
+    "originY": 0.9731,
+    "bodyHeight": 300,
+    "key": "winter_queen_amb2_v1"
+   },
    "idle": {
     "file": "sprites/battle/winter_queen_idle_v1.webp",
     "frameWidth": 494,

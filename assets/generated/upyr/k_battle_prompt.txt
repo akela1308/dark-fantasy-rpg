@@ -1,0 +1,2 @@
+Edit of the reference image. Zoom out: exactly the same single character, full body visible from head to boots with free space above and below, the figure about 70% of the image height, standing, three-quarter view facing the RIGHT side of the image, long claws. Flat solid uniform pure chroma green background (#00FF00), no shadow, no text.
+refs: assets/generated/upyr/k_art.png

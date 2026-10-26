@@ -585,6 +585,114 @@
   "n": 2
  },
  {
+  "stage": 1,
+  "name": "wild_dog/clips/idle",
+  "first": "wild_dog/k_idle.png",
+  "last": "wild_dog/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the animal stays in place in the same pose, breathes calmly, the flanks rise and fall, small natural movements of the ears and tail. No steps, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "wild_dog/clips/bidle",
+  "first": "wild_dog/k_battle.png",
+  "last": "wild_dog/k_battle.png",
+  "prompt": "Idle loop for the whole clip: the animal stays in place in the same pose, breathes calmly, the flanks rise and fall, small natural movements of the ears and tail. No steps, no turning. The last frame is exactly the same pose as the first. HANDS CANON: no weapon, fangs; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "grey_wolf/clips/idle",
+  "first": "grey_wolf/k_idle.png",
+  "last": "grey_wolf/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the animal stays in place in the same pose, breathes calmly, the flanks rise and fall, small natural movements of the ears and tail. No steps, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "grey_wolf/clips/bidle",
+  "first": "grey_wolf/k_battle.png",
+  "last": "grey_wolf/k_battle.png",
+  "prompt": "Idle loop for the whole clip: the animal stays in place in the same pose, breathes calmly, the flanks rise and fall, small natural movements of the ears and tail. No steps, no turning. The last frame is exactly the same pose as the first. HANDS CANON: no weapon, fangs; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "boar/clips/idle",
+  "first": "boar/k_idle.png",
+  "last": "boar/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the animal stays in place in the same pose, breathes calmly, the flanks rise and fall, small natural movements of the ears and tail. No steps, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "boar/clips/bidle",
+  "first": "boar/k_battle.png",
+  "last": "boar/k_battle.png",
+  "prompt": "Idle loop for the whole clip: the animal stays in place in the same pose, breathes calmly, the flanks rise and fall, small natural movements of the ears and tail. No steps, no turning. The last frame is exactly the same pose as the first. HANDS CANON: no weapon, tusks; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "mavka/clips/idle",
+  "first": "mavka/k_idle.png",
+  "last": "mavka/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the character stays in place in the same pose, breathes slowly and calmly, the chest rises and falls, a slight shift of weight, clothes, cloak and hair move gently. No steps, no gestures, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "mavka/clips/bidle",
+  "first": "mavka/k_battle.png",
+  "last": "mavka/k_battle.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: no weapon, the hands reaching forward; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "drowned/clips/idle",
+  "first": "drowned/k_idle.png",
+  "last": "drowned/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the character stays in place in the same pose, breathes slowly and calmly, the chest rises and falls, a slight shift of weight, clothes, cloak and hair move gently. No steps, no gestures, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "drowned/clips/bidle",
+  "first": "drowned/k_battle.png",
+  "last": "drowned/k_battle.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: no weapon, heavy grasping hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "kobold/clips/idle",
+  "first": "kobold/k_idle.png",
+  "last": "kobold/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the character stays in place in the same pose, breathes slowly and calmly, the chest rises and falls, a slight shift of weight, clothes, cloak and hair move gently. No steps, no gestures, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 1,
+  "name": "kobold/clips/bidle",
+  "first": "kobold/k_battle.png",
+  "last": "kobold/k_battle.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: one small pickaxe in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
   "stage": 2,
   "name": "healer/clips/amb1",
   "first": "healer/k_battle.png",
@@ -1337,6 +1445,114 @@
   "first": "ryzh/k_idle.png",
   "last": "ryzh/k_idle.png",
   "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: looks around and nods to himself. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "wild_dog/clips/amb1",
+  "first": "wild_dog/k_idle.png",
+  "last": "wild_dog/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: sniffs the ground. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "wild_dog/clips/amb2",
+  "first": "wild_dog/k_idle.png",
+  "last": "wild_dog/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: growls quietly with bared teeth. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "grey_wolf/clips/amb1",
+  "first": "grey_wolf/k_idle.png",
+  "last": "grey_wolf/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: sniffs the air. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "grey_wolf/clips/amb2",
+  "first": "grey_wolf/k_idle.png",
+  "last": "grey_wolf/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: lowers the head and growls. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "boar/clips/amb1",
+  "first": "boar/k_idle.png",
+  "last": "boar/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: paws the ground. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "boar/clips/amb2",
+  "first": "boar/k_idle.png",
+  "last": "boar/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: snorts and shakes its head. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "mavka/clips/amb1",
+  "first": "mavka/k_idle.png",
+  "last": "mavka/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: wrings water from her hair. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "mavka/clips/amb2",
+  "first": "mavka/k_idle.png",
+  "last": "mavka/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: sways and hums. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "drowned/clips/amb1",
+  "first": "drowned/k_idle.png",
+  "last": "drowned/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: water drips, he slowly shifts. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "drowned/clips/amb2",
+  "first": "drowned/k_idle.png",
+  "last": "drowned/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: lifts the head with eyes closed. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "kobold/clips/amb1",
+  "first": "kobold/k_idle.png",
+  "last": "kobold/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: looks around greedily. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2,
+  "name": "kobold/clips/amb2",
+  "first": "kobold/k_idle.png",
+  "last": "kobold/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: scratches behind the ear. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
   "sec": 4,
   "n": 2
  },
@@ -2768,6 +2984,228 @@
   "first": "til/k_battle.png",
   "last": "til/k_battle.png",
   "prompt": "One single powerful special attack to the right: a big two-handed overhead wind-up and a crushing blow forward to the right, then back into the same ready stance. HANDS CANON: one blacksmith hammer in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "wild_dog/clips/attack",
+  "first": "wild_dog/k_battle.png",
+  "last": "wild_dog/k_battle.png",
+  "prompt": "One single attack to the right: the animal lunges forward to the right and snaps its jaws or swipes a paw, then steps back into the same stance. One strike only. HANDS CANON: no weapon, fangs; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "wild_dog/clips/hit",
+  "first": "wild_dog/k_battle.png",
+  "last": "wild_dog/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: no weapon, fangs; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "wild_dog/clips/death",
+  "first": "wild_dog/k_battle.png",
+  "prompt": "Is fatally struck from the right: the animal staggers, collapses onto its side and lies still on the ground at the end of the clip. HANDS CANON: no weapon, fangs; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "wild_dog/clips/victory",
+  "first": "wild_dog/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: no weapon, fangs; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "grey_wolf/clips/attack",
+  "first": "grey_wolf/k_battle.png",
+  "last": "grey_wolf/k_battle.png",
+  "prompt": "One single attack to the right: the animal lunges forward to the right and snaps its jaws or swipes a paw, then steps back into the same stance. One strike only. HANDS CANON: no weapon, fangs; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "grey_wolf/clips/hit",
+  "first": "grey_wolf/k_battle.png",
+  "last": "grey_wolf/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: no weapon, fangs; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "grey_wolf/clips/death",
+  "first": "grey_wolf/k_battle.png",
+  "prompt": "Is fatally struck from the right: the animal staggers, collapses onto its side and lies still on the ground at the end of the clip. HANDS CANON: no weapon, fangs; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "grey_wolf/clips/victory",
+  "first": "grey_wolf/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: no weapon, fangs; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "boar/clips/attack",
+  "first": "boar/k_battle.png",
+  "last": "boar/k_battle.png",
+  "prompt": "One single attack to the right: the animal lunges forward to the right and snaps its jaws or swipes a paw, then steps back into the same stance. One strike only. HANDS CANON: no weapon, tusks; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "boar/clips/hit",
+  "first": "boar/k_battle.png",
+  "last": "boar/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: no weapon, tusks; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "boar/clips/death",
+  "first": "boar/k_battle.png",
+  "prompt": "Is fatally struck from the right: the animal staggers, collapses onto its side and lies still on the ground at the end of the clip. HANDS CANON: no weapon, tusks; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "boar/clips/victory",
+  "first": "boar/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: no weapon, tusks; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "mavka/clips/attack",
+  "first": "mavka/k_battle.png",
+  "last": "mavka/k_battle.png",
+  "prompt": "One single spell cast to the right: raises the hand and the staff or item, makes one strong pushing gesture toward the right, then returns to the same ready stance. No glow, no particles. One strike only. HANDS CANON: no weapon, the hands reaching forward; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "mavka/clips/hit",
+  "first": "mavka/k_battle.png",
+  "last": "mavka/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: no weapon, the hands reaching forward; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "mavka/clips/death",
+  "first": "mavka/k_battle.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: no weapon, the hands reaching forward; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "mavka/clips/victory",
+  "first": "mavka/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: no weapon, the hands reaching forward; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "mavka/clips/cast2",
+  "first": "mavka/k_battle.png",
+  "last": "mavka/k_battle.png",
+  "prompt": "A healing or blessing cast: raises the hand slowly with a calm gesture toward the left, holds it for a moment, then returns to the same ready stance. No glow, no particles. HANDS CANON: no weapon, the hands reaching forward; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "drowned/clips/attack",
+  "first": "drowned/k_battle.png",
+  "last": "drowned/k_battle.png",
+  "prompt": "One single attack to the right: lunges forward to the right slashing with the claws or the weapon, then recovers back into the same stance. One strike only. HANDS CANON: no weapon, heavy grasping hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "drowned/clips/hit",
+  "first": "drowned/k_battle.png",
+  "last": "drowned/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: no weapon, heavy grasping hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "drowned/clips/death",
+  "first": "drowned/k_battle.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: no weapon, heavy grasping hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "drowned/clips/victory",
+  "first": "drowned/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: no weapon, heavy grasping hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "drowned/clips/power",
+  "first": "drowned/k_battle.png",
+  "last": "drowned/k_battle.png",
+  "prompt": "A ferocious roar: throws the head back and roars, then a double slash forward to the right, then back into the same stance. HANDS CANON: no weapon, heavy grasping hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "kobold/clips/attack",
+  "first": "kobold/k_battle.png",
+  "last": "kobold/k_battle.png",
+  "prompt": "One single clumsy, unskilled attack to the right: an awkward wide swing with the item in the hand, nearly losing balance, then back into the same stance. One strike only. HANDS CANON: one small pickaxe in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "kobold/clips/hit",
+  "first": "kobold/k_battle.png",
+  "last": "kobold/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one small pickaxe in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "kobold/clips/death",
+  "first": "kobold/k_battle.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one small pickaxe in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 3,
+  "name": "kobold/clips/victory",
+  "first": "kobold/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one small pickaxe in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
   "sec": 4,
   "n": 2
  }

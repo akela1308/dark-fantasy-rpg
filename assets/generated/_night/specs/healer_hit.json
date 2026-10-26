@@ -1,0 +1,1 @@
+{"slug": "healer", "anim": "hit", "base": "healer/k_battle.png", "body": 300, "segments": [{"clip": "healer/clips/hit_v1.mp4", "from": 0, "to": 76, "frames": 14}], "overwrite": true, "drop": [1]}

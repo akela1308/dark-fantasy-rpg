@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/3f083b42-4619-4333-9baf-b4515eefd5e9",
+ "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: flexes the claws. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. HANDS CANON: no weapon, long claws on both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+ "img": "vurdalak/k_battle.png",
+ "last": "vurdalak/k_battle.png",
+ "sec": 4
+}

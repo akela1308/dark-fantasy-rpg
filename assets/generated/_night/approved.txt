@@ -54,3 +54,15 @@ ryzh/k_battle.png
 agna/k_battle.png
 lyo/k_battle.png
 til/k_battle.png
+wild_dog/k_battle.png
+wild_dog/k_idle.png
+grey_wolf/k_battle.png
+grey_wolf/k_idle.png
+boar/k_battle.png
+boar/k_idle.png
+drowned/k_battle.png
+drowned/k_idle.png
+mavka/k_battle.png
+mavka/k_idle.png
+kobold/k_battle.png
+kobold/k_idle.png

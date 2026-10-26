@@ -27,6 +27,22 @@ T = {
 }
 
 
+def motion_range(path, pad=4):
+    """Где в клипе есть движение: первый и последний кадр, отличающиеся от соседей (паузы по краям отрезаются)."""
+    import numpy as np
+    raw = subprocess.run(["ffmpeg", "-v", "error", "-i", path, "-vf", "scale=160:90,format=gray", "-f", "rawvideo", "-"],
+                         capture_output=True).stdout
+    f = np.frombuffer(raw, np.uint8).reshape(-1, 90, 160).astype(np.float32)
+    d = np.abs(np.diff(f, axis=0)).mean((1, 2))
+    thr = max(0.25, 0.25 * np.percentile(d, 90))
+    idx = np.nonzero(d > thr)[0]
+    if not len(idx): return 0, len(f) - 1
+    return max(0, int(idx[0]) - pad), min(len(f) - 1, int(idx[-1]) + 1 + pad)
+
+
+ACTION = {"attack": 1.2, "power": 1.6, "cast2": 1.5, "reload": 1.6, "hit": 0.6, "victory": 1.2}
+
+
 def spec_for(slug, clip, var, kv):
     t = dict(T["amb" if clip.startswith("amb") else clip])
     base = t.pop("base", None)
@@ -37,6 +53,10 @@ def spec_for(slug, clip, var, kv):
     base = base or "k_battle"
     s = dict(slug=slug, anim=t.pop("anim", clip), base=f"{slug}/{base}.png", body=300 if t.get("target", "battle") == "battle" else 260)
     fr = t.pop("frames"); a = int(kv.pop("from", 0)); b = int(kv.pop("to", 95)); fr = int(kv.pop("frames", fr))
+    if clip in ACTION and "from" not in kv and kv.pop("trim", "1") == "1":
+        a, b = motion_range(f"{GEN}/{slug}/clips/{clip}_v{var}.mp4")
+        fr = min(b - a + 1, max(12, round(ACTION[clip] * 24)))   # длительность действия по типу (ускорение)
+        if clip == "victory": b = min(95, b + 12)                 # победа: задержка на финальной позе
     s["segments"] = [dict(clip=f"{slug}/clips/{clip}_v{var}.mp4", **{"from": a, "to": b, "frames": fr})]
     if kv.pop("pingpong", None):   # туда и обратно: кадры a..b, потом обратно
         s["segments"] = [dict(clip=s["segments"][0]["clip"], **{"from": a, "to": b, "frames": fr // 2}),

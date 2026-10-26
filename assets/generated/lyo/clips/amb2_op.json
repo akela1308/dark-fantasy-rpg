@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/7e0ffab7-6af0-48fa-884e-168fd349c3f2",
+ "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: slowly raises a hand as if blessing. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+ "img": "lyo/k_idle.png",
+ "last": "lyo/k_idle.png",
+ "sec": 4
+}

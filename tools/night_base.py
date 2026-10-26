@@ -13,4 +13,4 @@ def run(j):
     cmd = [sys.executable, C, "image", j["prompt"], out, j["ref"]] + (["--aspect", j["aspect"]] if j.get("aspect") else [])
     r = subprocess.run(cmd, capture_output=True, text=True)
     print(j["out"], (r.stdout + r.stderr).strip()[-200:], flush=True)
-with ThreadPoolExecutor(4) as ex: list(ex.map(run, jobs))
+with ThreadPoolExecutor(3) as ex: list(ex.map(run, jobs))

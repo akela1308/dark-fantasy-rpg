@@ -302,6 +302,12 @@
   "prompt": "A NEW original character portrait, NOT the person in the reference image: only copy the portrait style, dark background, warm light on the face and the frame style. a big broad red-haired man of about forty-five, red beard, village elder, wearing a sheepskin coat over a linen shirt, belt, boots. Head and shoulders."
  },
  {
+  "slug": "ryzh",
+  "out": "ryzh/k_battle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/assets/generated/ryzh/k_art.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Pose: a ready combat stance, three-quarter view. The character faces the RIGHT side of the image: the face, the chest and the toes are turned to the right. WEAPONS: one wood axe in the front hand, the rear hand empty. The front hand is the hand on the right side of the image."
+ },
+ {
   "slug": "lyo",
   "out": "lyo/k_art.png",
   "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/maps/characters/tavernman.png",
@@ -351,6 +357,158 @@
   "ref": "/Users/maksimilin/Desktop/Dark Fantasy/арты/Таверна/TavernMan_portair.png",
   "aspect": "1:1",
   "prompt": "A NEW original character portrait, NOT the person in the reference image: only copy the portrait style, dark background, warm light on the face and the frame style. a swamp elf woman warrior, a different person from the young swamp exile: older, stern face with green tattoos, braided dark hair, mossy leather armor with reed plates. Head and shoulders."
+ },
+ {
+  "slug": "swamp_guard",
+  "out": "swamp_guard/k_battle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/assets/generated/swamp_guard/k_art.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Pose: a ready combat stance, three-quarter view. The character faces the RIGHT side of the image: the face, the chest and the toes are turned to the right. WEAPONS: one bow held in the front hand, the rear hand free to draw the string. The front hand is the hand on the right side of the image."
+ },
+ {
+  "slug": "wild_dog",
+  "out": "wild_dog/k_art.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/maps/characters/dog.png",
+  "prompt": "A NEW original character, NOT the person in the reference image: only copy the painting style, colors and level of detail. EXACTLY ONE single figure, not a character sheet, no turnaround, no second view. a feral stray village dog, thin, matted grey-brown fur, torn ear, no collar, standing on four legs, side view. Full body, standing, three-quarter view, the whole figure visible, about 75% of the image height. Flat solid uniform pure chroma green background (#00FF00), no shadow, no floor, no text, no watermark."
+ },
+ {
+  "slug": "wild_dog",
+  "out": "wild_dog/portrait.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/арты/Таверна/TavernMan_portair.png",
+  "aspect": "1:1",
+  "prompt": "A NEW original character portrait, NOT the person in the reference image: only copy the portrait style, dark background, warm light on the face and the frame style. a feral stray village dog, thin, matted grey-brown fur, torn ear, no collar, standing on four legs, side view. Head and shoulders."
+ },
+ {
+  "slug": "wild_dog",
+  "out": "wild_dog/k_battle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/assets/generated/wild_dog/k_art.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Pose: a ready combat stance, three-quarter view. The character faces the RIGHT side of the image: the face, the chest and the toes are turned to the right. WEAPONS: no weapon, fangs. The front hand is the hand on the right side of the image."
+ },
+ {
+  "slug": "grey_wolf",
+  "out": "grey_wolf/k_art.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/maps/characters/dog.png",
+  "prompt": "A NEW original character, NOT the person in the reference image: only copy the painting style, colors and level of detail. EXACTLY ONE single figure, not a character sheet, no turnaround, no second view. a lean grey forest wolf, realistic, standing on four legs, side view, cold eyes. Full body, standing, three-quarter view, the whole figure visible, about 75% of the image height. Flat solid uniform pure chroma green background (#00FF00), no shadow, no floor, no text, no watermark."
+ },
+ {
+  "slug": "grey_wolf",
+  "out": "grey_wolf/portrait.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/арты/Таверна/TavernMan_portair.png",
+  "aspect": "1:1",
+  "prompt": "A NEW original character portrait, NOT the person in the reference image: only copy the portrait style, dark background, warm light on the face and the frame style. a lean grey forest wolf, realistic, standing on four legs, side view, cold eyes. Head and shoulders."
+ },
+ {
+  "slug": "grey_wolf",
+  "out": "grey_wolf/k_battle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/assets/generated/grey_wolf/k_art.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Pose: a ready combat stance, three-quarter view. The character faces the RIGHT side of the image: the face, the chest and the toes are turned to the right. WEAPONS: no weapon, fangs. The front hand is the hand on the right side of the image."
+ },
+ {
+  "slug": "boar",
+  "out": "boar/k_art.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/maps/characters/dog.png",
+  "prompt": "A NEW original character, NOT the person in the reference image: only copy the painting style, colors and level of detail. EXACTLY ONE single figure, not a character sheet, no turnaround, no second view. a huge old wild boar, dark bristly fur, long yellow tusks, a broken spear shaft stuck in its side, standing on four legs, side view. Full body, standing, three-quarter view, the whole figure visible, about 75% of the image height. Flat solid uniform pure chroma green background (#00FF00), no shadow, no floor, no text, no watermark."
+ },
+ {
+  "slug": "boar",
+  "out": "boar/portrait.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/арты/Таверна/TavernMan_portair.png",
+  "aspect": "1:1",
+  "prompt": "A NEW original character portrait, NOT the person in the reference image: only copy the portrait style, dark background, warm light on the face and the frame style. a huge old wild boar, dark bristly fur, long yellow tusks, a broken spear shaft stuck in its side, standing on four legs, side view. Head and shoulders."
+ },
+ {
+  "slug": "boar",
+  "out": "boar/k_battle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/assets/generated/boar/k_art.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Pose: a ready combat stance, three-quarter view. The character faces the RIGHT side of the image: the face, the chest and the toes are turned to the right. WEAPONS: no weapon, tusks. The front hand is the hand on the right side of the image."
+ },
+ {
+  "slug": "leshy",
+  "out": "leshy/k_art.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/sprites/kikimora.png",
+  "prompt": "A NEW original character, NOT the person in the reference image: only copy the painting style, colors and level of detail. EXACTLY ONE single figure, not a character sheet, no turnaround, no second view. the leshy, an old forest spirit, very tall and thin, bark instead of a face, beard of moss and lichen, robe of leaves and roots, not scary, old and tired. Full body, standing, three-quarter view, the whole figure visible, about 75% of the image height. Flat solid uniform pure chroma green background (#00FF00), no shadow, no floor, no text, no watermark."
+ },
+ {
+  "slug": "leshy",
+  "out": "leshy/portrait.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/арты/Таверна/TavernMan_portair.png",
+  "aspect": "1:1",
+  "prompt": "A NEW original character portrait, NOT the person in the reference image: only copy the portrait style, dark background, warm light on the face and the frame style. the leshy, an old forest spirit, very tall and thin, bark instead of a face, beard of moss and lichen, robe of leaves and roots, not scary, old and tired. Head and shoulders."
+ },
+ {
+  "slug": "leshy",
+  "out": "leshy/k_battle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/assets/generated/leshy/k_art.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Pose: a ready combat stance, three-quarter view. The character faces the RIGHT side of the image: the face, the chest and the toes are turned to the right. WEAPONS: a long gnarled branch staff in the rear hand, the front hand free. The front hand is the hand on the right side of the image."
+ },
+ {
+  "slug": "mavka",
+  "out": "mavka/k_art.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/sprites/kikimora.png",
+  "prompt": "A NEW original character, NOT the person in the reference image: only copy the painting style, colors and level of detail. EXACTLY ONE single figure, not a character sheet, no turnaround, no second view. a mavka, a drowned village girl, wet long white shirt, long dark wet hair with water weeds, pale ordinary face, barefoot. Full body, standing, three-quarter view, the whole figure visible, about 75% of the image height. Flat solid uniform pure chroma green background (#00FF00), no shadow, no floor, no text, no watermark."
+ },
+ {
+  "slug": "mavka",
+  "out": "mavka/portrait.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/арты/Таверна/TavernMan_portair.png",
+  "aspect": "1:1",
+  "prompt": "A NEW original character portrait, NOT the person in the reference image: only copy the portrait style, dark background, warm light on the face and the frame style. a mavka, a drowned village girl, wet long white shirt, long dark wet hair with water weeds, pale ordinary face, barefoot. Head and shoulders."
+ },
+ {
+  "slug": "mavka",
+  "out": "mavka/k_battle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/assets/generated/mavka/k_art.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Pose: a ready combat stance, three-quarter view. The character faces the RIGHT side of the image: the face, the chest and the toes are turned to the right. WEAPONS: no weapon, the hands reaching forward. The front hand is the hand on the right side of the image."
+ },
+ {
+  "slug": "drowned",
+  "out": "drowned/k_art.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/sprites/kikimora.png",
+  "prompt": "A NEW original character, NOT the person in the reference image: only copy the painting style, colors and level of detail. EXACTLY ONE single figure, not a character sheet, no turnaround, no second view. a drowned man from a sunken village, bloated grey skin, tangled in water weeds, rotten peasant clothes, eyes closed. Full body, standing, three-quarter view, the whole figure visible, about 75% of the image height. Flat solid uniform pure chroma green background (#00FF00), no shadow, no floor, no text, no watermark."
+ },
+ {
+  "slug": "drowned",
+  "out": "drowned/portrait.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/арты/Таверна/TavernMan_portair.png",
+  "aspect": "1:1",
+  "prompt": "A NEW original character portrait, NOT the person in the reference image: only copy the portrait style, dark background, warm light on the face and the frame style. a drowned man from a sunken village, bloated grey skin, tangled in water weeds, rotten peasant clothes, eyes closed. Head and shoulders."
+ },
+ {
+  "slug": "drowned",
+  "out": "drowned/k_battle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/assets/generated/drowned/k_art.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Pose: a ready combat stance, three-quarter view. The character faces the RIGHT side of the image: the face, the chest and the toes are turned to the right. WEAPONS: no weapon, heavy grasping hands. The front hand is the hand on the right side of the image."
+ },
+ {
+  "slug": "upyr",
+  "out": "upyr/k_art.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/sprites/kikimora.png",
+  "prompt": "A NEW original character, NOT the person in the reference image: only copy the painting style, colors and level of detail. EXACTLY ONE single figure, not a character sheet, no turnaround, no second view. an upyr, a withered dead man in a worn 17th-century style road-post guard coat with brass buttons and a sash, no helmet, bareheaded with thin grey hair, medieval-early-modern dark fantasy, NOT modern military, gaunt grey face, sunken eyes, long nails. Full body, standing, three-quarter view, the whole figure visible, about 75% of the image height. Flat solid uniform pure chroma green background (#00FF00), no shadow, no floor, no text, no watermark."
+ },
+ {
+  "slug": "upyr",
+  "out": "upyr/portrait.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/арты/Таверна/TavernMan_portair.png",
+  "aspect": "1:1",
+  "prompt": "A NEW original character portrait, NOT the person in the reference image: only copy the portrait style, dark background, warm light on the face and the frame style. an upyr, a withered dead man in a worn 17th-century style road-post guard coat with brass buttons and a sash, no helmet, bareheaded with thin grey hair, medieval-early-modern dark fantasy, NOT modern military, gaunt grey face, sunken eyes, long nails. Head and shoulders."
+ },
+ {
+  "slug": "kobold",
+  "out": "kobold/k_art.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/sprites/kikimora.png",
+  "prompt": "A NEW original character, NOT the person in the reference image: only copy the painting style, colors and level of detail. EXACTLY ONE single figure, not a character sheet, no turnaround, no second view. a kobl, a small mountain mine goblin-like thief from miners folk tales, short, leather cap, big ears, glowing eyes, funny not ugly, ragged miner clothes. Full body, standing, three-quarter view, the whole figure visible, about 75% of the image height. Flat solid uniform pure chroma green background (#00FF00), no shadow, no floor, no text, no watermark."
+ },
+ {
+  "slug": "kobold",
+  "out": "kobold/portrait.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/арты/Таверна/TavernMan_portair.png",
+  "aspect": "1:1",
+  "prompt": "A NEW original character portrait, NOT the person in the reference image: only copy the portrait style, dark background, warm light on the face and the frame style. a kobl, a small mountain mine goblin-like thief from miners folk tales, short, leather cap, big ears, glowing eyes, funny not ugly, ragged miner clothes. Head and shoulders."
+ },
+ {
+  "slug": "kobold",
+  "out": "kobold/k_battle.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/assets/generated/kobold/k_art.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, no text, no sparkle, no watermark, no other objects or characters. Pose: a ready combat stance, three-quarter view. The character faces the RIGHT side of the image: the face, the chest and the toes are turned to the right. WEAPONS: one small pickaxe in the front hand, the rear hand empty. The front hand is the hand on the right side of the image."
  },
  {
   "slug": "cat",

@@ -1,0 +1,1 @@
+{"slug": "til", "anim": "mapamb1", "base": "til/k_idle.png", "body": 260, "segments": [{"clip": "til/clips/amb1_v1.mp4", "from": 0, "to": 84, "frames": 64}], "left": 0.7, "right": 0.9, "target": "map"}

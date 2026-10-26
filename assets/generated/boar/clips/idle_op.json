@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/671280c0-904a-4bed-869b-6f4d7b6f9e03",
+ "prompt": "Idle loop for the whole clip: the animal stays in place in the same pose, breathes calmly, the flanks rise and fall, small natural movements of the ears and tail. No steps, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+ "img": "boar/k_idle.png",
+ "last": "boar/k_idle.png",
+ "sec": 4
+}

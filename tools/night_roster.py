@@ -136,6 +136,32 @@ R = [
       desc="a swamp elf woman warrior, a different person from the young swamp exile: older, stern face with green tattoos, braided dark hair, mossy leather armor with reed plates",
       battle="one bow held in the front hand, the rear hand free to draw the string",
       ambient=["looks around listening", "checks the bowstring"]),
+ # ── Твари бестиария главы 1 (14_БЕСТИАРИЙ, раздел 7), новые, предварительно ──
+ dict(slug="wild_dog", name="Одичавший пёс (бестиарий)", src=None, kind="beast", style="beast",
+      desc="a feral stray village dog, thin, matted grey-brown fur, torn ear, no collar, standing on four legs, side view",
+      map="standing", battle="no weapon, fangs", ambient=["sniffs the ground", "growls quietly with bared teeth"]),
+ dict(slug="grey_wolf", name="Серый волк (бестиарий)", src=None, kind="beast", style="beast",
+      desc="a lean grey forest wolf, realistic, standing on four legs, side view, cold eyes",
+      map="standing", battle="no weapon, fangs", ambient=["sniffs the air", "lowers the head and growls"]),
+ dict(slug="boar", name="Вепрь Старого Бора (бестиарий)", src=None, kind="beast", style="beast",
+      desc="a huge old wild boar, dark bristly fur, long yellow tusks, a broken spear shaft stuck in its side, standing on four legs, side view",
+      map="standing", battle="no weapon, tusks", ambient=["paws the ground", "snorts and shakes its head"]),
+ dict(slug="leshy", name="Леший (бестиарий)", src=None, kind="caster", style="monster",
+      desc="the leshy, an old forest spirit, very tall and thin, bark instead of a face, beard of moss and lichen, robe of leaves and roots, not scary, old and tired",
+      map="standing", battle="a long gnarled branch staff in the rear hand, the front hand free",
+      ambient=["slowly turns the bark face to listen", "leans on the branch staff"]),
+ dict(slug="mavka", name="Мавка (бестиарий)", src=None, kind="caster", style="monster",
+      desc="a mavka, a drowned village girl, wet long white shirt, long dark wet hair with water weeds, pale ordinary face, barefoot",
+      map="standing", battle="no weapon, the hands reaching forward", ambient=["wrings water from her hair", "sways and hums"]),
+ dict(slug="drowned", name="Утопленник (бестиарий)", src=None, kind="monster", style="monster",
+      desc="a drowned man from a sunken village, bloated grey skin, tangled in water weeds, rotten peasant clothes, eyes closed",
+      map="standing", battle="no weapon, heavy grasping hands", ambient=["water drips, he slowly shifts", "lifts the head with eyes closed"]),
+ dict(slug="upyr", name="Упырь (бестиарий)", src=None, kind="human", style="monster",
+      desc="an upyr, a withered dead man in a worn 17th-century style road-post guard coat with brass buttons and a sash, no helmet, bareheaded with thin grey hair, medieval-early-modern dark fantasy, NOT modern military, gaunt grey face, sunken eyes, long nails",
+      map="standing", battle="no weapon, long claws on both hands", ambient=["twitches the head", "sniffs the air hungrily"]),
+ dict(slug="kobold", name="Кобл (бестиарий)", src=None, kind="peaceful", style="monster",
+      desc="a kobl, a small mountain mine goblin-like thief from miners folk tales, short, leather cap, big ears, glowing eyes, funny not ugly, ragged miner clothes",
+      map="standing", battle="one small pickaxe in the front hand, the rear hand empty", ambient=["looks around greedily", "scratches behind the ear"]),
  dict(slug="cat", name="Кошка", src=ROOT+"/арты/Сфе.png", kind="beast",
       map="sitting calmly", battle=None,
       ambient=["washes its face with a paw", "stretches and sits down"]),
@@ -148,6 +174,7 @@ COMMON = ("Exactly one figure, the exact same character as in the reference: sam
 
 
 STYLE_REF = GAME + "/public/maps/characters/tavernman.png"        # образец стиля для новых персонажей
+STYLE_REFS = {"beast": GAME + "/public/maps/characters/dog.png", "monster": GAME + "/public/sprites/kikimora.png"}
 PORTRAIT_REF = ROOT + "/арты/Таверна/TavernMan_portair.png"
 
 
@@ -156,7 +183,7 @@ def base_jobs():
     for c in R:
         if c.get("src") is None:
             # новый персонаж без арта: сначала полный рост по описанию, в стиле образца
-            out.append(dict(slug=c["slug"], out=f"{c['slug']}/k_art.png", ref=STYLE_REF, prompt=(
+            out.append(dict(slug=c["slug"], out=f"{c['slug']}/k_art.png", ref=STYLE_REFS.get(c.get("style"), STYLE_REF), prompt=(
                 f"A NEW original character, NOT the person in the reference image: only copy the painting style, colors and level of detail. "
                 f"EXACTLY ONE single figure, not a character sheet, no turnaround, no second view. {c['desc']}. Full body, standing, three-quarter view, the whole figure visible, about 75% of the image height. "
                 f"Flat solid uniform pure chroma green background (#00FF00), no shadow, no floor, no text, no watermark.")))

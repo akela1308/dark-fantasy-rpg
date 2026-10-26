@@ -1,0 +1,1 @@
+{"slug": "dwarf", "anim": "amb2", "base": "dwarf/k_battle.png", "body": 300, "segments": [{"clip": "dwarf/clips/amb2_v2.mp4", "from": 0, "to": 95, "frames": 72}], "left": 0.7, "right": 0.9, "target": "battle"}

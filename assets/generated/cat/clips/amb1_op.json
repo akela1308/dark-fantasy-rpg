@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/a10a9a92-7d66-4368-928a-685913e8da97",
+ "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: washes its face with a paw. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+ "img": "cat/k_idle.png",
+ "last": "cat/k_idle.png",
+ "sec": 4
+}

@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/47a66454-f1da-4015-a711-113140b89bd2",
+ "prompt": "Idle loop for the whole clip: the animal stays in place in the same pose, breathes calmly, the flanks rise and fall, small natural movements of the ears and tail. No steps, no turning. The last frame is exactly the same pose as the first. HANDS CANON: no weapon, fangs; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+ "img": "grey_wolf/k_battle.png",
+ "last": "grey_wolf/k_battle.png",
+ "sec": 4
+}

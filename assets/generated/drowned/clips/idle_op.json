@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/e87510c3-0c4a-49c2-84db-f3a3da6df412",
+ "prompt": "Idle loop for the whole clip: the character stays in place in the same pose, breathes slowly and calmly, the chest rises and falls, a slight shift of weight, clothes, cloak and hair move gently. No steps, no gestures, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped.",
+ "img": "drowned/k_idle.png",
+ "last": "drowned/k_idle.png",
+ "sec": 4
+}

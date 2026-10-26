@@ -85,3 +85,48 @@ drunkman amb3 1 | конец обрезан на 84-м кадре
 tavernman amb2 2
 tavernman amb3 2
 rowan bidle 1 | в середине выпад: взяты кадры 0-20 туда-обратно
+adventurer amb2 2 | конец обрезан на 84 (арбалет меняет форму)
+archer_guard amb1 2 | v1: появляется шляпа
+archer_guard amb2 1
+assassin amb2 2
+assassin_undead amb1 1 | конец обрезан на 84
+assassin_undead amb2 1 | конец обрезан на 84
+dwarf amb2 2 | v1: топор поднимается к лицу вместе с рукой
+dwarf_beer2 amb1 2
+dwarf_beer2 amb2 1
+guard amb1 1 | v2: шагает в сторону
+guard amb2 1 | v2: алебарда меняет положение в конце
+guard amb3 1
+jester amb1 2 | v1: жезл превращается в лук
+jester amb2 1 | v2: лишние движения
+mountain_king amb1 1 | v2: молот светится
+mountain_king amb2 2
+recruit amb1 1 | v2: меч уходит в другую руку
+recruit amb2 1
+shield amb2 2
+swamp_elf_girl amb2 2
+wanderer amb2 1
+winter_girl amb1 1
+winter_girl amb2 2
+forest_bear amb1 1
+forest_bear amb2 1 | v2: голова деформируется
+vurdalak amb1 2
+vurdalak amb2 2 | v1: слишком широкий жест
+winter_monster amb2 1
+winter_queen amb1 1
+agna amb1 1
+agna amb2 1
+cat amb1 2
+lyo amb1 2 | v1: посох уходит
+lyo amb2 1
+rowan amb1 1
+rowan amb2 2
+til amb1 1 | конец обрезан на 84
+winter_archer amb2 1
+healer attack 1 | v2: слишком размашисто
+healer hit 1 | v2: искры
+ryzh amb1 2
+ryzh amb2 1
+wild_dog idle 2
+winter_queen amb2 1
+healer hit 1 | кадр 1 выкинут: вспышка

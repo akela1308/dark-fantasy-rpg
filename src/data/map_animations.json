@@ -12,7 +12,41 @@
    "bodyHeight": 260,
    "key": "dog_mapidle_v1"
   },
-  "ambient": [],
+  "ambient": [
+   {
+    "file": "maps/characters/anim/dog_mapamb1_v1.webp",
+    "frameWidth": 415,
+    "frameHeight": 283,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4388,
+    "originY": 0.9728,
+    "bodyHeight": 260,
+    "key": "dog_mapamb1_v1"
+   },
+   {
+    "file": "maps/characters/anim/dog_mapamb2_v1.webp",
+    "frameWidth": 415,
+    "frameHeight": 283,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4388,
+    "originY": 0.9728,
+    "bodyHeight": 260,
+    "key": "dog_mapamb2_v1"
+   },
+   {
+    "file": "maps/characters/anim/dog_mapamb3_v1.webp",
+    "frameWidth": 415,
+    "frameHeight": 283,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4388,
+    "originY": 0.9728,
+    "bodyHeight": 260,
+    "key": "dog_mapamb3_v1"
+   }
+  ],
   "delay": [
    6000,
    14000
@@ -31,7 +65,41 @@
    "bodyHeight": 260,
    "key": "drunkman_mapidle_v1"
   },
-  "ambient": [],
+  "ambient": [
+   {
+    "file": "maps/characters/anim/drunkman_mapamb1_v1.webp",
+    "frameWidth": 392,
+    "frameHeight": 304,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4645,
+    "originY": 0.9746,
+    "bodyHeight": 260,
+    "key": "drunkman_mapamb1_v1"
+   },
+   {
+    "file": "maps/characters/anim/drunkman_mapamb2_v1.webp",
+    "frameWidth": 392,
+    "frameHeight": 304,
+    "frames": 64,
+    "fps": 24,
+    "originX": 0.4645,
+    "originY": 0.9746,
+    "bodyHeight": 260,
+    "key": "drunkman_mapamb2_v1"
+   },
+   {
+    "file": "maps/characters/anim/drunkman_mapamb3_v1.webp",
+    "frameWidth": 392,
+    "frameHeight": 304,
+    "frames": 64,
+    "fps": 24,
+    "originX": 0.4645,
+    "originY": 0.9746,
+    "bodyHeight": 260,
+    "key": "drunkman_mapamb3_v1"
+   }
+  ],
   "delay": [
    6000,
    14000
@@ -50,7 +118,19 @@
    "bodyHeight": 260,
    "key": "wanderer_mapidle_v1"
   },
-  "ambient": [],
+  "ambient": [
+   {
+    "file": "maps/characters/anim/wanderer_mapamb2_v1.webp",
+    "frameWidth": 416,
+    "frameHeight": 290,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.438,
+    "originY": 0.9744,
+    "bodyHeight": 260,
+    "key": "wanderer_mapamb2_v1"
+   }
+  ],
   "delay": [
    6000,
    14000
@@ -80,6 +160,28 @@
     "originY": 0.9717,
     "bodyHeight": 260,
     "key": "tavernman_mapamb1_v1"
+   },
+   {
+    "file": "maps/characters/anim/tavernman_mapamb2_v1.webp",
+    "frameWidth": 403,
+    "frameHeight": 285,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4516,
+    "originY": 0.9717,
+    "bodyHeight": 260,
+    "key": "tavernman_mapamb2_v1"
+   },
+   {
+    "file": "maps/characters/anim/tavernman_mapamb3_v1.webp",
+    "frameWidth": 403,
+    "frameHeight": 285,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4516,
+    "originY": 0.9717,
+    "bodyHeight": 260,
+    "key": "tavernman_mapamb3_v1"
    }
   ],
   "delay": [
@@ -206,7 +308,30 @@
    "bodyHeight": 260,
    "key": "dwarf_beer2_mapidle_v1"
   },
-  "ambient": [],
+  "ambient": [
+   {
+    "file": "maps/characters/anim/dwarf_beer2_mapamb1_v1.webp",
+    "frameWidth": 415,
+    "frameHeight": 294,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4387,
+    "originY": 0.9732,
+    "bodyHeight": 260,
+    "key": "dwarf_beer2_mapamb1_v1"
+   },
+   {
+    "file": "maps/characters/anim/dwarf_beer2_mapamb2_v1.webp",
+    "frameWidth": 415,
+    "frameHeight": 294,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4387,
+    "originY": 0.9732,
+    "bodyHeight": 260,
+    "key": "dwarf_beer2_mapamb2_v1"
+   }
+  ],
   "delay": [
    6000,
    14000
@@ -331,7 +456,19 @@
    "bodyHeight": 260,
    "key": "swamp_elf_girl_mapidle_v1"
   },
-  "ambient": [],
+  "ambient": [
+   {
+    "file": "maps/characters/anim/swamp_elf_girl_mapamb2_v1.webp",
+    "frameWidth": 416,
+    "frameHeight": 281,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.438,
+    "originY": 0.974,
+    "bodyHeight": 260,
+    "key": "swamp_elf_girl_mapamb2_v1"
+   }
+  ],
   "delay": [
    6000,
    14000
@@ -350,7 +487,30 @@
    "bodyHeight": 260,
    "key": "mountain_king_mapidle_v1"
   },
-  "ambient": [],
+  "ambient": [
+   {
+    "file": "maps/characters/anim/mountain_king_mapamb1_v1.webp",
+    "frameWidth": 415,
+    "frameHeight": 274,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4388,
+    "originY": 0.9724,
+    "bodyHeight": 260,
+    "key": "mountain_king_mapamb1_v1"
+   },
+   {
+    "file": "maps/characters/anim/mountain_king_mapamb2_v1.webp",
+    "frameWidth": 415,
+    "frameHeight": 274,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4388,
+    "originY": 0.9724,
+    "bodyHeight": 260,
+    "key": "mountain_king_mapamb2_v1"
+   }
+  ],
   "delay": [
    6000,
    14000
@@ -369,7 +529,41 @@
    "bodyHeight": 260,
    "key": "guard_mapidle_v1"
   },
-  "ambient": [],
+  "ambient": [
+   {
+    "file": "maps/characters/anim/guard_mapamb1_v1.webp",
+    "frameWidth": 415,
+    "frameHeight": 275,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4386,
+    "originY": 0.9726,
+    "bodyHeight": 260,
+    "key": "guard_mapamb1_v1"
+   },
+   {
+    "file": "maps/characters/anim/guard_mapamb2_v1.webp",
+    "frameWidth": 415,
+    "frameHeight": 275,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4386,
+    "originY": 0.9726,
+    "bodyHeight": 260,
+    "key": "guard_mapamb2_v1"
+   },
+   {
+    "file": "maps/characters/anim/guard_mapamb3_v1.webp",
+    "frameWidth": 415,
+    "frameHeight": 275,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4386,
+    "originY": 0.9726,
+    "bodyHeight": 260,
+    "key": "guard_mapamb3_v1"
+   }
+  ],
   "delay": [
    6000,
    14000
@@ -388,7 +582,30 @@
    "bodyHeight": 260,
    "key": "archer_guard_mapidle_v1"
   },
-  "ambient": [],
+  "ambient": [
+   {
+    "file": "maps/characters/anim/archer_guard_mapamb1_v1.webp",
+    "frameWidth": 406,
+    "frameHeight": 285,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4483,
+    "originY": 0.9707,
+    "bodyHeight": 260,
+    "key": "archer_guard_mapamb1_v1"
+   },
+   {
+    "file": "maps/characters/anim/archer_guard_mapamb2_v1.webp",
+    "frameWidth": 406,
+    "frameHeight": 285,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4483,
+    "originY": 0.9707,
+    "bodyHeight": 260,
+    "key": "archer_guard_mapamb2_v1"
+   }
+  ],
   "delay": [
    6000,
    14000
@@ -407,7 +624,30 @@
    "bodyHeight": 260,
    "key": "recruit_mapidle_v1"
   },
-  "ambient": [],
+  "ambient": [
+   {
+    "file": "maps/characters/anim/recruit_mapamb1_v1.webp",
+    "frameWidth": 408,
+    "frameHeight": 282,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4467,
+    "originY": 0.9733,
+    "bodyHeight": 260,
+    "key": "recruit_mapamb1_v1"
+   },
+   {
+    "file": "maps/characters/anim/recruit_mapamb2_v1.webp",
+    "frameWidth": 408,
+    "frameHeight": 282,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4467,
+    "originY": 0.9733,
+    "bodyHeight": 260,
+    "key": "recruit_mapamb2_v1"
+   }
+  ],
   "delay": [
    6000,
    14000

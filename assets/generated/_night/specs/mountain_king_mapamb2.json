@@ -1,0 +1,1 @@
+{"slug": "mountain_king", "anim": "mapamb2", "base": "mountain_king/k_idle.png", "body": 260, "segments": [{"clip": "mountain_king/clips/amb2_v2.mp4", "from": 0, "to": 95, "frames": 72}], "left": 0.7, "right": 0.9, "target": "map"}

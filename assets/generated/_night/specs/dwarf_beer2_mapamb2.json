@@ -1,0 +1,1 @@
+{"slug": "dwarf_beer2", "anim": "mapamb2", "base": "dwarf_beer2/k_idle.png", "body": 260, "segments": [{"clip": "dwarf_beer2/clips/amb2_v1.mp4", "from": 0, "to": 95, "frames": 72}], "left": 0.7, "right": 0.9, "target": "map"}
