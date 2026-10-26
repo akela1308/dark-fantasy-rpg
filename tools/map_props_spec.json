@@ -187,7 +187,7 @@
   "image": "public/maps/forest1.png",
   "objects": [
    {
-    "id": "sapling",
+    "id": "bare_tree",
     "box": [
      830,
      543,

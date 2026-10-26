@@ -1,0 +1,352 @@
+{
+ "south_post": [
+  {
+   "to": "three_pillars",
+   "inZone": true,
+   "hero": [
+    1634,
+    620
+   ]
+  },
+  {
+   "to": "old_mill",
+   "inZone": true,
+   "hero": [
+    839,
+    790
+   ]
+  }
+ ],
+ "three_pillars": [
+  {
+   "to": "south_post",
+   "inZone": true,
+   "hero": [
+    35,
+    620
+   ]
+  },
+  {
+   "to": "map1",
+   "inZone": false,
+   "hero": [
+    1593,
+    620
+   ]
+  },
+  {
+   "to": "three_pillars_inside",
+   "inZone": true,
+   "hero": [
+    1147,
+    452
+   ]
+  },
+  {
+   "to": "burned_hamlet",
+   "inZone": true,
+   "hero": [
+    831,
+    790
+   ]
+  }
+ ],
+ "map1": [
+  {
+   "to": "tavern_map",
+   "inZone": true,
+   "hero": [
+    1630,
+    443
+   ]
+  },
+  {
+   "to": "three_pillars",
+   "inZone": true,
+   "hero": [
+    14,
+    685
+   ]
+  },
+  {
+   "to": "dead_road",
+   "inZone": true,
+   "hero": [
+    1517,
+    442
+   ]
+  },
+  {
+   "to": "ruin_crypt",
+   "inZone": true,
+   "hero": [
+    1253,
+    481
+   ]
+  }
+ ],
+ "tavern_map": [
+  {
+   "to": "forest1",
+   "inZone": true,
+   "hero": [
+    1604,
+    830
+   ]
+  },
+  {
+   "to": "road_boloto",
+   "inZone": true,
+   "hero": [
+    110,
+    327
+   ]
+  },
+  {
+   "to": "map1",
+   "inZone": true,
+   "hero": [
+    77,
+    845
+   ]
+  },
+  {
+   "to": "north_road",
+   "inZone": true,
+   "hero": [
+    295,
+    439
+   ]
+  },
+  {
+   "to": "tavern_cellar",
+   "inZone": true,
+   "hero": [
+    629,
+    521
+   ]
+  }
+ ],
+ "forest1": [
+  {
+   "to": "mountains_map",
+   "inZone": false,
+   "hero": [
+    820,
+    495
+   ]
+  },
+  {
+   "to": "road_to_village",
+   "inZone": true,
+   "hero": [
+    1608,
+    680
+   ]
+  },
+  {
+   "to": "tavern_map",
+   "inZone": true,
+   "hero": [
+    51,
+    560
+   ]
+  },
+  {
+   "to": "forest_camp",
+   "inZone": true,
+   "hero": [
+    1367,
+    202
+   ]
+  },
+  {
+   "to": "elf_boloto",
+   "inZone": true,
+   "hero": [
+    1365,
+    787
+   ]
+  },
+  {
+   "to": "forest_altar",
+   "inZone": true,
+   "hero": [
+    1244,
+    787
+   ]
+  }
+ ],
+ "road_to_village": [
+  {
+   "to": "forest1",
+   "inZone": true,
+   "hero": [
+    57,
+    647
+   ]
+  },
+  {
+   "to": "gate",
+   "inZone": true,
+   "hero": [
+    1612,
+    513
+   ]
+  },
+  {
+   "to": "forest_deep",
+   "inZone": true,
+   "hero": [
+    1331,
+    420
+   ]
+  }
+ ],
+ "gate": [
+  {
+   "to": "road_to_village",
+   "inZone": true,
+   "hero": [
+    60,
+    629
+   ]
+  },
+  {
+   "to": "village",
+   "inZone": true,
+   "hero": [
+    1300,
+    620
+   ]
+  },
+  {
+   "to": "gatehouse",
+   "inZone": true,
+   "hero": [
+    701,
+    480
+   ]
+  }
+ ],
+ "village": [
+  {
+   "to": "gate",
+   "inZone": true,
+   "hero": [
+    860,
+    857
+   ]
+  },
+  {
+   "to": "village_fields",
+   "inZone": true,
+   "hero": [
+    504,
+    850
+   ]
+  },
+  {
+   "to": "chapel_inside",
+   "inZone": true,
+   "hero": [
+    801,
+    433
+   ]
+  },
+  {
+   "to": "elder_house",
+   "inZone": true,
+   "hero": [
+    672,
+    432
+   ]
+  },
+  {
+   "to": "smithy",
+   "inZone": true,
+   "hero": [
+    929,
+    433
+   ]
+  }
+ ],
+ "village_fields": [
+  {
+   "to": "village",
+   "inZone": true,
+   "hero": [
+    840,
+    234
+   ]
+  },
+  {
+   "to": "gallows_hill",
+   "inZone": true,
+   "hero": [
+    38,
+    619
+   ]
+  },
+  {
+   "to": "ravine",
+   "inZone": true,
+   "hero": [
+    1635,
+    385
+   ]
+  },
+  {
+   "to": "old_barn",
+   "inZone": true,
+   "hero": [
+    1148,
+    451
+   ]
+  }
+ ],
+ "gallows_hill": [
+  {
+   "to": "dead_road",
+   "inZone": true,
+   "hero": [
+    37,
+    620
+   ]
+  },
+  {
+   "to": "village_fields",
+   "inZone": true,
+   "hero": [
+    1606,
+    620
+   ]
+  },
+  {
+   "to": "hangman_hut",
+   "inZone": true,
+   "hero": [
+    1148,
+    452
+   ]
+  }
+ ],
+ "dead_road": [
+  {
+   "to": "map1",
+   "inZone": true,
+   "hero": [
+    840,
+    909
+   ]
+  },
+  {
+   "to": "gallows_hill",
+   "inZone": true,
+   "hero": [
+    1635,
+    620
+   ]
+  }
+ ]
+}

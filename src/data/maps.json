@@ -1572,8 +1572,8 @@
     "battleBg": "Forest_Battle",
     "props": [
       {
-        "key": "prop_forest1_sapling",
-        "src": "maps/props/forest1/sapling.png",
+        "key": "prop_forest1_bare_tree",
+        "src": "maps/props/forest1/bare_tree.png",
         "x": 885,
         "y": 695,
         "originX": 0,
