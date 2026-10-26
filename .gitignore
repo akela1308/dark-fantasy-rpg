@@ -24,3 +24,8 @@ __pycache__/
 dist-tauri/
 src-tauri/target/
 src-tauri/gen/
+
+# Варианты карт для выбора: локально, в git и в сборку не идут (игра берёт *_pick.jpg)
+public/maps/gen/*_v[0-9].png
+public/maps/gen/*_pick.png
+assets/generated/_maps_raw/
