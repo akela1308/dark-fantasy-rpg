@@ -1,0 +1,1 @@
+{"slug": "forest_bear", "anim": "death", "base": "forest_bear/k_battle.png", "body": 300, "segments": [{"clip": "forest_bear/clips/death_v1.mp4", "from": 0, "to": 95, "frames": 30}], "left": 1.5, "right": 1.6, "hold": true}

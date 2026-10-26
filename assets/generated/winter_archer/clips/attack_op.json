@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/d9f2e3c7-d02b-4aec-9348-dee00cfda1e3",
+ "prompt": "One single bow shot to the right: draws the bowstring back to the cheek, aims to the right, releases, then lowers the bow back into the same ready stance. One strike only. HANDS CANON: one bow held in the front hand, the rear hand free to draw the string; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+ "img": "winter_archer/k_battle.png",
+ "last": "winter_archer/k_battle.png",
+ "sec": 4
+}

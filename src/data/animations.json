@@ -1289,6 +1289,41 @@
     "bodyHeight": 300,
     "key": "forest_bear_amb2_v1"
    },
+   "attack": {
+    "file": "sprites/battle/forest_bear_attack_v1.webp",
+    "frameWidth": 588,
+    "frameHeight": 320,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.466,
+    "originY": 0.9706,
+    "bodyHeight": 300,
+    "key": "forest_bear_attack_v1",
+    "hitFrame": 6
+   },
+   "death": {
+    "file": "sprites/battle/forest_bear_death_v1.webp",
+    "frameWidth": 588,
+    "frameHeight": 320,
+    "frames": 30,
+    "fps": 24,
+    "originX": 0.466,
+    "originY": 0.9706,
+    "bodyHeight": 300,
+    "key": "forest_bear_death_v1",
+    "hold": true
+   },
+   "hit": {
+    "file": "sprites/battle/forest_bear_hit_v1.webp",
+    "frameWidth": 554,
+    "frameHeight": 320,
+    "frames": 14,
+    "fps": 24,
+    "originX": 0.4605,
+    "originY": 0.9706,
+    "bodyHeight": 300,
+    "key": "forest_bear_hit_v1"
+   },
    "idle": {
     "file": "sprites/battle/forest_bear_idle_v1.webp",
     "frameWidth": 509,
@@ -1300,9 +1335,23 @@
     "bodyHeight": 300,
     "key": "forest_bear_idle_v1",
     "loop": true
+   },
+   "victory": {
+    "file": "sprites/battle/forest_bear_victory_v1.webp",
+    "frameWidth": 554,
+    "frameHeight": 320,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4605,
+    "originY": 0.9706,
+    "bodyHeight": 300,
+    "key": "forest_bear_victory_v1",
+    "hold": true
    }
   },
-  "actions": {},
+  "actions": {
+   "basic": "attack"
+  },
   "name": "Лесной Дед"
  },
  "grey_wolf": {
@@ -2175,6 +2224,18 @@
     "originY": 0.9733,
     "bodyHeight": 300,
     "key": "vurdalak_amb2_v1"
+   },
+   "death": {
+    "file": "sprites/battle/vurdalak_death_v1.webp",
+    "frameWidth": 584,
+    "frameHeight": 327,
+    "frames": 30,
+    "fps": 24,
+    "originX": 0.4273,
+    "originY": 0.9733,
+    "bodyHeight": 300,
+    "key": "vurdalak_death_v1",
+    "hold": true
    },
    "hit": {
     "file": "sprites/battle/vurdalak_hit_v1.webp",

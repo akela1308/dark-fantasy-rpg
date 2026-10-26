@@ -48,3 +48,4 @@ winter_monster victory
 winter_queen death
 vurdalak attack
 winter_queen victory
+vurdalak power

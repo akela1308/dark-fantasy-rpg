@@ -1,0 +1,1 @@
+{"slug": "forest_bear", "anim": "victory", "base": "forest_bear/k_battle.png", "body": 300, "segments": [{"clip": "forest_bear/clips/victory_v1.mp4", "from": 0, "to": 95, "frames": 29}], "hold": true}
