@@ -1,4 +1,5 @@
 import * as Phaser from 'phaser/dist/phaser.esm.js';
+import { SaveSystem, START_MAP, START_SPAWN } from '../utils/SaveSystem.js';
 
 export class BootScene extends Phaser.Scene {
   constructor() {
@@ -18,9 +19,9 @@ export class BootScene extends Phaser.Scene {
       .setDisplaySize(W, H)
       .setAlpha(0);
 
-    // Нижний градиент — читаемость кнопки
+    // Нижний градиент - читаемость кнопки
     const gradBot = this.add.rectangle(cx, H - 100, W, 200, 0x000000, 0.65).setAlpha(0);
-    // Верхний градиент — читаемость заголовка
+    // Верхний градиент - читаемость заголовка
     const gradTop = this.add.rectangle(cx, 120, W, 240, 0x000000, 0.45).setAlpha(0);
 
     // ── Заголовок ─────────────────────────────────────────────────────────
@@ -45,7 +46,7 @@ export class BootScene extends Phaser.Scene {
     const lineR = this.add.rectangle(cx + 220, 272, 170, 1, 0x8a7030, 1).setAlpha(0);
 
     // ── Версия ────────────────────────────────────────────────────────────
-    const ver = this.add.text(W - 16, H - 12, 'v0.3 — прототип', {
+    const ver = this.add.text(W - 16, H - 12, 'v0.3, прототип', {
       fontFamily: 'serif', fontSize: '11px', color: '#444433',
     }).setOrigin(1, 1).setAlpha(0);
 
@@ -114,9 +115,15 @@ export class BootScene extends Phaser.Scene {
       this._starting = true;
       this.cameras.main.fade(700, 0, 0, 0, false, (cam, progress) => {
         if (progress === 1) {
+          // Есть сохранение: продолжаем с того места. Нет: новая игра на Южной заставе.
+          const save = SaveSystem.load();
+          if (save) SaveSystem.applyFlagsToRegistry(this.game.registry, { force: true });
+          else SaveSystem.newGame(this.game.registry, { mode: this._mode || 'chronicle' });
           this.scene.start('LoadingScene', {
             destination:     'MapScene',
-            destinationData: { mapKey: 'map1' },
+            destinationData: save
+              ? { mapKey: save.mapKey || START_MAP, spawnId: save.spawnId || START_SPAWN }
+              : { mapKey: START_MAP, spawnId: START_SPAWN },
           });
         }
       });

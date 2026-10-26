@@ -4,7 +4,7 @@ import eventBus from '../utils/eventBus.js';
 import skillsData from '../data/skills.json';
 
 /**
- * UIManager — HP-бары, лог, кнопки действий, подсветка хода.
+ * UIManager - HP-бары, лог, кнопки действий, подсветка хода.
  */
 export class UIManager {
   constructor(scene) {
@@ -27,7 +27,7 @@ export class UIManager {
   // ── Лог событий ───────────────────────────────────────────────────────
 
   _createLogPanel() {
-    const x = 660, y = 600, w = 600, h = 120;  // лог — справа
+    const x = 660, y = 600, w = 600, h = 120;  // лог - справа
     this._logBg = this.scene.add.rectangle(x + w/2, y + h/2, w, h, 0x07060a, 0.9)
       .setStrokeStyle(1, 0x3a3020, 0.6).setDepth(3);
     this.scene.add.text(x + 10, y + 6, 'ЛОГ БОЯ', { fontSize: '11px', color: '#555577', fontFamily: 'serif' }).setScrollFactor(0).setDepth(3);
@@ -65,7 +65,7 @@ export class UIManager {
   // ── Панель действий ───────────────────────────────────────────────────
 
   _createActionPanel() {
-    const x = 20, y = 600, w = 600, h = 120;  // скиллы — слева
+    const x = 20, y = 600, w = 600, h = 120;  // скиллы - слева
     this.scene.add.rectangle(x + w/2, y + h/2, w, h, 0x07060a, 0.9)
       .setStrokeStyle(1, 0x3a3020, 0.6).setDepth(3);
 
@@ -128,7 +128,7 @@ export class UIManager {
       buttons.push({ skillId: 'pistol_shot', label: 'Пистолет', icon: 'icon_pistol', sub: `×${unit.resources.pistol_charges}`, tint: null, cb: () => eventBus.emit('skill_selected', 'pistol_shot') });
     }
 
-    // Горизонтальный ряд иконок — центр левой панели (x=20+300=320)
+    // Горизонтальный ряд иконок - центр левой панели (x=20+300=320)
     const btnSize = 64;
     const gap     = 12;
     const totalW  = buttons.length * (btnSize + gap) - gap;
@@ -149,7 +149,7 @@ export class UIManager {
       }
     };
 
-    // Кнопка Пропустить — правый край левой панели
+    // Кнопка Пропустить - правый край левой панели
     _addMiniIcon(525, 616, 'icon_broken_sword', 0.6);
     const skip = this.scene.add.text(610, 608, 'Пропустить', {
       fontSize: '13px', color: '#666666', fontFamily: 'serif',
@@ -159,7 +159,7 @@ export class UIManager {
     skip.on('pointerdown', () => eventBus.emit('skip_turn'));
     this._actionBtns.push(skip);
 
-    // Кнопка Защита — правый край левой панели (x=610)
+    // Кнопка Защита - правый край левой панели (x=610)
     const isDefending = unit.effects.some(e => e.type === 'defending');
     _addMiniIcon(525, 636, 'icon_shield', isDefending ? 1.0 : 0.75);
     const defend = this.scene.add.text(610, 628, isDefending ? 'Защита ✓' : 'Защита', {
@@ -170,7 +170,7 @@ export class UIManager {
     defend.on('pointerdown', () => eventBus.emit('defend_action'));
     this._actionBtns.push(defend);
 
-    // Подсказка — левый край левой панели
+    // Подсказка - левый край левой панели
     const hint = this.scene.add.text(30, 608, 'Кликни по врагу для атаки:', {
       fontSize: '12px', color: '#555577', fontFamily: 'serif'
     }).setDepth(3);

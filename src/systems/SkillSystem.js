@@ -2,7 +2,7 @@ import eventBus from '../utils/eventBus.js';
 import { getClassDef } from './ClassProgression.js';
 
 /**
- * SkillSystem — регистрирует скиллы и применяет их эффекты.
+ * SkillSystem - регистрирует скиллы и применяет их эффекты.
  */
 export class SkillSystem {
   constructor() {
@@ -66,7 +66,7 @@ export class SkillSystem {
       const dmg    = Math.round(base * skill.damageMultiplier * (isCrit ? 1.8 : 1));
       target.takeDamage(dmg, { isCrit });
       const suffix = isCrit ? ' 💥 КРИТ!' : '';
-      eventBus.emit('log', `${caster.name} использует "${skill.name}" — ${dmg} урона!${suffix}`);
+      eventBus.emit('log', `${caster.name} использует "${skill.name}": ${dmg} урона!${suffix}`);
     }
 
     // Фиксированный урон (пистолет)
@@ -77,7 +77,7 @@ export class SkillSystem {
       const dmg    = Math.round(base * (isCrit ? 1.8 : 1));
       target.takeDamage(dmg, { isCrit });
       const suffix = isCrit ? ' 💥 КРИТ!' : '';
-      eventBus.emit('log', `${caster.name}: "${skill.name}" — ${dmg} урона!${suffix}`);
+      eventBus.emit('log', `${caster.name}: "${skill.name}": ${dmg} урона!${suffix}`);
     }
 
     // Лечение
@@ -89,7 +89,7 @@ export class SkillSystem {
     // Эффект на себя (dodge_boost)
     if (skill.effect === 'dodge_boost') {
       caster.addEffect({ type: 'dodge_boost', value: skill.effectValue, duration: skill.duration });
-      eventBus.emit('log', `${caster.name}: "${skill.name}" — уклонение +${skill.effectValue * 100}%`);
+      eventBus.emit('log', `${caster.name}: "${skill.name}": уклонение +${skill.effectValue * 100}%`);
     }
 
     // Прикрыть союзника
@@ -156,7 +156,7 @@ export class SkillSystem {
   // Зарегистрировать все скиллы из JSON
   registerAll(skillsData) {
     skillsData.forEach(s => {
-      // Скиллы из JSON не имеют функции effect — используем _applyBuiltin
+      // Скиллы из JSON не имеют функции effect - используем _applyBuiltin
       this._skills[s.id] = s;
     });
 

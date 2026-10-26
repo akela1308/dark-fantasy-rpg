@@ -2,7 +2,7 @@ import { PHASE } from '../utils/constants.js';
 import eventBus from '../utils/eventBus.js';
 
 /**
- * TurnManager — управляет очерёдностью ходов.
+ * TurnManager - управляет очерёдностью ходов.
  * Сортирует юниты по speed DESC, передаёт управление игроку или ИИ.
  */
 export class TurnManager {
@@ -20,7 +20,7 @@ export class TurnManager {
     this.index = 0;
     this.turn  = 0;
     this.phase = PHASE.PLAYER_INPUT;
-    eventBus.emit('log', '— Бой начался —');
+    eventBus.emit('log', 'Бой начался');
     this._advanceToNextAlive();
   }
 
@@ -53,7 +53,7 @@ export class TurnManager {
       this.index = (this.index + 1) % this.queue.length;
       attempts++;
     }
-    // Все мертвы — конец
+    // Все мертвы - конец
     this.phase = PHASE.END;
     eventBus.emit('all_dead');
   }

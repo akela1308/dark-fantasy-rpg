@@ -2,7 +2,7 @@ import { Unit } from './Unit.js';
 import eventBus from '../utils/eventBus.js';
 
 /**
- * PlayerUnit — юнит под управлением игрока.
+ * PlayerUnit - юнит под управлением игрока.
  * Добавляет: обработку выбора действий, level up.
  */
 export class PlayerUnit extends Unit {
@@ -32,7 +32,7 @@ export class PlayerUnit extends Unit {
       eventBus.emit('log', `Нет зарядов пистолета!`);
       return false;
     }
-    // Заряд списывает сам SkillSystem через usesResource — не дублируем здесь.
+    // Заряд списывает сам SkillSystem через usesResource - не дублируем здесь.
     return skillSystem.use('pistol_shot', this, target);
   }
 
@@ -58,29 +58,5 @@ export class PlayerUnit extends Unit {
 
   canLevelUp(threshold) {
     return this.xp >= threshold;
-  }
-
-  levelUp(choice) {
-    this.level++;
-    this.xp = 0;
-
-    switch (choice) {
-      case 'hp':
-        this.maxHp += 15;
-        this.hp = Math.min(this.hp + 15, this.maxHp);
-        eventBus.emit('log', `${this.name}: +15 HP`);
-        break;
-      case 'pistol':
-        this.resources.pistol_charges = (this.resources.pistol_charges || 0) + 2;
-        eventBus.emit('log', `${this.name}: +2 заряда пистолета`);
-        break;
-      case 'move':
-        this.movesLeft = 2;
-        eventBus.emit('log', `${this.name}: 2 перемещения за бой`);
-        break;
-      // 'skill' — добавляется через отдельный метод
-    }
-
-    eventBus.emit('level_up', { unit: this, choice });
   }
 }

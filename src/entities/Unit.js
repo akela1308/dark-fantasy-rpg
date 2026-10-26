@@ -2,7 +2,7 @@ import eventBus from '../utils/eventBus.js';
 import { getClassDef } from '../systems/ClassProgression.js';
 
 /**
- * Unit — базовый класс для всех юнитов (игрок и враги).
+ * Unit - базовый класс для всех юнитов (игрок и враги).
  * Содержит: HP, урон, скорость, навыки, позицию, откаты.
  */
 export class Unit {
@@ -48,7 +48,7 @@ export class Unit {
   takeDamage(amount, opts = {}) {
     const isCrit = opts.isCrit || false;
 
-    // Эффект прикрытия — Боец принимает удар вместо союзника
+    // Эффект прикрытия - Боец принимает удар вместо союзника
     const cover = this.effects.find(e => e.type === 'covered_by' && e.coveredBy?.isAlive);
     if (cover) {
       this.effects = this.effects.filter(e => e !== cover);
@@ -135,8 +135,8 @@ export class Unit {
 
     const actual = target.takeDamage(dmg, { isCrit });
     const msg = isCrit
-      ? `💥 ${this.name} КРИТ по ${target.name} — ${actual} урона!`
-      : `${this.name} атакует ${target.name} — ${actual} урона`;
+      ? `💥 ${this.name} КРИТ по ${target.name}: ${actual} урона!`
+      : `${this.name} атакует ${target.name}: ${actual} урона`;
     eventBus.emit('log', msg);
 
     // Lifesteal

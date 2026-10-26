@@ -1,69 +1,1619 @@
 [
   {
+    "id": "road_looters",
+    "name": "Прибытие: мародёры у столба",
+    "intendedLevel": 1,
+    "intendedPartySize": 1,
+    "kind": "minor",
+    "xpReward": 25,
+    "goldLoot": 12,
+    "victoryFlag": "road_looters_defeated",
+    "enemies": [
+      {
+        "id": "marauder",
+        "name": "Мародёр",
+        "type": "enemy",
+        "hp": 44,
+        "maxHp": 44,
+        "damage": {
+          "min": 9,
+          "max": 14
+        },
+        "speed": 5,
+        "armor": 8,
+        "accuracy": 74,
+        "regen": 0,
+        "xpKill": 15,
+        "position": {
+          "row": 0,
+          "col": 0
+        },
+        "skills": [
+          "enemy_heavy"
+        ],
+        "ranged": false,
+        "isBoss": false,
+        "classId": "blade",
+        "arch": "blade",
+        "spriteKey": "bandit_brawler",
+        "canSurrender": true,
+        "commanderId": "bandit_commander"
+      },
+      {
+        "id": "mangy_dog",
+        "name": "Облезлый пёс",
+        "type": "enemy",
+        "hp": 28,
+        "maxHp": 28,
+        "damage": {
+          "min": 7,
+          "max": 11
+        },
+        "speed": 7,
+        "armor": 0,
+        "accuracy": 78,
+        "regen": 0,
+        "xpKill": 9,
+        "position": {
+          "row": 0,
+          "col": 2
+        },
+        "skills": [],
+        "ranged": false,
+        "isBoss": false,
+        "classId": "wolf",
+        "arch": "wolf",
+        "spriteKey": "dog"
+      }
+    ],
+    "backgroundKey": "battle_Plane",
+    "backgroundPath": "battle/Plane.jpg"
+  },
+  {
+    "id": "korvin_gang",
+    "name": "Чёрный Лес: шайка Корвина (трое)",
+    "intendedLevel": 2,
+    "intendedPartySize": 3,
+    "kind": "standard",
+    "xpReward": 68,
+    "goldLoot": 24,
+    "victoryFlag": "korvin_gang_3_defeated",
+    "enemies": [
+      {
+        "id": "bandit_commander",
+        "name": "Корвин Сухой",
+        "type": "enemy",
+        "hp": 82,
+        "maxHp": 82,
+        "damage": {
+          "min": 13,
+          "max": 20
+        },
+        "speed": 6,
+        "armor": 14,
+        "accuracy": 75,
+        "regen": 0,
+        "xpKill": 45,
+        "position": {
+          "row": 0,
+          "col": 0
+        },
+        "skills": [
+          "enemy_heavy",
+          "boss_fury"
+        ],
+        "ranged": false,
+        "isBoss": true,
+        "classId": "blade",
+        "arch": "blade",
+        "canSurrender": true
+      },
+      {
+        "id": "bandit_brawler",
+        "name": "Куль",
+        "type": "enemy",
+        "hp": 55,
+        "maxHp": 55,
+        "damage": {
+          "min": 11,
+          "max": 17
+        },
+        "speed": 5,
+        "armor": 9,
+        "accuracy": 75,
+        "regen": 0,
+        "xpKill": 23,
+        "position": {
+          "row": 0,
+          "col": 2
+        },
+        "skills": [
+          "enemy_heavy"
+        ],
+        "ranged": false,
+        "isBoss": false,
+        "classId": "blade",
+        "arch": "blade",
+        "canSurrender": true,
+        "commanderId": "bandit_commander"
+      },
+      {
+        "id": "bandit_archer",
+        "name": "Тисс",
+        "type": "enemy",
+        "hp": 42,
+        "maxHp": 42,
+        "damage": {
+          "min": 12,
+          "max": 18
+        },
+        "speed": 6,
+        "armor": 6,
+        "accuracy": 83,
+        "regen": 0,
+        "xpKill": 23,
+        "position": {
+          "row": 1,
+          "col": 0
+        },
+        "skills": [
+          "enemy_volley"
+        ],
+        "ranged": true,
+        "isBoss": false,
+        "classId": "watcher",
+        "arch": "watcher",
+        "canSurrender": true,
+        "commanderId": "bandit_commander"
+      }
+    ],
+    "enemiesBySize": {
+      "1": [
+        {
+          "id": "bandit_brawler",
+          "name": "Куль",
+          "type": "enemy",
+          "hp": 55,
+          "maxHp": 55,
+          "damage": {
+            "min": 11,
+            "max": 17
+          },
+          "speed": 5,
+          "armor": 9,
+          "accuracy": 75,
+          "regen": 0,
+          "xpKill": 23,
+          "position": {
+            "row": 0,
+            "col": 0
+          },
+          "skills": [
+            "enemy_heavy"
+          ],
+          "ranged": false,
+          "isBoss": false,
+          "classId": "blade",
+          "arch": "blade",
+          "canSurrender": true,
+          "commanderId": "bandit_commander"
+        },
+        {
+          "id": "bandit_archer",
+          "name": "Тисс",
+          "type": "enemy",
+          "hp": 42,
+          "maxHp": 42,
+          "damage": {
+            "min": 12,
+            "max": 18
+          },
+          "speed": 6,
+          "armor": 6,
+          "accuracy": 83,
+          "regen": 0,
+          "xpKill": 23,
+          "position": {
+            "row": 1,
+            "col": 0
+          },
+          "skills": [
+            "enemy_volley"
+          ],
+          "ranged": true,
+          "isBoss": false,
+          "classId": "watcher",
+          "arch": "watcher",
+          "canSurrender": true,
+          "commanderId": "bandit_commander"
+        }
+      ],
+      "2": [
+        {
+          "id": "bandit_commander",
+          "name": "Корвин Сухой",
+          "type": "enemy",
+          "hp": 82,
+          "maxHp": 82,
+          "damage": {
+            "min": 13,
+            "max": 20
+          },
+          "speed": 6,
+          "armor": 14,
+          "accuracy": 75,
+          "regen": 0,
+          "xpKill": 45,
+          "position": {
+            "row": 0,
+            "col": 0
+          },
+          "skills": [
+            "enemy_heavy",
+            "boss_fury"
+          ],
+          "ranged": false,
+          "isBoss": true,
+          "classId": "blade",
+          "arch": "blade",
+          "canSurrender": true
+        },
+        {
+          "id": "bandit_brawler",
+          "name": "Куль",
+          "type": "enemy",
+          "hp": 55,
+          "maxHp": 55,
+          "damage": {
+            "min": 11,
+            "max": 17
+          },
+          "speed": 5,
+          "armor": 9,
+          "accuracy": 75,
+          "regen": 0,
+          "xpKill": 23,
+          "position": {
+            "row": 0,
+            "col": 2
+          },
+          "skills": [
+            "enemy_heavy"
+          ],
+          "ranged": false,
+          "isBoss": false,
+          "classId": "blade",
+          "arch": "blade",
+          "canSurrender": true,
+          "commanderId": "bandit_commander"
+        }
+      ],
+      "3": [
+        {
+          "id": "bandit_commander",
+          "name": "Корвин Сухой",
+          "type": "enemy",
+          "hp": 82,
+          "maxHp": 82,
+          "damage": {
+            "min": 13,
+            "max": 20
+          },
+          "speed": 6,
+          "armor": 14,
+          "accuracy": 75,
+          "regen": 0,
+          "xpKill": 45,
+          "position": {
+            "row": 0,
+            "col": 0
+          },
+          "skills": [
+            "enemy_heavy",
+            "boss_fury"
+          ],
+          "ranged": false,
+          "isBoss": true,
+          "classId": "blade",
+          "arch": "blade",
+          "canSurrender": true
+        },
+        {
+          "id": "bandit_brawler",
+          "name": "Куль",
+          "type": "enemy",
+          "hp": 55,
+          "maxHp": 55,
+          "damage": {
+            "min": 11,
+            "max": 17
+          },
+          "speed": 5,
+          "armor": 9,
+          "accuracy": 75,
+          "regen": 0,
+          "xpKill": 23,
+          "position": {
+            "row": 0,
+            "col": 2
+          },
+          "skills": [
+            "enemy_heavy"
+          ],
+          "ranged": false,
+          "isBoss": false,
+          "classId": "blade",
+          "arch": "blade",
+          "canSurrender": true,
+          "commanderId": "bandit_commander"
+        },
+        {
+          "id": "bandit_archer",
+          "name": "Тисс",
+          "type": "enemy",
+          "hp": 42,
+          "maxHp": 42,
+          "damage": {
+            "min": 12,
+            "max": 18
+          },
+          "speed": 6,
+          "armor": 6,
+          "accuracy": 83,
+          "regen": 0,
+          "xpKill": 23,
+          "position": {
+            "row": 1,
+            "col": 0
+          },
+          "skills": [
+            "enemy_volley"
+          ],
+          "ranged": true,
+          "isBoss": false,
+          "classId": "watcher",
+          "arch": "watcher",
+          "canSurrender": true,
+          "commanderId": "bandit_commander"
+        }
+      ],
+      "4": [
+        {
+          "id": "bandit_commander",
+          "name": "Корвин Сухой",
+          "type": "enemy",
+          "hp": 82,
+          "maxHp": 82,
+          "damage": {
+            "min": 13,
+            "max": 20
+          },
+          "speed": 6,
+          "armor": 14,
+          "accuracy": 75,
+          "regen": 0,
+          "xpKill": 45,
+          "position": {
+            "row": 0,
+            "col": 0
+          },
+          "skills": [
+            "enemy_heavy",
+            "boss_fury"
+          ],
+          "ranged": false,
+          "isBoss": true,
+          "classId": "blade",
+          "arch": "blade",
+          "canSurrender": true
+        },
+        {
+          "id": "bandit_brawler",
+          "name": "Куль",
+          "type": "enemy",
+          "hp": 55,
+          "maxHp": 55,
+          "damage": {
+            "min": 11,
+            "max": 17
+          },
+          "speed": 5,
+          "armor": 9,
+          "accuracy": 75,
+          "regen": 0,
+          "xpKill": 23,
+          "position": {
+            "row": 0,
+            "col": 2
+          },
+          "skills": [
+            "enemy_heavy"
+          ],
+          "ranged": false,
+          "isBoss": false,
+          "classId": "blade",
+          "arch": "blade",
+          "canSurrender": true,
+          "commanderId": "bandit_commander"
+        },
+        {
+          "id": "bandit_archer",
+          "name": "Тисс",
+          "type": "enemy",
+          "hp": 42,
+          "maxHp": 42,
+          "damage": {
+            "min": 12,
+            "max": 18
+          },
+          "speed": 6,
+          "armor": 6,
+          "accuracy": 83,
+          "regen": 0,
+          "xpKill": 23,
+          "position": {
+            "row": 1,
+            "col": 0
+          },
+          "skills": [
+            "enemy_volley"
+          ],
+          "ranged": true,
+          "isBoss": false,
+          "classId": "watcher",
+          "arch": "watcher",
+          "canSurrender": true,
+          "commanderId": "bandit_commander"
+        },
+        {
+          "id": "thug",
+          "name": "Головорез",
+          "type": "enemy",
+          "hp": 55,
+          "maxHp": 55,
+          "damage": {
+            "min": 11,
+            "max": 17
+          },
+          "speed": 5,
+          "armor": 9,
+          "accuracy": 75,
+          "regen": 0,
+          "xpKill": 23,
+          "position": {
+            "row": 0,
+            "col": 1
+          },
+          "skills": [
+            "enemy_heavy"
+          ],
+          "ranged": false,
+          "isBoss": false,
+          "classId": "blade",
+          "arch": "blade",
+          "spriteKey": "bandit_brawler",
+          "canSurrender": true,
+          "commanderId": "bandit_commander"
+        }
+      ]
+    },
+    "backgroundKey": "battle_Forest_Battle",
+    "backgroundPath": "battle/Forest_Battle.jpg"
+  },
+  {
+    "id": "swamp_guardians",
+    "name": "Болото: стражи старой воды",
+    "intendedLevel": 3,
+    "intendedPartySize": 3,
+    "kind": "hard",
+    "xpReward": 132,
+    "goldLoot": 30,
+    "victoryFlag": "swamp_guardians_defeated",
+    "enemies": [
+      {
+        "id": "swamp_knight",
+        "name": "Болотный Рыцарь",
+        "type": "enemy",
+        "hp": 86,
+        "maxHp": 86,
+        "damage": {
+          "min": 12,
+          "max": 16
+        },
+        "speed": 3,
+        "armor": 28,
+        "accuracy": 74,
+        "regen": 0,
+        "xpKill": 36,
+        "position": {
+          "row": 0,
+          "col": 0
+        },
+        "skills": [],
+        "ranged": false,
+        "isBoss": false,
+        "classId": "warden",
+        "arch": "warden"
+      },
+      {
+        "id": "kikimora",
+        "name": "Кикимора",
+        "type": "enemy",
+        "hp": 106,
+        "maxHp": 106,
+        "damage": {
+          "min": 18,
+          "max": 26
+        },
+        "speed": 4,
+        "armor": 12,
+        "accuracy": 74,
+        "regen": 3,
+        "xpKill": 53,
+        "position": {
+          "row": 0,
+          "col": 2
+        },
+        "skills": [],
+        "ranged": false,
+        "isBoss": false,
+        "classId": "brute",
+        "arch": "brute"
+      },
+      {
+        "id": "swamp_elf_battle",
+        "name": "Болотная Эльфийка",
+        "type": "enemy",
+        "hp": 50,
+        "maxHp": 50,
+        "damage": {
+          "min": 14,
+          "max": 21
+        },
+        "speed": 6,
+        "armor": 7,
+        "accuracy": 84,
+        "regen": 0,
+        "xpKill": 33,
+        "position": {
+          "row": 1,
+          "col": 0
+        },
+        "skills": [
+          "enemy_volley"
+        ],
+        "ranged": true,
+        "isBoss": false,
+        "classId": "watcher",
+        "arch": "watcher"
+      }
+    ],
+    "backgroundKey": "battle_Boloto_battle1",
+    "backgroundPath": "battle/Boloto_battle1.jpg"
+  },
+  {
+    "id": "swamp_lights",
+    "name": "Глубокое болото: посчитал огни",
+    "intendedLevel": 4,
+    "intendedPartySize": 3,
+    "kind": "minor",
+    "xpReward": 75,
+    "goldLoot": 36,
+    "victoryFlag": "swamp_lights_defeated",
+    "enemies": [
+      {
+        "id": "swamp_beast",
+        "name": "Болотная тварь",
+        "type": "enemy",
+        "hp": 49,
+        "maxHp": 49,
+        "damage": {
+          "min": 12,
+          "max": 17
+        },
+        "speed": 7,
+        "armor": 0,
+        "accuracy": 81,
+        "regen": 0,
+        "xpKill": 27,
+        "position": {
+          "row": 0,
+          "col": 0
+        },
+        "skills": [],
+        "ranged": false,
+        "isBoss": false,
+        "classId": "wolf",
+        "arch": "wolf",
+        "spriteKey": "dog"
+      },
+      {
+        "id": "swamp_beast_2",
+        "name": "Болотная тварь",
+        "type": "enemy",
+        "hp": 49,
+        "maxHp": 49,
+        "damage": {
+          "min": 12,
+          "max": 17
+        },
+        "speed": 7,
+        "armor": 0,
+        "accuracy": 81,
+        "regen": 0,
+        "xpKill": 27,
+        "position": {
+          "row": 0,
+          "col": 2
+        },
+        "skills": [],
+        "ranged": false,
+        "isBoss": false,
+        "classId": "wolf",
+        "arch": "wolf",
+        "spriteKey": "dog"
+      },
+      {
+        "id": "swamp_beast_3",
+        "name": "Болотная тварь",
+        "type": "enemy",
+        "hp": 49,
+        "maxHp": 49,
+        "damage": {
+          "min": 12,
+          "max": 17
+        },
+        "speed": 7,
+        "armor": 0,
+        "accuracy": 81,
+        "regen": 0,
+        "xpKill": 27,
+        "position": {
+          "row": 0,
+          "col": 1
+        },
+        "skills": [],
+        "ranged": false,
+        "isBoss": false,
+        "classId": "wolf",
+        "arch": "wolf",
+        "spriteKey": "dog"
+      }
+    ],
+    "backgroundKey": "battle_Boloto_battle",
+    "backgroundPath": "battle/Boloto_battle.jpg"
+  },
+  {
+    "id": "forest_grandfather",
+    "name": "Глубокое болото: Лесной Дед (необязательно)",
+    "intendedLevel": 4,
+    "intendedPartySize": 3,
+    "kind": "hard",
+    "xpReward": 180,
+    "goldLoot": 36,
+    "victoryFlag": "forest_grandfather_defeated",
+    "enemies": [
+      {
+        "id": "forest_grandfather",
+        "name": "Лесной Дед",
+        "type": "enemy",
+        "hp": 180,
+        "maxHp": 180,
+        "damage": {
+          "min": 23,
+          "max": 34
+        },
+        "speed": 5,
+        "armor": 18,
+        "accuracy": 75,
+        "regen": 3,
+        "xpKill": 144,
+        "position": {
+          "row": 0,
+          "col": 0
+        },
+        "skills": [
+          "boss_fury"
+        ],
+        "ranged": false,
+        "isBoss": true,
+        "classId": "brute",
+        "arch": "brute",
+        "spriteKey": "forest_bear"
+      },
+      {
+        "id": "swamp_beast",
+        "name": "Болотная тварь",
+        "type": "enemy",
+        "hp": 49,
+        "maxHp": 49,
+        "damage": {
+          "min": 12,
+          "max": 17
+        },
+        "speed": 7,
+        "armor": 0,
+        "accuracy": 81,
+        "regen": 0,
+        "xpKill": 27,
+        "position": {
+          "row": 0,
+          "col": 2
+        },
+        "skills": [],
+        "ranged": false,
+        "isBoss": false,
+        "classId": "wolf",
+        "arch": "wolf",
+        "spriteKey": "dog"
+      },
+      {
+        "id": "swamp_beast_2",
+        "name": "Болотная тварь",
+        "type": "enemy",
+        "hp": 49,
+        "maxHp": 49,
+        "damage": {
+          "min": 12,
+          "max": 17
+        },
+        "speed": 7,
+        "armor": 0,
+        "accuracy": 81,
+        "regen": 0,
+        "xpKill": 27,
+        "position": {
+          "row": 0,
+          "col": 1
+        },
+        "skills": [],
+        "ranged": false,
+        "isBoss": false,
+        "classId": "wolf",
+        "arch": "wolf",
+        "spriteKey": "dog"
+      }
+    ],
+    "backgroundKey": "battle_Boloto_battle",
+    "backgroundPath": "battle/Boloto_battle.jpg"
+  },
+  {
+    "id": "dead_road_reader",
+    "name": "Мёртвый тракт: Висельный чтец (необязательно)",
+    "intendedLevel": 4,
+    "intendedPartySize": 3,
+    "kind": "hard",
+    "xpReward": 180,
+    "goldLoot": 36,
+    "victoryFlag": "dead_road_reader_defeated",
+    "enemies": [
+      {
+        "id": "gallows_reader",
+        "name": "Висельный чтец",
+        "type": "enemy",
+        "hp": 112,
+        "maxHp": 112,
+        "damage": {
+          "min": 20,
+          "max": 28
+        },
+        "speed": 7,
+        "armor": 16,
+        "accuracy": 83,
+        "regen": 0,
+        "xpKill": 99,
+        "position": {
+          "row": 1,
+          "col": 0
+        },
+        "skills": [
+          "boss_fury"
+        ],
+        "ranged": true,
+        "isBoss": true,
+        "classId": "whisperer",
+        "arch": "whisperer",
+        "art": "TODO_silhouette",
+        "color": 4868690
+      },
+      {
+        "id": "hanged",
+        "name": "Висельник",
+        "type": "enemy",
+        "hp": 77,
+        "maxHp": 77,
+        "damage": {
+          "min": 16,
+          "max": 22
+        },
+        "speed": 5,
+        "armor": 11,
+        "accuracy": 77,
+        "regen": 0,
+        "xpKill": 45,
+        "position": {
+          "row": 0,
+          "col": 0
+        },
+        "skills": [
+          "enemy_heavy"
+        ],
+        "ranged": false,
+        "isBoss": false,
+        "classId": "blade",
+        "arch": "blade",
+        "art": "TODO_silhouette",
+        "color": 4868690
+      },
+      {
+        "id": "hanged_2",
+        "name": "Висельник",
+        "type": "enemy",
+        "hp": 77,
+        "maxHp": 77,
+        "damage": {
+          "min": 16,
+          "max": 22
+        },
+        "speed": 5,
+        "armor": 11,
+        "accuracy": 77,
+        "regen": 0,
+        "xpKill": 45,
+        "position": {
+          "row": 0,
+          "col": 2
+        },
+        "skills": [
+          "enemy_heavy"
+        ],
+        "ranged": false,
+        "isBoss": false,
+        "classId": "blade",
+        "arch": "blade",
+        "art": "TODO_silhouette",
+        "color": 4868690
+      }
+    ],
+    "backgroundKey": "battle_Plane",
+    "backgroundPath": "battle/Plane.jpg"
+  },
+  {
+    "id": "altar_shadows",
+    "name": "Алтарь: тени у трёх камней",
+    "intendedLevel": 4,
+    "intendedPartySize": 3,
+    "kind": "standard",
+    "xpReward": 135,
+    "goldLoot": 36,
+    "victoryFlag": "altar_shadows_defeated",
+    "enemies": [
+      {
+        "id": "shade",
+        "name": "Тень",
+        "type": "enemy",
+        "hp": 77,
+        "maxHp": 77,
+        "damage": {
+          "min": 16,
+          "max": 22
+        },
+        "speed": 5,
+        "armor": 11,
+        "accuracy": 77,
+        "regen": 0,
+        "xpKill": 45,
+        "position": {
+          "row": 0,
+          "col": 0
+        },
+        "skills": [
+          "enemy_heavy"
+        ],
+        "ranged": false,
+        "isBoss": false,
+        "classId": "blade",
+        "arch": "blade",
+        "art": "TODO_silhouette",
+        "color": 4868690
+      },
+      {
+        "id": "shade_2",
+        "name": "Тень",
+        "type": "enemy",
+        "hp": 77,
+        "maxHp": 77,
+        "damage": {
+          "min": 16,
+          "max": 22
+        },
+        "speed": 5,
+        "armor": 11,
+        "accuracy": 77,
+        "regen": 0,
+        "xpKill": 45,
+        "position": {
+          "row": 0,
+          "col": 2
+        },
+        "skills": [
+          "enemy_heavy"
+        ],
+        "ranged": false,
+        "isBoss": false,
+        "classId": "blade",
+        "arch": "blade",
+        "art": "TODO_silhouette",
+        "color": 4868690
+      },
+      {
+        "id": "stone_voice",
+        "name": "Голос камня",
+        "type": "enemy",
+        "hp": 60,
+        "maxHp": 60,
+        "damage": {
+          "min": 15,
+          "max": 21
+        },
+        "speed": 6,
+        "armor": 7,
+        "accuracy": 83,
+        "regen": 0,
+        "xpKill": 50,
+        "position": {
+          "row": 1,
+          "col": 0
+        },
+        "skills": [],
+        "ranged": true,
+        "isBoss": false,
+        "classId": "whisperer",
+        "arch": "whisperer",
+        "art": "TODO_silhouette",
+        "color": 4868690
+      }
+    ],
+    "backgroundKey": "battle_Forest_Battle",
+    "backgroundPath": "battle/Forest_Battle.jpg"
+  },
+  {
+    "id": "korvin_revenge",
+    "name": "Засада: месть Корвина",
+    "intendedLevel": 4,
+    "intendedPartySize": 3,
+    "kind": "hard",
+    "xpReward": 180,
+    "goldLoot": 36,
+    "victoryFlag": "korvin_revenge_defeated",
+    "enemies": [
+      {
+        "id": "bandit_commander",
+        "name": "Корвин Сухой",
+        "type": "enemy",
+        "hp": 116,
+        "maxHp": 116,
+        "damage": {
+          "min": 18,
+          "max": 25
+        },
+        "speed": 6,
+        "armor": 16,
+        "accuracy": 77,
+        "regen": 0,
+        "xpKill": 90,
+        "position": {
+          "row": 0,
+          "col": 0
+        },
+        "skills": [
+          "enemy_heavy",
+          "boss_fury"
+        ],
+        "ranged": false,
+        "isBoss": true,
+        "classId": "blade",
+        "arch": "blade",
+        "canSurrender": true
+      },
+      {
+        "id": "thug",
+        "name": "Головорез",
+        "type": "enemy",
+        "hp": 77,
+        "maxHp": 77,
+        "damage": {
+          "min": 16,
+          "max": 22
+        },
+        "speed": 5,
+        "armor": 11,
+        "accuracy": 77,
+        "regen": 0,
+        "xpKill": 45,
+        "position": {
+          "row": 0,
+          "col": 2
+        },
+        "skills": [
+          "enemy_heavy"
+        ],
+        "ranged": false,
+        "isBoss": false,
+        "classId": "blade",
+        "arch": "blade",
+        "spriteKey": "bandit_brawler",
+        "canSurrender": true,
+        "commanderId": "bandit_commander"
+      },
+      {
+        "id": "shooter",
+        "name": "Стрелок",
+        "type": "enemy",
+        "hp": 58,
+        "maxHp": 58,
+        "damage": {
+          "min": 17,
+          "max": 23
+        },
+        "speed": 6,
+        "armor": 8,
+        "accuracy": 85,
+        "regen": 0,
+        "xpKill": 45,
+        "position": {
+          "row": 1,
+          "col": 0
+        },
+        "skills": [
+          "enemy_volley"
+        ],
+        "ranged": true,
+        "isBoss": false,
+        "classId": "watcher",
+        "arch": "watcher",
+        "spriteKey": "bandit_archer",
+        "canSurrender": true,
+        "commanderId": "bandit_commander"
+      }
+    ],
+    "backgroundKey": "battle_Forest_Battle",
+    "backgroundPath": "battle/Forest_Battle.jpg"
+  },
+  {
+    "id": "chapel_cult",
+    "name": "Деревня: свет в часовне",
+    "intendedLevel": 5,
+    "intendedPartySize": 3,
+    "kind": "hard",
+    "xpReward": 240,
+    "goldLoot": 56,
+    "victoryFlag": "chapel_cult_defeated",
+    "enemies": [
+      {
+        "id": "candle_keeper",
+        "name": "Хранитель свечей",
+        "type": "enemy",
+        "hp": 110,
+        "maxHp": 110,
+        "damage": {
+          "min": 15,
+          "max": 21
+        },
+        "speed": 3,
+        "armor": 31,
+        "accuracy": 76,
+        "regen": 0,
+        "xpKill": 66,
+        "position": {
+          "row": 0,
+          "col": 0
+        },
+        "skills": [],
+        "ranged": false,
+        "isBoss": false,
+        "classId": "warden",
+        "arch": "warden",
+        "art": "TODO_silhouette",
+        "color": 4868690
+      },
+      {
+        "id": "reader",
+        "name": "Чтец",
+        "type": "enemy",
+        "hp": 68,
+        "maxHp": 68,
+        "damage": {
+          "min": 17,
+          "max": 23
+        },
+        "speed": 6,
+        "armor": 8,
+        "accuracy": 84,
+        "regen": 0,
+        "xpKill": 66,
+        "position": {
+          "row": 1,
+          "col": 0
+        },
+        "skills": [],
+        "ranged": true,
+        "isBoss": false,
+        "classId": "whisperer",
+        "arch": "whisperer",
+        "art": "TODO_silhouette",
+        "color": 4868690
+      },
+      {
+        "id": "novice",
+        "name": "Послушник",
+        "type": "enemy",
+        "hp": 88,
+        "maxHp": 88,
+        "damage": {
+          "min": 18,
+          "max": 25
+        },
+        "speed": 5,
+        "armor": 12,
+        "accuracy": 78,
+        "regen": 0,
+        "xpKill": 60,
+        "position": {
+          "row": 0,
+          "col": 2
+        },
+        "skills": [
+          "enemy_heavy"
+        ],
+        "ranged": false,
+        "isBoss": false,
+        "classId": "blade",
+        "arch": "blade",
+        "art": "TODO_silhouette",
+        "color": 4868690
+      },
+      {
+        "id": "novice_2",
+        "name": "Послушник",
+        "type": "enemy",
+        "hp": 88,
+        "maxHp": 88,
+        "damage": {
+          "min": 18,
+          "max": 25
+        },
+        "speed": 5,
+        "armor": 12,
+        "accuracy": 78,
+        "regen": 0,
+        "xpKill": 60,
+        "position": {
+          "row": 0,
+          "col": 1
+        },
+        "skills": [
+          "enemy_heavy"
+        ],
+        "ranged": false,
+        "isBoss": false,
+        "classId": "blade",
+        "arch": "blade",
+        "art": "TODO_silhouette",
+        "color": 4868690
+      }
+    ],
+    "backgroundKey": "battle_Village_battle2",
+    "backgroundPath": "battle/Village_battle2.jpg"
+  },
+  {
+    "id": "mountain_pass",
+    "name": "Перевал: латники клятвы",
+    "intendedLevel": 5,
+    "intendedPartySize": 3,
+    "kind": "hard",
+    "xpReward": 240,
+    "goldLoot": 42,
+    "victoryFlag": "mountain_pass_defeated",
+    "enemies": [
+      {
+        "id": "oath_knight",
+        "name": "Латник",
+        "type": "enemy",
+        "hp": 110,
+        "maxHp": 110,
+        "damage": {
+          "min": 15,
+          "max": 21
+        },
+        "speed": 3,
+        "armor": 31,
+        "accuracy": 76,
+        "regen": 0,
+        "xpKill": 66,
+        "position": {
+          "row": 0,
+          "col": 0
+        },
+        "skills": [],
+        "ranged": false,
+        "isBoss": false,
+        "classId": "warden",
+        "arch": "warden",
+        "spriteKey": "guard"
+      },
+      {
+        "id": "oath_swordsman",
+        "name": "Латник-мечник",
+        "type": "enemy",
+        "hp": 110,
+        "maxHp": 110,
+        "damage": {
+          "min": 21,
+          "max": 29
+        },
+        "speed": 5,
+        "armor": 16,
+        "accuracy": 78,
+        "regen": 0,
+        "xpKill": 60,
+        "position": {
+          "row": 0,
+          "col": 2
+        },
+        "skills": [
+          "enemy_heavy"
+        ],
+        "ranged": false,
+        "isBoss": false,
+        "classId": "blade",
+        "arch": "blade",
+        "spriteKey": "guard"
+      },
+      {
+        "id": "crossbowman",
+        "name": "Арбалетчик",
+        "type": "enemy",
+        "hp": 66,
+        "maxHp": 66,
+        "damage": {
+          "min": 19,
+          "max": 26
+        },
+        "speed": 6,
+        "armor": 9,
+        "accuracy": 86,
+        "regen": 0,
+        "xpKill": 60,
+        "position": {
+          "row": 1,
+          "col": 0
+        },
+        "skills": [
+          "enemy_volley"
+        ],
+        "ranged": true,
+        "isBoss": false,
+        "classId": "watcher",
+        "arch": "watcher",
+        "spriteKey": "archer_guard"
+      }
+    ],
+    "backgroundKey": "battle_Mountain_battle",
+    "backgroundPath": "battle/Mountain_battle.jpg"
+  },
+  {
+    "id": "sealed_basement",
+    "name": "Запечатанный подвал: то, что ждало",
+    "intendedLevel": 6,
+    "intendedPartySize": 3,
+    "kind": "boss",
+    "xpReward": 468,
+    "goldLoot": 48,
+    "victoryFlag": "sealed_basement_defeated",
+    "enemies": [
+      {
+        "id": "forgotten_warden",
+        "name": "Забытый Страж",
+        "type": "enemy",
+        "hp": 222,
+        "maxHp": 222,
+        "damage": {
+          "min": 29,
+          "max": 41
+        },
+        "speed": 5,
+        "armor": 20,
+        "accuracy": 77,
+        "regen": 3,
+        "xpKill": 250,
+        "position": {
+          "row": 0,
+          "col": 0
+        },
+        "skills": [
+          "boss_fury"
+        ],
+        "ranged": false,
+        "isBoss": true,
+        "classId": "brute",
+        "arch": "brute",
+        "art": "TODO_silhouette",
+        "color": 4868690
+      },
+      {
+        "id": "name_echo",
+        "name": "Эхо имени",
+        "type": "enemy",
+        "hp": 76,
+        "maxHp": 76,
+        "damage": {
+          "min": 19,
+          "max": 26
+        },
+        "speed": 6,
+        "armor": 9,
+        "accuracy": 85,
+        "regen": 0,
+        "xpKill": 86,
+        "position": {
+          "row": 1,
+          "col": 0
+        },
+        "skills": [],
+        "ranged": true,
+        "isBoss": false,
+        "classId": "whisperer",
+        "arch": "whisperer",
+        "art": "TODO_silhouette",
+        "color": 4868690
+      },
+      {
+        "id": "name_echo_2",
+        "name": "Эхо имени",
+        "type": "enemy",
+        "hp": 76,
+        "maxHp": 76,
+        "damage": {
+          "min": 19,
+          "max": 26
+        },
+        "speed": 6,
+        "armor": 9,
+        "accuracy": 85,
+        "regen": 0,
+        "xpKill": 86,
+        "position": {
+          "row": 1,
+          "col": 2
+        },
+        "skills": [],
+        "ranged": true,
+        "isBoss": false,
+        "classId": "whisperer",
+        "arch": "whisperer",
+        "art": "TODO_silhouette",
+        "color": 4868690
+      }
+    ],
+    "backgroundKey": "battle_Tavern_battle4",
+    "backgroundPath": "battle/Tavern_battle4.jpg"
+  },
+  {
+    "id": "sealed_basement_4",
+    "name": "Запечатанный подвал (4 в партии, +1 Эхо)",
+    "intendedLevel": 6,
+    "intendedPartySize": 4,
+    "kind": "boss",
+    "xpReward": 468,
+    "goldLoot": 64,
+    "victoryFlag": "sealed_basement_4_defeated",
+    "enemies": [
+      {
+        "id": "forgotten_warden",
+        "name": "Забытый Страж",
+        "type": "enemy",
+        "hp": 222,
+        "maxHp": 222,
+        "damage": {
+          "min": 29,
+          "max": 41
+        },
+        "speed": 5,
+        "armor": 20,
+        "accuracy": 77,
+        "regen": 3,
+        "xpKill": 250,
+        "position": {
+          "row": 0,
+          "col": 0
+        },
+        "skills": [
+          "boss_fury"
+        ],
+        "ranged": false,
+        "isBoss": true,
+        "classId": "brute",
+        "arch": "brute",
+        "art": "TODO_silhouette",
+        "color": 4868690
+      },
+      {
+        "id": "name_echo",
+        "name": "Эхо имени",
+        "type": "enemy",
+        "hp": 76,
+        "maxHp": 76,
+        "damage": {
+          "min": 19,
+          "max": 26
+        },
+        "speed": 6,
+        "armor": 9,
+        "accuracy": 85,
+        "regen": 0,
+        "xpKill": 86,
+        "position": {
+          "row": 1,
+          "col": 0
+        },
+        "skills": [],
+        "ranged": true,
+        "isBoss": false,
+        "classId": "whisperer",
+        "arch": "whisperer",
+        "art": "TODO_silhouette",
+        "color": 4868690
+      },
+      {
+        "id": "name_echo_2",
+        "name": "Эхо имени",
+        "type": "enemy",
+        "hp": 76,
+        "maxHp": 76,
+        "damage": {
+          "min": 19,
+          "max": 26
+        },
+        "speed": 6,
+        "armor": 9,
+        "accuracy": 85,
+        "regen": 0,
+        "xpKill": 86,
+        "position": {
+          "row": 1,
+          "col": 2
+        },
+        "skills": [],
+        "ranged": true,
+        "isBoss": false,
+        "classId": "whisperer",
+        "arch": "whisperer",
+        "art": "TODO_silhouette",
+        "color": 4868690
+      },
+      {
+        "id": "name_echo_3",
+        "name": "Эхо имени",
+        "type": "enemy",
+        "hp": 74,
+        "maxHp": 74,
+        "damage": {
+          "min": 21,
+          "max": 29
+        },
+        "speed": 6,
+        "armor": 10,
+        "accuracy": 87,
+        "regen": 0,
+        "xpKill": 78,
+        "position": {
+          "row": 1,
+          "col": 1
+        },
+        "skills": [
+          "enemy_volley"
+        ],
+        "ranged": true,
+        "isBoss": false,
+        "classId": "watcher",
+        "arch": "watcher",
+        "art": "TODO_silhouette",
+        "color": 4868690
+      }
+    ],
+    "backgroundKey": "battle_Tavern_battle4",
+    "backgroundPath": "battle/Tavern_battle4.jpg"
+  },
+  {
     "id": "swamp_elf_guardians",
-    "backgroundKey": "battle_bg_swamp",
-    "backgroundPath": "battle_bg_swamp.png",
+    "name": "Болото: стражи старой воды",
+    "intendedLevel": 3,
+    "intendedPartySize": 3,
+    "kind": "hard",
+    "xpReward": 132,
+    "goldLoot": 30,
     "victoryFlag": "swamp_elf_guardians_defeated",
     "enemies": [
       {
         "id": "swamp_knight",
         "name": "Болотный Рыцарь",
         "type": "enemy",
-        "hp": 115,
-        "maxHp": 115,
-        "damage": { "min": 13, "max": 19 },
-        "speed": 4,
-        "armor": 30,
-        "regen": 2,
-        "accuracy": 72,
-        "xpKill": 45,
-        "position": { "row": 0, "col": 0 },
+        "hp": 86,
+        "maxHp": 86,
+        "damage": {
+          "min": 12,
+          "max": 16
+        },
+        "speed": 3,
+        "armor": 28,
+        "accuracy": 74,
+        "regen": 0,
+        "xpKill": 36,
+        "position": {
+          "row": 0,
+          "col": 0
+        },
         "skills": [],
         "ranged": false,
-        "color": 6985258,
         "isBoss": false,
-        "description": "Латник, увязший в чужой клятве. Держит переднюю линию болотного договора."
+        "classId": "warden",
+        "arch": "warden"
       },
       {
         "id": "kikimora",
         "name": "Кикимора",
         "type": "enemy",
-        "hp": 70,
-        "maxHp": 70,
-        "damage": { "min": 12, "max": 19 },
-        "speed": 8,
-        "armor": 8,
-        "regen": 4,
-        "accuracy": 76,
-        "xpKill": 35,
-        "position": { "row": 0, "col": 2 },
+        "hp": 106,
+        "maxHp": 106,
+        "damage": {
+          "min": 18,
+          "max": 26
+        },
+        "speed": 4,
+        "armor": 12,
+        "accuracy": 74,
+        "regen": 3,
+        "xpKill": 53,
+        "position": {
+          "row": 0,
+          "col": 2
+        },
         "skills": [],
         "ranged": false,
-        "ignoreRows": true,
-        "color": 5794361,
         "isBoss": false,
-        "description": "Хранительница нарушенного договора. Быстрая, злая, бьет туда, где строй тоньше."
+        "classId": "brute",
+        "arch": "brute"
       },
       {
         "id": "swamp_elf_battle",
         "name": "Болотная Эльфийка",
         "type": "enemy",
-        "hp": 80,
-        "maxHp": 80,
-        "damage": { "min": 9, "max": 15 },
-        "speed": 7,
-        "armor": 10,
-        "regen": 0,
+        "hp": 50,
+        "maxHp": 50,
+        "damage": {
+          "min": 14,
+          "max": 21
+        },
+        "speed": 6,
+        "armor": 7,
         "accuracy": 84,
-        "xpKill": 40,
-        "position": { "row": 1, "col": 1 },
-        "skills": [],
+        "regen": 0,
+        "xpKill": 33,
+        "position": {
+          "row": 1,
+          "col": 0
+        },
+        "skills": [
+          "enemy_volley"
+        ],
         "ranged": true,
-        "ignoreRows": true,
-        "color": 6135611,
         "isBoss": false,
-        "description": "Стражница старой воды. Не держит строй силой, но направляет его взглядом."
+        "classId": "watcher",
+        "arch": "watcher"
       }
-    ]
+    ],
+    "backgroundKey": "battle_bg_swamp",
+    "backgroundPath": "battle_bg_swamp.png"
   }
 ]

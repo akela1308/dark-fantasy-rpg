@@ -16,6 +16,10 @@ import classesData  from '../data/classes.json';
 import { SaveSystem } from '../utils/SaveSystem.js';
 import { getNpcAnimConfig, attachNpcAnimations } from '../systems/NpcAnimations.js';
 import { MapAmbience } from '../systems/MapAmbience.js';
+import { PartySystem } from '../systems/PartySystem.js';
+import { MapEditor } from '../dev/MapEditor.js';
+
+const PLACEHOLDER_IMAGE = 'maps/gen/_placeholder.png';
 
 // ─────────────────────────────────────────────────────────────────────────────
 export class MapScene extends Phaser.Scene {
@@ -36,7 +40,7 @@ export class MapScene extends Phaser.Scene {
     SaveSystem.applyFlagsToRegistry(this.game.registry);
 
     this._transitioning = false;
-    this._exitCooldown  = 2200;  // мс после спавна — выходы не срабатывают
+    this._exitCooldown  = 2200;  // мс после спавна - выходы не срабатывают
 
     const cfg   = MAP_CONFIGS[this.mapKey];
     const rawSpawn = cfg.spawnPoints[this.spawnId] ?? cfg.spawnPoints.default;
@@ -50,10 +54,15 @@ export class MapScene extends Phaser.Scene {
     this.cameras.main.setScroll(0, 0);
 
     // Фон
-    this.add.image(mapW / 2, mapH / 2, cfg.bgKey).setScale(1).setDepth(0);
+    // Новые локации: картинка из поля image (ключ img:<путь>), растягивается на всю карту
+    if (this.textures.exists(cfg.bgKey)) {
+      this.add.image(mapW / 2, mapH / 2, cfg.bgKey).setScale(1).setDepth(0);
+    } else {
+      this.add.image(mapW / 2, mapH / 2, `img:${cfg.image}`).setDisplaySize(mapW, mapH).setDepth(0);
+    }
 
-    // Зоны хождения — создаём ДО клампинга спавна
-    this.walkable = new WalkableZones(this.mapKey);
+    // Зоны хождения - создаём ДО клампинга спавна
+    this.walkable = new WalkableZones(this.mapKey, cfg.walk);
     // this.walkable.drawDebug(this); // раскомментируй для отладки зон
 
     // Клампим спавн на случай если он вне walkable зоны
@@ -67,6 +76,11 @@ export class MapScene extends Phaser.Scene {
 
     this._heroTrail     = [];
     this._trailInterval = 0;
+
+    // Спутники на карте только если они в партии (PartySystem)
+    this._applyPartyVisibility();
+    // Временная картинка: показываем название, зоны ходьбы и выходы, чтобы карта была проходима
+    if (cfg.image === PLACEHOLDER_IMAGE && !this.textures.exists(cfg.bgKey)) this._drawPlaceholderOverlay(cfg);
 
     // Частицы огня (факелы, свечи)
     this._spawnTorches(cfg);
@@ -114,12 +128,13 @@ export class MapScene extends Phaser.Scene {
 
     // Оживление мира: птицы, свет окон, дым, листья/снег/светлячки, вода (src/data/ambience.json)
     this._ambience = new MapAmbience(this, this.mapKey, this.hero);
+    MapEditor.attach(this, cfg); // dev-редактор зон: только с ?dev=1, клавиша E
 
     // Клик по карте
     this.input.on('pointerdown', (ptr) => {
       if (ptr.rightButtonDown()) return;
       if (this._bookOverlay) return;
-      if (this._dialogue?.active) return;   // диалог идёт — движение заблокировано
+      if (this._dialogue?.active) return;   // диалог идёт - движение заблокировано
       const clamped = this.walkable.clamp(ptr.worldX, ptr.worldY);
       this.hero.moveTo(clamped.x, clamped.y);
       this._showClickMarker(clamped.x, clamped.y);
@@ -150,7 +165,7 @@ export class MapScene extends Phaser.Scene {
     this.input.keyboard.on('keydown-B', () => this._toggleInvGrid());
     this.input.keyboard.on('keydown-J', () => this._toggleFineGrid());
     // TEMP: прод-тест прокачки. Убрать после проверки веток классов.
-    this.input.keyboard.on('keydown-L', () => this._launchDevLevelUp());
+    if (import.meta.env?.DEV) this.input.keyboard.on('keydown-L', () => this._launchDevLevelUp());
 
     // Курсор: показывает мировые координаты под мышью в dev-режиме
     this.input.on('pointermove', (ptr) => {
@@ -188,7 +203,7 @@ export class MapScene extends Phaser.Scene {
 
     this._separateParty();
 
-    // Safety-net: если герой стоит — компаньоны гарантированно в idle (дышат, не шатаются)
+    // Safety-net: если герой стоит - компаньоны гарантированно в idle (дышат, не шатаются)
     if (!this.hero.moving) {
       [this.brawler, this.healer].forEach(u => {
         if (u.moving || u._bobTween) {
@@ -238,8 +253,44 @@ export class MapScene extends Phaser.Scene {
 
   // ─── Party ───────────────────────────────────────────────────────────────
 
+  _applyPartyVisibility() {
+    const party = PartySystem.getParty(this.game.registry);
+    [[this.brawler, 'companion_brawler'], [this.healer, 'companion_healer']].forEach(([u, id]) => {
+      u._hidden = !party.includes(id);
+      if (u._hidden) {
+        u.sprite.setVisible(false);
+        u.shadow?.setVisible(false);
+        if (u._container) u._container.setVisible(false);
+      }
+    });
+  }
+
+  _drawPlaceholderOverlay(cfg) {
+    const g = this.add.graphics().setDepth(2);
+    g.fillStyle(0x8a7a5a, 0.18);
+    (cfg.walk || []).forEach(z => g.fillRect(z.x, z.y, z.w, z.h));
+    g.fillStyle(0xC9A84C, 0.35);
+    (cfg.exits || []).forEach(e => g.fillRect(e.zone.x, e.zone.y, e.zone.w, e.zone.h));
+    (cfg.exits || []).forEach(e => {
+      const target = MAP_CONFIGS[e.toMap];
+      const name = target?.name || e.toMap;
+      const lx = Math.min(1560, Math.max(110, e.zone.x + e.zone.w / 2));
+      const ly = Math.min(900, Math.max(40, e.zone.y + e.zone.h / 2 - 28));
+      this.add.text(lx, ly, name, {
+        fontFamily: 'serif', fontSize: '22px', color: '#E8DEC8', stroke: '#000', strokeThickness: 4,
+      }).setOrigin(0.5).setDepth(3).setAlpha(0.85);
+    });
+    this.add.text(836, 120, cfg.name || this.mapKey, {
+      fontFamily: 'serif', fontSize: '54px', color: '#C9A84C', stroke: '#000', strokeThickness: 6,
+    }).setOrigin(0.5).setDepth(3).setAlpha(0.75);
+    this.add.text(836, 175, 'карта в работе', {
+      fontFamily: 'serif', fontSize: '22px', color: '#9a8e78', stroke: '#000', strokeThickness: 3,
+    }).setOrigin(0.5).setDepth(3).setAlpha(0.7);
+  }
+
   _followTrail(unit, stepsBack) {
-    // Когда герой стоит — не обновляем цель, компаньоны остаются на месте и дышат
+    if (unit._hidden) return;
+    // Когда герой стоит - не обновляем цель, компаньоны остаются на месте и дышат
     if (!this.hero.moving) return;
     const idx = Math.max(0, this._heroTrail.length - stepsBack);
     const pos = this._heroTrail[idx];
@@ -268,7 +319,7 @@ export class MapScene extends Phaser.Scene {
         b.sprite.x = clamped.x;
         b.sprite.y = clamped.y;
         b.shadow.setPosition(b.sprite.x, b.sprite.y + 2);
-        // Если юнит стоит — обновляем цель чтобы не было обратного движения
+        // Если юнит стоит - обновляем цель чтобы не было обратного движения
         if (!b.moving) {
           b.targetX = b.sprite.x;
           b.targetY = b.sprite.y;
@@ -277,7 +328,7 @@ export class MapScene extends Phaser.Scene {
     }
   }
 
-  // ─── Туман (TileSprite — бесконечный скроллинг текстуры) ────────────────
+  // ─── Туман (TileSprite - бесконечный скроллинг текстуры) ────────────────
   _spawnFog(cfg) {
     const layers = cfg.fog || [];
     if (!layers.length) return;
@@ -315,9 +366,9 @@ export class MapScene extends Phaser.Scene {
         duration: 400, yoyo: true, repeat: -1, ease: 'Sine.easeInOut',
       });
 
-      // Несколько точек огня вокруг центра — имитация языков пламени
+      // Несколько точек огня вокруг центра - имитация языков пламени
       const offsets = [
-        { dx: 0,   dy:  0,  sc: 1.3  },   // центр — самый высокий
+        { dx: 0,   dy:  0,  sc: 1.3  },   // центр - самый высокий
         { dx: -14, dy:  5,  sc: 0.9  },   // левый язык
         { dx:  14, dy:  5,  sc: 0.85 },   // правый язык
         { dx: -6,  dy: -4,  sc: 0.75 },   // левый-центр
@@ -341,7 +392,7 @@ export class MapScene extends Phaser.Scene {
         });
       });
 
-      // Дым — поднимается выше и рассеивается
+      // Дым - поднимается выше и рассеивается
       this.add.particles(c.x, c.y - 10, 'fire_dot', {
         speed:    { min: 12, max: 30 },
         angle:    { min: 255, max: 285 },
@@ -381,7 +432,7 @@ export class MapScene extends Phaser.Scene {
           scaleX, scaleY,
           duration,
           ease: 'Sine.easeInOut',
-          onComplete: flicker,   // рекурсивно — каждый раз новые значения
+          onComplete: flicker,   // рекурсивно - каждый раз новые значения
         });
         this.tweens.add({
           targets: innerGlow,
@@ -438,7 +489,7 @@ export class MapScene extends Phaser.Scene {
     this._devGrid = g;
   }
 
-  // Экранная сетка (H) — координаты в пикселях экрана, для позиционирования UI
+  // Экранная сетка (H) - координаты в пикселях экрана, для позиционирования UI
   _toggleScreenGrid() {
     if (this._screenGrid) {
       this._screenGrid.forEach(o => { try { o.destroy(); } catch {} });
@@ -482,7 +533,7 @@ export class MapScene extends Phaser.Scene {
     }
 
     // Подсказка
-    const hint = this.add.text(SW / zoom / 2, 4 / zoom, 'SCREEN COORDS (H — скрыть)', {
+    const hint = this.add.text(SW / zoom / 2, 4 / zoom, 'SCREEN COORDS (H: скрыть)', {
       fontSize: `${Math.round(10 / zoom)}px`, color: '#FFFF00', fontFamily: 'monospace',
     }).setOrigin(0.5, 0).setScrollFactor(0).setDepth(DEPTH + 1);
     objs.push(hint);
@@ -528,7 +579,7 @@ export class MapScene extends Phaser.Scene {
 
     torches.forEach(t => {
       const sc = t.scale ?? 1.0;
-      // Основное пламя — оранжево-жёлтые частицы вверх
+      // Основное пламя - оранжево-жёлтые частицы вверх
       this.add.particles(t.x, t.y, 'fire_dot', {
         speed:    { min: 18 * sc, max: 45 * sc },
         angle:    { min: 255, max: 285 },        // вверх ± чуть в стороны
@@ -542,7 +593,7 @@ export class MapScene extends Phaser.Scene {
         blendMode: 'ADD',
         depth:     t.y + 5,
       });
-      // Дым — серые частицы чуть выше, медленнее
+      // Дым - серые частицы чуть выше, медленнее
       this.add.particles(t.x, t.y - 12 * sc, 'fire_dot', {
         speed:    { min: 8 * sc,  max: 22 * sc },
         angle:    { min: 260, max: 280 },
@@ -560,7 +611,7 @@ export class MapScene extends Phaser.Scene {
 
   _spawnPipeSmoke(cfg) {
     (cfg.pipeSmoke || []).forEach(({ x, y }) => {
-      // Тонкая струйка дыма — медленная, светло-серая, рассеивается
+      // Тонкая струйка дыма - медленная, светло-серая, рассеивается
       this.add.particles(x, y, 'fire_dot', {
         speed:    { min: 4, max: 12 },
         angle:    { min: 262, max: 278 },   // почти строго вверх, лёгкое колебание
@@ -577,15 +628,25 @@ export class MapScene extends Phaser.Scene {
   }
 
   _spawnProps(cfg) {
-    (cfg.props || []).forEach(p => {
+    const place = (p) => {
       const img = this.add.image(p.x, p.y, p.key)
         .setOrigin(p.originX ?? 0.5, p.originY ?? 1)
-        .setDepth(p.depth ?? p.y + 1); // depth по Y — поверх всего что выше по экрану
+        .setDepth(p.depth ?? p.y + 1); // depth по Y - поверх всего что выше по экрану
       if (p.height) {
         const scale = p.height / img.height;
         img.setScale(scale);
       }
-    });
+    };
+    // Пропсы с полем src (вырезанные из карты перекрыватели) подгружаются здесь же, при входе на карту
+    const lazy = (cfg.props || []).filter(p => p.src && !this.textures.exists(p.key));
+    (cfg.props || []).forEach(p => { if (!lazy.includes(p)) place(p); });
+    if (lazy.length) {
+      lazy.forEach(p => {
+        this.load.once(`filecomplete-image-${p.key}`, () => { if (this.scene.isActive()) place(p); });
+        this.load.image(p.key, p.src);
+      });
+      this.load.start();
+    }
   }
 
   _spawnForegrounds(cfg) {
@@ -777,7 +838,7 @@ export class MapScene extends Phaser.Scene {
       // Тень
       const shadow = this.add.ellipse(npc.x, npc.y + 8, 55, 16, 0x000000, 0.35).setDepth(1);
 
-      // Для sway/anchorFeet-NPC: origin (0.5, 1) — движение вокруг ног.
+      // Для sway/anchorFeet-NPC: origin (0.5, 1) - движение вокруг ног.
       // Компенсируем смещение: origin снизу поднимает спрайт, добавляем h/2 к y.
       const anchoredToFeet = npc.sway || npc.anchorFeet;
       const spriteOriginY = anchoredToFeet ? 1 : 0.5;
@@ -799,9 +860,9 @@ export class MapScene extends Phaser.Scene {
         this._setupAmbientNpcAnimation(sprite, npc);
       }
 
-      // Пьяное покачивание (sway: true) — тело качается, ноги стоят на месте
+      // Пьяное покачивание (sway: true) - тело качается, ноги стоят на месте
       if (npc.sway && !animated) {
-        // Вращение вокруг нижнего центра (ног) — x не двигаем
+        // Вращение вокруг нижнего центра (ног) - x не двигаем
         this.tweens.add({
           targets:  sprite,
           angle:    { from: -3, to: 3 },
@@ -810,7 +871,7 @@ export class MapScene extends Phaser.Scene {
           repeat:   -1,
           ease:     'Sine.easeInOut',
         });
-        // Лёгкое смещение верхней части тела (через scaleX) — как инерция при покачивании
+        // Лёгкое смещение верхней части тела (через scaleX) - как инерция при покачивании
         this.tweens.add({
           targets:  sprite,
           scaleX:   { from: ratio * 0.99, to: ratio * 1.01 },
@@ -822,14 +883,14 @@ export class MapScene extends Phaser.Scene {
         });
       }
 
-      // Имя над головой — только по hover
+      // Имя над головой - только по hover
       const label = this.add.text(npc.x, npc.y - h / 2 - 12, npc.name, {
         fontFamily: 'serif', fontSize: '14px', color: '#D4AA60',
         stroke: '#000', strokeThickness: 3,
       }).setOrigin(0.5, 1).setDepth(npc.y + 1).setAlpha(0);
 
       // Hover-портрет справа (если задан флаг hoverPortrait)
-      // Hover-портрет справа — только PNG, никакого фона/рамки
+      // Hover-портрет справа - только PNG, никакого фона/рамки
       let _hImg, _hName;
       if (npc.hoverPortrait && npc.portraitKey) {
         const hW = 120, hH = 145, hx = 1594;
@@ -840,7 +901,7 @@ export class MapScene extends Phaser.Scene {
         }).setOrigin(0.5).setDepth(61).setScrollFactor(0).setAlpha(0);
       }
 
-      // Hover — свечение + показываем имя
+      // Hover - свечение + показываем имя
       sprite.on('pointerover',  () => {
         sprite.setTint(0xFFEEBB); label.setAlpha(1);
         if (_hImg) { _hImg.setAlpha(1); _hName.setAlpha(1); }
@@ -850,13 +911,13 @@ export class MapScene extends Phaser.Scene {
         if (_hImg) { _hImg.setAlpha(0); _hName.setAlpha(0); }
       });
 
-      // Клик — диалог
+      // Клик - диалог
       sprite.on('pointerdown', () => {
         if (this._transitioning || this._dialogue?.active) return;
         this.hero.stopMove();
         this.brawler.stopMove();
         this.healer.stopMove();
-        // Помечаем разговор состоявшимся — при следующем визите NPC исчезнет
+        // Помечаем разговор состоявшимся - при следующем визите NPC исчезнет
         if (npc.vanishKey) this.game.registry.set(npc.vanishKey, true);
         this._showNpcDialogue(npc, this._resolveRootDialogue(npc));
       });
@@ -945,9 +1006,9 @@ export class MapScene extends Phaser.Scene {
           });
           return;
         }
-        // ch.close — принудительно закрыть, не идти дальше
+        // ch.close - принудительно закрыть, не идти дальше
         if (ch.close) return;
-        // ch.next — явный переход; иначе автоматический по позиции
+        // ch.next - явный переход; иначе автоматический по позиции
         const nextIdx = (ch.next !== undefined) ? ch.next : dialogueIndex + 1 + origIdx;
         if (npc.dialogues[nextIdx]) {
           this._showNpcDialogue(npc, nextIdx);
@@ -1074,13 +1135,16 @@ export class MapScene extends Phaser.Scene {
         {
           label:    '[Запугать] С дороги.',
           style:    'threat',
+          // Без кубика: уровень 3+ или Страх 2+ (15_ПРОМПТ, раздел 7)
+          disabled: !this._canIntimidateKorvin(),
+          reason:   'нужен уровень 3 или Страх 2',
           onSelect: () => this._tryIntimidate(bandit),
         },
         {
           label:    'Мы вернемся позже.',
           style:    'retreat',
           onSelect: () => {
-            bandit.encountered = false; // сбрасываем — если вернутся, диалог снова
+            bandit.encountered = false; // сбрасываем - если вернутся, диалог снова
             this._transitionTo('tavern_map', 'tavern_exit');
           },
         },
@@ -1088,8 +1152,24 @@ export class MapScene extends Phaser.Scene {
     });
   }
 
+  _partyLevel() {
+    const reg = this.game.registry;
+    if (reg.get('partyLevel')) return reg.get('partyLevel');
+    const hero = (SaveSystem.load()?.units || []).find(u => u.id === 'hero_duelist');
+    return hero?.level || 1;
+  }
+
+  _refreshGoldHud() {
+    const g = this._inventory?.find(it => it.id === 'gold');
+    if (g) g.quantity = SaveSystem.getGold(this.game.registry);
+  }
+
+  _canIntimidateKorvin() {
+    return this._partyLevel() >= 3 || (this.game.registry.get('rep_fear') || 0) >= 2;
+  }
+
   _startBattle(options = {}) {
-    const battleId = options.battleId || 'bandit_patrol';
+    const battleId = options.battleId || 'korvin_gang';
     const startedFlag = options.startedFlag || (battleId === 'bandit_patrol' ? 'bandit_fight_started' : `${battleId}_started`);
     this.game.registry.set(startedFlag, true);
     this._transitioning = true;
@@ -1105,29 +1185,48 @@ export class MapScene extends Phaser.Scene {
     });
   }
 
-  /** Бандит пропускает — за "дань" или просто пугается молчания */
+  /** Бандит пропускает - за "дань" или просто пугается молчания */
   _banditLetThrough(bandit) {
+    // Пошлина 30 монет, после первой оплаты 60 (01_БАЛАНС 9)
+    const reg = this.game.registry;
+    const toll = reg.get('bandit_paid') ? 60 : 30;
+    const gold = SaveSystem.getGold(reg);
     this._dialogue.show({
       portraitLeft:  'portrait_hero_duelist',
       portraitRight: 'portrait_bandit_commander',
       speakerName:   'Корвин Сухой',
-      text: '"Разум живет дольше гордости. Проходите. Но дорога назад будет стоить отдельно."',
+      text: `"Разум живет дольше гордости. ${toll} монет, и проходите. Но дорога назад будет стоить отдельно."`,
       choices: [
         {
-          label:    'Идём дальше.',
+          label:    `Заплатить ${toll}.`,
           style:    'default',
+          disabled: gold < toll,
+          reason:   `у тебя ${gold} монет`,
           onSelect: () => {
-            this.game.registry.set('bandit_paid', true);
+            SaveSystem.addGold(-toll, reg);
+            reg.set('bandit_paid', true);
+            this._refreshGoldHud?.();
             this._banditRetreat(bandit);
           },
+        },
+        {
+          label:    'Нет. Тогда в бой.',
+          style:    'attack',
+          onSelect: () => this._startBattle(),
+        },
+        {
+          label:    'Мы вернемся позже.',
+          style:    'retreat',
+          onSelect: () => { bandit.encountered = false; },
         },
       ],
     });
   }
 
-  /** Запугивание — 50/50 */
+  /** Запугивание - 50/50 */
   _tryIntimidate(bandit) {
-    const success = Math.random() < 0.5;
+    const success = this._canIntimidateKorvin();
+    if (success) this.game.registry.set('rep_fear', Math.min(5, (this.game.registry.get('rep_fear') || 0) + 1));
     if (success) {
       this._dialogue.show({
         portraitLeft:  'portrait_hero_duelist',
@@ -1165,7 +1264,7 @@ export class MapScene extends Phaser.Scene {
   /** Анимация отступления бандита + убираем его с карты */
   _banditRetreat(bandit) {
     this.game.registry.set('bandit_0_defeated', true);
-    // Все трое остаются на месте — можно пройти мимо
+    // Все трое остаются на месте - можно пройти мимо
   }
 
   // ─── Labels (hover-надписи для зданий и развилок) ────────────────────────
@@ -1207,10 +1306,30 @@ export class MapScene extends Phaser.Scene {
     const cfg = MAP_CONFIGS[this.mapKey];
     for (const exit of (cfg.exits || [])) {
       if (this._inZone(this.hero.x, this.hero.y, exit.zone)) {
+        if (!MAP_CONFIGS[exit.toMap]) continue;
+        const locked = (exit.lockedIfFlag && this.game.registry.get(exit.lockedIfFlag))
+          || (exit.requiresFlag && !this.game.registry.get(exit.requiresFlag));
+        if (locked) {
+          this._showLockedExit(exit);
+          return;
+        }
         this._transitionTo(exit.toMap, exit.spawnId);
         return;
       }
     }
+  }
+
+  // Закрытый выход: подпись и шаг назад от края
+  _showLockedExit(exit) {
+    if (this._lockedMsgCd > this.time.now) return;
+    this._lockedMsgCd = this.time.now + 2500;
+    const z = exit.zone;
+    const back = this.walkable.clamp(this.hero.x + (z.x < 200 ? 90 : z.x > 1400 ? -90 : 0), this.hero.y + (z.y < 300 ? 90 : z.y > 800 ? -90 : 0));
+    this.hero.moveTo(back.x, back.y);
+    const t = this.add.text(836, 150, exit.lockedText || 'Путь закрыт.', {
+      fontFamily: 'serif', fontSize: '24px', color: '#E8DEC8', stroke: '#000', strokeThickness: 4,
+    }).setOrigin(0.5).setDepth(1000).setScrollFactor(0);
+    this.tweens.add({ targets: t, alpha: 0, delay: 1800, duration: 600, onComplete: () => t.destroy() });
   }
 
   _checkTavernEntry() {
@@ -1259,7 +1378,7 @@ export class MapScene extends Phaser.Scene {
   }
 
   _buildHUD(cfg) {
-    // Подсказка — справа внизу (world coords for origin(0,0) camera: canvas = world * zoom)
+    // Подсказка - справа внизу (world coords for origin(0,0) camera: canvas = world * zoom)
     this.add.text(1662, 928, 'Кликни чтобы идти', {
       fontSize: '12px', color: '#666655', fontFamily: 'serif',
     }).setOrigin(1, 1).setDepth(50).setScrollFactor(0);
@@ -1268,11 +1387,12 @@ export class MapScene extends Phaser.Scene {
     // Позиционированы по аннотации:
     //   Экран: x=0–120px, y=180–555px
     //   zoom=0.765 → world = screen/0.765
+    const party = PartySystem.getParty(this.game.registry);
     const portraits = [
-      { key: 'portrait_hero_duelist',      label: 'Дуэлянт' },
-      { key: 'portrait_companion_brawler', label: 'Боец' },
-      { key: 'portrait_companion_healer',  label: 'Знахарка' },
-    ];
+      { id: 'hero_duelist',      key: 'portrait_hero_duelist',      label: 'Дуэлянт' },
+      { id: 'companion_brawler', key: 'portrait_companion_brawler', label: 'Ворнаг' },
+      { id: 'companion_healer',  key: 'portrait_companion_healer',  label: 'Тая' },
+    ].filter(p => party.includes(p.id));
     // Портреты: только PNG + подпись, никаких рамок и прямоугольников
     const cardW  = 150, cardH = 130;
     const startY = 210;
@@ -1388,7 +1508,7 @@ export class MapScene extends Phaser.Scene {
       },
     };
 
-    return ['hero_duelist', 'companion_brawler', 'companion_healer']
+    return PartySystem.getParty(this.game.registry)
       .map(id => {
         const baseUnit = unitsData.find(u => u.id === id);
         const savedUnit = savedUnitsById[id] || {};
@@ -1451,7 +1571,7 @@ export class MapScene extends Phaser.Scene {
     const PW = 1050 / zoom, PH = 640 / zoom;     // размер панели в мировых единицах
     const PX = (W - PW) / 2;
     const PY = (H - PH) / 2 - 20 / zoom;
-    const DEPTH = 10000; // выше всего — портреты HUD=9000, боттом-бар=55
+    const DEPTH = 10000; // выше всего - портреты HUD=9000, боттом-бар=55
 
     // Затемнение фона
     const overlay = this.add.rectangle(W/2, H/2, W, H, 0x000000, 0.78)
@@ -1481,7 +1601,7 @@ export class MapScene extends Phaser.Scene {
       fontSize: '17px', color: '#d4a832', fontFamily: 'serif', letterSpacing: 4
     }).setOrigin(0.5, 0).setDepth(DEPTH+3).setScrollFactor(0).setVisible(false);
 
-    // Кнопка X — отдельная тёмная плашка, чтобы она не терялась на фоне.
+    // Кнопка X - отдельная тёмная плашка, чтобы она не терялась на фоне.
     const closeX = PX + PW - s(24);
     const closeY = PY + s(24);
     const closeBg = this.add.rectangle(closeX, closeY, s(34), s(34), 0x050505, 0.92)
@@ -1558,12 +1678,12 @@ export class MapScene extends Phaser.Scene {
     const INV_COLS    = 6;
     const INV_ROWS    = 9;
     const INV_STEP    = INV_SLOT_PX + INV_GAP_PX;  // 46px шаг
-    const gridX0Scr   = 201;   // canvas px — левый край col 0 (TL иконки 0)
-    const gridY0Scr   = 139;   // canvas px — верхний край row 0 (TL иконки 0)
+    const gridX0Scr   = 201;   // canvas px - левый край col 0 (TL иконки 0)
+    const gridY0Scr   = 139;   // canvas px - верхний край row 0 (TL иконки 0)
 
     const invEls = [];
 
-    // Заголовок «ИНВЕНТАРЬ» — центр над сеткой инвентаря (canvas x=337, y=103)
+    // Заголовок «ИНВЕНТАРЬ» - центр над сеткой инвентаря (canvas x=337, y=103)
     invEls.push(
       this.add.text(s(337), s(103), 'ИНВЕНТАРЬ', {
         fontSize: `${s(11)}px`, color: '#d4a832', fontFamily: 'serif', letterSpacing: 2,
@@ -1641,7 +1761,7 @@ export class MapScene extends Phaser.Scene {
       });
     }
 
-    // Количество — правый нижний угол слота
+    // Количество - правый нижний угол слота
     if (item.stackable || item.quantity > 1) {
       const qtyLabel = this.add.text(
         s(cxScr + INV_SLOT_PX / 2 - 2),
@@ -1835,7 +1955,7 @@ export class MapScene extends Phaser.Scene {
     const BAR_Y = H - BAR_H / 2;
     const DEPTH = 8000; // выше любого NPC (depth = npc.y, макс ~941)
 
-    // Изображение 866×288 — сохраняем пропорции при высоте BAR_H
+    // Изображение 866×288 - сохраняем пропорции при высоте BAR_H
     const imgW = Math.round(BAR_H * (866 / 288));
     this.add.image(W / 2, BAR_Y, 'bottom_panel1')
       .setDisplaySize(imgW, BAR_H)
@@ -1891,7 +2011,7 @@ export class MapScene extends Phaser.Scene {
       const enabled = Boolean(slot.action);
       const baseAlpha = i === 0 ? 0.86 : enabled ? 0.72 : 0.38;
 
-      // Хит-зона — одинаковый квадрат для всех слотов
+      // Хит-зона - одинаковый квадрат для всех слотов
       const hit = this.add.rectangle(sx, sy, SLOT_W_WORLD, SLOT_W_WORLD, 0x000000, 0)
         .setDepth(DEPTH + 3).setScrollFactor(0);
       const icon = this.add.image(sx, sy - s(3), slot.icon)
@@ -2100,7 +2220,7 @@ export class MapScene extends Phaser.Scene {
       }).setDepth(DEPTH+5).setScrollFactor(0));
     });
 
-    // Левая зона (инвентарь) — сетка рисуется статично в _initCharacterSheet, не здесь.
+    // Левая зона (инвентарь) - сетка рисуется статично в _initCharacterSheet, не здесь.
   }
 
   // ── Отладочная сетка инвентаря (клавиша B) ──────────────────────────────
@@ -2154,7 +2274,7 @@ export class MapScene extends Phaser.Scene {
     this._invGridObjs = objs;
   }
 
-  // J — мелкая мировая сетка с шагом 20 world-единиц (~15 canvas px)
+  // J - мелкая мировая сетка с шагом 20 world-единиц (~15 canvas px)
   // Говори «сдвинь на 3 квадрата вправо» = +60 world
   _toggleFineGrid() {
     if (this._fineGrid) {
@@ -2172,7 +2292,7 @@ export class MapScene extends Phaser.Scene {
     const gfx = this.add.graphics().setDepth(DEPTH);
     gfx.lineStyle(1, 0xFFDD88, 0.18);
     for (let x = 0; x <= mapW; x += STEP) {
-      // Каждые 5 квадратов (100 world) — чуть ярче
+      // Каждые 5 квадратов (100 world) - чуть ярче
       if (x % 100 === 0) gfx.lineStyle(1, 0xFFDD88, 0.45);
       else                gfx.lineStyle(1, 0xFFDD88, 0.14);
       gfx.lineBetween(x, 0, x, mapH);

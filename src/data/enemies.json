@@ -1,119 +1,95 @@
 [
   {
     "id": "bandit_commander",
-    "name": "Главарь",
+    "name": "Корвин Сухой",
     "type": "enemy",
-    "hp": 120,
-    "maxHp": 120,
-    "damage": { "min": 14, "max": 20 },
+    "hp": 82,
+    "maxHp": 82,
+    "damage": {
+      "min": 13,
+      "max": 20
+    },
     "speed": 6,
-    "armor": 20,
+    "armor": 14,
+    "accuracy": 75,
     "regen": 0,
-    "accuracy": 78,
-    "xpKill": 50,
-    "position": { "row": 0, "col": 0 },
-    "skills": [],
+    "xpKill": 45,
+    "position": {
+      "row": 0,
+      "col": 0
+    },
+    "skills": [
+      "enemy_heavy",
+      "boss_fury"
+    ],
     "ranged": false,
-    "color": 9109504,
     "isBoss": true,
-    "description": "Командир шайки. Кривой меч, холодные глаза. Яростный вождь."
+    "classId": "blade",
+    "arch": "blade",
+    "color": 9109504,
+    "description": "Барон дороги. Кривой меч, холодные глаза, счёт каждой монете.",
+    "canSurrender": true
   },
   {
     "id": "bandit_brawler",
-    "name": "Головорез",
+    "name": "Куль",
     "type": "enemy",
     "hp": 55,
     "maxHp": 55,
-    "damage": { "min": 8, "max": 14 },
-    "speed": 4,
-    "armor": 10,
+    "damage": {
+      "min": 11,
+      "max": 17
+    },
+    "speed": 5,
+    "armor": 9,
+    "accuracy": 75,
     "regen": 0,
-    "accuracy": 65,
-    "xpKill": 20,
-    "position": { "row": 0, "col": 1 },
-    "skills": [],
+    "xpKill": 23,
+    "position": {
+      "row": 0,
+      "col": 2
+    },
+    "skills": [
+      "enemy_heavy"
+    ],
     "ranged": false,
-    "color": 10506797,
     "isBoss": false,
-    "description": "Тупой, злобный, с дубиной. Бьёт первым."
+    "classId": "blade",
+    "arch": "blade",
+    "color": 10506797,
+    "description": "Тупой, злобный, с дубиной. Бьёт первым.",
+    "canSurrender": true,
+    "commanderId": "bandit_commander"
   },
   {
     "id": "bandit_archer",
-    "name": "Стрелок шайки",
+    "name": "Тисс",
     "type": "enemy",
-    "hp": 40,
-    "maxHp": 40,
-    "damage": { "min": 10, "max": 15 },
-    "speed": 5,
-    "armor": 5,
+    "hp": 42,
+    "maxHp": 42,
+    "damage": {
+      "min": 12,
+      "max": 18
+    },
+    "speed": 6,
+    "armor": 6,
+    "accuracy": 83,
     "regen": 0,
-    "accuracy": 82,
-    "xpKill": 25,
-    "position": { "row": 1, "col": 1 },
-    "skills": [],
+    "xpKill": 23,
+    "position": {
+      "row": 1,
+      "col": 0
+    },
+    "skills": [
+      "enemy_volley"
+    ],
     "ranged": true,
+    "isBoss": false,
+    "classId": "watcher",
+    "arch": "watcher",
     "color": 6950317,
-    "isBoss": false,
-    "description": "Прячется сзади. Бьёт через ряды."
-  },
-  {
-    "id": "test_commander_2",
-    "name": "Главарь",
-    "type": "enemy",
-    "hp": 120,
-    "maxHp": 120,
-    "damage": { "min": 14, "max": 20 },
-    "speed": 6,
-    "armor": 20,
-    "regen": 0,
-    "accuracy": 78,
-    "xpKill": 50,
-    "position": { "row": 0, "col": 2 },
-    "skills": [],
-    "ranged": false,
-    "color": 9109504,
-    "isBoss": false,
-    "spriteKey": "bandit_commander",
-    "description": "Тест."
-  },
-  {
-    "id": "test_commander_3",
-    "name": "Главарь",
-    "type": "enemy",
-    "hp": 120,
-    "maxHp": 120,
-    "damage": { "min": 14, "max": 20 },
-    "speed": 6,
-    "armor": 20,
-    "regen": 0,
-    "accuracy": 78,
-    "xpKill": 50,
-    "position": { "row": 1, "col": 0 },
-    "skills": [],
-    "ranged": false,
-    "color": 9109504,
-    "isBoss": false,
-    "spriteKey": "bandit_commander",
-    "description": "Тест."
-  },
-  {
-    "id": "test_commander_4",
-    "name": "Главарь",
-    "type": "enemy",
-    "hp": 120,
-    "maxHp": 120,
-    "damage": { "min": 14, "max": 20 },
-    "speed": 6,
-    "armor": 20,
-    "regen": 0,
-    "accuracy": 78,
-    "xpKill": 50,
-    "position": { "row": 1, "col": 2 },
-    "skills": [],
-    "ranged": false,
-    "color": 9109504,
-    "isBoss": false,
-    "spriteKey": "bandit_commander",
-    "description": "Тест."
+    "description": "Прячется сзади. Бьёт через ряды.",
+    "canSurrender": true,
+    "commanderId": "bandit_commander"
   }
 ]

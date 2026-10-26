@@ -15,18 +15,296 @@
         "id": "honor_code",
         "name": "Кодекс Чести",
         "unlockLevel": 3,
-        "description": "Дуэльная ветка: старый закон, метки, парирование, ответные выпады, честная изоляция цели."
+        "description": "Дуэльная ветка: старый закон, метки, парирование, ответные выпады, честная изоляция цели.",
+        "firstNode": {
+          "passiveId": "riposte",
+          "label": "Ответный выпад"
+        }
       },
       {
         "id": "last_argument",
         "name": "Последний Аргумент",
         "unlockLevel": 3,
-        "description": "Пороховая ветка: пистоль, сбив инициативы, грязная дистанция, контроль одиночной цели."
+        "description": "Пороховая ветка: пистоль, сбив инициативы, грязная дистанция, контроль одиночной цели.",
+        "firstNode": {
+          "passiveId": "point_blank",
+          "label": "Выстрел в упор"
+        }
       }
     ],
-    "tags": ["duel", "honor", "old_law", "pistol"],
+    "tags": [
+      "duel",
+      "honor",
+      "old_law",
+      "pistol"
+    ],
     "levelPlan": {
-      "3": ["honor_code", "last_argument"]
+      "2": [],
+      "3": [
+        "honor_code",
+        "last_argument"
+      ],
+      "4": [
+        {
+          "key": "mastery",
+          "type": "perk",
+          "label": "Мастерство",
+          "desc": "+2 к урону",
+          "effects": {
+            "dmg": 2
+          }
+        },
+        {
+          "key": "endurance",
+          "type": "perk",
+          "label": "Выдержка",
+          "desc": "+15 к максимальному HP",
+          "effects": {
+            "hp": 15
+          }
+        },
+        {
+          "key": "composure",
+          "type": "perk",
+          "label": "Хладнокровие",
+          "desc": "+5 к точности",
+          "effects": {
+            "accuracy": 5
+          }
+        }
+      ],
+      "5": [
+        {
+          "key": "challenge",
+          "type": "skill",
+          "skillId": "challenge",
+          "label": "Вызов",
+          "desc": "Метка на 3 хода: удары по цели не промахиваются и бьют на 40% сильнее. Откат 3",
+          "branchId": "honor_code",
+          "auto": true
+        },
+        {
+          "key": "last_argument_shot",
+          "type": "skill",
+          "skillId": "last_argument_shot",
+          "label": "Последний Аргумент",
+          "desc": "Финишер: тратит весь Темп, урон ×(1 + 0.5 × Темп), без брони. Раз в бой",
+          "branchId": "last_argument",
+          "auto": true
+        }
+      ],
+      "6": [
+        {
+          "key": "tempo_cap",
+          "type": "perk",
+          "label": "Темп до 4",
+          "desc": "Предел Темпа 4",
+          "effects": {
+            "resourceMax": {
+              "tempo": 4
+            }
+          }
+        },
+        {
+          "key": "extra_charge",
+          "type": "perk",
+          "label": "Лишний заряд",
+          "desc": "+1 заряд пистоля на бой",
+          "effects": {
+            "resourceBase": {
+              "pistol_charges": 1
+            }
+          }
+        },
+        {
+          "key": "bloodthirst",
+          "type": "perk",
+          "label": "Жажда крови",
+          "desc": "Вампиризм 4 вместо 2",
+          "effects": {
+            "lifestealSet": 4
+          }
+        }
+      ],
+      "7": [
+        {
+          "key": "mastery",
+          "type": "perk",
+          "label": "Мастерство",
+          "desc": "+2 к урону",
+          "effects": {
+            "dmg": 2
+          }
+        },
+        {
+          "key": "endurance",
+          "type": "perk",
+          "label": "Выдержка",
+          "desc": "+15 к максимальному HP",
+          "effects": {
+            "hp": 15
+          }
+        },
+        {
+          "key": "composure",
+          "type": "perk",
+          "label": "Хладнокровие",
+          "desc": "+5 к точности",
+          "effects": {
+            "accuracy": 5
+          }
+        }
+      ],
+      "8": [
+        {
+          "key": "parry",
+          "type": "passive",
+          "passiveId": "parry",
+          "label": "Парирование",
+          "desc": "При Темпе 2+ шанс 20% отбить ближний удар",
+          "branchId": "honor_code",
+          "auto": true,
+          "implemented": false
+        },
+        {
+          "key": "smoke_screen",
+          "type": "passive",
+          "passiveId": "smoke_screen",
+          "label": "Дымная завеса",
+          "desc": "После выстрела враги получают -15 к точности по вам до конца раунда",
+          "branchId": "last_argument",
+          "auto": true,
+          "implemented": false
+        }
+      ],
+      "9": [
+        {
+          "key": "mastery",
+          "type": "perk",
+          "label": "Мастерство",
+          "desc": "+2 к урону",
+          "effects": {
+            "dmg": 2
+          }
+        },
+        {
+          "key": "endurance",
+          "type": "perk",
+          "label": "Выдержка",
+          "desc": "+15 к максимальному HP",
+          "effects": {
+            "hp": 15
+          }
+        },
+        {
+          "key": "composure",
+          "type": "perk",
+          "label": "Хладнокровие",
+          "desc": "+5 к точности",
+          "effects": {
+            "accuracy": 5
+          }
+        }
+      ],
+      "10": [
+        {
+          "key": "road_honor",
+          "type": "passive",
+          "passiveId": "road_honor",
+          "label": "Честь дороги",
+          "desc": "Союзники +1 к инициативе, пока герой стоит",
+          "branchId": "honor_code",
+          "auto": true,
+          "implemented": false
+        },
+        {
+          "key": "dirty_range",
+          "type": "passive",
+          "passiveId": "dirty_range",
+          "label": "Грязная дистанция",
+          "desc": "3 заряда вместо 2, выстрел накладывает слабость",
+          "branchId": "last_argument",
+          "auto": true,
+          "implemented": false
+        }
+      ],
+      "11": [
+        {
+          "key": "mastery",
+          "type": "perk",
+          "label": "Мастерство",
+          "desc": "+2 к урону",
+          "effects": {
+            "dmg": 2
+          }
+        },
+        {
+          "key": "endurance",
+          "type": "perk",
+          "label": "Выдержка",
+          "desc": "+15 к максимальному HP",
+          "effects": {
+            "hp": 15
+          }
+        },
+        {
+          "key": "composure",
+          "type": "perk",
+          "label": "Хладнокровие",
+          "desc": "+5 к точности",
+          "effects": {
+            "accuracy": 5
+          }
+        }
+      ],
+      "12": [
+        {
+          "key": "last_barrier",
+          "type": "passive",
+          "passiveId": "last_barrier",
+          "label": "Последний барьер",
+          "desc": "Раз в бой при HP ниже 30%: отбиваете все ближние удары до конца раунда",
+          "branchId": "honor_code",
+          "auto": true,
+          "implemented": false
+        },
+        {
+          "key": "two_barrels",
+          "type": "passive",
+          "passiveId": "two_barrels",
+          "label": "Два ствола",
+          "desc": "Раз в бой: два выстрела одним действием",
+          "branchId": "last_argument",
+          "auto": true,
+          "implemented": false
+        }
+      ]
+    },
+    "growth": {
+      "hp": 7,
+      "dmin": 1,
+      "dmax": 1,
+      "armor": 0,
+      "accuracy": 1,
+      "speedAt": [
+        4,
+        8,
+        12
+      ],
+      "armorCap": 60,
+      "pistolBase": [
+        20,
+        26
+      ],
+      "pistolPerLevel": 2
+    },
+    "base": {
+      "hp": 70,
+      "dmin": 11,
+      "dmax": 16,
+      "speed": 7,
+      "armor": 10,
+      "accuracy": 82
     }
   },
   {
@@ -46,18 +324,317 @@
         "id": "living_wall",
         "name": "Живая Стена",
         "unlockLevel": 3,
-        "description": "Защитная ветка: держать линию, прикрывать союзников, выдерживать натиск."
+        "description": "Защитная ветка: держать линию, прикрывать союзников, выдерживать натиск.",
+        "firstNode": {
+          "passiveId": "hold_the_line",
+          "label": "Держать строй"
+        }
       },
       {
         "id": "bonebreaker",
         "name": "Костолом",
         "unlockLevel": 3,
-        "description": "Агрессивная ветка: тяжелые удары, шатание, ломка защиты, давление дубиной."
+        "description": "Агрессивная ветка: тяжелые удары, шатание, ломка защиты, давление дубиной.",
+        "firstNode": {
+          "passiveId": "breaking_blow",
+          "label": "Ломающий удар"
+        }
       }
     ],
-    "tags": ["frontline", "club", "guard"],
+    "tags": [
+      "frontline",
+      "club",
+      "guard"
+    ],
     "levelPlan": {
-      "3": ["living_wall", "bonebreaker"]
+      "2": [
+        {
+          "key": "hardened",
+          "type": "perk",
+          "label": "Закалённость",
+          "desc": "+20 к максимальному HP",
+          "effects": {
+            "hp": 20
+          }
+        },
+        {
+          "key": "steadfast",
+          "type": "perk",
+          "label": "Стойкость",
+          "desc": "+4% к броне",
+          "effects": {
+            "armor": 4
+          }
+        },
+        {
+          "key": "berserk",
+          "type": "perk",
+          "label": "Берсерк",
+          "desc": "+4 к максимальному урону",
+          "effects": {
+            "dmgMax": 4
+          }
+        }
+      ],
+      "3": [
+        "living_wall",
+        "bonebreaker"
+      ],
+      "4": [
+        {
+          "key": "hardened",
+          "type": "perk",
+          "label": "Закалённость",
+          "desc": "+20 к максимальному HP",
+          "effects": {
+            "hp": 20
+          }
+        },
+        {
+          "key": "steadfast",
+          "type": "perk",
+          "label": "Стойкость",
+          "desc": "+4% к броне",
+          "effects": {
+            "armor": 4
+          }
+        },
+        {
+          "key": "berserk",
+          "type": "perk",
+          "label": "Берсерк",
+          "desc": "+4 к максимальному урону",
+          "effects": {
+            "dmgMax": 4
+          }
+        }
+      ],
+      "5": [
+        {
+          "key": "punish_intruders",
+          "type": "passive",
+          "passiveId": "punish_intruders",
+          "label": "Кара непрошенных",
+          "desc": "Реакция: враг ударил вас или прикрытого союзника, вы бьёте в ответ. Раз в раунд",
+          "branchId": "living_wall",
+          "auto": true
+        },
+        {
+          "key": "crushing_blow",
+          "type": "passive",
+          "passiveId": "crushing_blow",
+          "label": "Проламывание",
+          "desc": "Тяжёлый удар игнорирует половину брони и снимает цели 10% брони на 2 хода",
+          "branchId": "bonebreaker",
+          "auto": true
+        }
+      ],
+      "6": [
+        {
+          "key": "cover_twice",
+          "type": "perk",
+          "label": "Двойное прикрытие",
+          "desc": "Прикрыть 2 раза за бой",
+          "effects": {
+            "resourceBase": {
+              "cover_uses": 1
+            }
+          }
+        },
+        {
+          "key": "might_cap",
+          "type": "perk",
+          "label": "Мощь до 4",
+          "desc": "Предел Мощи 4",
+          "effects": {
+            "resourceMax": {
+              "might": 4
+            }
+          }
+        },
+        {
+          "key": "regen_plus",
+          "type": "perk",
+          "label": "Второе дыхание",
+          "desc": "Регенерация +2%",
+          "effects": {
+            "regen": 2
+          }
+        }
+      ],
+      "7": [
+        {
+          "key": "hardened",
+          "type": "perk",
+          "label": "Закалённость",
+          "desc": "+20 к максимальному HP",
+          "effects": {
+            "hp": 20
+          }
+        },
+        {
+          "key": "steadfast",
+          "type": "perk",
+          "label": "Стойкость",
+          "desc": "+4% к броне",
+          "effects": {
+            "armor": 4
+          }
+        },
+        {
+          "key": "berserk",
+          "type": "perk",
+          "label": "Берсерк",
+          "desc": "+4 к максимальному урону",
+          "effects": {
+            "dmgMax": 4
+          }
+        }
+      ],
+      "8": [
+        {
+          "key": "deaf_stance",
+          "type": "skill",
+          "skillId": "deaf_stance",
+          "label": "Глухая стойка",
+          "desc": "Пропустить атаку, получить защиту на 2 хода и +2 Мощи",
+          "branchId": "living_wall",
+          "auto": true,
+          "implemented": false
+        },
+        {
+          "key": "sweep",
+          "type": "skill",
+          "skillId": "sweep",
+          "label": "Размах",
+          "desc": "Удар по двум соседним врагам переднего ряда ×0.9, 2 Мощи",
+          "branchId": "bonebreaker",
+          "auto": true,
+          "implemented": false
+        }
+      ],
+      "9": [
+        {
+          "key": "hardened",
+          "type": "perk",
+          "label": "Закалённость",
+          "desc": "+20 к максимальному HP",
+          "effects": {
+            "hp": 20
+          }
+        },
+        {
+          "key": "steadfast",
+          "type": "perk",
+          "label": "Стойкость",
+          "desc": "+4% к броне",
+          "effects": {
+            "armor": 4
+          }
+        },
+        {
+          "key": "berserk",
+          "type": "perk",
+          "label": "Берсерк",
+          "desc": "+4 к максимальному урону",
+          "effects": {
+            "dmgMax": 4
+          }
+        }
+      ],
+      "10": [
+        {
+          "key": "unyielding",
+          "type": "passive",
+          "passiveId": "unyielding",
+          "label": "Неотступный",
+          "desc": "Иммунитет к шатанию и слабости",
+          "branchId": "living_wall",
+          "auto": true,
+          "implemented": false
+        },
+        {
+          "key": "thirst",
+          "type": "passive",
+          "passiveId": "thirst",
+          "label": "Жажда",
+          "desc": "+1 Мощь, когда ваша цель умирает",
+          "branchId": "bonebreaker",
+          "auto": true,
+          "implemented": false
+        }
+      ],
+      "11": [
+        {
+          "key": "hardened",
+          "type": "perk",
+          "label": "Закалённость",
+          "desc": "+20 к максимальному HP",
+          "effects": {
+            "hp": 20
+          }
+        },
+        {
+          "key": "steadfast",
+          "type": "perk",
+          "label": "Стойкость",
+          "desc": "+4% к броне",
+          "effects": {
+            "armor": 4
+          }
+        },
+        {
+          "key": "berserk",
+          "type": "perk",
+          "label": "Берсерк",
+          "desc": "+4 к максимальному урону",
+          "effects": {
+            "dmgMax": 4
+          }
+        }
+      ],
+      "12": [
+        {
+          "key": "last_bulwark",
+          "type": "passive",
+          "passiveId": "last_bulwark",
+          "label": "Последний заслон",
+          "desc": "Раз в бой: весь урон по союзникам в этом раунде идёт в вас с половиной силы",
+          "branchId": "living_wall",
+          "auto": true,
+          "implemented": false
+        },
+        {
+          "key": "bonebreaker_finisher",
+          "type": "skill",
+          "skillId": "bonebreaker_finisher",
+          "label": "Костолом",
+          "desc": "Цель ниже 25% HP умирает. 3 Мощи, откат 3",
+          "branchId": "bonebreaker",
+          "auto": true,
+          "implemented": false
+        }
+      ]
+    },
+    "growth": {
+      "hp": 10,
+      "dmin": 1,
+      "dmax": 1,
+      "armor": 2,
+      "accuracy": 1,
+      "speedAt": [
+        6,
+        12
+      ],
+      "armorCap": 50
+    },
+    "base": {
+      "hp": 95,
+      "dmin": 9,
+      "dmax": 14,
+      "speed": 4,
+      "armor": 25,
+      "accuracy": 72
     }
   },
   {
@@ -76,18 +653,320 @@
         "id": "healers_hand",
         "name": "Рука Лекаря",
         "unlockLevel": 3,
-        "description": "Лечебная ветка: перевязки, настои, снятие состояний, спасение союзников."
+        "description": "Лечебная ветка: перевязки, настои, снятие состояний, спасение союзников.",
+        "firstNode": {
+          "skillId": "bitter_poultice",
+          "label": "Горькая припарка"
+        }
       },
       {
         "id": "bitter_tinctures",
         "name": "Горькие Настои",
         "unlockLevel": 3,
-        "description": "Мрачная ветка: слабость, дурман, корни, цена лечения и темная народная медицина."
+        "description": "Мрачная ветка: слабость, дурман, корни, цена лечения и темная народная медицина.",
+        "firstNode": {
+          "skillId": "dope_smoke",
+          "label": "Дурманный дым"
+        }
       }
     ],
-    "tags": ["healing", "herbs", "tinctures"],
+    "tags": [
+      "healing",
+      "herbs",
+      "tinctures"
+    ],
     "levelPlan": {
-      "3": ["healers_hand", "bitter_tinctures"]
+      "2": [
+        {
+          "key": "stamina",
+          "type": "perk",
+          "label": "Выносливость",
+          "desc": "+15 к максимальному HP",
+          "effects": {
+            "hp": 15
+          }
+        },
+        {
+          "key": "ward",
+          "type": "perk",
+          "label": "Оберег",
+          "desc": "+3% к броне",
+          "effects": {
+            "armor": 3
+          }
+        },
+        {
+          "key": "concentration",
+          "type": "perk",
+          "label": "Концентрация",
+          "desc": "-1 к откату навыков",
+          "effects": {
+            "cdReduction": 1
+          }
+        }
+      ],
+      "3": [
+        "healers_hand",
+        "bitter_tinctures"
+      ],
+      "4": [
+        {
+          "key": "stamina",
+          "type": "perk",
+          "label": "Выносливость",
+          "desc": "+15 к максимальному HP",
+          "effects": {
+            "hp": 15
+          }
+        },
+        {
+          "key": "ward",
+          "type": "perk",
+          "label": "Оберег",
+          "desc": "+3% к броне",
+          "effects": {
+            "armor": 3
+          }
+        },
+        {
+          "key": "concentration",
+          "type": "perk",
+          "label": "Концентрация",
+          "desc": "-1 к откату навыков",
+          "effects": {
+            "cdReduction": 1
+          }
+        }
+      ],
+      "5": [
+        {
+          "key": "resin_brew",
+          "type": "skill",
+          "skillId": "resin_brew",
+          "label": "Отвар живицы",
+          "desc": "Лечит всех союзников на половину Перевязки. 2 Сбора, откат 3",
+          "branchId": "healers_hand",
+          "auto": true
+        },
+        {
+          "key": "strangle_root",
+          "type": "skill",
+          "skillId": "strangle_root",
+          "label": "Корень-удавка",
+          "desc": "Цель теряет 4 инициативы до конца боя (босс 2). 1 Сбор, откат 3",
+          "branchId": "bitter_tinctures",
+          "auto": true
+        }
+      ],
+      "6": [
+        {
+          "key": "extra_supply",
+          "type": "perk",
+          "label": "Запасной сбор",
+          "desc": "+1 Сбор",
+          "effects": {
+            "resourceBase": {
+              "supplies": 1
+            }
+          }
+        },
+        {
+          "key": "bandage_plus",
+          "type": "perk",
+          "label": "Тугая повязка",
+          "desc": "Перевязка лечит на 5 больше",
+          "effects": {
+            "healBonus": 5
+          }
+        },
+        {
+          "key": "herbalist",
+          "type": "perk",
+          "label": "Травница",
+          "desc": "+1 Сбор на каждом привале у костра",
+          "effects": {
+            "tag": "herbalist"
+          }
+        }
+      ],
+      "7": [
+        {
+          "key": "stamina",
+          "type": "perk",
+          "label": "Выносливость",
+          "desc": "+15 к максимальному HP",
+          "effects": {
+            "hp": 15
+          }
+        },
+        {
+          "key": "ward",
+          "type": "perk",
+          "label": "Оберег",
+          "desc": "+3% к броне",
+          "effects": {
+            "armor": 3
+          }
+        },
+        {
+          "key": "concentration",
+          "type": "perk",
+          "label": "Концентрация",
+          "desc": "-1 к откату навыков",
+          "effects": {
+            "cdReduction": 1
+          }
+        }
+      ],
+      "8": [
+        {
+          "key": "leech_response",
+          "type": "passive",
+          "passiveId": "leech_response",
+          "label": "Пиявочный отклик",
+          "desc": "Реакция: союзник ниже 30% после удара сразу лечится на 10 + уровень. Раз в раунд",
+          "branchId": "healers_hand",
+          "auto": true,
+          "implemented": false
+        },
+        {
+          "key": "bitter_price",
+          "type": "passive",
+          "passiveId": "bitter_price",
+          "label": "Горькая цена",
+          "desc": "Перевязка не тратит Сборы, но Знахарка теряет 5 HP",
+          "branchId": "bitter_tinctures",
+          "auto": true,
+          "implemented": false
+        }
+      ],
+      "9": [
+        {
+          "key": "stamina",
+          "type": "perk",
+          "label": "Выносливость",
+          "desc": "+15 к максимальному HP",
+          "effects": {
+            "hp": 15
+          }
+        },
+        {
+          "key": "ward",
+          "type": "perk",
+          "label": "Оберег",
+          "desc": "+3% к броне",
+          "effects": {
+            "armor": 3
+          }
+        },
+        {
+          "key": "concentration",
+          "type": "perk",
+          "label": "Концентрация",
+          "desc": "-1 к откату навыков",
+          "effects": {
+            "cdReduction": 1
+          }
+        }
+      ],
+      "10": [
+        {
+          "key": "clean_hands",
+          "type": "passive",
+          "passiveId": "clean_hands",
+          "label": "Чистые руки",
+          "desc": "В конце хода союзника с него снимается один статус",
+          "branchId": "healers_hand",
+          "auto": true,
+          "implemented": false
+        },
+        {
+          "key": "rot",
+          "type": "passive",
+          "passiveId": "rot",
+          "label": "Порча",
+          "desc": "Ослабленные цели получают +15% урона",
+          "branchId": "bitter_tinctures",
+          "auto": true,
+          "implemented": false
+        }
+      ],
+      "11": [
+        {
+          "key": "stamina",
+          "type": "perk",
+          "label": "Выносливость",
+          "desc": "+15 к максимальному HP",
+          "effects": {
+            "hp": 15
+          }
+        },
+        {
+          "key": "ward",
+          "type": "perk",
+          "label": "Оберег",
+          "desc": "+3% к броне",
+          "effects": {
+            "armor": 3
+          }
+        },
+        {
+          "key": "concentration",
+          "type": "perk",
+          "label": "Концентрация",
+          "desc": "-1 к откату навыков",
+          "effects": {
+            "cdReduction": 1
+          }
+        }
+      ],
+      "12": [
+        {
+          "key": "last_tincture",
+          "type": "passive",
+          "passiveId": "last_tincture",
+          "label": "Последняя настойка",
+          "desc": "Раз в бой: поднять упавшего союзника с 40% HP",
+          "branchId": "healers_hand",
+          "auto": true,
+          "implemented": false
+        },
+        {
+          "key": "dope_all",
+          "type": "passive",
+          "passiveId": "dope_all",
+          "label": "Дурман на всех",
+          "desc": "Раз в бой: слабость на всех врагов",
+          "branchId": "bitter_tinctures",
+          "auto": true,
+          "implemented": false
+        }
+      ]
+    },
+    "growth": {
+      "hp": 6,
+      "dmin": 0.5,
+      "dmax": 0.5,
+      "armor": 1,
+      "accuracy": 1,
+      "speedAt": [
+        7
+      ],
+      "armorCap": 60,
+      "healBase": 18,
+      "healPerLevel": 3,
+      "suppliesAt": [
+        4,
+        8
+      ]
+    },
+    "base": {
+      "hp": 50,
+      "dmin": 5,
+      "dmax": 9,
+      "speed": 5,
+      "armor": 5,
+      "accuracy": 75
     }
   }
 ]

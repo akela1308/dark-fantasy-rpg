@@ -1,7 +1,7 @@
 /**
- * DialoguePanel — нижняя диалоговая полоса в стиле RPG.
- * dialog_frame.png — центральная рамка (666×375, ratio 1.776:1).
- * Рамка рендерится с сохранением пропорций — без растяжки.
+ * DialoguePanel - нижняя диалоговая полоса в стиле RPG.
+ * dialog_frame.png - центральная рамка (666×375, ratio 1.776:1).
+ * Рамка рендерится с сохранением пропорций - без растяжки.
  * Портреты по краям экрана, независимо от рамки.
  */
 export class DialoguePanel {
@@ -34,14 +34,14 @@ export class DialoguePanel {
     const FRAME_RATIO = 666 / 375;                           // 1.776
     const frameH_s    = barH_s;                               // 310
     const frameW_s    = Math.round(frameH_s * FRAME_RATIO);  // 551
-    const frameCX_s   = SW / 2;                              // 640 — по центру
+    const frameCX_s   = SW / 2;                              // 640 - по центру
     const frameL_s    = Math.round(frameCX_s - frameW_s / 2); // 364
     const frameR_s    = Math.round(frameCX_s + frameW_s / 2); // 915
 
     // ── Портреты: по краям экрана, независимо от рамки ────────────────
     const portW_s  = 185;
     const portH_s  = 255;
-    const portCY_s = barCY_s - 10; // чуть выше центра — выступают вверх
+    const portCY_s = barCY_s - 10; // чуть выше центра - выступают вверх
 
     // ── Декоративная рамка ─────────────────────────────────────────────
     if (scene.textures.exists('dialog_frame')) {
@@ -63,7 +63,7 @@ export class DialoguePanel {
                          cfg.portraitRight, cfg.speakerName || null, s(portH_s));
     }
 
-    // ── Текстовая зона — внутри рамки, с отступом ─────────────────────
+    // ── Текстовая зона - внутри рамки, с отступом ─────────────────────
     // ~15% ширины рамки с каждой стороны = декоративные бордюры
     const innerPad_s = 80;
     const textL_s    = frameL_s + innerPad_s;
@@ -84,7 +84,7 @@ export class DialoguePanel {
     }).setDepth(9504).setScrollFactor(0);
     this._add(speech);
 
-    // ── Разделитель — динамически ПОСЛЕ текста, не на фиксированной высоте ──
+    // ── Разделитель - динамически ПОСЛЕ текста, не на фиксированной высоте ──
     const textBottom  = speech.getBounds().bottom;           // мировые px
     const sepGap      = s(10);
     const frameBottom = s(barTop_s + frameH_s);
@@ -110,6 +110,20 @@ export class DialoguePanel {
     const choiceStartY  = sepY_world + s(11);
 
     (cfg.choices || []).forEach((ch, i) => {
+      // Недоступный вариант: серый, с подписью условия, не нажимается (03_ДИАЛОГИ, раздел 2)
+      if (ch.disabled) {
+        const txt = scene.add.text(
+          s(textL_s), choiceStartY + i * choiceGapY,
+          `${i + 1}. ${ch.label}${ch.reason ? `  [${ch.reason}]` : ''}`,
+          {
+            fontFamily: 'serif', fontSize: `${Math.round(14 / zoom)}px`, color: '#6a645a',
+            stroke: '#000', strokeThickness: 2,
+            wordWrap: { width: s(textW_s + 60), useAdvancedWrap: true },
+          }
+        ).setDepth(9505).setScrollFactor(0);
+        this._add(txt);
+        return;
+      }
       const color = styleColor[ch.style || 'default'] || styleColor.default;
       const hover = styleHover[ch.style || 'default'] || styleHover.default;
       const btn = scene.add.text(

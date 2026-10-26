@@ -2,7 +2,7 @@ import { GRID } from '../utils/constants.js';
 import eventBus from '../utils/eventBus.js';
 
 /**
- * BattleGrid — логика позиционирования на поле 2×3.
+ * BattleGrid - логика позиционирования на поле 2×3.
  * Хранит матрицу для каждой стороны (player/enemy).
  */
 export class BattleGrid {

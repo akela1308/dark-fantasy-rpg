@@ -1,7 +1,8 @@
 import * as Phaser from 'phaser/dist/phaser.esm.js';
+import MAP_CONFIGS from '../data/maps.json';
 
 /**
- * LoadingScene — экран загрузки с картинкой по центру и прогресс баром.
+ * LoadingScene - экран загрузки с картинкой по центру и прогресс баром.
  */
 export class LoadingScene extends Phaser.Scene {
   constructor() {
@@ -42,7 +43,7 @@ export class LoadingScene extends Phaser.Scene {
     // Сначала загружаем картинку
     this.load.image('loading_bg', 'loading.png');
 
-    // Когда картинка загружена — показываем её по центру без растяжки
+    // Когда картинка загружена - показываем её по центру без растяжки
     this.load.once('filecomplete-image-loading_bg', () => {
       const img = this.add.image(W / 2, H / 2, 'loading_bg');
       // Масштабируем чтобы вписалась в экран, сохраняя пропорции
@@ -104,6 +105,10 @@ export class LoadingScene extends Phaser.Scene {
     img('map_road_to_village', 'maps/road_to_village.png');
     img('map_gate',          'maps/gate.png');
     img('map_village',       'maps/village.png');
+    // Карты из maps.json с полем image (новые локации и временная картинка): ключ img:<путь>
+    Object.values(MAP_CONFIGS).forEach(cfg => {
+      if (cfg.image && !this.textures.exists(cfg.bgKey)) img(`img:${cfg.image}`, cfg.image);
+    });
     img('fg_lantern_map1',    'maps/foreground_lantern_map1.png');
 
     // Персонажи на карте
@@ -117,17 +122,17 @@ export class LoadingScene extends Phaser.Scene {
     sheet('map_healer_walk_side', 'maps/characters/healer_walk_side_v2.png', { frameWidth: 292, frameHeight: 516 });
 
     // Paper doll части
-    // Боец и компаньоны — split: upper + leg_l + leg_r (ноги раздельно)
+    // Боец и компаньоны - split: upper + leg_l + leg_r (ноги раздельно)
     const splitChars = ['brawler', 'companion_brawler', 'companion_healer'];
     splitChars.forEach(name => {
       img(`map_${name}_upper`, `maps/characters/${name}_upper.png`);
       img(`map_${name}_leg_l`, `maps/characters/${name}_leg_l.png`);
       img(`map_${name}_leg_r`, `maps/characters/${name}_leg_r.png`);
     });
-    // Герой — single: upper + legs (плащ как единая деталь, без сплита)
+    // Герой - single: upper + legs (плащ как единая деталь, без сплита)
     img('map_hero_upper', 'maps/characters/hero_upper.png');
     img('map_hero_legs',  'maps/characters/hero_legs.png');
-    // Знахарка — без paperdoll (юбка)
+    // Знахарка - без paperdoll (юбка)
     img('map_healer_upper', 'maps/characters/healer_upper.png');
     img('map_tavernman', 'maps/characters/tavernman.png');
     img('map_wanderer',  'maps/characters/map_wanderer.png');
@@ -205,7 +210,7 @@ export class LoadingScene extends Phaser.Scene {
     img('fog',  'maps/fog.png');
     img('fog2', 'maps/fog2.png');
 
-    // Аудио: только первый трек сразу, остальные — при необходимости (ленивая загрузка)
+    // Аудио: только первый трек сразу, остальные - при необходимости (ленивая загрузка)
     // Это экономит ~50 МБ при первом старте
     snd('track_ashes2', 'audio/Ashes of Velanth 2.mp3');
     // Остальные треки грузятся в MusicPlayer когда понадобятся
@@ -227,7 +232,7 @@ export class LoadingScene extends Phaser.Scene {
         };
 
         if (this.sound.locked) {
-          // Браузер заблокировал autoplay — запустим при первом взаимодействии
+          // Браузер заблокировал autoplay - запустим при первом взаимодействии
           this.sound.once('unlocked', startMusic);
         } else {
           startMusic();

@@ -1,5 +1,5 @@
 /**
- * MusicPlayer — компактный плеер в углу экрана.
+ * MusicPlayer - компактный плеер в углу экрана.
  * Музыка уже может играть с BootScene через registry.
  * Плеер подхватывает текущий трек и позволяет переключать.
  */
@@ -30,11 +30,11 @@ export class MusicPlayer {
     if (existing && existing.isPlaying) {
       this.current = existing;
       this.index   = idx;
-      // Переподключаем complete — старый listener (из LoadingScene) не запускал следующий трек
+      // Переподключаем complete - старый listener (из LoadingScene) не запускал следующий трек
       existing.removeAllListeners('complete');
       existing.on('complete', () => this._startTrack(this.index + 1));
     } else {
-      // Если музыки нет — запускаем
+      // Если музыки нет - запускаем
       this.index = idx;
       this._startTrack(this.index);
     }
@@ -50,7 +50,7 @@ export class MusicPlayer {
     this.index = ((index % this.tracks.length) + this.tracks.length) % this.tracks.length;
     const track = this.tracks[this.index];
 
-    // Если трек не загружен — грузим его сейчас (ленивая загрузка)
+    // Если трек не загружен - грузим его сейчас (ленивая загрузка)
     if (!this.scene.cache.audio.exists(track.key)) {
       this.scene.load.audio(track.key, `audio/${track.file}`);
       this.scene.load.once(`filecomplete-audio-${track.key}`, () => {
@@ -82,7 +82,7 @@ export class MusicPlayer {
     // zoom=0.765 → world = screen/0.765
     const depth = 52;
 
-    // Фон: вдвое меньше — ширина 264, высота 33
+    // Фон: вдвое меньше - ширина 264, высота 33
     this._bg = this.scene.add.rectangle(0, 17, 264, 33, 0x07070f, 0.90)
       .setOrigin(0, 0.5).setDepth(depth).setScrollFactor(0);
 

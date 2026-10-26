@@ -1,5 +1,5 @@
 /**
- * PortraitPanel — панели портретов в стиле Disciples II.
+ * PortraitPanel - панели портретов в стиле Disciples II.
  * Игрок: слева, 3 портрета сверху вниз.
  * Враги: справа, 3 портрета сверху вниз.
  * Под каждым: HP бар + "HP/maxHP".
@@ -49,7 +49,7 @@ export class PortraitPanel {
       hpText.setText(`${Math.max(0, unit.hp)}/${unit.maxHp}`);
       dimOverlay.setAlpha(unit.isAlive ? 0 : 0.7);
 
-      // PERMANENT: no active borders, no stroke — never render colored borders on portraits
+      // PERMANENT: no active borders, no stroke - never render colored borders on portraits
       const isActive = activeUnit && unit === activeUnit;
 
       // Масштаб портрета при активном ходе

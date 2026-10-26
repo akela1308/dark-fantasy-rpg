@@ -16,6 +16,8 @@ import enemiesData from '../data/enemies.json';
 import skillsData  from '../data/skills.json';
 import battlesData from '../data/battles.json';
 import { SaveSystem } from '../utils/SaveSystem.js';
+import { PartySystem } from '../systems/PartySystem.js';
+import { enemiesForParty, lootPerEnemy } from '../systems/CombatRules.js';
 import { getBattleAnimConfig, ensureBattleAnims, hasBattleAnims, loadBattleAnimSheets, animOrigin } from '../systems/BattleAnimations.js';
 
 const SPRITE_IDS = [
@@ -43,7 +45,7 @@ const HAS_BG = true; // поставь true когда добавишь battle_b
 // Враг = точная копия позиций игрока, сдвинутая на +415px по X.
 // Игрок: back(row=1) x=285-468, front(row=0) x=500-610
 // Враг:  front(row=0) x=700-883, back(row=1) x=915-1025
-//   → передний ряд врага (ближе к игроку) слева, задний — справа.
+//   → передний ряд врага (ближе к игроку) слева, задний - справа.
 // col=0 нижний (ближе к зрителю, y большее), col=2 верхний (y меньшее).
 // Запретная зона y < 230 (палатки): ни одна точка не нарушает ограничение.
 const UNIT_POSITIONS = {
@@ -60,7 +62,7 @@ const UNIT_POSITIONS = {
     },
   },
   enemy: {
-    // r0 — ближний ряд (левее), r1 — дальний ряд (правее)
+    // r0 - ближний ряд (левее), r1 - дальний ряд (правее)
     0: {
       0: { x: 700, y: 550 },  // P r0c0 (500) + 200
       1: { x: 760, y: 465 },  // P r0c1 (560) + 200
@@ -75,7 +77,7 @@ const UNIT_POSITIONS = {
 };
 
 // Высота спрайта в пикселях по ряду (перспектива)
-const BASE_HEIGHT = 160; // единая база — знахарка/арбалетчик
+const BASE_HEIGHT = 160; // единая база - знахарка/арбалетчик
 
 export class BattleScene extends Phaser.Scene {
   constructor() {
@@ -85,7 +87,8 @@ export class BattleScene extends Phaser.Scene {
   init(data) {
     this._fromMapKey  = data?.fromMapKey  || 'map1';
     this._fromSpawnId = data?.fromSpawnId || 'default';
-    this._battleId    = data?.battleId    || 'bandit_patrol';
+    this._battleId    = data?.battleId    || 'korvin_gang';
+    if (this._battleId === 'bandit_patrol') this._battleId = 'korvin_gang';   // старый id боя с Корвином
     this._battleConfig = battlesData.find(b => b.id === this._battleId) || null;
     this._battleBgKey = this._battleConfig?.backgroundKey || 'battle_bg';
   }
@@ -98,9 +101,12 @@ export class BattleScene extends Phaser.Scene {
     SPRITE_IDS.forEach(id => this.load.image(id, `sprites/${id}.png`));
     SPRITE_IDS.forEach(id => this.load.image(`portrait_${id}`, `portraits/${id}.png`));
     // Покадровые анимации: только для тех, кто участвует в этом бою
-    const enemySource = this._battleConfig?.enemies || enemiesData;
+    const enemySource = [
+      ...(this._battleConfig?.enemies || enemiesData),
+      ...Object.values(this._battleConfig?.enemiesBySize || {}).flat(),
+    ];
     loadBattleAnimSheets(this, [...unitsData, ...enemySource].flatMap(u => [u.id, u.spriteKey]).filter(Boolean));
-    // Ассеты загружены в LoadingScene — здесь ничего не грузим
+    // Ассеты загружены в LoadingScene - здесь ничего не грузим
   }
 
   create() {
@@ -138,9 +144,11 @@ export class BattleScene extends Phaser.Scene {
   }
 
   _initUnits() {
-    this.playerUnits = unitsData.map(d => new PlayerUnit(d));
-    SaveSystem.applyToUnits(this.playerUnits);   // восстановить HP/XP/level из сохранения
-    const enemySource = this._battleConfig?.enemies || enemiesData;
+    // Только живая активная партия (PartySystem), враги из конфига боя по размеру партии
+    this.playerUnits = PartySystem.buildPlayerUnits(this.game.registry);
+    const enemySource = this._battleConfig
+      ? enemiesForParty(this._battleConfig, this.playerUnits.length)
+      : enemiesData;
     this.enemyUnits  = enemySource.map(d => new EnemyUnit(JSON.parse(JSON.stringify(d))));
     this.grid.placeAll([...this.playerUnits, ...this.enemyUnits]);
   }
@@ -183,7 +191,7 @@ export class BattleScene extends Phaser.Scene {
     gfx.lineStyle(1, 0x333344, 0.3);
     gfx.lineBetween(640, 280, 640, 560);
 
-    // Метки убраны — стороны видны через портреты
+    // Метки убраны - стороны видны через портреты
   }
 
   // ── UI ────────────────────────────────────────────────────────────────
@@ -222,7 +230,7 @@ export class BattleScene extends Phaser.Scene {
       // ряд (row=0) чуть выше заднего.
       const rowDepth = y + (unit.position.row === 0 ? 0.5 : 0);
 
-      // Тонкое кольцо под ногами — только контур, без заливки
+      // Тонкое кольцо под ногами - только контур, без заливки
       const ringColor = unit.type === 'player' ? 0x44AAFF : 0xFF4422;
       const ringW = h * 0.72;
       const ringH = h * 0.20;
@@ -242,13 +250,13 @@ export class BattleScene extends Phaser.Scene {
       });
 
       // Индивидуальные коэффициенты масштаба спрайтов
-      // Пропорции: база=160px (знахарка/арбалетчик — эталон)
+      // Пропорции: база=160px (знахарка/арбалетчик - эталон)
       // Женщины: 0.90 / Герой: чуть выше знахарки / Боец: крупнее героя
       const SPRITE_SCALE = {
-        companion_healer:  0.90, // женщина — эталон
-        bandit_archer:     0.88, // женщина — чуть меньше
+        companion_healer:  0.90, // женщина - эталон
+        bandit_archer:     0.88, // женщина - чуть меньше
         hero_duelist:      0.97, // чуть выше знахарки
-        bandit_commander:  0.97, // командир — обычный размер
+        bandit_commander:  0.97, // командир - обычный размер
         bandit_brawler:    1.06, // крупнее, но не гигант
         companion_brawler: 1.09, // самый крупный из игроков
         kikimora:          1.14,
@@ -327,7 +335,7 @@ export class BattleScene extends Phaser.Scene {
 
     this.ui.update();
     this.portraits?.update(this.turnManager.active);
-    // Подсветка целей: при ходе игрока — враги, иначе — сброс
+    // Подсветка целей: при ходе игрока - враги, иначе - сброс
     if (this.turnManager.isPlayerTurn() && !this._pendingSkill) {
       this._highlightTargets('enemy_single');
     } else if (!this.turnManager.isPlayerTurn()) {
@@ -493,7 +501,7 @@ export class BattleScene extends Phaser.Scene {
       ease: 'Linear',
       onComplete: () => { if (unit._sprite) unit._sprite.x = origX; }
     });
-    // Цветовая вспышка: крит — красная, обычный — белая
+    // Цветовая вспышка: крит - красная, обычный - белая
     if (unit._sprite.setTint) {
       unit._sprite.setTint(isCrit ? 0xFF2222 : 0xFFFFFF);
       this.time.delayedCall(isCrit ? 220 : 160, () => { if (unit._sprite) unit._sprite.clearTint(); });
@@ -746,7 +754,7 @@ export class BattleScene extends Phaser.Scene {
     this.battleOver = true;
     const { width, height } = this.scale;
     // Оверлей результата поверх всего (юниты теперь имеют глубину по Y ~385-590,
-    // HP-бары ~1190) — затемнение и текст должны быть выше них.
+    // HP-бары ~1190) - затемнение и текст должны быть выше них.
     const OVERLAY_DEPTH = 2000;
     this.add.rectangle(width/2, height/2, width, height, 0x000000, 0.75).setDepth(OVERLAY_DEPTH);
 
@@ -767,6 +775,15 @@ export class BattleScene extends Phaser.Scene {
         fontFamily: 'serif', fontSize: '26px', color: '#E8E8E8',
       }).setOrigin(0.5).setDepth(OVERLAY_DEPTH + 1);
       this.game.registry.set(this._battleConfig?.victoryFlag || 'bandit_0_defeated', true);
+      if (this._battleId === 'korvin_gang') this.game.registry.set('bandit_0_defeated', true);
+      // Добыча: 4 + 2 × уровень встречи с каждого врага (01_БАЛАНС 9)
+      const loot = this._battleConfig ? this.enemyUnits.length * lootPerEnemy(this._battleConfig.intendedLevel) : 0;
+      if (loot > 0) {
+        SaveSystem.addGold(loot, this.game.registry);
+        this.add.text(width/2, height/2 + 34, `Добыча: ${loot} монет`, {
+          fontFamily: 'serif', fontSize: '20px', color: '#C9A84C',
+        }).setOrigin(0.5).setDepth(OVERLAY_DEPTH + 1);
+      }
     }
 
     const showButtons = () => {
@@ -840,11 +857,11 @@ export class BattleScene extends Phaser.Scene {
     this._fineGrid = [];
     const W = 1280, H = 720, STEP = 25;
     const gfx = this.add.graphics().setDepth(997).setScrollFactor(0);
-    // Мелкие линии — очень прозрачные
+    // Мелкие линии - очень прозрачные
     gfx.lineStyle(1, 0x00FF88, 0.10);
     for (let x = 0; x <= W; x += STEP) gfx.lineBetween(x, 0, x, H);
     for (let y = 0; y <= H; y += STEP) gfx.lineBetween(0, y, W, y);
-    // Каждые 100px — ярче и с подписью
+    // Каждые 100px - ярче и с подписью
     gfx.lineStyle(1, 0x00FF88, 0.30);
     for (let x = 0; x <= W; x += 100) {
       gfx.lineBetween(x, 0, x, H);

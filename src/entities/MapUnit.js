@@ -1,18 +1,18 @@
 import * as Phaser from 'phaser/dist/phaser.esm.js';
 
 /**
- * MapUnit — персонаж на карте мира.
+ * MapUnit - персонаж на карте мира.
  *
  * Paper doll режимы (автодетект по наличию текстур, config.paperdoll !== false):
- *   legMode: 'split'  — нижняя часть разрезана на leg_l / leg_r, ротация в противофазе (боец)
- *   legMode: 'single' — нижняя часть целиком как одна деталь _legs, плавное качание (плащ/герой)
+ *   legMode: 'split'  - нижняя часть разрезана на leg_l / leg_r, ротация в противофазе (боец)
+ *   legMode: 'single' - нижняя часть целиком как одна деталь _legs, плавное качание (плащ/герой)
  *
  * Legacy режим (config.paperdoll = false):
- *   skirtWalk: false  — покачивание всего тела ±2.5° (стандарт)
- *   skirtWalk: true   — еле заметный sway + scaleX (юбка/знахарка)
+ *   skirtWalk: false  - покачивание всего тела ±2.5° (стандарт)
+ *   skirtWalk: true   - еле заметный sway + scaleX (юбка/знахарка)
  *
  * Spritesheet режим (config.walkSpriteKey):
- *   idle — обычная статичная картинка, walk — кадровая анимация ходьбы
+ *   idle - обычная статичная картинка, walk - кадровая анимация ходьбы
  */
 export class MapUnit {
   constructor(scene, x, y, textureKey, config = {}) {
