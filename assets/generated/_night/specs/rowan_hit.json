@@ -1,0 +1,1 @@
+{"slug": "rowan", "anim": "hit", "base": "rowan/k_battle.png", "body": 300, "segments": [{"clip": "rowan/clips/hit_v2.mp4", "from": 0, "to": 36, "frames": 14}]}

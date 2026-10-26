@@ -1386,6 +1386,29 @@
     "key": "guard_attack_v1",
     "hitFrame": 10
    },
+   "death": {
+    "file": "sprites/battle/guard_death_v1.webp",
+    "frameWidth": 621,
+    "frameHeight": 345,
+    "frames": 30,
+    "fps": 24,
+    "originX": 0.4092,
+    "originY": 0.9737,
+    "bodyHeight": 300,
+    "key": "guard_death_v1",
+    "hold": true
+   },
+   "hit": {
+    "file": "sprites/battle/guard_hit_v1.webp",
+    "frameWidth": 553,
+    "frameHeight": 345,
+    "frames": 14,
+    "fps": 24,
+    "originX": 0.4595,
+    "originY": 0.9737,
+    "bodyHeight": 300,
+    "key": "guard_hit_v1"
+   },
    "idle": {
     "file": "sprites/battle/guard_idle_v1.webp",
     "frameWidth": 508,
@@ -1409,6 +1432,18 @@
     "bodyHeight": 300,
     "key": "guard_power_v1",
     "hitFrame": 27
+   },
+   "victory": {
+    "file": "sprites/battle/guard_victory_v1.webp",
+    "frameWidth": 553,
+    "frameHeight": 345,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4595,
+    "originY": 0.9737,
+    "bodyHeight": 300,
+    "key": "guard_victory_v1",
+    "hold": true
    }
   },
   "actions": {
@@ -1871,6 +1906,41 @@
     "bodyHeight": 300,
     "key": "rowan_amb2_v1"
    },
+   "attack": {
+    "file": "sprites/battle/rowan_attack_v1.webp",
+    "frameWidth": 614,
+    "frameHeight": 343,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.3815,
+    "originY": 0.974,
+    "bodyHeight": 300,
+    "key": "rowan_attack_v1",
+    "hitFrame": 6
+   },
+   "death": {
+    "file": "sprites/battle/rowan_death_v1.webp",
+    "frameWidth": 614,
+    "frameHeight": 343,
+    "frames": 30,
+    "fps": 24,
+    "originX": 0.3815,
+    "originY": 0.974,
+    "bodyHeight": 300,
+    "key": "rowan_death_v1",
+    "hold": true
+   },
+   "hit": {
+    "file": "sprites/battle/rowan_hit_v1.webp",
+    "frameWidth": 534,
+    "frameHeight": 343,
+    "frames": 14,
+    "fps": 24,
+    "originX": 0.4387,
+    "originY": 0.974,
+    "bodyHeight": 300,
+    "key": "rowan_hit_v1"
+   },
    "idle": {
     "file": "sprites/battle/rowan_idle_v1.webp",
     "frameWidth": 534,
@@ -1884,7 +1954,9 @@
     "loop": true
    }
   },
-  "actions": {},
+  "actions": {
+   "basic": "attack"
+  },
   "name": "Рован в бою (по арту map_wanderer)"
  },
  "ryzh": {

@@ -293,3 +293,9 @@ guard power 1 | v2: фиолетовый отлив
 winter_archer attack 1
 winter_archer death 2
 winter_archer victory 1
+guard death 1
+guard hit 2
+guard victory 1 | v2: двойной топор алебарды
+rowan attack 1
+rowan death 1
+rowan hit 2
