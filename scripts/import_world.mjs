@@ -36,14 +36,14 @@ const CENTRAL = {
 
 // Коридор к стороне, зона выхода и точка появления
 const SIDES = {
-  west:         { corr: { x: 0, y: 540, w: 320, h: 160 },    zone: { x: 0, y: 540, w: 70, h: 160 },    spawn: { x: 160, y: 620 } },
-  east:         { corr: { x: 1350, y: 540, w: 322, h: 160 }, zone: { x: 1602, y: 540, w: 70, h: 160 }, spawn: { x: 1510, y: 620 } },
+  west:         { corr: { x: 0, y: 540, w: 320, h: 160 },    zone: { x: 0, y: 540, w: 100, h: 160 },    spawn: { x: 160, y: 620 } },
+  east:         { corr: { x: 1350, y: 540, w: 322, h: 160 }, zone: { x: 1572, y: 540, w: 100, h: 160 }, spawn: { x: 1510, y: 620 } },
   north:        { corr: { x: 760, y: 200, w: 160, h: 300 },  zone: { x: 760, y: 200, w: 160, h: 60 },  spawn: { x: 840, y: 330 } },
   south:        { corr: { x: 760, y: 760, w: 160, h: 181 },  zone: { x: 760, y: 880, w: 160, h: 61 },  spawn: { x: 840, y: 800 } },
-  'north-west': { corr: { x: 0, y: 300, w: 330, h: 170 },    zone: { x: 0, y: 300, w: 70, h: 170 },    spawn: { x: 170, y: 390 } },
-  'north-east': { corr: { x: 1340, y: 300, w: 332, h: 170 }, zone: { x: 1602, y: 300, w: 70, h: 170 }, spawn: { x: 1500, y: 390 } },
-  'south-west': { corr: { x: 0, y: 760, w: 330, h: 150 },    zone: { x: 0, y: 760, w: 70, h: 150 },    spawn: { x: 170, y: 830 } },
-  'south-east': { corr: { x: 1340, y: 760, w: 332, h: 150 }, zone: { x: 1602, y: 760, w: 70, h: 150 }, spawn: { x: 1500, y: 830 } },
+  'north-west': { corr: { x: 0, y: 300, w: 330, h: 170 },    zone: { x: 0, y: 300, w: 100, h: 170 },    spawn: { x: 170, y: 390 } },
+  'north-east': { corr: { x: 1340, y: 300, w: 332, h: 170 }, zone: { x: 1572, y: 300, w: 100, h: 170 }, spawn: { x: 1500, y: 390 } },
+  'south-west': { corr: { x: 0, y: 760, w: 330, h: 150 },    zone: { x: 0, y: 760, w: 100, h: 150 },    spawn: { x: 170, y: 830 } },
+  'south-east': { corr: { x: 1340, y: 760, w: 332, h: 150 }, zone: { x: 1572, y: 760, w: 100, h: 150 }, spawn: { x: 1500, y: 830 } },
 };
 const DOOR_X = [1150, 520, 1330, 380];
 
