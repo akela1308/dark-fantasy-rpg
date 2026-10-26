@@ -1,0 +1,1 @@
+{"slug": "mavka", "anim": "cast2", "base": "mavka/k_battle.png", "body": 300, "segments": [{"clip": "mavka/clips/cast2_v2.mp4", "from": 3, "to": 92, "frames": 36}], "hit": "auto"}

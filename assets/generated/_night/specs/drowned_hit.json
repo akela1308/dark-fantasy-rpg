@@ -1,0 +1,1 @@
+{"slug": "drowned", "anim": "hit", "base": "drowned/k_battle.png", "body": 300, "segments": [{"clip": "drowned/clips/hit_v1.mp4", "from": 0, "to": 95, "frames": 14}]}

@@ -869,6 +869,29 @@
  },
  "drowned": {
   "anims": {
+   "death": {
+    "file": "sprites/battle/drowned_death_v1.webp",
+    "frameWidth": 572,
+    "frameHeight": 319,
+    "frames": 30,
+    "fps": 24,
+    "originX": 0.4463,
+    "originY": 0.9699,
+    "bodyHeight": 300,
+    "key": "drowned_death_v1",
+    "hold": true
+   },
+   "hit": {
+    "file": "sprites/battle/drowned_hit_v1.webp",
+    "frameWidth": 555,
+    "frameHeight": 319,
+    "frames": 14,
+    "fps": 24,
+    "originX": 0.46,
+    "originY": 0.9699,
+    "bodyHeight": 300,
+    "key": "drowned_hit_v1"
+   },
    "idle": {
     "file": "sprites/battle/drowned_idle_v1.webp",
     "frameWidth": 510,
@@ -1866,6 +1889,18 @@
  },
  "kobold": {
   "anims": {
+   "attack": {
+    "file": "sprites/battle/kobold_attack_v1.webp",
+    "frameWidth": 573,
+    "frameHeight": 321,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4324,
+    "originY": 0.9695,
+    "bodyHeight": 300,
+    "key": "kobold_attack_v1",
+    "hitFrame": 6
+   },
    "idle": {
     "file": "sprites/battle/kobold_idle_v1.webp",
     "frameWidth": 503,
@@ -1879,7 +1914,9 @@
     "loop": true
    }
   },
-  "actions": {},
+  "actions": {
+   "basic": "attack"
+  },
   "name": "Кобл (бестиарий)"
  },
  "lyo": {
@@ -1974,6 +2011,18 @@
     "bodyHeight": 300,
     "key": "mavka_attack_v1",
     "hitFrame": 7
+   },
+   "cast2": {
+    "file": "sprites/battle/mavka_cast2_v1.webp",
+    "frameWidth": 554,
+    "frameHeight": 329,
+    "frames": 36,
+    "fps": 24,
+    "originX": 0.4603,
+    "originY": 0.9722,
+    "bodyHeight": 300,
+    "key": "mavka_cast2_v1",
+    "hitFrame": 26
    },
    "death": {
     "file": "sprites/battle/mavka_death_v1.webp",

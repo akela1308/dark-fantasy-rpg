@@ -337,3 +337,7 @@ mavka attack 1
 mavka death 1 | v2: вспышка
 mavka hit 1 | v2: белые линии
 mavka victory 2 | v1: зелёная искра
+drowned death 2
+drowned hit 1
+kobold attack 2 | v1: появляется клинок вместо кирки; на базе кирки нет, кобл бьёт кулаком (предварительно)
+mavka cast2 2

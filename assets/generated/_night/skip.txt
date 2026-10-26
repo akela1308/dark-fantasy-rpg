@@ -50,3 +50,5 @@ vurdalak power
 winter_archer hit
 cat old_bidle
 cat old_idle
+drowned attack
+drowned power
