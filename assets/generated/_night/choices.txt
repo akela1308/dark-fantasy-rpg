@@ -163,3 +163,21 @@ bandit_warrior_map walk 2
 bandit_archer_map walk 1
 brawler stand 2 | v1: белая точка
 brawler walk 2 | дубина в конце цикла в другом положении: склейка плавным переходом (xfade 6)
+bandit_archer attack 1 | после 36-го кадра арбалет превращается в лук: взяты кадры 0-36 туда-обратно
+bandit_archer death 2 | v1: вспышка
+bandit_archer hit 1
+bandit_archer reload 1
+bandit_archer victory 1
+bandit_brawler death 1
+bandit_brawler hit 1 | v2: дубина превращается в булаву
+bandit_brawler victory 2 | v1: булава с шипами
+swamp_knight attack 1
+swamp_knight death 1
+swamp_knight hit 2 | v1: два меча в кадре
+swamp_knight power 1
+swamp_knight victory 1
+bandit_map stand 2 | v1: облачко пара
+bandit_warrior_map stand 2
+bandit_archer_map stand 1
+bandit_archer attack 1 | вспышка убрана вырезкой, кадр выстрела 3
+bandit_archer death 2 | кадры 1-3 выкинуты (вспышка)

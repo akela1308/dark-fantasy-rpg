@@ -1,0 +1,1 @@
+{"slug": "bandit_archer", "anim": "hit", "base": "bandit_archer/k_battle.png", "body": 300, "segments": [{"clip": "bandit_archer/clips/hit_v1.mp4", "from": 10, "to": 95, "frames": 14}]}

@@ -157,6 +157,41 @@
     "bodyHeight": 300,
     "key": "bandit_archer_amb2_v1"
    },
+   "attack": {
+    "file": "sprites/battle/bandit_archer_attack_v1.webp",
+    "frameWidth": 507,
+    "frameHeight": 316,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.5917,
+    "originY": 0.9856,
+    "bodyHeight": 300,
+    "key": "bandit_archer_attack_v1",
+    "hitFrame": 3
+   },
+   "death": {
+    "file": "sprites/battle/bandit_archer_death_v1.webp",
+    "frameWidth": 563,
+    "frameHeight": 316,
+    "frames": 27,
+    "fps": 24,
+    "originX": 0.6321,
+    "originY": 0.9856,
+    "bodyHeight": 300,
+    "key": "bandit_archer_death_v1",
+    "hold": true
+   },
+   "hit": {
+    "file": "sprites/battle/bandit_archer_hit_v1.webp",
+    "frameWidth": 462,
+    "frameHeight": 316,
+    "frames": 14,
+    "fps": 24,
+    "originX": 0.5522,
+    "originY": 0.9856,
+    "bodyHeight": 300,
+    "key": "bandit_archer_hit_v1"
+   },
    "idle": {
     "file": "sprites/battle/bandit_archer_idle_v1.webp",
     "frameWidth": 462,
@@ -168,9 +203,23 @@
     "bodyHeight": 300,
     "key": "bandit_archer_idle_v1",
     "loop": true
+   },
+   "victory": {
+    "file": "sprites/battle/bandit_archer_victory_v1.webp",
+    "frameWidth": 462,
+    "frameHeight": 316,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.5522,
+    "originY": 0.9856,
+    "bodyHeight": 300,
+    "key": "bandit_archer_victory_v1",
+    "hold": true
    }
   },
-  "actions": {},
+  "actions": {
+   "basic": "attack"
+  },
   "name": "Тисс (стрелок Корвина)"
  },
  "bandit_brawler": {
@@ -198,6 +247,17 @@
     "key": "bandit_brawler_attack_v1",
     "hitFrame": 10
    },
+   "hit": {
+    "file": "sprites/battle/bandit_brawler_hit_v1.webp",
+    "frameWidth": 510,
+    "frameHeight": 339,
+    "frames": 14,
+    "fps": 24,
+    "originX": 0.4134,
+    "originY": 0.9796,
+    "bodyHeight": 300,
+    "key": "bandit_brawler_hit_v1"
+   },
    "idle": {
     "file": "sprites/battle/bandit_brawler_idle_v1.webp",
     "frameWidth": 510,
@@ -209,6 +269,18 @@
     "bodyHeight": 300,
     "key": "bandit_brawler_idle_v1",
     "loop": true
+   },
+   "victory": {
+    "file": "sprites/battle/bandit_brawler_victory_v1.webp",
+    "frameWidth": 510,
+    "frameHeight": 339,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4134,
+    "originY": 0.9796,
+    "bodyHeight": 300,
+    "key": "bandit_brawler_victory_v1",
+    "hold": true
    }
   },
   "actions": {
@@ -1032,6 +1104,41 @@
  },
  "swamp_knight": {
   "anims": {
+   "attack": {
+    "file": "sprites/battle/swamp_knight_attack_v1.webp",
+    "frameWidth": 640,
+    "frameHeight": 348,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.3723,
+    "originY": 0.9727,
+    "bodyHeight": 300,
+    "key": "swamp_knight_attack_v1",
+    "hitFrame": 14
+   },
+   "death": {
+    "file": "sprites/battle/swamp_knight_death_v1.webp",
+    "frameWidth": 628,
+    "frameHeight": 348,
+    "frames": 30,
+    "fps": 24,
+    "originX": 0.3794,
+    "originY": 0.9727,
+    "bodyHeight": 300,
+    "key": "swamp_knight_death_v1",
+    "hold": true
+   },
+   "hit": {
+    "file": "sprites/battle/swamp_knight_hit_v1.webp",
+    "frameWidth": 538,
+    "frameHeight": 348,
+    "frames": 14,
+    "fps": 24,
+    "originX": 0.4428,
+    "originY": 0.9727,
+    "bodyHeight": 300,
+    "key": "swamp_knight_hit_v1"
+   },
    "idle": {
     "file": "sprites/battle/swamp_knight_idle_v1.webp",
     "frameWidth": 494,
@@ -1043,9 +1150,35 @@
     "bodyHeight": 300,
     "key": "swamp_knight_idle_v1",
     "loop": true
+   },
+   "power": {
+    "file": "sprites/battle/swamp_knight_power_v1.webp",
+    "frameWidth": 640,
+    "frameHeight": 348,
+    "frames": 38,
+    "fps": 24,
+    "originX": 0.3723,
+    "originY": 0.9727,
+    "bodyHeight": 300,
+    "key": "swamp_knight_power_v1",
+    "hitFrame": 17
+   },
+   "victory": {
+    "file": "sprites/battle/swamp_knight_victory_v1.webp",
+    "frameWidth": 538,
+    "frameHeight": 348,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4428,
+    "originY": 0.9727,
+    "bodyHeight": 300,
+    "key": "swamp_knight_victory_v1",
+    "hold": true
    }
   },
-  "actions": {},
+  "actions": {
+   "basic": "attack"
+  },
   "name": "Болотный рыцарь"
  },
  "tavernman": {

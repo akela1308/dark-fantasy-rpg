@@ -1,0 +1,1 @@
+{"slug": "swamp_knight", "anim": "hit", "base": "swamp_knight/k_battle.png", "body": 300, "segments": [{"clip": "swamp_knight/clips/hit_v2.mp4", "from": 0, "to": 95, "frames": 14}]}

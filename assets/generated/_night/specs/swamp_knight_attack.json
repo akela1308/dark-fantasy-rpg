@@ -1,0 +1,1 @@
+{"slug": "swamp_knight", "anim": "attack", "base": "swamp_knight/k_battle.png", "body": 300, "segments": [{"clip": "swamp_knight/clips/attack_v1.mp4", "from": 7, "to": 76, "frames": 29}], "hit": "auto", "right": 1.4, "left": 1.0}

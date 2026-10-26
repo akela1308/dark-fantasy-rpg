@@ -48,6 +48,9 @@ def key(im):
     edge = cv2.dilate(bgmask.astype(np.uint8), np.ones((3, 3), np.uint8)).astype(bool) & ~bgmask
     soft = np.clip(1 - ((g - mx) - 20) / 80, 0, 1)
     alpha[edge] = np.minimum(alpha[edge], np.maximum(soft[edge], 0.35))
+    # вспышки выстрела (жёлто-белые) убираем: их рисует игра
+    flash = (r > 190) & (g > 160) & (b < 0.8 * g) & ((r + g + b) > 520)
+    alpha[flash] = 0
     solid = (alpha > 0.5).astype(np.uint8)
     n2, lab2, st2, _ = cv2.connectedComponentsWithStats(solid, connectivity=8)
     if n2 > 1:

@@ -1,0 +1,1 @@
+{"slug": "bandit_brawler", "anim": "hit", "base": "bandit_brawler/k_battle.png", "body": 300, "segments": [{"clip": "bandit_brawler/clips/hit_v1.mp4", "from": 0, "to": 95, "frames": 14}]}

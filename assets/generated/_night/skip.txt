@@ -27,3 +27,5 @@ winter_archer amb1
 healer victory
 drowned amb1
 mavka amb1
+healer stand
+bandit_brawler power
