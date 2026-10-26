@@ -29,3 +29,8 @@ src-tauri/gen/
 public/maps/gen/*_v[0-9].png
 public/maps/gen/*_pick.png
 assets/generated/_maps_raw/
+
+# Плейтест: скриншоты и скрипты локально, в git только отчёты
+assets/generated/_qa/**
+!assets/generated/_qa/**/
+!assets/generated/_qa/**/*.md
