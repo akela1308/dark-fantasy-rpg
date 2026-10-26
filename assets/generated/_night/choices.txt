@@ -205,3 +205,11 @@ dwarf_beer3 hit 1 | кадр 3 выкинут (белые линии)
 dwarf_beer2 attack 1 | кадр 4 выкинут (искра)
 dwarf_beer1 attack 2 | кадры 5-6 выкинуты (брызги пива)
 kikimora death 1 | кадр 1 выкинут (белый росчерк)
+cleaning_girl death 1 | v2: белые линии, в конце садится
+cleaning_girl victory 1
+dog hit 2 | v1: белый росчерк
+tavernman attack 1
+tavernman death 1
+tavernman hit 1
+tavernman attack 1 | кадр 9 выкинут (тесак вытягивается в меч)
+dog hit 2 | кадр 2 выкинут (вспышка)

@@ -378,6 +378,18 @@
     "key": "cleaning_girl_attack_v1",
     "hitFrame": 6
    },
+   "death": {
+    "file": "sprites/battle/cleaning_girl_death_v1.webp",
+    "frameWidth": 628,
+    "frameHeight": 345,
+    "frames": 30,
+    "fps": 24,
+    "originX": 0.379,
+    "originY": 0.971,
+    "bodyHeight": 300,
+    "key": "cleaning_girl_death_v1",
+    "hold": true
+   },
    "hit": {
     "file": "sprites/battle/cleaning_girl_hit_v1.webp",
     "frameWidth": 538,
@@ -400,6 +412,18 @@
     "bodyHeight": 300,
     "key": "cleaning_girl_idle_v1",
     "loop": true
+   },
+   "victory": {
+    "file": "sprites/battle/cleaning_girl_victory_v1.webp",
+    "frameWidth": 538,
+    "frameHeight": 345,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4424,
+    "originY": 0.971,
+    "bodyHeight": 300,
+    "key": "cleaning_girl_victory_v1",
+    "hold": true
    }
   },
   "actions": {
@@ -409,6 +433,17 @@
  },
  "dog": {
   "anims": {
+   "hit": {
+    "file": "sprites/battle/dog_hit_v1.webp",
+    "frameWidth": 624,
+    "frameHeight": 342,
+    "frames": 13,
+    "fps": 24,
+    "originX": 0.5163,
+    "originY": 0.9742,
+    "bodyHeight": 300,
+    "key": "dog_hit_v1"
+   },
    "idle": {
     "file": "sprites/battle/dog_idle_v1.webp",
     "frameWidth": 510,
@@ -1428,6 +1463,41 @@
  },
  "tavernman": {
   "anims": {
+   "attack": {
+    "file": "sprites/battle/tavernman_attack_v1.webp",
+    "frameWidth": 603,
+    "frameHeight": 338,
+    "frames": 28,
+    "fps": 24,
+    "originX": 0.3634,
+    "originY": 0.9713,
+    "bodyHeight": 300,
+    "key": "tavernman_attack_v1",
+    "hitFrame": 10
+   },
+   "death": {
+    "file": "sprites/battle/tavernman_death_v1.webp",
+    "frameWidth": 603,
+    "frameHeight": 338,
+    "frames": 30,
+    "fps": 24,
+    "originX": 0.3634,
+    "originY": 0.9713,
+    "bodyHeight": 300,
+    "key": "tavernman_death_v1",
+    "hold": true
+   },
+   "hit": {
+    "file": "sprites/battle/tavernman_hit_v1.webp",
+    "frameWidth": 518,
+    "frameHeight": 338,
+    "frames": 14,
+    "fps": 24,
+    "originX": 0.423,
+    "originY": 0.9713,
+    "bodyHeight": 300,
+    "key": "tavernman_hit_v1"
+   },
    "idle": {
     "file": "sprites/battle/tavernman_idle_v1.webp",
     "frameWidth": 518,
@@ -1441,7 +1511,9 @@
     "loop": true
    }
   },
-  "actions": {},
+  "actions": {
+   "basic": "attack"
+  },
   "name": "Ворн, хозяин таверны"
  },
  "til": {
