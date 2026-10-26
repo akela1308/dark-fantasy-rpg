@@ -1,0 +1,84 @@
+[
+ {
+  "slug": "brawler",
+  "out": "brawler/walk/k_walk.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/maps/characters/brawler_idle_v3.png",
+  "refs": [
+   "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/maps/characters/brawler_idle_v3.png",
+   "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/sprites/companion_brawler.png"
+  ],
+  "prompt": "Exactly one figure: the exact same character as in the first reference image (same face, hair, clothes, colors). Pure side view profile, walking to the RIGHT side of the image. Mid-stride: the front leg forward with the heel touching the ground, the back leg behind on its toes, arms swinging naturally. MAP CANON: the club hangs on his belt at the hip, both hands EMPTY. Whole figure visible with margin, feet near the bottom, figure height about 80 percent of the image, centered. Flat solid pure chroma green background (#00FF00), no ground, no shadow, no other objects."
+ },
+ {
+  "slug": "brawler",
+  "out": "brawler/walk/k_stand.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/assets/generated/brawler/walk/k_walk.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character, same size, same ground line, same place in the frame, still in side view facing the RIGHT side of the image. New pose: standing still and relaxed, feet planted slightly apart, weight on both legs. MAP CANON: the club hangs on his belt at the hip, both hands EMPTY. Flat solid pure chroma green background (#00FF00), no ground, no shadow, no other objects.",
+  "after": "walk"
+ },
+ {
+  "slug": "healer",
+  "out": "healer/walk/k_walk.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/maps/characters/healer.png",
+  "refs": [
+   "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/maps/characters/healer.png",
+   "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/sprites/companion_healer.png"
+  ],
+  "prompt": "Exactly one figure: the exact same character as in the first reference image (same face, hair, clothes, colors). Pure side view profile, walking to the RIGHT side of the image. Mid-stride: the front leg forward with the heel touching the ground, the back leg behind on its toes, arms swinging naturally. MAP CANON: she holds her gnarled wooden staff in the far hand and uses it as a walking stick, the near hand empty. Whole figure visible with margin, feet near the bottom, figure height about 80 percent of the image, centered. Flat solid pure chroma green background (#00FF00), no ground, no shadow, no other objects."
+ },
+ {
+  "slug": "healer",
+  "out": "healer/walk/k_stand.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/assets/generated/healer/walk/k_walk.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character, same size, same ground line, same place in the frame, still in side view facing the RIGHT side of the image. New pose: standing still and relaxed, feet planted slightly apart, weight on both legs. MAP CANON: she holds her gnarled wooden staff in the far hand and uses it as a walking stick, the near hand empty. Flat solid pure chroma green background (#00FF00), no ground, no shadow, no other objects.",
+  "after": "walk"
+ },
+ {
+  "slug": "bandit_map",
+  "out": "bandit_map/walk/k_walk.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/maps/characters/bandit.png",
+  "refs": [
+   "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/maps/characters/bandit.png"
+  ],
+  "prompt": "Exactly one figure: the exact same character as in the first reference image (same face, hair, clothes, colors). Pure side view profile, walking to the RIGHT side of the image. Mid-stride: the front leg forward with the heel touching the ground, the back leg behind on its toes, arms swinging naturally. MAP CANON: he carries his weapon exactly as in the reference, in the same hand. Whole figure visible with margin, feet near the bottom, figure height about 80 percent of the image, centered. Flat solid pure chroma green background (#00FF00), no ground, no shadow, no other objects."
+ },
+ {
+  "slug": "bandit_map",
+  "out": "bandit_map/walk/k_stand.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/assets/generated/bandit_map/walk/k_walk.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character, same size, same ground line, same place in the frame, still in side view facing the RIGHT side of the image. New pose: standing still and relaxed, feet planted slightly apart, weight on both legs. MAP CANON: he carries his weapon exactly as in the reference, in the same hand. Flat solid pure chroma green background (#00FF00), no ground, no shadow, no other objects.",
+  "after": "walk"
+ },
+ {
+  "slug": "bandit_warrior_map",
+  "out": "bandit_warrior_map/walk/k_walk.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/maps/characters/bandit_warrior.png",
+  "refs": [
+   "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/maps/characters/bandit_warrior.png"
+  ],
+  "prompt": "Exactly one figure: the exact same character as in the first reference image (same face, hair, clothes, colors). Pure side view profile, walking to the RIGHT side of the image. Mid-stride: the front leg forward with the heel touching the ground, the back leg behind on its toes, arms swinging naturally. MAP CANON: he carries his weapon exactly as in the reference, in the same hand. Whole figure visible with margin, feet near the bottom, figure height about 80 percent of the image, centered. Flat solid pure chroma green background (#00FF00), no ground, no shadow, no other objects."
+ },
+ {
+  "slug": "bandit_warrior_map",
+  "out": "bandit_warrior_map/walk/k_stand.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/assets/generated/bandit_warrior_map/walk/k_walk.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character, same size, same ground line, same place in the frame, still in side view facing the RIGHT side of the image. New pose: standing still and relaxed, feet planted slightly apart, weight on both legs. MAP CANON: he carries his weapon exactly as in the reference, in the same hand. Flat solid pure chroma green background (#00FF00), no ground, no shadow, no other objects.",
+  "after": "walk"
+ },
+ {
+  "slug": "bandit_archer_map",
+  "out": "bandit_archer_map/walk/k_walk.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/maps/characters/bandit_archer_map.png",
+  "refs": [
+   "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/maps/characters/bandit_archer_map.png"
+  ],
+  "prompt": "Exactly one figure: the exact same character as in the first reference image (same face, hair, clothes, colors). Pure side view profile, walking to the RIGHT side of the image. Mid-stride: the front leg forward with the heel touching the ground, the back leg behind on its toes, arms swinging naturally. MAP CANON: the crossbow is carried exactly as in the reference, in the same hand. Whole figure visible with margin, feet near the bottom, figure height about 80 percent of the image, centered. Flat solid pure chroma green background (#00FF00), no ground, no shadow, no other objects."
+ },
+ {
+  "slug": "bandit_archer_map",
+  "out": "bandit_archer_map/walk/k_stand.png",
+  "ref": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/assets/generated/bandit_archer_map/walk/k_walk.png",
+  "prompt": "Edit of the reference image. Exactly one figure, the exact same character, same size, same ground line, same place in the frame, still in side view facing the RIGHT side of the image. New pose: standing still and relaxed, feet planted slightly apart, weight on both legs. MAP CANON: the crossbow is carried exactly as in the reference, in the same hand. Flat solid pure chroma green background (#00FF00), no ground, no shadow, no other objects.",
+  "after": "walk"
+ }
+]

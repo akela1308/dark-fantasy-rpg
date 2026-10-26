@@ -303,6 +303,66 @@ def veo_jobs():
     return j
 
 
+
+
+
+# ── Этап 4: ходьба по карте (вид сбоку, как у Дуэлянта: duelist/walk/) ──
+WALKERS = [
+ dict(slug="brawler", src=GAME+"/public/maps/characters/brawler_idle_v3.png", ref2=GAME+"/public/sprites/companion_brawler.png",
+      canon="the club hangs on his belt at the hip, both hands EMPTY"),
+ dict(slug="healer", src=GAME+"/public/maps/characters/healer.png", ref2=GAME+"/public/sprites/companion_healer.png",
+      canon="she holds her gnarled wooden staff in the far hand and uses it as a walking stick, the near hand empty"),
+ dict(slug="bandit_map", src=GAME+"/public/maps/characters/bandit.png", ref2=None,
+      canon="he carries his weapon exactly as in the reference, in the same hand"),
+ dict(slug="bandit_warrior_map", src=GAME+"/public/maps/characters/bandit_warrior.png", ref2=None,
+      canon="he carries his weapon exactly as in the reference, in the same hand"),
+ dict(slug="bandit_archer_map", src=GAME+"/public/maps/characters/bandit_archer_map.png", ref2=None,
+      canon="the crossbow is carried exactly as in the reference, in the same hand"),
+]
+WALK_DIR = "walk"
+
+
+def walk_base_jobs():
+    out = []
+    for w in WALKERS:
+        refs = [w["src"]] + ([w["ref2"]] if w["ref2"] else [])
+        out.append(dict(slug=w["slug"], out=f"{w['slug']}/{WALK_DIR}/k_walk.png", ref=refs[0], refs=refs, prompt=(
+            "Exactly one figure: the exact same character as in the first reference image (same face, hair, clothes, colors). "
+            "Pure side view profile, walking to the RIGHT side of the image. Mid-stride: the front leg forward with the heel touching "
+            f"the ground, the back leg behind on its toes, arms swinging naturally. MAP CANON: {w['canon']}. Whole figure visible with "
+            "margin, feet near the bottom, figure height about 80 percent of the image, centered. Flat solid pure chroma green "
+            "background (#00FF00), no ground, no shadow, no other objects.")))
+        out.append(dict(slug=w["slug"], out=f"{w['slug']}/{WALK_DIR}/k_stand.png", ref=f"{BASE}/{w['slug']}/{WALK_DIR}/k_walk.png", prompt=(
+            "Edit of the reference image. Exactly one figure, the exact same character, same size, same ground line, same place in "
+            "the frame, still in side view facing the RIGHT side of the image. New pose: standing still and relaxed, feet planted "
+            f"slightly apart, weight on both legs. MAP CANON: {w['canon']}. Flat solid pure chroma green background (#00FF00), no "
+            "ground, no shadow, no other objects."), after="walk"))
+    return out
+
+
+WALK_PROMPT = ("Walks in place on the spot, like on a treadmill: a steady, natural, realistic walking cycle, weight shifting from "
+               "foot to foot, slight up and down motion of the body, arms swinging in opposition to the legs, clothes moving with each "
+               "step. The body stays in exactly the same place in the frame, does not travel across the frame, never turns around, "
+               "always walks facing right. Camera locked, no zoom.")
+STAND_PROMPT = ("Stands still and breathes slowly and calmly, chest and shoulders rise and fall slightly, clothes move very gently, "
+                "a small natural shift of weight. Subtle idle loop, ends in exactly the same pose. Does not walk, does not turn, does "
+                "not gesture. Camera locked, no zoom.")
+
+
+def walk_veo_jobs():
+    j = []
+    for w in WALKERS:
+        s = w["slug"]; d = f"{s}/{WALK_DIR}"; h = f" MAP CANON: {w['canon']}, the whole clip."
+        j.append(dict(stage=2.5, name=f"{d}/walk", first=f"{d}/k_walk.png", last=f"{d}/k_walk.png", prompt=WALK_PROMPT + h, sec=4, n=2))
+        j.append(dict(stage=2.5, name=f"{d}/stand", first=f"{d}/k_stand.png", last=f"{d}/k_stand.png", prompt=STAND_PROMPT + h, sec=4, n=2))
+    return j
+
+
+if __name__ == "__main__" and sys.argv[1] == "walkbase":
+    json.dump(walk_base_jobs(), open(BASE + "/_night/walk_base_jobs.json", "w"), ensure_ascii=False, indent=1)
+    print(len(walk_base_jobs()), "walk base jobs")
+
+
 if __name__ == "__main__" and sys.argv[1] == "jobs":
     path = BASE + "/_night/jobs.json"
     old = json.load(open(path)) if os.path.exists(path) else []
@@ -310,7 +370,7 @@ if __name__ == "__main__" and sys.argv[1] == "jobs":
     ok_path = BASE + "/_night/approved.txt"   # принятые базовые позы (после проверки глазами)
     approved = set(open(ok_path).read().split()) if os.path.exists(ok_path) else set()
     approved |= {f"duelist/{k}.png" for k in ("k_idle", "k_block", "k_hit", "k_dead", "k_victory", "k_stance", "k_reload")}
-    new = [x for x in veo_jobs() if x["name"] not in names and x["first"] in approved
+    new = [x for x in veo_jobs() + walk_veo_jobs() if x["name"] not in names and x["first"] in approved
            and (not x.get("last") or x["last"] in approved)]
     allj = sorted(old + new, key=lambda x: x.get("stage", 9))
     json.dump(allj, open(path + ".tmp", "w"), ensure_ascii=False, indent=1)

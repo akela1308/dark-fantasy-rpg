@@ -130,3 +130,29 @@ ryzh amb2 1
 wild_dog idle 2
 winter_queen amb2 1
 healer hit 1 | кадр 1 выкинут: вспышка
+boar bidle 1 | рамка шире (зверь длинный)
+boar idle 1
+grey_wolf bidle 1
+grey_wolf idle 2
+mavka bidle 2
+mavka idle 2
+drowned bidle 1
+kobold idle 1 | v2: зелёный пар
+wild_dog bidle 1 | v2: белое пятно
+healer cast2 2 | v1: свечение
+healer death 1 | v2: в конце садится
+bandit_brawler attack 1
+drowned idle 2
+kobold bidle 1
+boar amb1 2 | рамка шире
+boar amb2 1 | рамка шире
+drowned amb2 1
+grey_wolf amb1 1 | рамка шире
+grey_wolf amb2 1 | рамка шире
+kobold amb1 2
+kobold amb2 1
+mavka amb2 2
+wild_dog amb1 2 | рамка шире
+wild_dog amb2 1 | v2: голова превращается в волчью; рамка шире
+bandit_brawler attack 1 | рамка шире справа (дубина обрезалась), кадр 18 выкинут (дубина меняет форму)
+healer death 1 | кадр 5 выкинут (белая полоса)

@@ -1,0 +1,1 @@
+{"slug": "boar", "anim": "mapidle", "base": "boar/k_idle.png", "body": 260, "segments": [{"clip": "boar/clips/idle_v1.mp4", "from": 0, "to": 95, "frames": 96}], "loop": true, "left": 1.4, "right": 1.4, "target": "map"}

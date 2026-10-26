@@ -66,3 +66,13 @@ mavka/k_battle.png
 mavka/k_idle.png
 kobold/k_battle.png
 kobold/k_idle.png
+brawler/walk/k_walk.png
+brawler/walk/k_stand.png
+healer/walk/k_walk.png
+healer/walk/k_stand.png
+bandit_map/walk/k_walk.png
+bandit_map/walk/k_stand.png
+bandit_warrior_map/walk/k_walk.png
+bandit_warrior_map/walk/k_stand.png
+bandit_archer_map/walk/k_walk.png
+bandit_archer_map/walk/k_stand.png

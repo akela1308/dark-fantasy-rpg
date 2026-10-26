@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/906cf72c-f333-4077-9395-282be8bfadc4",
+ "prompt": "Stands still and breathes slowly and calmly, chest and shoulders rise and fall slightly, clothes move very gently, a small natural shift of weight. Subtle idle loop, ends in exactly the same pose. Does not walk, does not turn, does not gesture. Camera locked, no zoom. MAP CANON: the crossbow is carried exactly as in the reference, in the same hand, the whole clip.",
+ "img": "bandit_archer_map/walk/k_stand.png",
+ "last": "bandit_archer_map/walk/k_stand.png",
+ "sec": 4
+}

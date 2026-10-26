@@ -24,3 +24,6 @@ winter_monster amb1
 cat amb2
 til amb2
 winter_archer amb1
+healer victory
+drowned amb1
+mavka amb1

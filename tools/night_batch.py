@@ -17,8 +17,10 @@ T = {
  "idle":    dict(frames=96, loop=True, left=0.6, right=0.75, target="map", base="k_idle", anim="mapidle"),
  "bidle":   dict(frames=96, loop=True, left=0.85, right=1.0, anim="idle", base="k_battle"),
  "amb":     dict(frames=72, left=0.7, right=0.9),
- "attack":  dict(frames=32, hit="auto"),
- "power":   dict(frames=40, hit="auto"),
+ "walk":    dict(frames=0, loop=True, target="map", base="walk/k_walk", left=0.75, right=0.75),
+ "stand":   dict(frames=96, loop=True, target="map", base="walk/k_stand", anim="stand", left=0.6, right=0.6),
+ "attack":  dict(frames=32, hit="auto", right=1.4, left=1.0),
+ "power":   dict(frames=40, hit="auto", right=1.4, left=1.0),
  "cast2":   dict(frames=36, hit="auto"),
  "reload":  dict(frames=40),
  "hit":     dict(frames=16),
@@ -40,6 +42,21 @@ def motion_range(path, pad=4):
     return max(0, int(idx[0]) - pad), min(len(f) - 1, int(idx[-1]) + 1 + pad)
 
 
+def best_loop(path, lo=20, hi=36):
+    """Лучший замкнутый цикл ходьбы/стойки: отрезок, у которого последний кадр ближе всего к первому."""
+    import numpy as np
+    raw = subprocess.run(["ffmpeg", "-v", "error", "-i", path, "-vf", "scale=160:90,format=gray", "-f", "rawvideo", "-"],
+                         capture_output=True).stdout
+    f = np.frombuffer(raw, np.uint8).reshape(-1, 90, 160).astype(np.float32)
+    best = (1e9, 0, lo)
+    for a in range(4, len(f) - lo - 4):
+        for L in range(lo, hi + 1):
+            if a + L >= len(f) - 2: break
+            d = np.abs(f[a] - f[a + L]).mean()
+            if d < best[0]: best = (d, a, a + L)
+    return best[1], best[2]
+
+
 ACTION = {"attack": 1.2, "power": 1.6, "cast2": 1.5, "reload": 1.6, "hit": 0.6, "victory": 1.2}
 
 
@@ -51,13 +68,17 @@ def spec_for(slug, clip, var, kv):
         t["target"] = "map" if slug in MAPCH else "battle"
         if slug in MAPCH: t["anim"] = "map" + clip     # карта: mapamb1.., бой: amb1..
     base = base or "k_battle"
-    s = dict(slug=slug, anim=t.pop("anim", clip), base=f"{slug}/{base}.png", body=300 if t.get("target", "battle") == "battle" else 260)
+    s = dict(slug=slug, anim=t.pop("anim", clip), base=f"{slug}/{base}.png", body=300 if t.get("target", "battle") == "battle" else (251 if clip in ("walk", "stand") else 260))
     fr = t.pop("frames"); a = int(kv.pop("from", 0)); b = int(kv.pop("to", 95)); fr = int(kv.pop("frames", fr))
+    if clip == "walk" and "from" not in kv:
+        a, b = best_loop(f"{GEN}/{slug}/clips/walk_v{var}.mp4".replace("/clips/", "/walk/"))
+        fr = b - a + 1
     if clip in ACTION and "from" not in kv and kv.pop("trim", "1") == "1":
         a, b = motion_range(f"{GEN}/{slug}/clips/{clip}_v{var}.mp4")
         fr = min(b - a + 1, max(12, round(ACTION[clip] * 24)))   # длительность действия по типу (ускорение)
         if clip == "victory": b = min(95, b + 12)                 # победа: задержка на финальной позе
-    s["segments"] = [dict(clip=f"{slug}/clips/{clip}_v{var}.mp4", **{"from": a, "to": b, "frames": fr})]
+    sub = "walk" if clip in ("walk", "stand") else "clips"
+    s["segments"] = [dict(clip=f"{slug}/{sub}/{clip}_v{var}.mp4", **{"from": a, "to": b, "frames": fr})]
     if kv.pop("pingpong", None):   # туда и обратно: кадры a..b, потом обратно
         s["segments"] = [dict(clip=s["segments"][0]["clip"], **{"from": a, "to": b, "frames": fr // 2}),
                          dict(clip=s["segments"][0]["clip"], **{"from": b, "to": a, "frames": fr - fr // 2})]

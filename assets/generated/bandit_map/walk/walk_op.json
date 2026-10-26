@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/d71104bc-96a7-4678-9073-013a5f163afc",
+ "prompt": "Walks in place on the spot, like on a treadmill: a steady, natural, realistic walking cycle, weight shifting from foot to foot, slight up and down motion of the body, arms swinging in opposition to the legs, clothes moving with each step. The body stays in exactly the same place in the frame, does not travel across the frame, never turns around, always walks facing right. Camera locked, no zoom. MAP CANON: he carries his weapon exactly as in the reference, in the same hand, the whole clip.",
+ "img": "bandit_map/walk/k_walk.png",
+ "last": "bandit_map/walk/k_walk.png",
+ "sec": 4
+}

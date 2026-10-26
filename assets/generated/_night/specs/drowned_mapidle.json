@@ -1,0 +1,1 @@
+{"slug": "drowned", "anim": "mapidle", "base": "drowned/k_idle.png", "body": 260, "segments": [{"clip": "drowned/clips/idle_v2.mp4", "from": 0, "to": 95, "frames": 96}], "loop": true, "left": 0.6, "right": 0.75, "target": "map"}

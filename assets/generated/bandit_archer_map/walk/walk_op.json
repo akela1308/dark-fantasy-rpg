@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/f573e58f-6b33-4c69-83ef-0301368fda3f",
+ "prompt": "Walks in place on the spot, like on a treadmill: a steady, natural, realistic walking cycle, weight shifting from foot to foot, slight up and down motion of the body, arms swinging in opposition to the legs, clothes moving with each step. The body stays in exactly the same place in the frame, does not travel across the frame, never turns around, always walks facing right. Camera locked, no zoom. MAP CANON: the crossbow is carried exactly as in the reference, in the same hand, the whole clip.",
+ "img": "bandit_archer_map/walk/k_walk.png",
+ "last": "bandit_archer_map/walk/k_walk.png",
+ "sec": 4
+}

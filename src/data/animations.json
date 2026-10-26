@@ -186,6 +186,18 @@
     "bodyHeight": 300,
     "key": "bandit_brawler_amb2_v1"
    },
+   "attack": {
+    "file": "sprites/battle/bandit_brawler_attack_v1.webp",
+    "frameWidth": 603,
+    "frameHeight": 339,
+    "frames": 28,
+    "fps": 24,
+    "originX": 0.3497,
+    "originY": 0.9796,
+    "bodyHeight": 300,
+    "key": "bandit_brawler_attack_v1",
+    "hitFrame": 10
+   },
    "idle": {
     "file": "sprites/battle/bandit_brawler_idle_v1.webp",
     "frameWidth": 510,
@@ -199,7 +211,9 @@
     "loop": true
    }
   },
-  "actions": {},
+  "actions": {
+   "basic": "attack"
+  },
   "name": "Головорез"
  },
  "bandit_commander": {
@@ -219,6 +233,24 @@
   },
   "actions": {},
   "name": "Корвин Сухой (Главарь)"
+ },
+ "boar": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/boar_idle_v1.webp",
+    "frameWidth": 518,
+    "frameHeight": 291,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.487,
+    "originY": 0.9833,
+    "bodyHeight": 300,
+    "key": "boar_idle_v1",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "Вепрь Старого Бора (бестиарий)"
  },
  "companion_brawler": {
   "anims": {
@@ -295,6 +327,24 @@
   },
   "actions": {},
   "name": "Пёс"
+ },
+ "drowned": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/drowned_idle_v1.webp",
+    "frameWidth": 510,
+    "frameHeight": 293,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.4605,
+    "originY": 0.9715,
+    "bodyHeight": 300,
+    "key": "drowned_idle_v1",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "Утопленник (бестиарий)"
  },
  "drunkman": {
   "anims": {
@@ -557,6 +607,24 @@
   "actions": {},
   "name": "Лесной Дед"
  },
+ "grey_wolf": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/grey_wolf_idle_v1.webp",
+    "frameWidth": 481,
+    "frameHeight": 270,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.5855,
+    "originY": 0.9725,
+    "bodyHeight": 300,
+    "key": "grey_wolf_idle_v1",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "Серый волк (бестиарий)"
+ },
  "guard": {
   "anims": {
    "idle": {
@@ -611,6 +679,30 @@
     "key": "healer_attack_v1",
     "hitFrame": 10
    },
+   "cast2": {
+    "file": "sprites/battle/healer_cast2_v1.webp",
+    "frameWidth": 541,
+    "frameHeight": 320,
+    "frames": 36,
+    "fps": 24,
+    "originX": 0.4718,
+    "originY": 0.9698,
+    "bodyHeight": 300,
+    "key": "healer_cast2_v1",
+    "hitFrame": 28
+   },
+   "death": {
+    "file": "sprites/battle/healer_death_v1.webp",
+    "frameWidth": 575,
+    "frameHeight": 320,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.5041,
+    "originY": 0.9698,
+    "bodyHeight": 300,
+    "key": "healer_death_v1",
+    "hold": true
+   },
    "hit": {
     "file": "sprites/battle/healer_hit_v1.webp",
     "frameWidth": 541,
@@ -636,7 +728,8 @@
    }
   },
   "actions": {
-   "basic": "attack"
+   "basic": "attack",
+   "bandage": "cast2"
   },
   "name": "Тая (Знахарка)"
  },
@@ -720,6 +813,24 @@
   "actions": {},
   "name": "Кикимора"
  },
+ "kobold": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/kobold_idle_v1.webp",
+    "frameWidth": 503,
+    "frameHeight": 295,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.4532,
+    "originY": 0.9706,
+    "bodyHeight": 300,
+    "key": "kobold_idle_v1",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "Кобл (бестиарий)"
+ },
  "lyo": {
   "anims": {
    "idle": {
@@ -737,6 +848,24 @@
   },
   "actions": {},
   "name": "Лё, болотный старейшина (новый, предварительно)"
+ },
+ "mavka": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/mavka_idle_v1.webp",
+    "frameWidth": 509,
+    "frameHeight": 302,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.4609,
+    "originY": 0.9744,
+    "bodyHeight": 300,
+    "key": "mavka_idle_v1",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "Мавка (бестиарий)"
  },
  "mountain_king": {
   "anims": {
@@ -994,6 +1123,24 @@
   },
   "actions": {},
   "name": "Висельный чтец"
+ },
+ "wild_dog": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/wild_dog_idle_v1.webp",
+    "frameWidth": 510,
+    "frameHeight": 279,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.5847,
+    "originY": 0.9778,
+    "bodyHeight": 300,
+    "key": "wild_dog_idle_v1",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "Одичавший пёс (бестиарий)"
  },
  "winter_archer": {
   "anims": {

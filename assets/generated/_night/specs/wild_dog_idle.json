@@ -1,0 +1,1 @@
+{"slug": "wild_dog", "anim": "idle", "base": "wild_dog/k_battle.png", "body": 300, "segments": [{"clip": "wild_dog/clips/bidle_v1.mp4", "from": 0, "to": 95, "frames": 96}], "loop": true, "left": 1.3, "right": 1.3}

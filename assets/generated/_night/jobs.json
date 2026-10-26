@@ -1557,6 +1557,96 @@
   "n": 2
  },
  {
+  "stage": 2.5,
+  "name": "brawler/walk/walk",
+  "first": "brawler/walk/k_walk.png",
+  "last": "brawler/walk/k_walk.png",
+  "prompt": "Walks in place on the spot, like on a treadmill: a steady, natural, realistic walking cycle, weight shifting from foot to foot, slight up and down motion of the body, arms swinging in opposition to the legs, clothes moving with each step. The body stays in exactly the same place in the frame, does not travel across the frame, never turns around, always walks facing right. Camera locked, no zoom. MAP CANON: the club hangs on his belt at the hip, both hands EMPTY, the whole clip.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2.5,
+  "name": "brawler/walk/stand",
+  "first": "brawler/walk/k_stand.png",
+  "last": "brawler/walk/k_stand.png",
+  "prompt": "Stands still and breathes slowly and calmly, chest and shoulders rise and fall slightly, clothes move very gently, a small natural shift of weight. Subtle idle loop, ends in exactly the same pose. Does not walk, does not turn, does not gesture. Camera locked, no zoom. MAP CANON: the club hangs on his belt at the hip, both hands EMPTY, the whole clip.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2.5,
+  "name": "healer/walk/walk",
+  "first": "healer/walk/k_walk.png",
+  "last": "healer/walk/k_walk.png",
+  "prompt": "Walks in place on the spot, like on a treadmill: a steady, natural, realistic walking cycle, weight shifting from foot to foot, slight up and down motion of the body, arms swinging in opposition to the legs, clothes moving with each step. The body stays in exactly the same place in the frame, does not travel across the frame, never turns around, always walks facing right. Camera locked, no zoom. MAP CANON: she holds her gnarled wooden staff in the far hand and uses it as a walking stick, the near hand empty, the whole clip.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2.5,
+  "name": "healer/walk/stand",
+  "first": "healer/walk/k_stand.png",
+  "last": "healer/walk/k_stand.png",
+  "prompt": "Stands still and breathes slowly and calmly, chest and shoulders rise and fall slightly, clothes move very gently, a small natural shift of weight. Subtle idle loop, ends in exactly the same pose. Does not walk, does not turn, does not gesture. Camera locked, no zoom. MAP CANON: she holds her gnarled wooden staff in the far hand and uses it as a walking stick, the near hand empty, the whole clip.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2.5,
+  "name": "bandit_map/walk/walk",
+  "first": "bandit_map/walk/k_walk.png",
+  "last": "bandit_map/walk/k_walk.png",
+  "prompt": "Walks in place on the spot, like on a treadmill: a steady, natural, realistic walking cycle, weight shifting from foot to foot, slight up and down motion of the body, arms swinging in opposition to the legs, clothes moving with each step. The body stays in exactly the same place in the frame, does not travel across the frame, never turns around, always walks facing right. Camera locked, no zoom. MAP CANON: he carries his weapon exactly as in the reference, in the same hand, the whole clip.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2.5,
+  "name": "bandit_map/walk/stand",
+  "first": "bandit_map/walk/k_stand.png",
+  "last": "bandit_map/walk/k_stand.png",
+  "prompt": "Stands still and breathes slowly and calmly, chest and shoulders rise and fall slightly, clothes move very gently, a small natural shift of weight. Subtle idle loop, ends in exactly the same pose. Does not walk, does not turn, does not gesture. Camera locked, no zoom. MAP CANON: he carries his weapon exactly as in the reference, in the same hand, the whole clip.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2.5,
+  "name": "bandit_warrior_map/walk/walk",
+  "first": "bandit_warrior_map/walk/k_walk.png",
+  "last": "bandit_warrior_map/walk/k_walk.png",
+  "prompt": "Walks in place on the spot, like on a treadmill: a steady, natural, realistic walking cycle, weight shifting from foot to foot, slight up and down motion of the body, arms swinging in opposition to the legs, clothes moving with each step. The body stays in exactly the same place in the frame, does not travel across the frame, never turns around, always walks facing right. Camera locked, no zoom. MAP CANON: he carries his weapon exactly as in the reference, in the same hand, the whole clip.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2.5,
+  "name": "bandit_warrior_map/walk/stand",
+  "first": "bandit_warrior_map/walk/k_stand.png",
+  "last": "bandit_warrior_map/walk/k_stand.png",
+  "prompt": "Stands still and breathes slowly and calmly, chest and shoulders rise and fall slightly, clothes move very gently, a small natural shift of weight. Subtle idle loop, ends in exactly the same pose. Does not walk, does not turn, does not gesture. Camera locked, no zoom. MAP CANON: he carries his weapon exactly as in the reference, in the same hand, the whole clip.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2.5,
+  "name": "bandit_archer_map/walk/walk",
+  "first": "bandit_archer_map/walk/k_walk.png",
+  "last": "bandit_archer_map/walk/k_walk.png",
+  "prompt": "Walks in place on the spot, like on a treadmill: a steady, natural, realistic walking cycle, weight shifting from foot to foot, slight up and down motion of the body, arms swinging in opposition to the legs, clothes moving with each step. The body stays in exactly the same place in the frame, does not travel across the frame, never turns around, always walks facing right. Camera locked, no zoom. MAP CANON: the crossbow is carried exactly as in the reference, in the same hand, the whole clip.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "stage": 2.5,
+  "name": "bandit_archer_map/walk/stand",
+  "first": "bandit_archer_map/walk/k_stand.png",
+  "last": "bandit_archer_map/walk/k_stand.png",
+  "prompt": "Stands still and breathes slowly and calmly, chest and shoulders rise and fall slightly, clothes move very gently, a small natural shift of weight. Subtle idle loop, ends in exactly the same pose. Does not walk, does not turn, does not gesture. Camera locked, no zoom. MAP CANON: the crossbow is carried exactly as in the reference, in the same hand, the whole clip.",
+  "sec": 4,
+  "n": 2
+ },
+ {
   "stage": 3,
   "name": "healer/clips/attack",
   "first": "healer/k_battle.png",

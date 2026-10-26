@@ -1,0 +1,2 @@
+Edit of the reference image. Exactly one figure, the exact same character, same size, same ground line, same place in the frame, still in side view facing the RIGHT side of the image. New pose: standing still and relaxed, feet planted slightly apart, weight on both legs. MAP CANON: he carries his weapon exactly as in the reference, in the same hand. Flat solid pure chroma green background (#00FF00), no ground, no shadow, no other objects.
+refs: /Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/assets/generated/bandit_map/walk/k_walk.png
