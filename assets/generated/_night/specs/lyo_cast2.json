@@ -1,0 +1,1 @@
+{"slug": "lyo", "anim": "cast2", "base": "lyo/k_battle.png", "body": 300, "segments": [{"clip": "lyo/clips/cast2_v1.mp4", "from": 0, "to": 95, "frames": 36}], "hit": "auto"}

@@ -1798,6 +1798,30 @@
     "key": "lyo_attack_v1",
     "hitFrame": 8
    },
+   "cast2": {
+    "file": "sprites/battle/lyo_cast2_v1.webp",
+    "frameWidth": 488,
+    "frameHeight": 329,
+    "frames": 36,
+    "fps": 24,
+    "originX": 0.5233,
+    "originY": 0.9734,
+    "bodyHeight": 300,
+    "key": "lyo_cast2_v1",
+    "hitFrame": 16
+   },
+   "death": {
+    "file": "sprites/battle/lyo_death_v1.webp",
+    "frameWidth": 588,
+    "frameHeight": 329,
+    "frames": 30,
+    "fps": 24,
+    "originX": 0.6057,
+    "originY": 0.9734,
+    "bodyHeight": 300,
+    "key": "lyo_death_v1",
+    "hold": true
+   },
    "hit": {
     "file": "sprites/battle/lyo_hit_v1.webp",
     "frameWidth": 488,
@@ -1820,6 +1844,18 @@
     "bodyHeight": 300,
     "key": "lyo_idle_v1",
     "loop": true
+   },
+   "victory": {
+    "file": "sprites/battle/lyo_victory_v1.webp",
+    "frameWidth": 488,
+    "frameHeight": 329,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.5233,
+    "originY": 0.9734,
+    "bodyHeight": 300,
+    "key": "lyo_victory_v1",
+    "hold": true
    }
   },
   "actions": {
@@ -2430,6 +2466,41 @@
  },
  "til": {
   "anims": {
+   "attack": {
+    "file": "sprites/battle/til_attack_v1.webp",
+    "frameWidth": 585,
+    "frameHeight": 329,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4796,
+    "originY": 0.9758,
+    "bodyHeight": 300,
+    "key": "til_attack_v1",
+    "hitFrame": 11
+   },
+   "death": {
+    "file": "sprites/battle/til_death_v1.webp",
+    "frameWidth": 585,
+    "frameHeight": 329,
+    "frames": 30,
+    "fps": 24,
+    "originX": 0.4796,
+    "originY": 0.9758,
+    "bodyHeight": 300,
+    "key": "til_death_v1",
+    "hold": true
+   },
+   "hit": {
+    "file": "sprites/battle/til_hit_v1.webp",
+    "frameWidth": 555,
+    "frameHeight": 329,
+    "frames": 14,
+    "fps": 24,
+    "originX": 0.4602,
+    "originY": 0.9758,
+    "bodyHeight": 300,
+    "key": "til_hit_v1"
+   },
    "idle": {
     "file": "sprites/battle/til_idle_v1.webp",
     "frameWidth": 510,
@@ -2443,7 +2514,9 @@
     "loop": true
    }
   },
-  "actions": {},
+  "actions": {
+   "basic": "attack"
+  },
   "name": "Тил, кузнец, бывший сапёр (новый, предварительно)"
  },
  "vurdalak": {

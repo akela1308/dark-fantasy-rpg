@@ -311,3 +311,9 @@ ryzh attack 2
 ryzh death 1
 ryzh hit 2
 ryzh victory 2 | v1: двойной топор
+lyo cast2 1
+lyo death 1 | кадры удара со вспышкой выкидываются вырезкой
+lyo victory 1
+til attack 1
+til death 1
+til hit 1 | v2: белые линии
