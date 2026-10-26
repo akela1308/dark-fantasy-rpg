@@ -54,7 +54,7 @@ export function armorCap(unit) {
 
 /** Броня с потолком 60 у игрока и 50 у врагов. */
 export function effectiveArmor(unit) {
-  return Math.min(Math.max(0, unit.armor || 0), armorCap(unit));
+  return Math.min(Math.max(0, (unit.armor || 0) + (unit.itemArmor || 0)), armorCap(unit));
 }
 
 /** Сколько «живых» в переднем ряду для правила тонкого строя (hold_the_line считается за двоих). */

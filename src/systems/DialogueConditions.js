@@ -73,6 +73,9 @@ export function applyEffects(e, ws, hooks = {}) {
   if (e.dismiss) arr(e.dismiss).forEach(id => hooks.dismiss?.(id));
   if (e.giveXp) hooks.giveXp?.(e.giveXp);
   if (e.rest) hooks.rest?.(e.rest);
+  if (e.dismissForever) arr(e.dismissForever).forEach(id => hooks.dismissForever?.(id));
+  if (e.loseTrait) hooks.loseTrait?.();
+  if (e.chapterEnd) hooks.chapterEnd?.();
   hooks.refresh?.();
 }
 

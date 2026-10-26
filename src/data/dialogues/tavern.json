@@ -2,69 +2,256 @@
   "id": "tavern",
   "source": "03_ДИАЛОГИ_И_КВЕСТЫ_v0.2, разделы 5.1, 5.2, 7.1, 18.2; реплики Ворна v0.1 из maps.json",
   "speakers": {
-    "vorn": { "name": "Ворн", "portrait": "portrait_tavernman" },
-    "taya": { "name": "Тая", "portrait": "portrait_companion_healer" },
-    "vornag": { "name": "Ворнаг", "portrait": "portrait_companion_brawler" },
-    "tiss": { "name": "Тисс", "portrait": "portrait_bandit_archer" },
-    "mira": { "name": "Мира", "portrait": "portrait_cleaning_girl" }
+    "vorn": {
+      "name": "Ворн",
+      "portrait": "portrait_tavernman"
+    },
+    "taya": {
+      "name": "Тая",
+      "portrait": "portrait_companion_healer"
+    },
+    "vornag": {
+      "name": "Ворнаг",
+      "portrait": "portrait_companion_brawler"
+    },
+    "tiss": {
+      "name": "Тисс",
+      "portrait": "portrait_bandit_archer"
+    },
+    "mira": {
+      "name": "Мира",
+      "portrait": "portrait_cleaning_girl"
+    }
   },
   "start": [
-    { "showIf": { "flag": "bandit_intimidated", "notFlag": "vorn_after_road" }, "node": "after_intimidated" },
-    { "showIf": { "flag": "bandit_paid", "notFlag": "vorn_after_road" }, "node": "after_paid" },
-    { "showIf": { "flag": "road_open_conditional", "notFlag": "vorn_after_road" }, "node": "after_deal" },
-    { "showIf": { "flag": "bandit_0_defeated", "notFlag": "vorn_after_road" }, "node": "after_open" },
-    { "node": "vorn" }
+    {
+      "showIf": {
+        "flag": "bandit_intimidated",
+        "notFlag": "vorn_after_road"
+      },
+      "node": "after_intimidated"
+    },
+    {
+      "showIf": {
+        "flag": "bandit_paid",
+        "notFlag": "vorn_after_road"
+      },
+      "node": "after_paid"
+    },
+    {
+      "showIf": {
+        "flag": "road_open_conditional",
+        "notFlag": "vorn_after_road"
+      },
+      "node": "after_deal"
+    },
+    {
+      "showIf": {
+        "flag": "bandit_0_defeated",
+        "notFlag": "vorn_after_road"
+      },
+      "node": "after_open"
+    },
+    {
+      "node": "vorn"
+    }
   ],
   "nodes": {
     "vorn": {
       "speaker": "vorn",
       "text": "\"Добро пожаловать в 'Хромого Лося'. Если пришли с дороги, садитесь. Если пришли с бедой, сначала скажите, сколько у нее ног.\"",
       "lines": [
-        { "showIf": { "companion": "companion_brawler", "notFlag": "vorn_met" }, "speaker": "vorn", "text": "«Ворнаг. Опять без телеги.»" },
-        { "showIf": { "companion": "companion_brawler", "notFlag": "vorn_met" }, "speaker": "vornag", "text": "«Опять.»" }
+        {
+          "showIf": {
+            "companion": "companion_brawler",
+            "notFlag": "vorn_met"
+          },
+          "speaker": "vorn",
+          "text": "«Ворнаг. Опять без телеги.»"
+        },
+        {
+          "showIf": {
+            "companion": "companion_brawler",
+            "notFlag": "vorn_met"
+          },
+          "speaker": "vornag",
+          "text": "«Опять.»"
+        }
       ],
-      "effects": { "setFlag": "vorn_met" },
+      "effects": {
+        "setFlag": "vorn_met"
+      },
       "choices": [
-        { "label": "Что с дорогой на восток?", "next": "road" },
-        { "label": "У меня имперское письмо.", "next": "letter" },
-        { "label": "[Закон 2] Устав дорожных домов.", "requires": { "rep_law": 2 }, "next": "ustav" },
-        { "label": "[5 монет] Комната на ночь.", "showIf": { "notFlag": ["vorn_wary", "mira_saw_theft"] }, "requires": { "gold": 5 }, "effects": { "cost": 5, "rest": true }, "next": "rested" },
-        { "label": "[7 монет] Комната на ночь.", "showIf": { "flag": "mira_saw_theft", "notFlag": "vorn_wary" }, "requires": { "gold": 7 }, "effects": { "cost": 7, "rest": true }, "next": "rested" },
-        { "label": "[15 монет] Комната на ночь.", "showIf": { "flag": "vorn_wary" }, "requires": { "gold": 15 }, "effects": { "cost": 15, "rest": true }, "next": "rested" },
-        { "label": "Кто идёт со мной, а кто ждёт здесь.", "effects": { "openParty": true } },
-        { "label": "[2 монеты] Налей темного.", "requires": { "gold": 2 }, "effects": { "cost": 2 }, "next": "beer" },
-        { "label": "Мы ненадолго.", "style": "retreat", "close": true }
+        {
+          "label": "Что с дорогой на восток?",
+          "next": "road"
+        },
+        {
+          "label": "У меня имперское письмо.",
+          "next": "letter"
+        },
+        {
+          "label": "[Закон 2] Устав дорожных домов.",
+          "requires": {
+            "rep_law": 2
+          },
+          "next": "ustav"
+        },
+        {
+          "label": "[5 монет] Комната на ночь.",
+          "showIf": {
+            "notFlag": [
+              "vorn_wary",
+              "mira_saw_theft"
+            ]
+          },
+          "requires": {
+            "gold": 5
+          },
+          "effects": {
+            "cost": 5,
+            "rest": true
+          },
+          "next": "rested"
+        },
+        {
+          "label": "[7 монет] Комната на ночь.",
+          "showIf": {
+            "flag": "mira_saw_theft",
+            "notFlag": "vorn_wary"
+          },
+          "requires": {
+            "gold": 7
+          },
+          "effects": {
+            "cost": 7,
+            "rest": true
+          },
+          "next": "rested"
+        },
+        {
+          "label": "[15 монет] Комната на ночь.",
+          "showIf": {
+            "flag": "vorn_wary"
+          },
+          "requires": {
+            "gold": 15
+          },
+          "effects": {
+            "cost": 15,
+            "rest": true
+          },
+          "next": "rested"
+        },
+        {
+          "label": "Кто идёт со мной, а кто ждёт здесь.",
+          "effects": {
+            "openParty": true
+          }
+        },
+        {
+          "label": "[2 монеты] Налей темного.",
+          "requires": {
+            "gold": 2
+          },
+          "effects": {
+            "cost": 2
+          },
+          "next": "beer"
+        },
+        {
+          "label": "[15 монет] Мешок зерна.",
+          "showIf": {
+            "flag": "ressa_water_quest",
+            "notFlag": "ressa_water_restored"
+          },
+          "requires": {
+            "gold": 15
+          },
+          "effects": {
+            "cost": 15,
+            "giveItem": "grain"
+          },
+          "next": "vorn"
+        },
+        {
+          "label": "Можно почитать устав?",
+          "showIf": {
+            "notFlag": "book_taken_with_permission"
+          },
+          "effects": {
+            "setFlag": [
+              "book_taken_with_permission",
+              "vorn_trust"
+            ],
+            "giveXp": 15
+          },
+          "next": "ustav_read"
+        },
+        {
+          "label": "Мы ненадолго.",
+          "style": "retreat",
+          "close": true
+        }
       ]
     },
     "road": {
       "speaker": "vorn",
       "text": "\"Дорога теперь не дорога, а чей-то карман. Корвин Сухой поставил людей в Черном Лесу и зовет это пошлиной.\"",
       "choices": [
-        { "label": "Кто он такой?", "next": "who" },
-        { "label": "Сколько он берёт?", "next": "toll" }
+        {
+          "label": "Кто он такой?",
+          "next": "who"
+        },
+        {
+          "label": "Сколько он берёт?",
+          "next": "toll"
+        }
       ]
     },
     "toll": {
       "speaker": "vorn",
       "text": "«С путников серебряную монету, с вооружённых две, с таких, как вы, три. Тридцать монет, если считать по-нашему. Я считаю.»",
-      "effects": { "setFlag": "vorn_toll_known" },
+      "effects": {
+        "setFlag": "vorn_toll_known"
+      },
       "next": "road"
     },
     "who": {
       "speaker": "vorn",
       "text": "\"Бывший дорожный десятник. Раньше гонял таких, как он сам. Потом посты закрыли, жалованье сгнило, а люди остались голодные.\"",
-      "choices": [ { "label": "А письмо?", "next": "letter" } ]
+      "choices": [
+        {
+          "label": "А письмо?",
+          "next": "letter"
+        }
+      ]
     },
     "letter": {
       "speaker": "vorn",
       "text": "\"Письмо с печатью открывает разговор. Дальше работает человек, который его держит. Запомни это, если пойдешь к Корвину.\"",
-      "effects": { "setFlag": "vorn_letter_seen" },
-      "choices": [ { "label": "Запомню.", "effects": { "setFlag": "vorn_road_hint" }, "close": true } ]
+      "effects": {
+        "setFlag": "vorn_letter_seen"
+      },
+      "choices": [
+        {
+          "label": "Запомню.",
+          "effects": {
+            "setFlag": "vorn_road_hint"
+          },
+          "close": true
+        }
+      ]
     },
     "ustav": {
       "speaker": "vorn",
       "text": "«Вы читаете устав как судья. Тогда вы знаете, что гость под крышей неприкосновенен. Я напоминаю это не вам. Я напоминаю себе.»",
-      "effects": { "setFlag": ["vorn_ustav", "vorn_trust"] },
+      "effects": {
+        "setFlag": [
+          "vorn_ustav",
+          "vorn_trust"
+        ]
+      },
       "next": "vorn"
     },
     "rested": {
@@ -80,59 +267,124 @@
     "after_open": {
       "speaker": "vorn",
       "text": "\"Дорога открылась? Хорошо. Только пустое место у дороги долго пустым не бывает. Следующий возьмет не монету, а что-нибудь потяжелее.\"",
-      "effects": { "setFlag": "vorn_after_road" },
-      "choices": [ { "label": "Буду иметь в виду.", "next": "vorn" } ]
+      "effects": {
+        "setFlag": "vorn_after_road"
+      },
+      "choices": [
+        {
+          "label": "Буду иметь в виду.",
+          "next": "vorn"
+        }
+      ]
     },
     "after_paid": {
       "speaker": "vorn",
       "text": "\"Заплатили? Значит, прошли. Не значит, что решили. Корвин теперь знает цену вашей спешки.\"",
-      "effects": { "setFlag": "vorn_after_road" },
-      "choices": [ { "label": "Мы вернемся к этому.", "next": "vorn" } ]
+      "effects": {
+        "setFlag": "vorn_after_road"
+      },
+      "choices": [
+        {
+          "label": "Мы вернемся к этому.",
+          "next": "vorn"
+        }
+      ]
     },
     "after_intimidated": {
       "speaker": "vorn",
       "text": "\"Он отступил? Плохо. Мертвые не мстят, а униженные любят делать это красиво. Ходите осторожнее, когда стемнеет.\"",
-      "effects": { "setFlag": "vorn_after_road" },
-      "choices": [ { "label": "Учту.", "next": "vorn" } ]
+      "effects": {
+        "setFlag": "vorn_after_road"
+      },
+      "choices": [
+        {
+          "label": "Учту.",
+          "next": "vorn"
+        }
+      ]
     },
     "after_deal": {
       "speaker": "vorn",
       "text": "«Договорились с Корвином? Тогда вы теперь тоже немного дорога. Смотрите, чтобы вас не начали собирать как пошлину.»",
-      "effects": { "setFlag": "vorn_after_road" },
-      "choices": [ { "label": "Учту.", "next": "vorn" } ]
+      "effects": {
+        "setFlag": "vorn_after_road"
+      },
+      "choices": [
+        {
+          "label": "Учту.",
+          "next": "vorn"
+        }
+      ]
     },
-
     "taya": {
       "speaker": "taya",
       "text": [
-        { "showIf": { "flag": "taya_refused", "any": [ { "flag": "korvin_gang_won" }, { "flag": "korvin_resolved" } ] }, "text": "«Теперь вам нужен лекарь.»" },
-        { "text": "«Если вы за столом с бинтами, значит, не ко мне. Я не продаю. Если с раной, подождите, у меня одни руки.»" }
+        {
+          "showIf": {
+            "flag": "taya_refused",
+            "any": [
+              {
+                "flag": "korvin_gang_won"
+              },
+              {
+                "flag": "korvin_resolved"
+              }
+            ]
+          },
+          "text": "«Теперь вам нужен лекарь.»"
+        },
+        {
+          "text": "«Если вы за столом с бинтами, значит, не ко мне. Я не продаю. Если с раной, подождите, у меня одни руки.»"
+        }
       ],
       "choices": [
-        { "label": "«Ты лекарка?»", "next": "t_a" },
-        { "label": "«Что с ним?»", "next": "t_b" },
-        { "label": "«Мне нужен человек, который умеет перевязывать.»", "next": "t_d" },
-        { "label": "«Не буду мешать.»", "style": "retreat", "close": true }
+        {
+          "label": "«Ты лекарка?»",
+          "next": "t_a"
+        },
+        {
+          "label": "«Что с ним?»",
+          "next": "t_b"
+        },
+        {
+          "label": "«Мне нужен человек, который умеет перевязывать.»",
+          "next": "t_d"
+        },
+        {
+          "label": "«Не буду мешать.»",
+          "style": "retreat",
+          "close": true
+        }
       ]
     },
     "t_a": {
       "speaker": "taya",
       "text": "«Знахарка. Лекарки в городе, с бумагой. У меня бумаги нет, у меня бабкина сумка и память на травы. Хватает, пока никто не умирает. Когда умирают, ищут виноватого, и бумага тут очень помогает.»",
       "choices": [
-        { "label": "«Откуда ты?»", "next": "t_a1" },
-        { "label": "«Почему не вернёшься?»", "next": "t_a2" }
+        {
+          "label": "«Откуда ты?»",
+          "next": "t_a1"
+        },
+        {
+          "label": "«Почему не вернёшься?»",
+          "next": "t_a2"
+        }
       ]
     },
     "t_a1": {
       "speaker": "taya",
       "text": "«Из деревни за лесом. Придорожный. Пока называю так, потом посмотрим, как назову.»",
-      "effects": { "setFlag": "taya_village_hidden" },
+      "effects": {
+        "setFlag": "taya_village_hidden"
+      },
       "next": "t_d"
     },
     "t_a2": {
       "speaker": "taya",
       "text": "«Потому что дорога через лес стоит тридцать монет, а у меня восемь. И потому что там есть люди, которые ждут меня не с хлебом.»",
-      "effects": { "setFlag": "taya_village_secret_hint" },
+      "effects": {
+        "setFlag": "taya_village_secret_hint"
+      },
       "next": "taya"
     },
     "t_b": {
@@ -144,64 +396,151 @@
       "speaker": "taya",
       "text": "«Мне нужно в деревню. Через лес. Одна я не пройду, Корвин берёт деньгами или людьми, а я не хочу быть ни тем, ни другим. Если вы идёте туда, я иду с вами и лечу, кого надо. Если нет, спасибо за разговор.»",
       "lines": [
-        { "showIf": { "companion": "companion_brawler" }, "speaker": "vornag", "text": "«Бери. Я один всю дорогу не прикрою.»" }
+        {
+          "showIf": {
+            "companion": "companion_brawler"
+          },
+          "speaker": "vornag",
+          "text": "«Бери. Я один всю дорогу не прикрою.»"
+        }
       ],
       "choices": [
-        { "label": "«Мы идём через лес. Идём.»", "effects": { "setFlag": ["taya_recruited", "recruit_taya"], "recruit": "companion_healer" }, "next": "t_joined" },
-        { "label": "«За плату.»", "next": "t_paid" },
-        { "label": "«Мне не нужен лекарь.»", "effects": { "setFlag": "taya_refused" }, "close": true }
+        {
+          "label": "«Мы идём через лес. Идём.»",
+          "effects": {
+            "setFlag": [
+              "taya_recruited",
+              "recruit_taya"
+            ],
+            "recruit": "companion_healer"
+          },
+          "next": "t_joined"
+        },
+        {
+          "label": "«За плату.»",
+          "next": "t_paid"
+        },
+        {
+          "label": "«Мне не нужен лекарь.»",
+          "effects": {
+            "setFlag": "taya_refused"
+          },
+          "close": true
+        }
       ]
     },
     "t_paid": {
       "speaker": "taya",
       "text": "«У меня восемь монет. Все отдам у ворот деревни, не раньше.»",
-      "effects": { "setFlag": ["taya_recruited", "taya_recruited_paid", "recruit_taya"], "recruit": "companion_healer" },
+      "effects": {
+        "setFlag": [
+          "taya_recruited",
+          "taya_recruited_paid",
+          "recruit_taya"
+        ],
+        "recruit": "companion_healer"
+      },
       "next": "t_joined"
     },
     "t_joined": {
       "goto": [
-        { "showIf": { "companion": "companion_brawler" }, "node": "t_vornag" }
+        {
+          "showIf": {
+            "companion": "companion_brawler"
+          },
+          "node": "t_vornag"
+        }
       ]
     },
     "t_vornag": {
       "speaker": "vornag",
       "text": "«Хорошо. Хоть кто-то будет знать, куда прикладывать тряпку.»"
     },
-
     "vornag": {
       "speaker": "vornag",
       "text": "«Со мной просто. Я иду впереди, ты говоришь, куда. Платить не надо, мне уже заплатили, я должен отходить эти деньги до поста. Там и разойдёмся, если захочешь.»",
       "choices": [
-        { "label": "«[15 монет] Идём.»", "requires": { "gold": 15 }, "effects": { "cost": 15, "setFlag": ["wornag_recruited", "recruit_vornag"], "recruit": "companion_brawler" }, "close": true },
-        { "label": "«Не сейчас.»", "style": "retreat", "close": true }
+        {
+          "label": "«[15 монет] Идём.»",
+          "requires": {
+            "gold": 15
+          },
+          "effects": {
+            "cost": 15,
+            "setFlag": [
+              "wornag_recruited",
+              "recruit_vornag"
+            ],
+            "recruit": "companion_brawler"
+          },
+          "close": true
+        },
+        {
+          "label": "«Не сейчас.»",
+          "style": "retreat",
+          "close": true
+        }
       ]
     },
-
     "tiss": {
       "speaker": "tiss",
       "text": "«Пришёл, как сказали. Ворн налил и не взял денег. Это хуже, чем если бы взял.»",
       "choices": [
-        { "label": "«Идёшь со мной?»", "next": "tiss_join" },
-        { "label": "«Останься здесь. Пока.»", "effects": { "setFlag": "tiss_waits" }, "close": true }
+        {
+          "label": "«Идёшь со мной?»",
+          "next": "tiss_join"
+        },
+        {
+          "label": "«Останься здесь. Пока.»",
+          "effects": {
+            "setFlag": "tiss_waits"
+          },
+          "close": true
+        }
       ]
     },
     "tiss_join": {
       "goto": [
-        { "showIf": { "companion": "companion_brawler" }, "node": "tiss_v1" },
-        { "node": "tiss_joined" }
+        {
+          "showIf": {
+            "companion": "companion_brawler"
+          },
+          "node": "tiss_v1"
+        },
+        {
+          "node": "tiss_joined"
+        }
       ]
     },
-    "tiss_v1": { "speaker": "vornag", "text": "«Он стрелял в гонца.»", "next": "tiss_v2" },
-    "tiss_v2": { "speaker": "tiss", "text": "«Стрелял. По приказу. Приказа больше нет.»", "next": "tiss_v3" },
+    "tiss_v1": {
+      "speaker": "vornag",
+      "text": "«Он стрелял в гонца.»",
+      "next": "tiss_v2"
+    },
+    "tiss_v2": {
+      "speaker": "tiss",
+      "text": "«Стрелял. По приказу. Приказа больше нет.»",
+      "next": "tiss_v3"
+    },
     "tiss_v3": {
       "speaker": "vornag",
       "text": "«У меня тоже нет приказа тебя терпеть. Но я потерплю. Один раз.»",
-      "effects": { "setFlag": "wornag_tiss_tension" },
+      "effects": {
+        "setFlag": "wornag_tiss_tension"
+      },
       "next": "tiss_joined"
     },
     "tiss_joined": {
-      "effects": { "setFlag": "tiss_recruited", "recruit": "tiss_recruit" },
+      "effects": {
+        "setFlag": "tiss_recruited",
+        "recruit": "tiss_recruit"
+      },
       "goto": []
+    },
+    "ustav_read": {
+      "speaker": "vorn",
+      "text": "Ворн молча кладёт на стойку «Устав дорожных домов Веланта».",
+      "next": "vorn"
     }
   }
 }

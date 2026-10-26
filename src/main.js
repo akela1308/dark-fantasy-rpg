@@ -4,6 +4,7 @@ import { LoadingScene } from './scenes/LoadingScene.js';
 import { MapScene }     from './scenes/MapScene.js';
 import { BattleScene }  from './scenes/BattleScene.js';
 import { LevelUpScene } from './scenes/LevelUpScene.js';
+import { ChapterEndScene } from './scenes/ChapterEndScene.js';
 import { GAME_WIDTH, GAME_HEIGHT } from './utils/constants.js';
 
 const config = {
@@ -15,7 +16,7 @@ const config = {
     default: 'arcade',
     arcade: { debug: false },
   },
-  scene: [BootScene, LoadingScene, MapScene, BattleScene, LevelUpScene],
+  scene: [BootScene, LoadingScene, MapScene, BattleScene, LevelUpScene, ChapterEndScene],
   scale: {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.NO_CENTER,

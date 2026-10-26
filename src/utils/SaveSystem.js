@@ -179,6 +179,7 @@ export const SaveSystem = {
     registry.set('playerGold', START_GOLD);
     registry.set('gameMode', mode);
     registry.set('north_closed', true);
+    registry.set('items', { letter: 1 });
     registry.set('_sessionLoaded', true);
   },
 

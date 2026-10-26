@@ -1,0 +1,107 @@
+{
+  "id": "cellar",
+  "source": "03_ДИАЛОГИ_И_КВЕСТЫ_v0.2, раздел 9; 06_КВЕСТЫ 6.1",
+  "speakers": {
+    "narrator": {
+      "name": ""
+    },
+    "voice": {
+      "name": "Голос"
+    }
+  },
+  "start": [
+    {
+      "node": "rooms"
+    }
+  ],
+  "nodes": {
+    "rooms": {
+      "speaker": "narrator",
+      "text": "Три комнаты: журнал поста, клетка с цепями (пустая, но тёплая), дверь со знаком.",
+      "choices": [
+        {
+          "label": "Прочесть журнал поста.",
+          "showIf": {
+            "notFlag": "basement_journal_read"
+          },
+          "effects": {
+            "setFlag": "basement_journal_read",
+            "giveXp": "quest"
+          },
+          "next": "journal"
+        },
+        {
+          "label": "Открыть дверь со знаком.",
+          "effects": {
+            "setFlag": "basement_opened"
+          },
+          "next": "door"
+        },
+        {
+          "label": "Не открывать.",
+          "effects": {
+            "setFlag": "basement_left_closed"
+          },
+          "next": "end_closed"
+        },
+        {
+          "label": "Уйти наверх.",
+          "style": "retreat",
+          "close": true
+        }
+      ]
+    },
+    "journal": {
+      "speaker": "narrator",
+      "text": "Журнал поста. Дата ухода гарнизона совпадает с рассказом Савко.",
+      "next": "rooms"
+    },
+    "door": {
+      "goto": [
+        {
+          "showIf": {
+            "flag": "seal_worn",
+            "notFlag": "hero_name_spoken"
+          },
+          "node": "voice"
+        },
+        {
+          "node": "fight"
+        }
+      ]
+    },
+    "voice": {
+      "speaker": "voice",
+      "text": "Из-за двери голос называет героя по имени. Этого имени вы ещё не видели.",
+      "next": "fight"
+    },
+    "fight": {
+      "speaker": "narrator",
+      "text": "Дверь со знаком открывается.",
+      "choices": [
+        {
+          "label": "[Войти]",
+          "startBattle": {
+            "battleId": "sealed_basement",
+            "onWin": "end_won"
+          }
+        }
+      ]
+    },
+    "end_won": {
+      "effects": {
+        "setFlag": "basement_cleared",
+        "chapterEnd": true,
+        "giveGold": 40,
+        "giveItem": "post_pistol"
+      },
+      "goto": []
+    },
+    "end_closed": {
+      "effects": {
+        "chapterEnd": true
+      },
+      "goto": []
+    }
+  }
+}

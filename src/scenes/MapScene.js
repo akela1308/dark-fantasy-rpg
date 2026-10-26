@@ -118,6 +118,7 @@ export class MapScene extends Phaser.Scene {
     // Диалоги из src/data/dialogues/*.json с условиями и репутацией (блок Г)
     this._ws = new WorldState(this.game.registry);
     this.game.registry.set(`${this.mapKey}_visited`, true);
+    { const v = this._ws.inc(`visits_${this.mapKey}`); this.game.registry.set(`cnt_visits_${this.mapKey}_${v}`, true); }
     // Пошлина: заплатил Корвину один раз, дальше каждый проход лесом 10 монет, пока он жив и без сделки (03_ДИАЛОГИ 6.3)
     {
       const reg = this.game.registry;
@@ -182,6 +183,7 @@ export class MapScene extends Phaser.Scene {
     if (_goldItem) _goldItem.quantity = savedGold;
     this._syncCollectedBooksToInventory();
     this._syncCollectedInspectablesToInventory();
+    this._syncWorldItems();
 
     this._buildHUD(cfg);
 
@@ -1254,8 +1256,15 @@ export class MapScene extends Phaser.Scene {
       recruit: id => this._recruit(id),
       dismiss: id => { PartySystem.bench(reg, id); this._applyPartyVisibility(); },
       transition: (map, spawn) => this._transitionTo(map, spawn),
-      refresh: () => this._refreshGoldHud(),
+      refresh: () => { this._refreshGoldHud(); this._syncWorldItems(); },
       rest: () => this._rest(),
+      dismissForever: id => { PartySystem.dismiss(reg, id); this._applyPartyVisibility(true); this._toast('Спутник ушёл'); },
+      loseTrait: () => this.time.delayedCall(120, () => this._chooseTraitToLose()),
+      chapterEnd: () => this.time.delayedCall(300, () => {
+        SaveSystem.saveWorld(reg, this.mapKey, this.spawnId);
+        this._transitioning = true;
+        this.scene.start('ChapterEndScene', { fromMapKey: 'tavern_map', fromSpawnId: 'tavern_exit' });
+      }),
       openParty: () => this._showPartyManager(),
       onClose: () => SaveSystem.saveWorld(reg, this.mapKey, this.spawnId),
     };
@@ -1301,6 +1310,52 @@ export class MapScene extends Phaser.Scene {
     }).setOrigin(0.5).setDepth(D + 1).setScrollFactor(0);
     bg.on('pointerdown', () => this._toggleJournal());
     this._journalObjs = [bg, title, body, hint];
+  }
+
+  /** Предметы из WorldState (квестовые, 06_КВЕСТЫ 8) в инвентарь. */
+  _syncWorldItems() {
+    const owned = this.game.registry.get('items') || {};
+    Object.entries(owned).forEach(([id, n]) => {
+      if (!n) return;
+      const def = itemsData.find(it => it.id === id);
+      if (def && !this._inventory?.some(it => it.id === id)) this._addInventoryItem({ ...def, quantity: n }, { render: true });
+    });
+  }
+
+  /** Плата памятью Горному Королю: герой теряет одну черту на выбор (03_ДИАЛОГИ 11). */
+  _chooseTraitToLose() {
+    const reg = this.game.registry;
+    const save = SaveSystem.load();
+    const hero = (save?.units || []).find(u => u.id === 'hero_duelist');
+    const traits = [...new Set(hero?.commanderTraits || [])];
+    if (!traits.length) {
+      this._dialogue.show({ portraitLeft: 'portrait_hero_duelist', speakerName: 'Горный Король', portraitRight: 'portrait_mountain_king',
+        text: 'Помнить нечего. Гора ждёт.', choices: [{ label: 'Уйти.', style: 'retreat', onSelect: () => {} }] });
+      return;
+    }
+    this._dialogue.show({
+      portraitLeft: 'portrait_hero_duelist', portraitRight: 'portrait_mountain_king', speakerName: 'Горный Король',
+      text: 'Что забудет герой?',
+      choices: traits.map(t => ({
+        label: TRAIT_LABELS[t] || t,
+        onSelect: () => {
+          const i = hero.commanderTraits.lastIndexOf(t);
+          hero.commanderTraits.splice(i, 1);
+          if (t === 'commander') PartySystem.setSlots(reg, PartySystem.getSlots(reg) - 1);
+          if (t === 'own_road') {
+            hero.maxHp = Math.round(hero.maxHp / 1.12); hero.baseMaxHp = Math.round((hero.baseMaxHp ?? hero.maxHp) / 1.12);
+            hero.hp = Math.min(hero.hp, hero.maxHp);
+            hero.damage = { min: Math.round(hero.damage.min / 1.12), max: Math.round(hero.damage.max / 1.12) };
+          }
+          reg.set(`trait_${t}`, hero.commanderTraits.includes(t));
+          reg.set('mountain_king_paid_memory', true);
+          reg.set('north_closed', false);
+          localStorage.setItem('darkfantasy_ironman_v1', JSON.stringify(save));
+          SaveSystem.saveWorld(reg, this.mapKey, this.spawnId);
+          this._toast(`Забыто: ${TRAIT_LABELS[t] || t}. Перевал открыт.`);
+        },
+      })),
+    });
   }
 
   /** Отдых: полное HP, Сборы, раны сняты, точка возврата Хроники. */

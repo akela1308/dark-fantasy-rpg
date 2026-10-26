@@ -68,6 +68,23 @@
           "next": "hostile"
         },
         {
+          "label": "Зерно вместо воды. За Рессу.",
+          "showIf": {
+            "flag": "ressa_water_quest",
+            "notFlag": "ressa_water_restored"
+          },
+          "requires": {
+            "item": "grain"
+          },
+          "reason": "нужно зерно",
+          "effects": {
+            "takeItem": "grain",
+            "setFlag": "ressa_water_restored",
+            "giveXp": 30
+          },
+          "next": "water_back"
+        },
+        {
           "label": "Уйти.",
           "style": "retreat",
           "close": true
@@ -255,6 +272,11 @@
           "close": true
         }
       ]
+    },
+    "water_back": {
+      "speaker": "le",
+      "text": "Лё опускает руку в воду и долго молчит. Потом кивает Рессе.",
+      "next": "le"
     }
   }
 }

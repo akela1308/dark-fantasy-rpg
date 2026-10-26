@@ -1,0 +1,108 @@
+{
+  "id": "dwarves",
+  "source": "реплики Брамма и Орта v0.1 из maps.json; 03_ДИАЛОГИ_И_КВЕСТЫ_v0.2, разделы 5.5, 7.6, 18.1; 06_КВЕСТЫ 5.4",
+  "speakers": {
+    "bramm": { "name": "Брамм", "portrait": "portrait_dwarf_beer" },
+    "ort": { "name": "Орт", "portrait": "portrait_dwarf_beer2" },
+    "halvar": { "name": "Хальвар", "portrait": "portrait_dwarf_beer" },
+    "vorn": { "name": "Ворн", "portrait": "portrait_tavernman" },
+    "narrator": { "name": "" }
+  },
+  "start": [ { "node": "bramm" } ],
+  "nodes": {
+    "bramm": {
+      "speaker": "bramm",
+      "text": "\"Если вы пришли спросить, как пройти в горы, ответ: ногами. Если пришли спросить, стоит ли, ответ: нет.\"",
+      "choices": [
+        { "label": "Ты из этих гор?", "next": "b_from" },
+        { "label": "Что слышно о дороге?", "next": "b_road" },
+        { "label": "Корвин?", "next": "b_korvin" },
+        { "label": "Не буду мешать.", "style": "retreat", "close": true }
+      ]
+    },
+    "b_from": {
+      "speaker": "bramm",
+      "text": "\"Из гор? Нет. Я из пива, стула и плохих решений. А горы просто почему-то считают меня своим.\"",
+      "choices": [ { "label": "Ты изгнан?", "next": "b_exile" } ]
+    },
+    "b_exile": {
+      "speaker": "bramm",
+      "text": "\"Громкое слово. Я бы сказал: временно не там, где меня хотят видеть. Совсем другое дело.\"",
+      "choices": [ { "label": "А дорога?", "next": "b_road" } ]
+    },
+    "b_road": {
+      "speaker": "bramm",
+      "text": "\"Люди спорят, кому она принадлежит. Смешно. Дороги принадлежат тем, кто по ним хоронит друзей.\"",
+      "choices": [ { "label": "Запомню.", "close": true } ]
+    },
+    "b_korvin": {
+      "speaker": "bramm",
+      "text": "«Я таких сверху видел больше, чем снизу. Наверху они только тише.»",
+      "next": "bramm"
+    },
+
+    "ort": {
+      "speaker": "ort",
+      "text": [
+        { "showIf": { "flag": "ort_respect" }, "text": "«Он не должен был пить здесь. Но он здесь. Значит, я тоже.»" },
+        { "text": "Дварф не поднимает кружку и не смотрит на вас. Только два пальца на столе едва заметно касаются старого каменного амулета." }
+      ],
+      "choices": [
+        { "label": "Взять каменный знак.", "showIf": { "flag": "ort_respect", "notFlag": "ort_token_given" }, "effects": { "setFlag": "ort_token_given", "giveItem": "ort_token" }, "close": true },
+        { "label": "Я ищу путь в горы.", "showIf": { "notFlag": "ort_respect" }, "next": "o_path" },
+        { "label": "Не буду мешать.", "style": "retreat", "close": true }
+      ]
+    },
+    "o_path": {
+      "speaker": "ort",
+      "text": "\"Путь ищут ногами. Разрешение, поступками.\"",
+      "choices": [ { "label": "Понимаю.", "close": true } ]
+    },
+
+    "korvin_men": {
+      "speaker": "narrator",
+      "text": "Двое людей Корвина сидят за столом Брамма и давят на него за долг. Ворн не вмешивается: внутри не проливают кровь.",
+      "choices": [
+        { "label": "«[Закон 2] Устав. Гость под крышей неприкосновенен.»", "requires": { "rep_law": 2 }, "effects": { "setFlag": ["bramm_trust", "ort_respect", "korvin_men_gone"], "rep": { "law": 1 }, "giveXp": 55 }, "next": "men_left" },
+        { "label": "«[Страх 2] Вон.»", "requires": { "rep_fear": 2 }, "effects": { "setFlag": ["bramm_trust", "korvin_men_gone"], "rep": { "fear": 1 }, "giveXp": 55 }, "next": "men_left" },
+        { "label": "«[15 монет] Я заплачу его долг.»", "requires": { "gold": 15 }, "effects": { "cost": 15, "setFlag": ["bramm_trust", "ort_respect", "korvin_men_gone"], "rep": { "word": 1 }, "giveXp": 55 }, "next": "men_left" },
+        { "label": "[Драка]", "startBattle": { "battleId": "tavern_brawl", "onWin": "brawl_won" } },
+        { "label": "Уйти.", "style": "retreat", "close": true }
+      ]
+    },
+    "men_left": {
+      "speaker": "narrator",
+      "text": "Люди Корвина уходят."
+    },
+    "brawl_won": {
+      "speaker": "vorn",
+      "text": "«Кровь на моём полу. Вы знаете, что это значит?»",
+      "effects": { "setFlag": ["vorn_wary", "bramm_trust", "korvin_men_gone", "tavern_brawl_done"] }
+    },
+
+    "halvar": {
+      "speaker": "halvar",
+      "text": "«Я пришёл за ним. Не за вами. Но раз вы ходили перевалом и вернулись, скажите: латники ещё берут плату?»",
+      "choices": [
+        { "label": "«Берут.»", "next": "h_take" },
+        { "label": "«Мы прошли по знаку Орта.»", "showIf": { "flag": "mountain_pass_peaceful" }, "next": "h_ort" },
+        { "label": "«Брамм не пойдёт с тобой.»", "next": "h_bramm" }
+      ]
+    },
+    "h_take": {
+      "speaker": "halvar",
+      "text": "«Значит, Дагмар всё ещё платит им из своего. Упрямый. Передайте ему, что клан помнит. Он решит, хорошо это или плохо.»",
+      "effects": { "setFlag": "halvar_message" }
+    },
+    "h_ort": {
+      "speaker": "ort",
+      "text": "«Знак был мой. Решение его.»",
+      "effects": { "setFlag": "ort_spoke_thrice" }
+    },
+    "h_bramm": {
+      "speaker": "bramm",
+      "text": "«Я сам скажу, куда я не пойду.»",
+      "lines": [ { "speaker": "halvar", "text": "«Он скажет. Я подожду. Я умею.»" } ]
+    }
+  }
+}

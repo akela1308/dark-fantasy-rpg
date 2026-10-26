@@ -18,6 +18,7 @@ import battlesData from '../data/battles.json';
 import MAP_CONFIGS from '../data/maps.json';
 import { SaveSystem } from '../utils/SaveSystem.js';
 import { PartySystem } from '../systems/PartySystem.js';
+import { applyItemBonuses } from '../systems/Items.js';
 import { enemiesForParty, lootPerEnemy, meleeReach, isActive, shouldSurrender, hasFury, RULES } from '../systems/CombatRules.js';
 import { getBattleAnimConfig, ensureBattleAnims, hasBattleAnims, loadBattleAnimSheets, animOrigin } from '../systems/BattleAnimations.js';
 
@@ -164,6 +165,7 @@ export class BattleScene extends Phaser.Scene {
       u.prepareForBattle(base);
     });
     this.enemyUnits.forEach(u => { u._allies = this.enemyUnits; u._foes = this.playerUnits; });
+    applyItemBonuses(this.playerUnits, this.game.registry);
     // Западня: враги ходят первыми в первом раунде
     if (this.game.registry.get('battleAmbush')) {
       this.enemyUnits.forEach(u => { u._initiativeBonus = 100; });

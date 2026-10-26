@@ -28,5 +28,115 @@
     "healAmount": 10,
     "unlimited": true,
     "description": "Восстанавливает 10 HP. Пополняется на привале."
+  },
+  {
+    "id": "letter",
+    "name": "Имперское письмо",
+    "type": "quest",
+    "quantity": 0,
+    "icon": "icon_hand",
+    "stackable": false,
+    "quest": true,
+    "description": "Письмо на пост номер семь. Воск цел."
+  },
+  {
+    "id": "savko_key",
+    "name": "Ключ Савко",
+    "type": "quest",
+    "quantity": 0,
+    "icon": "icon_hammer",
+    "stackable": false,
+    "quest": true,
+    "description": "Ключ от люка во дворе «Хромого Лося»."
+  },
+  {
+    "id": "ort_token",
+    "name": "Знак Орта",
+    "type": "quest",
+    "quantity": 0,
+    "icon": "icon_luck_horseshoe",
+    "stackable": false,
+    "quest": true,
+    "description": "Каменный знак. Латники перевала его читают."
+  },
+  {
+    "id": "post_pistol",
+    "name": "Пистоль поста",
+    "type": "equipment",
+    "quantity": 0,
+    "icon": "icon_pistol",
+    "stackable": false,
+    "quest": true,
+    "description": "Пистоль седьмого поста: +1 заряд в каждом бою."
+  },
+  {
+    "id": "book_prayers",
+    "name": "Молитвы для тех, кого не нашли",
+    "type": "book",
+    "quantity": 0,
+    "icon": "icon_hand",
+    "stackable": false,
+    "quest": true,
+    "description": "Одна потеря имени отменяется."
+  },
+  {
+    "id": "herbal_recipe",
+    "name": "Травник низких мест",
+    "type": "book",
+    "quantity": 0,
+    "icon": "icon_drop",
+    "stackable": false,
+    "quest": true,
+    "description": "Рецепт Таи: +1 Сбор на отдыхе."
+  },
+  {
+    "id": "dwarf_ore",
+    "name": "Руда перевала",
+    "type": "quest",
+    "quantity": 0,
+    "icon": "icon_might",
+    "stackable": false,
+    "quest": true,
+    "description": "У Брамма меняется на +4% брони Ворнагу."
+  },
+  {
+    "id": "seal_ring",
+    "name": "Кольцо Печати",
+    "type": "quest",
+    "quantity": 0,
+    "icon": "icon_skull",
+    "stackable": false,
+    "quest": true,
+    "description": "Чёрный металл. Холодит не палец, а затылок."
+  },
+  {
+    "id": "rune_hide",
+    "name": "Шкура с рунами",
+    "type": "equipment",
+    "quantity": 0,
+    "icon": "icon_shield",
+    "stackable": false,
+    "quest": true,
+    "description": "+4% брони герою."
+  },
+  {
+    "id": "reader_chain",
+    "name": "Цепь Чтеца",
+    "type": "equipment",
+    "quantity": 0,
+    "icon": "icon_broken_sword",
+    "stackable": false,
+    "quest": true,
+    "description": "Носитель не получает слабость."
+  },
+  {
+    "id": "grain",
+    "name": "Зерно",
+    "type": "quest",
+    "quantity": 0,
+    "icon": "icon_trader",
+    "stackable": false,
+    "quest": true,
+    "description": "Плата болоту вместо воды."
   }
 ]

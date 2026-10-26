@@ -255,7 +255,7 @@ export class Unit {
   // --- Эффекты ---
   addEffect(effect) {
     if (effect.type === 'staggered' && this.passives.includes('unyielding')) return;
-    if (effect.type === 'weakened' && this.passives.includes('unyielding')) return;
+    if (effect.type === 'weakened' && (this.passives.includes('unyielding') || this.immuneWeakened)) return;
     this.effects.push({ ...effect });
     eventBus.emit('effect_added', { unit: this, effect });
   }

@@ -1,0 +1,276 @@
+{
+  "id": "mira",
+  "source": "реплики Миры v0.1 из maps.json; 03_ДИАЛОГИ_И_КВЕСТЫ_v0.2, раздел 5.3, 7.4, 15.2; 06_КВЕСТЫ 5.3",
+  "speakers": {
+    "mira": {
+      "name": "Мира",
+      "portrait": "portrait_cleaning_girl"
+    },
+    "taya": {
+      "name": "Тая",
+      "portrait": "portrait_companion_healer"
+    },
+    "holt": {
+      "name": "Хольт",
+      "portrait": "portrait_holt"
+    }
+  },
+  "start": [
+    {
+      "showIf": {
+        "flag": "mira_source_betrayed"
+      },
+      "node": "cold"
+    },
+    {
+      "showIf": {
+        "flag": "mira_source_protected",
+        "any": [
+          {
+            "flag": "bandit_intimidated"
+          },
+          {
+            "flag": "bandit_paid"
+          }
+        ],
+        "notFlag": "mira_warned"
+      },
+      "node": "warn"
+    },
+    {
+      "showIf": {
+        "flag": "bandit_commander_killed",
+        "notFlag": "mira_heard_killed"
+      },
+      "node": "killed"
+    },
+    {
+      "showIf": {
+        "flag": "mira_source_protected",
+        "notFlag": "cloaks_leader_named",
+        "any": [
+          {
+            "flag": "sealed_basement_defeated"
+          },
+          {
+            "flag": "gate_passed"
+          }
+        ]
+      },
+      "node": "gast"
+    },
+    {
+      "showIf": {
+        "companion": "companion_healer",
+        "notFlag": "taya_mira_tension"
+      },
+      "node": "taya"
+    },
+    {
+      "node": "root"
+    }
+  ],
+  "nodes": {
+    "root": {
+      "speaker": "mira",
+      "text": "\"Сапоги у двери оббейте. Вчера один такой 'ненадолго' оставил пол-леса под столом.\"",
+      "effects": {
+        "setFlag": "mira_met"
+      },
+      "choices": [
+        {
+          "label": "Видела чужих в плащах?",
+          "next": "cloaks"
+        },
+        {
+          "label": "Какая грязь была вчера?",
+          "next": "mud"
+        },
+        {
+          "label": "Не буду мешать.",
+          "style": "retreat",
+          "close": true
+        }
+      ]
+    },
+    "cloaks": {
+      "speaker": "mira",
+      "text": "\"Двое были. Не ели, не пили, сидели спиной к стене. Люди, которые не едят в дороге, либо очень спешат, либо уже чего-то боятся.\"",
+      "effects": {
+        "setFlag": "mira_cloaked_men_seen"
+      },
+      "lines": [
+        {
+          "showIf": {
+            "companion": "holt"
+          },
+          "speaker": "holt",
+          "text": "«Это они. Мира, когда они ушли, кто-нибудь в зале забыл слово?»"
+        },
+        {
+          "showIf": {
+            "companion": "holt"
+          },
+          "speaker": "mira",
+          "text": "«Савко забыл, как меня зовут. На один вечер.»"
+        }
+      ],
+      "choices": [
+        {
+          "label": "С кем они говорили?",
+          "next": "mud"
+        }
+      ]
+    },
+    "mud": {
+      "speaker": "mira",
+      "text": "\"Со странником. Или он с ними. Трудно сказать, кто кого ждал. На сапогах у них была болотная жижа и лесная хвоя.\"",
+      "effects": {
+        "setFlag": "mira_cloaked_men_seen"
+      },
+      "choices": [
+        {
+          "label": "Я не назову тебя.",
+          "showIf": {
+            "notFlag": [
+              "mira_source_protected",
+              "mira_source_betrayed"
+            ]
+          },
+          "effects": {
+            "setFlag": [
+              "mira_source_protected",
+              "mira_trust"
+            ],
+            "rep": {
+              "word": 1
+            },
+            "giveXp": 15
+          },
+          "next": "smart"
+        },
+        {
+          "label": "Ворн должен это знать.",
+          "showIf": {
+            "notFlag": [
+              "mira_source_protected",
+              "mira_source_betrayed"
+            ]
+          },
+          "effects": {
+            "setFlag": "mira_source_betrayed",
+            "rep": {
+              "word": -1
+            },
+            "giveXp": 15
+          },
+          "close": true
+        },
+        {
+          "label": "Понятно.",
+          "showIf": {
+            "any": [
+              {
+                "flag": "mira_source_protected"
+              },
+              {
+                "flag": "mira_source_betrayed"
+              }
+            ]
+          },
+          "close": true
+        }
+      ]
+    },
+    "smart": {
+      "speaker": "mira",
+      "text": "\"Вот это уже похоже на умные слова. Постарайтесь потом не забыть их.\"",
+      "choices": [
+        {
+          "label": "Спасибо, Мира.",
+          "close": true
+        }
+      ]
+    },
+    "taya": {
+      "speaker": "mira",
+      "text": "«Вы из Придорожного. Я помню вас по ярмарке. Вы тогда лечили старостину дочь.»",
+      "lines": [
+        {
+          "speaker": "taya",
+          "text": "«Лечила.»"
+        },
+        {
+          "speaker": "mira",
+          "text": "«Не вылечили.»"
+        }
+      ],
+      "effects": {
+        "setFlag": "taya_mira_tension"
+      },
+      "next": "root"
+    },
+    "warn": {
+      "speaker": "mira",
+      "text": "\"Когда вы вошли, один из лесных уже был здесь. Не пил. Только слушал. Такие возвращаются не за пивом.\"",
+      "effects": {
+        "setFlag": "mira_warned"
+      },
+      "choices": [
+        {
+          "label": "Когда это было?",
+          "next": "root"
+        }
+      ]
+    },
+    "killed": {
+      "speaker": "mira",
+      "text": "\"Люди уже говорят, что вы убили Корвина. Еще говорят, можно не бояться. Обычно вторая фраза живет меньше первой.\"",
+      "effects": {
+        "setFlag": "mira_heard_killed"
+      },
+      "choices": [
+        {
+          "label": "Посмотрим.",
+          "next": "root"
+        }
+      ]
+    },
+    "gast": {
+      "speaker": "mira",
+      "text": "Мира наклоняется ближе и называет имя того, кто водит людей в плащах: Гаст.",
+      "effects": {
+        "setFlag": "cloaks_leader_named"
+      },
+      "next": "root"
+    },
+    "cold": {
+      "speaker": "mira",
+      "text": "Мира отвечает односложно и отворачивается к ведру.",
+      "choices": [
+        {
+          "label": "Корвин любит тех, кто платит?",
+          "showIf": {
+            "flag": "bandit_paid"
+          },
+          "next": "paid"
+        },
+        {
+          "label": "Уйти.",
+          "style": "retreat",
+          "close": true
+        }
+      ]
+    },
+    "paid": {
+      "speaker": "mira",
+      "text": "\"Корвин любит тех, кто платит. Пока они платят. Потом он любит знать, куда они идут.\"",
+      "choices": [
+        {
+          "label": "Понятно.",
+          "close": true
+        }
+      ]
+    }
+  }
+}
