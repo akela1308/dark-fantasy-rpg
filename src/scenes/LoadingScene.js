@@ -1,6 +1,7 @@
 import * as Phaser from 'phaser/dist/phaser.esm.js';
 import MAP_CONFIGS from '../data/maps.json';
 import { Sfx } from '../systems/Sfx.js';
+import { PartySystem } from '../systems/PartySystem.js';
 
 /**
  * LoadingScene - экран загрузки с картинкой по центру и прогресс баром.
@@ -57,7 +58,6 @@ export class LoadingScene extends Phaser.Scene {
     // Хелпер: загружаем только если ещё нет в кэше
     const img  = (key, path) => { if (!this.textures.exists(key))   this.load.image(key, path); };
     const sheet = (key, path, cfg) => { if (!this.textures.exists(key)) this.load.spritesheet(key, path, cfg); };
-    const snd  = (key, path) => { if (!this.cache.audio.exists(key)) this.load.audio(key, path); };
 
     // Спрайты (бой)
     const sprites = [
@@ -120,27 +120,10 @@ export class LoadingScene extends Phaser.Scene {
     img('map_bandit',    'maps/characters/bandit.png');
     sheet('map_hero_walk_side', 'maps/characters/hero_walk_side_v3.png', { frameWidth: 181, frameHeight: 260 }); // v3: Veo, 29 кадров, 24 fps (старый v2 оставлен в папке)
     sheet('map_hero_stand', 'maps/characters/hero_stand_v1.png', { frameWidth: 149, frameHeight: 260 }); // стойка на карте без оружия в руках, 96 кадров
-    sheet('map_brawler_walk_side', 'maps/characters/brawler_walk_side_v3.png', { frameWidth: 260, frameHeight: 442 });
-    sheet('map_healer_walk_side', 'maps/characters/healer_walk_side_v2.png', { frameWidth: 292, frameHeight: 516 });
-    // Ночь 26.10: новые ходьба и стойка Ворнага и Таи (Veo, вид сбоку, как у Дуэлянта). Старые листы оставлены.
-    sheet('map_brawler_walk_v4', 'maps/characters/anim/brawler_walk_v1.webp', { frameWidth: 376, frameHeight: 269 });
-    sheet('map_brawler_stand_v1', 'maps/characters/anim/brawler_stand_v1.webp', { frameWidth: 301, frameHeight: 268 });
-    sheet('map_healer_walk_v3', 'maps/characters/anim/healer_walk_v1.webp', { frameWidth: 376, frameHeight: 274 });
-    sheet('map_healer_stand_v1', 'maps/characters/anim/healer_stand_v1.webp', { frameWidth: 300, frameHeight: 274 });
-
-    // Paper doll части
-    // Боец и компаньоны - split: upper + leg_l + leg_r (ноги раздельно)
-    const splitChars = ['brawler', 'companion_brawler', 'companion_healer'];
-    splitChars.forEach(name => {
-      img(`map_${name}_upper`, `maps/characters/${name}_upper.png`);
-      img(`map_${name}_leg_l`, `maps/characters/${name}_leg_l.png`);
-      img(`map_${name}_leg_r`, `maps/characters/${name}_leg_r.png`);
-    });
-    // Герой - single: upper + legs (плащ как единая деталь, без сплита)
-    img('map_hero_upper', 'maps/characters/hero_upper.png');
-    img('map_hero_legs',  'maps/characters/hero_legs.png');
-    // Знахарка - без paperdoll (юбка)
-    img('map_healer_upper', 'maps/characters/healer_upper.png');
+    // Ночь 26.10: новые ходьба и стойка Ворнага и Таи (Veo, вид сбоку, как у Дуэлянта).
+    // Грузим, только если спутник в отряде; иначе их дочитает MapScene в фоне (preloadCompanionSheets).
+    // Старые листы ходьбы и детали paper doll больше не грузятся: все трое ходят покадрово (paperdoll: false).
+    preloadCompanionSheets(this, PartySystem.getParty(this.game.registry));
     img('map_tavernman', 'maps/characters/tavernman.png');
     img('map_wanderer',  'maps/characters/map_wanderer.png');
     img('map_drunkman',       'maps/characters/drunkman.png');
@@ -220,38 +203,34 @@ export class LoadingScene extends Phaser.Scene {
     img('fog',  'maps/fog.png');
     img('fog2', 'maps/fog2.png');
 
-    // Аудио: только первый трек сразу, остальные - при необходимости (ленивая загрузка)
-    // Это экономит ~50 МБ при первом старте
-    snd('track_ashes2', 'audio/web/Ashes of Velanth 2.mp3');
-    // Остальные треки грузятся в MusicPlayer когда понадобятся
-
-    // Запускаем музыку как только загрузится первый трек
-    this.load.once('filecomplete-audio-track_ashes2', () => {
-      if (!this.game.registry.get('musicStarted')) {
-        const startMusic = () => {
-          if (this.game.registry.get('musicStarted')) return;
-          const music = this.sound.add('track_ashes2', { loop: false, volume: 0.45 });
-          music.play();
-          music.on('complete', () => {
-            // MusicPlayer в следующей сцене подхватит и продолжит
-            this.game.registry.set('bgMusicIndex', 1);
-          });
-          this.game.registry.set('musicStarted', true);
-          this.game.registry.set('bgMusic', music);
-          this.game.registry.set('bgMusicIndex', 0);
-        };
-
-        if (this.sound.locked) {
-          // Браузер заблокировал autoplay - запустим при первом взаимодействии
-          this.sound.once('unlocked', startMusic);
-        } else {
-          startMusic();
-        }
-      }
-    });
+    // Музыку экран загрузки не ждёт и не запускает: первый трек догружает и включает MusicPlayer уже в игре
   }
 
   create() {
     // scene.start is handled by the 'complete' event in preload
   }
+}
+
+/** Листы ходьбы и стойки спутников на карте: only = кого грузить (id из units.json). */
+export function preloadCompanionSheets(scene, only) {
+  const SHEETS = {
+    companion_brawler: [
+      ['map_brawler_walk_v4', 'maps/characters/anim/brawler_walk_v1.webp', 376, 269],
+      ['map_brawler_stand_v1', 'maps/characters/anim/brawler_stand_v1.webp', 301, 268],
+    ],
+    companion_healer: [
+      ['map_healer_walk_v3', 'maps/characters/anim/healer_walk_v1.webp', 376, 274],
+      ['map_healer_stand_v1', 'maps/characters/anim/healer_stand_v1.webp', 300, 274],
+    ],
+  };
+  let n = 0;
+  Object.entries(SHEETS).forEach(([id, list]) => {
+    if (!only.includes(id)) return;
+    list.forEach(([key, file, frameWidth, frameHeight]) => {
+      if (scene.textures.exists(key)) return;
+      scene.load.spritesheet(key, file, { frameWidth, frameHeight });
+      n++;
+    });
+  });
+  return n;
 }

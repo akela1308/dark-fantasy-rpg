@@ -54,6 +54,7 @@ export class MusicPlayer {
     if (!this.scene.cache.audio.exists(track.key)) {
       this.scene.load.audio(track.key, `audio/web/${track.file}`); // web: те же треки в 96 кбит/с
       this.scene.load.once(`filecomplete-audio-${track.key}`, () => {
+        if (!this.scene.sys.isActive() || this.scene.game.registry.get('bgMusic')?.isPlaying) return; // сцену уже сменили
         this._playTrack(track);
       });
       this.scene.load.start();

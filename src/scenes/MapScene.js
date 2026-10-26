@@ -30,6 +30,7 @@ const TRAIT_LABELS = Object.fromEntries(traitsData.map(t => [t.id, t.name]));
 import { xpForEncounter } from '../systems/EnemyArchetypes.js';
 import battlesData from '../data/battles.json';
 import { MapEditor } from '../dev/MapEditor.js';
+import { preloadCompanionSheets } from './LoadingScene.js';
 
 const PLACEHOLDER_IMAGE = 'maps/gen/_placeholder.png';
 
@@ -166,6 +167,8 @@ export class MapScene extends Phaser.Scene {
 
     // Оживление мира: птицы, свет окон, дым, листья/снег/светлячки, вода (src/data/ambience.json)
     this._ambience = new MapAmbience(this, this.mapKey, this.hero);
+    // Листы спутников, которых ещё нет в отряде, догружаем в фоне (понадобятся после найма)
+    if (preloadCompanionSheets(this, ['companion_brawler', 'companion_healer'])) this.load.start();
     MapEditor.attach(this, cfg); // dev-редактор зон: только с ?dev=1, клавиша E
 
     // Клик по карте
