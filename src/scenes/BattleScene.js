@@ -15,6 +15,7 @@ import unitsData   from '../data/units.json';
 import enemiesData from '../data/enemies.json';
 import skillsData  from '../data/skills.json';
 import battlesData from '../data/battles.json';
+import MAP_CONFIGS from '../data/maps.json';
 import { SaveSystem } from '../utils/SaveSystem.js';
 import { PartySystem } from '../systems/PartySystem.js';
 import { enemiesForParty, lootPerEnemy, meleeReach, isActive, shouldSurrender, hasFury, RULES } from '../systems/CombatRules.js';
@@ -91,6 +92,12 @@ export class BattleScene extends Phaser.Scene {
     if (this._battleId === 'bandit_patrol') this._battleId = 'korvin_gang';   // старый id боя с Корвином
     this._battleConfig = battlesData.find(b => b.id === this._battleId) || null;
     this._battleBgKey = this._battleConfig?.backgroundKey || 'battle_bg';
+    // Фон по карте, если у боя своего нет (09_МИР 8, поле battleBg в maps.json)
+    const mapBg = MAP_CONFIGS[this._fromMapKey]?.battleBg;
+    if (!this._battleConfig?.backgroundKey && mapBg) {
+      this._battleConfig = { ...(this._battleConfig || {}), backgroundKey: `battle_${mapBg}`, backgroundPath: `battle/${mapBg}.jpg` };
+      this._battleBgKey = `battle_${mapBg}`;
+    }
   }
 
   preload() {
@@ -146,7 +153,7 @@ export class BattleScene extends Phaser.Scene {
   _initUnits() {
     // Только живая активная партия (PartySystem), враги из конфига боя по размеру партии
     this.playerUnits = PartySystem.buildPlayerUnits(this.game.registry);
-    const enemySource = this._battleConfig
+    const enemySource = this._battleConfig?.enemies
       ? enemiesForParty(this._battleConfig, this.playerUnits.length)
       : enemiesData;
     this.enemyUnits  = enemySource.map(d => new EnemyUnit(JSON.parse(JSON.stringify(d))));

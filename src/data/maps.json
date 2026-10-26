@@ -247,7 +247,8 @@
     "region": "Дорога",
     "level": 1,
     "kind": "outdoor",
-    "walkTemplate": "diagonal"
+    "walkTemplate": "diagonal",
+    "battleBg": "Plane"
   },
   "tavern_map": {
     "bgKey": "map_tavern_map",
@@ -334,7 +335,9 @@
         },
         "toMap": "tavern_cellar",
         "spawnId": "from_tavern_map",
-        "auto": true
+        "auto": true,
+        "requiresFlag": "savko_key_given",
+        "lockedText": "Люк заперт. Ключ у Савко."
       }
     ],
     "labels": [
@@ -613,7 +616,8 @@
     "region": "Дорога",
     "level": 1,
     "kind": "outdoor",
-    "walkTemplate": "y_fork"
+    "walkTemplate": "y_fork",
+    "battleBg": "Forest_Road"
   },
   "tavern_inside": {
     "bgKey": "map_tavern_inside",
@@ -898,7 +902,8 @@
               }
             ]
           }
-        ]
+        ],
+        "dialogue": "tavern"
       },
       {
         "x": 430,
@@ -1112,6 +1117,53 @@
             ]
           }
         ]
+      },
+      {
+        "id": "taya",
+        "name": "Тая",
+        "x": 250,
+        "y": 600,
+        "spriteKey": "map_companion_healer",
+        "portraitKey": "portrait_companion_healer",
+        "height": 150,
+        "dialogue": "tavern",
+        "hoverPortrait": true,
+        "dialogueStart": "taya",
+        "showIf": {
+          "notFlag": "taya_recruited"
+        }
+      },
+      {
+        "id": "vornag_tavern",
+        "name": "Ворнаг",
+        "x": 1400,
+        "y": 640,
+        "spriteKey": "map_companion_brawler",
+        "portraitKey": "portrait_companion_brawler",
+        "height": 160,
+        "dialogue": "tavern",
+        "hoverPortrait": true,
+        "dialogueStart": "vornag",
+        "showIf": {
+          "flag": "wornag_refused",
+          "notFlag": "wornag_recruited"
+        }
+      },
+      {
+        "id": "tiss_tavern",
+        "name": "Тисс",
+        "x": 560,
+        "y": 800,
+        "spriteKey": "map_bandit_archer",
+        "portraitKey": "portrait_bandit_archer",
+        "height": 150,
+        "dialogue": "tavern",
+        "hoverPortrait": true,
+        "dialogueStart": "tiss",
+        "showIf": {
+          "flag": "bandit_archer_recruitable",
+          "notFlag": "tiss_recruited"
+        }
       }
     ],
     "walk": [
@@ -1168,7 +1220,8 @@
     "region": "Дорога",
     "level": 1,
     "kind": "interior",
-    "walkTemplate": "room"
+    "walkTemplate": "room",
+    "battleBg": "Tavern_battle"
   },
   "forest1": {
     "bgKey": "map_forest1",
@@ -1399,7 +1452,8 @@
     "region": "Лес",
     "level": 2,
     "kind": "outdoor",
-    "walkTemplate": "y_fork"
+    "walkTemplate": "y_fork",
+    "battleBg": "Forest_Battle"
   },
   "road_boloto": {
     "bgKey": "map_road_boloto",
@@ -1566,7 +1620,8 @@
     "region": "Болото",
     "level": 3,
     "kind": "outdoor",
-    "walkTemplate": "diagonal"
+    "walkTemplate": "diagonal",
+    "battleBg": "Boloto_battle1"
   },
   "elf_boloto1": {
     "bgKey": "map_elf_boloto1",
@@ -1862,7 +1917,8 @@
     "region": "Болото",
     "level": 3,
     "kind": "outdoor",
-    "walkTemplate": "x_cross"
+    "walkTemplate": "x_cross",
+    "battleBg": "Boloto_battle1"
   },
   "mountains_map": {
     "bgKey": "map_mountains_map",
@@ -2022,7 +2078,29 @@
     "region": "Горы",
     "level": 5,
     "kind": "outdoor",
-    "walkTemplate": "diagonal"
+    "walkTemplate": "diagonal",
+    "encounters": [
+      {
+        "id": "troll_ugryum",
+        "battleId": "troll_ugryum",
+        "name": "тролль Угрюм",
+        "behaviour": "loner",
+        "x": 1133,
+        "y": 573
+      },
+      {
+        "id": "mountain_pass",
+        "battleId": "mountain_pass",
+        "name": "Латники клятвы",
+        "behaviour": "loner",
+        "showIf": {
+          "notFlag": "mountain_pass_peaceful"
+        },
+        "x": 1101,
+        "y": 573
+      }
+    ],
+    "battleBg": "Mountain_battle"
   },
   "elf_boloto": {
     "bgKey": "map_elf_boloto",
@@ -2173,7 +2251,37 @@
     "region": "Болото",
     "level": 4,
     "kind": "outdoor",
-    "walkTemplate": "x_cross"
+    "walkTemplate": "x_cross",
+    "npcs": [
+      {
+        "id": "le",
+        "name": "Старейшина Лё",
+        "x": 900,
+        "y": 470,
+        "spriteKey": "map_le",
+        "portraitKey": "portrait_le",
+        "height": 145,
+        "dialogue": "swamp",
+        "hoverPortrait": true,
+        "dialogueStart": "le"
+      },
+      {
+        "id": "ressa",
+        "name": "Ресса",
+        "x": 1180,
+        "y": 560,
+        "spriteKey": "map_swamp_elf_girl",
+        "portraitKey": "portrait_swamp_elf_girl",
+        "height": 145,
+        "dialogue": "swamp",
+        "hoverPortrait": true,
+        "dialogueStart": "ressa",
+        "showIf": {
+          "notFlag": "ressa_recruited"
+        }
+      }
+    ],
+    "battleBg": "Boloto_battle"
   },
   "kingthrone": {
     "bgKey": "map_kingthrone",
@@ -2375,7 +2483,18 @@
     "region": "Горы",
     "level": 6,
     "kind": "interior",
-    "walkTemplate": "room"
+    "walkTemplate": "room",
+    "encounters": [
+      {
+        "id": "mountain_king_optional",
+        "battleId": "mountain_king_optional",
+        "name": "Горный Король и каменные стражи",
+        "behaviour": "loner",
+        "x": 932,
+        "y": 737
+      }
+    ],
+    "battleBg": "KingThrone_battle"
   },
   "road_to_village": {
     "bgKey": "map_road_to_village",
@@ -2555,7 +2674,8 @@
     "region": "Деревня",
     "level": 4,
     "kind": "outdoor",
-    "walkTemplate": "diagonal"
+    "walkTemplate": "diagonal",
+    "battleBg": "Grad_battle"
   },
   "gate": {
     "bgKey": "map_gate",
@@ -2791,7 +2911,8 @@
     "region": "Деревня",
     "level": 5,
     "kind": "outdoor",
-    "walkTemplate": "diagonal"
+    "walkTemplate": "diagonal",
+    "battleBg": "Grad_battle"
   },
   "village": {
     "bgKey": "map_village",
@@ -3075,7 +3196,8 @@
     "region": "Деревня",
     "level": 5,
     "kind": "outdoor",
-    "walkTemplate": "ring"
+    "walkTemplate": "ring",
+    "battleBg": "Village_battle1"
   },
   "south_post": {
     "bgKey": "map_south_post",
@@ -3163,10 +3285,57 @@
     ],
     "tavernEntry": null,
     "bandits": false,
-    "npcs": [],
+    "npcs": [
+      {
+        "id": "marauder",
+        "name": "Мародёр",
+        "x": 960,
+        "y": 560,
+        "spriteKey": "map_bandit_warrior",
+        "portraitKey": "portrait_bandit_warrior",
+        "height": 150,
+        "dialogue": "south_post",
+        "hoverPortrait": true,
+        "dialogueStart": "looter",
+        "hideIfFlag": "road_looters_done",
+        "flipX": true
+      },
+      {
+        "id": "mangy_dog",
+        "name": "Облезлый пёс",
+        "x": 1050,
+        "y": 610,
+        "spriteKey": "map_dog",
+        "portraitKey": "portrait_dog",
+        "height": 70,
+        "dialogue": "south_post",
+        "hoverPortrait": true,
+        "dialogueStart": "looter",
+        "hideIfFlag": "road_looters_done"
+      },
+      {
+        "id": "vornag_post",
+        "name": "Ворнаг",
+        "x": 700,
+        "y": 520,
+        "spriteKey": "map_companion_brawler",
+        "portraitKey": "portrait_companion_brawler",
+        "height": 140,
+        "dialogue": "south_post",
+        "hoverPortrait": true,
+        "dialogueStart": "vornag",
+        "showIf": {
+          "flag": "road_looters_done",
+          "notFlag": [
+            "wornag_recruited",
+            "wornag_refused"
+          ]
+        }
+      }
+    ],
     "props": [],
     "encounters": [],
-    "battleBg": null
+    "battleBg": "Plane"
   },
   "three_pillars": {
     "bgKey": "map_three_pillars",
@@ -3315,7 +3484,7 @@
     "npcs": [],
     "props": [],
     "encounters": [],
-    "battleBg": null
+    "battleBg": "Forest_Road"
   },
   "three_pillars_inside": {
     "bgKey": "map_three_pillars_inside",
@@ -3377,10 +3546,50 @@
     ],
     "tavernEntry": null,
     "bandits": false,
-    "npcs": [],
+    "npcs": [
+      {
+        "id": "agna",
+        "name": "Агна",
+        "x": 1000,
+        "y": 470,
+        "spriteKey": "map_agna",
+        "portraitKey": "portrait_agna",
+        "height": 150,
+        "dialogue": "three_pillars",
+        "hoverPortrait": true,
+        "dialogueStart": "agna"
+      },
+      {
+        "id": "holt",
+        "name": "Хольт",
+        "x": 560,
+        "y": 520,
+        "spriteKey": "map_adventurer",
+        "portraitKey": "portrait_holt",
+        "height": 145,
+        "dialogue": "three_pillars",
+        "hoverPortrait": true,
+        "dialogueStart": "holt",
+        "showIf": {
+          "notFlag": "holt_recruited"
+        }
+      },
+      {
+        "id": "cat",
+        "name": "Кот",
+        "x": 760,
+        "y": 600,
+        "spriteKey": "map_cat",
+        "portraitKey": null,
+        "height": 50,
+        "dialogue": "three_pillars",
+        "hoverPortrait": false,
+        "dialogueStart": "cat"
+      }
+    ],
     "props": [],
     "encounters": [],
-    "battleBg": null
+    "battleBg": "Tavern_battle2"
   },
   "old_mill": {
     "bgKey": "map_old_mill",
@@ -3503,7 +3712,7 @@
     "npcs": [],
     "props": [],
     "encounters": [],
-    "battleBg": null
+    "battleBg": "Plane"
   },
   "mill_inside": {
     "bgKey": "map_mill_inside",
@@ -3568,7 +3777,7 @@
     "npcs": [],
     "props": [],
     "encounters": [],
-    "battleBg": null
+    "battleBg": "Plane"
   },
   "burned_hamlet": {
     "bgKey": "map_burned_hamlet",
@@ -3696,8 +3905,17 @@
     "bandits": false,
     "npcs": [],
     "props": [],
-    "encounters": [],
-    "battleBg": null
+    "encounters": [
+      {
+        "id": "hamlet_dogs",
+        "battleId": "hamlet_dogs",
+        "name": "одичавшие псы",
+        "behaviour": "pack",
+        "x": 973,
+        "y": 602
+      }
+    ],
+    "battleBg": "Plane"
   },
   "hermit_cave": {
     "bgKey": "map_hermit_cave",
@@ -3762,7 +3980,7 @@
     "npcs": [],
     "props": [],
     "encounters": [],
-    "battleBg": null
+    "battleBg": "Plane"
   },
   "ruin_crypt": {
     "bgKey": "map_ruin_crypt",
@@ -3826,8 +4044,18 @@
     "bandits": false,
     "npcs": [],
     "props": [],
-    "encounters": [],
-    "battleBg": null
+    "encounters": [
+      {
+        "id": "crypt_shades",
+        "battleId": "crypt_shades",
+        "name": "упыри",
+        "behaviour": "lair",
+        "x": 987,
+        "y": 565,
+        "triggerFlag": "crypt_shades_woken"
+      }
+    ],
+    "battleBg": "Plane"
   },
   "tavern_rooms": {
     "bgKey": "map_tavern_rooms",
@@ -3892,7 +4120,7 @@
     "npcs": [],
     "props": [],
     "encounters": [],
-    "battleBg": null
+    "battleBg": "Tavern_battle3"
   },
   "tavern_cellar": {
     "bgKey": "map_tavern_cellar",
@@ -3956,8 +4184,17 @@
     "bandits": false,
     "npcs": [],
     "props": [],
-    "encounters": [],
-    "battleBg": null
+    "encounters": [
+      {
+        "id": "sealed_basement",
+        "battleId": "sealed_basement",
+        "name": "Дверь со знаком",
+        "behaviour": "loner",
+        "x": 898,
+        "y": 564
+      }
+    ],
+    "battleBg": "Tavern_battle4"
   },
   "dead_road": {
     "bgKey": "map_dead_road",
@@ -4051,10 +4288,28 @@
     ],
     "tavernEntry": null,
     "bandits": false,
-    "npcs": [],
+    "npcs": [
+      {
+        "id": "gallows_reader",
+        "name": "Висельный чтец",
+        "x": 840,
+        "y": 560,
+        "spriteKey": "map_vurdalak",
+        "portraitKey": null,
+        "height": 160,
+        "dialogue": "dead_road",
+        "hoverPortrait": false,
+        "showIf": {
+          "notFlag": [
+            "reader_spared",
+            "dead_road_reader_won"
+          ]
+        }
+      }
+    ],
     "props": [],
     "encounters": [],
-    "battleBg": null
+    "battleBg": "Plane"
   },
   "gallows_hill": {
     "bgKey": "map_gallows_hill",
@@ -4176,8 +4431,17 @@
     "bandits": false,
     "npcs": [],
     "props": [],
-    "encounters": [],
-    "battleBg": null
+    "encounters": [
+      {
+        "id": "likho",
+        "battleId": "likho",
+        "name": "Лихо",
+        "behaviour": "loner",
+        "x": 973,
+        "y": 602
+      }
+    ],
+    "battleBg": "Plane"
   },
   "hangman_hut": {
     "bgKey": "map_hangman_hut",
@@ -4242,7 +4506,7 @@
     "npcs": [],
     "props": [],
     "encounters": [],
-    "battleBg": null
+    "battleBg": "Plane"
   },
   "forest_camp": {
     "bgKey": "map_forest_camp",
@@ -4332,8 +4596,34 @@
     "bandits": false,
     "npcs": [],
     "props": [],
-    "encounters": [],
-    "battleBg": null
+    "encounters": [
+      {
+        "id": "korvin_revenge",
+        "battleId": "korvin_revenge",
+        "name": "Корвин Сухой",
+        "behaviour": "pack",
+        "radius": 170,
+        "preDialogue": "korvin",
+        "preNode": "revenge",
+        "showIf": {
+          "any": [
+            {
+              "flag": "korvin_humiliated"
+            },
+            {
+              "flag": "korvin_debt_overdue"
+            }
+          ],
+          "notFlag": [
+            "korvin_revenge_done",
+            "bandit_commander_killed"
+          ]
+        },
+        "x": 892,
+        "y": 602
+      }
+    ],
+    "battleBg": "Forest_Battle"
   },
   "hunters_lodge": {
     "bgKey": "map_hunters_lodge",
@@ -4398,7 +4688,7 @@
     "npcs": [],
     "props": [],
     "encounters": [],
-    "battleBg": null
+    "battleBg": "Forest_Battle"
   },
   "forest_altar": {
     "bgKey": "map_forest_altar",
@@ -4462,8 +4752,17 @@
     "bandits": false,
     "npcs": [],
     "props": [],
-    "encounters": [],
-    "battleBg": null
+    "encounters": [
+      {
+        "id": "altar_shadows",
+        "battleId": "altar_shadows",
+        "name": "Тени у трёх камней",
+        "behaviour": "loner",
+        "x": 892,
+        "y": 602
+      }
+    ],
+    "battleBg": "Forest_Battle"
   },
   "forest_deep": {
     "bgKey": "map_forest_deep",
@@ -4591,8 +4890,33 @@
     "bandits": false,
     "npcs": [],
     "props": [],
-    "encounters": [],
-    "battleBg": null
+    "encounters": [
+      {
+        "id": "forest_wolves",
+        "battleId": "forest_wolves",
+        "name": "волки у туши",
+        "behaviour": "pack",
+        "x": 973,
+        "y": 602
+      },
+      {
+        "id": "boar_old_forest",
+        "battleId": "boar_old_forest",
+        "name": "Вепрь Старого Бора",
+        "behaviour": "loner",
+        "x": 1111,
+        "y": 602
+      },
+      {
+        "id": "leshy",
+        "battleId": "leshy",
+        "name": "Леший",
+        "behaviour": "loner",
+        "x": 1249,
+        "y": 602
+      }
+    ],
+    "battleBg": "Forest_Battle"
   },
   "ravine": {
     "bgKey": "map_ravine",
@@ -4715,7 +5039,7 @@
     "npcs": [],
     "props": [],
     "encounters": [],
-    "battleBg": null
+    "battleBg": "Forest_Battle"
   },
   "ravine_cave": {
     "bgKey": "map_ravine_cave",
@@ -4779,8 +5103,25 @@
     "bandits": false,
     "npcs": [],
     "props": [],
-    "encounters": [],
-    "battleBg": null
+    "encounters": [
+      {
+        "id": "cloaks_hideout",
+        "battleId": "cloaks_hideout",
+        "name": "люди в плащах",
+        "behaviour": "trap",
+        "x": 987,
+        "y": 565,
+        "spotters": {
+          "companion": [
+            "holt",
+            "tiss_recruit",
+            "bran"
+          ],
+          "trait": "secret_literacy"
+        }
+      }
+    ],
+    "battleBg": "Forest_Battle"
   },
   "gatehouse": {
     "bgKey": "map_gatehouse",
@@ -4845,7 +5186,7 @@
     "npcs": [],
     "props": [],
     "encounters": [],
-    "battleBg": null
+    "battleBg": "Village_battle1"
   },
   "chapel_inside": {
     "bgKey": "map_chapel_inside",
@@ -4909,8 +5250,23 @@
     "bandits": false,
     "npcs": [],
     "props": [],
-    "encounters": [],
-    "battleBg": null
+    "encounters": [
+      {
+        "id": "chapel_cult",
+        "battleId": "chapel_cult",
+        "name": "Свет в часовне",
+        "behaviour": "loner",
+        "showIf": {
+          "notFlag": [
+            "chapel_peaceful",
+            "cult_turned"
+          ]
+        },
+        "x": 888,
+        "y": 580
+      }
+    ],
+    "battleBg": "Village_battle2"
   },
   "elder_house": {
     "bgKey": "map_elder_house",
@@ -4975,7 +5331,7 @@
     "npcs": [],
     "props": [],
     "encounters": [],
-    "battleBg": null
+    "battleBg": "Village_battle1"
   },
   "smithy": {
     "bgKey": "map_smithy",
@@ -5040,7 +5396,7 @@
     "npcs": [],
     "props": [],
     "encounters": [],
-    "battleBg": null
+    "battleBg": "Village_battle1"
   },
   "village_fields": {
     "bgKey": "map_village_fields",
@@ -5194,8 +5550,25 @@
     "bandits": false,
     "npcs": [],
     "props": [],
-    "encounters": [],
-    "battleBg": null
+    "encounters": [
+      {
+        "id": "fields_creature",
+        "battleId": "fields_creature",
+        "name": "старая тварь у амбара",
+        "behaviour": "loner",
+        "x": 973,
+        "y": 602
+      },
+      {
+        "id": "poludnitsa",
+        "battleId": "poludnitsa",
+        "name": "Полудница",
+        "behaviour": "loner",
+        "x": 1111,
+        "y": 602
+      }
+    ],
+    "battleBg": "Village_battle3"
   },
   "old_barn": {
     "bgKey": "map_old_barn",
@@ -5260,7 +5633,7 @@
     "npcs": [],
     "props": [],
     "encounters": [],
-    "battleBg": null
+    "battleBg": "Village_battle1"
   },
   "drowned_village": {
     "bgKey": "map_drowned_village",
@@ -5350,8 +5723,18 @@
     "bandits": false,
     "npcs": [],
     "props": [],
-    "encounters": [],
-    "battleBg": null
+    "encounters": [
+      {
+        "id": "drowned_dead",
+        "battleId": "drowned_dead",
+        "name": "утопленники",
+        "behaviour": "lair",
+        "x": 973,
+        "y": 602,
+        "triggerFlag": "drowned_dead_woken"
+      }
+    ],
+    "battleBg": "Boloto_battle"
   },
   "drowned_church": {
     "bgKey": "map_drowned_church",
@@ -5416,7 +5799,7 @@
     "npcs": [],
     "props": [],
     "encounters": [],
-    "battleBg": null
+    "battleBg": "Boloto_battle"
   },
   "swamp_map": {
     "bgKey": "map_swamp_map",
@@ -5544,8 +5927,34 @@
     "bandits": false,
     "npcs": [],
     "props": [],
-    "encounters": [],
-    "battleBg": null
+    "encounters": [
+      {
+        "id": "mavki_lights",
+        "battleId": "mavki_lights",
+        "name": "мавки",
+        "behaviour": "lair",
+        "x": 973,
+        "y": 602,
+        "triggerFlag": "mavki_lights_woken"
+      },
+      {
+        "id": "swamp_lights",
+        "battleId": "swamp_lights",
+        "name": "Огни на воде",
+        "behaviour": "loner",
+        "dialogue": "swamp",
+        "dialogueStart": "lights",
+        "showIf": {
+          "notFlag": [
+            "lights_not_counted",
+            "swamp_lights_defeated"
+          ]
+        },
+        "x": 892,
+        "y": 602
+      }
+    ],
+    "battleBg": "Boloto_battle"
   },
   "swamp_obelisk": {
     "bgKey": "map_swamp_obelisk",
@@ -5635,8 +6044,21 @@
     "bandits": false,
     "npcs": [],
     "props": [],
-    "encounters": [],
-    "battleBg": null
+    "encounters": [
+      {
+        "id": "forest_grandfather",
+        "battleId": "forest_grandfather",
+        "name": "Лесной Дед",
+        "behaviour": "loner",
+        "showIf": {
+          "notFlag": "swamp_deal_kept",
+          "notCompanion": "ressa"
+        },
+        "x": 892,
+        "y": 602
+      }
+    ],
+    "battleBg": "Boloto_battle"
   },
   "bear_den": {
     "bgKey": "map_bear_den",
@@ -5701,7 +6123,7 @@
     "npcs": [],
     "props": [],
     "encounters": [],
-    "battleBg": null
+    "battleBg": "Boloto_battle"
   },
   "le_house": {
     "bgKey": "map_le_house",
@@ -5766,7 +6188,7 @@
     "npcs": [],
     "props": [],
     "encounters": [],
-    "battleBg": null
+    "battleBg": "Boloto_battle"
   },
   "copper_mine": {
     "bgKey": "map_copper_mine",
@@ -5862,8 +6284,26 @@
     "bandits": false,
     "npcs": [],
     "props": [],
-    "encounters": [],
-    "battleBg": null
+    "encounters": [
+      {
+        "id": "mine_creatures",
+        "battleId": "mine_creatures",
+        "name": "рудничные пауки",
+        "behaviour": "lair",
+        "x": 987,
+        "y": 565,
+        "triggerFlag": "mine_creatures_woken"
+      },
+      {
+        "id": "kobolds_mine",
+        "battleId": "kobolds_mine",
+        "name": "коблы",
+        "behaviour": "coward",
+        "x": 1140,
+        "y": 565
+      }
+    ],
+    "battleBg": "Mountain_battle"
   },
   "mine_deep": {
     "bgKey": "map_mine_deep",
@@ -5959,8 +6399,28 @@
     "bandits": false,
     "npcs": [],
     "props": [],
-    "encounters": [],
-    "battleBg": null
+    "encounters": [
+      {
+        "id": "mine_shades",
+        "battleId": "mine_shades",
+        "name": "тени шахтёров",
+        "behaviour": "patrol",
+        "x": 987,
+        "y": 565,
+        "waypoints": [
+          {
+            "x": 518,
+            "y": 565
+          },
+          {
+            "x": 1216,
+            "y": 565
+          }
+        ],
+        "period": 14000
+      }
+    ],
+    "battleBg": "Mountain_battle"
   },
   "dwarf_gate": {
     "bgKey": "map_dwarf_gate",
@@ -6051,7 +6511,7 @@
     "npcs": [],
     "props": [],
     "encounters": [],
-    "battleBg": null
+    "battleBg": "Mountain_battle"
   },
   "dwarf_hall": {
     "bgKey": "map_dwarf_hall",
@@ -6116,7 +6576,7 @@
     "npcs": [],
     "props": [],
     "encounters": [],
-    "battleBg": null
+    "battleBg": "KingThrone_battle2"
   },
   "winter_forest": {
     "bgKey": "map_winter_forest",
@@ -6244,8 +6704,25 @@
     "bandits": false,
     "npcs": [],
     "props": [],
-    "encounters": [],
-    "battleBg": null
+    "encounters": [
+      {
+        "id": "deer_beast",
+        "battleId": "deer_beast",
+        "name": "оленье чудовище",
+        "behaviour": "loner",
+        "x": 973,
+        "y": 602
+      },
+      {
+        "id": "wolfolaks",
+        "battleId": "wolfolaks",
+        "name": "волколаки",
+        "behaviour": "pack",
+        "x": 1111,
+        "y": 602
+      }
+    ],
+    "battleBg": "Winter_Forest"
   },
   "frozen_lake": {
     "bgKey": "map_frozen_lake",
@@ -6335,8 +6812,25 @@
     "bandits": false,
     "npcs": [],
     "props": [],
-    "encounters": [],
-    "battleBg": null
+    "encounters": [
+      {
+        "id": "winter_wolves",
+        "battleId": "winter_wolves",
+        "name": "зимние волки и вожак",
+        "behaviour": "pack",
+        "x": 973,
+        "y": 602
+      },
+      {
+        "id": "moroz",
+        "battleId": "moroz",
+        "name": "Мороз",
+        "behaviour": "loner",
+        "x": 1111,
+        "y": 602
+      }
+    ],
+    "battleBg": "Winter_Forest"
   },
   "ice_shrine": {
     "bgKey": "map_ice_shrine",
@@ -6401,7 +6895,7 @@
     "npcs": [],
     "props": [],
     "encounters": [],
-    "battleBg": null
+    "battleBg": "Winter_Forest"
   },
   "winter_grad_gate": {
     "bgKey": "map_winter_grad_gate",
@@ -6497,8 +6991,28 @@
     "bandits": false,
     "npcs": [],
     "props": [],
-    "encounters": [],
-    "battleBg": null
+    "encounters": [
+      {
+        "id": "grad_guards",
+        "battleId": "grad_guards",
+        "name": "стража",
+        "behaviour": "patrol",
+        "x": 973,
+        "y": 602,
+        "waypoints": [
+          {
+            "x": 548,
+            "y": 602
+          },
+          {
+            "x": 1180,
+            "y": 602
+          }
+        ],
+        "period": 14000
+      }
+    ],
+    "battleBg": "Winter_Grad"
   },
   "grad_square": {
     "bgKey": "map_grad_square",
@@ -6647,7 +7161,7 @@
     "npcs": [],
     "props": [],
     "encounters": [],
-    "battleBg": null
+    "battleBg": "Winter_Grad"
   },
   "grad_tavern": {
     "bgKey": "map_grad_tavern",
@@ -6712,7 +7226,7 @@
     "npcs": [],
     "props": [],
     "encounters": [],
-    "battleBg": null
+    "battleBg": "Winter_Forest"
   },
   "queens_hall": {
     "bgKey": "map_queens_hall",
@@ -6776,8 +7290,17 @@
     "bandits": false,
     "npcs": [],
     "props": [],
-    "encounters": [],
-    "battleBg": null
+    "encounters": [
+      {
+        "id": "queen_optional",
+        "battleId": "queen_optional",
+        "name": "Королева и стража",
+        "behaviour": "loner",
+        "x": 963,
+        "y": 580
+      }
+    ],
+    "battleBg": "Winter_Forest"
   },
   "grad_alley": {
     "bgKey": "map_grad_alley",
@@ -6873,8 +7396,25 @@
     "bandits": false,
     "npcs": [],
     "props": [],
-    "encounters": [],
-    "battleBg": null
+    "encounters": [
+      {
+        "id": "alley_cloaks",
+        "battleId": "alley_cloaks",
+        "name": "люди в плащах",
+        "behaviour": "trap",
+        "x": 973,
+        "y": 602,
+        "spotters": {
+          "companion": [
+            "holt",
+            "tiss_recruit",
+            "bran"
+          ],
+          "trait": "secret_literacy"
+        }
+      }
+    ],
+    "battleBg": "Winter_Forest"
   },
   "north_road": {
     "bgKey": "map_north_road",
@@ -7034,8 +7574,28 @@
     "bandits": false,
     "npcs": [],
     "props": [],
-    "encounters": [],
-    "battleBg": null
+    "encounters": [
+      {
+        "id": "cloaks_patrol",
+        "battleId": "cloaks_patrol",
+        "name": "патруль плащей",
+        "behaviour": "patrol",
+        "x": 973,
+        "y": 602,
+        "waypoints": [
+          {
+            "x": 548,
+            "y": 602
+          },
+          {
+            "x": 1180,
+            "y": 602
+          }
+        ],
+        "period": 14000
+      }
+    ],
+    "battleBg": "Winter_Grad"
   },
   "old_outpost": {
     "bgKey": "map_old_outpost",
@@ -7125,8 +7685,17 @@
     "bandits": false,
     "npcs": [],
     "props": [],
-    "encounters": [],
-    "battleBg": null
+    "encounters": [
+      {
+        "id": "gast_boss",
+        "battleId": "gast_boss",
+        "name": "Гаст",
+        "behaviour": "loner",
+        "x": 973,
+        "y": 602
+      }
+    ],
+    "battleBg": "Winter_Grad"
   },
   "outpost_inside": {
     "bgKey": "map_outpost_inside",
@@ -7191,7 +7760,7 @@
     "npcs": [],
     "props": [],
     "encounters": [],
-    "battleBg": null
+    "battleBg": "Winter_Forest"
   },
   "north_frontier": {
     "bgKey": "map_north_frontier",
@@ -7255,7 +7824,16 @@
     "bandits": false,
     "npcs": [],
     "props": [],
-    "encounters": [],
-    "battleBg": null
+    "encounters": [
+      {
+        "id": "frontier_beast",
+        "battleId": "frontier_beast",
+        "name": "то, что за камнями",
+        "behaviour": "loner",
+        "x": 973,
+        "y": 602
+      }
+    ],
+    "battleBg": "Winter_Forest"
   }
 }

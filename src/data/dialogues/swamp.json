@@ -1,0 +1,260 @@
+{
+  "id": "swamp",
+  "source": "03_ДИАЛОГИ_И_КВЕСТЫ_v0.2, разделы 16.2, 16.3",
+  "speakers": {
+    "le": {
+      "name": "Старейшина Лё",
+      "portrait": "portrait_le"
+    },
+    "ressa": {
+      "name": "Ресса",
+      "portrait": "portrait_swamp_elf_girl"
+    },
+    "narrator": {
+      "name": ""
+    }
+  },
+  "start": [
+    {
+      "node": "le"
+    }
+  ],
+  "nodes": {
+    "le": {
+      "speaker": "le",
+      "text": [
+        {
+          "showIf": {
+            "flag": "swamp_hostile"
+          },
+          "text": "«Тогда вода не заплатит вам.»"
+        },
+        {
+          "text": "«Вы пришли по камню и не считали огни. Хорошо. Значит, кто-то из вас читал наши правила или кто-то из вас с болота. Второе хуже для нас, первое хуже для вас.»"
+        }
+      ],
+      "choices": [
+        {
+          "label": "«Я читал.»",
+          "showIf": {
+            "notFlag": "swamp_hostile"
+          },
+          "next": "rules"
+        },
+        {
+          "label": "«Со мной Ресса.»",
+          "showIf": {
+            "companion": "ressa",
+            "notFlag": "swamp_hostile"
+          },
+          "next": "with_ressa"
+        },
+        {
+          "label": "«Деревня платит вам водой из колодца.»",
+          "showIf": {
+            "flag": "well_water_omen",
+            "notFlag": "swamp_hostile"
+          },
+          "next": "deal"
+        },
+        {
+          "label": "«[Страх 3] Я не плачу болоту.»",
+          "showIf": {
+            "notFlag": "swamp_hostile"
+          },
+          "requires": {
+            "rep_fear": 3
+          },
+          "next": "hostile"
+        },
+        {
+          "label": "Уйти.",
+          "style": "retreat",
+          "close": true
+        }
+      ]
+    },
+    "rules": {
+      "speaker": "le",
+      "text": "«Тогда вы знаете правило третье: за ответ платят. Спрашивайте.»",
+      "choices": [
+        {
+          "label": "«[10 монет] Что такое Печать для вас?»",
+          "showIf": {
+            "notFlag": "swamp_seal_is_key"
+          },
+          "requires": {
+            "gold": 10
+          },
+          "effects": {
+            "cost": 10
+          },
+          "next": "q_seal"
+        },
+        {
+          "label": "«[10 монет] Кто такой Гаст?»",
+          "showIf": {
+            "notFlag": "gast_reads_obelisk"
+          },
+          "requires": {
+            "gold": 10
+          },
+          "effects": {
+            "cost": 10
+          },
+          "next": "q_gast"
+        },
+        {
+          "label": "«[10 монет] Почему деревня болеет?»",
+          "showIf": {
+            "notFlag": "well_truth_swamp"
+          },
+          "requires": {
+            "gold": 10
+          },
+          "effects": {
+            "cost": 10
+          },
+          "next": "q_well"
+        },
+        {
+          "label": "Хватит вопросов.",
+          "style": "retreat",
+          "next": "le"
+        }
+      ]
+    },
+    "q_seal": {
+      "speaker": "le",
+      "text": "«Ключ. Был наш, пока люди не решили, что ключ от двери это украшение на пальце. Дверь не на вашей стороне. Дверь под вашей таверной.»",
+      "effects": {
+        "setFlag": "swamp_seal_is_key"
+      },
+      "next": "rules"
+    },
+    "q_gast": {
+      "speaker": "le",
+      "text": "«Человек, который приходит к обелиску и читает с него. Обелиск не для чтения. Обелиск для того, чтобы помнить, не читая.»",
+      "effects": {
+        "setFlag": "gast_reads_obelisk"
+      },
+      "next": "rules"
+    },
+    "q_well": {
+      "speaker": "le",
+      "text": "«Потому что староста платит нам не тем. Мы просили зерно. Он даёт воду. Воду из колодца нельзя давать болоту: болото её возвращает, но уже своей.»",
+      "effects": {
+        "setFlag": "well_truth_swamp"
+      },
+      "next": "rules"
+    },
+    "deal": {
+      "speaker": "le",
+      "text": "«Скажите старосте: зерно, не вода. Он знает цену зерна и боится её. Если он заплатит зерном, колодец очистится к весне. Если нет, мы придём за водой сами.»",
+      "effects": {
+        "setFlag": "swamp_deal_offered"
+      },
+      "next": "le"
+    },
+    "hostile": {
+      "speaker": "le",
+      "text": "«Тогда вода не заплатит вам.»",
+      "effects": {
+        "setFlag": "swamp_hostile",
+        "rep": {
+          "fear": 1
+        }
+      }
+    },
+    "with_ressa": {
+      "speaker": "le",
+      "text": "«Ты привёл её. Значит, ты за неё.»",
+      "choices": [
+        {
+          "label": "«Верни ей воду.»",
+          "next": "ressa_water"
+        },
+        {
+          "label": "«Она со мной, и этого хватит.»",
+          "effects": {
+            "setFlag": "ressa_exile_kept",
+            "rep": {
+              "word": 1
+            }
+          },
+          "close": true
+        }
+      ]
+    },
+    "ressa_water": {
+      "speaker": "le",
+      "text": "«Вода не моя, чтобы возвращать. Пусть принесёт зерно вместо старосты, тогда вода сама решит.»",
+      "effects": {
+        "setFlag": "ressa_water_quest"
+      }
+    },
+    "ressa": {
+      "speaker": "ressa",
+      "text": "«Вы не считали огни. Это я их зажигаю. Чтобы такие, как вы, считали и уходили. Вы не ушли.»",
+      "choices": [
+        {
+          "label": "«Почему ты одна?»",
+          "next": "r_why"
+        },
+        {
+          "label": "«Идём со мной.»",
+          "next": "r_join"
+        },
+        {
+          "label": "«Что ты умеешь?»",
+          "next": "r_can"
+        },
+        {
+          "label": "Уйти.",
+          "style": "retreat",
+          "close": true
+        }
+      ]
+    },
+    "r_why": {
+      "speaker": "ressa",
+      "text": "«Лечила людей с бумагой. С имперской. Болото считает, что бумага это вода, которую нельзя давать. Я считала, что человек это человек. Мы не договорились.»",
+      "next": "ressa"
+    },
+    "r_join": {
+      "speaker": "ressa",
+      "text": "«Куда? К людям? Люди меня не хотят. К болоту? Оно меня не пьёт. Ладно. С тобой. Это третье место, его хотя бы можно попробовать.»",
+      "effects": {
+        "setFlag": "ressa_recruited",
+        "recruit": "ressa"
+      }
+    },
+    "r_can": {
+      "speaker": "ressa",
+      "text": "«Лечить так, что потом больно мне. Бить так, что потом больно всем. Выбирай, что тебе нужнее, я не умею наполовину.»",
+      "next": "ressa"
+    },
+    "lights": {
+      "speaker": "narrator",
+      "text": "Огни на воде.",
+      "choices": [
+        {
+          "label": "Посчитать огни.",
+          "effects": {
+            "setFlag": "mavki_lights_woken"
+          },
+          "startBattle": {
+            "battleId": "swamp_lights"
+          }
+        },
+        {
+          "label": "Не считать.",
+          "effects": {
+            "setFlag": "lights_not_counted"
+          },
+          "close": true
+        }
+      ]
+    }
+  }
+}

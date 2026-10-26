@@ -25,12 +25,11 @@ const TRAIT_NAMES = {
 /** Проверить одно условие. Возвращает { ok, reason }. */
 export function checkRequires(req, ws) {
   if (!req) return { ok: true, reason: null };
+  const fails = [];
   if (req.any) {
     const parts = req.any.map(r => checkRequires(r, ws));
-    if (parts.some(p => p.ok)) return { ok: true, reason: null };
-    return { ok: false, reason: parts.map(p => p.reason).filter(Boolean).join(' или ') };
+    if (!parts.some(p => p.ok)) fails.push(parts.map(p => p.reason).filter(Boolean).join(' или ') || null);
   }
-  const fails = [];
   if (req.all) req.all.forEach(r => { const c = checkRequires(r, ws); if (!c.ok) fails.push(c.reason); });
   arr(req.flag).forEach(f => { if (!ws.flag(f)) fails.push(null); });
   arr(req.notFlag).forEach(f => { if (ws.flag(f)) fails.push(null); });
@@ -73,6 +72,7 @@ export function applyEffects(e, ws, hooks = {}) {
   if (e.recruit) arr(e.recruit).forEach(id => hooks.recruit?.(id));
   if (e.dismiss) arr(e.dismiss).forEach(id => hooks.dismiss?.(id));
   if (e.giveXp) hooks.giveXp?.(e.giveXp);
+  if (e.rest) hooks.rest?.(e.rest);
   hooks.refresh?.();
 }
 

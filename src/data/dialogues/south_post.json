@@ -1,0 +1,115 @@
+{
+  "id": "south_post",
+  "source": "03_ДИАЛОГИ_И_КВЕСТЫ_v0.2, раздел 3 (сцена переехала на Южную заставу, раздел 15)",
+  "speakers": {
+    "marauder": { "name": "Мародёр", "portrait": "portrait_bandit_warrior" },
+    "vornag": { "name": "Ворнаг", "portrait": "portrait_companion_brawler" },
+    "narrator": { "name": "" }
+  },
+  "start": [
+    { "showIf": { "flag": "road_looters_pending" }, "node": "after_fight" },
+    { "node": "looter" }
+  ],
+  "nodes": {
+    "looter": {
+      "speaker": "marauder",
+      "text": "«Опоздал, служивый. Тут уже всё поделено. Или ты тоже за имперской бумагой? Так её тут нет, мы смотрели.»",
+      "choices": [
+        { "label": "«Отойдите от телеги.»", "next": "a" },
+        { "label": "«Что с гонцом?»", "next": "b" },
+        { "label": "«Делите. Я мимо.»", "next": "c" },
+        { "label": "[Атаковать]", "effects": { "setFlag": "road_looters_pending", "rep": { "fear": 1 } }, "startBattle": { "battleId": "road_looters", "onWin": "after_fight" } }
+      ]
+    },
+    "a": {
+      "speaker": "marauder",
+      "text": "«Отойти? Ты один, а мы с собакой. Собака, правда, облезлая, но кусается честно.»",
+      "choices": [
+        { "label": "«Последний раз говорю.»", "effects": { "setFlag": ["bandit_looters_warned", "road_looters_pending"], "rep": { "law": 1 } }, "startBattle": { "battleId": "road_looters", "onWin": "after_fight" } },
+        { "label": "«Берите, что взяли, и уходите.»", "next": "c" }
+      ]
+    },
+    "b": {
+      "speaker": "marauder",
+      "text": "«Что с ним, что с ним. Лежит. С утра лежал, когда мы пришли. Стрела в спине, не наша, у нас лука нет. Ты лучше у здорового спроси, он всё видел, только молчит.»",
+      "choices": [
+        { "label": "«Кто его убил?»", "next": "b_who" },
+        { "label": "[Атаковать]", "effects": { "setFlag": "road_looters_pending", "rep": { "fear": 1 } }, "startBattle": { "battleId": "road_looters", "onWin": "after_fight" } }
+      ]
+    },
+    "b_who": {
+      "speaker": "marauder",
+      "text": "«Лесные. Корвиновы. Тут дальше их земля, мы так, по краю.»",
+      "next": "a"
+    },
+    "c": {
+      "speaker": "narrator",
+      "text": "Мародёры уходят с мешком. Боя нет.",
+      "effects": { "setFlag": ["looters_spared", "road_looters_done"], "giveXp": "battle:road_looters" }
+    },
+    "after_fight": {
+      "speaker": "narrator",
+      "text": "На телеге мешок с монетами (12) и пустой футляр для писем с имперским знаком. Записка-обрывок: «...седьмой пост не отвечает с осени. Везу приказ о...» дальше оторвано.",
+      "effects": { "clearFlag": "road_looters_pending", "setFlag": ["courier_letter_found", "road_looters_done", "road_looters_won"], "giveGold": 12 }
+    },
+
+    "vornag": {
+      "speaker": "vornag",
+      "text": [
+        { "showIf": { "flag": "road_looters_won" }, "text": "«Хорошо работаешь. Рапирой. Я такое видел один раз, в городе, человека судили. Он тоже так стоял, боком.»" },
+        { "text": "«Отпустил их. Ладно. Я бы тоже отпустил, только мне за это не платили бы.»" }
+      ],
+      "choices": [
+        { "label": "«Ты охранял гонца.»", "next": "v_a" },
+        { "label": "«Ты ранен?»", "next": "v_b" },
+        { "label": "«Кто это сделал?»", "next": "v_c" },
+        { "label": "«Мне нужен человек с дубиной.»", "next": "v_d" }
+      ]
+    },
+    "v_a": {
+      "speaker": "vornag",
+      "text": "«Охранял. Три дня охранял, на четвёртый он сам пошёл в лес, по нужде, сказал. Стрела пришла оттуда. Я к нему, а они уже из кустов. Трое. Я двоих отогнал, третий вот.» (Показывает бок.) «Деньги он мне заплатил вперёд. Мне теперь некому их вернуть.»",
+      "choices": [
+        { "label": "«Оставь себе. Он мёртв.»", "next": "v_a1" },
+        { "label": "«Верни его семье, если найдёшь.»", "next": "v_a2" },
+        { "label": "«Тогда отработай их. Со мной.»", "next": "v_d" }
+      ]
+    },
+    "v_a1": {
+      "speaker": "vornag",
+      "text": "«Так не делается.»",
+      "effects": { "setFlag": "vornag_saw_no_debt" },
+      "next": "v_d"
+    },
+    "v_a2": {
+      "speaker": "vornag",
+      "text": "«Семьи нет. Он имперский. У них вместо семьи печать.»",
+      "next": "v_d"
+    },
+    "v_b": {
+      "speaker": "vornag",
+      "text": "«Бок. Пройдёт, не первый. Хуже, что дубину я уронил, когда падал, а они её не взяли. Значит, не бойцы. Бойцы дубину берут.»",
+      "next": "vornag"
+    },
+    "v_c": {
+      "speaker": "vornag",
+      "text": "«Лесные. Корвин Сухой держит дорогу за таверной, это его стрелок бьёт из кустов, Тиссом зовут, тощий такой. Остальные с ним не ходят, он сам по себе шарит по краю.»",
+      "effects": { "setFlag": "tiss_named_early" },
+      "next": "vornag"
+    },
+    "v_d": {
+      "speaker": "vornag",
+      "text": "«Со мной просто. Я иду впереди, ты говоришь, куда. Платить не надо, мне уже заплатили, я должен отходить эти деньги до поста. Там и разойдёмся, если захочешь.»",
+      "choices": [
+        { "label": "«Идём.»", "effects": { "setFlag": ["wornag_recruited", "recruit_vornag"], "rep": { "word": 1 }, "recruit": "companion_brawler" }, "close": true },
+        { "label": "«Мне не нужен человек с чужим долгом.»", "effects": { "setFlag": "wornag_refused" }, "close": true },
+        { "label": "«Сначала скажи, почему не пошёл за ними.»", "next": "v_why" }
+      ]
+    },
+    "v_why": {
+      "speaker": "vornag",
+      "text": "«Потому что он уже лежал. За мёртвыми не ходят, за мёртвыми сидят.»",
+      "next": "v_d"
+    }
+  }
+}

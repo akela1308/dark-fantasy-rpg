@@ -20,6 +20,8 @@ import { PartySystem } from '../systems/PartySystem.js';
 import { WorldState } from '../systems/WorldState.js';
 import { DialogueRunner } from '../systems/DialogueRunner.js';
 import { MapEncounters } from '../systems/MapEncounters.js';
+import { checkRequires } from '../systems/DialogueConditions.js';
+import { journal, outcomesSeen } from '../systems/QuestLog.js';
 import { repLines } from '../systems/Reputation.js';
 import traitsData from '../data/commanderTraits.json';
 
@@ -115,6 +117,7 @@ export class MapScene extends Phaser.Scene {
     this._dialogue = new DialoguePanel(this);
     // Диалоги из src/data/dialogues/*.json с условиями и репутацией (блок Г)
     this._ws = new WorldState(this.game.registry);
+    this.game.registry.set(`${this.mapKey}_visited`, true);
     this._runner = new DialogueRunner(this, this._dialogue, this._ws, this._dialogueHooks());
     // Необязательные встречи бестиария (стая, логово, патруль, западня, одиночка, ватага)
     this._encounters = new MapEncounters(this, cfg.encounters, this._ws, {
@@ -152,7 +155,7 @@ export class MapScene extends Phaser.Scene {
     this.input.on('pointerdown', (ptr) => {
       if (ptr.rightButtonDown()) return;
       if (this._bookOverlay) return;
-      if (this._dialogue?.active) return;   // диалог идёт - движение заблокировано
+      if (this._dialogue?.active || this._journalObjs) return;   // диалог или журнал: движение заблокировано
       const clamped = this.walkable.clamp(ptr.worldX, ptr.worldY);
       this.hero.moveTo(clamped.x, clamped.y);
       this._showClickMarker(clamped.x, clamped.y);
@@ -862,8 +865,14 @@ export class MapScene extends Phaser.Scene {
     (cfg.npcs || []).forEach(npc => {
       // NPC с vanishKey исчезает навсегда после разговора (флаг сохраняется в registry)
       if (npc.vanishKey && this.game.registry.get(npc.vanishKey)) return;
+      // Появление по флагам и условиям (блок Г): showIfFlag, hideIfFlag, showIf
+      if (npc.showIfFlag && !this.game.registry.get(npc.showIfFlag)) return;
+      if (npc.hideIfFlag && this.game.registry.get(npc.hideIfFlag)) return;
+      if (npc.showIf && this._ws && !checkRequires(npc.showIf, this._ws).ok) return;
+      // Нет арта: временная фигура (серый силуэт), имя видно при наведении
+      if (!this.textures.exists(npc.spriteKey)) this._ensureNpcPlaceholder(npc);
       const h = npc.height || 130;
-      const tex = this.textures.get(npc.spriteKey);
+      const tex = this.textures.get(npc._tex || npc.spriteKey);
       const frameKey = npc.frame ?? (npc.ambientAnim ? 0 : '__BASE');
       const frame = tex.get(frameKey) || tex.get('__BASE');
       const texHeight = frame?.height || tex.getSourceImage().height;
@@ -879,7 +888,7 @@ export class MapScene extends Phaser.Scene {
       const spriteY       = anchoredToFeet ? npc.y + h / 2 : npc.y;
       const animated = !!getNpcAnimConfig(npc.spriteKey)?.idle;   // покадровая стойка и бытовые движения
       const spriteFactory = (npc.ambientAnim || animated) ? this.add.sprite.bind(this.add) : this.add.image.bind(this.add);
-      const sprite = spriteFactory(npc.x, spriteY, npc.spriteKey, frameKey)
+      const sprite = spriteFactory(npc.x, spriteY, npc._tex || npc.spriteKey, frameKey)
         .setOrigin(0.5, spriteOriginY)
         .setScale(ratio)
         .setDepth(npc.y)
@@ -962,6 +971,22 @@ export class MapScene extends Phaser.Scene {
 
       this._npcs.push({ sprite, shadow, label, cfg: npc });
     });
+  }
+
+  _ensureNpcPlaceholder(npc) {
+    const key = 'npc_placeholder';
+    if (!this.textures.exists(key)) {
+      const g = this.make.graphics({ x: 0, y: 0, add: false });
+      g.fillStyle(0x3a3a40, 1);
+      g.fillEllipse(40, 30, 44, 50);
+      g.fillRoundedRect(14, 52, 52, 110, 18);
+      g.lineStyle(3, 0x15151a, 1);
+      g.strokeEllipse(40, 30, 44, 50);
+      g.generateTexture(key, 80, 164);
+      g.destroy();
+    }
+    // spriteKey остаётся: по нему NpcAnimations подхватит покадровые листы, когда они появятся
+    npc._tex = key;
   }
 
   _setupAmbientNpcAnimation(sprite, npc) {
@@ -1218,8 +1243,79 @@ export class MapScene extends Phaser.Scene {
       dismiss: id => { PartySystem.bench(reg, id); this._applyPartyVisibility(); },
       transition: (map, spawn) => this._transitionTo(map, spawn),
       refresh: () => this._refreshGoldHud(),
+      rest: () => this._rest(),
+      openParty: () => this._showPartyManager(),
       onClose: () => SaveSystem.saveWorld(reg, this.mapKey, this.spawnId),
     };
+  }
+
+  /** Журнал квестов: текущий этап каждого открытого квеста (без нового арта). */
+  _toggleJournal() {
+    if (this._journalObjs) {
+      this._journalObjs.forEach(o => o.destroy());
+      this._journalObjs = null;
+      return;
+    }
+    const z = this.cameras.main.zoom;
+    const sx = v => v / z;
+    const D = 9800;
+    const entries = journal(this._ws);
+    const active = entries.filter(e => e.status === 'active');
+    const done = entries.filter(e => e.status === 'done');
+    const lines = [];
+    active.forEach(e => {
+      lines.push(`◆ ${e.quest.name}`);
+      if (e.stage) lines.push(`    ${e.stage.text}`);
+    });
+    if (!active.length) lines.push('Открытых заданий нет.');
+    if (done.length) {
+      lines.push('', 'Завершено:');
+      done.forEach(e => {
+        const out = outcomesSeen(e.quest, this._ws);
+        lines.push(`✓ ${e.quest.name}${out.length ? `: ${out[0]}` : ''}`);
+      });
+    }
+    const bg = this.add.rectangle(sx(640), sx(330), sx(760), sx(540), 0x07060a, 0.95)
+      .setStrokeStyle(sx(2), 0xd4a832, 0.8).setDepth(D).setScrollFactor(0).setInteractive();
+    const title = this.add.text(sx(640), sx(80), 'ЖУРНАЛ', {
+      fontFamily: 'serif', fontSize: `${sx(22)}px`, color: '#d4a832',
+    }).setOrigin(0.5, 0).setDepth(D + 1).setScrollFactor(0);
+    const body = this.add.text(sx(280), sx(120), lines.join('\n'), {
+      fontFamily: 'serif', fontSize: `${sx(13)}px`, color: '#D8D0BC', lineSpacing: sx(4),
+      wordWrap: { width: sx(720), useAdvancedWrap: true },
+    }).setDepth(D + 1).setScrollFactor(0);
+    const hint = this.add.text(sx(640), sx(585), 'клик, чтобы закрыть', {
+      fontFamily: 'serif', fontSize: `${sx(11)}px`, color: '#777063',
+    }).setOrigin(0.5).setDepth(D + 1).setScrollFactor(0);
+    bg.on('pointerdown', () => this._toggleJournal());
+    this._journalObjs = [bg, title, body, hint];
+  }
+
+  /** Отдых: полное HP, Сборы, раны сняты, точка возврата Хроники. */
+  _rest() {
+    PartySystem.restAll(this.game.registry, this.mapKey, this.spawnId);
+    this._toast('Отряд отдохнул');
+  }
+
+  /** Кто идёт в отряде, кто ждёт: список в диалоговой панели (без нового арта). */
+  _showPartyManager() {
+    const reg = this.game.registry;
+    const names = Object.fromEntries(unitsData.map(u => [u.id, u.personalName || u.name]));
+    const party = PartySystem.getParty(reg);
+    const others = PartySystem.getRoster(reg).filter(id => id !== 'hero_duelist');
+    const free = PartySystem.getSlots(reg) - party.length;
+    const choices = others.map(id => party.includes(id)
+      ? { label: `${names[id]}: оставить в таверне`, style: 'retreat', onSelect: () => { PartySystem.bench(reg, id); this._applyPartyVisibility(true); this._showPartyManager(); } }
+      : { label: `${names[id]}: взять в отряд`, disabled: free <= 0, reason: 'нет места в отряде', onSelect: () => { PartySystem.activate(reg, id); this._applyPartyVisibility(true); this._recruit(id); this._showPartyManager(); } });
+    choices.push({ label: 'Готово.', style: 'default', onSelect: () => SaveSystem.saveWorld(reg, this.mapKey, this.spawnId) });
+    this._dialogue.show({
+      portraitLeft: 'portrait_hero_duelist',
+      speakerName: 'Отряд',
+      text: others.length
+        ? `Мест в отряде: ${PartySystem.getSlots(reg)}. Сейчас идут: ${party.map(id => names[id]).join(', ')}.`
+        : 'Пока с вами никого нет.',
+      choices,
+    });
   }
 
   /** Опыт: число, «battle:<id>» (как за бой) или тип встречи (minor/standard/hard/boss/quest). */
@@ -1254,6 +1350,11 @@ export class MapScene extends Phaser.Scene {
     if (this._transitioning) return;
     const reg = this.game.registry;
     this.hero.stopMove();
+    // Реплика перед боем (засада Корвина): бой запускает сам диалог
+    if (enc.preDialogue && this._runner.has(enc.preDialogue) && !opts.skipDialogue) {
+      this._runner.start(enc.preDialogue, enc.preNode || null);
+      return;
+    }
     reg.set('pendingBattle', { battleId: enc.battleId, encounterId: enc.id, dlg: enc.dialogue || null, onWin: enc.onWin || null });
     reg.set('battleAmbush', !!opts.ambush);
     if (opts.ambush) this._toast('Засада!');
@@ -2104,7 +2205,7 @@ export class MapScene extends Phaser.Scene {
     const SLOT_FRACTIONS = [0.2136, 0.3614, 0.5081, 0.6501, 0.8150];
     const SLOTS = [
       { label: 'Кошель', icon: 'icon_gold', action: null, tooltip: () => `Золото: ${this.game.registry.get('playerGold') ?? 0}` },
-      { label: 'Журнал', icon: 'icon_hand', action: null, tooltip: 'Журнал заданий появится позже' },
+      { label: 'Журнал', icon: 'icon_hand', action: () => this._toggleJournal(), tooltip: 'Журнал заданий' },
       { label: 'Отряд', icon: 'map_menu_button', action: () => this._showCharSheet(0), tooltip: 'Отряд и инвентарь' },
       { label: 'Карта', icon: 'icon_luck_horseshoe', action: null, tooltip: 'Карта мира появится позже' },
       { label: 'Меню', icon: 'icon_skull', action: null, tooltip: 'Меню и настройки появятся позже' },

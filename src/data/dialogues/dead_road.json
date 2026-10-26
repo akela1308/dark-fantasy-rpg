@@ -1,0 +1,39 @@
+{
+  "id": "dead_road",
+  "source": "03_ДИАЛОГИ_И_КВЕСТЫ_v0.2, раздел 17",
+  "speakers": {
+    "reader": { "name": "Висельный чтец", "portrait": null },
+    "narrator": { "name": "" }
+  },
+  "start": [
+    { "showIf": { "flag": "dead_road_pending" }, "node": "after_fight" },
+    { "node": "reader" }
+  ],
+  "nodes": {
+    "reader": {
+      "speaker": "reader",
+      "text": "«Не проходи между мной и ими. Я читаю. Пока я читаю, они не уходят. Пройдёшь, собьюсь. Собьюсь, они уйдут. Уйдут, вернутся. Вернутся, тебе не понравится.»",
+      "choices": [
+        { "label": "«Дочитывай. Мы подождём.»", "next": "waited" },
+        { "label": "«Кого ты читаешь?»", "next": "who" },
+        { "label": "«[Атаковать]»", "effects": { "setFlag": "dead_road_pending" }, "startBattle": { "battleId": "dead_road_reader", "onWin": "after_fight" } }
+      ]
+    },
+    "who": {
+      "speaker": "reader",
+      "text": "«Тех, кого повесил пост номер семь за то, что они ушли с дороги. Пост ушёл сам. Их никто не снял. Я снимаю. Медленно.»",
+      "effects": { "setFlag": "post_hanged_deserters" },
+      "next": "reader"
+    },
+    "waited": {
+      "speaker": "reader",
+      "text": "«Проходи. Ты первый, кто подождал.»",
+      "effects": { "setFlag": "reader_spared", "rep": { "word": 1 }, "giveXp": "battle:dead_road_reader" }
+    },
+    "after_fight": {
+      "speaker": "narrator",
+      "text": "Таблички на виселицах пустые.",
+      "effects": { "clearFlag": "dead_road_pending", "setFlag": ["dead_road_reader_won", "reader_killed"] }
+    }
+  }
+}

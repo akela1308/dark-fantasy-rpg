@@ -78,8 +78,6 @@ export class DialogueRunner {
       this._close(node);
       return;
     }
-    if (node.effects) applyEffects(node.effects, this.ws, this.hooks);
-
     const sp = dlg.speakers?.[node.speaker] || {};
     let text = this._text(node.text);
     (node.lines || []).forEach(l => {
@@ -87,6 +85,10 @@ export class DialogueRunner {
       const who = dlg.speakers?.[l.speaker]?.name || l.speaker || '';
       text += `\n\n${who ? `${who}: ` : ''}${this._text(l.text)}`;
     });
+
+    // Эффекты узла после текста: флаг «уже встречались» не прячет реплику, которая его ставит
+    if (node.effects) applyEffects(node.effects, this.ws, this.hooks);
+    if (node.effects?.openParty) { this.hooks.openParty?.(); return; }
 
     const visible = (node.choices || []).filter(ch => checkRequires(ch.showIf, this.ws).ok);
     const choices = visible.map(ch => {
@@ -116,6 +118,7 @@ export class DialogueRunner {
 
   _select(dlgId, ch) {
     applyEffects(ch.effects, this.ws, this.hooks);
+    if (ch.effects?.openParty) { this.hooks.openParty?.(); return; }
     if (ch.startBattle) {
       this.hooks.startBattle?.(ch.startBattle, dlgId);
       return;

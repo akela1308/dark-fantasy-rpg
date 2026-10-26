@@ -1,0 +1,1048 @@
+[
+  {
+    "id": "dog_tracks",
+    "name": "Следы у двери",
+    "tier": "лёгкий",
+    "level": 1,
+    "where": "двор таверны",
+    "truth": null,
+    "startIf": {
+      "flag": "tavern_map_visited"
+    },
+    "doneIf": {
+      "flag": "dog_tracks_seen"
+    },
+    "stages": [
+      {
+        "id": "look",
+        "text": "Пёс у таверны рычит на что-то у двери.",
+        "doneIf": {
+          "flag": "dog_tracks_seen"
+        }
+      }
+    ],
+    "outcomes": [
+      {
+        "flag": "dog_tracks_seen",
+        "text": "Следы замечены: лесная грязь и болотная тина."
+      }
+    ],
+    "reward": {
+      "xp": 10,
+      "gold": 0
+    },
+    "links": [
+      "cloaked_men",
+      "chapel"
+    ]
+  },
+  {
+    "id": "vorn_charter",
+    "name": "Устав Ворна",
+    "tier": "лёгкий",
+    "level": 1,
+    "where": "зал таверны",
+    "truth": null,
+    "startIf": {
+      "flag": "vorn_met"
+    },
+    "doneIf": {
+      "any": [
+        {
+          "flag": "book_taken_with_permission"
+        },
+        {
+          "flag": "vorn_ustav"
+        },
+        {
+          "flag": "mira_saw_theft"
+        }
+      ]
+    },
+    "stages": [
+      {
+        "id": "ask",
+        "text": "Устав дорожных домов лежит у Ворна на стойке.",
+        "doneIf": {
+          "any": [
+            {
+              "flag": "book_taken_with_permission"
+            },
+            {
+              "flag": "vorn_ustav"
+            },
+            {
+              "flag": "mira_saw_theft"
+            }
+          ]
+        }
+      }
+    ],
+    "outcomes": [
+      {
+        "flag": "book_taken_with_permission",
+        "text": "Ворн дал книгу сам."
+      },
+      {
+        "flag": "vorn_ustav",
+        "text": "Ворн говорит с вами об уставе как с судьёй."
+      },
+      {
+        "flag": "mira_saw_theft",
+        "text": "Мира видела, как вы взяли книгу без спроса. Комната теперь 7 монет."
+      }
+    ],
+    "reward": {
+      "xp": 15,
+      "gold": 0
+    },
+    "links": [
+      "bramm_debt",
+      "korvin_road"
+    ]
+  },
+  {
+    "id": "cloaked_men",
+    "name": "Люди в плащах",
+    "tier": "лёгкий",
+    "level": 2,
+    "where": "зал таверны",
+    "truth": null,
+    "startIf": {
+      "flag": "tavern_inside_visited"
+    },
+    "doneIf": {
+      "any": [
+        {
+          "flag": "mira_source_protected"
+        },
+        {
+          "flag": "mira_source_betrayed"
+        }
+      ]
+    },
+    "stages": [
+      {
+        "id": "ask",
+        "text": "Мира видела в зале двоих в плащах. Расспросить её.",
+        "doneIf": {
+          "any": [
+            {
+              "flag": "mira_source_protected"
+            },
+            {
+              "flag": "mira_source_betrayed"
+            }
+          ]
+        }
+      },
+      {
+        "id": "name",
+        "text": "Мира может назвать того, кто ими командует.",
+        "doneIf": {
+          "flag": "cloaks_leader_named"
+        }
+      }
+    ],
+    "outcomes": [
+      {
+        "flag": "mira_source_protected",
+        "text": "Источник защищён. Мира предупредит о засаде."
+      },
+      {
+        "flag": "mira_source_betrayed",
+        "text": "Источник выдан. Мира отвечает односложно."
+      }
+    ],
+    "reward": {
+      "xp": 15,
+      "gold": 0,
+      "rep": {
+        "word": 1
+      }
+    },
+    "links": [
+      "korvin_road",
+      "seal",
+      "chapel"
+    ]
+  },
+  {
+    "id": "bramm_debt",
+    "name": "Долг Брамма",
+    "tier": "лёгкий",
+    "level": 3,
+    "where": "зал таверны",
+    "truth": null,
+    "startIf": {
+      "flag": "korvin_men_in_tavern"
+    },
+    "doneIf": {
+      "flag": "bramm_trust"
+    },
+    "stages": [
+      {
+        "id": "scene",
+        "text": "Люди Корвина давят на Брамма за долг.",
+        "doneIf": {
+          "any": [
+            {
+              "flag": "bramm_trust"
+            },
+            {
+              "flag": "tavern_brawl_done"
+            }
+          ]
+        }
+      }
+    ],
+    "outcomes": [
+      {
+        "flag": "ort_respect",
+        "text": "Орт видел, что вы не пролили кровь. Он отдаёт каменный знак."
+      },
+      {
+        "flag": "vorn_wary",
+        "text": "Драка в зале. Ворн поднял цену комнаты."
+      }
+    ],
+    "reward": {
+      "xp": 55,
+      "gold": 0
+    },
+    "links": [
+      "mountain_pass"
+    ]
+  },
+  {
+    "id": "courier_cart",
+    "name": "Телега гонца",
+    "tier": "лёгкий",
+    "level": 1,
+    "where": "Южная застава, Три столба",
+    "truth": null,
+    "startIf": null,
+    "doneIf": {
+      "any": [
+        {
+          "flag": "courier_buried"
+        },
+        {
+          "flag": "courier_left"
+        }
+      ]
+    },
+    "stages": [
+      {
+        "id": "cart",
+        "text": "У сломанного столба мародёры роются в телеге гонца.",
+        "doneIf": {
+          "flag": "road_looters_done"
+        }
+      },
+      {
+        "id": "bury",
+        "text": "Агна предлагает закопать гонца. Лопата за дверью «Трёх столбов».",
+        "doneIf": {
+          "any": [
+            {
+              "flag": "courier_buried"
+            },
+            {
+              "flag": "courier_left"
+            }
+          ]
+        }
+      }
+    ],
+    "outcomes": [
+      {
+        "flag": "courier_buried",
+        "text": "Гонец похоронен. Ворнаг: «Правильно. Так делается»."
+      },
+      {
+        "flag": "courier_left",
+        "text": "Гонец остался у дороги."
+      },
+      {
+        "flag": "courier_letter_found",
+        "text": "Обрывок записки: седьмой пост не отвечает с осени."
+      }
+    ],
+    "reward": {
+      "xp": 10,
+      "gold": 12
+    },
+    "links": [
+      "letter"
+    ]
+  },
+  {
+    "id": "ressa_water",
+    "name": "Вода для Рессы",
+    "tier": "лёгкий",
+    "level": 4,
+    "where": "Болотное поселение",
+    "truth": null,
+    "startIf": {
+      "flag": "ressa_recruited"
+    },
+    "doneIf": {
+      "flag": "ressa_water_restored"
+    },
+    "stages": [
+      {
+        "id": "ask",
+        "text": "Лё: пусть Ресса принесёт зерно вместо старосты.",
+        "doneIf": {
+          "flag": "ressa_water_quest"
+        }
+      },
+      {
+        "id": "grain",
+        "text": "Купить зерно у Ворна или взять в деревне и вернуться к Лё.",
+        "doneIf": {
+          "flag": "ressa_water_restored"
+        }
+      }
+    ],
+    "outcomes": [
+      {
+        "flag": "ressa_water_restored",
+        "text": "Вода возвращена. Ресса верна, болото открыто ей."
+      }
+    ],
+    "reward": {
+      "xp": 30,
+      "gold": 0
+    },
+    "links": [
+      "swamp_deal"
+    ]
+  },
+  {
+    "id": "forest_grandfather",
+    "name": "Лесной Дед",
+    "tier": "лёгкий",
+    "level": 4,
+    "where": "Глубокое болото, обелиск",
+    "truth": null,
+    "startIf": {
+      "flag": "swamp_map_visited"
+    },
+    "doneIf": {
+      "any": [
+        {
+          "flag": "forest_grandfather_defeated"
+        },
+        {
+          "flag": "swamp_deal_kept"
+        }
+      ]
+    },
+    "stages": [
+      {
+        "id": "obelisk",
+        "text": "У обелиска спит медведь с рунами. Не будить без договора.",
+        "doneIf": {
+          "any": [
+            {
+              "flag": "forest_grandfather_defeated"
+            },
+            {
+              "flag": "swamp_deal_kept"
+            }
+          ]
+        }
+      }
+    ],
+    "outcomes": [
+      {
+        "flag": "swamp_guardian_killed",
+        "text": "Дед убит. Лё молчит до конца игры."
+      },
+      {
+        "flag": "swamp_deal_kept",
+        "text": "Дед спит: болото знает вас."
+      }
+    ],
+    "reward": {
+      "xp": 180,
+      "gold": 0,
+      "item": "rune_hide"
+    },
+    "links": [
+      "swamp_deal"
+    ]
+  },
+  {
+    "id": "savko_key",
+    "name": "Ключ Савко и Запечатанный подвал",
+    "tier": "средний",
+    "level": 6,
+    "where": "двор таверны, подвал",
+    "truth": "Дверь запирал пост номер семь. Старшим был Корвин. Савко держал фонарь.",
+    "startIf": {
+      "flag": "savko_believed"
+    },
+    "doneIf": {
+      "flag": "sealed_basement_defeated"
+    },
+    "stages": [
+      {
+        "id": "talk",
+        "text": "Ключ у Савко. Выпить с ним трижды, прийти с Таей или пригрозить.",
+        "doneIf": {
+          "any": [
+            {
+              "flag": "savko_key_given"
+            },
+            {
+              "flag": "savko_gone"
+            }
+          ]
+        }
+      },
+      {
+        "id": "hatch",
+        "text": "Люк во дворе за дровами.",
+        "doneIf": {
+          "flag": "basement_opened"
+        }
+      },
+      {
+        "id": "door",
+        "text": "За дверью со знаком что-то ждёт.",
+        "doneIf": {
+          "flag": "sealed_basement_defeated"
+        }
+      }
+    ],
+    "outcomes": [
+      {
+        "flag": "korvin_was_warden",
+        "text": "Корвин был старшим стражником поста."
+      },
+      {
+        "flag": "savko_gone",
+        "text": "Савко ушёл ночью и не вернётся."
+      }
+    ],
+    "reward": {
+      "xp": 468,
+      "gold": 40,
+      "item": "post_pistol"
+    },
+    "links": [
+      "korvin_road",
+      "seal",
+      "letter"
+    ]
+  },
+  {
+    "id": "chapel",
+    "name": "Часовня",
+    "tier": "средний",
+    "level": 5,
+    "where": "Придорожный, часовня",
+    "truth": "Свет по ночам это Чтецы Гаста: они читают имена, и люди их забывают.",
+    "startIf": {
+      "flag": "village_visited"
+    },
+    "doneIf": {
+      "any": [
+        {
+          "flag": "chapel_cult_defeated"
+        },
+        {
+          "flag": "chapel_peaceful"
+        },
+        {
+          "flag": "cult_turned"
+        }
+      ]
+    },
+    "stages": [
+      {
+        "id": "rumor",
+        "text": "В деревне говорят о свете в часовне.",
+        "doneIf": {
+          "flag": "village_rumor_known"
+        }
+      },
+      {
+        "id": "door",
+        "text": "У двери часовни: ночью силой, днём с Тайной грамотой или Страхом.",
+        "doneIf": {
+          "any": [
+            {
+              "flag": "chapel_cult_defeated"
+            },
+            {
+              "flag": "chapel_peaceful"
+            },
+            {
+              "flag": "cult_turned"
+            }
+          ]
+        }
+      }
+    ],
+    "outcomes": [
+      {
+        "flag": "chapel_peaceful",
+        "text": "Страница с живыми вырвана, Чтецы ушли сами."
+      },
+      {
+        "flag": "cult_turned",
+        "text": "Чтецы читают имена людей Корвина."
+      }
+    ],
+    "reward": {
+      "xp": 240,
+      "gold": 56,
+      "item": "book_prayers"
+    },
+    "links": [
+      "cloaked_men",
+      "seal",
+      "holt_sister"
+    ]
+  },
+  {
+    "id": "well_taya",
+    "name": "Колодец и Тая",
+    "tier": "средний",
+    "level": 5,
+    "where": "Придорожный, колодец и дом старосты",
+    "truth": "Дочь старосты умерла от воды из колодца. Тая сказала это при людях.",
+    "startIf": {
+      "companion": "companion_healer",
+      "flag": "village_visited"
+    },
+    "doneIf": {
+      "any": [
+        {
+          "flag": "well_truth_told"
+        },
+        {
+          "flag": "swamp_deal_kept"
+        },
+        {
+          "flag": "village_tribute"
+        }
+      ]
+    },
+    "stages": [
+      {
+        "id": "well",
+        "text": "Женщина у колодца. Тая: «Не пейте».",
+        "doneIf": {
+          "flag": "well_water_omen"
+        }
+      },
+      {
+        "id": "ryzh",
+        "text": "Дом старосты Рыжа. Правда, молчание или дань.",
+        "doneIf": {
+          "any": [
+            {
+              "flag": "well_truth_told"
+            },
+            {
+              "flag": "swamp_deal_kept"
+            },
+            {
+              "flag": "village_tribute"
+            }
+          ]
+        }
+      }
+    ],
+    "outcomes": [
+      {
+        "flag": "well_truth_told",
+        "text": "Правда сказана. Тая верна."
+      },
+      {
+        "flag": "village_tribute",
+        "text": "Деревня платит вам. Тая ушла."
+      }
+    ],
+    "reward": {
+      "xp": 100,
+      "gold": 8,
+      "item": "book_lowland_herbal"
+    },
+    "links": [
+      "swamp_deal"
+    ]
+  },
+  {
+    "id": "mountain_pass",
+    "name": "Перевал",
+    "tier": "средний",
+    "level": 5,
+    "where": "горы",
+    "truth": "Латники клятвы это люди, наёмники, которые остались, когда платить перестали.",
+    "startIf": {
+      "flag": "mountains_map_visited"
+    },
+    "doneIf": {
+      "any": [
+        {
+          "flag": "mountain_pass_defeated"
+        },
+        {
+          "flag": "mountain_pass_peaceful"
+        }
+      ]
+    },
+    "stages": [
+      {
+        "id": "pass",
+        "text": "Дозорный у перевала: бой или знак Орта.",
+        "doneIf": {
+          "any": [
+            {
+              "flag": "mountain_pass_defeated"
+            },
+            {
+              "flag": "mountain_pass_peaceful"
+            }
+          ]
+        }
+      }
+    ],
+    "outcomes": [
+      {
+        "flag": "mountain_pass_peaceful",
+        "text": "Знак Орта прочитан, латники отступили."
+      },
+      {
+        "flag": "mountain_king_paid_memory",
+        "text": "Горному Королю заплачено памятью."
+      }
+    ],
+    "reward": {
+      "xp": 240,
+      "gold": 42,
+      "item": "dwarf_ore"
+    },
+    "links": [
+      "bramm_debt"
+    ]
+  },
+  {
+    "id": "holt_sister",
+    "name": "Сестра Хольта",
+    "tier": "средний",
+    "level": 5,
+    "where": "Три столба, таверна, часовня",
+    "truth": "Имена, которые читают Чтецы, вычёркиваются из приходской книги.",
+    "startIf": {
+      "flag": "holt_sister_hint"
+    },
+    "doneIf": {
+      "flag": "holt_sister_named"
+    },
+    "stages": [
+      {
+        "id": "ask",
+        "text": "Хольт ищет имя сестры.",
+        "doneIf": {
+          "flag": "holt_sister_hint"
+        }
+      },
+      {
+        "id": "chapel",
+        "text": "Дойти до часовни Придорожного и прочесть книгу.",
+        "doneIf": {
+          "flag": "holt_sister_named"
+        }
+      }
+    ],
+    "outcomes": [
+      {
+        "flag": "holt_sister_named",
+        "text": "Лейна. Хольт верен до конца игры."
+      }
+    ],
+    "reward": {
+      "xp": 15,
+      "gold": 0
+    },
+    "links": [
+      "chapel"
+    ]
+  },
+  {
+    "id": "dead_road",
+    "name": "Мёртвый тракт",
+    "tier": "средний",
+    "level": 4,
+    "where": "Мёртвый тракт",
+    "truth": "Повешены дезертиры седьмого поста, а пост потом дезертировал сам.",
+    "startIf": {
+      "flag": "dead_road_visited"
+    },
+    "doneIf": {
+      "any": [
+        {
+          "flag": "reader_spared"
+        },
+        {
+          "flag": "dead_road_reader_won"
+        }
+      ]
+    },
+    "stages": [
+      {
+        "id": "reader",
+        "text": "Висельный чтец читает имена. Подождать или напасть.",
+        "doneIf": {
+          "any": [
+            {
+              "flag": "reader_spared"
+            },
+            {
+              "flag": "dead_road_reader_won"
+            }
+          ]
+        }
+      }
+    ],
+    "outcomes": [
+      {
+        "flag": "reader_spared",
+        "text": "Подождали. Проход свободен навсегда."
+      },
+      {
+        "flag": "reader_killed",
+        "text": "Таблички пустые. Савко уйдёт."
+      }
+    ],
+    "reward": {
+      "xp": 180,
+      "gold": 36,
+      "item": "reader_chain"
+    },
+    "links": [
+      "savko_key",
+      "letter"
+    ]
+  },
+  {
+    "id": "swamp_deal",
+    "name": "Болотный договор",
+    "tier": "средний",
+    "level": 4,
+    "where": "болотное кольцо, дом Рыжа",
+    "truth": "Деревня болеет не от болота, а от того, чем платит староста.",
+    "startIf": {
+      "flag": "elf_boloto1_visited"
+    },
+    "doneIf": {
+      "any": [
+        {
+          "flag": "swamp_deal_kept"
+        },
+        {
+          "flag": "swamp_hostile"
+        }
+      ]
+    },
+    "stages": [
+      {
+        "id": "ring",
+        "text": "Пройти болото и не считать огни.",
+        "doneIf": {
+          "flag": "elf_boloto_visited"
+        }
+      },
+      {
+        "id": "le",
+        "text": "Поговорить со старейшиной Лё.",
+        "doneIf": {
+          "any": [
+            {
+              "flag": "swamp_deal_offered"
+            },
+            {
+              "flag": "swamp_hostile"
+            }
+          ]
+        }
+      },
+      {
+        "id": "ryzh",
+        "text": "Передать старосте: зерно, не вода.",
+        "doneIf": {
+          "any": [
+            {
+              "flag": "swamp_deal_kept"
+            },
+            {
+              "flag": "swamp_hostile"
+            }
+          ]
+        }
+      }
+    ],
+    "outcomes": [
+      {
+        "flag": "swamp_deal_kept",
+        "text": "Договор: колодец очистится к весне."
+      },
+      {
+        "flag": "swamp_hostile",
+        "text": "Поселение закрыто, Дед не спит."
+      }
+    ],
+    "reward": {
+      "xp": 115,
+      "gold": 0,
+      "item": "book_children_of_fog"
+    },
+    "links": [
+      "well_taya",
+      "seal"
+    ]
+  },
+  {
+    "id": "letter",
+    "name": "Письмо на пост",
+    "tier": "сложный",
+    "level": 6,
+    "where": "весь акт",
+    "truth": "Пост ушёл три года назад. Приказ всегда один: «держать пост до смены».",
+    "startIf": null,
+    "doneIf": {
+      "flag": "deserter_told"
+    },
+    "stages": [
+      {
+        "id": "cart",
+        "text": "Столб и гонец.",
+        "doneIf": {
+          "flag": "courier_letter_found"
+        }
+      },
+      {
+        "id": "vorn",
+        "text": "Ворн про письмо.",
+        "doneIf": {
+          "flag": "vorn_letter_seen"
+        }
+      },
+      {
+        "id": "korvin",
+        "text": "Корвин про письмо.",
+        "doneIf": {
+          "any": [
+            {
+              "flag": "imperial_letter_shown"
+            },
+            {
+              "flag": "korvin_resolved"
+            }
+          ]
+        }
+      },
+      {
+        "id": "journal",
+        "text": "Журнал поста в подвале.",
+        "doneIf": {
+          "flag": "basement_journal_read"
+        }
+      },
+      {
+        "id": "guard",
+        "text": "Стражник-беглец у ворот деревни знает содержание приказа.",
+        "doneIf": {
+          "flag": "deserter_told"
+        }
+      }
+    ],
+    "outcomes": [
+      {
+        "flag": "letter_opened",
+        "text": "Письмо вскрыто."
+      },
+      {
+        "flag": "korvin_witness",
+        "text": "Корвин идёт свидетелем."
+      },
+      {
+        "flag": "wornag_loyal",
+        "text": "Ворнаг остаётся своей охотой."
+      },
+      {
+        "flag": "wornag_leaves",
+        "text": "Ворнаг ушёл."
+      }
+    ],
+    "reward": {
+      "xp": 150,
+      "gold": 0
+    },
+    "links": [
+      "korvin_road",
+      "savko_key"
+    ]
+  },
+  {
+    "id": "korvin_road",
+    "name": "Дорога Корвина",
+    "tier": "сложный",
+    "level": 2,
+    "where": "Чёрный Лес, деревня",
+    "truth": "Корвин был десятником, когда посты закрыли.",
+    "startIf": {
+      "flag": "forest1_visited"
+    },
+    "doneIf": {
+      "flag": "gate_passed"
+    },
+    "stages": [
+      {
+        "id": "forest",
+        "text": "Корвин держит дорогу в Чёрном Лесу. Цена, письмо, страх, сделка или бой.",
+        "doneIf": {
+          "flag": "korvin_resolved"
+        }
+      },
+      {
+        "id": "debt",
+        "text": "Долг или месть: выполнить сделку или ждать засады.",
+        "doneIf": {
+          "any": [
+            {
+              "flag": "korvin_revenge_done"
+            },
+            {
+              "flag": "korvin_debt_paid"
+            },
+            {
+              "flag": "bandit_commander_killed"
+            },
+            {
+              "flag": "bandit_commander_spared"
+            }
+          ]
+        }
+      },
+      {
+        "id": "village",
+        "text": "Ворота деревни: чья теперь дорога.",
+        "doneIf": {
+          "flag": "gate_passed"
+        }
+      }
+    ],
+    "outcomes": [
+      {
+        "flag": "bandit_commander_killed",
+        "text": "Корвин убит."
+      },
+      {
+        "flag": "bandit_commander_spared",
+        "text": "Корвин отпущен."
+      },
+      {
+        "flag": "korvin_witness",
+        "text": "Корвин свидетель."
+      },
+      {
+        "flag": "bandit_deal_legitimize",
+        "text": "Корвин узаконен."
+      },
+      {
+        "flag": "cult_turned",
+        "text": "Корвин исчез после часовни."
+      }
+    ],
+    "reward": {
+      "xp": 68,
+      "gold": 24
+    },
+    "links": [
+      "letter",
+      "dead_road"
+    ]
+  },
+  {
+    "id": "seal",
+    "name": "Печать Забытого",
+    "tier": "сложный",
+    "level": 6,
+    "where": "таверна, алтарь, подвал",
+    "truth": "Печать не даёт силу. Она убирает то, что мешает идти дальше.",
+    "startIf": {
+      "any": [
+        {
+          "flag": "rowan_met"
+        },
+        {
+          "flag": "savko_believed"
+        }
+      ]
+    },
+    "doneIf": {
+      "any": [
+        {
+          "flag": "seal_taken"
+        },
+        {
+          "flag": "seal_left"
+        }
+      ]
+    },
+    "stages": [
+      {
+        "id": "rowan",
+        "text": "Рован знает про алтарь.",
+        "doneIf": {
+          "flag": "rowan_seal_hint"
+        }
+      },
+      {
+        "id": "altar",
+        "text": "Алтарь трёх камней в Чёрном Лесу.",
+        "doneIf": {
+          "any": [
+            {
+              "flag": "seal_taken"
+            },
+            {
+              "flag": "seal_left"
+            }
+          ]
+        }
+      }
+    ],
+    "outcomes": [
+      {
+        "flag": "seal_worn",
+        "text": "Кольцо надето."
+      },
+      {
+        "flag": "seal_taken",
+        "text": "Кольцо взято, не надето."
+      },
+      {
+        "flag": "seal_left",
+        "text": "Кольцо оставлено."
+      }
+    ],
+    "reward": {
+      "xp": 150,
+      "gold": 0,
+      "item": "seal_ring"
+    },
+    "links": [
+      "savko_key",
+      "mountain_pass"
+    ]
+  }
+]

@@ -2,74 +2,194 @@
   "id": "korvin",
   "source": "03_ДИАЛОГИ_И_КВЕСТЫ_v0.2, раздел 6",
   "speakers": {
-    "korvin": { "name": "Корвин Сухой", "portrait": "portrait_bandit_commander" },
-    "kul": { "name": "Куль", "portrait": "portrait_bandit_warrior" },
-    "tiss": { "name": "Тисс", "portrait": "portrait_bandit_archer" },
-    "vornag": { "name": "Ворнаг", "portrait": "portrait_companion_brawler" }
+    "korvin": {
+      "name": "Корвин Сухой",
+      "portrait": "portrait_bandit_commander"
+    },
+    "kul": {
+      "name": "Куль",
+      "portrait": "portrait_bandit_warrior"
+    },
+    "tiss": {
+      "name": "Тисс",
+      "portrait": "portrait_bandit_archer"
+    },
+    "vornag": {
+      "name": "Ворнаг",
+      "portrait": "portrait_companion_brawler"
+    }
   },
   "start": [
-    { "showIf": { "flag": "korvin_fight_pending" }, "node": "after_fight" },
-    { "node": "intro" }
+    {
+      "showIf": {
+        "flag": "korvin_fight_pending"
+      },
+      "node": "after_fight"
+    },
+    {
+      "node": "intro"
+    }
   ],
   "nodes": {
     "kul": {
       "speaker": "kul",
       "text": "«С командиром говори. Я словами плохо работаю.»",
       "choices": [
-        { "label": "«Боишься сказать лишнее?»", "next": "kul_afraid" },
-        { "label": "«Корвин вас кормит?»", "next": "kul_feeds" },
-        { "label": "«Понял.»", "close": true }
+        {
+          "label": "«Боишься сказать лишнее?»",
+          "next": "kul_afraid"
+        },
+        {
+          "label": "«Корвин вас кормит?»",
+          "next": "kul_feeds"
+        },
+        {
+          "label": "«Понял.»",
+          "close": true
+        }
       ]
     },
-    "kul_afraid": { "speaker": "kul", "text": "«Не боюсь. Видел, что бывает с теми, кто болтает перед дракой.»" },
-    "kul_feeds": { "speaker": "kul", "text": "«Кормит. Пока дорога кормит его, он кормит нас. Дальше я не считал.»" },
-
+    "kul_afraid": {
+      "speaker": "kul",
+      "text": "«Не боюсь. Видел, что бывает с теми, кто болтает перед дракой.»"
+    },
+    "kul_feeds": {
+      "speaker": "kul",
+      "text": "«Кормит. Пока дорога кормит его, он кормит нас. Дальше я не считал.»"
+    },
     "tiss": {
       "speaker": "tiss",
       "text": "«Не подходи. У меня палец устал, а тетива дрожь не любит.»",
       "choices": [
-        { "label": "«Это ты убил гонца у столба.»", "requires": { "flag": "tiss_named_early" }, "reason": "Ворнаг ещё не назвал стрелка", "next": "tiss_confronted" },
-        { "label": "«Ты не хочешь боя.»", "next": "tiss_no_fight" },
-        { "label": "«Зову командира.»", "next": "intro" }
+        {
+          "label": "«Это ты убил гонца у столба.»",
+          "requires": {
+            "flag": "tiss_named_early"
+          },
+          "reason": "Ворнаг ещё не назвал стрелка",
+          "next": "tiss_confronted"
+        },
+        {
+          "label": "«Ты не хочешь боя.»",
+          "next": "tiss_no_fight"
+        },
+        {
+          "label": "«Зову командира.»",
+          "next": "intro"
+        }
       ]
     },
     "tiss_confronted": {
       "speaker": "tiss",
       "text": "«Он побежал. Бегущие похожи на тех, кто что-то несёт.»",
-      "effects": { "setFlag": "tiss_confronted" }
+      "effects": {
+        "setFlag": "tiss_confronted"
+      }
     },
-    "tiss_no_fight": { "speaker": "tiss", "text": "«Я хочу дожить до вечера. Пока мне не мешают, я не стреляю.»" },
-
+    "tiss_no_fight": {
+      "speaker": "tiss",
+      "text": "«Я хочу дожить до вечера. Пока мне не мешают, я не стреляю.»"
+    },
     "intro": {
       "speaker": "korvin",
       "text": "«Стой. Дальше дорога моя. Проход стоит денег. Спор стоит крови. Выбирай, что у тебя лишнее.»",
       "lines": [
-        { "showIf": { "companion": "companion_brawler" }, "speaker": "vornag", "text": "«Их трое. Нас...»" }
+        {
+          "showIf": {
+            "companion": "companion_brawler"
+          },
+          "speaker": "vornag",
+          "text": "«Их трое. Нас...»"
+        }
       ],
       "choices": [
-        { "label": "«Назови цену.»", "next": "price" },
-        { "label": "«[Письмо] Я иду по имперскому делу.»", "showIf": { "notFlag": "imperial_letter_shown" }, "next": "letter" },
-        { "label": "«[Запугать: Страх 2 или уровень 3] С дороги.»", "style": "threat", "requires": { "any": [ { "rep_fear": 2 }, { "level": 3 } ] }, "reason": "Они о вас ещё не слышали", "next": "intimidate" },
-        { "label": "«У меня есть встречное предложение.»", "next": "deal" },
-        { "label": "«[Атаковать]»", "effects": { "setFlag": "korvin_fight_pending", "rep": { "fear": 1 } }, "startBattle": { "battleId": "korvin_gang", "onWin": "after_fight" } },
-        { "label": "«Мы вернёмся позже.»", "style": "retreat", "next": "later" }
+        {
+          "label": "«Назови цену.»",
+          "next": "price"
+        },
+        {
+          "label": "«[Письмо] Я иду по имперскому делу.»",
+          "showIf": {
+            "notFlag": "imperial_letter_shown"
+          },
+          "next": "letter"
+        },
+        {
+          "label": "«[Запугать: Страх 2 или уровень 3] С дороги.»",
+          "style": "threat",
+          "requires": {
+            "any": [
+              {
+                "rep_fear": 2
+              },
+              {
+                "level": 3
+              }
+            ]
+          },
+          "reason": "Они о вас ещё не слышали",
+          "next": "intimidate"
+        },
+        {
+          "label": "«У меня есть встречное предложение.»",
+          "next": "deal"
+        },
+        {
+          "label": "«[Атаковать]»",
+          "effects": {
+            "setFlag": "korvin_fight_pending",
+            "rep": {
+              "fear": 1
+            }
+          },
+          "startBattle": {
+            "battleId": "korvin_gang",
+            "onWin": "after_fight"
+          }
+        },
+        {
+          "label": "«Мы вернёмся позже.»",
+          "style": "retreat",
+          "next": "later"
+        }
       ]
     },
     "later": {
       "speaker": "korvin",
       "text": "«Дорога терпеливая. Люди нет.»",
       "choices": [
-        { "label": "Уйти к таверне.", "style": "retreat", "transition": { "map": "tavern_map", "spawn": "from_forest" } }
+        {
+          "label": "Уйти к таверне.",
+          "style": "retreat",
+          "transition": {
+            "map": "tavern_map",
+            "spawn": "from_forest"
+          }
+        }
       ]
     },
-
     "price": {
       "speaker": "korvin",
       "text": "«Для путников серебро. Для вооружённых два. Для тех, кто держит себя как судья, три и без длинных речей. Тридцать монет.»",
       "choices": [
-        { "label": "«[30 монет] Заплатить.»", "requires": { "gold": 30 }, "next": "paid" },
-        { "label": "«Это грабёж.»", "next": "robbery" },
-        { "label": "«У меня нет таких денег.»", "showIf": { "goldBelow": 30 }, "next": "no_money" }
+        {
+          "label": "«[30 монет] Заплатить.»",
+          "requires": {
+            "gold": 30
+          },
+          "next": "paid"
+        },
+        {
+          "label": "«Это грабёж.»",
+          "next": "robbery"
+        },
+        {
+          "label": "«У меня нет таких денег.»",
+          "showIf": {
+            "goldBelow": 30
+          },
+          "next": "no_money"
+        }
       ]
     },
     "paid": {
@@ -77,12 +197,25 @@
       "text": "«Разум живёт дольше гордости. Проходите. Назад будет стоить отдельно.»",
       "effects": {
         "cost": 30,
-        "setFlag": ["bandit_paid", "road_open_personal_only", "korvin_resolved", "bandit_0_defeated"],
-        "rep": { "fear": -1 },
+        "setFlag": [
+          "bandit_paid",
+          "road_open_personal_only",
+          "korvin_resolved",
+          "bandit_0_defeated"
+        ],
+        "rep": {
+          "fear": -1
+        },
         "giveXp": "battle:korvin_gang"
       },
       "lines": [
-        { "showIf": { "companion": "companion_brawler" }, "speaker": "vornag", "text": "«Прошли. Дорога от этого чище не стала.»" }
+        {
+          "showIf": {
+            "companion": "companion_brawler"
+          },
+          "speaker": "vornag",
+          "text": "«Прошли. Дорога от этого чище не стала.»"
+        }
       ]
     },
     "robbery": {
@@ -95,118 +228,323 @@
       "text": "«Тогда у тебя есть ноги. Или рапира. Выбирай.»",
       "next": "intro"
     },
-
     "letter": {
       "speaker": "korvin",
       "text": "«Имперскому? Приложи письмо к колее. Может, оно вытащит телегу, которую ваши чиновники бросили прошлой зимой.»",
       "choices": [
-        { "label": "«Ты служил империи.»", "showIf": { "notFlag": "korvin_past_known" }, "next": "served" },
-        { "label": "«[Закон 2] По уставу дорога под защитой поста. Поста нет. Значит, под защитой того, кто идёт к нему.»", "requires": { "rep_law": 2 }, "next": "law" },
-        { "label": "«Значит, поговорим без бумаги.»", "effects": { "setFlag": ["imperial_letter_shown", "korvin_mocked_empire"] }, "next": "intro" }
+        {
+          "label": "«Ты служил империи.»",
+          "showIf": {
+            "notFlag": "korvin_past_known"
+          },
+          "next": "served"
+        },
+        {
+          "label": "«[Закон 2] По уставу дорога под защитой поста. Поста нет. Значит, под защитой того, кто идёт к нему.»",
+          "requires": {
+            "rep_law": 2
+          },
+          "next": "law"
+        },
+        {
+          "label": "«Значит, поговорим без бумаги.»",
+          "effects": {
+            "setFlag": [
+              "imperial_letter_shown",
+              "korvin_mocked_empire"
+            ]
+          },
+          "next": "intro"
+        }
       ]
     },
     "served": {
       "speaker": "korvin",
       "text": "«Я служил дороге. Империя просто первая платила. Потом перестала.»",
-      "effects": { "setFlag": "korvin_past_known" },
+      "effects": {
+        "setFlag": "korvin_past_known"
+      },
       "next": "letter"
     },
     "law": {
       "speaker": "korvin",
       "text": "«Красиво. Устав я тоже читал. Там есть строчка про десятника, который держит дорогу, когда пост молчит. Это я.»",
-      "effects": { "setFlag": ["korvin_offers_deal", "imperial_letter_shown"] },
+      "effects": {
+        "setFlag": [
+          "korvin_offers_deal",
+          "imperial_letter_shown"
+        ]
+      },
       "next": "deal"
     },
-
     "intimidate": {
       "speaker": "korvin",
       "text": "«Глаза у тебя не путника. Ладно. Сегодня дорога проглотит гордость. Отходим.»",
       "effects": {
-        "setFlag": ["bandit_intimidated", "korvin_humiliated", "road_open_by_fear", "korvin_resolved", "bandit_0_defeated"],
-        "rep": { "fear": 1 },
+        "setFlag": [
+          "bandit_intimidated",
+          "korvin_humiliated",
+          "road_open_by_fear",
+          "korvin_resolved",
+          "bandit_0_defeated"
+        ],
+        "rep": {
+          "fear": 1
+        },
         "giveXp": "battle:korvin_gang"
       },
       "lines": [
-        { "showIf": { "companion": "companion_brawler" }, "speaker": "vornag", "text": "«Такой не забудет. Не из тех.»" }
+        {
+          "showIf": {
+            "companion": "companion_brawler"
+          },
+          "speaker": "vornag",
+          "text": "«Такой не забудет. Не из тех.»"
+        }
       ]
     },
-
     "deal": {
       "speaker": "korvin",
       "text": "«Люблю предложения. Они дешевле похорон. Говори.»",
       "choices": [
-        { "label": "«Я узнаю, кто убивает людей у старого алтаря.»", "next": "deal_altar" },
-        { "label": "«Я скажу тебе, кто были люди в плащах.»", "showIf": { "flag": "mira_cloaked_men_seen" }, "next": "deal_cloaks" },
-        { "label": "«Ворн будет возить тебе хлеб без пошлины, а ты не трогаешь таверну.»", "showIf": { "flag": "vorn_trust" }, "next": "deal_vorn" },
-        { "label": "«[Закон 2] Ты держишь дорогу. Я иду к посту. Возьми меня в свидетели: пост мёртв, ты законный десятник.»", "showIf": { "flag": "korvin_offers_deal" }, "requires": { "rep_law": 2 }, "next": "deal_legit" },
-        { "label": "«Не сейчас.»", "style": "retreat", "next": "intro" }
+        {
+          "label": "«Я узнаю, кто убивает людей у старого алтаря.»",
+          "next": "deal_altar"
+        },
+        {
+          "label": "«Я скажу тебе, кто были люди в плащах.»",
+          "showIf": {
+            "flag": "mira_cloaked_men_seen"
+          },
+          "next": "deal_cloaks"
+        },
+        {
+          "label": "«Ворн будет возить тебе хлеб без пошлины, а ты не трогаешь таверну.»",
+          "showIf": {
+            "flag": "vorn_trust"
+          },
+          "next": "deal_vorn"
+        },
+        {
+          "label": "«[Закон 2] Ты держишь дорогу. Я иду к посту. Возьми меня в свидетели: пост мёртв, ты законный десятник.»",
+          "showIf": {
+            "flag": "korvin_offers_deal"
+          },
+          "requires": {
+            "rep_law": 2
+          },
+          "next": "deal_legit"
+        },
+        {
+          "label": "«Не сейчас.»",
+          "style": "retreat",
+          "next": "intro"
+        }
       ]
     },
     "deal_altar": {
       "speaker": "korvin",
       "text": "«Трое моих туда ушли за месяц. Вернулся один и не помнит, как его зовут. Узнаешь, дорога твоя. Соврёшь, останешься на ней.»",
-      "effects": { "setFlag": ["bandit_deal_altar", "korvin_debt_active", "road_open_conditional", "korvin_resolved", "bandit_0_defeated"], "giveXp": "battle:korvin_gang" }
+      "effects": {
+        "setFlag": [
+          "bandit_deal_altar",
+          "korvin_debt_active",
+          "road_open_conditional",
+          "korvin_resolved",
+          "bandit_0_defeated"
+        ],
+        "giveXp": "battle:korvin_gang"
+      }
     },
     "deal_cloaks": {
       "speaker": "korvin",
       "text": "«Это я и сам знаю. Я не знаю, кто им платит. Принеси имя.»",
-      "effects": { "setFlag": ["bandit_deal_cloaks", "korvin_debt_active", "road_open_conditional", "korvin_resolved", "bandit_0_defeated"], "giveXp": "battle:korvin_gang" }
+      "effects": {
+        "setFlag": [
+          "bandit_deal_cloaks",
+          "korvin_debt_active",
+          "road_open_conditional",
+          "korvin_resolved",
+          "bandit_0_defeated"
+        ],
+        "giveXp": "battle:korvin_gang"
+      }
     },
     "deal_vorn": {
       "speaker": "korvin",
       "text": "«Ворн сам со мной не говорит. Если ты за него говоришь, значит, ты за него и отвечаешь.»",
-      "effects": { "setFlag": ["bandit_deal_vorn", "korvin_debt_active", "road_open_conditional", "korvin_resolved", "bandit_0_defeated"], "giveXp": "battle:korvin_gang" }
+      "effects": {
+        "setFlag": [
+          "bandit_deal_vorn",
+          "korvin_debt_active",
+          "road_open_conditional",
+          "korvin_resolved",
+          "bandit_0_defeated"
+        ],
+        "giveXp": "battle:korvin_gang"
+      }
     },
     "deal_legit": {
       "speaker": "korvin",
       "text": "«Если пост мёртв, подпишешь бумагу. Твоя печать, моя рука. Тогда я не разбойник. Тогда я власть.»",
-      "effects": { "setFlag": ["bandit_deal_legitimize", "korvin_debt_active", "road_open_conditional", "korvin_resolved", "bandit_0_defeated"], "giveXp": "battle:korvin_gang" }
+      "effects": {
+        "setFlag": [
+          "bandit_deal_legitimize",
+          "korvin_debt_active",
+          "road_open_conditional",
+          "korvin_resolved",
+          "bandit_0_defeated"
+        ],
+        "giveXp": "battle:korvin_gang"
+      }
     },
-
     "after_fight": {
-      "effects": { "clearFlag": "korvin_fight_pending", "setFlag": ["korvin_resolved", "korvin_gang_won"] },
+      "effects": {
+        "clearFlag": "korvin_fight_pending",
+        "setFlag": [
+          "korvin_resolved",
+          "korvin_gang_won"
+        ]
+      },
       "goto": [
-        { "showIf": { "flag": "surrendered_bandit_commander" }, "node": "korvin_down" },
-        { "node": "tiss_check" }
+        {
+          "showIf": {
+            "flag": "surrendered_bandit_commander"
+          },
+          "node": "korvin_down"
+        },
+        {
+          "node": "tiss_check"
+        }
       ]
     },
     "korvin_down": {
       "speaker": "korvin",
       "text": "«Ну. Решай. Только быстро, мои смотрят.»",
       "choices": [
-        { "label": "«[Добить]»", "style": "attack", "effects": { "setFlag": "bandit_commander_killed", "rep": { "fear": 1 } }, "next": "tiss_check" },
-        { "label": "«Уходи. Дорога больше не твоя.»", "next": "korvin_spared" },
-        { "label": "«Ты пойдёшь со мной к посту. Свидетелем.»", "requires": { "rep_law": 2 }, "effects": { "setFlag": "korvin_witness" }, "next": "tiss_check" }
+        {
+          "label": "«[Добить]»",
+          "style": "attack",
+          "effects": {
+            "setFlag": "bandit_commander_killed",
+            "rep": {
+              "fear": 1
+            }
+          },
+          "next": "tiss_check"
+        },
+        {
+          "label": "«Уходи. Дорога больше не твоя.»",
+          "next": "korvin_spared"
+        },
+        {
+          "label": "«Ты пойдёшь со мной к посту. Свидетелем.»",
+          "requires": {
+            "rep_law": 2
+          },
+          "effects": {
+            "setFlag": "korvin_witness"
+          },
+          "next": "tiss_check"
+        }
       ]
     },
     "korvin_spared": {
       "speaker": "korvin",
       "text": "«Дорога ничья, пока по ней не идут. Ты пойдёшь, и она станет твоей. Посмотрим, надолго ли.»",
-      "effects": { "setFlag": "bandit_commander_spared", "rep": { "word": 1 } },
+      "effects": {
+        "setFlag": "bandit_commander_spared",
+        "rep": {
+          "word": 1
+        }
+      },
       "next": "tiss_check"
     },
     "tiss_check": {
       "goto": [
-        { "showIf": { "notFlag": "dead_bandit_archer" }, "node": "tiss_after" }
+        {
+          "showIf": {
+            "notFlag": "dead_bandit_archer"
+          },
+          "node": "tiss_after"
+        }
       ]
     },
     "tiss_after": {
       "speaker": "tiss",
       "text": "«Я стрелял по приказу. Теперь приказа нет. У тебя есть?»",
       "choices": [
-        { "label": "«Есть. Иди к Ворну, скажи, что от меня.»", "effects": { "setFlag": "bandit_archer_recruitable", "rep": { "word": 1 } }, "next": "tiss_sent" },
-        { "label": "«Беги.»", "effects": { "setFlag": "bandit_archer_spared" }, "close": true },
-        { "label": "«[Добить]»", "style": "attack", "effects": { "setFlag": "bandit_archer_killed", "rep": { "fear": 1 } }, "close": true }
+        {
+          "label": "«Есть. Иди к Ворну, скажи, что от меня.»",
+          "effects": {
+            "setFlag": "bandit_archer_recruitable",
+            "rep": {
+              "word": 1
+            }
+          },
+          "next": "tiss_sent"
+        },
+        {
+          "label": "«Беги.»",
+          "effects": {
+            "setFlag": "bandit_archer_spared"
+          },
+          "close": true
+        },
+        {
+          "label": "«[Добить]»",
+          "style": "attack",
+          "effects": {
+            "setFlag": "bandit_archer_killed",
+            "rep": {
+              "fear": 1
+            }
+          },
+          "close": true
+        }
       ]
     },
     "tiss_sent": {
       "goto": [
-        { "showIf": { "companion": "companion_brawler" }, "node": "vornag_against" }
+        {
+          "showIf": {
+            "companion": "companion_brawler"
+          },
+          "node": "vornag_against"
+        }
       ]
     },
     "vornag_against": {
       "speaker": "vornag",
       "text": "«Он убил гонца.»"
+    },
+    "revenge": {
+      "speaker": "korvin",
+      "text": "«Ты думал, унижение это бесплатно. У дороги всё стоит денег.»",
+      "choices": [
+        {
+          "label": "[Атаковать]",
+          "startBattle": {
+            "battleId": "korvin_revenge",
+            "onWin": "revenge_won"
+          }
+        }
+      ]
+    },
+    "revenge_won": {
+      "effects": {
+        "setFlag": [
+          "korvin_revenge_done"
+        ]
+      },
+      "goto": [
+        {
+          "showIf": {
+            "flag": "surrendered_bandit_commander"
+          },
+          "node": "korvin_down"
+        }
+      ]
     }
   }
 }

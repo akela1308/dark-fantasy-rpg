@@ -968,5 +968,82 @@
       "armor": 5,
       "accuracy": 75
     }
+  },
+  {
+    "id": "tracker",
+    "unitId": null,
+    "name": "Следопыт",
+    "role": "ranged_striker",
+    "resource": {
+      "id": "focus",
+      "name": "Сосредоточение",
+      "max": 3,
+      "startsCombat": 0
+    },
+    "branches": [],
+    "tags": [
+      "ranged"
+    ],
+    "levelPlan": {},
+    "base": {
+      "hp": 62,
+      "dmin": 10,
+      "dmax": 15,
+      "speed": 7,
+      "armor": 8,
+      "accuracy": 85
+    },
+    "growth": {
+      "hp": 6,
+      "dmin": 1,
+      "dmax": 1,
+      "armor": 1,
+      "accuracy": 1,
+      "speedAt": [
+        3,
+        7,
+        11
+      ],
+      "armorCap": 60
+    },
+    "note": "Класс расширения из 01_БАЛАНС 5 (шаблон). Деревья веток не написаны: на уровнях только рост статов."
+  },
+  {
+    "id": "forbidden_bearer",
+    "unitId": null,
+    "name": "Носитель Запрета",
+    "role": "risk_caster",
+    "resource": {
+      "id": "taint",
+      "name": "Скверна",
+      "max": 3,
+      "startsCombat": 0
+    },
+    "branches": [],
+    "tags": [
+      "occult"
+    ],
+    "levelPlan": {},
+    "base": {
+      "hp": 58,
+      "dmin": 12,
+      "dmax": 18,
+      "speed": 6,
+      "armor": 4,
+      "accuracy": 78
+    },
+    "growth": {
+      "hp": 6,
+      "dmin": 1.5,
+      "dmax": 1.5,
+      "armor": 0,
+      "accuracy": 1,
+      "speedAt": [
+        6,
+        12
+      ],
+      "armorCap": 60
+    },
+    "note": "Класс расширения из 01_БАЛАНС 5 (шаблон). Навыки не написаны."
   }
 ]

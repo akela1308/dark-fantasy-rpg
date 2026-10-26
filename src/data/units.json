@@ -111,5 +111,183 @@
     "startsInParty": false,
     "personalName": "Тая",
     "recruitFlag": "recruit_taya"
+  },
+  {
+    "id": "holt",
+    "name": "Искатель",
+    "personalName": "Хольт",
+    "classId": "tracker",
+    "hp": 62,
+    "maxHp": 62,
+    "damage": {
+      "min": 10,
+      "max": 15
+    },
+    "speed": 7,
+    "armor": 8,
+    "accuracy": 85,
+    "lifesteal": 0,
+    "regen": 0,
+    "position": {
+      "row": 1,
+      "col": 0
+    },
+    "skills": [
+      "aimed_shot"
+    ],
+    "resources": {},
+    "type": "player",
+    "ranged": true,
+    "spriteKey": "adventurer",
+    "originId": null,
+    "branchId": null,
+    "passives": [],
+    "color": 7043658,
+    "description": "Бывший лесничий. Помнит, что у него была сестра, и не помнит её имени.",
+    "recruitable": true,
+    "startsInParty": false
+  },
+  {
+    "id": "tiss_recruit",
+    "name": "Стрелок",
+    "personalName": "Тисс",
+    "classId": "tracker",
+    "hp": 62,
+    "maxHp": 62,
+    "damage": {
+      "min": 10,
+      "max": 15
+    },
+    "speed": 7,
+    "armor": 8,
+    "accuracy": 85,
+    "lifesteal": 0,
+    "regen": 0,
+    "position": {
+      "row": 1,
+      "col": 2
+    },
+    "skills": [
+      "aimed_shot"
+    ],
+    "resources": {},
+    "type": "player",
+    "ranged": true,
+    "spriteKey": "bandit_archer",
+    "originId": null,
+    "branchId": null,
+    "passives": [],
+    "color": 6978221,
+    "description": "Бывший стрелок Корвина. Стрелял по приказу.",
+    "recruitable": true,
+    "startsInParty": false
+  },
+  {
+    "id": "mirko",
+    "name": "Ополченец",
+    "personalName": "Мирко",
+    "classId": "brawler",
+    "hp": 95,
+    "maxHp": 95,
+    "damage": {
+      "min": 9,
+      "max": 14
+    },
+    "speed": 4,
+    "armor": 25,
+    "accuracy": 72,
+    "lifesteal": 0,
+    "regen": 3,
+    "position": {
+      "row": 0,
+      "col": 1
+    },
+    "skills": [
+      "shield_cover",
+      "heavy_strike"
+    ],
+    "resources": {
+      "might": 0,
+      "cover_uses": 1
+    },
+    "type": "player",
+    "spriteKey": "recruit",
+    "originId": null,
+    "branchId": null,
+    "passives": [],
+    "color": 10132122,
+    "description": "Записался в ополчение, когда защищать стало почти некого.",
+    "recruitable": true,
+    "startsInParty": false
+  },
+  {
+    "id": "bran",
+    "name": "Лучник-страж",
+    "personalName": "Бран",
+    "classId": "tracker",
+    "hp": 62,
+    "maxHp": 62,
+    "damage": {
+      "min": 10,
+      "max": 15
+    },
+    "speed": 7,
+    "armor": 8,
+    "accuracy": 85,
+    "lifesteal": 0,
+    "regen": 0,
+    "position": {
+      "row": 1,
+      "col": 2
+    },
+    "skills": [
+      "aimed_shot"
+    ],
+    "resources": {},
+    "type": "player",
+    "ranged": true,
+    "spriteKey": "archer_guard",
+    "originId": null,
+    "branchId": null,
+    "passives": [],
+    "color": 11569722,
+    "description": "Последний из стражи седьмого поста, кто ушёл на юг.",
+    "recruitable": true,
+    "startsInParty": false
+  },
+  {
+    "id": "ressa",
+    "name": "Болотная изгнанница",
+    "personalName": "Ресса",
+    "classId": "forbidden_bearer",
+    "hp": 58,
+    "maxHp": 58,
+    "damage": {
+      "min": 12,
+      "max": 18
+    },
+    "speed": 6,
+    "armor": 4,
+    "accuracy": 78,
+    "lifesteal": 3,
+    "regen": 0,
+    "position": {
+      "row": 1,
+      "col": 0
+    },
+    "skills": [
+      "aimed_shot"
+    ],
+    "resources": {},
+    "type": "player",
+    "ranged": true,
+    "spriteKey": "swamp_elf_battle",
+    "originId": null,
+    "branchId": null,
+    "passives": [],
+    "color": 4880986,
+    "description": "Лечила людей с имперской бумагой. Болото лишило её воды.",
+    "recruitable": true,
+    "startsInParty": false
   }
 ]

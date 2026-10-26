@@ -69,7 +69,7 @@ test('общий опыт: пороги XP_TOTAL, второй слот сам �
 });
 
 test('levelPlan на 2-12 у всех трёх классов', () => {
-  for (const c of classes) {
+  for (const c of classes.filter(x => ['fallen_duelist', 'brawler', 'healer'].includes(x.id))) {
     for (let L = 2; L <= 12; L++) assert.ok(Array.isArray(c.levelPlan[String(L)]), `${c.id} ${L}`);
   }
 });

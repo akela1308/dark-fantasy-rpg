@@ -51,6 +51,18 @@ export const PartySystem = {
 
   addSlot(registry) {
     this.setSlots(registry, this.getSlots(registry) + 1);
+    this.fillFreeSlots(registry);
+  },
+
+  /** Завербованные, которые ждали места, встают в отряд по порядку найма (не те, кого убрали сами). */
+  fillFreeSlots(registry) {
+    const party = this.getParty(registry);
+    const benched = registry.get('benched') || [];
+    for (const id of this.getRoster(registry)) {
+      if (party.length >= this.getSlots(registry)) break;
+      if (!party.includes(id) && !benched.includes(id)) party.push(id);
+    }
+    registry.set('party', party);
   },
 
   size(registry) {
@@ -87,6 +99,7 @@ export const PartySystem = {
     if (id === HERO_ID) return false;
     const party = this.getParty(registry).filter(x => x !== id);
     registry.set('party', party);
+    registry.set('benched', [...new Set([...(registry.get('benched') || []), id])]);
     return true;
   },
 
@@ -98,6 +111,7 @@ export const PartySystem = {
     if (party.length >= this.getSlots(registry)) return false;
     party.push(id);
     registry.set('party', party);
+    registry.set('benched', (registry.get('benched') || []).filter(x => x !== id));
     return true;
   },
 
@@ -126,6 +140,7 @@ export const PartySystem = {
     if (lvl !== from) registry.set('partyLevel', lvl);
     // Первый слот открывается сам на 2 уровне (02_ДИЗАЙН 2.2)
     if (lvl >= 2 && this.getSlots(registry) < 2) this.setSlots(registry, 2);
+    this.fillFreeSlots(registry);
     return { from, to: lvl };
   },
 
