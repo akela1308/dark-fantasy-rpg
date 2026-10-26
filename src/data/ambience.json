@@ -1,61 +1,786 @@
 {
- "_help": "Оживление карт поверх фона. quality: 0 выключить всё, 0.5 вдвое меньше частиц, 1 норма. Координаты в пикселях мира (1672x941). birds: раз в min..max секунд, flock: размер стайки. lights: мерцающее свечение окон и огней. smoke: дым из труб. particles: leaves | snow | fireflies | dust. water: круги и пузыри на воде (rect x,y,w,h). fog2: второй медленный слой тумана поверх существующего.",
+ "_help": "Оживление карт поверх фона. quality: 0 выключить всё, 0.5 вдвое меньше частиц, 1 норма. Координаты в пикселях мира (1672x941). birds: раз в min..max секунд, flock: размер стайки. lights: мерцающее свечение окон и огней. smoke: дым из труб. particles: leaves | snow | fireflies | dust. water: круги и пузыри на воде (rect x,y,w,h). fog2: второй медленный слой тумана поверх существующего. Карты без своей записи берут набор по региону и типу (regionDefaults[регион][outdoor|interior|cave]); mapRegions: карта -> [регион, тип].",
  "quality": 1,
  "maps": {
   "map1": {
-   "birds": {"kinds": ["crow", "small"], "min": 20, "max": 60, "flock": [1, 5]},
-   "lights": [{"x": 1470, "y": 160, "r": 22}, {"x": 1505, "y": 205, "r": 18}, {"x": 1440, "y": 215, "r": 18}],
-   "particles": {"type": "leaves", "count": 10},
+   "birds": {
+    "kinds": [
+     "crow",
+     "small"
+    ],
+    "min": 20,
+    "max": 60,
+    "flock": [
+     1,
+     5
+    ]
+   },
+   "lights": [
+    {
+     "x": 1470,
+     "y": 160,
+     "r": 22
+    },
+    {
+     "x": 1505,
+     "y": 205,
+     "r": 18
+    },
+    {
+     "x": 1440,
+     "y": 215,
+     "r": 18
+    }
+   ],
+   "particles": {
+    "type": "leaves",
+    "count": 10
+   },
    "fog2": true
   },
   "tavern_map": {
-   "birds": {"kinds": ["crow", "small"], "min": 20, "max": 60, "flock": [1, 5], "perch": [{"x": 1060, "y": 395}, {"x": 175, "y": 345}]},
-   "smoke": [{"x": 1215, "y": 108}],
-   "lights": [{"x": 1270, "y": 282, "r": 16}, {"x": 1418, "y": 242, "r": 16}, {"x": 1526, "y": 240, "r": 18}, {"x": 1390, "y": 312, "r": 16}, {"x": 1525, "y": 345, "r": 18}, {"x": 1620, "y": 375, "r": 16}, {"x": 1640, "y": 500, "r": 16}, {"x": 1350, "y": 420, "r": 14}, {"x": 1555, "y": 490, "r": 16}],
-   "particles": {"type": "leaves", "count": 6},
+   "birds": {
+    "kinds": [
+     "crow",
+     "small"
+    ],
+    "min": 20,
+    "max": 60,
+    "flock": [
+     1,
+     5
+    ],
+    "perch": [
+     {
+      "x": 1060,
+      "y": 395
+     },
+     {
+      "x": 175,
+      "y": 345
+     }
+    ]
+   },
+   "smoke": [
+    {
+     "x": 1215,
+     "y": 108
+    }
+   ],
+   "lights": [
+    {
+     "x": 1270,
+     "y": 282,
+     "r": 16
+    },
+    {
+     "x": 1418,
+     "y": 242,
+     "r": 16
+    },
+    {
+     "x": 1526,
+     "y": 240,
+     "r": 18
+    },
+    {
+     "x": 1390,
+     "y": 312,
+     "r": 16
+    },
+    {
+     "x": 1525,
+     "y": 345,
+     "r": 18
+    },
+    {
+     "x": 1620,
+     "y": 375,
+     "r": 16
+    },
+    {
+     "x": 1640,
+     "y": 500,
+     "r": 16
+    },
+    {
+     "x": 1350,
+     "y": 420,
+     "r": 14
+    },
+    {
+     "x": 1555,
+     "y": 490,
+     "r": 16
+    }
+   ],
+   "particles": {
+    "type": "leaves",
+    "count": 6
+   },
    "fog2": true
   },
   "tavern_inside": {
-   "particles": {"type": "dust", "count": 14}
+   "particles": {
+    "type": "dust",
+    "count": 14
+   }
   },
   "forest1": {
-   "birds": {"kinds": ["crow", "small"], "min": 25, "max": 60, "flock": [1, 4]},
-   "particles": {"type": "leaves", "count": 16}
+   "birds": {
+    "kinds": [
+     "crow",
+     "small"
+    ],
+    "min": 25,
+    "max": 60,
+    "flock": [
+     1,
+     4
+    ]
+   },
+   "particles": {
+    "type": "leaves",
+    "count": 16
+   }
   },
   "road_boloto": {
-   "birds": {"kinds": ["crow"], "min": 30, "max": 60, "flock": [1, 2]},
-   "particles": {"type": "fireflies", "count": 14},
+   "birds": {
+    "kinds": [
+     "crow"
+    ],
+    "min": 30,
+    "max": 60,
+    "flock": [
+     1,
+     2
+    ]
+   },
+   "particles": {
+    "type": "fireflies",
+    "count": 14
+   },
    "fog2": true
   },
   "elf_boloto1": {
-   "lights": [{"x": 1100, "y": 150, "r": 20, "color": "0x88FF66"}, {"x": 1340, "y": 160, "r": 18, "color": "0x88FF66"}, {"x": 80, "y": 420, "r": 18, "color": "0x88FF66"}, {"x": 1600, "y": 360, "r": 18, "color": "0x88FF66"}],
-   "particles": {"type": "fireflies", "count": 22},
-   "water": [{"x": 520, "y": 700, "w": 280, "h": 140}, {"x": 80, "y": 720, "w": 220, "h": 120}],
+   "lights": [
+    {
+     "x": 1100,
+     "y": 150,
+     "r": 20,
+     "color": "0x88FF66"
+    },
+    {
+     "x": 1340,
+     "y": 160,
+     "r": 18,
+     "color": "0x88FF66"
+    },
+    {
+     "x": 80,
+     "y": 420,
+     "r": 18,
+     "color": "0x88FF66"
+    },
+    {
+     "x": 1600,
+     "y": 360,
+     "r": 18,
+     "color": "0x88FF66"
+    }
+   ],
+   "particles": {
+    "type": "fireflies",
+    "count": 22
+   },
+   "water": [
+    {
+     "x": 520,
+     "y": 700,
+     "w": 280,
+     "h": 140
+    },
+    {
+     "x": 80,
+     "y": 720,
+     "w": 220,
+     "h": 120
+    }
+   ],
    "fog2": true
   },
   "elf_boloto": {
-   "particles": {"type": "fireflies", "count": 20}
+   "particles": {
+    "type": "fireflies",
+    "count": 20
+   }
   },
   "mountains_map": {
-   "birds": {"kinds": ["crow"], "min": 30, "max": 60, "flock": [1, 3]},
-   "particles": {"type": "snow", "count": 18}
+   "birds": {
+    "kinds": [
+     "crow"
+    ],
+    "min": 30,
+    "max": 60,
+    "flock": [
+     1,
+     3
+    ]
+   },
+   "particles": {
+    "type": "snow",
+    "count": 18
+   }
   },
   "kingthrone": {
-   "particles": {"type": "dust", "count": 12}
+   "particles": {
+    "type": "dust",
+    "count": 12
+   }
   },
   "road_to_village": {
-   "birds": {"kinds": ["crow", "small"], "min": 20, "max": 60, "flock": [1, 5]},
-   "particles": {"type": "leaves", "count": 10}
+   "birds": {
+    "kinds": [
+     "crow",
+     "small"
+    ],
+    "min": 20,
+    "max": 60,
+    "flock": [
+     1,
+     5
+    ]
+   },
+   "particles": {
+    "type": "leaves",
+    "count": 10
+   }
   },
   "gate": {
-   "birds": {"kinds": ["crow", "bat"], "min": 25, "max": 60, "flock": [1, 3]}
+   "birds": {
+    "kinds": [
+     "crow",
+     "bat"
+    ],
+    "min": 25,
+    "max": 60,
+    "flock": [
+     1,
+     3
+    ]
+   }
   },
   "village": {
-   "birds": {"kinds": ["crow", "small"], "min": 20, "max": 60, "flock": [1, 5], "perch": [{"x": 1090, "y": 150}]},
-   "smoke": [{"x": 1215, "y": 125}],
-   "lights": [{"x": 240, "y": 268, "r": 14}, {"x": 1335, "y": 415, "r": 14}, {"x": 1052, "y": 340, "r": 12}],
-   "particles": {"type": "leaves", "count": 8},
+   "birds": {
+    "kinds": [
+     "crow",
+     "small"
+    ],
+    "min": 20,
+    "max": 60,
+    "flock": [
+     1,
+     5
+    ],
+    "perch": [
+     {
+      "x": 1090,
+      "y": 150
+     }
+    ]
+   },
+   "smoke": [
+    {
+     "x": 1215,
+     "y": 125
+    }
+   ],
+   "lights": [
+    {
+     "x": 240,
+     "y": 268,
+     "r": 14
+    },
+    {
+     "x": 1335,
+     "y": 415,
+     "r": 14
+    },
+    {
+     "x": 1052,
+     "y": 340,
+     "r": 12
+    }
+   ],
+   "particles": {
+    "type": "leaves",
+    "count": 8
+   },
    "fog2": false
   }
+ },
+ "regionDefaults": {
+  "Юг": {
+   "outdoor": {
+    "birds": {
+     "kinds": [
+      "crow",
+      "small"
+     ],
+     "min": 20,
+     "max": 60,
+     "flock": [
+      1,
+      5
+     ]
+    },
+    "particles": {
+     "type": "leaves",
+     "count": 8
+    }
+   },
+   "interior": {
+    "particles": {
+     "type": "dust",
+     "count": 10
+    }
+   },
+   "cave": {
+    "particles": {
+     "type": "dust",
+     "count": 6
+    }
+   }
+  },
+  "Дорога": {
+   "outdoor": {
+    "birds": {
+     "kinds": [
+      "crow",
+      "bat"
+     ],
+     "min": 25,
+     "max": 60,
+     "flock": [
+      1,
+      3
+     ]
+    },
+    "particles": {
+     "type": "leaves",
+     "count": 8
+    },
+    "fog2": true
+   },
+   "interior": {
+    "particles": {
+     "type": "dust",
+     "count": 10
+    }
+   },
+   "cave": {
+    "particles": {
+     "type": "dust",
+     "count": 6
+    }
+   }
+  },
+  "Лес": {
+   "outdoor": {
+    "birds": {
+     "kinds": [
+      "crow",
+      "small"
+     ],
+     "min": 25,
+     "max": 60,
+     "flock": [
+      1,
+      4
+     ]
+    },
+    "particles": {
+     "type": "leaves",
+     "count": 16
+    }
+   },
+   "interior": {
+    "particles": {
+     "type": "dust",
+     "count": 10
+    }
+   },
+   "cave": {
+    "particles": {
+     "type": "dust",
+     "count": 6
+    }
+   }
+  },
+  "Деревня": {
+   "outdoor": {
+    "birds": {
+     "kinds": [
+      "crow",
+      "small"
+     ],
+     "min": 20,
+     "max": 60,
+     "flock": [
+      1,
+      5
+     ]
+    },
+    "particles": {
+     "type": "leaves",
+     "count": 8
+    }
+   },
+   "interior": {
+    "particles": {
+     "type": "dust",
+     "count": 10
+    }
+   },
+   "cave": {
+    "particles": {
+     "type": "dust",
+     "count": 6
+    }
+   }
+  },
+  "Болото": {
+   "outdoor": {
+    "birds": {
+     "kinds": [
+      "crow"
+     ],
+     "min": 30,
+     "max": 60,
+     "flock": [
+      1,
+      2
+     ]
+    },
+    "particles": {
+     "type": "fireflies",
+     "count": 18
+    },
+    "fog2": true
+   },
+   "interior": {
+    "particles": {
+     "type": "dust",
+     "count": 8
+    }
+   },
+   "cave": {
+    "particles": {
+     "type": "fireflies",
+     "count": 6
+    }
+   }
+  },
+  "Горы": {
+   "outdoor": {
+    "birds": {
+     "kinds": [
+      "crow"
+     ],
+     "min": 30,
+     "max": 60,
+     "flock": [
+      1,
+      3
+     ]
+    },
+    "particles": {
+     "type": "snow",
+     "count": 14
+    }
+   },
+   "interior": {
+    "particles": {
+     "type": "dust",
+     "count": 10
+    }
+   },
+   "cave": {
+    "particles": {
+     "type": "dust",
+     "count": 6
+    }
+   }
+  },
+  "Север": {
+   "outdoor": {
+    "birds": {
+     "kinds": [
+      "crow"
+     ],
+     "min": 30,
+     "max": 60,
+     "flock": [
+      1,
+      3
+     ]
+    },
+    "particles": {
+     "type": "snow",
+     "count": 26
+    },
+    "fog2": true
+   },
+   "interior": {
+    "particles": {
+     "type": "dust",
+     "count": 8
+    }
+   },
+   "cave": {
+    "particles": {
+     "type": "snow",
+     "count": 6
+    }
+   }
+  }
+ },
+ "mapRegions": {
+  "south_post": [
+   "Юг",
+   "outdoor"
+  ],
+  "old_mill": [
+   "Юг",
+   "outdoor"
+  ],
+  "mill_inside": [
+   "Юг",
+   "interior"
+  ],
+  "burned_hamlet": [
+   "Юг",
+   "outdoor"
+  ],
+  "hermit_cave": [
+   "Юг",
+   "cave"
+  ],
+  "three_pillars": [
+   "Юг",
+   "outdoor"
+  ],
+  "three_pillars_inside": [
+   "Юг",
+   "interior"
+  ],
+  "map1": [
+   "Дорога",
+   "outdoor"
+  ],
+  "ruin_crypt": [
+   "Дорога",
+   "cave"
+  ],
+  "tavern_map": [
+   "Дорога",
+   "outdoor"
+  ],
+  "tavern_inside": [
+   "Дорога",
+   "interior"
+  ],
+  "tavern_rooms": [
+   "Дорога",
+   "interior"
+  ],
+  "tavern_cellar": [
+   "Дорога",
+   "cave"
+  ],
+  "dead_road": [
+   "Дорога",
+   "outdoor"
+  ],
+  "gallows_hill": [
+   "Дорога",
+   "outdoor"
+  ],
+  "hangman_hut": [
+   "Дорога",
+   "interior"
+  ],
+  "forest1": [
+   "Лес",
+   "outdoor"
+  ],
+  "forest_camp": [
+   "Лес",
+   "outdoor"
+  ],
+  "hunters_lodge": [
+   "Лес",
+   "interior"
+  ],
+  "forest_altar": [
+   "Лес",
+   "outdoor"
+  ],
+  "forest_deep": [
+   "Лес",
+   "outdoor"
+  ],
+  "ravine": [
+   "Лес",
+   "outdoor"
+  ],
+  "ravine_cave": [
+   "Лес",
+   "cave"
+  ],
+  "road_to_village": [
+   "Деревня",
+   "outdoor"
+  ],
+  "gate": [
+   "Деревня",
+   "outdoor"
+  ],
+  "gatehouse": [
+   "Деревня",
+   "interior"
+  ],
+  "village": [
+   "Деревня",
+   "outdoor"
+  ],
+  "chapel_inside": [
+   "Деревня",
+   "interior"
+  ],
+  "elder_house": [
+   "Деревня",
+   "interior"
+  ],
+  "smithy": [
+   "Деревня",
+   "interior"
+  ],
+  "village_fields": [
+   "Деревня",
+   "outdoor"
+  ],
+  "old_barn": [
+   "Деревня",
+   "interior"
+  ],
+  "road_boloto": [
+   "Болото",
+   "outdoor"
+  ],
+  "elf_boloto1": [
+   "Болото",
+   "outdoor"
+  ],
+  "drowned_village": [
+   "Болото",
+   "outdoor"
+  ],
+  "drowned_church": [
+   "Болото",
+   "interior"
+  ],
+  "swamp_map": [
+   "Болото",
+   "outdoor"
+  ],
+  "swamp_obelisk": [
+   "Болото",
+   "outdoor"
+  ],
+  "bear_den": [
+   "Болото",
+   "cave"
+  ],
+  "elf_boloto": [
+   "Болото",
+   "outdoor"
+  ],
+  "le_house": [
+   "Болото",
+   "interior"
+  ],
+  "mountains_map": [
+   "Горы",
+   "outdoor"
+  ],
+  "copper_mine": [
+   "Горы",
+   "cave"
+  ],
+  "mine_deep": [
+   "Горы",
+   "cave"
+  ],
+  "kingthrone": [
+   "Горы",
+   "interior"
+  ],
+  "dwarf_gate": [
+   "Горы",
+   "outdoor"
+  ],
+  "dwarf_hall": [
+   "Горы",
+   "interior"
+  ],
+  "winter_forest": [
+   "Север",
+   "outdoor"
+  ],
+  "frozen_lake": [
+   "Север",
+   "outdoor"
+  ],
+  "ice_shrine": [
+   "Север",
+   "cave"
+  ],
+  "winter_grad_gate": [
+   "Север",
+   "outdoor"
+  ],
+  "grad_square": [
+   "Север",
+   "outdoor"
+  ],
+  "grad_tavern": [
+   "Север",
+   "interior"
+  ],
+  "queens_hall": [
+   "Север",
+   "interior"
+  ],
+  "grad_alley": [
+   "Север",
+   "outdoor"
+  ],
+  "north_road": [
+   "Север",
+   "outdoor"
+  ],
+  "old_outpost": [
+   "Север",
+   "outdoor"
+  ],
+  "outpost_inside": [
+   "Север",
+   "interior"
+  ],
+  "north_frontier": [
+   "Север",
+   "outdoor"
+  ]
  }
 }

@@ -48,7 +48,8 @@ export class MapAmbience {
     this.scene = scene;
     this.hero = hero;
     this.q = ambienceData.quality ?? 1;
-    this.cfg = ambienceData.maps?.[mapKey];
+    const [region, kind] = ambienceData.mapRegions?.[mapKey] ?? [];
+    this.cfg = ambienceData.maps?.[mapKey] ?? ambienceData.regionDefaults?.[region]?.[kind];
     if (!this.cfg || this.q <= 0) return;
     makeTextures(scene);
     const c = this.cfg;

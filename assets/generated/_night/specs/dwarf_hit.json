@@ -1,0 +1,1 @@
+{"slug": "dwarf", "anim": "hit", "base": "dwarf/k_battle.png", "body": 300, "segments": [{"clip": "dwarf/clips/hit_v1.mp4", "from": 0, "to": 95, "frames": 14}]}

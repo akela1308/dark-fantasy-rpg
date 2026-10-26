@@ -251,3 +251,7 @@ mountain_king power 1 | кадры со вспышкой удара выкиды
 mountain_king power 1 | кадры 21-22 выкинуты (брызги удара), рамка выше (молот обрезался)
 mountain_king attack 1 | рамка выше
 dwarf attack 1 | кадр 8 выкинут (вспышка)
+dwarf death 1
+dwarf hit 1
+dwarf power 1
+dwarf victory 1
