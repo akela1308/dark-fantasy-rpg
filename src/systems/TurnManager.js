@@ -37,6 +37,7 @@ export class TurnManager {
       // Новый раунд: порядок пересчитывается (корни меняют инициативу)
       this.index = 0;
       this.turn++;
+      (this.all || []).forEach(u => { u._initiativeBonus = 0; });
       this.queue = this._order();
     }
 

@@ -56,6 +56,8 @@ function serializeUnit(u) {
     classChoices: { ...(u.classChoices || {}) },
     resources: { ...u.resources },
     resourceMax: { ...(u.resourceMax || {}) },
+    resourceBonus: { ...(u.resourceBonus || {}) },
+    healBonus: u.healBonus || 0,
     _cdReduction: u._cdReduction || 0,
   };
 }
@@ -262,6 +264,8 @@ export const SaveSystem = {
       u.classChoices = s.classChoices ? { ...s.classChoices } : u.classChoices;
       u.resources = { ...u.resources, ...s.resources };
       u.resourceMax = { ...(u.resourceMax || {}), ...(s.resourceMax || {}) };
+      u.resourceBonus = { ...(u.resourceBonus || {}), ...(s.resourceBonus || {}) };
+      u.healBonus = s.healBonus || 0;
       u._cdReduction = s._cdReduction ?? u._cdReduction ?? 0;
     });
   },

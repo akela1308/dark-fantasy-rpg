@@ -1,6 +1,10 @@
 import unitsData from '../data/units.json';
 import { PlayerUnit } from '../entities/PlayerUnit.js';
 import { SaveSystem } from '../utils/SaveSystem.js';
+import progression from '../data/progression.json';
+import { statsAtLevel, applyLevelGrowth } from './ClassProgression.js';
+
+export const LEVEL_CAP = 12;
 
 /**
  * PartySystem: кто в партии, кто ждёт в таверне, сколько слотов.
@@ -103,6 +107,70 @@ export const PartySystem = {
     registry.set('roster', this.getRoster(registry).filter(x => x !== id));
     registry.set('party', this.getParty(registry).filter(x => x !== id));
     return true;
+  },
+
+  // ── Общий опыт партии (01_БАЛАНС 3-4) ───────────────────────────────────
+  getXp(registry) { return registry?.get('partyXp') || 0; },
+  getLevel(registry) { return registry?.get('partyLevel') || 1; },
+
+  /** Сколько опыта всего нужно для уровня L. */
+  xpTotalFor(level) { return progression.XP_TOTAL[String(level)] ?? Infinity; },
+
+  /** Добавить опыт партии. Возвращает { from, to } уровней. */
+  addXp(registry, amount) {
+    const from = this.getLevel(registry);
+    const xp = this.getXp(registry) + Math.max(0, Math.round(amount || 0));
+    registry.set('partyXp', xp);
+    let lvl = from;
+    while (lvl < LEVEL_CAP && xp >= this.xpTotalFor(lvl + 1)) lvl++;
+    if (lvl !== from) registry.set('partyLevel', lvl);
+    // Первый слот открывается сам на 2 уровне (02_ДИЗАЙН 2.2)
+    if (lvl >= 2 && this.getSlots(registry) < 2) this.setSlots(registry, 2);
+    return { from, to: lvl };
+  },
+
+  /** Опыт до следующего уровня (для HUD). */
+  xpProgress(registry) {
+    const lvl = this.getLevel(registry);
+    const xp = this.getXp(registry);
+    if (lvl >= LEVEL_CAP) return { level: lvl, have: xp, need: xp };
+    return { level: lvl, have: xp - this.xpTotalFor(lvl), need: this.xpTotalFor(lvl + 1) - this.xpTotalFor(lvl) };
+  },
+
+  /** Юниты всех завербованных (партия и запас). existing: уже созданные в бою, чтобы не терять HP и раны. */
+  buildRosterUnits(registry, existing = []) {
+    const ids = this.getRoster(registry);
+    const fresh = ids
+      .filter(id => !existing.some(u => u.id === id))
+      .map(id => unitsData.find(u => u.id === id))
+      .filter(Boolean)
+      .map(d => new PlayerUnit(JSON.parse(JSON.stringify(d))));
+    SaveSystem.applyToUnits(fresh);
+    return [...existing.filter(u => ids.includes(u.id)), ...fresh];
+  },
+
+  /** Новичок входит на уровне партии: базовый рост до текущего уровня (выборы покажет экран уровня). */
+  catchUpUnit(unit, level) {
+    while ((unit.level || 1) < level && statsAtLevel(unit.classId, (unit.level || 1) + 1)) {
+      applyLevelGrowth(unit, (unit.level || 1) + 1);
+      unit.level = (unit.level || 1) + 1;
+    }
+    return unit;
+  },
+
+  /** Отдых: полное HP, Сборы, раны сняты, точка возврата для Хроники. */
+  restAll(registry, mapKey, spawnId) {
+    const units = this.buildRosterUnits(registry);
+    units.forEach(u => {
+      u.maxHp = u.baseMaxHp ?? u.maxHp;
+      u.injured = false;
+      u.hp = u.maxHp;
+      const sup = unitsData.find(d => d.id === u.id)?.resources?.supplies;
+      if (sup != null) u.resources.supplies = u.resourceMax?.supplies ?? sup;
+    });
+    SaveSystem.save(units, mapKey, spawnId, registry);
+    SaveSystem.saveRestPoint();
+    return units;
   },
 
   /** PlayerUnit для активной партии с применённым сохранением и без наложений на сетке. */

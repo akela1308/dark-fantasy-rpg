@@ -1,7 +1,8 @@
 import * as Phaser from 'phaser/dist/phaser.esm.js';
 import { SaveSystem } from '../utils/SaveSystem.js';
-import { applyProgressionChoice, getClassProgressionChoices } from '../systems/ClassProgression.js';
+import { applyProgressionChoice, getClassProgressionChoices, applyLevelGrowth, getAutoNodes } from '../systems/ClassProgression.js';
 import { applyCommanderTraitChoice, getCommanderTraitChoices } from '../systems/CommanderTraits.js';
+import { PartySystem } from '../systems/PartySystem.js';
 import eventBus from '../utils/eventBus.js';
 
 const CLASS_BONUSES = {
@@ -28,32 +29,72 @@ export class LevelUpScene extends Phaser.Scene {
   }
 
   init(data) {
-    this.leveledUnits   = data.leveledUnits   || [];
-    this.allPlayerUnits = data.allPlayerUnits || [];
+    // units: все, кого касается повышение (партия и запас); toLevel: уровень партии
+    this.allPlayerUnits = data.allPlayerUnits || data.units || [];
+    this.leveledUnits   = data.leveledUnits   || this.allPlayerUnits;
+    this.toLevel        = data.toLevel || null;
     this.fromMapKey     = data.fromMapKey     || 'map1';
     this.fromSpawnId    = data.fromSpawnId    || 'default';
   }
 
   create() {
-    this._showForUnits([...this.leveledUnits]);
+    // Шаги (юнит, уровень) считаются лениво: ветка, выбранная на 3 уровне, нужна для узлов 5 уровня
+    const target = this.toLevel || PartySystem.getLevel(this.game.registry);
+    this._steps = [];
+    this.leveledUnits.forEach(unit => {
+      for (let L = (unit.level || 1) + 1; L <= target; L++) this._steps.push({ unit, level: L });
+    });
+    this._screens = [];
+    this._next();
+  }
+
+  /**
+   * Следующий экран. Для нового шага уровня: базовый рост и узлы «автоматически» сразу,
+   * затем экраны выбора (черта героя на 2/5/8, ветка, перк) или короткая сводка.
+   */
+  _next() {
+    if (!this._screens.length) {
+      const step = this._steps.shift();
+      if (!step) { this._showMapButton(); return; }
+      const { unit, level: L } = step;
+      applyLevelGrowth(unit, L);
+      unit.level = L;
+      unit.xp = 0;
+      const autos = getAutoNodes(unit, L);
+      autos.forEach(n => applyProgressionChoice(unit, n));
+      const notes = autos.map(n => n.label);
+      const trait = getCommanderTraitChoices(unit, L, this.game.registry);
+      if (trait) this._screens.push({ unit, level: L, choices: trait, kind: 'trait' });
+      // Выбор класса считается после черты (на случай, если от черты что-то зависит)
+      this._screens.push({ unit, level: L, kind: 'class', notes, lazy: true });
+    }
+    let item = this._screens.shift();
+    if (item.lazy) {
+      const cls = getClassProgressionChoices(item.unit, item.level);
+      if (cls) item = { ...item, choices: cls };
+      else if (this._screens.length || item.kind === 'class' && this._hadTrait(item)) { this._next(); return; }
+      else item = { ...item, kind: 'info', choices: [{ key: 'ok', type: 'info', label: 'Дальше', desc: item.notes?.length ? `Новое: ${item.notes.join(', ')}` : 'Рост здоровья, урона и точности' }] };
+    }
+    this._current = item;
+    this._lastShown = item;
+    this._showForUnits([item.unit]);
+  }
+
+  _hadTrait(item) {
+    return this._lastShown && this._lastShown.unit === item.unit && this._lastShown.level === item.level && this._lastShown.kind === 'trait';
   }
 
   _showForUnits(units) {
     const unit      = units[0];
-    const remaining = units.slice(1);
     const W = this.scale.width;
     const H = this.scale.height;
     const elements = [];
-    const bonuses = getCommanderTraitChoices(unit) || getClassProgressionChoices(unit) || CLASS_BONUSES[unit.id] || [
-      { key: 'hp',     label: 'Закалённость', desc: '+20 к максимальному HP' },
-      { key: 'damage', label: 'Мастерство',   desc: '+3 к урону' },
-      { key: 'speed',  label: 'Инициатива',   desc: '+1 к инициативе' },
-    ];
+    const bonuses = this._current?.choices || CLASS_BONUSES[unit.id] || [];
     const choiceKind = bonuses.some(b => b.type === 'branch')
       ? 'Выберите путь класса:'
       : bonuses.some(b => b.type === 'commanderTrait')
         ? 'Выберите черту Героя:'
-        : 'Выберите бонус:';
+        : bonuses.some(b => b.type === 'info') ? 'Отряд окреп:' : 'Выберите перк:';
     const compact = bonuses.length > 3;
     const panelH = compact ? 520 : 420;
     const panelTop = H/2 - panelH/2;
@@ -97,7 +138,7 @@ export class LevelUpScene extends Phaser.Scene {
       stroke: '#000', strokeThickness: 2,
     }).setOrigin(0.5).setDepth(92).setScrollFactor(0));
 
-    elements.push(this.add.text(W/2, H/2 - 98, `★ Уровень ${unit.level + 1} ★`, {
+    elements.push(this.add.text(W/2, H/2 - 98, `★ Уровень ${this._current?.level ?? unit.level} ★`, {
       fontSize: '15px', color: '#aaaaaa', fontFamily: 'serif',
     }).setOrigin(0.5).setDepth(92).setScrollFactor(0));
 
@@ -146,11 +187,7 @@ export class LevelUpScene extends Phaser.Scene {
         this._applyBonus(unit, bonus);
         eventBus.emit('level_up', { unit, choice: bonus.key });
         cleanup();
-        if (remaining.length > 0) {
-          this._showForUnits(remaining);
-        } else {
-          this._showMapButton();
-        }
+        this._next();
       });
     });
 
@@ -160,8 +197,7 @@ export class LevelUpScene extends Phaser.Scene {
   }
 
   _applyBonus(unit, bonus) {
-    unit.level++;
-    unit.xp = 0;
+    if (bonus.type === 'info') return;
     if (applyCommanderTraitChoice(unit, bonus, this.game.registry)) {
       return;
     }
@@ -197,6 +233,12 @@ export class LevelUpScene extends Phaser.Scene {
 
   _showMapButton() {
     SaveSystem.save(this.allPlayerUnits, this.fromMapKey, this.fromSpawnId, this.game.registry);
+    // Запуск с карты (мирное решение, найм): просто закрываем экран
+    if (!this.scene.isActive('BattleScene') && this.scene.isActive('MapScene')) {
+      this.scene.get('MapScene')?.events.emit('levelup_done');
+      this.scene.stop();
+      return;
+    }
 
     const W = this.scale.width;
     const H = this.scale.height;

@@ -90,9 +90,10 @@ export function reachableTargets(attacker, enemies) {
 
 /** Инициатива с учётом rooted (−4, у босса −2). */
 export function effectiveSpeed(unit) {
+  const bonus = unit._initiativeBonus || 0;   // засада: враги ходят первыми в первом раунде
   const root = (unit.effects || []).find(e => e.type === 'rooted');
-  if (!root) return unit.speed || 0;
-  return (unit.speed || 0) - (unit.isBoss ? RULES.ROOT_SPEED_BOSS : RULES.ROOT_SPEED);
+  if (!root) return (unit.speed || 0) + bonus;
+  return (unit.speed || 0) + bonus - (unit.isBoss ? RULES.ROOT_SPEED_BOSS : RULES.ROOT_SPEED);
 }
 
 /** Должен ли враг сдаться: canSurrender, HP < 20%, командир мёртв или сдался. */

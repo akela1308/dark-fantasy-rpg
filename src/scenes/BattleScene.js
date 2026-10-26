@@ -157,6 +157,11 @@ export class BattleScene extends Phaser.Scene {
       u.prepareForBattle(base);
     });
     this.enemyUnits.forEach(u => { u._allies = this.enemyUnits; u._foes = this.playerUnits; });
+    // Западня: враги ходят первыми в первом раунде
+    if (this.game.registry.get('battleAmbush')) {
+      this.enemyUnits.forEach(u => { u._initiativeBonus = 100; });
+      this.game.registry.set('battleAmbush', false);
+    }
     this.grid.placeAll([...this.playerUnits, ...this.enemyUnits]);
   }
 
@@ -797,6 +802,16 @@ export class BattleScene extends Phaser.Scene {
 
   _checkEnd() {
     if (this.battleOver) return true;
+    // Трусливая ватага: потеряв половину, остальные бегут (14_БЕСТИАРИЙ 2)
+    if (this._battleConfig?.flee === 'half') {
+      const fallen = this.enemyUnits.filter(u => !u.isAlive).length;
+      if (fallen * 2 >= this.enemyUnits.length) {
+        this.enemyUnits.filter(u => isActive(u)).forEach(u => {
+          u.surrendered = true; u.fled = true;
+          eventBus.emit('log', `${u.name} бросает добычу и бежит`);
+        });
+      }
+    }
     // Сдавшиеся не мешают победе
     const enemiesDown = this.enemyUnits.every(u => !isActive(u));
     // Хроника: поражение, когда лежат все. Железо: когда пал герой.
@@ -840,10 +855,13 @@ export class BattleScene extends Phaser.Scene {
       const surrendered = this.enemyUnits.filter(u => u.surrendered && u.isAlive).map(u => u.id);
       this.game.registry.set('lastSurrendered', surrendered);
       this.game.registry.set('lastBattleId', this._battleId);
+      this.game.registry.set('lastBattleResult', 'victory');
+      this.game.registry.set('lastBattleDead', this.enemyUnits.filter(u => !u.isAlive).map(u => u.id));
       if (surrendered.length) eventBus.emit('battle_surrender_choice', surrendered);
-      this.playerUnits[0].addXP(XP.WIN_HERO);
-      this.playerUnits.slice(1).forEach(u => u.addXP(XP.WIN_COMPANION));
-      this.add.text(width/2, height/2, `Получено XP: ${XP.WIN_HERO}`, {
+      // Общий опыт партии за решённую встречу (01_БАЛАНС 3), не за трупы
+      const xpGain = this._battleConfig?.xpReward ?? 0;
+      this._levelSpan = PartySystem.addXp(this.game.registry, xpGain);
+      this.add.text(width/2, height/2, `Опыт отряда: +${xpGain}`, {
         fontFamily: 'serif', fontSize: '26px', color: '#E8E8E8',
       }).setOrigin(0.5).setDepth(OVERLAY_DEPTH + 1);
       this.game.registry.set(this._battleConfig?.victoryFlag || 'bandit_0_defeated', true);
@@ -926,12 +944,15 @@ export class BattleScene extends Phaser.Scene {
     };
 
     if (result === 'victory') {
-      const leveledUp = this.playerUnits.filter(u => u.canLevelUp(XP.THRESHOLD));
-      if (leveledUp.length > 0) {
+      const span = this._levelSpan || { from: 1, to: 1 };
+      if (span.to > span.from) {
+        // Повышаются все завербованные: партия и те, кто ждёт в таверне
+        const roster = PartySystem.buildRosterUnits(this.game.registry, this.playerUnits);
         this.time.delayedCall(800, () => {
           this.scene.launch('LevelUpScene', {
-            leveledUnits:   leveledUp,
-            allPlayerUnits: this.playerUnits,
+            leveledUnits:   roster,
+            allPlayerUnits: roster,
+            toLevel:        span.to,
             fromMapKey:     this._fromMapKey,
             fromSpawnId:    this._fromSpawnId,
           });
@@ -1100,14 +1121,7 @@ export class BattleScene extends Phaser.Scene {
 
     eventBus.on('unit_died', unit => {
       this._animDeath(unit);
-      // XP за убийство вражеского юнита
-      if (unit.type === 'enemy') {
-        const xpGain = unit.xpKill ?? 15;
-        this.playerUnits.filter(u => u.isAlive).forEach(pu => {
-          pu.addXP(xpGain);
-          eventBus.emit('log', `${pu.name} получает ${xpGain} XP`);
-        });
-      }
+      // Опыт даётся за встречу целиком в конце боя (PartySystem.addXp)
     });
 
     eventBus.on('skill_selected', skillId => this._onSkillSelect(skillId));

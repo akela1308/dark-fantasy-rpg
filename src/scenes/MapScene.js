@@ -17,6 +17,15 @@ import { SaveSystem } from '../utils/SaveSystem.js';
 import { getNpcAnimConfig, attachNpcAnimations } from '../systems/NpcAnimations.js';
 import { MapAmbience } from '../systems/MapAmbience.js';
 import { PartySystem } from '../systems/PartySystem.js';
+import { WorldState } from '../systems/WorldState.js';
+import { DialogueRunner } from '../systems/DialogueRunner.js';
+import { MapEncounters } from '../systems/MapEncounters.js';
+import { repLines } from '../systems/Reputation.js';
+import traitsData from '../data/commanderTraits.json';
+
+const TRAIT_LABELS = Object.fromEntries(traitsData.map(t => [t.id, t.name]));
+import { xpForEncounter } from '../systems/EnemyArchetypes.js';
+import battlesData from '../data/battles.json';
 import { MapEditor } from '../dev/MapEditor.js';
 
 const PLACEHOLDER_IMAGE = 'maps/gen/_placeholder.png';
@@ -104,6 +113,15 @@ export class MapScene extends Phaser.Scene {
 
     // Диалоговая панель (in-world overlay)
     this._dialogue = new DialoguePanel(this);
+    // Диалоги из src/data/dialogues/*.json с условиями и репутацией (блок Г)
+    this._ws = new WorldState(this.game.registry);
+    this._runner = new DialogueRunner(this, this._dialogue, this._ws, this._dialogueHooks());
+    // Необязательные встречи бестиария (стая, логово, патруль, западня, одиночка, ватага)
+    this._encounters = new MapEncounters(this, cfg.encounters, this._ws, {
+      battle: (enc, opts) => this._startEncounterBattle(enc, opts),
+      talk: enc => this._talkEncounter(enc),
+      toast: t => this._toast(t),
+    });
 
     // Дым из трубок
     this._spawnPipeSmoke(cfg);
@@ -151,6 +169,9 @@ export class MapScene extends Phaser.Scene {
     this._syncCollectedInspectablesToInventory();
 
     this._buildHUD(cfg);
+
+    // Возврат с боя, начатого из диалога: продолжение разговора (пощада, сдача, награда)
+    this.time.delayedCall(700, () => this._resumePendingBattle());
 
     // ─── Dev Grid (клавиша G) ────────────────────────────────────────────
     this._devGrid = null;
@@ -220,6 +241,7 @@ export class MapScene extends Phaser.Scene {
     }
 
     this._updateLabelHovers();
+    this._encounters?.update(delta, this.hero);
 
     if (this._exitCooldown > 0) this._exitCooldown -= delta;
 
@@ -230,37 +252,49 @@ export class MapScene extends Phaser.Scene {
   }
 
   _launchDevLevelUp() {
+    // Только в dev: добавить опыта до следующего уровня партии и открыть экран уровня
     if (this._transitioning || this.scene.isActive('LevelUpScene')) return;
+    const reg = this.game.registry;
+    const need = PartySystem.xpTotalFor(PartySystem.getLevel(reg) + 1) - PartySystem.getXp(reg);
+    this._grantXp(Math.max(1, need));
+  }
 
-    const playerUnits = ['hero_duelist', 'companion_brawler', 'companion_healer']
-      .map(id => unitsData.find(u => u.id === id))
-      .filter(Boolean)
-      .map(data => new PlayerUnit(data));
-    SaveSystem.applyToUnits(playerUnits);
+  /** Опыт отряду (мирное решение, квест, dev). При новом уровне открывает экран уровня. */
+  _grantXp(amount) {
+    const reg = this.game.registry;
+    const span = PartySystem.addXp(reg, amount);
+    if (amount > 0) this._toast?.(`Опыт отряда: +${amount}`);
+    if (span.to > span.from) {
+      const roster = PartySystem.buildRosterUnits(reg);
+      this.scene.launch('LevelUpScene', {
+        leveledUnits: roster, allPlayerUnits: roster, toLevel: span.to,
+        fromMapKey: this.mapKey, fromSpawnId: this.spawnId,
+      });
+    } else {
+      SaveSystem.saveWorld(reg, this.mapKey, this.spawnId);
+    }
+    return span;
+  }
 
-    playerUnits.forEach(unit => {
-      const missingXp = Math.max(0, XP.THRESHOLD - (unit.xp || 0));
-      unit.addXP(missingXp || XP.THRESHOLD);
-    });
-
-    this.scene.launch('LevelUpScene', {
-      leveledUnits: playerUnits.filter(u => u.canLevelUp(XP.THRESHOLD)),
-      allPlayerUnits: playerUnits,
-      fromMapKey: this.mapKey,
-      fromSpawnId: this.spawnId,
-    });
+  _toast(text) {
+    const t = this.add.text(836, 150, text, {
+      fontFamily: 'serif', fontSize: '24px', color: '#E8DEC8', stroke: '#000', strokeThickness: 4,
+    }).setOrigin(0.5).setDepth(10000).setScrollFactor(0);
+    this.tweens.add({ targets: t, alpha: 0, y: 130, delay: 1600, duration: 700, onComplete: () => t.destroy() });
   }
 
   // ─── Party ───────────────────────────────────────────────────────────────
 
-  _applyPartyVisibility() {
+  _applyPartyVisibility(reveal = false) {
     const party = PartySystem.getParty(this.game.registry);
     [[this.brawler, 'companion_brawler'], [this.healer, 'companion_healer']].forEach(([u, id]) => {
       u._hidden = !party.includes(id);
-      if (u._hidden) {
-        u.sprite.setVisible(false);
-        u.shadow?.setVisible(false);
-        if (u._container) u._container.setVisible(false);
+      const vis = !u._hidden;
+      if (!vis || reveal) {
+        if (vis && reveal) u.sprite.setPosition?.(this.hero.x - 60, this.hero.y);
+        u.sprite.setVisible(vis);
+        u.shadow?.setVisible(vis);
+        if (u._container) u._container.setVisible(vis);
       }
     });
   }
@@ -919,6 +953,10 @@ export class MapScene extends Phaser.Scene {
         this.healer.stopMove();
         // Помечаем разговор состоявшимся - при следующем визите NPC исчезнет
         if (npc.vanishKey) this.game.registry.set(npc.vanishKey, true);
+        if (npc.dialogue && this._runner.has(npc.dialogue)) {
+          this._runner.start(npc.dialogue, npc.dialogueStart || null);
+          return;
+        }
         this._showNpcDialogue(npc, this._resolveRootDialogue(npc));
       });
 
@@ -1075,6 +1113,11 @@ export class MapScene extends Phaser.Scene {
   _showCompanionDialogue(type) {
     if (this._dialogue?.active) return;
     if (this._bandits[0]?.encountered) return;
+    if (this._runner?.has('korvin')) {
+      this.hero.stopMove();
+      this._runner.start('korvin', type === 'warrior' ? 'kul' : 'tiss');
+      return;
+    }
     const isWarrior = type === 'warrior';
     this._dialogue.show({
       portraitLeft:       'portrait_hero_duelist',
@@ -1116,6 +1159,10 @@ export class MapScene extends Phaser.Scene {
   // ─── Диалог с бандитом ────────────────────────────────────────────────
 
   _showBanditDialogue(bandit) {
+    if (this._runner?.has('korvin')) {
+      this._runner.start('korvin');
+      return;
+    }
     this._dialogue.show({
       portraitLeft:  'portrait_hero_duelist',
       portraitRight: 'portrait_bandit_commander',
@@ -1157,6 +1204,93 @@ export class MapScene extends Phaser.Scene {
     if (reg.get('partyLevel')) return reg.get('partyLevel');
     const hero = (SaveSystem.load()?.units || []).find(u => u.id === 'hero_duelist');
     return hero?.level || 1;
+  }
+
+  _dialogueHooks() {
+    const reg = this.game.registry;
+    return {
+      startBattle: (cfg, dlgId) => {
+        reg.set('pendingBattle', { battleId: cfg.battleId, dlg: dlgId, onWin: cfg.onWin || null, onLose: cfg.onLose || null });
+        this._startBattle({ battleId: cfg.battleId, startedFlag: cfg.startedFlag });
+      },
+      giveXp: x => this._grantXp(this._resolveXp(x)),
+      recruit: id => this._recruit(id),
+      dismiss: id => { PartySystem.bench(reg, id); this._applyPartyVisibility(); },
+      transition: (map, spawn) => this._transitionTo(map, spawn),
+      refresh: () => this._refreshGoldHud(),
+      onClose: () => SaveSystem.saveWorld(reg, this.mapKey, this.spawnId),
+    };
+  }
+
+  /** Опыт: число, «battle:<id>» (как за бой) или тип встречи (minor/standard/hard/boss/quest). */
+  _resolveXp(x) {
+    if (typeof x === 'number') return x;
+    if (typeof x === 'string' && x.startsWith('battle:')) {
+      return battlesData.find(b => b.id === x.slice(7))?.xpReward ?? 0;
+    }
+    if (typeof x === 'string') return xpForEncounter(PartySystem.getLevel(this.game.registry), x);
+    return 0;
+  }
+
+  _recruit(id) {
+    const reg = this.game.registry;
+    const where = PartySystem.recruit(reg, id);
+    if (!where) return;
+    this._toast(where === 'party' ? 'В отряде новый человек' : 'Ждёт в таверне: в отряде нет места');
+    this._applyPartyVisibility(true);
+    // Новичок входит на уровне партии: экран уровней для него одного
+    const lvl = PartySystem.getLevel(reg);
+    const unit = PartySystem.buildRosterUnits(reg).find(u => u.id === id);
+    if (unit && (unit.level || 1) < lvl) {
+      this.time.delayedCall(400, () => this.scene.launch('LevelUpScene', {
+        leveledUnits: [unit], allPlayerUnits: [unit], toLevel: lvl, fromMapKey: this.mapKey, fromSpawnId: this.spawnId,
+      }));
+    } else if (unit) {
+      SaveSystem.save([unit], this.mapKey, this.spawnId, reg);
+    }
+  }
+
+  _startEncounterBattle(enc, opts = {}) {
+    if (this._transitioning) return;
+    const reg = this.game.registry;
+    this.hero.stopMove();
+    reg.set('pendingBattle', { battleId: enc.battleId, encounterId: enc.id, dlg: enc.dialogue || null, onWin: enc.onWin || null });
+    reg.set('battleAmbush', !!opts.ambush);
+    if (opts.ambush) this._toast('Засада!');
+    this._startBattle({ battleId: enc.battleId });
+  }
+
+  _talkEncounter(enc) {
+    if (enc.dialogue && this._runner.has(enc.dialogue)) {
+      this._runner.start(enc.dialogue, enc.dialogueStart || null);
+      return;
+    }
+    this.hero.stopMove();
+    this._dialogue.show({
+      portraitLeft: 'portrait_hero_duelist',
+      speakerName: enc.name || '',
+      text: `${enc.name || 'Существо'} не ищет боя. Можно пройти мимо.`,
+      choices: [
+        { label: '[Напасть]', style: 'attack', onSelect: () => this._startEncounterBattle(enc) },
+        { label: 'Уйти.', style: 'retreat', onSelect: () => {} },
+      ],
+    });
+  }
+
+  _resumePendingBattle() {
+    const reg = this.game.registry;
+    const pb = reg.get('pendingBattle');
+    if (!pb || reg.get('lastBattleId') !== pb.battleId) return;
+    const result = reg.get('lastBattleResult');
+    reg.remove('pendingBattle');
+    if (result !== 'victory') return;
+    if (pb.encounterId) reg.set(`enc_${pb.encounterId}_done`, true);
+    (reg.get('lastSurrendered') || []).forEach(id => reg.set(`surrendered_${id}`, true));
+    (reg.get('lastBattleDead') || []).forEach(id => reg.set(`dead_${id}`, true));
+    if (pb.onWin && pb.dlg) {
+      this.hero.stopMove();
+      this._runner.start(pb.dlg, pb.onWin);
+    }
   }
 
   _refreshGoldHud() {
@@ -1537,7 +1671,7 @@ export class MapScene extends Phaser.Scene {
           id,
           tabLabel: meta.tabLabel,
           portrait: meta.portrait,
-          name: unit.name,
+          name: unit.personalName ? `${unit.personalName}, ${unit.name.toLowerCase()}` : unit.name,
           sprite: meta.sprite,
           mapSprite: meta.mapSprite,
           hp: unit.hp,
@@ -2219,6 +2353,21 @@ export class MapScene extends Phaser.Scene {
         wordWrap: { width: s(235) },
       }).setDepth(DEPTH+5).setScrollFactor(0));
     });
+
+    // Репутация, опыт отряда и черты героя (блок Г): только на листе героя
+    if (ch.id === 'hero_duelist' || ch.portrait === 'portrait_hero_duelist') {
+      const xp = PartySystem.xpProgress(this.game.registry);
+      const traits = (SaveSystem.load()?.units || []).find(u => u.id === 'hero_duelist')?.commanderTraits || [];
+      const lines = [
+        ...repLines(this.game.registry),
+        `Опыт отряда: ${xp.have} / ${xp.need}, мест в отряде ${PartySystem.getSlots(this.game.registry)}`,
+        traits.length ? `Черты: ${traits.map(t => TRAIT_LABELS[t] || t).join(', ')}` : '',
+      ].filter(Boolean);
+      add(this.add.text(s(640), s(585), lines.join('\n'), {
+        fontSize: `${s(10.5)}px`, color: '#B8AC8C', fontFamily: 'serif', align: 'center', lineSpacing: s(2),
+        stroke: '#000', strokeThickness: s(1),
+      }).setOrigin(0.5, 0).setDepth(DEPTH+5).setScrollFactor(0));
+    }
 
     // Левая зона (инвентарь) - сетка рисуется статично в _initCharacterSheet, не здесь.
   }

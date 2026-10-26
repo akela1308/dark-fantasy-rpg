@@ -814,7 +814,10 @@
         "classId": "whisperer",
         "arch": "whisperer",
         "art": "TODO_silhouette",
-        "color": 4868690
+        "color": 4868690,
+        "tags": [
+          "forgotten"
+        ]
       },
       {
         "id": "hanged",
@@ -915,7 +918,10 @@
         "classId": "blade",
         "arch": "blade",
         "art": "TODO_silhouette",
-        "color": 4868690
+        "color": 4868690,
+        "tags": [
+          "forgotten"
+        ]
       },
       {
         "id": "shade_2",
@@ -944,7 +950,10 @@
         "classId": "blade",
         "arch": "blade",
         "art": "TODO_silhouette",
-        "color": 4868690
+        "color": 4868690,
+        "tags": [
+          "forgotten"
+        ]
       },
       {
         "id": "stone_voice",
@@ -971,7 +980,10 @@
         "classId": "whisperer",
         "arch": "whisperer",
         "art": "TODO_silhouette",
-        "color": 4868690
+        "color": 4868690,
+        "tags": [
+          "forgotten"
+        ]
       }
     ],
     "backgroundKey": "battle_Forest_Battle",
@@ -1142,7 +1154,10 @@
         "classId": "whisperer",
         "arch": "whisperer",
         "art": "TODO_silhouette",
-        "color": 4868690
+        "color": 4868690,
+        "tags": [
+          "forgotten"
+        ]
       },
       {
         "id": "novice",
@@ -1339,7 +1354,10 @@
         "classId": "brute",
         "arch": "brute",
         "art": "TODO_silhouette",
-        "color": 4868690
+        "color": 4868690,
+        "tags": [
+          "forgotten"
+        ]
       },
       {
         "id": "name_echo",
@@ -1366,7 +1384,10 @@
         "classId": "whisperer",
         "arch": "whisperer",
         "art": "TODO_silhouette",
-        "color": 4868690
+        "color": 4868690,
+        "tags": [
+          "forgotten"
+        ]
       },
       {
         "id": "name_echo_2",
@@ -1393,7 +1414,10 @@
         "classId": "whisperer",
         "arch": "whisperer",
         "art": "TODO_silhouette",
-        "color": 4868690
+        "color": 4868690,
+        "tags": [
+          "forgotten"
+        ]
       }
     ],
     "backgroundKey": "battle_Tavern_battle4",
@@ -1436,7 +1460,10 @@
         "classId": "brute",
         "arch": "brute",
         "art": "TODO_silhouette",
-        "color": 4868690
+        "color": 4868690,
+        "tags": [
+          "forgotten"
+        ]
       },
       {
         "id": "name_echo",
@@ -1463,7 +1490,10 @@
         "classId": "whisperer",
         "arch": "whisperer",
         "art": "TODO_silhouette",
-        "color": 4868690
+        "color": 4868690,
+        "tags": [
+          "forgotten"
+        ]
       },
       {
         "id": "name_echo_2",
@@ -1490,7 +1520,10 @@
         "classId": "whisperer",
         "arch": "whisperer",
         "art": "TODO_silhouette",
-        "color": 4868690
+        "color": 4868690,
+        "tags": [
+          "forgotten"
+        ]
       },
       {
         "id": "name_echo_3",
@@ -1519,7 +1552,10 @@
         "classId": "watcher",
         "arch": "watcher",
         "art": "TODO_silhouette",
-        "color": 4868690
+        "color": 4868690,
+        "tags": [
+          "forgotten"
+        ]
       }
     ],
     "backgroundKey": "battle_Tavern_battle4",

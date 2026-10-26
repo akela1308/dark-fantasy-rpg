@@ -15,6 +15,8 @@ SPRITE = {
 }
 # Люди Корвина могут сдаться (03_ДИАЛОГИ 6.7, 01_БАЛАНС 2)
 SURRENDER = {'Корвин Сухой', 'Куль', 'Тисс', 'Головорез', 'Стрелок', 'Мародёр'}
+# «Забытые» (14_БЕСТИАРИЙ, 02_ДИЗАЙН 5: Тайная грамота +10% урона)
+FORGOTTEN = {'Тень', 'Голос камня', 'Эхо имени', 'Забытый Страж', 'Висельный чтец', 'Чтец'}
 FIXED_ID = {'Корвин Сухой': 'bandit_commander', 'Куль': 'bandit_brawler', 'Тисс': 'bandit_archer'}
 SLUG = {
     'Головорез': 'thug', 'Стрелок': 'shooter', 'Мародёр': 'marauder', 'Облезлый пёс': 'mangy_dog',
@@ -46,6 +48,8 @@ def fix_list(enemies):
         if name not in SPRITE:
             e['art'] = 'TODO_silhouette'
             e['color'] = 0x4a4a52
+        if name in FORGOTTEN:
+            e['tags'] = ['forgotten']
         if name in SURRENDER:
             e['canSurrender'] = True
             if name != 'Корвин Сухой':
@@ -74,6 +78,6 @@ elf['backgroundKey'] = 'battle_bg_swamp'
 elf['backgroundPath'] = 'battle_bg_swamp.png'
 res.append(elf)
 
-txt = json.dumps(res, ensure_ascii=False, indent=2).replace('—', ',')
+txt = json.dumps(res, ensure_ascii=False, indent=2).replace(chr(0x2014), ',')
 open(OUT, 'w').write(txt + '\n')
 print(len(res), 'боёв')

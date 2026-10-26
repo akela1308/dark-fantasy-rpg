@@ -1,51 +1,67 @@
 [
   {
     "id": "commander",
-    "name": "Командир",
-    "desc": "Позволяет взять еще одного спутника в команду, если встретится подходящий персонаж.",
-    "unlockLevel": 2,
+    "name": "Командование",
+    "desc": "Ещё одно место в отряде (не больше четырёх).",
+    "levels": [2, 5, 8],
+    "repeatable": true,
     "effects": [
+      { "type": "partySlot", "amount": 1 },
       { "type": "registryFlag", "key": "commander_unlocked", "value": true }
     ],
     "tags": ["party_limit", "leadership"]
   },
   {
+    "id": "own_road",
+    "name": "Своя дорога",
+    "desc": "+12% к здоровью и урону героя навсегда. Ранг копится до трёх.",
+    "levels": [2, 5, 8],
+    "repeatable": true,
+    "maxRanks": 3,
+    "effects": [
+      { "type": "scaleHero", "hp": 0.12, "damage": 0.12 }
+    ],
+    "tags": ["solo"]
+  },
+  {
     "id": "second_strike",
     "name": "Второй выпад",
-    "desc": "Боевой путь командира: +1 к минимальному и максимальному урону.",
-    "unlockLevel": 2,
-    "effects": [
-      { "type": "damage", "min": 1, "max": 1 }
-    ],
+    "desc": "Если удар убил цель, герой действует ещё раз (раз в раунд).",
+    "levels": [2, 5, 8],
+    "effects": [],
     "tags": ["melee", "tempo"]
   },
   {
     "id": "shooting_knack",
     "name": "Стрелковая сноровка",
-    "desc": "Путь стрелка: +1 заряд для пистоля или будущего стрелкового оружия.",
-    "unlockLevel": 2,
+    "desc": "+1 заряд пистоля на бой, выстрелы пробивают четверть брони.",
+    "levels": [2, 5, 8],
     "effects": [
-      { "type": "resource", "resourceId": "pistol_charges", "amount": 1 }
+      { "type": "resourceBonus", "resourceId": "pistol_charges", "amount": 1 }
     ],
     "tags": ["shot", "ranged"]
   },
   {
     "id": "secret_literacy",
     "name": "Тайная грамота",
-    "desc": "Позволяет разбирать сложные книги, печати и оккультные записи.",
-    "unlockLevel": 2,
+    "desc": "Запретные книги читаются целиком, в разговорах открываются проверки, +10% урона по забытым.",
+    "levels": [2, 5, 8],
     "effects": [
-      { "type": "tag", "tag": "secret_literacy" }
+      { "type": "tag", "tag": "secret_literacy" },
+      { "type": "registryFlag", "key": "trait_secret_literacy", "value": true }
     ],
     "tags": ["lore", "books", "seals"]
   },
   {
     "id": "first_signs",
     "name": "Первые знаки",
-    "desc": "Слабый оккультный путь: почти не дает силы сейчас, но открывает будущую магию.",
-    "unlockLevel": 2,
+    "desc": "Знак: метка на цель без атаки, раз в бой. Взятая второй раз черта растёт в Слово Печати.",
+    "levels": [2, 5, 8],
+    "repeatable": true,
+    "maxRanks": 2,
     "effects": [
-      { "type": "tag", "tag": "first_signs" }
+      { "type": "tag", "tag": "first_signs" },
+      { "type": "skillByRank", "skills": ["first_sign", "seal_word"] }
     ],
     "tags": ["occult", "magic"]
   }

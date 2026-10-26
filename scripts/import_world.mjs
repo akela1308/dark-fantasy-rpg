@@ -122,31 +122,30 @@ function buildNew(loc) {
 
 // ── Недостающий выход на старой карте ──────────────────────────────────────
 function edgeZone(walk, side, taken) {
-  const by = {
-    north: () => walk.reduce((a, b) => (b.y < a.y ? b : a)),
-    south: () => walk.reduce((a, b) => (b.y + b.h > a.y + a.h ? b : a)),
-    east: () => walk.reduce((a, b) => (b.x + b.w > a.x + a.w ? b : a)),
-    west: () => walk.reduce((a, b) => (b.x < a.x ? b : a)),
-  };
   const base = side.includes('north') ? 'north' : side.includes('south') ? 'south'
     : side === 'east' ? 'east' : side === 'west' ? 'west' : 'north';
-  const z = by[base]();
+  const key = {
+    north: z => z.y, south: z => -(z.y + z.h), east: z => -(z.x + z.w), west: z => z.x,
+  }[base];
+  const zones = [...walk].sort((a, b) => key(a) - key(b));
   const free = cand => !taken.some(t => cand.x < t.x + t.w && cand.x + cand.w > t.x && cand.y < t.y + t.h && cand.y + cand.h > t.y);
   const tries = [0.5, 0.25, 0.75, 0.1, 0.9];
-  for (const f of tries) {
-    let zone, spawn;
-    if (base === 'north' || base === 'south') {
-      const w = Math.min(120, z.w);
-      const x = Math.round(z.x + (z.w - w) * f);
-      zone = base === 'north' ? { x, y: z.y, w, h: 18 } : { x, y: z.y + z.h - 18, w, h: 18 };
-      spawn = { x: x + w / 2, y: base === 'north' ? z.y + 70 : z.y + z.h - 70 };
-    } else {
-      const h = Math.min(120, z.h);
-      const y = Math.round(z.y + (z.h - h) * f);
-      zone = base === 'east' ? { x: z.x + z.w - 18, y, w: 18, h } : { x: z.x, y, w: 18, h };
-      spawn = { x: base === 'east' ? z.x + z.w - 80 : z.x + 80, y: y + h / 2 };
+  for (const z of zones) {
+    for (const f of tries) {
+      let zone, spawn;
+      if (base === 'north' || base === 'south') {
+        const w = Math.min(120, z.w);
+        const x = Math.round(z.x + (z.w - w) * f);
+        zone = base === 'north' ? { x, y: z.y, w, h: 18 } : { x, y: z.y + z.h - 18, w, h: 18 };
+        spawn = { x: x + w / 2, y: base === 'north' ? z.y + 70 : z.y + z.h - 70 };
+      } else {
+        const h = Math.min(120, z.h);
+        const y = Math.round(z.y + (z.h - h) * f);
+        zone = base === 'east' ? { x: z.x + z.w - 18, y, w: 18, h } : { x: z.x, y, w: 18, h };
+        spawn = { x: base === 'east' ? z.x + z.w - 80 : z.x + 80, y: y + h / 2 };
+      }
+      if (free(zone)) return { zone, spawn };
     }
-    if (free(zone)) return { zone, spawn };
   }
   return null;
 }
@@ -184,8 +183,14 @@ function ensureArrivalSpawns() {
         // старая запись без такой точки: ставим у выхода обратно
         const back = (target.exits || []).find(e => e.toMap === id) || (target.tavernEntry?.toMap === id ? target.tavernEntry : null);
         if (back) {
+          // точка внутрь от зоны выхода, иначе герой сразу уйдёт обратно
           const z = back.zone;
-          target.spawnPoints[ex.spawnId] = { x: Math.round(z.x + z.w / 2), y: Math.round(z.y + z.h / 2) };
+          let x = z.x + z.w / 2, y = z.y + z.h / 2;
+          if (z.x < 60) x = z.x + z.w + 70;
+          else if (z.x + z.w > 1612) x = z.x - 70;
+          else if (z.y < 300) y = z.y + z.h + 70;
+          else y = z.y - 70;
+          target.spawnPoints[ex.spawnId] = { x: Math.round(x), y: Math.round(y) };
           console.warn('точка появления создана по выходу', ex.toMap, ex.spawnId);
         } else {
           target.spawnPoints[ex.spawnId] = { ...target.spawnPoints.default };
