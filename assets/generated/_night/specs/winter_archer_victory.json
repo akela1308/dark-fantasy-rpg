@@ -1,0 +1,1 @@
+{"slug": "winter_archer", "anim": "victory", "base": "winter_archer/k_battle.png", "body": 300, "segments": [{"clip": "winter_archer/clips/victory_v1.mp4", "from": 0, "to": 95, "frames": 29}], "hold": true}

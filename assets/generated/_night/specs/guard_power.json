@@ -1,0 +1,1 @@
+{"slug": "guard", "anim": "power", "base": "guard/k_battle.png", "body": 300, "segments": [{"clip": "guard/clips/power_v1.mp4", "from": 0, "to": 80, "frames": 38}], "hit": "auto", "right": 1.4, "left": 1.0}

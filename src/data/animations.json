@@ -1374,6 +1374,18 @@
  },
  "guard": {
   "anims": {
+   "attack": {
+    "file": "sprites/battle/guard_attack_v1.webp",
+    "frameWidth": 621,
+    "frameHeight": 345,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4092,
+    "originY": 0.9737,
+    "bodyHeight": 300,
+    "key": "guard_attack_v1",
+    "hitFrame": 10
+   },
    "idle": {
     "file": "sprites/battle/guard_idle_v1.webp",
     "frameWidth": 508,
@@ -1385,9 +1397,23 @@
     "bodyHeight": 300,
     "key": "guard_idle_v1",
     "loop": true
+   },
+   "power": {
+    "file": "sprites/battle/guard_power_v1.webp",
+    "frameWidth": 621,
+    "frameHeight": 345,
+    "frames": 38,
+    "fps": 24,
+    "originX": 0.4092,
+    "originY": 0.9737,
+    "bodyHeight": 300,
+    "key": "guard_power_v1",
+    "hitFrame": 27
    }
   },
-  "actions": {},
+  "actions": {
+   "basic": "attack"
+  },
   "name": "Стражник врат"
  },
  "companion_healer": {
@@ -2307,6 +2333,30 @@
     "bodyHeight": 300,
     "key": "winter_archer_amb2_v1"
    },
+   "attack": {
+    "file": "sprites/battle/winter_archer_attack_v1.webp",
+    "frameWidth": 608,
+    "frameHeight": 332,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4434,
+    "originY": 0.9724,
+    "bodyHeight": 300,
+    "key": "winter_archer_attack_v1",
+    "hitFrame": 16
+   },
+   "death": {
+    "file": "sprites/battle/winter_archer_death_v1.webp",
+    "frameWidth": 608,
+    "frameHeight": 332,
+    "frames": 30,
+    "fps": 24,
+    "originX": 0.4434,
+    "originY": 0.9724,
+    "bodyHeight": 300,
+    "key": "winter_archer_death_v1",
+    "hold": true
+   },
    "idle": {
     "file": "sprites/battle/winter_archer_idle_v1.webp",
     "frameWidth": 555,
@@ -2318,9 +2368,23 @@
     "bodyHeight": 300,
     "key": "winter_archer_idle_v1",
     "loop": true
+   },
+   "victory": {
+    "file": "sprites/battle/winter_archer_victory_v1.webp",
+    "frameWidth": 555,
+    "frameHeight": 332,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.46,
+    "originY": 0.9724,
+    "bodyHeight": 300,
+    "key": "winter_archer_victory_v1",
+    "hold": true
    }
   },
-  "actions": {},
+  "actions": {
+   "basic": "attack"
+  },
   "name": "Ульв, северный лучник"
  },
  "winter_girl": {

@@ -1,0 +1,1 @@
+{"slug": "winter_archer", "anim": "attack", "base": "winter_archer/k_battle.png", "body": 300, "segments": [{"clip": "winter_archer/clips/attack_v1.mp4", "from": 2, "to": 95, "frames": 29}], "hit": "auto", "right": 1.4, "left": 1.0}

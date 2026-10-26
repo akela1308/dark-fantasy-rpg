@@ -288,3 +288,8 @@ forest_bear death 1 | v2: голубое свечение
 forest_bear hit 2
 forest_bear victory 1 | v2: сильное свечение рун
 vurdalak death 1
+guard attack 1
+guard power 1 | v2: фиолетовый отлив
+winter_archer attack 1
+winter_archer death 2
+winter_archer victory 1

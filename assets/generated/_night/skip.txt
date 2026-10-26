@@ -49,3 +49,4 @@ winter_queen death
 vurdalak attack
 winter_queen victory
 vurdalak power
+winter_archer hit
