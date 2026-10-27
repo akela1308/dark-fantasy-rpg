@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/ba9c2883-46be-477c-9168-962b8e638b79",
+ "prompt": "Idle loop for the whole clip: the gaunt one-eyed creature stays in place hunched, breathes slowly, the single eye blinks once and looks around, long fingers twitch, rags sway. No steps, no turning. The last frame is exactly the same pose as the first. The creature keeps exactly the same body, the same single eye and the same limbs for the whole clip. No visual effects, no flashes, no trails. ",
+ "img": "../../likho/k_battle.png",
+ "last": "../../likho/k_battle.png",
+ "sec": 4
+}

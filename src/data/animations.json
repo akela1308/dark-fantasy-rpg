@@ -792,6 +792,24 @@
   },
   "name": "Ворнаг (Боец)"
  },
+ "candle_keeper": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/candle_keeper_idle_v1_s60.webp",
+    "frameWidth": 156,
+    "frameHeight": 190,
+    "frames": 1,
+    "fps": 1,
+    "originX": 0.5,
+    "originY": 0.9873,
+    "bodyHeight": 180.0,
+    "key": "candle_keeper_idle_v1_s60",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "candle_keeper"
+ },
  "cleaning_girl": {
   "anims": {
    "attack": {
@@ -1457,6 +1475,24 @@
   },
   "name": "Хальвар, седой старейшина"
  },
+ "fields_creature": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/fields_creature_idle_v1_s60.webp",
+    "frameWidth": 173,
+    "frameHeight": 190,
+    "frames": 1,
+    "fps": 1,
+    "originX": 0.5,
+    "originY": 0.9873,
+    "bodyHeight": 180.2,
+    "key": "fields_creature_idle_v1_s60",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "fields_creature"
+ },
  "forest_bear": {
   "anims": {
    "amb1": {
@@ -1545,6 +1581,60 @@
    "basic": "attack"
   },
   "name": "Лесной Дед"
+ },
+ "forgotten_warden": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/forgotten_warden_idle_v1_s60.webp",
+    "frameWidth": 188,
+    "frameHeight": 190,
+    "frames": 1,
+    "fps": 1,
+    "originX": 0.5,
+    "originY": 0.9873,
+    "bodyHeight": 180.2,
+    "key": "forgotten_warden_idle_v1_s60",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "forgotten_warden"
+ },
+ "frontier_beast": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/frontier_beast_idle_v1_s60.webp",
+    "frameWidth": 181,
+    "frameHeight": 190,
+    "frames": 1,
+    "fps": 1,
+    "originX": 0.5,
+    "originY": 0.9873,
+    "bodyHeight": 180.4,
+    "key": "frontier_beast_idle_v1_s60",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "frontier_beast"
+ },
+ "gallows_reader": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/gallows_reader_idle_v1_s60.webp",
+    "frameWidth": 183,
+    "frameHeight": 190,
+    "frames": 1,
+    "fps": 1,
+    "originX": 0.5,
+    "originY": 0.9873,
+    "bodyHeight": 180.0,
+    "key": "gallows_reader_idle_v1_s60",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "gallows_reader"
  },
  "grey_wolf": {
   "anims": {
@@ -1691,6 +1781,24 @@
    "basic": "attack"
   },
   "name": "Стражник врат"
+ },
+ "hanged": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/hanged_idle_v1_s60.webp",
+    "frameWidth": 139,
+    "frameHeight": 190,
+    "frames": 1,
+    "fps": 1,
+    "originX": 0.5,
+    "originY": 0.9873,
+    "bodyHeight": 180.5,
+    "key": "hanged_idle_v1_s60",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "hanged"
  },
  "companion_healer": {
   "anims": {
@@ -2091,6 +2199,91 @@
   },
   "name": "Кобл (бестиарий)"
  },
+ "leshy": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/leshy_idle_v1_s60.webp",
+    "frameWidth": 139,
+    "frameHeight": 190,
+    "frames": 1,
+    "fps": 1,
+    "originX": 0.5,
+    "originY": 0.9873,
+    "bodyHeight": 179.7,
+    "key": "leshy_idle_v1_s60",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "Леший (бестиарий)"
+ },
+ "likho": {
+  "anims": {
+   "attack": {
+    "file": "sprites/battle/likho_attack_v1_s60.webp",
+    "frameWidth": 349,
+    "frameHeight": 196,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.3614,
+    "originY": 0.9801,
+    "bodyHeight": 179.9,
+    "key": "likho_attack_v1_s60",
+    "hitFrame": 7
+   },
+   "death": {
+    "file": "sprites/battle/likho_death_v2_s60.webp",
+    "frameWidth": 349,
+    "frameHeight": 196,
+    "frames": 27,
+    "fps": 24,
+    "originX": 0.3614,
+    "originY": 0.9801,
+    "bodyHeight": 179.9,
+    "key": "likho_death_v2_s60",
+    "hold": true
+   },
+   "hit": {
+    "file": "sprites/battle/likho_hit_v1_s60.webp",
+    "frameWidth": 306,
+    "frameHeight": 196,
+    "frames": 14,
+    "fps": 24,
+    "originX": 0.4124,
+    "originY": 0.9801,
+    "bodyHeight": 180.0,
+    "key": "likho_hit_v1_s60"
+   },
+   "idle": {
+    "file": "sprites/battle/likho_idle_v2_s60.webp",
+    "frameWidth": 306,
+    "frameHeight": 196,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.4124,
+    "originY": 0.9801,
+    "bodyHeight": 180.0,
+    "key": "likho_idle_v2_s60",
+    "loop": true
+   },
+   "victory": {
+    "file": "sprites/battle/likho_victory_v1_s60.webp",
+    "frameWidth": 306,
+    "frameHeight": 196,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4124,
+    "originY": 0.9801,
+    "bodyHeight": 180.0,
+    "key": "likho_victory_v1_s60",
+    "hold": true
+   }
+  },
+  "actions": {
+   "basic": "attack"
+  },
+  "name": "likho"
+ },
  "lyo": {
   "anims": {
    "attack": {
@@ -2316,6 +2509,60 @@
   },
   "name": "Мавка (бестиарий)"
  },
+ "mine_shade": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/mine_shade_idle_v1_s60.webp",
+    "frameWidth": 143,
+    "frameHeight": 190,
+    "frames": 1,
+    "fps": 1,
+    "originX": 0.5,
+    "originY": 0.9873,
+    "bodyHeight": 180.3,
+    "key": "mine_shade_idle_v1_s60",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "mine_shade"
+ },
+ "mine_spider": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/mine_spider_idle_v1_s60.webp",
+    "frameWidth": 311,
+    "frameHeight": 190,
+    "frames": 1,
+    "fps": 1,
+    "originX": 0.5,
+    "originY": 0.9873,
+    "bodyHeight": 179.8,
+    "key": "mine_spider_idle_v1_s60",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "mine_spider"
+ },
+ "moroz": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/moroz_idle_v1_s60.webp",
+    "frameWidth": 202,
+    "frameHeight": 190,
+    "frames": 1,
+    "fps": 1,
+    "originX": 0.5,
+    "originY": 0.9873,
+    "bodyHeight": 179.8,
+    "key": "moroz_idle_v1_s60",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "moroz"
+ },
  "mountain_king": {
   "anims": {
    "attack": {
@@ -2359,6 +2606,78 @@
    "basic": "attack"
   },
   "name": "Горный король"
+ },
+ "name_echo": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/name_echo_idle_v1_s60.webp",
+    "frameWidth": 181,
+    "frameHeight": 190,
+    "frames": 1,
+    "fps": 1,
+    "originX": 0.5,
+    "originY": 0.9873,
+    "bodyHeight": 179.8,
+    "key": "name_echo_idle_v1_s60",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "name_echo"
+ },
+ "novice": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/novice_idle_v1_s60.webp",
+    "frameWidth": 113,
+    "frameHeight": 190,
+    "frames": 1,
+    "fps": 1,
+    "originX": 0.5,
+    "originY": 0.9873,
+    "bodyHeight": 179.4,
+    "key": "novice_idle_v1_s60",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "novice"
+ },
+ "poludnitsa": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/poludnitsa_idle_v1_s60.webp",
+    "frameWidth": 139,
+    "frameHeight": 190,
+    "frames": 1,
+    "fps": 1,
+    "originX": 0.5,
+    "originY": 0.9873,
+    "bodyHeight": 180.5,
+    "key": "poludnitsa_idle_v1_s60",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "poludnitsa"
+ },
+ "reader": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/reader_idle_v1_s60.webp",
+    "frameWidth": 139,
+    "frameHeight": 190,
+    "frames": 1,
+    "fps": 1,
+    "originX": 0.5,
+    "originY": 0.9873,
+    "bodyHeight": 179.7,
+    "key": "reader_idle_v1_s60",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "reader"
  },
  "recruit": {
   "anims": {
@@ -2595,6 +2914,24 @@
   },
   "name": "Рыж, староста Придорожного (новый, предварительно)"
  },
+ "shade": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/shade_idle_v1_s60.webp",
+    "frameWidth": 161,
+    "frameHeight": 190,
+    "frames": 1,
+    "fps": 1,
+    "originX": 0.5,
+    "originY": 0.9873,
+    "bodyHeight": 180.2,
+    "key": "shade_idle_v1_s60",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "shade"
+ },
  "companion_shield": {
   "anims": {
    "amb2": {
@@ -2674,6 +3011,42 @@
    "heavy_strike": "power"
   },
   "name": "Щитоносец"
+ },
+ "stone_guard": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/stone_guard_idle_v1_s60.webp",
+    "frameWidth": 245,
+    "frameHeight": 190,
+    "frames": 1,
+    "fps": 1,
+    "originX": 0.5,
+    "originY": 0.9873,
+    "bodyHeight": 179.7,
+    "key": "stone_guard_idle_v1_s60",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "stone_guard"
+ },
+ "stone_voice": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/stone_voice_idle_v1_s60.webp",
+    "frameWidth": 188,
+    "frameHeight": 190,
+    "frames": 1,
+    "fps": 1,
+    "originX": 0.5,
+    "originY": 0.9873,
+    "bodyHeight": 180.2,
+    "key": "stone_voice_idle_v1_s60",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "stone_voice"
  },
  "swamp_beast": {
   "anims": {
@@ -3056,6 +3429,24 @@
   },
   "name": "Тил, кузнец, бывший сапёр (новый, предварительно)"
  },
+ "troll_ugryum": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/troll_ugryum_idle_v1_s60.webp",
+    "frameWidth": 236,
+    "frameHeight": 190,
+    "frames": 1,
+    "fps": 1,
+    "originX": 0.5,
+    "originY": 0.9873,
+    "bodyHeight": 180.2,
+    "key": "troll_ugryum_idle_v1_s60",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "troll_ugryum"
+ },
  "vurdalak": {
   "anims": {
    "amb1": {
@@ -3130,6 +3521,24 @@
   },
   "actions": {},
   "name": "Висельный чтец"
+ },
+ "whisperer": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/whisperer_idle_v1_s60.webp",
+    "frameWidth": 136,
+    "frameHeight": 190,
+    "frames": 1,
+    "fps": 1,
+    "originX": 0.5,
+    "originY": 0.9873,
+    "bodyHeight": 180.5,
+    "key": "whisperer_idle_v1_s60",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "whisperer"
  },
  "wild_dog": {
   "anims": {
@@ -3494,5 +3903,23 @@
   },
   "actions": {},
   "name": "Зимняя королева"
+ },
+ "wolfolak": {
+  "anims": {
+   "idle": {
+    "file": "sprites/battle/wolfolak_idle_v1_s60.webp",
+    "frameWidth": 159,
+    "frameHeight": 190,
+    "frames": 1,
+    "fps": 1,
+    "originX": 0.5,
+    "originY": 0.9873,
+    "bodyHeight": 180.0,
+    "key": "wolfolak_idle_v1_s60",
+    "loop": true
+   }
+  },
+  "actions": {},
+  "name": "wolfolak"
  }
 }

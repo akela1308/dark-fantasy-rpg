@@ -1,0 +1,2 @@
+A NEW portrait, NOT the person in the first reference: copy only the ornate dark gothic metal frame with the lion head on top and the round medallion at the bottom, dark background, dim light, painterly style. Inside the frame: the head and shoulders of the creature from the second reference image, same face, colors and features, facing slightly to the right. Outside the frame: flat plain white background. No text.
+refs: /Users/maksimilin/Desktop/Dark Fantasy/арты/Таверна/TavernMan_portair.png, assets/generated/mine_spider/k_battle.png

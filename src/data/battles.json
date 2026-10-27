@@ -817,7 +817,8 @@
         "color": 4868690,
         "tags": [
           "forgotten"
-        ]
+        ],
+        "spriteKey": "gallows_reader"
       },
       {
         "id": "hanged",
@@ -846,7 +847,8 @@
         "classId": "blade",
         "arch": "blade",
         "art": "TODO_silhouette",
-        "color": 4868690
+        "color": 4868690,
+        "spriteKey": "hanged"
       },
       {
         "id": "hanged_2",
@@ -875,7 +877,8 @@
         "classId": "blade",
         "arch": "blade",
         "art": "TODO_silhouette",
-        "color": 4868690
+        "color": 4868690,
+        "spriteKey": "hanged"
       }
     ],
     "backgroundKey": "battle_Plane",
@@ -921,7 +924,8 @@
         "color": 4868690,
         "tags": [
           "forgotten"
-        ]
+        ],
+        "spriteKey": "shade"
       },
       {
         "id": "shade_2",
@@ -953,7 +957,8 @@
         "color": 4868690,
         "tags": [
           "forgotten"
-        ]
+        ],
+        "spriteKey": "shade"
       },
       {
         "id": "stone_voice",
@@ -983,7 +988,8 @@
         "color": 4868690,
         "tags": [
           "forgotten"
-        ]
+        ],
+        "spriteKey": "stone_voice"
       }
     ],
     "backgroundKey": "battle_Forest_Battle",
@@ -1127,7 +1133,8 @@
         "classId": "warden",
         "arch": "warden",
         "art": "TODO_silhouette",
-        "color": 4868690
+        "color": 4868690,
+        "spriteKey": "candle_keeper"
       },
       {
         "id": "reader",
@@ -1157,7 +1164,8 @@
         "color": 4868690,
         "tags": [
           "forgotten"
-        ]
+        ],
+        "spriteKey": "reader"
       },
       {
         "id": "novice",
@@ -1186,7 +1194,8 @@
         "classId": "blade",
         "arch": "blade",
         "art": "TODO_silhouette",
-        "color": 4868690
+        "color": 4868690,
+        "spriteKey": "novice"
       },
       {
         "id": "novice_2",
@@ -1215,7 +1224,8 @@
         "classId": "blade",
         "arch": "blade",
         "art": "TODO_silhouette",
-        "color": 4868690
+        "color": 4868690,
+        "spriteKey": "novice"
       }
     ],
     "backgroundKey": "battle_Village_battle2",
@@ -1357,7 +1367,8 @@
         "color": 4868690,
         "tags": [
           "forgotten"
-        ]
+        ],
+        "spriteKey": "forgotten_warden"
       },
       {
         "id": "name_echo",
@@ -1387,7 +1398,8 @@
         "color": 4868690,
         "tags": [
           "forgotten"
-        ]
+        ],
+        "spriteKey": "name_echo"
       },
       {
         "id": "name_echo_2",
@@ -1417,7 +1429,8 @@
         "color": 4868690,
         "tags": [
           "forgotten"
-        ]
+        ],
+        "spriteKey": "name_echo"
       }
     ],
     "backgroundKey": "battle_Tavern_battle4",
@@ -1463,7 +1476,8 @@
         "color": 4868690,
         "tags": [
           "forgotten"
-        ]
+        ],
+        "spriteKey": "forgotten_warden"
       },
       {
         "id": "name_echo",
@@ -1493,7 +1507,8 @@
         "color": 4868690,
         "tags": [
           "forgotten"
-        ]
+        ],
+        "spriteKey": "name_echo"
       },
       {
         "id": "name_echo_2",
@@ -1523,7 +1538,8 @@
         "color": 4868690,
         "tags": [
           "forgotten"
-        ]
+        ],
+        "spriteKey": "name_echo"
       },
       {
         "id": "name_echo_3",
@@ -1555,7 +1571,8 @@
         "color": 4868690,
         "tags": [
           "forgotten"
-        ]
+        ],
+        "spriteKey": "name_echo"
       }
     ],
     "backgroundKey": "battle_Tavern_battle4",
@@ -2167,7 +2184,8 @@
         ],
         "ranged": false,
         "isBoss": true,
-        "art": "TODO_silhouette"
+        "art": "TODO_silhouette",
+        "spriteKey": "fields_creature"
       }
     ],
     "backgroundKey": "battle_Village_battle1",
@@ -2208,7 +2226,8 @@
         "skills": [],
         "ranged": false,
         "isBoss": false,
-        "art": "TODO_silhouette"
+        "art": "TODO_silhouette",
+        "spriteKey": "mine_spider"
       },
       {
         "id": "mine_creatures_2",
@@ -2234,7 +2253,8 @@
         "skills": [],
         "ranged": false,
         "isBoss": false,
-        "art": "TODO_silhouette"
+        "art": "TODO_silhouette",
+        "spriteKey": "mine_spider"
       },
       {
         "id": "mine_creatures_3",
@@ -2260,7 +2280,8 @@
         "skills": [],
         "ranged": false,
         "isBoss": false,
-        "art": "TODO_silhouette"
+        "art": "TODO_silhouette",
+        "spriteKey": "mine_spider"
       },
       {
         "id": "mine_creatures_1_2",
@@ -2287,7 +2308,7 @@
         "ranged": true,
         "isBoss": false,
         "art": "TODO_silhouette",
-        "spriteKey": "mine_creatures_1"
+        "spriteKey": "mine_spider"
       }
     ],
     "backgroundKey": "battle_Mountain_battle",
@@ -2333,7 +2354,8 @@
         "art": "TODO_silhouette",
         "tags": [
           "forgotten"
-        ]
+        ],
+        "spriteKey": "mine_shade"
       },
       {
         "id": "mine_shades_2",
@@ -2364,7 +2386,8 @@
         "art": "TODO_silhouette",
         "tags": [
           "forgotten"
-        ]
+        ],
+        "spriteKey": "mine_shade"
       },
       {
         "id": "mine_shades_1_2",
@@ -2396,7 +2419,7 @@
         "tags": [
           "forgotten"
         ],
-        "spriteKey": "mine_shades_1"
+        "spriteKey": "mine_shade"
       }
     ],
     "backgroundKey": "battle_Mountain_battle",
@@ -2975,7 +2998,7 @@
         "tags": [
           "forgotten"
         ],
-        "spriteKey": "cloaks_patrol_1"
+        "spriteKey": "whisperer"
       }
     ],
     "backgroundKey": "battle_Winter_Forest",
@@ -3108,7 +3131,7 @@
         "tags": [
           "forgotten"
         ],
-        "spriteKey": "gast_boss_1"
+        "spriteKey": "whisperer"
       }
     ],
     "backgroundKey": "battle_Winter_Forest",
@@ -3154,7 +3177,8 @@
         "art": "TODO_silhouette",
         "tags": [
           "forgotten"
-        ]
+        ],
+        "spriteKey": "frontier_beast"
       },
       {
         "id": "frontier_beast_1_2",
@@ -3184,7 +3208,7 @@
         "tags": [
           "forgotten"
         ],
-        "spriteKey": "frontier_beast_1"
+        "spriteKey": "frontier_beast"
       },
       {
         "id": "frontier_beast_2",
@@ -3213,7 +3237,8 @@
         "art": "TODO_silhouette",
         "tags": [
           "forgotten"
-        ]
+        ],
+        "spriteKey": "whisperer"
       },
       {
         "id": "frontier_beast_1_3",
@@ -3438,7 +3463,7 @@
         "ranged": false,
         "isBoss": false,
         "art": "TODO_silhouette",
-        "spriteKey": "mountain_king_optional_1"
+        "spriteKey": "stone_guard"
       },
       {
         "id": "mountain_king_optional_2",
@@ -3464,7 +3489,8 @@
         "skills": [],
         "ranged": false,
         "isBoss": false,
-        "art": "TODO_silhouette"
+        "art": "TODO_silhouette",
+        "spriteKey": "stone_guard"
       }
     ],
     "backgroundKey": "battle_Mountain_battle",
@@ -3720,7 +3746,8 @@
         ],
         "ranged": true,
         "isBoss": true,
-        "art": "TODO_silhouette"
+        "art": "TODO_silhouette",
+        "spriteKey": "poludnitsa"
       }
     ],
     "backgroundKey": "battle_Village_battle1",
@@ -3806,7 +3833,8 @@
         ],
         "ranged": true,
         "isBoss": true,
-        "art": "TODO_silhouette"
+        "art": "TODO_silhouette",
+        "spriteKey": "leshy"
       },
       {
         "id": "leshy_1_2",
@@ -3901,7 +3929,8 @@
         ],
         "ranged": true,
         "isBoss": true,
-        "art": "TODO_silhouette"
+        "art": "TODO_silhouette",
+        "spriteKey": "likho"
       }
     ],
     "backgroundKey": "battle_Plane",
@@ -3944,7 +3973,8 @@
         ],
         "ranged": false,
         "isBoss": true,
-        "art": "TODO_silhouette"
+        "art": "TODO_silhouette",
+        "spriteKey": "troll_ugryum"
       }
     ],
     "backgroundKey": "battle_Mountain_battle",
@@ -3985,7 +4015,8 @@
         "skills": [],
         "ranged": false,
         "isBoss": false,
-        "art": "TODO_silhouette"
+        "art": "TODO_silhouette",
+        "spriteKey": "wolfolak"
       },
       {
         "id": "wolfolaks_2",
@@ -4011,7 +4042,8 @@
         "skills": [],
         "ranged": false,
         "isBoss": false,
-        "art": "TODO_silhouette"
+        "art": "TODO_silhouette",
+        "spriteKey": "wolfolak"
       },
       {
         "id": "wolfolaks_1_2",
@@ -4085,7 +4117,8 @@
         "art": "TODO_silhouette",
         "tags": [
           "forgotten"
-        ]
+        ],
+        "spriteKey": "moroz"
       },
       {
         "id": "moroz_1_2",
@@ -4115,7 +4148,7 @@
         "tags": [
           "forgotten"
         ],
-        "spriteKey": "moroz_1"
+        "spriteKey": "moroz"
       },
       {
         "id": "moroz_2",
@@ -4144,7 +4177,8 @@
         "art": "TODO_silhouette",
         "tags": [
           "forgotten"
-        ]
+        ],
+        "spriteKey": "whisperer"
       }
     ],
     "backgroundKey": "battle_Winter_Forest",

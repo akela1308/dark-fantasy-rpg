@@ -1,0 +1,1 @@
+{"slug": "likho", "anim": "hit", "base": "likho/k_battle.png", "body": 300, "segments": [{"clip": "likho/clips/hit_v1.mp4", "from": 0, "to": 95, "frames": 14}]}

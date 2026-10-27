@@ -1,0 +1,40 @@
+[
+ {
+  "name": "../../likho/clips/bidle",
+  "first": "../../likho/k_battle.png",
+  "last": "../../likho/k_battle.png",
+  "prompt": "Idle loop for the whole clip: the gaunt one-eyed creature stays in place hunched, breathes slowly, the single eye blinks once and looks around, long fingers twitch, rags sway. No steps, no turning. The last frame is exactly the same pose as the first. The creature keeps exactly the same body, the same single eye and the same limbs for the whole clip. No visual effects, no flashes, no trails.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../../likho/clips/attack",
+  "first": "../../likho/k_battle.png",
+  "last": "../../likho/k_battle.png",
+  "prompt": "One single attack to the right: the creature lunges forward to the right and rakes with its long bony claws, then recovers back into the same hunched stance. Slow motion, one single even movement. One strike only. The creature keeps exactly the same body, the same single eye and the same limbs for the whole clip. No visual effects, no flashes, no trails.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../../likho/clips/hit",
+  "first": "../../likho/k_battle.png",
+  "last": "../../likho/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. The creature keeps exactly the same body, the same single eye and the same limbs for the whole clip. No visual effects, no flashes, no trails.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../../likho/clips/death",
+  "first": "../../likho/k_battle.png",
+  "prompt": "Is fatally struck from the right: the creature staggers, the single eye closes, it falls to its knees and collapses onto the ground, lying still at the end of the clip. The creature keeps exactly the same body, the same single eye and the same limbs for the whole clip. No visual effects, no flashes, no trails.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../../likho/clips/victory",
+  "first": "../../likho/k_battle.png",
+  "prompt": "Victory: the creature straightens up, spreads its long arms and stares with its single eye, a wide lipless grin, then holds the pose still until the end. No steps. The creature keeps exactly the same body, the same single eye and the same limbs for the whole clip. No visual effects, no flashes, no trails.",
+  "sec": 4,
+  "n": 2
+ }
+]
