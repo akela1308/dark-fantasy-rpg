@@ -425,7 +425,9 @@
           "effects": {
             "setFlag": "taya_refused"
           },
-          "close": true
+          "close": true,
+          "confirm": "Тая останется в «Хромом Лосе» и с вами не пойдёт. Отказать ей?",
+          "style": "retreat"
         }
       ]
     },

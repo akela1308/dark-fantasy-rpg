@@ -167,7 +167,9 @@
             "dismiss": "companion_healer",
             "giveXp": "minor"
           },
-          "close": true
+          "close": true,
+          "confirm": "Тая не простит этого и уйдёт из отряда навсегда. Взять с деревни дань?",
+          "style": "threat"
         }
       ]
     },

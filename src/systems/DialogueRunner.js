@@ -99,10 +99,12 @@ export class DialogueRunner {
       const check = checkRequires(ch.requires, this.ws);
       return {
         label: ch.label,
-        style: ch.style || (ch.startBattle ? 'attack' : ch.close && !ch.next ? 'retreat' : 'default'),
+        // Серым только уход без последствий: согласие с эффектами («Идём.») остаётся золотым
+        style: ch.style || (ch.startBattle ? 'attack' : ch.close && !ch.next && !ch.effects ? 'retreat' : 'default'),
         disabled: !check.ok,
         reason: check.ok ? null : lockReason(ch, check),
-        onSelect: () => this._select(dlgId, ch),
+        // Необратимый выбор (поле confirm) сначала переспрашивает
+        onSelect: () => (ch.confirm ? this._confirm(dlgId, nodeId, ch) : this._select(dlgId, ch)),
       };
     });
     // Узел без вариантов: одна кнопка «Дальше» или закрыть
@@ -117,6 +119,21 @@ export class DialogueRunner {
       speakerNameLeft: 'Дуэлянт',
       text,
       choices,
+    });
+  }
+
+  _confirm(dlgId, nodeId, ch) {
+    const sp = DIALOGUES[dlgId]?.speakers?.[DIALOGUES[dlgId]?.nodes?.[nodeId]?.speaker] || {};
+    this.panel.show({
+      portraitLeft: HERO_PORTRAIT,
+      portraitRight: sp.portrait || null,
+      speakerName: sp.name || '',
+      speakerNameLeft: 'Дуэлянт',
+      text: ch.confirm,
+      choices: [
+        { label: `Да. ${ch.label}`, style: ch.style === 'attack' ? 'attack' : 'default', onSelect: () => this._select(dlgId, ch) },
+        { label: 'Нет, вернуться к разговору.', style: 'retreat', onSelect: () => this.show(dlgId, nodeId) },
+      ],
     });
   }
 

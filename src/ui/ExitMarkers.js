@@ -115,7 +115,7 @@ export class ExitMarkers {
     return this.items.find(it => it.hit.contains(x, y)) || null;
   }
 
-  /** Наведение: over — объекты под курсором (HUD перехватывает наведение). */
+  /** Наведение: over: объекты под курсором (HUD перехватывает наведение). */
   onPointerMove(ptr, over = []) {
     const onUi = over.some(o => o.scrollFactorX === 0);
     const it = onUi ? null : this.exitAt(ptr.worldX, ptr.worldY);

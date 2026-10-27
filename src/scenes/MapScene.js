@@ -26,7 +26,8 @@ import { WorldState } from '../systems/WorldState.js';
 import { DialogueRunner } from '../systems/DialogueRunner.js';
 import { MapEncounters } from '../systems/MapEncounters.js';
 import { checkRequires } from '../systems/DialogueConditions.js';
-import { journal, outcomesSeen } from '../systems/QuestLog.js';
+import { JournalWindow } from '../ui/JournalWindow.js';
+import { Frame } from '../ui/Frame.js';
 import { repLines } from '../systems/Reputation.js';
 import { Sfx } from '../systems/Sfx.js';
 import traitsData from '../data/commanderTraits.json';
@@ -1346,55 +1347,18 @@ export class MapScene extends Phaser.Scene {
     };
   }
 
-  /** Журнал квестов: текущий этап каждого открытого квеста (без нового арта). */
   /** Клик по HUD, окну или во время перехода не двигает героя. */
   _uiBlocksMapClick(over) {
-    if (this._transitioning || this._bookOverlay || this._journalObjs || this._charSheetOpen) return true;
+    if (this._transitioning || this._bookOverlay || this._journalObjs || this._charSheetOpen || Frame.current(this)) return true;
     if (this._dialogue?.active) return true;
     // Всё, что приколото к экрану (HUD, плеер, окна), перехватывает клик
     return over.some(o => o.scrollFactorX === 0);
   }
 
   _toggleJournal() {
-    if (!this._journalObjs && this._charSheetOpen) this._hideCharSheet();   // одно окно за раз
-    if (this._journalObjs) {
-      this._journalObjs.forEach(o => o.destroy());
-      this._journalObjs = null;
-      return;
-    }
-    const z = this.cameras.main.zoom;
-    const sx = v => v / z;
-    const D = 9800;
-    const entries = journal(this._ws);
-    const active = entries.filter(e => e.status === 'active');
-    const done = entries.filter(e => e.status === 'done');
-    const lines = [];
-    active.forEach(e => {
-      lines.push(`◆ ${e.quest.name}`);
-      if (e.stage) lines.push(`    ${e.stage.text}`);
-    });
-    if (!active.length) lines.push('Открытых заданий нет.');
-    if (done.length) {
-      lines.push('', 'Завершено:');
-      done.forEach(e => {
-        const out = outcomesSeen(e.quest, this._ws);
-        lines.push(`✓ ${e.quest.name}${out.length ? `: ${out[0]}` : ''}`);
-      });
-    }
-    const bg = this.add.rectangle(sx(640), sx(330), sx(760), sx(540), 0x07060a, 0.95)
-      .setStrokeStyle(sx(2), 0xd4a832, 0.8).setDepth(D).setScrollFactor(0).setInteractive();
-    const title = this.add.text(sx(640), sx(80), 'ЖУРНАЛ', {
-      fontFamily: 'serif', fontSize: `${sx(22)}px`, color: '#d4a832',
-    }).setOrigin(0.5, 0).setDepth(D + 1).setScrollFactor(0);
-    const body = this.add.text(sx(280), sx(120), lines.join('\n'), {
-      fontFamily: 'serif', fontSize: `${sx(13)}px`, color: '#D8D0BC', lineSpacing: sx(4),
-      wordWrap: { width: sx(720), useAdvancedWrap: true },
-    }).setDepth(D + 1).setScrollFactor(0);
-    const hint = this.add.text(sx(640), sx(585), 'клик, чтобы закрыть', {
-      fontFamily: 'serif', fontSize: `${sx(11)}px`, color: '#777063',
-    }).setOrigin(0.5).setDepth(D + 1).setScrollFactor(0);
-    bg.on('pointerdown', () => this._toggleJournal());
-    this._journalObjs = [bg, title, body, hint];
+    if (this._journalObjs && !this._journalObjs.closed) { this._journalObjs.close(); return; }
+    if (this._charSheetOpen) this._hideCharSheet();   // одно окно за раз
+    this._journalObjs = new JournalWindow(this, this._ws, { onClose: () => { this._journalObjs = null; } });
   }
 
   /** Предметы из WorldState (квестовые, 06_КВЕСТЫ 8) в инвентарь. */
@@ -2572,7 +2536,7 @@ export class MapScene extends Phaser.Scene {
   }
 
   _showCharSheet(idx = 0) {
-    if (this._journalObjs) this._toggleJournal();   // одно окно за раз
+    if (this._journalObjs) this._journalObjs.close();   // одно окно за раз
     this._charSheetOpen = true;
     // Синхронизируем золото из реестра при каждом открытии
     const gold = this.game.registry.get('playerGold') ?? 0;

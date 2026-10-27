@@ -102,7 +102,7 @@
       "text": "«Со мной просто. Я иду впереди, ты говоришь, куда. Платить не надо, мне уже заплатили, я должен отходить эти деньги до поста. Там и разойдёмся, если захочешь.»",
       "choices": [
         { "label": "«Идём.»", "effects": { "setFlag": ["wornag_recruited", "recruit_vornag"], "rep": { "word": 1 }, "recruit": "companion_brawler" }, "close": true },
-        { "label": "«Мне не нужен человек с чужим долгом.»", "effects": { "setFlag": "wornag_refused" }, "close": true },
+        { "label": "«Мне не нужен человек с чужим долгом.»", "effects": { "setFlag": "wornag_refused" }, "close": true, "style": "retreat", "confirm": "Ворнаг уйдёт своей дорогой и с вами сейчас не пойдёт. Отказать ему?" },
         { "label": "«Сначала скажи, почему не пошёл за ними.»", "next": "v_why" }
       ]
     },

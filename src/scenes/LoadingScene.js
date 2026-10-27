@@ -3,6 +3,7 @@ import MAP_CONFIGS from '../data/maps.json';
 import { loadSheetOnce } from '../utils/loadOnce.js';
 import { Sfx } from '../systems/Sfx.js';
 import { PartySystem } from '../systems/PartySystem.js';
+import { DIALOGUES } from '../systems/DialogueRunner.js';
 
 /**
  * LoadingScene - экран загрузки с картинкой по центру и прогресс баром.
@@ -57,7 +58,8 @@ export class LoadingScene extends Phaser.Scene {
     });
 
     // Хелпер: загружаем только если ещё нет в кэше
-    const img  = (key, path) => { if (!this.textures.exists(key))   this.load.image(key, path); };
+    const queued = new Set();
+    const img  = (key, path) => { if (!this.textures.exists(key) && !queued.has(key)) { queued.add(key); this.load.image(key, path); } };
     const sheet = (key, path, cfg) => { if (!this.textures.exists(key)) this.load.spritesheet(key, path, cfg); };
 
     // Спрайты (бой)
@@ -80,6 +82,7 @@ export class LoadingScene extends Phaser.Scene {
     img('skill_button',         'ui/skill_button.png');
     img('hp_bar_frame',         'ui/hp_bar_frame.png');
     img('panel_frame',          'ui/panel_frame.png');
+    img('frame_gothic',         'ui/frame_gothic_v1.png');
     img('character_sheet_bg',   'ui/character_sheet_bg.png');
     img('map_menu_button',      'ui/map_menu_button.png');
     img('bottom_panel',         'ui/bottom_panel.png');
@@ -195,6 +198,14 @@ export class LoadingScene extends Phaser.Scene {
     img('portrait_guard',             'portraits/guard.png');
     img('portrait_archer_guard',      'portraits/archer_guard.png');
     img('portrait_recruit',           'portraits/recruit.png');
+    // Портреты собеседников из диалогов и NPC карт, если файл есть (portrait_agna и др.)
+    const used = new Set();
+    Object.values(DIALOGUES).forEach(d => Object.values(d.speakers || {}).forEach(sp => sp.portrait && used.add(sp.portrait)));
+    Object.values(MAP_CONFIGS).forEach(m => (m.npcs || []).forEach(n => n.portraitKey && used.add(n.portraitKey)));
+    used.forEach(key => {
+      const file = key.replace(/^portrait_/, '');
+      if (typeof __PORTRAITS__ === 'undefined' || __PORTRAITS__.includes(file)) img(key, `portraits/${file}.png`);
+    });
 
     // Звуковые эффекты (src/data/sfx.json)
     Sfx.preload(this);
