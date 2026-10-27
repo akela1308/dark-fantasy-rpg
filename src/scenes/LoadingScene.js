@@ -4,11 +4,42 @@ import { loadSheetOnce } from '../utils/loadOnce.js';
 import { Sfx } from '../systems/Sfx.js';
 import { PartySystem } from '../systems/PartySystem.js';
 import { DIALOGUES } from '../systems/DialogueRunner.js';
+import MAP_ANIMS from '../data/map_animations.json';
+import BATTLE_ANIM_DATA from '../data/animations.json';
+import unitsList from '../data/units.json';
 
 /**
  * LoadingScene - экран загрузки с картинкой по центру и прогресс баром.
  */
 export class LoadingScene extends Phaser.Scene {
+  /**
+   * Видеопамять (этап 8): по пути на карту выгружаем листы анимаций NPC других карт и боевые листы врагов
+   * прошедшего боя (у отряда листы остаются, они нужны в каждом бою). Вместе с текстурой убирается анимация.
+   */
+  _unloadSheets(destMap) {
+    const keep = new Set();
+    (destMap.npcs || []).forEach(n => {
+      const c = MAP_ANIMS[n.spriteKey];
+      if (c) [c.idle, ...(c.ambient || [])].forEach(a => a && keep.add(a.key));
+    });
+    const drop = new Set();
+    Object.values(MAP_ANIMS).forEach(c => [c.idle, ...(c.ambient || [])].forEach(a => { if (a && !keep.has(a.key)) drop.add(a.key); }));
+    const party = new Set(PartySystem.getParty(this.game.registry));
+    const partyKeys = new Set(unitsList.filter(u => party.has(u.id)).flatMap(u => [u.id, u.spriteKey]).filter(Boolean));
+    Object.entries(BATTLE_ANIM_DATA).forEach(([id, c]) => {
+      if (partyKeys.has(id)) return;
+      Object.values(c.anims || {}).forEach(a => drop.add(a.key));
+    });
+    let n = 0;
+    drop.forEach(k => {
+      if (!this.textures.exists(k)) return;
+      if (this.anims.exists(k)) this.anims.remove(k);
+      this.textures.remove(k);
+      n++;
+    });
+    if (n && import.meta.env.DEV) console.log(`[LoadingScene] выгружено листов: ${n}`);
+  }
+
   constructor() {
     super({ key: 'LoadingScene' });
   }
@@ -110,6 +141,7 @@ export class LoadingScene extends Phaser.Scene {
         if (cfg === destMap) return;
         [cfg.bgKey, cfg.image && `img:${cfg.image}`].forEach(k => { if (k && this.textures.exists(k)) this.textures.remove(k); });
       });
+      this._unloadSheets(destMap);
       if (OLD_MAP_IMAGES[destMap.bgKey]) img(destMap.bgKey, OLD_MAP_IMAGES[destMap.bgKey]);
       // Карты из maps.json с полем image (новые локации и временная картинка): ключ img:<путь>
       if (destMap.image && !OLD_MAP_IMAGES[destMap.bgKey] && !this.textures.exists(destMap.bgKey)) img(`img:${destMap.image}`, destMap.image);

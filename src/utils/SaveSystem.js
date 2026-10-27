@@ -120,6 +120,27 @@ export const SaveSystem = {
     }
   },
 
+  /**
+   * Метка «идёт бой» (этап 8): в Железе выход из боя через F5 или закрытие вкладки засчитывается как поражение.
+   * Ставится при входе в бой, снимается при любом исходе.
+   */
+  markBattle(battleId) {
+    try {
+      const save = this.load();
+      if (!save) return;
+      if (battleId) save.inBattle = battleId; else delete save.inBattle;
+      write(keys().SAVE_KEY, save);
+    } catch (e) {}
+  },
+
+  /** Железо: сохранение с меткой незаконченного боя означает поражение; true, если сохранение стёрто. */
+  resolveAbandonedBattle() {
+    const save = this.load();
+    if (save?.inBattle && save.mode === 'iron') { this.deleteSave(); return true; }
+    if (save?.inBattle) this.markBattle(null);
+    return false;
+  },
+
   /** Записать готовый объект сохранения в текущий слот. */
   writeRaw(save) { write(keys().SAVE_KEY, save); },
 

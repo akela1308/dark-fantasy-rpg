@@ -20,6 +20,8 @@ export class BootScene extends Phaser.Scene {
     // Сцена переиспользуется (после смерти в Железе титул открывается снова)
     this._starting = false;
     applySavedVolume(this.game);
+    // Железо: бой, брошенный через F5 или закрытие вкладки, засчитан как поражение
+    const abandoned = SaveSystem.resolveAbandonedBattle();
     const W = 1280, H = 720;
     const cx = W / 2, cy = H / 2;
 
@@ -147,6 +149,11 @@ export class BootScene extends Phaser.Scene {
       t.on('pointerdown', () => { SaveSystem.setSlot(n); this.scene.restart(); });
       menu.push(t);
     });
+    if (abandoned) {
+      menu.push(this.add.text(cx, 530, 'Бой был брошен. В режиме Железо это поражение: сохранение стёрто.', {
+        fontFamily: FONT, fontSize: '14px', color: '#e06060', stroke: '#000', strokeThickness: 3,
+      }).setOrigin(0.5));
+    }
     fadeMenu(menu);
 
     this.input.keyboard.on('keydown-ENTER', () => { if (this.time.now > 1800 && !Frame.current(this)) this._enter?.(); });

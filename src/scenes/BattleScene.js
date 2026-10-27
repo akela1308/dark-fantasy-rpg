@@ -107,12 +107,11 @@ export class BattleScene extends Phaser.Scene {
   }
 
   preload() {
-    if (HAS_BG) this.load.image('battle_bg', 'battle_bg.png');
+    this._loadingScreen();
+    const img = (key, path) => { if (!this.textures.exists(key)) this.load.image(key, path); };
     if (this._battleConfig?.backgroundKey && this._battleConfig?.backgroundPath) {
-      this.load.image(this._battleConfig.backgroundKey, this._battleConfig.backgroundPath);
-    }
-    SPRITE_IDS.forEach(id => this.load.image(id, `sprites/${id}.png`));
-    SPRITE_IDS.forEach(id => this.load.image(`portrait_${id}`, `portraits/${id}.png`));
+      img(this._battleConfig.backgroundKey, this._battleConfig.backgroundPath);
+    } else if (HAS_BG) img('battle_bg', 'battle_bg.png');
     // Покадровые анимации: только для тех, кто участвует в этом бою
     const enemySource = [
       ...(this._battleConfig?.enemies || enemiesData),
@@ -123,16 +122,45 @@ export class BattleScene extends Phaser.Scene {
     const partyData = unitsData.filter(u => party.includes(u.id));
     this._animUnitIds = [...partyData, ...enemySource].flatMap(u => [u.id, u.spriteKey]).filter(Boolean);
     loadBattleAnimSheets(this, this._animUnitIds);
-    // Портреты участников по spriteKey (у тварей бестиария id вида hamlet_dogs_2, а портрет по spriteKey)
-    [...unitsData, ...enemySource].forEach(u => {
+    // Статичные спрайты (запасной вид без анимации) и портреты: только участники этого боя
+    const ids = new Set(this._animUnitIds);
+    SPRITE_IDS.filter(id => ids.has(id)).forEach(id => img(id, `sprites/${id}.png`));
+    [...partyData, ...enemySource].forEach(u => {
       const pk = u.spriteKey ?? u.id;
-      if (!this.textures.exists(`portrait_${pk}`) && HAS_PORTRAIT(pk)) this.load.image(`portrait_${pk}`, `portraits/${pk}.png`);
+      if (HAS_PORTRAIT(pk)) img(`portrait_${pk}`, `portraits/${pk}.png`);
     });
-    // Ассеты загружены в LoadingScene - здесь ничего не грузим
+  }
+
+  /** Заставка на время загрузки листов боя: тёмный фон, название боя, полоса прогресса. */
+  _loadingScreen() {
+    const objs = [
+      this.add.rectangle(640, 360, 1280, 720, 0x0a0a0f, 1).setDepth(5000),
+      this.add.text(640, 320, this._battleConfig?.name || 'Бой', {
+        fontFamily: 'Georgia, "Times New Roman", serif', fontSize: '26px', color: '#d4a832', letterSpacing: 3,
+      }).setOrigin(0.5).setDepth(5001),
+      this.add.rectangle(640, 372, 420, 6, 0x2a2114, 1).setDepth(5001),
+    ];
+    const bar = this.add.rectangle(430, 372, 0, 6, 0xd4a832, 1).setOrigin(0, 0.5).setDepth(5002);
+    const hint = this.add.text(640, 400, 'Отряд готовится к бою', {
+      fontFamily: 'Georgia, "Times New Roman", serif', fontSize: '14px', color: '#888877',
+    }).setOrigin(0.5).setDepth(5001);
+    objs.push(bar, hint);
+    this._loadObjs = objs;
+    // Обработчик снимается вместе с заставкой: загрузчик сцены переживает перезапуск боя
+    const onProgress = v => { if (bar.active) bar.setSize(420 * v, 6); };
+    this.load.on('progress', onProgress);
+    this._offLoadProgress = () => this.load.off('progress', onProgress);
+    this.events.once('shutdown', () => this._offLoadProgress?.());
   }
 
   create() {
+    // Заставка загрузки уходит, когда сцена готова (если грузить было нечего, событие загрузчика не приходит)
+    this._offLoadProgress?.();
+    (this._loadObjs || []).forEach(o => o.destroy());
+    this._loadObjs = null;
     eventBus.clear();
+    // Железо: выход из боя через F5 засчитывается как поражение (метку снимает любое сохранение после боя)
+    SaveSystem.markBattle(this._battleId);
     this._initSystems();
     this._initUnits();
     this._drawBg();
