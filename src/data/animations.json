@@ -2678,7 +2678,7 @@
  "swamp_beast": {
   "anims": {
    "attack": {
-    "file": "sprites/battle/swamp_beast_attack_v1_s60.webp",
+    "file": "sprites/battle/swamp_beast_attack_v2_s60.webp",
     "frameWidth": 323,
     "frameHeight": 200,
     "frames": 29,
@@ -2686,8 +2686,8 @@
     "originX": 0.557,
     "originY": 0.9748,
     "bodyHeight": 179.8,
-    "key": "swamp_beast_attack_v1_s60",
-    "hitFrame": 10
+    "key": "swamp_beast_attack_v2_s60",
+    "hitFrame": 4
    },
    "death": {
     "file": "sprites/battle/swamp_beast_death_v2_s60.webp",

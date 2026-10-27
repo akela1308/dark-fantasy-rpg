@@ -52,6 +52,15 @@ const config = {
 // Десктоп (Tauri): сохранения поднимаются из файлов до старта игры
 Store.init().finally(() => {
   const game = new Phaser.Game(config);
+  // Во весь экран: если окно чуть шире или выше 16:9 (до 12%), игра заполняет его целиком и срезает края
+  // (ENVELOP); при сильно другой форме окна вписывается целиком (FIT), полосы закрывает размытый фон
+  const fitMode = () => {
+    const r = window.innerWidth / window.innerHeight, base = GAME_WIDTH / GAME_HEIGHT;
+    const mode = Math.abs(r / base - 1) <= 0.12 ? Phaser.Scale.ENVELOP : Phaser.Scale.FIT;
+    if (game.scale.scaleMode !== mode) { game.scale.scaleMode = mode; game.scale.refresh(); }
+  };
+  game.events.once('ready', fitMode);
+  window.addEventListener('resize', () => setTimeout(fitMode, 50));
   // Только в dev: доступ к игре из консоли браузера для отладки
   if (import.meta.env.DEV) window.__game = game;
 });
