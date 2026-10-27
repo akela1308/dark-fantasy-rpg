@@ -1,1 +1,1 @@
-{"frameWidth": 480, "frameHeight": 304, "frames": 95, "fps": 24, "cols": 8, "originX": 0.4271, "originY": 0.979, "bodyHeight": 300, "file": "sprites/battle/agna_idle_v1.webp", "hitFrame": null, "hold": false, "loop": true}
+{"frameWidth": 480, "frameHeight": 304, "frames": 95, "fps": 24, "cols": 8, "originX": 0.4271, "originY": 0.979, "bodyHeight": 275.5, "file": "sprites/battle/agna_idle_v1.webp", "hitFrame": null, "hold": false, "loop": true, "bodyFixed": true}

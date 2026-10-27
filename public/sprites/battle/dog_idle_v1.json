@@ -1,1 +1,1 @@
-{"frameWidth": 510, "frameHeight": 314, "frames": 83, "fps": 24, "cols": 8, "originX": 0.4607, "originY": 0.9762, "bodyHeight": 300, "file": "sprites/battle/dog_idle_v1.webp", "hitFrame": null, "hold": false, "loop": true}
+{"frameWidth": 510, "frameHeight": 314, "frames": 83, "fps": 24, "cols": 8, "originX": 0.4607, "originY": 0.9762, "bodyHeight": 275.4, "file": "sprites/battle/dog_idle_v1.webp", "hitFrame": null, "hold": false, "loop": true, "bodyFixed": true}

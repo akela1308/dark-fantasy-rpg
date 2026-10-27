@@ -1,1 +1,1 @@
-{"frameWidth": 508, "frameHeight": 317, "frames": 95, "fps": 24, "cols": 8, "originX": 0.4602, "originY": 0.9749, "bodyHeight": 300, "file": "sprites/battle/guard_idle_v1.webp", "hitFrame": null, "hold": false, "loop": true}
+{"frameWidth": 508, "frameHeight": 317, "frames": 95, "fps": 24, "cols": 8, "originX": 0.4602, "originY": 0.9749, "bodyHeight": 275.7, "file": "sprites/battle/guard_idle_v1.webp", "hitFrame": null, "hold": false, "loop": true, "bodyFixed": true}

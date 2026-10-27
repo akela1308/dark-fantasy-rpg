@@ -6,6 +6,7 @@ import { BattleGrid }   from '../systems/BattleGrid.js';
 import { UIManager }    from '../ui/UIManager.js';
 import { MusicPlayer }    from '../ui/MusicPlayer.js';
 import { PortraitPanel, HAS_PORTRAIT } from '../ui/PortraitPanel.js';
+import { battleBodyPx } from '../systems/UnitHeights.js';
 import { COLORS, XP, AI_DELAY } from '../utils/constants.js';
 import eventBus from '../utils/eventBus.js';
 
@@ -288,20 +289,9 @@ export class BattleScene extends Phaser.Scene {
         ease: 'Sine.easeInOut',
       });
 
-      // Индивидуальные коэффициенты масштаба спрайтов
-      // Пропорции: база=160px (знахарка/арбалетчик - эталон)
-      // Женщины: 0.90 / Герой: чуть выше знахарки / Боец: крупнее героя
-      const SPRITE_SCALE = {
-        companion_healer:  0.90, // женщина - эталон
-        bandit_archer:     0.88, // женщина - чуть меньше
-        hero_duelist:      0.97, // чуть выше знахарки
-        bandit_commander:  0.97, // командир - обычный размер
-        bandit_brawler:    1.06, // крупнее, но не гигант
-        companion_brawler: 1.09, // самый крупный из игроков
-        kikimora:          1.14,
-        swamp_knight:      1.06,
-        swamp_elf_battle:  0.88,
-      };
+      // Рост фигуры по реальному росту существа (src/data/heights.json), задний ряд чуть меньше
+      const bodyPx = battleBodyPx(unit);
+      unit._bodyPx = bodyPx;
 
       // Спрайт или прямоугольник (spriteKey позволяет тест-юнитам использовать чужой спрайт)
       let sprite;
@@ -313,28 +303,29 @@ export class BattleScene extends Phaser.Scene {
       if (animated) {
         // Покадровый спрайт (смотрит вправо, без flipX) переживает перерисовку,
         // иначе анимация обрывалась бы после каждого хода.
-        const targetH = h * (SPRITE_SCALE[unit.id] ?? 1) * 0.94;
-        sprite = this._ensureAnimSprite(unit, animCfg, targetH / (animCfg.anims.idle.bodyHeight ?? animCfg.bodyHeight));
+        sprite = this._ensureAnimSprite(unit, animCfg, bodyPx / (animCfg.anims.idle.bodyHeight ?? animCfg.bodyHeight));
+        sprite._bodyPx = bodyPx;
         sprite.setPosition(x, y).setDepth(rowDepth);
       } else if (hasSprite) {
         sprite = this.add.image(x, y, spriteKey).setOrigin(0.5, 1).setDepth(rowDepth);
-        const unitScale = SPRITE_SCALE[unit.id] ?? SPRITE_SCALE[spriteKey] ?? 1;
-        const targetH = h * unitScale;  // isBoss не влияет на визуальный размер
         const ratio = sprite.width / sprite.height;
-        sprite.setDisplaySize(targetH * ratio, targetH);
+        sprite.setDisplaySize(bodyPx * ratio, bodyPx);
         // Враги смотрят влево, дуэлянт смотрит вправо (лицом к врагам)
         if (unit.type === 'enemy') sprite.setFlipX(true);
         if (unit.id === 'hero_duelist') sprite.setFlipX(true);
       } else {
-        const w = unit.isBoss ? 90 : 65;
-        sprite = this.add.rectangle(x, y, w, h * 0.85, unit.color, 1)
+        const w = Phaser.Math.Clamp(bodyPx * 0.42, 40, 110);
+        // Заглушка без рисунка: тёмный силуэт нужного роста (у врагов из battles.json цвета нет)
+        sprite = this.add.rectangle(x, y, w, bodyPx, unit.color ?? 0x3a3a42, 1)
+          .setStrokeStyle(2, 0x6a6a72, 0.9)
           .setOrigin(0.5, 1);
       }
 
       // HP-бар над спрайтом
-      const barW     = hasSprite ? Math.min(sprite.displayWidth * 1.1, 80) : 60;
+      // Над головой фигуры (а не над краем кадра листа): зазор одинаковый у всех
+      const barW     = Phaser.Math.Clamp(bodyPx * 0.5, 44, 80);
       const barH     = 5;
-      const spriteTop = hasSprite ? (y - sprite.displayHeight) : (y - h * 0.85);
+      const spriteTop = y - bodyPx;
       const barY     = spriteTop - 6;
       const pct      = Math.max(0, unit.hp / unit.maxHp);
       const barColor = pct > 0.5 ? 0x44CC44 : pct > 0.25 ? 0xCCAA00 : 0xCC2222;
@@ -370,7 +361,7 @@ export class BattleScene extends Phaser.Scene {
       unit._sprite  = sprite;
       unit._hpText  = null;
       unit._spriteX = x;
-      unit._spriteY = y - h / 2; // центр для анимаций
+      unit._spriteY = y - bodyPx / 2; // центр фигуры для анимаций и цифр урона
     });
 
     this.ui.update();
@@ -458,6 +449,8 @@ export class BattleScene extends Phaser.Scene {
     spr.off('animationupdate');
     spr.off('animationcomplete');
     spr.setOrigin(...animOrigin(cfg, a, spr.flipX));
+    // Листы упакованы в разном масштабе: рост фигуры держим постоянным на каждой анимации
+    if (spr._bodyPx && a.bodyHeight) spr.setScale(spr._bodyPx / a.bodyHeight);
     spr.play(a.key);
     spr.on('animationupdate', onUpdate);
     spr.once('animationcomplete', () => {
@@ -478,6 +471,7 @@ export class BattleScene extends Phaser.Scene {
       .setOrigin(spr.originX, spr.originY).setScale(spr.scaleX).setFlipX(spr.flipX).setDepth(spr.depth + 0.1);
     this.tweens.add({ targets: ghost, alpha: 0, duration: 180, onComplete: () => ghost.destroy() });
     spr.setOrigin(...animOrigin(cfg, cfg.anims.idle, spr.flipX));
+    if (spr._bodyPx && cfg.anims.idle.bodyHeight) spr.setScale(spr._bodyPx / cfg.anims.idle.bodyHeight);
     spr.play({ key: cfg.anims.idle.key, startFrame: 0 });
   }
 

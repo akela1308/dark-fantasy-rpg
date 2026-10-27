@@ -315,7 +315,7 @@ export class UIManager {
       // Draw glow ring around active unit using graphics
       const x = unit._sprite.x;
       const y = unit._sprite.y;
-      const w = unit._sprite.displayWidth || 80;
+      const w = unit._bodyPx ? Math.max(70, unit._bodyPx * 0.6) : (unit._sprite.displayWidth || 80);   // по фигуре, а не по кадру листа
       const color = unit.type === 'player' ? 0x00FF88 : 0xFF3322;
       const gfx = this.scene.add.graphics().setDepth(1);
       gfx.lineStyle(3, color, 0.9);

@@ -1,1 +1,1 @@
-{"frameWidth": 505, "frameHeight": 300, "frames": 95, "fps": 24, "cols": 8, "originX": 0.4546, "originY": 0.976, "bodyHeight": 300, "file": "sprites/battle/vurdalak_idle_v1.webp", "hitFrame": null, "hold": false, "loop": true}
+{"frameWidth": 505, "frameHeight": 300, "frames": 95, "fps": 24, "cols": 8, "originX": 0.4546, "originY": 0.976, "bodyHeight": 275.2, "file": "sprites/battle/vurdalak_idle_v1.webp", "hitFrame": null, "hold": false, "loop": true, "bodyFixed": true}

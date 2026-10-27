@@ -160,7 +160,9 @@ def main(spec):
     sheet.save(dst, "WEBP", quality=88, method=5)
     meta = dict(frameWidth=W, frameHeight=H, frames=len(out), fps=spec.get("fps", 24), cols=cols,
                 originX=round((bx["feet_x"] - x0) * s / W, 4), originY=round((bx["feet_y"] - y0) * s / H, 4),
-                bodyHeight=spec.get("body", 300), file=f"{sub}/{name}.webp",
+                # кадры могли ужаться, чтобы лист влез в 4096: рост фигуры в px уменьшается вместе с ними
+                bodyHeight=round(spec.get("body", 300) * s / (spec.get("body", 300) / bx["body"]), 1), bodyFixed=True,
+                file=f"{sub}/{name}.webp",
                 hitFrame=spec.get("hit"), hold=spec.get("hold", False), loop=bool(spec.get("loop")))
     json.dump(meta, open(os.path.join(PUB, sub, name + ".json"), "w"))
     if spec.get("hit") == "auto":

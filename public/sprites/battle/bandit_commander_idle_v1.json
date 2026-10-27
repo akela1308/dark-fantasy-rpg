@@ -1,1 +1,1 @@
-{"frameWidth": 475, "frameHeight": 309, "frames": 95, "fps": 24, "cols": 8, "originX": 0.4208, "originY": 0.9739, "bodyHeight": 300, "file": "sprites/battle/bandit_commander_idle_v1.webp", "hitFrame": null, "hold": false, "loop": true}
+{"frameWidth": 475, "frameHeight": 309, "frames": 95, "fps": 24, "cols": 8, "originX": 0.4208, "originY": 0.9739, "bodyHeight": 275.9, "file": "sprites/battle/bandit_commander_idle_v1.webp", "hitFrame": null, "hold": false, "loop": true, "bodyFixed": true}

@@ -122,7 +122,7 @@
     "fps": 24,
     "originX": 0.4271,
     "originY": 0.979,
-    "bodyHeight": 300,
+    "bodyHeight": 275.5,
     "key": "agna_idle_v1",
     "loop": true
    },
@@ -244,7 +244,7 @@
     "fps": 24,
     "originX": 0.4278,
     "originY": 0.9885,
-    "bodyHeight": 300,
+    "bodyHeight": 275.2,
     "key": "assassin_idle_v1",
     "loop": true
    },
@@ -589,7 +589,7 @@
     "fps": 24,
     "originX": 0.4208,
     "originY": 0.9739,
-    "bodyHeight": 300,
+    "bodyHeight": 275.9,
     "key": "bandit_commander_idle_v1",
     "loop": true
    },
@@ -668,7 +668,7 @@
     "fps": 24,
     "originX": 0.487,
     "originY": 0.9833,
-    "bodyHeight": 300,
+    "bodyHeight": 275.4,
     "key": "boar_idle_v1",
     "loop": true
    },
@@ -757,7 +757,7 @@
     "fps": 24,
     "originX": 0.4406,
     "originY": 0.9751,
-    "bodyHeight": 300,
+    "bodyHeight": 275.5,
     "key": "brawler_idle_v1",
     "loop": true
    },
@@ -837,7 +837,7 @@
     "fps": 24,
     "originX": 0.4432,
     "originY": 0.9722,
-    "bodyHeight": 300,
+    "bodyHeight": 275.7,
     "key": "cleaning_girl_idle_v1",
     "loop": true
    },
@@ -904,7 +904,7 @@
     "fps": 24,
     "originX": 0.4607,
     "originY": 0.9762,
-    "bodyHeight": 300,
+    "bodyHeight": 275.4,
     "key": "dog_idle_v1",
     "loop": true
    },
@@ -959,7 +959,7 @@
     "fps": 24,
     "originX": 0.4605,
     "originY": 0.9715,
-    "bodyHeight": 300,
+    "bodyHeight": 275.5,
     "key": "drowned_idle_v1",
     "loop": true
    },
@@ -1024,7 +1024,7 @@
     "fps": 24,
     "originX": 0.4211,
     "originY": 0.9747,
-    "bodyHeight": 300,
+    "bodyHeight": 275.7,
     "key": "drunkman_idle_v1",
     "loop": true
    },
@@ -1222,7 +1222,7 @@
     "fps": 24,
     "originX": 0.4493,
     "originY": 0.9734,
-    "bodyHeight": 300,
+    "bodyHeight": 275.5,
     "key": "dwarf_idle_v1",
     "loop": true
    },
@@ -1301,7 +1301,7 @@
     "fps": 24,
     "originX": 0.4342,
     "originY": 0.9771,
-    "bodyHeight": 300,
+    "bodyHeight": 275.3,
     "key": "dwarf_beer1_idle_v1",
     "loop": true
    },
@@ -1368,7 +1368,7 @@
     "fps": 24,
     "originX": 0.4385,
     "originY": 0.9744,
-    "bodyHeight": 300,
+    "bodyHeight": 275.6,
     "key": "dwarf_beer2_idle_v1",
     "loop": true
    },
@@ -1435,7 +1435,7 @@
     "fps": 24,
     "originX": 0.4342,
     "originY": 0.9919,
-    "bodyHeight": 300,
+    "bodyHeight": 275.3,
     "key": "dwarf_beer3_idle_v1",
     "loop": true
    },
@@ -1524,7 +1524,7 @@
     "fps": 24,
     "originX": 0.4612,
     "originY": 0.9719,
-    "bodyHeight": 300,
+    "bodyHeight": 275.6,
     "key": "forest_bear_idle_v1",
     "loop": true
    },
@@ -1591,7 +1591,7 @@
     "fps": 24,
     "originX": 0.5855,
     "originY": 0.9725,
-    "bodyHeight": 300,
+    "bodyHeight": 253.1,
     "key": "grey_wolf_idle_v1",
     "loop": true
    },
@@ -1658,7 +1658,7 @@
     "fps": 24,
     "originX": 0.4602,
     "originY": 0.9749,
-    "bodyHeight": 300,
+    "bodyHeight": 275.7,
     "key": "guard_idle_v1",
     "loop": true
    },
@@ -1771,7 +1771,7 @@
     "fps": 24,
     "originX": 0.4725,
     "originY": 0.9711,
-    "bodyHeight": 300,
+    "bodyHeight": 275.6,
     "key": "healer_idle_v1",
     "loop": true
    },
@@ -1950,7 +1950,7 @@
     "fps": 24,
     "originX": 0.3586,
     "originY": 0.9837,
-    "bodyHeight": 300,
+    "bodyHeight": 275.5,
     "key": "kikimora_idle_v1",
     "loop": true
    },
@@ -2003,7 +2003,7 @@
     "fps": 24,
     "originX": 0.4532,
     "originY": 0.9706,
-    "bodyHeight": 300,
+    "bodyHeight": 275.7,
     "key": "kobold_idle_v1",
     "loop": true
    }
@@ -2149,7 +2149,7 @@
     "fps": 24,
     "originX": 0.4609,
     "originY": 0.9744,
-    "bodyHeight": 300,
+    "bodyHeight": 275.4,
     "key": "mavka_idle_v1",
     "loop": true
    },
@@ -2428,7 +2428,7 @@
     "fps": 24,
     "originX": 0.4396,
     "originY": 0.9738,
-    "bodyHeight": 300,
+    "bodyHeight": 276.0,
     "key": "ryzh_idle_v1",
     "loop": true
    },
@@ -2495,7 +2495,7 @@
     "fps": 24,
     "originX": 0.4437,
     "originY": 0.9751,
-    "bodyHeight": 300,
+    "bodyHeight": 275.7,
     "key": "shield_idle_v1",
     "loop": true
    },
@@ -2597,7 +2597,7 @@
     "fps": 24,
     "originX": 0.4412,
     "originY": 0.9732,
-    "bodyHeight": 300,
+    "bodyHeight": 276.0,
     "key": "swamp_elf_idle_v1",
     "loop": true
    },
@@ -2664,7 +2664,7 @@
     "fps": 24,
     "originX": 0.4437,
     "originY": 0.9732,
-    "bodyHeight": 300,
+    "bodyHeight": 275.9,
     "key": "swamp_knight_idle_v1",
     "loop": true
    },
@@ -2810,7 +2810,7 @@
     "fps": 24,
     "originX": 0.4607,
     "originY": 0.978,
-    "bodyHeight": 300,
+    "bodyHeight": 275.4,
     "key": "til_idle_v1",
     "loop": true
    },
@@ -2899,7 +2899,7 @@
     "fps": 24,
     "originX": 0.4546,
     "originY": 0.976,
-    "bodyHeight": 300,
+    "bodyHeight": 275.2,
     "key": "vurdalak_idle_v1",
     "loop": true
    },
@@ -2964,7 +2964,7 @@
     "fps": 24,
     "originX": 0.5847,
     "originY": 0.9778,
-    "bodyHeight": 300,
+    "bodyHeight": 232.5,
     "key": "wild_dog_idle_v1",
     "loop": true
    },
@@ -3132,7 +3132,7 @@
     "fps": 24,
     "originX": 0.4613,
     "originY": 0.9741,
-    "bodyHeight": 300,
+    "bodyHeight": 275.3,
     "key": "winter_girl_idle_v1",
     "loop": true
    }
@@ -3198,7 +3198,7 @@
     "fps": 24,
     "originX": 0.4326,
     "originY": 0.9913,
-    "bodyHeight": 300,
+    "bodyHeight": 275.6,
     "key": "winter_monster_idle_v1",
     "loop": true
    },
@@ -3275,7 +3275,7 @@
     "fps": 24,
     "originX": 0.4753,
     "originY": 0.9747,
-    "bodyHeight": 300,
+    "bodyHeight": 275.5,
     "key": "winter_queen_idle_v1",
     "loop": true
    }
