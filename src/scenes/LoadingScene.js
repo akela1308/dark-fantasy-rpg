@@ -179,7 +179,9 @@ export class LoadingScene extends Phaser.Scene {
     img('map_archer_guard',      'maps/characters/archer_guard.png');
     img('map_recruit',           'maps/characters/recruit.png');
     img('map_vurdalak',          'maps/characters/vurdalak_map_v1.png');   // Висельный чтец: кадр боевой стойки упыря
-    img('map_holt',              'maps/characters/holt_map_v2.png');   // Хольт в отряде: стоячая фигура (assets/generated/holt_map)
+    // Уникальные NPC (правка 27.10: никто не повторяет чужую внешность)
+    ['pilgrim', 'deserter', 'well_woman', 'swamp_elder_elf'].forEach(k => img(`map_${k}`, `maps/characters/${k}_map_v1.png`));
+    img('map_holt',              'maps/characters/holt_map_v3.png');   // Хольт в отряде: стоячая фигура (assets/generated/holt/k_stand.png)
 
     // Иконки скиллов и действий (dark_rpg_icons)
     img('icon_shield',         'ui/icon_shield.png');

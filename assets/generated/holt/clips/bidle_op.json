@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/5fe4ad03-ca40-4951-a0c4-0bb1c7628e5f",
+ "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: one small crossbow in the front hand pointing to the right, one long hunting knife in the rear hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. ",
+ "img": "../../holt/k_battle.png",
+ "last": "../../holt/k_battle.png",
+ "sec": 4
+}

@@ -1,0 +1,148 @@
+[
+ {
+  "name": "../../holt/clips/bidle",
+  "first": "../../holt/k_battle.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: one small crossbow in the front hand pointing to the right, one long hunting knife in the rear hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2,
+  "last": "../../holt/k_battle.png"
+ },
+ {
+  "name": "../../holt/clips/attack",
+  "first": "../../holt/k_battle.png",
+  "prompt": "One single shot to the right: raises the crossbow and aims to the right, shoots with a small recoil, then returns to the same ready stance. One strike only. Slow motion, one single even movement for the whole clip, no extra gestures. HANDS CANON: one small crossbow in the front hand pointing to the right, one long hunting knife in the rear hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2,
+  "last": "../../holt/k_battle.png"
+ },
+ {
+  "name": "../../holt/clips/hit",
+  "first": "../../holt/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one small crossbow in the front hand pointing to the right, one long hunting knife in the rear hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2,
+  "last": "../../holt/k_battle.png"
+ },
+ {
+  "name": "../../holt/clips/death",
+  "first": "../../holt/k_battle.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one small crossbow in the front hand pointing to the right, one long hunting knife in the rear hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../../holt/clips/victory",
+  "first": "../../holt/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one small crossbow in the front hand pointing to the right, one long hunting knife in the rear hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../../holt/clips/reload",
+  "first": "../../holt/k_battle.png",
+  "prompt": "Reloading: lowers the crossbow, pulls the string back with effort and loads a bolt, then returns to the same ready stance. Slow motion, one single even movement for the whole clip, no extra gestures. HANDS CANON: one small crossbow in the front hand pointing to the right, one long hunting knife in the rear hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2,
+  "last": "../../holt/k_battle.png"
+ },
+ {
+  "name": "../../holt/clips/amb1",
+  "first": "../../holt/k_battle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: checks the edge of the knife with his thumb. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. HANDS CANON: one small crossbow in the front hand pointing to the right, one long hunting knife in the rear hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.",
+  "sec": 4,
+  "n": 2,
+  "last": "../../holt/k_battle.png"
+ },
+ {
+  "name": "../../holt/clips/idle",
+  "first": "../../holt/k_idle.png",
+  "prompt": "Idle loop for the whole clip: he sits on the chair, slowly raises the clay pipe to his mouth, draws on it, lowers it and breathes out, calm breathing, the cloak moves gently. No standing up, no turning. The last frame is exactly the same pose as the first. The crossbow stays leaning against the chair, the pipe stays in the same hand.",
+  "sec": 4,
+  "n": 2,
+  "last": "../../holt/k_idle.png"
+ },
+ {
+  "name": "../../mangy_dog/clips/bidle",
+  "first": "../../mangy_dog/k_battle.png",
+  "prompt": "Idle loop for the whole clip: the animal stays in place in the same pose, breathes calmly, the flanks rise and fall, small natural movements of the ears and tail. No steps, no turning. The last frame is exactly the same pose as the first. It keeps snarling with bared teeth. The animal has no weapon. It never stands up on its hind legs and never changes its body shape.",
+  "sec": 4,
+  "n": 2,
+  "last": "../../mangy_dog/k_battle.png"
+ },
+ {
+  "name": "../../mangy_dog/clips/attack",
+  "first": "../../mangy_dog/k_battle.png",
+  "prompt": "One single attack to the right: the animal lunges forward to the right and snaps its jaws or swipes a paw, then steps back into the same stance. One strike only. The animal has no weapon. It never stands up on its hind legs and never changes its body shape.",
+  "sec": 4,
+  "n": 2,
+  "last": "../../mangy_dog/k_battle.png"
+ },
+ {
+  "name": "../../mangy_dog/clips/hit",
+  "first": "../../mangy_dog/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the dog flinches back and to the left with a yelp, then recovers into the same stance. Does not fall. The animal has no weapon. It never stands up on its hind legs and never changes its body shape.",
+  "sec": 4,
+  "n": 2,
+  "last": "../../mangy_dog/k_battle.png"
+ },
+ {
+  "name": "../../mangy_dog/clips/death",
+  "first": "../../mangy_dog/k_battle.png",
+  "prompt": "Is fatally struck from the right: the animal staggers, collapses onto its side and lies still on the ground at the end of the clip. The animal has no weapon. It never stands up on its hind legs and never changes its body shape.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../../mangy_dog/clips/victory",
+  "first": "../../mangy_dog/k_battle.png",
+  "prompt": "Victory: the animal stays on all four legs the whole clip, lifts its head and barks or roars once, then stands proudly still. It never stands up on its hind legs, never changes its body shape.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../../mangy_dog/clips/idle",
+  "first": "../../mangy_dog/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the animal stays in place in the same pose, breathes calmly, the flanks rise and fall, small natural movements of the ears and tail. No steps, no turning. The last frame is exactly the same pose as the first. The animal has no weapon. It never stands up on its hind legs and never changes its body shape.",
+  "sec": 4,
+  "n": 2,
+  "last": "../../mangy_dog/k_idle.png"
+ },
+ {
+  "name": "../../swamp_beast/clips/bidle",
+  "first": "../../swamp_beast/k_battle.png",
+  "prompt": "Idle loop for the whole clip: the swamp creature crouches in place, breathes heavily, its back rises and falls, water drips from it, the hanging weeds sway slightly. No steps, no turning. The last frame is exactly the same pose as the first. The creature keeps exactly the same body shape, the same number of limbs and the same head for the whole clip.",
+  "sec": 4,
+  "n": 2,
+  "last": "../../swamp_beast/k_battle.png"
+ },
+ {
+  "name": "../../swamp_beast/clips/attack",
+  "first": "../../swamp_beast/k_battle.png",
+  "prompt": "One single attack to the right: lunges forward to the right slashing with the claws or the weapon, then recovers back into the same stance. One strike only. The creature keeps exactly the same body shape, the same number of limbs and the same head for the whole clip.",
+  "sec": 4,
+  "n": 2,
+  "last": "../../swamp_beast/k_battle.png"
+ },
+ {
+  "name": "../../swamp_beast/clips/hit",
+  "first": "../../swamp_beast/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the creature recoils back and to the left with a hiss, then crouches again in the same stance. Does not fall. The creature keeps exactly the same body shape, the same number of limbs and the same head for the whole clip.",
+  "sec": 4,
+  "n": 2,
+  "last": "../../swamp_beast/k_battle.png"
+ },
+ {
+  "name": "../../swamp_beast/clips/death",
+  "first": "../../swamp_beast/k_battle.png",
+  "prompt": "Is fatally struck from the right: the creature collapses, sinks down and lies still on the ground as a heap of mud and reeds at the end of the clip. The creature keeps exactly the same body shape, the same number of limbs and the same head for the whole clip.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../../swamp_beast/clips/victory",
+  "first": "../../swamp_beast/k_battle.png",
+  "prompt": "Victory: the creature rears its long head and gives one wide gaping hiss with open jaws, then stays crouched still. It never stands up straight. The creature keeps exactly the same body shape, the same number of limbs and the same head for the whole clip.",
+  "sec": 4,
+  "n": 2
+ }
+]

@@ -1,0 +1,2 @@
+A NEW portrait, NOT the person in the first reference: copy only the ornate dark gothic metal frame with the lion head on top and the medallion at the bottom, dark background, warm light, painterly style. Inside the frame: the head and neck of the dog from the second reference (same mangy grey-brown and ginger coat, torn ear, rope collar), snarling, facing slightly right. Outside the frame: flat plain white background. No text.
+refs: /Users/maksimilin/Desktop/Dark Fantasy/арты/Таверна/TavernMan_portair.png, assets/generated/mangy_dog/k_battle.png

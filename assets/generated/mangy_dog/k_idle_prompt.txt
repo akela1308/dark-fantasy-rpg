@@ -1,0 +1,2 @@
+Edit of the reference image: the same dog (same coat colors, patches, mange spots, torn ear, rope collar). Pose: standing calmly on four legs, relaxed, head slightly lowered, mouth closed, side view facing the RIGHT side of the image. Exactly one animal, full body, about 60% of the image height. Flat solid pure chroma green background (#00FF00), no shadow, no floor, no effects, no text, no other objects.
+refs: assets/generated/mangy_dog/k_battle.png

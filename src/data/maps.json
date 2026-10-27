@@ -1337,7 +1337,7 @@
         "x": 600,
         "y": 760,
         "spriteKey": "map_dwarf_beer",
-        "portraitKey": "portrait_dwarf_beer",
+        "portraitKey": "portrait_halvar",
         "height": 112,
         "dialogue": "dwarves",
         "dialogueStart": "halvar",
@@ -1933,10 +1933,9 @@
       {
         "x": 330,
         "y": 270,
-        "spriteKey": "map_swamp_elf_girl",
-        "portraitKey": "portrait_swamp_elf_girl",
+        "spriteKey": "map_swamp_elder_elf",
+        "portraitKey": "portrait_swamp_elder_elf",
         "name": "Болотная Эльфийка",
-        "height": 125,
         "anchorFeet": true,
         "breathing": {
           "period": 3600,
@@ -2038,7 +2037,7 @@
             ]
           }
         ],
-        "heightM": 1.65
+        "heightM": 1.82
       }
     ],
     "tavernEntry": null,
@@ -2831,10 +2830,9 @@
       {
         "x": 430,
         "y": 620,
-        "spriteKey": "map_wanderer",
-        "portraitKey": "portrait_wanderer",
+        "spriteKey": "map_pilgrim",
+        "portraitKey": "portrait_pilgrim",
         "name": "Путник на распутье",
-        "height": 150,
         "hoverPortrait": true,
         "dialogues": [
           {
@@ -2879,7 +2877,7 @@
             ]
           }
         ],
-        "heightM": 1.78
+        "heightM": 1.72
       }
     ],
     "walk": [
@@ -3180,9 +3178,8 @@
         "name": "Стражник-беглец",
         "x": 420,
         "y": 620,
-        "spriteKey": "map_guard",
-        "portraitKey": "portrait_guard",
-        "height": 150,
+        "spriteKey": "map_deserter",
+        "portraitKey": "portrait_deserter",
         "dialogue": "village",
         "dialogueStart": "deserter",
         "hoverPortrait": true,
@@ -3428,10 +3425,9 @@
       {
         "x": 665,
         "y": 700,
-        "spriteKey": "map_cleaning_girl",
-        "portraitKey": "portrait_cleaning_girl",
+        "spriteKey": "map_well_woman",
+        "portraitKey": "portrait_well_woman",
         "name": "Женщина у колодца",
-        "height": 150,
         "hoverPortrait": true,
         "dialogues": [
           {
@@ -3476,7 +3472,7 @@
             ]
           }
         ],
-        "heightM": 1.65
+        "heightM": 1.62
       }
     ],
     "walk": [

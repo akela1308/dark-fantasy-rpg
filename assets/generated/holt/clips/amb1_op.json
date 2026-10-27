@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/5def7c0b-56d5-4534-b18b-c9c72fe70ec8",
+ "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: checks the edge of the knife with his thumb. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. HANDS CANON: one small crossbow in the front hand pointing to the right, one long hunting knife in the rear hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. ",
+ "img": "../../holt/k_battle.png",
+ "last": "../../holt/k_battle.png",
+ "sec": 4
+}

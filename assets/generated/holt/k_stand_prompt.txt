@@ -1,0 +1,2 @@
+Edit of the reference image: the same character, same face, beard, scar, clothes and colors. Pose: standing relaxed at walking pace, three-quarter view, body and face turned to the right, the crossbow hangs on his back, the knife sheathed on the belt, nothing in the hands. Exactly one figure, full body, about 80% of the image height, feet near the bottom. Flat solid pure chroma green background (#00FF00), no shadow, no floor, no effects, no text, no other objects.
+refs: assets/generated/holt/k_battle.png

@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/ba9eeb74-f331-4fb4-a4e3-3617d4ab94c0",
+ "prompt": "Idle loop for the whole clip: he sits on the chair, slowly raises the clay pipe to his mouth, draws on it, lowers it and breathes out, calm breathing, the cloak moves gently. No standing up, no turning. The last frame is exactly the same pose as the first. The crossbow stays leaning against the chair, the pipe stays in the same hand. ",
+ "img": "../../holt/k_idle.png",
+ "last": "../../holt/k_idle.png",
+ "sec": 4
+}
