@@ -78,6 +78,8 @@ export class MapScene extends Phaser.Scene {
     this._transitioning = false;
     // Сцена переиспользуется: окна прошлой карты уничтожены вместе с ней, ссылки на них сбрасываем
     this._journalObjs   = null;
+    this._extraFollowers = [];   // сцена переиспользуется: спрайты прошлого запуска уже уничтожены
+    this._waitingNpcs = {};
     this._bookOverlay   = null;
     this._charSheetOpen = false;
     this._exitCooldown  = 2200;  // мс после спавна - выходы не срабатывают
@@ -124,6 +126,17 @@ export class MapScene extends Phaser.Scene {
       u.sprite.y = u.targetY = ok.y;
       u.shadow?.setPosition(ok.x, ok.y + 2);
     });
+
+    // После перехода отряд стоит спиной к выходу, из которого пришёл (ближайший выход в 260 px)
+    {
+      const exits = [...(cfg.exits || []), ...(cfg.tavernEntry ? [cfg.tavernEntry] : [])];
+      const near = exits.map(e => ({ cx: e.zone.x + e.zone.w / 2, cy: e.zone.y + e.zone.h / 2 }))
+        .map(c => ({ ...c, d: Math.hypot(c.cx - spawn.x, c.cy - spawn.y) })).sort((a, b) => a.d - b.d)[0];
+      if (near && near.d < 260 && Math.abs(near.cx - spawn.x) > 20) {
+        const faceLeft = near.cx > spawn.x;
+        [this.hero, this.brawler, this.healer].forEach(u => { u.sprite.setFlipX?.(faceLeft); u._syncOrigin?.(); });
+      }
+    }
 
     this._heroTrail     = [];
     this._trailInterval = 0;
@@ -1111,6 +1124,8 @@ export class MapScene extends Phaser.Scene {
         this.healer.stopMove();
         // Помечаем разговор состоявшимся - при следующем визите NPC исчезнет
         if (npc.vanishKey) this.game.registry.set(npc.vanishKey, true);
+        sprite.clearTint(); label.setAlpha(0);
+        if (_hImg) { _hImg.setAlpha(0); _hName.setAlpha(0); }   // мини-портрет не висит весь разговор
         if (npc.onTalk) { npc.onTalk(); return; }
         if (npc.dialogue && this._runner.has(npc.dialogue)) {
           this._runner.start(npc.dialogue, npc.dialogueStart || null);
@@ -1900,10 +1915,7 @@ export class MapScene extends Phaser.Scene {
   }
 
   _buildHUD(cfg) {
-    // Подсказка - справа внизу (world coords for origin(0,0) camera: canvas = world * zoom)
-    this.add.text(1662, 928, 'Кликни чтобы идти', {
-      fontSize: '12px', color: '#666655', fontFamily: 'serif',
-    }).setOrigin(1, 1).setDepth(50).setScrollFactor(0);
+    // Подсказка «Кликни чтобы идти» убрана (раунд 2: мельче 11 px и налезала на имя собеседника)
 
     // ── Портреты партии ───────────────────────────────────────────────
     // Позиционированы по аннотации:
@@ -2733,12 +2745,14 @@ export class MapScene extends Phaser.Scene {
     if (ch.id === 'hero_duelist' || ch.portrait === 'portrait_hero_duelist') {
       const xp = PartySystem.xpProgress(this.game.registry);
       const traits = (SaveSystem.load()?.units || []).find(u => u.id === 'hero_duelist')?.commanderTraits || [];
+      // Коротко, чтобы не залезать на орнамент низа колонки: репутация числами, опыт, черты
+      const rep = repLines(this.game.registry).map(l => l.split(':')[0]).join(', ');
       const lines = [
-        repLines(this.game.registry).join(', '),
-        `Опыт отряда: ${xp.have} / ${xp.need}, мест в отряде ${PartySystem.getSlots(this.game.registry)}`,
+        rep,
+        `Опыт ${xp.have} / ${xp.need}, мест в отряде ${PartySystem.getSlots(this.game.registry)}`,
         traits.length ? `Черты: ${traits.map(t => TRAIT_LABELS[t] || t).join(', ')}` : '',
       ].filter(Boolean);
-      add(this.add.text(s(640), s(512), lines.join('\n'), {
+      add(this.add.text(s(640), s(500), lines.join('\n'), {
         fontSize: `${s(11)}px`, color: '#B8AC8C', fontFamily: 'serif', align: 'center', lineSpacing: s(1),
         wordWrap: { width: s(240), useAdvancedWrap: true },
         stroke: '#000', strokeThickness: s(1),

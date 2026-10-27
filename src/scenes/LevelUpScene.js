@@ -12,15 +12,15 @@ const CLASS_BONUSES = {
   hero_duelist: [
     { key: 'damage',    label: 'Мастерство',  desc: '+3 к урону' },
     { key: 'speed',     label: 'Инициатива',  desc: '+1 к инициативе' },
-    { key: 'hp',        label: 'Выдержка',     desc: '+20 к максимальному HP' },
+    { key: 'hp',        label: 'Выдержка',     desc: '+20 к максимальному здоровью' },
   ],
   companion_brawler: [
-    { key: 'hp',        label: 'Закалённость', desc: '+25 к максимальному HP' },
+    { key: 'hp',        label: 'Закалённость', desc: '+25 к максимальному здоровью' },
     { key: 'armor',     label: 'Стойкость',    desc: '+5% к броне' },
     { key: 'berserk',   label: 'Берсерк',      desc: '+5 к максимальному урону' },
   ],
   companion_healer: [
-    { key: 'hp',        label: 'Выносливость',  desc: '+20 к максимальному HP' },
+    { key: 'hp',        label: 'Выносливость',  desc: '+20 к максимальному здоровью' },
     { key: 'armor',     label: 'Оберег',        desc: '+3% к броне' },
     { key: 'cooldown',  label: 'Концентрация',  desc: '-1 к откату всех навыков' },
   ],
@@ -166,7 +166,7 @@ export class LevelUpScene extends Phaser.Scene {
       const gain = unit.id === 'companion_brawler' ? 25 : 20;
       unit.maxHp += gain;
       unit.hp = Math.min(unit.hp + gain, unit.maxHp);
-      eventBus.emit('log', `${unit.label || unit.name}: +${gain} к максимальному HP`);
+      eventBus.emit('log', `${unit.label || unit.name}: +${gain} к максимальному здоровью`);
     } else if (bonus.key === 'damage') {
       const dmg = unit.damage || { min: 10, max: 16 };
       unit.damage = { min: dmg.min + 3, max: dmg.max + 3 };

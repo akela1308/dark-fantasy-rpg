@@ -122,7 +122,8 @@ export class DialoguePanel {
         const ch = choices[n - 1];
         if (ch && !ch.disabled) this._choose(ch);
       } else if (ev.key === 'Escape') {
-        const leave = choices.find(c => c.style === 'retreat' && !c.disabled && /^(Уйти|Не |Мы ненадолго|Дальше)/.test(String(c.label).replace(/^«/, '')));
+        // Уход без последствий (серый вариант), но не «Дальше.»: Esc не листает разговор вперёд
+        const leave = [...choices].reverse().find(c => c.style === 'retreat' && !c.disabled && !c.irreversible && !/^Дальше/.test(String(c.label)));
         if (leave) this._choose(leave);
       }
     };

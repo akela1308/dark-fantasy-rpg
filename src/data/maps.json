@@ -676,8 +676,8 @@
     "bgKey": "map_tavern_inside",
     "spawnPoints": {
       "default": {
-        "x": 260,
-        "y": 680
+        "x": 350,
+        "y": 700
       },
       "from_tavern_rooms": {
         "x": 478,
@@ -1157,7 +1157,7 @@
         "hoverPortrait": true,
         "dialogues": [
           {
-            "text": "Дварф не поднимает кружку и не смотрит на вас. Только два пальца на столе едва заметно касаются старого каменного амулета.",
+            "text": "Гном не поднимает кружку и не смотрит на вас. Только два пальца на столе едва заметно касаются старого каменного амулета.",
             "choices": [
               {
                 "label": "Я ищу путь в горы.",
@@ -1848,11 +1848,11 @@
       },
       "from_swamp_map": {
         "x": 945,
-        "y": 315
+        "y": 400
       },
       "from_drowned_village": {
-        "x": 250,
-        "y": 377.5
+        "x": 330,
+        "y": 410
       }
     },
     "exits": [
@@ -1868,25 +1868,23 @@
       },
       {
         "zone": {
-          "x": 885,
-          "y": 245,
-          "w": 120,
-          "h": 18
+          "x": 870,
+          "y": 236,
+          "w": 150,
+          "h": 84
         },
         "toMap": "swamp_map",
-        "spawnId": "from_elf_boloto1",
-        "auto": true
+        "spawnId": "from_elf_boloto1"
       },
       {
         "zone": {
-          "x": 170,
-          "y": 325,
-          "w": 18,
-          "h": 105
+          "x": 176,
+          "y": 330,
+          "w": 90,
+          "h": 96
         },
         "toMap": "drowned_village",
-        "spawnId": "from_elf_boloto1",
-        "auto": true
+        "spawnId": "from_elf_boloto1"
       }
     ],
     "labels": [
@@ -1987,7 +1985,7 @@
             ]
           },
           {
-            "text": "«Это край старой воды. Люди зовут его поселением - чтобы не говорить „договор“. Мы живем там, где ваши дороги начинают лгать.»",
+            "text": "«Это край старой воды. Люди зовут его поселением, чтобы не говорить „договор“. Мы живём там, где ваши дороги начинают лгать.»",
             "choices": [
               {
                 "label": "Как пройти дальше?",
@@ -2032,7 +2030,8 @@
               }
             ]
           }
-        ]
+        ],
+        "heightM": 1.65
       }
     ],
     "tavernEntry": null,
@@ -2484,7 +2483,8 @@
         "height": 145,
         "dialogue": "swamp",
         "hoverPortrait": true,
-        "dialogueStart": "le"
+        "dialogueStart": "le",
+        "heightM": 1.78
       },
       {
         "id": "ressa",
@@ -2499,7 +2499,8 @@
         "dialogueStart": "ressa",
         "showIf": {
           "notFlag": "ressa_recruited"
-        }
+        },
+        "heightM": 1.65
       }
     ],
     "battleBg": "Boloto_battle",
@@ -2509,12 +2510,12 @@
     "bgKey": "map_kingthrone",
     "spawnPoints": {
       "default": {
-        "x": 600,
-        "y": 720
+        "x": 680,
+        "y": 700
       },
       "from_mountains": {
-        "x": 600,
-        "y": 720
+        "x": 680,
+        "y": 700
       },
       "from_winter_forest": {
         "x": 1480,
@@ -2524,10 +2525,10 @@
     "exits": [
       {
         "zone": {
-          "x": 740,
-          "y": 800,
-          "w": 220,
-          "h": 90
+          "x": 436,
+          "y": 640,
+          "w": 96,
+          "h": 110
         },
         "toMap": "mountains_map",
         "spawnId": "from_kingthrone"
@@ -2600,7 +2601,7 @@
         "hoverPortrait": true,
         "dialogues": [
           {
-            "text": "Каменный трон тяжело дышит под тем, кто давно перестал быть просто дворфом. Горный Король поднимает голову, трещины на его лице тлеют тусклым красным. «К закрытому проходу пришёл, чужак. У прохода есть цена, у горы, память. Что тебе нужно от моего долга?»",
+            "text": "Каменный трон тяжело дышит под тем, кто давно перестал быть просто гномом. Горный Король поднимает голову, трещины на его лице тлеют тусклым красным. «К закрытому проходу пришёл, чужак. У прохода есть цена, у горы, память. Что тебе нужно от моего долга?»",
             "choices": [
               {
                 "label": "Мне нужен путь через перевал.",
@@ -2679,7 +2680,8 @@
           }
         ],
         "dialogue": "mountains",
-        "dialogueStart": "king"
+        "dialogueStart": "king",
+        "heightM": 2.2
       }
     ],
     "walk": [
@@ -2869,7 +2871,8 @@
               }
             ]
           }
-        ]
+        ],
+        "heightM": 1.78
       }
     ],
     "walk": [
@@ -2950,12 +2953,12 @@
         "y": 600
       },
       "from_village": {
-        "x": 1150,
-        "y": 640
+        "x": 1340,
+        "y": 560
       },
       "from_gatehouse": {
-        "x": 1210,
-        "y": 640
+        "x": 1196,
+        "y": 560
       }
     },
     "exits": [
@@ -2971,20 +2974,20 @@
       },
       {
         "zone": {
-          "x": 1250,
-          "y": 500,
-          "w": 110,
-          "h": 240
+          "x": 1306,
+          "y": 400,
+          "w": 124,
+          "h": 90
         },
         "toMap": "village",
         "spawnId": "from_gate"
       },
       {
         "zone": {
-          "x": 1170,
-          "y": 530,
+          "x": 1158,
+          "y": 392,
           "w": 84,
-          "h": 84
+          "h": 90
         },
         "toMap": "gatehouse",
         "spawnId": "from_gate"
@@ -3103,7 +3106,8 @@
               }
             ]
           }
-        ]
+        ],
+        "heightM": 1.78
       },
       {
         "x": 980,
@@ -3161,7 +3165,8 @@
         "dialogueStart": "bran",
         "showIf": {
           "notFlag": "bran_recruited"
-        }
+        },
+        "heightM": 1.78
       },
       {
         "id": "deserter",
@@ -3174,7 +3179,8 @@
         "dialogue": "village",
         "dialogueStart": "deserter",
         "hoverPortrait": true,
-        "flipX": true
+        "flipX": true,
+        "heightM": 1.78
       }
     ],
     "walk": [
@@ -3409,7 +3415,8 @@
         "dialogueStart": "mirko",
         "showIf": {
           "notFlag": "mirko_recruited"
-        }
+        },
+        "heightM": 1.78
       },
       {
         "x": 665,
@@ -3461,7 +3468,8 @@
               }
             ]
           }
-        ]
+        ],
+        "heightM": 1.65
       }
     ],
     "walk": [
@@ -4006,7 +4014,8 @@
         "originY": 0.9982,
         "occluder": true,
         "auto": true,
-        "height": 348
+        "height": 348,
+        "depth": 455
       },
       {
         "key": "prop_south_post_occ_2",
@@ -4904,21 +4913,21 @@
     "walkTemplate": "room",
     "spawnPoints": {
       "from_three_pillars": {
-        "x": 1086,
-        "y": 418
+        "x": 490,
+        "y": 560
       },
       "default": {
-        "x": 1086,
-        "y": 418
+        "x": 490,
+        "y": 560
       }
     },
     "exits": [
       {
         "zone": {
-          "x": 1055,
-          "y": 305,
-          "w": 63,
-          "h": 72
+          "x": 305,
+          "y": 392,
+          "w": 105,
+          "h": 120
         },
         "toMap": "three_pillars",
         "spawnId": "from_three_pillars_inside"
@@ -4986,8 +4995,8 @@
       {
         "id": "cat",
         "name": "Кот",
-        "x": 1131,
-        "y": 494,
+        "x": 1240,
+        "y": 600,
         "spriteKey": "map_cat",
         "portraitKey": "portrait_cat",
         "height": 50,
@@ -6425,7 +6434,7 @@
   },
   "hermit_cave": {
     "bgKey": "map_hermit_cave",
-    "image": "maps/gen/hermit_cave_k2.jpg",
+    "image": "maps/gen/hermit_cave_k3.jpg",
     "name": "Пещера отшельника",
     "region": "Юг",
     "level": 1,
@@ -6433,20 +6442,20 @@
     "walkTemplate": "corridor",
     "spawnPoints": {
       "from_burned_hamlet": {
-        "x": 1100,
-        "y": 433
+        "x": 1034,
+        "y": 442
       },
       "default": {
-        "x": 1100,
-        "y": 433
+        "x": 1034,
+        "y": 442
       }
     },
     "exits": [
       {
         "zone": {
-          "x": 1121,
-          "y": 300,
-          "w": 94,
+          "x": 1043,
+          "y": 332,
+          "w": 84,
           "h": 84
         },
         "toMap": "burned_hamlet",
@@ -6468,106 +6477,106 @@
     ],
     "walk": [
       {
-        "x": 807,
-        "y": 477,
-        "w": 48,
-        "h": 16
+        "x": 814,
+        "y": 475,
+        "w": 36,
+        "h": 12
       },
       {
-        "x": 774,
-        "y": 477,
-        "w": 16,
-        "h": 16
+        "x": 790,
+        "y": 475,
+        "w": 12,
+        "h": 12
       },
       {
-        "x": 758,
-        "y": 493,
-        "w": 113,
-        "h": 16
+        "x": 778,
+        "y": 487,
+        "w": 85,
+        "h": 12
       },
       {
-        "x": 742,
-        "y": 509,
-        "w": 145,
-        "h": 48
+        "x": 766,
+        "y": 499,
+        "w": 109,
+        "h": 36
       },
       {
-        "x": 742,
-        "y": 557,
-        "w": 129,
-        "h": 16
+        "x": 766,
+        "y": 535,
+        "w": 97,
+        "h": 12
       },
       {
-        "x": 758,
-        "y": 573,
-        "w": 96,
-        "h": 16
+        "x": 778,
+        "y": 547,
+        "w": 72,
+        "h": 12
       },
       {
-        "x": 758,
-        "y": 589,
-        "w": 113,
-        "h": 16
+        "x": 778,
+        "y": 559,
+        "w": 85,
+        "h": 12
       },
       {
-        "x": 742,
-        "y": 606,
-        "w": 145,
-        "h": 48
+        "x": 766,
+        "y": 572,
+        "w": 109,
+        "h": 36
       },
       {
-        "x": 774,
-        "y": 654,
-        "w": 129,
-        "h": 16
+        "x": 790,
+        "y": 608,
+        "w": 97,
+        "h": 12
       },
       {
-        "x": 758,
-        "y": 670,
-        "w": 129,
-        "h": 16
+        "x": 778,
+        "y": 620,
+        "w": 97,
+        "h": 12
       },
       {
-        "x": 758,
-        "y": 686,
-        "w": 145,
-        "h": 16
+        "x": 778,
+        "y": 632,
+        "w": 109,
+        "h": 12
       },
       {
-        "x": 742,
-        "y": 702,
-        "w": 161,
-        "h": 16
+        "x": 766,
+        "y": 644,
+        "w": 121,
+        "h": 12
       },
       {
-        "x": 758,
-        "y": 718,
-        "w": 145,
-        "h": 16
+        "x": 778,
+        "y": 656,
+        "w": 109,
+        "h": 12
       },
       {
-        "x": 807,
-        "y": 734,
-        "w": 80,
-        "h": 16
+        "x": 814,
+        "y": 668,
+        "w": 60,
+        "h": 12
       },
       {
-        "x": 774,
-        "y": 734,
-        "w": 16,
-        "h": 16
+        "x": 790,
+        "y": 668,
+        "w": 12,
+        "h": 12
       },
       {
-        "x": 807,
-        "y": 750,
-        "w": 113,
-        "h": 16
+        "x": 814,
+        "y": 680,
+        "w": 85,
+        "h": 12
       },
       {
-        "x": 807,
-        "y": 766,
-        "w": 80,
-        "h": 16
+        "x": 814,
+        "y": 692,
+        "w": 60,
+        "h": 12
       }
     ],
     "tavernEntry": null,
@@ -6580,6 +6589,14 @@
     "rescale": [
       {
         "f": 0.67,
+        "center": [
+          836.0,
+          470.5
+        ],
+        "from": "map_hermit_cave"
+      },
+      {
+        "f": 0.75,
         "center": [
           836.0,
           470.5
@@ -7185,8 +7202,8 @@
         "y": 640
       },
       "from_gallows_hill": {
-        "x": 1328,
-        "y": 317
+        "x": 1390,
+        "y": 215
       },
       "default": {
         "x": 404,
@@ -7206,10 +7223,10 @@
       },
       {
         "zone": {
-          "x": 1337,
-          "y": 239,
-          "w": 84,
-          "h": 143
+          "x": 1340,
+          "y": 0,
+          "w": 130,
+          "h": 100
         },
         "toMap": "gallows_hill",
         "spawnId": "from_dead_road"
@@ -7661,7 +7678,8 @@
             "reader_spared",
             "dead_road_reader_won"
           ]
-        }
+        },
+        "heightM": 1.78
       }
     ],
     "props": [
@@ -8367,7 +8385,7 @@
   },
   "hangman_hut": {
     "bgKey": "map_hangman_hut",
-    "image": "maps/gen/hangman_hut_k2.jpg",
+    "image": "maps/gen/hangman_hut_k3.jpg",
     "name": "Хижина палача",
     "region": "Дорога",
     "level": 4,
@@ -8375,19 +8393,19 @@
     "walkTemplate": "room",
     "spawnPoints": {
       "from_gallows_hill": {
-        "x": 544,
-        "y": 530
+        "x": 617,
+        "y": 515
       },
       "default": {
-        "x": 544,
-        "y": 530
+        "x": 617,
+        "y": 515
       }
     },
     "exits": [
       {
         "zone": {
-          "x": 418,
-          "y": 435,
+          "x": 512,
+          "y": 434,
           "w": 84,
           "h": 84
         },
@@ -8410,16 +8428,16 @@
     ],
     "walk": [
       {
-        "x": 396,
-        "y": 356,
-        "w": 879,
-        "h": 329
+        "x": 506,
+        "y": 385,
+        "w": 659,
+        "h": 247
       },
       {
-        "x": 776,
-        "y": 672,
-        "w": 121,
-        "h": 100
+        "x": 791,
+        "y": 622,
+        "w": 91,
+        "h": 75
       }
     ],
     "tavernEntry": null,
@@ -8432,6 +8450,14 @@
     "rescale": [
       {
         "f": 0.67,
+        "center": [
+          836.0,
+          470.5
+        ],
+        "from": "map_hangman_hut"
+      },
+      {
+        "f": 0.75,
         "center": [
           836.0,
           470.5
@@ -8855,7 +8881,7 @@
   },
   "hunters_lodge": {
     "bgKey": "map_hunters_lodge",
-    "image": "maps/gen/hunters_lodge_k2.jpg",
+    "image": "maps/gen/hunters_lodge_k3.jpg",
     "name": "Охотничья изба",
     "region": "Лес",
     "level": 2,
@@ -8863,19 +8889,19 @@
     "walkTemplate": "room",
     "spawnPoints": {
       "from_forest_camp": {
-        "x": 530,
-        "y": 551
+        "x": 613,
+        "y": 529
       },
       "default": {
-        "x": 530,
-        "y": 551
+        "x": 613,
+        "y": 529
       }
     },
     "exits": [
       {
         "zone": {
-          "x": 424,
-          "y": 434,
+          "x": 524,
+          "y": 432,
           "w": 84,
           "h": 84
         },
@@ -8898,16 +8924,16 @@
     ],
     "walk": [
       {
-        "x": 396,
-        "y": 356,
-        "w": 879,
-        "h": 329
+        "x": 515,
+        "y": 387,
+        "w": 642,
+        "h": 240
       },
       {
-        "x": 776,
-        "y": 672,
-        "w": 121,
-        "h": 100
+        "x": 792,
+        "y": 618,
+        "w": 88,
+        "h": 73
       }
     ],
     "tavernEntry": null,
@@ -8920,6 +8946,14 @@
     "rescale": [
       {
         "f": 0.67,
+        "center": [
+          836.0,
+          470.5
+        ],
+        "from": "map_hunters_lodge"
+      },
+      {
+        "f": 0.73,
         "center": [
           836.0,
           470.5
@@ -9344,7 +9378,9 @@
           "h": 84
         },
         "toMap": "mountains_map",
-        "spawnId": "from_forest_deep"
+        "spawnId": "from_forest_deep",
+        "kind": "edge",
+        "dir": "up"
       },
       {
         "zone": {
@@ -9354,7 +9390,9 @@
           "h": 84
         },
         "toMap": "ravine",
-        "spawnId": "from_forest_deep"
+        "spawnId": "from_forest_deep",
+        "kind": "edge",
+        "dir": "right"
       }
     ],
     "labels": [
@@ -9872,7 +9910,9 @@
           "h": 84
         },
         "toMap": "village_fields",
-        "spawnId": "from_ravine"
+        "spawnId": "from_ravine",
+        "kind": "edge",
+        "dir": "right"
       },
       {
         "zone": {
@@ -10810,7 +10850,7 @@
   },
   "gatehouse": {
     "bgKey": "map_gatehouse",
-    "image": "maps/gen/gatehouse_pick.jpg",
+    "image": "maps/gen/gatehouse_k2.jpg",
     "name": "Караулка",
     "region": "Деревня",
     "level": 5,
@@ -10818,21 +10858,21 @@
     "walkTemplate": "room",
     "spawnPoints": {
       "from_gate": {
-        "x": 530,
-        "y": 545
+        "x": 637,
+        "y": 519
       },
       "default": {
-        "x": 530,
-        "y": 545
+        "x": 637,
+        "y": 519
       }
     },
     "exits": [
       {
         "zone": {
-          "x": 362,
-          "y": 370,
-          "w": 100,
-          "h": 100
+          "x": 518,
+          "y": 396,
+          "w": 84,
+          "h": 84
         },
         "toMap": "gate",
         "spawnId": "from_gatehouse"
@@ -10853,16 +10893,16 @@
     ],
     "walk": [
       {
-        "x": 180,
-        "y": 300,
-        "w": 1312,
-        "h": 491
+        "x": 410,
+        "y": 360,
+        "w": 853,
+        "h": 319
       },
       {
-        "x": 746,
-        "y": 771,
-        "w": 180,
-        "h": 150
+        "x": 778,
+        "y": 666,
+        "w": 117,
+        "h": 98
       }
     ],
     "tavernEntry": null,
@@ -10871,11 +10911,21 @@
     "props": [],
     "encounters": [],
     "battleBg": "Village_battle1",
-    "doorPx": 150
+    "doorPx": 150,
+    "rescale": [
+      {
+        "f": 0.65,
+        "center": [
+          836.0,
+          470.5
+        ],
+        "from": "map_gatehouse"
+      }
+    ]
   },
   "chapel_inside": {
     "bgKey": "map_chapel_inside",
-    "image": "maps/gen/chapel_inside_k2.jpg",
+    "image": "maps/gen/chapel_inside_k3.jpg",
     "name": "Часовня",
     "region": "Деревня",
     "level": 5,
@@ -10883,19 +10933,19 @@
     "walkTemplate": "room",
     "spawnPoints": {
       "from_village": {
-        "x": 1124,
-        "y": 437
+        "x": 1058,
+        "y": 445
       },
       "default": {
-        "x": 1124,
-        "y": 437
+        "x": 1058,
+        "y": 445
       }
     },
     "exits": [
       {
         "zone": {
-          "x": 1089,
-          "y": 286,
+          "x": 1022,
+          "y": 318,
           "w": 84,
           "h": 84
         },
@@ -10918,16 +10968,16 @@
     ],
     "walk": [
       {
-        "x": 357,
-        "y": 346,
-        "w": 958,
-        "h": 358
+        "x": 467,
+        "y": 375,
+        "w": 738,
+        "h": 276
       },
       {
-        "x": 770,
-        "y": 690,
-        "w": 131,
-        "h": 110
+        "x": 785,
+        "y": 640,
+        "w": 101,
+        "h": 85
       }
     ],
     "tavernEntry": null,
@@ -10949,8 +10999,8 @@
             "chapel_cult_defeated"
           ]
         },
-        "x": 884,
-        "y": 507
+        "x": 873,
+        "y": 499
       }
     ],
     "battleBg": "Village_battle2",
@@ -10958,6 +11008,14 @@
     "rescale": [
       {
         "f": 0.73,
+        "center": [
+          836.0,
+          470.5
+        ],
+        "from": "map_chapel_inside"
+      },
+      {
+        "f": 0.77,
         "center": [
           836.0,
           470.5
@@ -11035,7 +11093,8 @@
         "portraitKey": null,
         "height": 150,
         "dialogue": "village",
-        "dialogueStart": "ryzh_alone"
+        "dialogueStart": "ryzh_alone",
+        "heightM": 1.78
       },
       {
         "id": "ryzh_taya",
@@ -11054,7 +11113,8 @@
             "swamp_deal_kept",
             "village_tribute"
           ]
-        }
+        },
+        "heightM": 1.65
       }
     ],
     "props": [],
@@ -17994,7 +18054,7 @@
   },
   "outpost_inside": {
     "bgKey": "map_outpost_inside",
-    "image": "maps/gen/outpost_inside_k2.jpg",
+    "image": "maps/gen/outpost_inside_k3.jpg",
     "name": "Казарма поста",
     "region": "Север",
     "level": 8,
@@ -18002,21 +18062,21 @@
     "walkTemplate": "room",
     "spawnPoints": {
       "from_old_outpost": {
-        "x": 615,
-        "y": 654
+        "x": 681,
+        "y": 599
       },
       "default": {
-        "x": 615,
-        "y": 654
+        "x": 681,
+        "y": 599
       }
     },
     "exits": [
       {
         "zone": {
-          "x": 431,
-          "y": 622,
-          "w": 104,
-          "h": 96
+          "x": 546,
+          "y": 568,
+          "w": 84,
+          "h": 84
         },
         "toMap": "old_outpost",
         "spawnId": "from_outpost_inside"
@@ -18037,16 +18097,16 @@
     ],
     "walk": [
       {
-        "x": 311,
-        "y": 334,
-        "w": 1050,
-        "h": 393
+        "x": 469,
+        "y": 375,
+        "w": 735,
+        "h": 275
       },
       {
-        "x": 764,
-        "y": 711,
-        "w": 144,
-        "h": 120
+        "x": 786,
+        "y": 639,
+        "w": 101,
+        "h": 84
       }
     ],
     "tavernEntry": null,
@@ -18059,6 +18119,14 @@
     "rescale": [
       {
         "f": 0.8,
+        "center": [
+          836.0,
+          470.5
+        ],
+        "from": "map_outpost_inside"
+      },
+      {
+        "f": 0.7,
         "center": [
           836.0,
           470.5

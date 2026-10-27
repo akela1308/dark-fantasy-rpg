@@ -97,13 +97,17 @@ export class DialogueRunner {
     const visible = (node.choices || []).filter(ch => checkRequires(ch.showIf, this.ws).ok);
     const choices = visible.map(ch => {
       const check = checkRequires(ch.requires, this.ws);
+      // Найм при полном отряде: игрок заранее видит, что спутник будет ждать в «Хромом Лосе»
+      const full = ch.effects?.recruit && this.ws.party().length >= (this.ws.registry.get('partySlots') || 1);
+      const slots = this.ws.registry.get('partySlots') || 1;
       return {
-        label: ch.label,
+        label: full ? `${ch.label}  [в отряде нет места${slots < 2 ? ' до 2 уровня' : ''}: будет ждать в «Хромом Лосе»]` : ch.label,
         // Серым только уход без последствий: согласие с эффектами («Идём.») остаётся золотым
         style: ch.style || (ch.startBattle ? 'attack' : ch.close && !ch.next && !ch.effects ? 'retreat' : 'default'),
         disabled: !check.ok,
         reason: check.ok ? null : lockReason(ch, check),
         // Необратимый выбор (поле confirm) сначала переспрашивает
+        irreversible: !!ch.confirm,
         onSelect: () => (ch.confirm ? this._confirm(dlgId, nodeId, ch) : this._select(dlgId, ch)),
       };
     });

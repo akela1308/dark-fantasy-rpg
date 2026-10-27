@@ -953,6 +953,8 @@ export class BattleScene extends Phaser.Scene {
 
     const showWindow = () => {
       if (result === 'victory') {
+        // Сохранение сразу после победы: метка «идёт бой» снимается, F5 на экране итога или уровня ничего не теряет
+        SaveSystem.save(this.playerUnits, this._fromMapKey, this._fromSpawnId, this.game.registry);
         const span = this._levelSpan || { from: 1, to: 1 };
         if (span.to > span.from) {
           // Сначала итог боя, по кнопке экран нового уровня (он же потом ведёт на карту)

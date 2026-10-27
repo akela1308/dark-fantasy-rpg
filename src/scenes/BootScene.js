@@ -99,6 +99,7 @@ export class BootScene extends Phaser.Scene {
       go(save);
     };
     const newGame = (mode) => {
+      if (this._starting) return;
       SaveSystem.newGame(this.game.registry, { mode });
       go(null);
     };
@@ -124,7 +125,7 @@ export class BootScene extends Phaser.Scene {
       menu.push(...b1.objs);
       // Режим: две ниши-переключателя
       const modeBtns = Object.entries(MODES).map(([id, [name]], i) => {
-        const b = nicheButton(this, cx + (i ? 110 : -110), 650, name, { w: 200, h: 36, size: 15, depth: 10, onClick: () => { this._mode = id; paint(); } });
+        const b = nicheButton(this, cx + (i ? 110 : -110), 650, name, { w: 200, h: 36, size: 15, depth: 10, onClick: () => { if (this._starting) return; this._mode = id; paint(); } });
         menu.push(...b.objs);
         return [id, b];
       });

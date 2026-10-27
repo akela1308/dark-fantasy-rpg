@@ -17,7 +17,7 @@ export function applySavedVolume(game) {
 }
 
 export function openGameMenu(scene, { onExit } = {}) {
-  const f = new Frame(scene, { w: 460, h: 420, title: 'Меню', y: 340 });
+  const f = new Frame(scene, { w: 460, h: 420, title: 'Меню', y: 340, backdropDepth: 7990 });
   const cx = 640;
   let y = f.inner.y + 26;
   const add = b => { b.objs.forEach(o => f.add(o, 10)); return b; };

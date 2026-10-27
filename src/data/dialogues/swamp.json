@@ -58,7 +58,7 @@
           "next": "deal"
         },
         {
-          "label": "«[Страх 3] Я не плачу болоту.»",
+          "label": "[Страх 3] «Я не плачу болоту.»",
           "showIf": {
             "notFlag": "swamp_hostile"
           },
@@ -68,7 +68,7 @@
           "next": "hostile"
         },
         {
-          "label": "Зерно вместо воды. За Рессу.",
+          "label": "«Зерно вместо воды. За Рессу.»",
           "showIf": {
             "flag": "ressa_water_quest",
             "notFlag": "ressa_water_restored"
@@ -96,7 +96,7 @@
       "text": "«Тогда вы знаете правило третье: за ответ платят. Спрашивайте.»",
       "choices": [
         {
-          "label": "«[10 монет] Что такое Печать для вас?»",
+          "label": "[10 монет] «Что такое Печать для вас?»",
           "showIf": {
             "notFlag": "swamp_seal_is_key"
           },
@@ -109,7 +109,7 @@
           "next": "q_seal"
         },
         {
-          "label": "«[10 монет] Кто такой Гаст?»",
+          "label": "[10 монет] «Кто такой Гаст?»",
           "showIf": {
             "notFlag": "gast_reads_obelisk"
           },
@@ -122,7 +122,7 @@
           "next": "q_gast"
         },
         {
-          "label": "«[10 монет] Почему деревня болеет?»",
+          "label": "[10 монет] «Почему деревня болеет?»",
           "showIf": {
             "notFlag": "well_truth_swamp"
           },
@@ -135,7 +135,7 @@
           "next": "q_well"
         },
         {
-          "label": "Хватит вопросов.",
+          "label": "«Хватит вопросов.»",
           "style": "retreat",
           "next": "le"
         }

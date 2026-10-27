@@ -26,7 +26,7 @@ const SKILL_ICONS = {
 };
 
 // Полоса навыков: куски bottom_panel1.png (866×288). Столбы между нишами на x 121, 250, 377, 504, 622
-const BAR = { key: 'bottom_panel1', H: 150, X: 120, left: [0, 121], niche: [121, 128], right: [622, 244], nicheCx: 64, lastCx: 84 };
+const BAR = { key: 'battle_bar', src: 'bottom_panel1', H: 150, X: 120, left: [0, 121], niche: [121, 128], right: [622, 244], nicheCx: 64, lastCx: 84 };
 const ICON = 46;
 
 // Лог боя
@@ -54,7 +54,10 @@ export class UIManager {
   }
 
   _ensureBarFrames() {
-    const tex = this.scene.textures.exists(BAR.key) ? this.scene.textures.get(BAR.key) : null;
+    // Своя текстура на той же картинке: кадры полосы не трогают общую текстуру нижней панели карты
+    const T = this.scene.textures;
+    if (!T.exists(BAR.key) && T.exists(BAR.src)) T.addImage(BAR.key, T.get(BAR.src).getSourceImage());
+    const tex = T.exists(BAR.key) ? T.get(BAR.key) : null;
     if (!tex || tex.has('bar_l')) return;
     tex.add('bar_l', 0, BAR.left[0], 0, BAR.left[1], 288);
     tex.add('bar_n', 0, BAR.niche[0], 0, BAR.niche[1], 288);

@@ -21,7 +21,7 @@ export class JournalWindow {
     this.tab = 'active';
     this.sel = null;
     this.scroll = 0;
-    this.frame = new Frame(scene, { w: W, h: H, y: 350, title: 'Журнал', onClose });
+    this.frame = new Frame(scene, { w: W, h: H, y: 350, title: 'Журнал', onClose, backdropDepth: 7990 });
     this.parts = [];
     this._wheel = (ptr, over, dx, dy) => this._onWheel(ptr, dy);
     scene.input.on('wheel', this._wheel);

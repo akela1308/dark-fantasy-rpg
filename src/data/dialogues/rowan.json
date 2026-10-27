@@ -9,34 +9,34 @@
       "text": "«Вы не из тех, кто приходит в „Хромого Лося“ ради пива. У вас походка человека, которому дали поручение и не сказали всей правды.»",
       "effects": { "setFlag": "rowan_met" },
       "choices": [
-        { "label": "Что ты знаешь о письме?", "next": "letter" },
-        { "label": "Говорят, ты знаешь алтарь.", "next": "altar" },
-        { "label": "[Тайная грамота] Книга «О печатях» на твоём столе.", "showIf": { "notFlag": "rowan_respects_literacy" }, "requires": { "trait": "secret_literacy" }, "next": "literacy" },
-        { "label": "Пойдёшь со мной к алтарю.", "showIf": { "flag": "rowan_seal_hint", "notFlag": "rowan_joins_to_altar" }, "next": "join" },
-        { "label": "Ошибаешься.", "next": "liar" }
+        { "label": "«Что ты знаешь о письме?»", "next": "letter" },
+        { "label": "«Говорят, ты знаешь алтарь.»", "next": "altar" },
+        { "label": "[Тайная грамота] «Книга „О печатях“ на твоём столе.»", "showIf": { "notFlag": "rowan_respects_literacy" }, "requires": { "trait": "secret_literacy" }, "next": "literacy" },
+        { "label": "«Пойдёшь со мной к алтарю.»", "showIf": { "flag": "rowan_seal_hint", "notFlag": "rowan_joins_to_altar" }, "next": "join" },
+        { "label": "«Ошибаешься.»", "next": "liar" }
       ]
     },
     "letter": {
       "speaker": "rowan",
       "text": "«Письмо с мёртвой печатью, люди в плащах, Чёрный Лес... В Веланте совпадения редко бывают невинными.»",
       "effects": { "setFlag": "rowan_letter_hint" },
-      "choices": [ { "label": "Где алтарь?", "next": "altar" } ]
+      "choices": [ { "label": "«Где алтарь?»", "next": "altar" } ]
     },
     "altar": {
       "speaker": "rowan",
       "text": "«В лесу есть место, которое люди обходят, даже когда не помнят почему. Три камня укажут путь, если дорога вас не сломает раньше.»",
       "effects": { "setFlag": "rowan_seal_hint" },
-      "choices": [ { "label": "Что там?", "next": "seal" } ]
+      "choices": [ { "label": "«Что там?»", "next": "seal" } ]
     },
     "seal": {
       "speaker": "rowan",
       "text": "«Печать Забытого. Кольцо, метка, обещание: названия меняются. Цена остаётся.»",
-      "choices": [ { "label": "Какая цена?", "next": "price" } ]
+      "choices": [ { "label": "«Какая цена?»", "next": "price" } ]
     },
     "price": {
       "speaker": "rowan",
       "text": "«Печать не даёт силу. Она убирает то, что мешает идти дальше. Иногда страх. Иногда имя того, кто ждёт вас дома.»",
-      "choices": [ { "label": "Я запомню.", "next": "liar" } ]
+      "choices": [ { "label": "«Я запомню.»", "next": "liar" } ]
     },
     "liar": {
       "speaker": "rowan",

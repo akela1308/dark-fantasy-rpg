@@ -52,7 +52,7 @@ export function layoutWorld(maps, visited, start) {
 }
 
 export function openWorldMap(scene, { maps, visited, current, start }) {
-  const f = new Frame(scene, { w: 1040, h: 600, title: 'Карта', y: 340 });
+  const f = new Frame(scene, { w: 1040, h: 600, title: 'Карта', y: 340, backdropDepth: 7990 });
   const { pos, edges } = layoutWorld(maps, visited, start);
   const keys = Object.keys(pos);
   const cs = keys.map(k => pos[k][0]), rs = keys.map(k => pos[k][1]);

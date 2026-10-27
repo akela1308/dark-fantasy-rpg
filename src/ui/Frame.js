@@ -79,7 +79,8 @@ export class Frame {
     const fix = o => { o.setScrollFactor(0); this.objs.push(o); return o; };
 
     if (cfg.modal !== false) {
-      const back = fix(scene.add.rectangle(s(640), s(360), s(1400), s(800), 0x000000, 0.45).setDepth(D - 1));
+      // backdropDepth: на карте затемнение под нижней панелью, её кнопки работают и при открытом окне
+      const back = fix(scene.add.rectangle(s(640), s(360), s(1400), s(800), 0x000000, 0.45).setDepth(cfg.backdropDepth ?? D - 1));
       back.setInteractive();
       if (cfg.closeOnOutside !== false) back.on('pointerdown', () => this.close());
     }
