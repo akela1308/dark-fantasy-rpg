@@ -15,7 +15,8 @@
       "portrait": "portrait_companion_brawler"
     },
     "cat": {
-      "name": "Кот"
+      "name": "Кот",
+      "portrait": "portrait_cat"
     }
   },
   "start": [

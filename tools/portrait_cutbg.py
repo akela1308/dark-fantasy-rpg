@@ -16,8 +16,11 @@ def cut(name, thresh=40):
     key = (255, 0, 255)
     seeds = [(0, 0), (w - 1, 0), (0, h - 1), (w - 1, h - 1)] + [(x, 0) for x in range(0, w, 16)] + [(x, h - 1) for x in range(0, w, 16)] \
         + [(0, y) for y in range(0, h, 16)] + [(w - 1, y) for y in range(0, h, 16)]
+    bg0 = rgb.getpixel((0, 0))
     for p in seeds:
-        if rgb.getpixel(p) != key:
+        c = rgb.getpixel(p)
+        # заливка только от пикселей цвета фона: рамка может касаться края картинки
+        if c != key and sum(abs(a - b) for a, b in zip(c, bg0)) < thresh * 2:
             ImageDraw.floodfill(rgb, p, key, thresh=thresh)
     px = rgb.load()
     sp = src.convert("RGB").load()

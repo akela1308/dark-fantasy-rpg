@@ -4954,7 +4954,7 @@
         "x": 779,
         "y": 568,
         "spriteKey": "map_cat",
-        "portraitKey": null,
+        "portraitKey": "portrait_cat",
         "height": 50,
         "dialogue": "three_pillars",
         "hoverPortrait": false,

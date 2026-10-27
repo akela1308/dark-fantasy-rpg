@@ -8,6 +8,19 @@ import { ChapterEndScene } from './scenes/ChapterEndScene.js';
 import { GAME_WIDTH, GAME_HEIGHT } from './utils/constants.js';
 import { Store } from './utils/storeAdapter.js';
 
+// Портрет с новой версией (<имя>_v2.png: вырезан фон и т.п.) грузится вместо старого под тем же ключом
+if (typeof __PORTRAITS__ !== 'undefined') {
+  const L = Phaser.Loader.LoaderPlugin.prototype;
+  const addFile = L.addFile;
+  L.addFile = function (file) {
+    [].concat(file).forEach(f => {
+      const m = f && typeof f.url === 'string' && f.url.match(/portraits\/([\w-]+)\.(png|webp)$/);
+      if (m && !m[1].endsWith('_v2') && __PORTRAITS__.includes(`${m[1]}_v2`)) f.url = f.url.replace(/\.(png|webp)$/, '_v2.$1');
+    });
+    return addFile.call(this, file);
+  };
+}
+
 // В собранной игре все PNG перекодированы в WebP (vite.config.js, png-to-webp): подменяем путь при загрузке
 if (typeof __PNG_AS_WEBP__ !== 'undefined' && __PNG_AS_WEBP__) {
   const L = Phaser.Loader.LoaderPlugin.prototype;
