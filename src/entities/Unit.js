@@ -43,7 +43,7 @@ export class Unit {
     this.xpKill   = data.xpKill  || 15;
     this.regen    = data.regen    || 0;   // % HP восстанавливается в конце хода
     this.accuracy = data.accuracy ?? 75;
-    this.color     = data.color || 0xFFFFFF;
+    this.color     = data.color ?? null;   // цвет заглушки без рисунка; нет цвета: тёмный силуэт
     this.isBoss    = data.isBoss || false;
     this.canSurrender = data.canSurrender || false;
     this.commanderId  = data.commanderId || null;

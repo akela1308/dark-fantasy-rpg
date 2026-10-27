@@ -87,8 +87,12 @@ export class PortraitPanel {
 
       // Портрет (тест-юниты со spriteKey используют портрет базового спрайта)
       const portraitKey = `portrait_${unit.spriteKey ?? unit.id}`;
-      const portrait = this.scene.add.image(cx, cy - 14, portraitKey)
-        .setDepth(depth + 1);
+      // Нет портрета: тёмная карточка с первой буквой имени, а не заглушка «нет текстуры»
+      const portrait = this.scene.textures.exists(portraitKey)
+        ? this.scene.add.image(cx, cy - 14, portraitKey).setDepth(depth + 1)
+        : this.scene.add.text(cx, cy - 14, (unit.label || unit.name || '?')[0], {
+          fontFamily: 'Georgia, serif', fontSize: '40px', color: '#888877',
+        }).setOrigin(0.5).setDepth(depth + 1);
       const maxW = cardW - 4;
       const maxH = cardH - 36;
       const baseScale = (portrait.width > 0 && portrait.height > 0)

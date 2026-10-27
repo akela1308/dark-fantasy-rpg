@@ -15,7 +15,7 @@ const SKILL_ICONS = {
   dueling_stance: 'icon_dueling_stance',
   pistol_shot:    'icon_pistol',
   last_argument_shot: 'icon_pistol',
-  shield_cover:   'icon_shield',
+  shield_cover:   'icon_hand',
   heavy_strike:   'icon_might',
   bandage:        'icon_heart',
   aimed_shot:     'icon_bow',
@@ -76,7 +76,6 @@ export class UIManager {
     for (let i = 0; i < LOG.lines; i++) {
       const t = sc.add.text(inner.x, inner.y - 1 + i * LOG.step, '', {
         fontFamily: FONT, fontSize: '13px', color: COLOR.bone, stroke: '#000', strokeThickness: 2,
-        fixedWidth: inner.w - 24,
       }).setDepth(10);
       this._logTexts.push(t);
     }
@@ -103,6 +102,11 @@ export class UIManager {
     this._logTexts.forEach((t, i) => {
       const m = this._log[i - (LOG.lines - this._log.length)] ?? '';
       t.setText(m ? `› ${m}` : '').setColor(this._logColor(m));
+      // Не шире рамки: обрезка по словам с многоточием
+      if (t.width > LOG.w - 110) {
+        let s = `› ${m}`;
+        while (t.width > LOG.w - 110 && s.includes(' ')) { s = s.slice(0, s.lastIndexOf(' ')); t.setText(`${s}…`); }
+      }
     });
   }
 
@@ -216,7 +220,7 @@ export class UIManager {
       const body = [skill.description, charges !== undefined ? `Заряды: ${charges}` : null].filter(Boolean).join('\n');
       buttons.push({
         icon: SKILL_ICONS[skillId] || 'icon_dual_sword', badge,
-        tip: { title: skill.name, body, action: reason ? `Недоступно: ${reason}` : pending === skillId ? 'Выбрано. Клик или Esc: отменить' : 'Клик: выбрать, затем цель' },
+        tip: { title: skill.name, body, action: reason ? `Недоступно: ${reason}` : pending === skillId ? 'Выбрано. Клик или Esc: отменить' : (skill.targetType === 'self' ? 'Клик: применить сразу' : 'Клик: выбрать, затем цель') },
         selected: pending === skillId, disabled: !!reason,
         cb: reason ? null : () => eventBus.emit('skill_selected', skillId),
       });
@@ -274,8 +278,9 @@ export class UIManager {
       this._actionBtns.push(glow);
     }
     if (sc.textures.exists(b.icon)) {
-      const ico = sc.add.image(x, y, b.icon).setDisplaySize(ICON, ICON).setDepth(5).setAlpha(active ? 0.95 : 0.35);
-      if (!active) ico.setTint(0x555555);
+      // Недоступный навык виден, но приглушён (раньше ниша казалась пустой)
+      const ico = sc.add.image(x, y, b.icon).setDisplaySize(ICON, ICON).setDepth(5).setAlpha(active ? 0.95 : 0.6);
+      if (!active) ico.setTint(0x8a8a8a);
       this._actionBtns.push(ico);
     }
     if (b.badge) {

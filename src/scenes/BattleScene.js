@@ -430,7 +430,8 @@ export class BattleScene extends Phaser.Scene {
       .setScale(scale);
     spr.play({ key: idle.key, startFrame: Phaser.Math.Between(0, idle.frames - 1) });
     // Обработчики вешаются один раз: спрайт не пересоздаётся при перерисовке
-    spr.setInteractive({ useHandCursor: true });
+    // Клик по видимой фигуре, а не по прозрачным полям кадра (иначе крупный сосед перехватывал клик)
+    spr.setInteractive({ useHandCursor: true, pixelPerfect: true, alphaTolerance: 8 });
     if (unit.type === 'enemy') {
       spr.on('pointerdown', () => this._onEnemyClick(unit));
       spr.on('pointerover', () => spr.setAlpha(0.8));
@@ -947,7 +948,7 @@ export class BattleScene extends Phaser.Scene {
       const loot = this._battleConfig ? this.enemyUnits.length * lootPerEnemy(this._battleConfig.intendedLevel) : 0;
       if (loot > 0) {
         SaveSystem.addGold(loot, this.game.registry);
-        rows.splice(1, 0, { icon: 'icon_gold', text: `Добыча: ${loot} монет`, color: '#d4a832' });
+        rows.splice(1, 0, { icon: 'icon_gold', text: `Добыча: ${loot} ${loot % 10 === 1 && loot % 100 !== 11 ? 'монета' : [2, 3, 4].includes(loot % 10) && ![12, 13, 14].includes(loot % 100) ? 'монеты' : 'монет'}`, color: '#d4a832' });
       }
     }
 
@@ -1189,7 +1190,7 @@ export class BattleScene extends Phaser.Scene {
       if (!unit || unit.type !== 'player') return;
       unit.addEffect({ type: 'defending', value: 0.5, duration: 2 }); // duration=2: снимается после след. хода
       this._react(unit, 'block');
-      eventBus.emit('log', `${unit.name} встаёт в защиту: до следующего хода урон вдвое меньше`);
+      eventBus.emit('log', `${unit.label} встаёт в защиту: до следующего хода урон вдвое меньше`);
       this.turnManager.skipTurn(true);
       this._renderAll();
       this.ui.update();

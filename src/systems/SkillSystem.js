@@ -185,7 +185,8 @@ export class SkillSystem {
       receiver._armorBroken = (receiver._armorBroken || 0) + value;
     }
     receiver.addEffect({ type, value, duration: status.duration ?? 1, sourceId: caster.id });
-    if (status.log !== false) eventBus.emit('log', `${receiver.label}: ${status.label || type}`);
+    const STATUS_RU = { guarded: 'под прикрытием', marked: 'метка', weakened: 'ослаблен', staggered: 'оглушён', rooted: 'опутан', bleed: 'кровотечение', challenged: 'вызов', enraged: 'ярость', dodge_boost: 'уклонение', armor_broken: 'броня пробита' };
+    if (status.log !== false) eventBus.emit('log', `${receiver.label}: ${status.label || STATUS_RU[type] || type}`);
   }
 
   _hasRequiredResources(skill, caster) {
