@@ -178,7 +178,7 @@
     },
     "rowan_leaves": {
       "speaker": "rowan",
-      "text": "«Вы первый. Все остальные брали.»",
+      "text": "«Вы первый. Всё остальные брали.»",
       "effects": {
         "setFlag": "rowan_gone"
       }
