@@ -1,0 +1,7 @@
+{
+ "_help": "Статичные фигуры NPC на карте: ключ текстуры -> файл в public. LoadingScene грузит все записи. Пишет поток арта (tools/install_npc_art.py).",
+ "map_pilgrim": "maps/characters/pilgrim_map_v1.png",
+ "map_deserter": "maps/characters/deserter_map_v1.png",
+ "map_well_woman": "maps/characters/well_woman_map_v1.png",
+ "map_swamp_elder_elf": "maps/characters/swamp_elder_elf_map_v1.png"
+}
