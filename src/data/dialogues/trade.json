@@ -1,0 +1,192 @@
+{
+  "id": "trade",
+  "source": "МИР_РАСШИРЕНИЕ_v1.0: торговцы, лавки открываются эффектом openShop",
+  "speakers": {
+    "til": { "name": "Тил", "portrait": "portrait_til" },
+    "zlata": { "name": "Злата, травница", "portrait": "portrait_herbalist" },
+    "efim": { "name": "Ефим, лавочник", "portrait": "portrait_shopkeeper" },
+    "grimm": { "name": "Гримм Весы", "portrait": "portrait_dwarf_changer" },
+    "borin": { "name": "Борин", "portrait": "portrait_dwarf_smith" },
+    "luka": { "name": "Лука, коробейник", "portrait": "portrait_peddler" },
+    "sava": { "name": "Сава, точильщик", "portrait": "portrait_knife_grinder" },
+    "hort": { "name": "Хорт, скупщик шкур", "portrait": "portrait_fur_trader" },
+    "vodyanoy": { "name": "Водяной", "portrait": "portrait_vodyanoy" },
+    "taya": { "name": "Тая", "portrait": "portrait_companion_healer" },
+    "vornag": { "name": "Ворнаг", "portrait": "portrait_companion_brawler" }
+  },
+  "start": [ { "node": "til" } ],
+  "nodes": {
+    "til": {
+      "speaker": "til",
+      "text": [
+        { "showIf": { "flag": "til_met" }, "text": "«Опять вы. Клинок цел? Значит, мало дрались. Или хорошо. Это одно и то же, если смотреть с наковальни.»" },
+        { "text": "«Подков не кую, лошадей не люблю. Клинки правлю, порох сушу. Сапёром был, пока стены, под которые мы рыли, не начали падать на своих.»" }
+      ],
+      "effects": { "setFlag": "til_met" },
+      "choices": [
+        { "label": "«Покажи, что есть.»", "effects": { "openShop": "til" }, "close": true },
+        { "label": "«Сапёром? Где?»", "showIf": { "notFlag": "til_sapper_told" }, "next": "til_sapper" },
+        { "label": "Уйти.", "style": "retreat", "close": true }
+      ]
+    },
+    "til_sapper": {
+      "speaker": "til",
+      "text": "«Под Северным Пределом. Мы копали под стену, они копали навстречу. Встретились посередине, в темноте, лопатами. Порох решил, кто из нас прав. С тех пор я сплю при свече и продаю порох тем, кто спит хуже меня.»",
+      "effects": { "setFlag": "til_sapper_told" },
+      "lines": [ { "showIf": { "companion": "companion_brawler" }, "speaker": "vornag", "text": "«Я стоял на таких стенах. Сверху. Мы слышали, как вы копаете.»" } ],
+      "next": "til"
+    },
+    "zlata": {
+      "speaker": "zlata",
+      "text": [
+        { "showIf": { "flag": "zlata_met" }, "text": "«Вернулись. Значит, мои настои работают, иначе вас бы принесли.»" },
+        { "text": "«Трава лечит того, кто знает, когда её рвать. Ты знаешь? Нет. Значит, покупай готовое или неси сырое: сварю за три монеты, мне всё равно, чьи руки дрожат над котлом.»" }
+      ],
+      "effects": { "setFlag": "zlata_met" },
+      "lines": [ { "showIf": { "companion": "companion_healer", "notFlag": "zlata_met_taya" }, "speaker": "taya", "text": "«Она режет осоку ножом. Я бы руками. Но настой у неё честный, по запаху слышно.»" } ],
+      "choices": [
+        { "label": "«Покажи травы.»", "effects": { "openShop": "zlata", "setFlag": "zlata_met_taya" }, "close": true },
+        { "label": "[Тая в отряде] «Поделишься рецептом повязки?»", "showIf": { "companion": "companion_healer", "notFlag": "recipe_swamp_bandage" }, "next": "zlata_recipe" },
+        { "label": "«Почему тебя в деревне сторонятся?»", "next": "zlata_why" },
+        { "label": "Уйти.", "style": "retreat", "close": true }
+      ]
+    },
+    "zlata_recipe": {
+      "speaker": "zlata",
+      "text": "«Рецепт за рецепт. У тебя, девка, своих хватает, вижу по пальцам. Не хочешь меняться? Тогда за восемь монет. Деньги рецепт не портят, а вот обида портит.»",
+      "choices": [
+        { "label": "[8 монет] «Держи.»", "requires": { "gold": 8 }, "effects": { "cost": 8, "setFlag": "recipe_swamp_bandage" }, "next": "zlata_recipe_done" },
+        { "label": "«В другой раз.»", "next": "zlata" }
+      ]
+    },
+    "zlata_recipe_done": {
+      "speaker": "taya",
+      "text": "Злата диктует быстро, не повторяя. Тая записывает угольком на бересте и прячет бересту за пазуху. Болотная повязка: осока и холстина, рвать руками.",
+      "next": "zlata"
+    },
+    "zlata_why": {
+      "speaker": "zlata",
+      "text": "«Потому что я лечу всех. И тех, кого староста велел не лечить. Деревня любит лекаря, пока он лечит своих, и боится, когда он помнит, что чужих не бывает.»",
+      "next": "zlata"
+    },
+    "efim": {
+      "speaker": "efim",
+      "text": "«Заходите, не стойте в дверях: сквозняк ворует тепло, а тепло у меня в долг не отпускается.»",
+      "choices": [
+        { "label": "«Покажи товар.»", "effects": { "openShop": "efim" }, "close": true },
+        { "label": "«Что слышно в деревне?»", "next": "efim_rumor" },
+        { "label": "Уйти.", "style": "retreat", "close": true }
+      ]
+    },
+    "efim_rumor": {
+      "speaker": "efim",
+      "text": "«Мельник Прокоп держит долговые бирки половины деревни. Полудница держит поле. Я держу лавку. Из нас троих честно торгую только я, и то потому, что пробовал иначе. Кстати, у меня есть крестьянский календарь, где про полдень всё расписано. Берут редко, а зря.»",
+      "effects": { "setFlag": "efim_rumor_heard" },
+      "next": "efim"
+    },
+    "grimm": {
+      "speaker": "grimm",
+      "text": "«Человек. С медью или с долгом? С долгом вам к Хальвару, он любит длинные разговоры. С медью кладите на весы, я люблю короткие.»",
+      "choices": [
+        { "label": "«Покажи весы.»", "effects": { "openShop": "grimm" }, "close": true },
+        { "label": "«Зачем клану печатки постов?»", "next": "grimm_signets" },
+        { "label": "Уйти.", "style": "retreat", "close": true }
+      ]
+    },
+    "grimm_signets": {
+      "speaker": "grimm",
+      "text": "«Каждая печатка это дорога, которую кто-то бросил. Клан собирает брошенные дороги. Когда наберём достаточно, спросим у людей, чьи они. Люди не вспомнят. Тогда дороги будут наши, по закону камня. Плачу честно, не сомневайтесь.»",
+      "effects": { "setFlag": "grimm_signets_hint" },
+      "next": "grimm"
+    },
+    "borin": {
+      "speaker": "borin",
+      "text": [
+        { "showIf": { "flag": "book_singing_stone_read" }, "text": "«Вы читали, как поёт камень. Вижу по тому, как вы стоите у горна: не мешаете ему. Таким продаю дешевле.»" },
+        { "text": "«Не Тил. Не путайте. Тил роет, я кую. Он из людей, я из камня. Что надо?»" }
+      ],
+      "choices": [
+        { "label": "«Покажи, что куёшь.»", "effects": { "openShop": "borin" }, "close": true },
+        { "label": "«Медь шахты хороша?»", "next": "borin_copper" },
+        { "label": "Уйти.", "style": "retreat", "close": true }
+      ]
+    },
+    "borin_copper": {
+      "speaker": "borin",
+      "text": "«Хороша, если слушать. Медь Зуба поёт низко: значит, рядом долг. Люди не слушают, люди спрашивают цену. Потому у людей медь ломается в первую зиму.»",
+      "next": "borin"
+    },
+    "luka": {
+      "speaker": "luka",
+      "text": "«Ленты, ложки, склянки, слухи! Слухи даром, если купите ленту. Лент, правда, нет: кончились у болота. Болотные девки меняют их на рыбу и на обещания, а обещания я беру неохотно.»",
+      "choices": [
+        { "label": "«Открывай короб.»", "effects": { "openShop": "luka" }, "close": true },
+        { "label": "«Какие слухи?»", "next": "luka_rumor" },
+        { "label": "Уйти.", "style": "retreat", "close": true }
+      ]
+    },
+    "luka_rumor": {
+      "speaker": "luka",
+      "text": [
+        { "showIf": { "notFlag": "luka_rumor_1" }, "text": "«Ворн держит на стойке устав дорожных домов. Кто прочёл, тот у него свой гость, а своим он наливает дешевле. Никому не говорите, что от меня.»" },
+        { "text": "«На Мёртвом тракте кто-то срывает печати со столбов и вешает их себе на пояс. Ходят по двое, пахнут воском. Я теперь хожу тем трактом только днём и только с песней.»" }
+      ],
+      "effects": { "setFlag": "luka_rumor_1" },
+      "next": "luka"
+    },
+    "sava": {
+      "speaker": "sava",
+      "text": "«Слышишь, как колесо поёт? Это не колесо. Это твоя рапира просит, чтобы её наконец поправили.»",
+      "choices": [
+        { "label": "«Что продаёшь?»", "effects": { "openShop": "sava" }, "close": true },
+        { "label": "«Далеко ходишь?»", "next": "sava_road" },
+        { "label": "Уйти.", "style": "retreat", "close": true }
+      ]
+    },
+    "sava_road": {
+      "speaker": "sava",
+      "text": "«От Придорожного до Града и обратно. Точу всем: страже, разбойникам, монахиням. Ножи у всех тупятся одинаково, это единственное равенство, которое я видел. Наёмники Бурого вчера точились у меня. Много. Значит, кто-то им заплатил вперёд.»",
+      "effects": { "setFlag": "rumor_mercs_paid" },
+      "next": "sava"
+    },
+    "hort": {
+      "speaker": "hort",
+      "text": "«Шкуры? Волчьи беру по цене, медвежьи дороже. Человечьих не беру, хоть и предлагали.»",
+      "choices": [
+        { "label": "«Покажи меха и снедь.»", "effects": { "openShop": "hort" }, "close": true },
+        { "label": "«Охотники у озера...»", "next": "hort_hunters" },
+        { "label": "Уйти.", "style": "retreat", "close": true }
+      ]
+    },
+    "hort_hunters": {
+      "speaker": "hort",
+      "text": "«...ходят на двух ногах днём. Остальное время не моё дело. И не ваше, если хотите дожить до весны. Шкуры они приносят хорошие, без единой дырки от стрелы. Сами подумайте, как так выходит.»",
+      "effects": { "setFlag": "rumor_wolfolaks" },
+      "next": "hort"
+    },
+    "vodyanoy": {
+      "speaker": "vodyanoy",
+      "text": [
+        { "showIf": { "flag": "vod_met" }, "text": "«Опять тёплые. Садитесь на мостки, только ноги в воду не опускайте: вода здесь считает пальцы.»" },
+        { "text": "«Живые пришли. Тёплые. Не стойте на мостках долго, они помнят, кто по ним ходил последним. Всё, что вода взяла с телег, вода и продаёт.»" }
+      ],
+      "effects": { "setFlag": "vod_met" },
+      "choices": [
+        { "label": "«Что у тебя есть?»", "effects": { "openShop": "vodyanoy" }, "close": true },
+        { "label": "«Ты торгуешь именами?»", "next": "vod_names" },
+        { "label": "[Хлеб] «Это тебе. Просто так.»", "showIf": { "notFlag": "vod_bread_given" }, "requires": { "item": "bread" }, "reason": "нужен хлеб", "effects": { "takeItem": "bread", "setFlag": "vod_bread_given", "rep": { "word": 1 }, "giveItem": "amber_bead" }, "next": "vod_bread" },
+        { "label": "Уйти.", "style": "retreat", "close": true }
+      ]
+    },
+    "vod_names": {
+      "speaker": "vodyanoy",
+      "text": "«Монета круглая, имя тоже. Монета тонет быстрее. Возьму монетой, а именем возьму, если монет нет. Имя потом не вернёшь: я его не помню, я его ношу. Вон их сколько на мне, видишь? Не видишь. Это хорошо.»",
+      "next": "vodyanoy"
+    },
+    "vod_bread": {
+      "speaker": "vodyanoy",
+      "text": "«Просто так? Давно мне просто так не давали. Возьми бусину. Её тоже кто-то давал просто так, потом утонул. Не от этого, не бойся.»",
+      "next": "vodyanoy"
+    }
+  }
+}

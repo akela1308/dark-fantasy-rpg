@@ -80,6 +80,13 @@
           "next": "holt_who"
         },
         {
+          "label": "«Что есть из еды и снадобий?»",
+          "effects": {
+            "openShop": "agna"
+          },
+          "close": true
+        },
+        {
           "label": "Уйти.",
           "style": "retreat",
           "close": true

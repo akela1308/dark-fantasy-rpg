@@ -1,0 +1,1034 @@
+{
+  "id": "folk",
+  "source": "roster _new50: люди Веланта, дороги, болота; бродячий рыцарь",
+  "speakers": {
+    "narrator": {
+      "name": ""
+    },
+    "zhdan": {
+      "name": "Ждан",
+      "portrait": "portrait_plowman"
+    },
+    "vesya": {
+      "name": "Веся",
+      "portrait": "portrait_peasant_woman"
+    },
+    "mokey": {
+      "name": "Дед Мокей",
+      "portrait": "portrait_old_man"
+    },
+    "timko": {
+      "name": "Тимко",
+      "portrait": "portrait_village_boy"
+    },
+    "ganka": {
+      "name": "Ганка",
+      "portrait": "portrait_village_girl"
+    },
+    "erema": {
+      "name": "Ерёма",
+      "portrait": "portrait_shepherd"
+    },
+    "gnat": {
+      "name": "Гнат",
+      "portrait": "portrait_woodcutter"
+    },
+    "prokop": {
+      "name": "Прокоп",
+      "portrait": "portrait_miller"
+    },
+    "sych": {
+      "name": "Сыч",
+      "portrait": "portrait_gravedigger"
+    },
+    "olena": {
+      "name": "Олена",
+      "portrait": "portrait_widow"
+    },
+    "osoka": {
+      "name": "Осока",
+      "portrait": "portrait_fisherman"
+    },
+    "onisim": {
+      "name": "Слепой Онисим",
+      "portrait": "portrait_beggar"
+    },
+    "kondrat": {
+      "name": "Мытарь Кондрат",
+      "portrait": "portrait_toll_keeper"
+    },
+    "agafya": {
+      "name": "Сестра Агафья",
+      "portrait": "portrait_pilgrim_nun"
+    },
+    "polevik": {
+      "name": "Полевик",
+      "portrait": "portrait_polevik"
+    },
+    "knight": {
+      "name": "Бродячий рыцарь",
+      "portrait": "portrait_wandering_knight"
+    },
+    "vornag": {
+      "name": "Ворнаг",
+      "portrait": "portrait_companion_brawler"
+    },
+    "taya": {
+      "name": "Тая",
+      "portrait": "portrait_companion_healer"
+    }
+  },
+  "start": [
+    {
+      "node": "mokey"
+    }
+  ],
+  "nodes": {
+    "zhdan": {
+      "speaker": "zhdan",
+      "text": [
+        {
+          "showIf": {
+            "flag": "zhdan_met"
+          },
+          "text": "«Опять вы. Поле, как видите, на месте. Урожая на нём нет, зато на месте.»"
+        },
+        {
+          "text": "«Не стойте на меже, добрый человек. Межа нынче не наша. Чья, не скажу: сам не знаю, кому платить.»"
+        }
+      ],
+      "effects": {
+        "setFlag": "zhdan_met"
+      },
+      "choices": [
+        {
+          "label": "«Почему поле пустое?»",
+          "next": "zhdan_field"
+        },
+        {
+          "label": "«Кто ходит по полю в полдень?»",
+          "next": "zhdan_noon"
+        },
+        {
+          "label": "Уйти.",
+          "style": "retreat",
+          "close": true
+        }
+      ]
+    },
+    "zhdan_field": {
+      "speaker": "zhdan",
+      "text": "«Договор с полем был у деда. Дед помер, договор с ним. Теперь сеешь, а всходит не то. Полевику хлеб носим, соль носим. Он берёт, а межи всё равно путает.»",
+      "next": "zhdan"
+    },
+    "zhdan_noon": {
+      "speaker": "zhdan",
+      "text": "«Никто не ходит. Кто ходил, того нашли с вывернутой шеей у пугала. Пугало, к слову, я ставил к амбару. А стоит оно теперь в поле. Сами понимаете.»",
+      "effects": {
+        "setFlag": "rumor_scarecrow"
+      },
+      "lines": [
+        {
+          "showIf": {
+            "companion": "companion_brawler"
+          },
+          "speaker": "vornag",
+          "text": "«Пугало само не ходит. Значит, его кто-то носит. Это хуже.»"
+        }
+      ],
+      "choices": [
+        {
+          "label": "«Есть приметы, как её обойти?»",
+          "next": "zhdan_signs"
+        },
+        {
+          "label": "«Ясно.»",
+          "style": "retreat",
+          "close": true
+        }
+      ]
+    },
+    "zhdan_signs": {
+      "speaker": "zhdan",
+      "text": "«Были. Старуха из выселка записывала, когда тень от пугала короче рукояти. Тетрадку её кто-то унёс в амбар, мыши, поди, доели.»",
+      "effects": {
+        "setFlag": "rumor_poludnitsa_signs"
+      },
+      "next": "zhdan"
+    },
+    "vesya": {
+      "speaker": "vesya",
+      "text": "«Репу берёте? Нет? Тогда и не стойте, люди подумают, что я с вами сговариваюсь. У нас сейчас все со всеми сговариваются.»",
+      "choices": [
+        {
+          "label": "«О чём говорят в деревне?»",
+          "next": "vesya_gossip"
+        },
+        {
+          "label": "«Кто здесь лечит?»",
+          "next": "vesya_heal"
+        },
+        {
+          "label": "Уйти.",
+          "style": "retreat",
+          "close": true
+        }
+      ]
+    },
+    "vesya_gossip": {
+      "speaker": "vesya",
+      "text": [
+        {
+          "showIf": {
+            "flag": "courier_buried"
+          },
+          "text": "«Говорят, какой-то пришлый закопал гонца у Трёх столбов. Даром. Одни говорят, святой. Другие говорят, дурак. Мой Ждан говорит: посмотрим, что попросит.»"
+        },
+        {
+          "text": "«Что староста Рыж копит зерно, что мельник копит бирки, что у часовни по ночам свет, а свечей никто не покупал. Выбирайте, что вам слаще.»"
+        }
+      ],
+      "effects": {
+        "setFlag": "rumor_chapel_light"
+      },
+      "next": "vesya"
+    },
+    "vesya_heal": {
+      "speaker": "vesya",
+      "text": "«Злата с травами, если платите. Сестра-паломница, если не платите, но тогда слушайте молитвы. А если совсем худо, то к болоту. Только оттуда обычно не возвращаются здоровыми, возвращаются другими.»",
+      "next": "vesya"
+    },
+    "mokey": {
+      "speaker": "mokey",
+      "text": "«Подойди ближе, глаза уже не те. Ага. Дуэлянт. При имперском суде таких держали на цепи, как хороших собак. Не обижайся, я про собак хорошо думаю.»",
+      "choices": [
+        {
+          "label": "«Ты помнишь, как ставили печати на дороге?»",
+          "next": "mokey_seals"
+        },
+        {
+          "label": "«Откуда знаешь про суд?»",
+          "next": "mokey_court"
+        },
+        {
+          "label": "«Береги себя, дед.»",
+          "style": "retreat",
+          "close": true
+        }
+      ]
+    },
+    "mokey_seals": {
+      "speaker": "mokey",
+      "text": "«Помню. Пришли трое в сером, вбили столб, повесили воск. Сказали: теперь дорога помнит, кто по ней идёт. Мы радовались. Потом поняли: помнит, а нас не спрашивает. Теперь их срывают. Тоже радуются. Дураки и те, и эти.»",
+      "effects": {
+        "setFlag": "mokey_seals_told",
+        "giveXp": 5
+      },
+      "lines": [
+        {
+          "showIf": {
+            "companion": "companion_healer"
+          },
+          "speaker": "taya",
+          "text": "«Дед говорит правду. Он её просто не любит.»"
+        }
+      ],
+      "next": "mokey"
+    },
+    "mokey_court": {
+      "speaker": "mokey",
+      "text": "«Сорок лет назад возил дрова к судебному двору. Видел, как парень вроде тебя вышел к барьеру вместо старого графа. Граф потом пил вино, а парня несли. Вот и вся честь.»",
+      "next": "mokey"
+    },
+    "timko": {
+      "speaker": "timko",
+      "text": [
+        {
+          "showIf": {
+            "flag": "timko_paid"
+          },
+          "text": "«Я ещё слух нашёл! Только этот дороже. Шучу. Хотите даром?»"
+        },
+        {
+          "text": "«А вы правда дуэлянт? Покажите стойку! Нет? Тогда купите слух. Медяк, и я скажу, где в деревне прячут хорошее.»"
+        }
+      ],
+      "choices": [
+        {
+          "label": "[1 монета] «Говори.»",
+          "requires": {
+            "gold": 1
+          },
+          "showIf": {
+            "notFlag": "timko_paid"
+          },
+          "effects": {
+            "cost": 1,
+            "setFlag": "timko_paid"
+          },
+          "next": "timko_rumor"
+        },
+        {
+          "label": "«Слушаю.»",
+          "showIf": {
+            "flag": "timko_paid"
+          },
+          "next": "timko_free"
+        },
+        {
+          "label": "«Держи стойку так.» Показать.",
+          "showIf": {
+            "notFlag": "timko_stance"
+          },
+          "effects": {
+            "setFlag": "timko_stance",
+            "rep": {
+              "word": 1
+            }
+          },
+          "next": "timko_stance"
+        },
+        {
+          "label": "«Беги домой.»",
+          "style": "retreat",
+          "close": true
+        }
+      ]
+    },
+    "timko_rumor": {
+      "speaker": "timko",
+      "text": "«У Ефима в лавке под прилавком лежат имперские монеты, он их никому не показывает. А у кузнеца Тила есть порох, хоть он говорит, что нету. Это два слуха за один медяк, я честный.»",
+      "effects": {
+        "setFlag": "rumor_efim_silver"
+      },
+      "next": "timko"
+    },
+    "timko_free": {
+      "speaker": "timko",
+      "text": "«Бродячий рыцарь у оврага с мостом стоит третий день. Всех спрашивает одно и то же: кто у вас тут лучший клинок. Я сказал: вы. Вы же не обидитесь?»",
+      "effects": {
+        "setFlag": "rumor_wandering_knight"
+      },
+      "next": "timko"
+    },
+    "timko_stance": {
+      "speaker": "timko",
+      "text": "Мальчишка повторяет стойку, роняет деревянный меч, поднимает и повторяет снова. Лицо у него серьёзное, как на присяге.",
+      "next": "timko"
+    },
+    "ganka": {
+      "speaker": "ganka",
+      "text": [
+        {
+          "showIf": {
+            "flag": "ganka_helped"
+          },
+          "text": "«Я жду тут. Брат придёт сюда, тут наш дом был. Вы ведь ему скажете, если увидите?»"
+        },
+        {
+          "text": "«Вы не видели мальчика? Он выше меня. На нём папина шапка. Он пошёл за псами, сказал, что поймает нашего Буяна, и не пришёл.»"
+        }
+      ],
+      "choices": [
+        {
+          "label": "«Буян? У одного из псов ошейник с именем.»",
+          "showIf": {
+            "flag": "enc_hamlet_dogs_done",
+            "notFlag": "ganka_told_dog"
+          },
+          "effects": {
+            "setFlag": "ganka_told_dog"
+          },
+          "next": "ganka_dog"
+        },
+        {
+          "label": "Отдать хлеб.",
+          "requires": {
+            "item": "bread"
+          },
+          "showIf": {
+            "notFlag": "ganka_helped"
+          },
+          "effects": {
+            "takeItem": "bread",
+            "setFlag": "ganka_helped",
+            "rep": {
+              "word": 1
+            },
+            "giveXp": 10
+          },
+          "next": "ganka_bread"
+        },
+        {
+          "label": "«Где живут ваши теперь?»",
+          "next": "ganka_where"
+        },
+        {
+          "label": "«Я поищу.»",
+          "style": "retreat",
+          "close": true
+        }
+      ]
+    },
+    "ganka_dog": {
+      "speaker": "ganka",
+      "text": "«Значит, Буян одичал. А брат? Брат не одичал. Он умный.» Девочка крепче прижимает куклу и больше не спрашивает.",
+      "next": "ganka"
+    },
+    "ganka_bread": {
+      "speaker": "ganka",
+      "text": "Ганка ломает хлеб пополам и прячет одну половину за пазуху. «Это брату.»",
+      "next": "ganka"
+    },
+    "ganka_where": {
+      "speaker": "ganka",
+      "text": "«Нигде. Тётка Вешка говорила, что возьмёт к себе, если я буду смотреть за дорогой и свистеть. Я не стала. Она злая, у неё топор.»",
+      "effects": {
+        "setFlag": "rumor_veshka"
+      },
+      "next": "ganka"
+    },
+    "erema": {
+      "speaker": "erema",
+      "text": "«Стадо не трогайте, оно и так пуганое. Две коровы не вернулись с полудня. Их не волк взял. Волк ест, а эти лежат целые, только глаза белые.»",
+      "choices": [
+        {
+          "label": "«Ты видел Полудницу?»",
+          "next": "erema_saw"
+        },
+        {
+          "label": "«Почему не уйдёшь с этого поля?»",
+          "next": "erema_why"
+        },
+        {
+          "label": "Уйти.",
+          "style": "retreat",
+          "close": true
+        }
+      ]
+    },
+    "erema_saw": {
+      "speaker": "erema",
+      "text": "«Видел. Издали. Высокая, в белом, лица нет, один платок. Я лёг в борозду и не дышал, пока тень от пугала не вытянулась. Тень у пугала, кстати, правильная. Её и смотрите.»",
+      "effects": {
+        "setFlag": "rumor_poludnitsa_shadow"
+      },
+      "next": "erema"
+    },
+    "erema_why": {
+      "speaker": "erema",
+      "text": "«А куда? За полем лес, в лесу Леший, за лесом болото, на болоте эти, остроухие. У меня рожок и палка. С ними везде плохо, а здесь хоть знакомо.»",
+      "next": "erema"
+    },
+    "polevik": {
+      "speaker": "polevik",
+      "text": [
+        {
+          "showIf": {
+            "flag": "polevik_fed"
+          },
+          "text": "«Хлеб был хороший. Соли мало. Ходи по меже, не обижу.»"
+        },
+        {
+          "text": "Из ржи поднимается маленький старичок, весь в соломе. Он долго смотрит на сапоги героя. «Межу топчешь. Чем платить будешь?»"
+        }
+      ],
+      "choices": [
+        {
+          "label": "Положить хлеб на межу.",
+          "requires": {
+            "item": "bread"
+          },
+          "showIf": {
+            "notFlag": "polevik_fed"
+          },
+          "effects": {
+            "takeItem": "bread",
+            "setFlag": "polevik_fed",
+            "giveXp": 10
+          },
+          "next": "polevik_fed"
+        },
+        {
+          "label": "«Чья теперь межа?»",
+          "next": "polevik_whose"
+        },
+        {
+          "label": "Отступить с межи.",
+          "style": "retreat",
+          "close": true
+        }
+      ]
+    },
+    "polevik_fed": {
+      "speaker": "polevik",
+      "text": "«Ладно. Скажу тебе одно, раз хлебом заплатил. Старшая моя соседка в полдень шею ломает тем, кто жнёт. А ты не жни. Ты же не жнец. Ты так, мимо.»",
+      "effects": {
+        "setFlag": "rumor_poludnitsa_spare"
+      },
+      "next": "polevik"
+    },
+    "polevik_whose": {
+      "speaker": "polevik",
+      "text": "«Межа того, кто договор помнит. Люди забыли. Я помню. Значит, моя. А пахать будут они. Справедливо.»",
+      "next": "polevik"
+    },
+    "prokop": {
+      "speaker": "prokop",
+      "text": "«Мука по три медяка, долги по бирке, советы бесплатно, но их никто не берёт. Вы кто будете, едок или должник?»",
+      "choices": [
+        {
+          "label": "«Что за бирки?»",
+          "next": "prokop_tally"
+        },
+        {
+          "label": "«Что мелешь, если поля пустые?»",
+          "next": "prokop_grain"
+        },
+        {
+          "label": "Уйти.",
+          "style": "retreat",
+          "close": true
+        }
+      ]
+    },
+    "prokop_tally": {
+      "speaker": "prokop",
+      "text": "«Палочка, на ней зарубки. Одна половина у меня, другая у должника. Половина деревни мне должна, вторая половина должна старосте. Так и живём, все друг другу родня по долгу.»",
+      "effects": {
+        "setFlag": "prokop_tallies_known"
+      },
+      "next": "prokop"
+    },
+    "prokop_grain": {
+      "speaker": "prokop",
+      "text": "«Старое зерно из закромов. Его держали на чёрный год. Чёрный год пришёл, а мы всё спорим, чёрный он или так, серенький. Мельница крутится, и ладно.»",
+      "next": "prokop"
+    },
+    "sych": {
+      "speaker": "sych",
+      "text": "«Новенькие. Живые. Это ненадолго, вы не бойтесь, я не к тому. Я к тому, что земли на всех хватит, а лопата у меня одна.»",
+      "choices": [
+        {
+          "label": "«Что в склепе под руинами?»",
+          "next": "sych_crypt"
+        },
+        {
+          "label": "«Кого ты здесь хоронишь?»",
+          "next": "sych_who"
+        },
+        {
+          "label": "Уйти.",
+          "style": "retreat",
+          "close": true
+        }
+      ]
+    },
+    "sych_crypt": {
+      "speaker": "sych",
+      "text": "«Мундиры поста. Лежат смирно, пока им не напомнить про жалованье. Три гроба там. Два открывать можно. Третий не трогайте: тот, кто в нём, должен всем, а встаёт за своим.»",
+      "effects": {
+        "setFlag": [
+          "rumor_crypt_third",
+          "sych_crypt_told"
+        ],
+        "giveXp": 5
+      },
+      "lines": [
+        {
+          "showIf": {
+            "companion": "companion_healer"
+          },
+          "speaker": "taya",
+          "text": "«Упыря не лечат. Ему отдают долг или кол.»"
+        }
+      ],
+      "next": "sych"
+    },
+    "sych_who": {
+      "speaker": "sych",
+      "text": "«Тех, кого приносят. Тех, кого не приносят, тоже, только без тела. Вешаю на крест шапку или пояс, читаю из книжки для ненайденных. Книжку, правда, потерял. Найдёте, верните.»",
+      "effects": {
+        "setFlag": "rumor_prayers_book"
+      },
+      "next": "sych"
+    },
+    "olena": {
+      "speaker": "olena",
+      "text": [
+        {
+          "showIf": {
+            "flag": "olena_told"
+          },
+          "text": "«Свечу я ставлю не за упокой. За то, чтобы нашёлся. Даже мёртвый.»"
+        },
+        {
+          "text": "«Не загораживайте свет. Это мужу. Он служил на Южной заставе, у сломанного столба. Писал каждую неделю. Потом писать перестал.»"
+        }
+      ],
+      "choices": [
+        {
+          "label": "«У столба лежал гонец. Мы его похоронили.»",
+          "showIf": {
+            "flag": "courier_buried",
+            "notFlag": "olena_told"
+          },
+          "effects": {
+            "setFlag": "olena_told",
+            "rep": {
+              "word": 1
+            },
+            "giveXp": 10
+          },
+          "next": "olena_buried"
+        },
+        {
+          "label": "«Что он писал в последний раз?»",
+          "next": "olena_letter"
+        },
+        {
+          "label": "«Я посмотрю на заставе.»",
+          "showIf": {
+            "notFlag": "olena_asked"
+          },
+          "effects": {
+            "setFlag": "olena_asked"
+          },
+          "next": "olena_ask"
+        },
+        {
+          "label": "Не мешать.",
+          "style": "retreat",
+          "close": true
+        }
+      ]
+    },
+    "olena_buried": {
+      "speaker": "olena",
+      "text": "Олена долго молчит, потом гасит свечу пальцами. «Значит, земля у него есть. Это больше, чем у многих. Спасибо. Не за него, за то, что сказали вслух.»",
+      "next": "olena"
+    },
+    "olena_letter": {
+      "speaker": "olena",
+      "text": "«Что люди в плащах ходят ночью мимо поста и платят за молчание серебром. Что серебро холодное, как из колодца. Что он не взял. Наверное, зря не взял.»",
+      "effects": {
+        "setFlag": "rumor_cloaks_silver"
+      },
+      "next": "olena"
+    },
+    "olena_ask": {
+      "speaker": "olena",
+      "text": "«Если найдёте письма, не читайте. Принесите. Хотя нет, читайте. Вдруг там не мне.»",
+      "next": "olena"
+    },
+    "osoka": {
+      "speaker": "osoka",
+      "text": "«Фонарь опусти. Не в мою сторону, в воду. Вот так, совсем убери. Здесь в воду не светят, а то вода посмотрит в ответ.»",
+      "choices": [
+        {
+          "label": "«Что ловишь на старой воде?»",
+          "next": "osoka_fish"
+        },
+        {
+          "label": "«Кто кусается у дороги?»",
+          "next": "osoka_shishiga"
+        },
+        {
+          "label": "Уйти.",
+          "style": "retreat",
+          "close": true
+        }
+      ]
+    },
+    "osoka_fish": {
+      "speaker": "osoka",
+      "text": "«Рыбу. Иногда пуговицы, иногда кольца. Кольца отдаю обратно, рыбу оставляю. На, возьми копчёную. Не за так: если увидишь огни на воде, не считай их. Это и есть плата.»",
+      "effects": {
+        "setFlag": "osoka_gift"
+      },
+      "choices": [
+        {
+          "label": "Взять рыбу.",
+          "showIf": {
+            "notFlag": "osoka_fish_taken"
+          },
+          "effects": {
+            "giveItem": "smoked_fish",
+            "setFlag": [
+              "osoka_fish_taken",
+              "rumor_dont_count_lights"
+            ]
+          },
+          "next": "osoka"
+        },
+        {
+          "label": "«Обойдусь.»",
+          "next": "osoka"
+        }
+      ]
+    },
+    "osoka_shishiga": {
+      "speaker": "osoka",
+      "text": "«Шишиги. Мелочь, мокрые, зубастые. Таскают с телег всё, что блестит. Огня боятся, крика нет. Если побегут, не гонись: они затем и бегут, чтобы ты в трясину за ними.»",
+      "effects": {
+        "setFlag": "rumor_shishiga"
+      },
+      "next": "osoka"
+    },
+    "onisim": {
+      "speaker": "onisim",
+      "text": "«Шаги тяжёлые, сапоги хорошие, а подбиты плохо. Служивый, да не наш. Подай медь, служивый, и я скажу, что слышал. Я много слышу, мне больше нечем заниматься.»",
+      "choices": [
+        {
+          "label": "[2 монеты] Подать.",
+          "requires": {
+            "gold": 2
+          },
+          "showIf": {
+            "notFlag": "onisim_paid"
+          },
+          "effects": {
+            "cost": 2,
+            "setFlag": "onisim_paid",
+            "rep": {
+              "word": 1
+            }
+          },
+          "next": "onisim_rumor"
+        },
+        {
+          "label": "«Что слышал?»",
+          "showIf": {
+            "flag": "onisim_paid"
+          },
+          "next": "onisim_more"
+        },
+        {
+          "label": "Пройти мимо.",
+          "style": "retreat",
+          "close": true
+        }
+      ]
+    },
+    "onisim_rumor": {
+      "speaker": "onisim",
+      "text": "«Слышал, как в Хромом Лосе внизу кто-то скребётся. Не мыши: мыши так не дышат. И слышал, как Ворн по ночам считает монеты вслух. Он думает, это помогает от долгов.»",
+      "effects": {
+        "setFlag": "rumor_cellar_scratch"
+      },
+      "next": "onisim"
+    },
+    "onisim_more": {
+      "speaker": "onisim",
+      "text": "«Слышал, как люди в сером читают на Мёртвом тракте чужие имена. Сорванные печати они вешают на пояс, бряцают, как овцы колокольцами. Услышишь бряцанье, сворачивай.»",
+      "effects": {
+        "setFlag": "rumor_torn_seal_cult"
+      },
+      "next": "onisim"
+    },
+    "kondrat": {
+      "speaker": "kondrat",
+      "text": "«Стоять. Мост королевский, пошлина королевская, книга королевская. Король, правда, далеко, а я близко. Имя, род занятий, цель следования.»",
+      "choices": [
+        {
+          "label": "«Какой король? Тут давно нет короны.»",
+          "next": "kondrat_crown"
+        },
+        {
+          "label": "[3 монеты] Заплатить и записаться.",
+          "requires": {
+            "gold": 3
+          },
+          "showIf": {
+            "notFlag": "kondrat_paid"
+          },
+          "effects": {
+            "cost": 3,
+            "setFlag": "kondrat_paid",
+            "rep": {
+              "law": 1
+            }
+          },
+          "next": "kondrat_paid"
+        },
+        {
+          "label": "«Записывай: дуэлянт. Цель: тебя не касается.»",
+          "showIf": {
+            "notFlag": "kondrat_paid"
+          },
+          "effects": {
+            "setFlag": "kondrat_paid",
+            "rep": {
+              "fear": 1
+            }
+          },
+          "next": "kondrat_scared"
+        },
+        {
+          "label": "Уйти.",
+          "style": "retreat",
+          "close": true
+        }
+      ]
+    },
+    "kondrat_crown": {
+      "speaker": "kondrat",
+      "text": "«Восточная Корона есть, пока есть реестр. Деревни вымерли, а в книге живы, и подать с них числится. Я с них не беру, совесть у меня есть. Беру с проезжих. Всё сходится.»",
+      "effects": {
+        "setFlag": "kondrat_crown_told"
+      },
+      "next": "kondrat"
+    },
+    "kondrat_paid": {
+      "speaker": "kondrat",
+      "text": "Мытарь пишет долго и красиво, потом сыплет на строку песок. «Проходите. Если спросят, кто пропустил, я. Если спросят, кто вы, тоже я: в книге видно.»",
+      "next": "kondrat"
+    },
+    "kondrat_scared": {
+      "speaker": "kondrat",
+      "text": "«Так и запишем: прошёл по служебной надобности.» Перо у него дрожит, но буквы выходят ровные. Привычка.",
+      "next": "kondrat"
+    },
+    "agafya": {
+      "speaker": "agafya",
+      "text": [
+        {
+          "showIf": {
+            "flag": "agafya_healed"
+          },
+          "text": "«Вы снова в крови. Дорога к Граду длинная, а вы всё спешите. Сядьте, я посмотрю.»"
+        },
+        {
+          "text": "«Мир вам. Я иду к Граду и ставлю свечи там, где сорваны печати. Не чтобы вернуть: чтобы место не думало, что о нём забыли.»"
+        }
+      ],
+      "choices": [
+        {
+          "label": "[5 монет] «Перевяжи моих людей.»",
+          "requires": {
+            "gold": 5
+          },
+          "effects": {
+            "cost": 5,
+            "rest": true,
+            "setFlag": "agafya_healed"
+          },
+          "next": "agafya_heal"
+        },
+        {
+          "label": "«Зачем свечи у сорванных печатей?»",
+          "next": "agafya_why"
+        },
+        {
+          "label": "«Лёгкой дороги.»",
+          "style": "retreat",
+          "close": true
+        }
+      ]
+    },
+    "agafya_heal": {
+      "speaker": "agafya",
+      "text": "Сестра промывает раны солёной водой и шепчет над каждой по имени. Имени она не спрашивает: говорит своё. Отряд отдохнул.",
+      "next": "agafya"
+    },
+    "agafya_why": {
+      "speaker": "agafya",
+      "text": "«Те, кто их срывает, говорят, что освобождают дорогу от памяти. А я думаю, что дорога без памяти просто ведёт в никуда. Свеча этого не исправит. Но свеча хотя бы горит.»",
+      "effects": {
+        "setFlag": "rumor_torn_seal_cult"
+      },
+      "next": "agafya"
+    },
+    "gnat": {
+      "speaker": "gnat",
+      "text": "«Тише топай. Здесь лес хозяйский. Я рублю с краю, сухостой, и хлеб на пень кладу. Ты, видать, хлеба не носишь.»",
+      "choices": [
+        {
+          "label": "«Хлеб на пень? Для кого?»",
+          "next": "gnat_leshy"
+        },
+        {
+          "label": "«Дашь хлеба?»",
+          "showIf": {
+            "notFlag": "gnat_bread"
+          },
+          "effects": {
+            "giveItem": "bread",
+            "setFlag": "gnat_bread"
+          },
+          "next": "gnat_gift"
+        },
+        {
+          "label": "Уйти.",
+          "style": "retreat",
+          "close": true
+        }
+      ]
+    },
+    "gnat_leshy": {
+      "speaker": "gnat",
+      "text": "«Для Лешего. Не любит он, когда без спросу. Заблудишься, иди спиной к лесу, лицом к дороге, и спроси вслух. Ответит или нет, его дело. Это из книжки лесников, мне её дед читал.»",
+      "effects": {
+        "setFlag": "rumor_leshy_rule"
+      },
+      "next": "gnat"
+    },
+    "gnat_gift": {
+      "speaker": "gnat",
+      "text": "«На. Только не сам ешь, на пень положи, если до чащи пойдёшь. Вепрь ещё там, у бурелома. Его не буди: он старше моего деда и злее моей жены.»",
+      "next": "gnat"
+    },
+    "knight": {
+      "speaker": "knight",
+      "text": [
+        {
+          "showIf": {
+            "flag": "knight_refused"
+          },
+          "text": "«Снова вы. Я не прошу дважды. Но стою здесь, и мост всё тот же.»"
+        },
+        {
+          "text": "Рыцарь в закрашенном гербе ставит меч остриём в землю. «Вы держите клинок как человек суда. Я ищу честного поединка. Один на один, до первой крови или до последней, как скажете. Мне всё равно, я давно не выбираю.»"
+        }
+      ],
+      "choices": [
+        {
+          "label": "[Принять вызов]",
+          "startBattle": {
+            "battleId": "knight_duel",
+            "onWin": "knight_won"
+          }
+        },
+        {
+          "label": "«Зачем вы закрасили герб?»",
+          "next": "knight_crest"
+        },
+        {
+          "label": "«Я не дерусь ради забавы.»",
+          "showIf": {
+            "notFlag": "knight_refused"
+          },
+          "effects": {
+            "setFlag": "knight_refused",
+            "rep": {
+              "fear": -1
+            }
+          },
+          "next": "knight_refuse"
+        },
+        {
+          "label": "Уйти через мост.",
+          "style": "retreat",
+          "close": true
+        }
+      ]
+    },
+    "knight_crest": {
+      "speaker": "knight",
+      "text": "«Сеньор умер. Его сыновья продали наш дом за долг. Герб остался, а служить ему некому. Краска дешевле, чем новая клятва.»",
+      "next": "knight"
+    },
+    "knight_refuse": {
+      "speaker": "knight",
+      "text": "«Разумно. Неразумно, но разумно.» Он не двигается с места, только чуть кивает. Про вас на мосту будут говорить, что вы отказали рыцарю.",
+      "next": "knight"
+    },
+    "knight_won": {
+      "speaker": "knight",
+      "text": "Рыцарь опускается на колено, но не от поклона: нога не держит. «Хорошо. Это было по правилам. Я найду вас ещё. Не сегодня.»",
+      "effects": {
+        "setFlag": [
+          "knight_duel_1_won",
+          "enc_wandering_knight_done"
+        ],
+        "rep": {
+          "word": 1
+        }
+      },
+      "choices": [
+        {
+          "label": "«Найди.»",
+          "style": "retreat",
+          "close": true
+        }
+      ]
+    },
+    "horse": {
+      "speaker": "narrator",
+      "text": "Старая гнедая кляча жуёт пустоту и прядёт ушами. Хомут натёр ей шею до голой кожи. Она смотрит на отряд так, будто её снова куда-то поведут.",
+      "choices": [
+        {
+          "label": "Отойти.",
+          "style": "retreat",
+          "close": true
+        }
+      ]
+    },
+    "cow": {
+      "speaker": "narrator",
+      "text": "Тощая корова позвякивает деревянным колокольцем. На боку у неё выжжена метка мельника. Даже скотина здесь кому-то должна.",
+      "choices": [
+        {
+          "label": "Отойти.",
+          "style": "retreat",
+          "close": true
+        }
+      ]
+    },
+    "goat": {
+      "speaker": "narrator",
+      "text": "Коза деловито бодает столб с указателем, будто хочет повернуть его в другую сторону. Возможно, она права.",
+      "choices": [
+        {
+          "label": "Отойти.",
+          "style": "retreat",
+          "close": true
+        }
+      ]
+    },
+    "raven": {
+      "speaker": "narrator",
+      "text": "Ворон сидит на земле и не улетает. Он смотрит на отряд, потом на верёвку над холмом, потом снова на отряд. Считает.",
+      "choices": [
+        {
+          "label": "Отойти.",
+          "style": "retreat",
+          "close": true
+        }
+      ]
+    },
+    "fox": {
+      "speaker": "narrator",
+      "text": "Рыжая лиса на миг замирает у обгорелого плетня, хватает что-то из золы и исчезает. Здесь ей больше нечем поживиться, кроме того, что осталось от кур.",
+      "choices": [
+        {
+          "label": "Отойти.",
+          "style": "retreat",
+          "close": true
+        }
+      ]
+    },
+    "deer": {
+      "speaker": "narrator",
+      "text": "Олень поднимает голову с тяжёлыми рогами и не бежит. Здесь его не трогают: охотники говорят, что этого оленя Леший пасёт сам.",
+      "choices": [
+        {
+          "label": "Отойти.",
+          "style": "retreat",
+          "close": true
+        }
+      ]
+    },
+    "owl": {
+      "speaker": "narrator",
+      "text": "Сова на пне поворачивает голову за отрядом медленно, как часовой. Днём ей полагается спать. Значит, днём здесь что-то не так.",
+      "choices": [
+        {
+          "label": "Отойти.",
+          "style": "retreat",
+          "close": true
+        }
+      ]
+    }
+  }
+}

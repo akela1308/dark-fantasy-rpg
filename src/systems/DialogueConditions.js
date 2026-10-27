@@ -47,7 +47,8 @@ export function checkRequires(req, ws) {
   arr(req.notCompanion).forEach(c => { if (ws.party().includes(c)) fails.push(null); });
   arr(req.recruited).forEach(c => { if (!ws.roster().includes(c)) fails.push(null); });
   arr(req.notRecruited).forEach(c => { if (ws.roster().includes(c)) fails.push(null); });
-  arr(req.item).forEach(i => { if (!ws.hasItem(i)) fails.push(`нужен предмет`); });
+  // item: "id" или { id, n } (сколько штук нужно)
+  arr(req.item).forEach(i => { if (!ws.hasItem(typeof i === 'string' ? i : i.id, i.n || 1)) fails.push(i.label || `нужен предмет`); });
   if (req.partyFree && ws.party().length >= PartySystem.getSlots(ws.registry)) fails.push('нет места в отряде');
   if (!fails.length) return { ok: true, reason: null };
   const named = fails.filter(Boolean);
@@ -55,7 +56,7 @@ export function checkRequires(req, ws) {
 }
 
 /**
- * Применить эффекты варианта или узла. hooks: { giveXp(n), recruit(id), dismiss(id), refresh() }.
+ * Применить эффекты варианта или узла. hooks: { giveXp(n), recruit(id), dismiss(id), refresh(), openShop(id), finishEncounter(id) }.
  * Бой, переходы и next обрабатывает DialogueRunner.
  */
 export function applyEffects(e, ws, hooks = {}) {
@@ -77,7 +78,11 @@ export function applyEffects(e, ws, hooks = {}) {
   if (e.dismissForever) arr(e.dismissForever).forEach(id => hooks.dismissForever?.(id));
   if (e.loseTrait) hooks.loseTrait?.();
   if (e.chapterEnd) hooks.chapterEnd?.();
+  // Встреча бестиария решена миром: флаг enc_<id>_done и существо уходит с карты
+  if (e.finishEncounter) arr(e.finishEncounter).forEach(id => { ws.setFlag(`enc_${id}_done`, true); hooks.finishEncounter?.(id); });
   hooks.refresh?.();
+  // Лавка (shops.json): открывается после закрытия разговора
+  if (e.openShop) hooks.openShop?.(e.openShop);
 }
 
 /** Подпись условия для кнопки: своя (reason) важнее собранной. */

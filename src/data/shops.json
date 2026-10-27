@@ -1,0 +1,627 @@
+[
+  {
+    "id": "vorn",
+    "name": "Стойка «Хромого Лося»",
+    "keeper": "Ворн",
+    "portrait": "portrait_tavernman",
+    "map": "tavern_inside",
+    "greeting": "«Хлеб, пиво, соль, склянки. Зелья держу две, больше не держу: их пьют быстрее, чем платят.»",
+    "markup": 1.1,
+    "sellRate": 0.35,
+    "buys": [
+      "food",
+      "ingredient",
+      "valuable"
+    ],
+    "likes": [
+      "food"
+    ],
+    "discountIf": [
+      {
+        "flag": "book_road_houses_read",
+        "mult": 0.9,
+        "label": "гость, читавший устав"
+      }
+    ],
+    "stock": [
+      {
+        "id": "bread",
+        "n": null
+      },
+      {
+        "id": "dark_beer",
+        "n": null
+      },
+      {
+        "id": "dried_meat",
+        "n": 6
+      },
+      {
+        "id": "hard_cheese",
+        "n": 4
+      },
+      {
+        "id": "healing_potion",
+        "n": 2
+      },
+      {
+        "id": "bitter_draught",
+        "n": 3
+      },
+      {
+        "id": "linen",
+        "n": 4
+      },
+      {
+        "id": "grey_salt",
+        "n": 5
+      },
+      {
+        "id": "beeswax",
+        "n": 3
+      },
+      {
+        "id": "empty_flask",
+        "n": 5
+      }
+    ],
+    "books": [
+      "northern_guest",
+      "lame_stag_song"
+    ]
+  },
+  {
+    "id": "agna",
+    "name": "Очаг «Трёх столбов»",
+    "keeper": "Агна",
+    "portrait": "portrait_agna_v2",
+    "map": "three_pillars_inside",
+    "greeting": "«Похлёбка горячая, хлеб вчерашний, повязки чистые. Выбирайте, пока не остыло.»",
+    "markup": 1,
+    "sellRate": 0.4,
+    "buys": [
+      "food",
+      "ingredient"
+    ],
+    "likes": [
+      "food"
+    ],
+    "stock": [
+      {
+        "id": "stew",
+        "n": null
+      },
+      {
+        "id": "bread",
+        "n": null
+      },
+      {
+        "id": "smoked_fish",
+        "n": 3
+      },
+      {
+        "id": "bitter_draught",
+        "n": 2
+      },
+      {
+        "id": "swamp_bandage",
+        "n": 1
+      },
+      {
+        "id": "linen",
+        "n": 3
+      },
+      {
+        "id": "grey_salt",
+        "n": 4
+      }
+    ],
+    "books": []
+  },
+  {
+    "id": "til",
+    "name": "Кузня Тила",
+    "keeper": "Тил",
+    "portrait": "portrait_til",
+    "map": "smithy",
+    "greeting": "«Камень для клинка, порох для дурака. Сапёр я бывший, так что про порох знаю всё, что знать не хотел.»",
+    "markup": 1,
+    "sellRate": 0.4,
+    "buys": [
+      "valuable"
+    ],
+    "likes": [
+      "valuable"
+    ],
+    "stock": [
+      {
+        "id": "whetstone",
+        "n": 4
+      },
+      {
+        "id": "paper_cartridges",
+        "n": 3
+      },
+      {
+        "id": "smelling_salts",
+        "n": 2
+      },
+      {
+        "id": "tinder_fungus",
+        "n": 3
+      }
+    ],
+    "books": []
+  },
+  {
+    "id": "zlata",
+    "name": "Травы Златы",
+    "keeper": "Злата",
+    "portrait": "portrait_herbalist",
+    "map": "village",
+    "greeting": "«Трава лечит того, кто знает, когда её рвать. Остальных она просто кормит.»",
+    "markup": 1,
+    "sellRate": 0.4,
+    "buys": [
+      "ingredient",
+      "medicine"
+    ],
+    "likes": [
+      "ingredient"
+    ],
+    "craft": true,
+    "craftFee": 3,
+    "stock": [
+      {
+        "id": "black_sedge",
+        "n": 6
+      },
+      {
+        "id": "burial_moss",
+        "n": 4
+      },
+      {
+        "id": "bitterwort",
+        "n": 6
+      },
+      {
+        "id": "resin",
+        "n": 4
+      },
+      {
+        "id": "marsh_root",
+        "n": 2
+      },
+      {
+        "id": "badger_fat",
+        "n": 3
+      },
+      {
+        "id": "empty_flask",
+        "n": 6
+      },
+      {
+        "id": "deadman_fingers",
+        "n": 2
+      },
+      {
+        "id": "bitter_draught",
+        "n": null
+      },
+      {
+        "id": "sedge_tincture",
+        "n": 3
+      },
+      {
+        "id": "swamp_bandage",
+        "n": 3
+      },
+      {
+        "id": "moss_salve",
+        "n": 2
+      },
+      {
+        "id": "strong_tincture",
+        "n": 1
+      },
+      {
+        "id": "gentian_antidote",
+        "n": 2
+      },
+      {
+        "id": "light_step",
+        "n": 2
+      }
+    ],
+    "books": [
+      "bitter_tinctures",
+      "lowland_herbal"
+    ]
+  },
+  {
+    "id": "efim",
+    "name": "Лавка Ефима",
+    "keeper": "Ефим",
+    "portrait": "portrait_shopkeeper",
+    "map": "village",
+    "greeting": "«Верёвки, соль, свечи, фляги. Торгуюсь до последнего медяка, но честно: медяк всегда последний мой.»",
+    "markup": 1,
+    "sellRate": 0.4,
+    "buys": [
+      "food",
+      "ingredient",
+      "valuable",
+      "medicine",
+      "tonic"
+    ],
+    "stock": [
+      {
+        "id": "bread",
+        "n": null
+      },
+      {
+        "id": "hard_cheese",
+        "n": 5
+      },
+      {
+        "id": "dried_meat",
+        "n": 5
+      },
+      {
+        "id": "linen",
+        "n": null
+      },
+      {
+        "id": "grey_salt",
+        "n": null
+      },
+      {
+        "id": "beeswax",
+        "n": 5
+      },
+      {
+        "id": "empty_flask",
+        "n": null
+      },
+      {
+        "id": "tinder_fungus",
+        "n": 4
+      },
+      {
+        "id": "smelling_salts",
+        "n": 2
+      },
+      {
+        "id": "whetstone",
+        "n": 1
+      },
+      {
+        "id": "honey_comb",
+        "n": 3
+      }
+    ],
+    "books": [
+      "poludnitsa_signs",
+      "saint_mostnik"
+    ]
+  },
+  {
+    "id": "le",
+    "name": "Обмен у Лё",
+    "keeper": "Старейшина Лё",
+    "portrait": "portrait_le",
+    "map": "elf_boloto",
+    "greeting": "«Соль и зерно мы берём. Монеты тоже, хотя вода их не любит.»",
+    "markup": 1.2,
+    "sellRate": 0.45,
+    "buys": [
+      "food",
+      "ingredient"
+    ],
+    "likes": [
+      "ingredient"
+    ],
+    "stock": [
+      {
+        "id": "black_sedge",
+        "n": 8
+      },
+      {
+        "id": "marsh_root",
+        "n": 4
+      },
+      {
+        "id": "burial_moss",
+        "n": 3
+      },
+      {
+        "id": "smoked_fish",
+        "n": 5
+      },
+      {
+        "id": "sedge_tincture",
+        "n": 2
+      },
+      {
+        "id": "wolfsbane",
+        "n": 1
+      }
+    ],
+    "books": []
+  },
+  {
+    "id": "vodyanoy",
+    "name": "Колокол Водяного",
+    "keeper": "Водяной",
+    "portrait": "portrait_vodyanoy",
+    "map": "drowned_village",
+    "greeting": "«Всё, что вода взяла с телег, вода и продаёт. Монетой. Или именем. Монетой дешевле.»",
+    "markup": 1.3,
+    "sellRate": 0.3,
+    "buys": [
+      "food",
+      "valuable"
+    ],
+    "likes": [
+      "food"
+    ],
+    "discountIf": [
+      {
+        "flag": "book_water_bargain_read",
+        "mult": 0.8,
+        "label": "торгуетесь по-болотному"
+      }
+    ],
+    "stock": [
+      {
+        "id": "imperial_silver",
+        "n": 2
+      },
+      {
+        "id": "tin_icon",
+        "n": 1
+      },
+      {
+        "id": "silver_spoon",
+        "n": 1
+      },
+      {
+        "id": "amber_bead",
+        "n": 2
+      },
+      {
+        "id": "healing_potion",
+        "n": 1
+      },
+      {
+        "id": "marsh_root",
+        "n": 3
+      },
+      {
+        "id": "linen",
+        "n": 2
+      }
+    ],
+    "books": [
+      "water_bargain",
+      "children_of_fog"
+    ]
+  },
+  {
+    "id": "grimm",
+    "name": "Весы Гримма",
+    "keeper": "Гримм Весы",
+    "portrait": "portrait_dwarf_changer",
+    "map": "dwarf_hall",
+    "greeting": "«Медь на серебро, серебро на долг, долг на камень. Кладите на весы.»",
+    "markup": 1.1,
+    "sellRate": 0.45,
+    "buys": [
+      "valuable"
+    ],
+    "likes": [
+      "valuable"
+    ],
+    "discountIf": [
+      {
+        "flag": "book_copper_arithmetic_read",
+        "mult": 0.85,
+        "label": "медная арифметика"
+      }
+    ],
+    "stock": [
+      {
+        "id": "copper_nugget",
+        "n": 4
+      },
+      {
+        "id": "healing_potion",
+        "n": 2
+      },
+      {
+        "id": "smelling_salts",
+        "n": 2
+      },
+      {
+        "id": "strong_tincture",
+        "n": 1
+      }
+    ],
+    "books": [
+      "copper_arithmetic",
+      "singing_stone"
+    ]
+  },
+  {
+    "id": "borin",
+    "name": "Горн Борина",
+    "keeper": "Борин",
+    "portrait": "portrait_dwarf_smith",
+    "map": "dwarf_gate",
+    "greeting": "«Камень сначала слушают, потом бьют. Люди обычно наоборот, потому и ходят ко мне.»",
+    "markup": 1.1,
+    "sellRate": 0.4,
+    "buys": [
+      "valuable"
+    ],
+    "likes": [
+      "valuable"
+    ],
+    "discountIf": [
+      {
+        "flag": "book_singing_stone_read",
+        "mult": 0.85,
+        "label": "знаете, как поёт камень"
+      }
+    ],
+    "stock": [
+      {
+        "id": "whetstone",
+        "n": 5
+      },
+      {
+        "id": "paper_cartridges",
+        "n": 2
+      },
+      {
+        "id": "dried_meat",
+        "n": 4
+      },
+      {
+        "id": "warding_salt",
+        "n": 1
+      }
+    ],
+    "books": []
+  },
+  {
+    "id": "luka",
+    "name": "Короб Луки",
+    "keeper": "Лука",
+    "portrait": "portrait_peddler",
+    "map": "three_pillars",
+    "greeting": "«Ленты, ложки, склянки, слухи. Слухи даром, если купите ленту.»",
+    "markup": 1.15,
+    "sellRate": 0.4,
+    "buys": [
+      "food",
+      "ingredient",
+      "valuable",
+      "medicine",
+      "tonic"
+    ],
+    "stock": [
+      {
+        "id": "honey_comb",
+        "n": 3
+      },
+      {
+        "id": "linen",
+        "n": 4
+      },
+      {
+        "id": "beeswax",
+        "n": 3
+      },
+      {
+        "id": "empty_flask",
+        "n": 4
+      },
+      {
+        "id": "light_step",
+        "n": 1
+      },
+      {
+        "id": "amber_bead",
+        "n": 1
+      },
+      {
+        "id": "bitter_draught",
+        "n": 2
+      },
+      {
+        "id": "bread",
+        "n": null
+      }
+    ],
+    "books": [
+      "prayers",
+      "eastern_crown_tax"
+    ]
+  },
+  {
+    "id": "sava",
+    "name": "Точило Савы",
+    "keeper": "Сава",
+    "portrait": "portrait_knife_grinder",
+    "map": "road_to_village",
+    "greeting": "«Тупой клинок честнее острого: сразу видно, что хозяин ленив. Поправим.»",
+    "markup": 1,
+    "sellRate": 0.4,
+    "buys": [
+      "valuable"
+    ],
+    "stock": [
+      {
+        "id": "whetstone",
+        "n": null
+      },
+      {
+        "id": "paper_cartridges",
+        "n": 2
+      },
+      {
+        "id": "beeswax",
+        "n": 2
+      }
+    ],
+    "books": []
+  },
+  {
+    "id": "hort",
+    "name": "Меха Хорта",
+    "keeper": "Хорт",
+    "portrait": "portrait_fur_trader",
+    "map": "grad_square",
+    "greeting": "«Шкуры беру, мясо продаю, вопросов про охотников у озера не задаю. И вам не советую.»",
+    "markup": 1.2,
+    "sellRate": 0.4,
+    "buys": [
+      "valuable",
+      "food"
+    ],
+    "likes": [
+      "valuable"
+    ],
+    "stock": [
+      {
+        "id": "dried_meat",
+        "n": 6
+      },
+      {
+        "id": "honey_comb",
+        "n": 2
+      },
+      {
+        "id": "wolfsbane",
+        "n": 3
+      },
+      {
+        "id": "strong_tincture",
+        "n": 1
+      },
+      {
+        "id": "resin_balm",
+        "n": 1
+      },
+      {
+        "id": "dark_beer",
+        "n": null
+      }
+    ],
+    "books": [
+      "grad_chronicle",
+      "winter_signs"
+    ]
+  }
+]

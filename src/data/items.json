@@ -16,7 +16,29 @@
     "icon": "icon_healing_potion",
     "stackable": true,
     "healAmount": 30,
-    "description": "Восстанавливает 30 HP одному союзнику."
+    "description": "Густое красное зелье в толстой склянке. Восстанавливает 30 HP одному.",
+    "cat": "medicine",
+    "price": 22,
+    "use": {
+      "heal": 30
+    },
+    "recipe": {
+      "needs": [
+        {
+          "id": "marsh_root",
+          "n": 1
+        },
+        {
+          "id": "honey_comb",
+          "n": 1
+        },
+        {
+          "id": "empty_flask",
+          "n": 1
+        }
+      ],
+      "unlockFlag": "recipe_healing_potion"
+    }
   },
   {
     "id": "camp_flask",
@@ -27,7 +49,13 @@
     "stackable": false,
     "healAmount": 10,
     "unlimited": true,
-    "description": "Восстанавливает 10 HP. Пополняется на привале."
+    "description": "Восстанавливает 10 HP одному. Один глоток до следующего привала.",
+    "cat": "medicine",
+    "price": 0,
+    "use": {
+      "heal": 10,
+      "oncePerRest": true
+    }
   },
   {
     "id": "letter",
@@ -138,5 +166,663 @@
     "stackable": false,
     "quest": true,
     "description": "Плата болоту вместо воды."
+  },
+  {
+    "id": "bread",
+    "name": "Ржаной хлеб",
+    "type": "consumable",
+    "cat": "food",
+    "quantity": 0,
+    "icon": "item_bread",
+    "stackable": true,
+    "price": 2,
+    "description": "Тяжёлый, с отрубями, вчерашний. Восстанавливает 6 HP. Тролли и лешие тоже не отказываются.",
+    "use": {
+      "heal": 6
+    }
+  },
+  {
+    "id": "stew",
+    "name": "Похлёбка Агны",
+    "type": "consumable",
+    "cat": "food",
+    "quantity": 0,
+    "icon": "item_stew",
+    "stackable": true,
+    "price": 4,
+    "description": "Горшок с ячменём, луком и чем-то, о чём лучше не спрашивать. Всем в отряде 8 HP.",
+    "use": {
+      "healAll": 8
+    }
+  },
+  {
+    "id": "dried_meat",
+    "name": "Вяленое мясо",
+    "type": "consumable",
+    "cat": "food",
+    "quantity": 0,
+    "icon": "item_dried_meat",
+    "stackable": true,
+    "price": 5,
+    "description": "Жёсткие полосы конины в соли. Восстанавливает 10 HP.",
+    "use": {
+      "heal": 10
+    }
+  },
+  {
+    "id": "smoked_fish",
+    "name": "Копчёный линь",
+    "type": "consumable",
+    "cat": "food",
+    "quantity": 0,
+    "icon": "item_smoked_fish",
+    "stackable": true,
+    "price": 4,
+    "description": "Болотная рыба, пахнет дымом и тиной. Восстанавливает 8 HP.",
+    "use": {
+      "heal": 8
+    }
+  },
+  {
+    "id": "hard_cheese",
+    "name": "Овечий сыр",
+    "type": "consumable",
+    "cat": "food",
+    "quantity": 0,
+    "icon": "item_hard_cheese",
+    "stackable": true,
+    "price": 4,
+    "description": "Сухой, солёный, с плесенью по краю. Восстанавливает 7 HP.",
+    "use": {
+      "heal": 7
+    }
+  },
+  {
+    "id": "honey_comb",
+    "name": "Соты с мёдом",
+    "type": "consumable",
+    "cat": "food",
+    "quantity": 0,
+    "icon": "item_honey_comb",
+    "stackable": true,
+    "price": 6,
+    "description": "Тёмный лесной мёд. Восстанавливает 12 HP, нужен и в зельях.",
+    "use": {
+      "heal": 12
+    }
+  },
+  {
+    "id": "dark_beer",
+    "name": "Тёмное пиво",
+    "type": "consumable",
+    "cat": "food",
+    "quantity": 0,
+    "icon": "item_dark_beer",
+    "stackable": true,
+    "price": 2,
+    "description": "Кувшин из «Хромого Лося». 5 HP и немного смелости, которой в бою хватит на один удар (+1 к урону на 2 хода).",
+    "use": {
+      "heal": 5,
+      "battleBuff": {
+        "type": "enraged",
+        "value": 1,
+        "duration": 2
+      }
+    }
+  },
+  {
+    "id": "road_apple",
+    "name": "Сморщенное яблоко",
+    "type": "consumable",
+    "cat": "food",
+    "quantity": 0,
+    "icon": "item_withered_apple",
+    "stackable": true,
+    "price": 1,
+    "description": "Последний дорожный запас. Восстанавливает 3 HP.",
+    "use": {
+      "heal": 3
+    }
+  },
+  {
+    "id": "bitter_draught",
+    "name": "Горький отвар",
+    "type": "consumable",
+    "cat": "medicine",
+    "quantity": 0,
+    "icon": "item_bitter_draught",
+    "stackable": true,
+    "price": 8,
+    "description": "Горечавка на кипятке. Пить, не нюхая. Восстанавливает 15 HP.",
+    "use": {
+      "heal": 15
+    },
+    "recipe": {
+      "needs": [
+        {
+          "id": "bitterwort",
+          "n": 1
+        },
+        {
+          "id": "empty_flask",
+          "n": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "sedge_tincture",
+    "name": "Настой чёрной осоки",
+    "type": "consumable",
+    "cat": "medicine",
+    "quantity": 0,
+    "icon": "item_sedge_tincture",
+    "stackable": true,
+    "price": 15,
+    "description": "Мутный настой, который режут не железом. Восстанавливает 22 HP.",
+    "use": {
+      "heal": 22
+    },
+    "recipe": {
+      "needs": [
+        {
+          "id": "black_sedge",
+          "n": 2
+        },
+        {
+          "id": "empty_flask",
+          "n": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "swamp_bandage",
+    "name": "Болотная повязка",
+    "type": "consumable",
+    "cat": "medicine",
+    "quantity": 0,
+    "icon": "item_swamp_bandage",
+    "stackable": true,
+    "price": 14,
+    "description": "Холстина, пропитанная соком осоки. Снимает рану (максимум HP возвращается) и лечит 10 HP.",
+    "use": {
+      "heal": 10,
+      "cureInjury": true
+    },
+    "recipe": {
+      "needs": [
+        {
+          "id": "black_sedge",
+          "n": 1
+        },
+        {
+          "id": "linen",
+          "n": 1
+        }
+      ],
+      "unlockFlag": "recipe_swamp_bandage"
+    }
+  },
+  {
+    "id": "moss_salve",
+    "name": "Мазь погребального мха",
+    "type": "consumable",
+    "cat": "medicine",
+    "quantity": 0,
+    "icon": "item_moss_salve",
+    "stackable": true,
+    "price": 30,
+    "description": "Мох с могильных камней на барсучьем жире. Лечит 40 HP. Не класть на сердце.",
+    "use": {
+      "heal": 40
+    },
+    "recipe": {
+      "needs": [
+        {
+          "id": "burial_moss",
+          "n": 2
+        },
+        {
+          "id": "badger_fat",
+          "n": 1
+        }
+      ],
+      "unlockFlag": "recipe_moss_salve"
+    }
+  },
+  {
+    "id": "resin_balm",
+    "name": "Живичный бальзам",
+    "type": "consumable",
+    "cat": "medicine",
+    "quantity": 0,
+    "icon": "item_resin_balm",
+    "stackable": true,
+    "price": 28,
+    "description": "Сосновая смола с воском. Всем в отряде 14 HP.",
+    "use": {
+      "healAll": 14
+    },
+    "recipe": {
+      "needs": [
+        {
+          "id": "resin",
+          "n": 2
+        },
+        {
+          "id": "beeswax",
+          "n": 1
+        },
+        {
+          "id": "empty_flask",
+          "n": 1
+        }
+      ],
+      "unlockFlag": "recipe_resin_balm"
+    }
+  },
+  {
+    "id": "strong_tincture",
+    "name": "Крепкая настойка Златы",
+    "type": "consumable",
+    "cat": "medicine",
+    "quantity": 0,
+    "icon": "item_strong_tincture",
+    "stackable": true,
+    "price": 48,
+    "description": "Горная настойка на корнях, в склянке с восковой пробкой. Лечит 55 HP и снимает рану.",
+    "use": {
+      "heal": 55,
+      "cureInjury": true
+    }
+  },
+  {
+    "id": "gentian_antidote",
+    "name": "Горечавковое противоядие",
+    "type": "consumable",
+    "cat": "tonic",
+    "quantity": 0,
+    "icon": "item_gentian_antidote",
+    "stackable": true,
+    "price": 18,
+    "description": "Горький корень с солью. В следующем бою отряд не получает слабость (ни ядом, ни дурманом).",
+    "use": {
+      "battleBuff": {
+        "target": "party",
+        "immuneWeakened": true
+      }
+    },
+    "recipe": {
+      "needs": [
+        {
+          "id": "bitterwort",
+          "n": 2
+        },
+        {
+          "id": "grey_salt",
+          "n": 1
+        }
+      ],
+      "unlockFlag": "recipe_gentian_antidote"
+    }
+  },
+  {
+    "id": "warding_salt",
+    "name": "Наговорная соль",
+    "type": "consumable",
+    "cat": "tonic",
+    "quantity": 0,
+    "icon": "item_warding_salt",
+    "stackable": true,
+    "price": 16,
+    "description": "Соль под язык, как велит болотное правило. В следующем бою отряд первые 2 хода получает на 15% меньше урона.",
+    "use": {
+      "battleBuff": {
+        "target": "party",
+        "type": "guarded",
+        "value": 0.85,
+        "duration": 2
+      }
+    },
+    "recipe": {
+      "needs": [
+        {
+          "id": "grey_salt",
+          "n": 2
+        },
+        {
+          "id": "beeswax",
+          "n": 1
+        }
+      ],
+      "unlockFlag": "recipe_warding_salt"
+    }
+  },
+  {
+    "id": "whetstone",
+    "name": "Точильный камень",
+    "type": "consumable",
+    "cat": "tonic",
+    "quantity": 0,
+    "icon": "item_whetstone",
+    "stackable": true,
+    "price": 12,
+    "description": "Серый брусок с масляным пятном. Выбранный боец в следующем бою бьёт на 3 сильнее первые 3 хода.",
+    "use": {
+      "battleBuff": {
+        "target": "one",
+        "type": "enraged",
+        "value": 3,
+        "duration": 3
+      }
+    }
+  },
+  {
+    "id": "paper_cartridges",
+    "name": "Бумажные патроны",
+    "type": "consumable",
+    "cat": "tonic",
+    "quantity": 0,
+    "icon": "item_paper_cartridges",
+    "stackable": true,
+    "price": 16,
+    "description": "Порох и пуля в промасленной бумаге. В следующем бою у Дуэлянта на 1 выстрел больше.",
+    "use": {
+      "battleBuff": {
+        "target": "hero",
+        "pistol": 1
+      }
+    }
+  },
+  {
+    "id": "smelling_salts",
+    "name": "Нюхательная соль",
+    "type": "consumable",
+    "cat": "tonic",
+    "quantity": 0,
+    "icon": "item_smelling_salts",
+    "stackable": true,
+    "price": 14,
+    "description": "Соль с трутовиком, бьёт в нос до слёз. В следующем бою отряд ходит раньше в первом раунде.",
+    "use": {
+      "battleBuff": {
+        "target": "party",
+        "initiative": 3
+      }
+    },
+    "recipe": {
+      "needs": [
+        {
+          "id": "grey_salt",
+          "n": 1
+        },
+        {
+          "id": "tinder_fungus",
+          "n": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "light_step",
+    "name": "Отвар лёгкого шага",
+    "type": "consumable",
+    "cat": "tonic",
+    "quantity": 0,
+    "icon": "item_light_step",
+    "stackable": true,
+    "price": 15,
+    "description": "Пахнет мятой и мокрой шерстью. Выбранный боец в следующем бою первые 2 хода уклоняется на 20% чаще.",
+    "use": {
+      "battleBuff": {
+        "target": "one",
+        "type": "dodge_boost",
+        "value": 0.2,
+        "duration": 2
+      }
+    }
+  },
+  {
+    "id": "black_sedge",
+    "name": "Чёрная осока",
+    "type": "ingredient",
+    "cat": "ingredient",
+    "quantity": 0,
+    "icon": "item_black_sedge",
+    "stackable": true,
+    "price": 3,
+    "description": "Болотная трава. Рвать руками, не железом: железо сердит воду."
+  },
+  {
+    "id": "burial_moss",
+    "name": "Погребальный мох",
+    "type": "ingredient",
+    "cat": "ingredient",
+    "quantity": 0,
+    "icon": "item_burial_moss",
+    "stackable": true,
+    "price": 4,
+    "description": "Сухой мох с надгробий. Быстро затягивает раны."
+  },
+  {
+    "id": "bitterwort",
+    "name": "Горечавка",
+    "type": "ingredient",
+    "cat": "ingredient",
+    "quantity": 0,
+    "icon": "item_bitterwort",
+    "stackable": true,
+    "price": 3,
+    "description": "Горький корень с синим цветом. Основа противоядий."
+  },
+  {
+    "id": "resin",
+    "name": "Сосновая живица",
+    "type": "ingredient",
+    "cat": "ingredient",
+    "quantity": 0,
+    "icon": "item_resin",
+    "stackable": true,
+    "price": 3,
+    "description": "Липкая смола в берестяном туеске."
+  },
+  {
+    "id": "marsh_root",
+    "name": "Болотный корень",
+    "type": "ingredient",
+    "cat": "ingredient",
+    "quantity": 0,
+    "icon": "item_marsh_root",
+    "stackable": true,
+    "price": 5,
+    "description": "Белый мясистый корень со старой воды. Без него не варится настоящее зелье."
+  },
+  {
+    "id": "grey_salt",
+    "name": "Серая соль",
+    "type": "ingredient",
+    "cat": "ingredient",
+    "quantity": 0,
+    "icon": "item_grey_salt",
+    "stackable": true,
+    "price": 2,
+    "description": "Дорожная соль в тряпице. Ею солят мясо, раны и болотные обещания."
+  },
+  {
+    "id": "badger_fat",
+    "name": "Барсучий жир",
+    "type": "ingredient",
+    "cat": "ingredient",
+    "quantity": 0,
+    "icon": "item_badger_fat",
+    "stackable": true,
+    "price": 4,
+    "description": "Топлёный жир в глиняной баночке. Основа мазей."
+  },
+  {
+    "id": "beeswax",
+    "name": "Воск",
+    "type": "ingredient",
+    "cat": "ingredient",
+    "quantity": 0,
+    "icon": "item_beeswax",
+    "stackable": true,
+    "price": 3,
+    "description": "Жёлтый ком, огарки свечей и пробки для склянок."
+  },
+  {
+    "id": "linen",
+    "name": "Холстина",
+    "type": "ingredient",
+    "cat": "ingredient",
+    "quantity": 0,
+    "icon": "item_linen",
+    "stackable": true,
+    "price": 2,
+    "description": "Чистый отрез, нарванный на полосы для повязок."
+  },
+  {
+    "id": "tinder_fungus",
+    "name": "Трутовик",
+    "type": "ingredient",
+    "cat": "ingredient",
+    "quantity": 0,
+    "icon": "item_tinder_fungus",
+    "stackable": true,
+    "price": 4,
+    "description": "Древесный гриб. Им разжигают огонь и будят упавших."
+  },
+  {
+    "id": "deadman_fingers",
+    "name": "Мертвецкие пальцы",
+    "type": "ingredient",
+    "cat": "ingredient",
+    "quantity": 0,
+    "icon": "item_deadman_fingers",
+    "stackable": true,
+    "price": 6,
+    "description": "Серые грибы, которые растут у старых могил. Знахарки берут, остальные обходят."
+  },
+  {
+    "id": "wolfsbane",
+    "name": "Волчий корень",
+    "type": "ingredient",
+    "cat": "ingredient",
+    "quantity": 0,
+    "icon": "item_wolfsbane",
+    "stackable": true,
+    "price": 7,
+    "description": "Ядовит. Охотники мажут им приманку, северяне вешают над дверью."
+  },
+  {
+    "id": "empty_flask",
+    "name": "Пустая склянка",
+    "type": "ingredient",
+    "cat": "ingredient",
+    "quantity": 0,
+    "icon": "item_empty_flask",
+    "stackable": true,
+    "price": 1,
+    "description": "Мутное стекло с отбитым горлом. Для настоев и зелий."
+  },
+  {
+    "id": "imperial_silver",
+    "name": "Имперский серебряник",
+    "type": "valuable",
+    "cat": "valuable",
+    "quantity": 0,
+    "icon": "item_imperial_silver",
+    "stackable": true,
+    "price": 15,
+    "description": "Монета старой чеканки. Лицо на ней уже никто не узнаёт."
+  },
+  {
+    "id": "copper_ring",
+    "name": "Медное кольцо",
+    "type": "valuable",
+    "cat": "valuable",
+    "quantity": 0,
+    "icon": "item_copper_ring",
+    "stackable": true,
+    "price": 8,
+    "description": "Простое кольцо с царапиной вместо имени."
+  },
+  {
+    "id": "post_signet",
+    "name": "Печатка дорожного поста",
+    "type": "valuable",
+    "cat": "valuable",
+    "quantity": 0,
+    "icon": "item_post_signet",
+    "stackable": true,
+    "price": 20,
+    "description": "Сорванная печатка с номером поста. Дварфы платят за такие хорошо."
+  },
+  {
+    "id": "amber_bead",
+    "name": "Янтарная бусина",
+    "type": "valuable",
+    "cat": "valuable",
+    "quantity": 0,
+    "icon": "item_amber_bead",
+    "stackable": true,
+    "price": 10,
+    "description": "В ней застыла мошка, которая видела старую империю."
+  },
+  {
+    "id": "wolf_pelt",
+    "name": "Волчья шкура",
+    "type": "valuable",
+    "cat": "valuable",
+    "quantity": 0,
+    "icon": "item_wolf_pelt",
+    "stackable": true,
+    "price": 12,
+    "description": "Серая шкура, выделанная наспех. Скупщики шкур берут охотно."
+  },
+  {
+    "id": "boar_tusk",
+    "name": "Клык подсвинка",
+    "type": "valuable",
+    "cat": "valuable",
+    "quantity": 0,
+    "icon": "item_boar_tusk",
+    "stackable": true,
+    "price": 6,
+    "description": "Желтоватый клык. На севере из таких режут обереги."
+  },
+  {
+    "id": "silver_spoon",
+    "name": "Серебряная ложка",
+    "type": "valuable",
+    "cat": "valuable",
+    "quantity": 0,
+    "icon": "item_silver_spoon",
+    "stackable": true,
+    "price": 12,
+    "description": "С гербом, который кто-то старательно выскоблил."
+  },
+  {
+    "id": "tin_icon",
+    "name": "Жестяной складень",
+    "type": "valuable",
+    "cat": "valuable",
+    "quantity": 0,
+    "icon": "item_tin_icon",
+    "stackable": true,
+    "price": 14,
+    "description": "Дорожная икона на две створки, лики стёрты пальцами."
+  },
+  {
+    "id": "copper_nugget",
+    "name": "Медный самородок",
+    "type": "valuable",
+    "cat": "valuable",
+    "quantity": 0,
+    "icon": "item_copper_nugget",
+    "stackable": true,
+    "price": 9,
+    "description": "Кусок руды с Медного Зуба. Поёт, если постучать."
   }
 ]

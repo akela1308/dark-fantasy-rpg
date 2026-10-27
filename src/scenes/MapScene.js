@@ -38,6 +38,8 @@ import { openWorldMap } from '../ui/WorldMapWindow.js';
 import { repLines } from '../systems/Reputation.js';
 import { Sfx } from '../systems/Sfx.js';
 import traitsData from '../data/commanderTraits.json';
+import { ShopWindow } from '../ui/ShopWindow.js';
+import { SHOPS, iconKey, itemDef, useItem, useSummary, applyBookEffects, onRest, coins, CRAFTER, recipes } from '../systems/Economy.js';
 
 const TRAIT_LABELS = Object.fromEntries(traitsData.map(t => [t.id, t.name]));
 import { xpForEncounter } from '../systems/EnemyArchetypes.js';
@@ -250,7 +252,12 @@ export class MapScene extends Phaser.Scene {
 
     // ── Инвентарь: глубокая копия из items.json + синхронизация золота ──
     // Стартовый набор: золото и то, что есть с начала. Квестовые предметы добавит _syncWorldItems, когда они появятся
-    this._inventory = JSON.parse(JSON.stringify(itemsData)).filter(it => it.id === 'gold' || it.quantity > 0);
+    // Расходники, травы и ценности живут в registry.items (WorldState): стартовый набор выдаётся один раз
+    if (!this.game.registry.get('starter_kit_v1')) {
+      this.game.registry.set('starter_kit_v1', true);
+      itemsData.filter(it => it.quantity > 0 && it.id !== 'gold' && !it.unlimited).forEach(it => this._ws.giveItem(it.id, it.quantity));
+    }
+    this._inventory = JSON.parse(JSON.stringify(itemsData)).filter(it => it.id === 'gold' || it.unlimited);
     const savedGold = this.game.registry.get('playerGold') ?? 0;
     const _goldItem = this._inventory.find(it => it.id === 'gold');
     if (_goldItem) _goldItem.quantity = savedGold;
@@ -859,9 +866,9 @@ export class MapScene extends Phaser.Scene {
       const book = booksData.find(b => b.id === p.bookId);
       if (!book) return;
       if (book.collectFlag && this.game.registry.get(book.collectFlag)) return;
-      if (!this.textures.exists(book.icon)) return;
+      const tex = iconKey(this, { icon: book.icon, cat: 'book' });
 
-      const img = this.add.image(p.x, p.y, book.icon)
+      const img = this.add.image(p.x, p.y, tex)
         .setOrigin(0.5, 0.5)
         .setDepth(p.depth ?? p.y + 10)
         .setInteractive({ useHandCursor: true });
@@ -930,7 +937,13 @@ export class MapScene extends Phaser.Scene {
         style: 'default',
         onSelect: () => {
           SaveSystem.setFlag(item.collectFlag, true, this.game.registry);
-          item.rewards.forEach(reward => this._addInventoryItem(this._inspectableRewardToInventoryItem(reward)));
+          item.rewards.forEach(reward => {
+            // Монеты и предметы из items.json идут в общий кошель и сумку (registry), остальное как находка
+            if (reward.id === 'gold') SaveSystem.addGold(reward.quantity || 1, this.game.registry);
+            else if (itemDef(reward.id)) this._ws.giveItem(reward.id, reward.quantity || 1);
+            else this._addInventoryItem(this._inspectableRewardToInventoryItem(reward));
+          });
+          this._onWorldItemsChanged();
           img.destroy();
           label.destroy();
         },
@@ -990,6 +1003,7 @@ export class MapScene extends Phaser.Scene {
       (cfg.inspectables || []).forEach(item => {
         if (!item.collectFlag || !this.game.registry.get(item.collectFlag)) return;
         (item.rewards || []).forEach(reward => {
+          if (reward.id === 'gold' || itemDef(reward.id)) return;   // уже в registry
           this._addInventoryItem(this._inspectableRewardToInventoryItem(reward), { render: false });
         });
       });
@@ -1478,6 +1492,8 @@ export class MapScene extends Phaser.Scene {
         this.scene.start('ChapterEndScene', { fromMapKey: 'tavern_map', fromSpawnId: 'tavern_exit' });
       }),
       openParty: () => this._showPartyManager(),
+      openShop: id => this.time.delayedCall(80, () => this._openShop(id)),
+      finishEncounter: id => this._encounters?.finish(id),
       onEffects: () => SaveSystem.saveWorld(reg, this.mapKey, this.spawnId),
       onClose: () => { SaveSystem.saveWorld(reg, this.mapKey, this.spawnId); this._refreshNpcs(); },
     };
@@ -1518,11 +1534,87 @@ export class MapScene extends Phaser.Scene {
   /** Предметы из WorldState (квестовые, 06_КВЕСТЫ 8) в инвентарь. */
   _syncWorldItems() {
     const owned = this.game.registry.get('items') || {};
-    Object.entries(owned).forEach(([id, n]) => {
-      if (!n) return;
-      const def = itemsData.find(it => it.id === id);
-      if (def && !this._inventory?.some(it => it.id === id)) this._addInventoryItem({ ...def, quantity: n }, { render: true });
+    let changed = false;
+    // Количество уже лежащих в сумке предметов из registry; кончившиеся убираются
+    (this._inventory || []).forEach(it => {
+      if (!it._world) return;
+      const n = owned[it.id] || 0;
+      if (n !== it.quantity) { it.quantity = n; changed = true; }
     });
+    if (this._inventory?.some(it => it._world && !it.quantity)) {
+      this._inventory = this._inventory.filter(it => !it._world || it.quantity > 0);
+      changed = true;
+    }
+    Object.entries(owned).forEach(([id, n]) => {
+      if (!n || this._inventory?.some(it => it.id === id)) return;
+      const def = itemDef(id);
+      if (!def) return;
+      // Книга как предмет (награда квеста book_<id>): собрана и читается из сумки
+      const book = def.type === 'book' && booksData.find(b => b.id === (def.bookId || id.replace(/^book_/, '')));
+      if (book) {
+        if (book.collectFlag) SaveSystem.setFlag(book.collectFlag, true, this.game.registry);
+        if (this._inventory?.some(it => it.bookId === book.id)) return;
+        changed = this._addInventoryItem({ ...this._bookToInventoryItem(book), id }, { render: false }) || changed;
+        return;
+      }
+      changed = this._addInventoryItem({ ...def, quantity: n, _world: true }, { render: false }) || changed;
+    });
+    if (changed) this._rebuildInventoryIcons();
+  }
+
+  /** Сумка перерисовывается целиком: после покупки, траты или варки. */
+  _rebuildInventoryIcons() {
+    if (!this._charSheetElements) return;
+    const visible = !!this._charSheetOpen;
+    const old = new Set(this._inventoryItemElements || []);
+    old.forEach(o => { try { o.destroy(); } catch {} });
+    this._charSheetElements = this._charSheetElements.filter(o => !old.has(o));
+    this._inventoryItemElements = [];
+    this._hideInventoryTooltip();
+    (this._inventory || []).forEach((item, idx) => {
+      this._charSheetElements.push(...this._createInventoryItemElements(item, idx, visible));
+    });
+  }
+
+  /** Лавка из shops.json (эффект диалога openShop). */
+  _openShop(shopId) {
+    if (!SHOPS[shopId]) { console.warn('Нет лавки', shopId); return; }
+    if (this._charSheetOpen) this._hideCharSheet();
+    this.hero?.stopMove();
+    this._shopWindow = new ShopWindow(this, this._ws, shopId, {
+      onChange: () => this._onWorldItemsChanged(),
+      onClose: () => { this._shopWindow = null; SaveSystem.saveWorld(this.game.registry, this.mapKey, this.spawnId); },
+    });
+  }
+
+  /** Тая варит из сумки (клик по траве в инвентаре). После окна сумка открывается снова. */
+  _openCraft() {
+    const idx = this._charSheetSelectedIdx || 0;
+    if (this._charSheetOpen) this._hideCharSheet();
+    this._shopWindow = new ShopWindow(this, this._ws, null, {
+      mode: 'craft',
+      onChange: () => this._onWorldItemsChanged(),
+      onClose: () => { this._shopWindow = null; SaveSystem.saveWorld(this.game.registry, this.mapKey, this.spawnId); this.time.delayedCall(60, () => this._showCharSheet(idx)); },
+    });
+  }
+
+  _onWorldItemsChanged() {
+    this._refreshGoldHud();
+    if (this._invGoldLabel?.active) this._invGoldLabel.setText(`${SaveSystem.getGold(this.game.registry)}`);
+    this._syncCollectedBooksToInventory();
+    this._syncWorldItems();
+    this._rebuildInventoryIcons();
+  }
+
+  /** Использовать предмет из сумки на выбранного в окне отряда. */
+  _useInventoryItem(item) {
+    const ch = this._charSheetChars?.[this._charSheetSelectedIdx || 0];
+    const res = useItem(item.id, ch?.id, this._ws, { mapKey: this.mapKey, spawnId: this.spawnId });
+    this._toast(res.text, res.ok ? 'icon_heart' : null);
+    if (!res.ok) return;
+    Sfx.play?.(this, 'heal');
+    this._syncWorldItems();
+    this._showCharSheet(this._charSheetSelectedIdx || 0);
   }
 
   /** Плата памятью Горному Королю: герой теряет одну черту на выбор (03_ДИАЛОГИ 11). */
@@ -1563,6 +1655,7 @@ export class MapScene extends Phaser.Scene {
 
   /** Отдых: полное HP, Сборы, раны сняты, точка возврата Хроники. */
   _rest() {
+    onRest(this.game.registry);   // фляга полна, лавки пополнились
     PartySystem.restAll(this.game.registry, this.mapKey, this.spawnId);
     this._toast('Отряд отдохнул');
   }
@@ -2305,8 +2398,9 @@ export class MapScene extends Phaser.Scene {
     const els = [];
 
     let iconObj;
-    if (item.icon && this.textures.exists(item.icon)) {
-      iconObj = this.add.image(s(cxScr), s(cyScr), item.icon)
+    const icon = item.icon && this.textures.exists(item.icon) ? item.icon : (itemDef(item.id) || item.type === 'book' ? iconKey(this, item.type === 'book' ? { ...item, cat: 'book' } : itemDef(item.id)) : null);
+    if (icon) {
+      iconObj = this.add.image(s(cxScr), s(cyScr), icon)
         .setDisplaySize(s(ICON_PX), s(ICON_PX))
         .setDepth(DEPTH + 4).setScrollFactor(0).setVisible(visible);
     } else {
@@ -2317,7 +2411,9 @@ export class MapScene extends Phaser.Scene {
     }
     els.push(iconObj);
 
-    iconObj.setInteractive({ useHandCursor: item.type === 'book' || item.type === 'consumable' });
+    const usable = !!itemDef(item.id)?.use;
+    const craftable = itemDef(item.id)?.cat === 'ingredient' && PartySystem.getParty(this.game.registry).includes(CRAFTER);
+    iconObj.setInteractive({ useHandCursor: item.type === 'book' || usable || craftable });
     iconObj.on('pointerover', (pointer) => {
       iconObj.setTint?.(0xFFEEBB);
       this._showInventoryTooltip(item, pointer);
@@ -2333,6 +2429,10 @@ export class MapScene extends Phaser.Scene {
         event?.stopPropagation();
         this._showBookReader(item.bookId);
       });
+    } else if (usable) {
+      iconObj.on('pointerdown', (pointer, localX, localY, event) => { event?.stopPropagation(); this._useInventoryItem(item); });
+    } else if (craftable) {
+      iconObj.on('pointerdown', (pointer, localX, localY, event) => { event?.stopPropagation(); this._openCraft(); });
     }
 
     // Количество - правый нижний угол слота
@@ -2358,13 +2458,18 @@ export class MapScene extends Phaser.Scene {
     const zoom = this.cameras.main.zoom;
     const s = v => v / zoom;
     const DEPTH = (this._charSheetDEPTH ?? 10000) + 20;
+    const def = itemDef(item.id);
+    const who = this._charSheetChars?.[this._charSheetSelectedIdx || 0]?.tabLabel;
     const actionText =
       item.type === 'book' ? 'ЛКМ: читать' :
-      item.type === 'consumable' ? 'ЛКМ: использовать позже' :
+      def?.use ? `ЛКМ: использовать${def.use.heal || def.use.cureInjury || def.use.battleBuff?.target === 'one' ? ` (${who || 'выбранный'})` : ''}` :
+      def?.cat === 'ingredient' ? (PartySystem.getParty(this.game.registry).includes(CRAFTER) ? 'ЛКМ: Тая сварит из трав' : 'Травы: сварит Тая или травница') :
       item.type === 'currency' ? 'Кошель отряда' :
       'Предмет';
     const qtyText = item.stackable || item.quantity > 1 ? `\nКоличество: ${item.quantity}` : '';
-    const body = `${item.name}\n${item.description || 'Описание будет добавлено.'}${qtyText}\n${actionText}`;
+    const sum = useSummary(def);
+    const priceText = def?.price && !def.quest ? `\nЦена: ${coins(def.price)}` : '';
+    const body = `${item.name}\n${item.description || 'Описание будет добавлено.'}${sum ? `\n${sum}` : ''}${qtyText}${priceText}\n${actionText}`;
 
     const text = this.add.text(0, 0, body, {
       fontSize: `${s(11)}px`,
@@ -2407,6 +2512,12 @@ export class MapScene extends Phaser.Scene {
     if (!book) return;
 
     if (book.readFlag) SaveSystem.setFlag(book.readFlag, true, this.game.registry);
+    // Эффект книги при первом прочтении (books.json → effects): опыт, навык, рецепт, флаг, черта
+    const fx = applyBookEffects(book, { ws: this._ws, giveXp: n => this.time.delayedCall(400, () => this._grantXp(n)), mapKey: this.mapKey, spawnId: this.spawnId });
+    if (fx.length) {
+      this.time.delayedCall(250, () => fx.forEach(t => this._toast(t, 'icon_hand')));
+      SaveSystem.saveWorld(this.game.registry, this.mapKey, this.spawnId);
+    }
     if (this._dialogue?.active) this._dialogue.hide();
     this.hero.stopMove();
     this.brawler.stopMove();

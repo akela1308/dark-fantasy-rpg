@@ -192,6 +192,13 @@
           "next": "ustav_read"
         },
         {
+          "label": "«Что у тебя есть на продажу?»",
+          "effects": {
+            "openShop": "vorn"
+          },
+          "close": true
+        },
+        {
           "label": "«Мы ненадолго.»",
           "style": "retreat",
           "close": true

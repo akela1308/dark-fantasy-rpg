@@ -78,11 +78,13 @@ const pngToWebp = {
 
 // Какие портреты реально лежат в public/portraits: бой не запрашивает несуществующие (иначе 404 в консоли)
 const PORTRAITS = fs.readdirSync('public/portraits').filter(f => f.endsWith('.png')).map(f => f.slice(0, -4));
+// Иконки предметов и книг (public/ui/items): игра не запрашивает те, что ещё не нарисованы
+const ITEM_ICONS = fs.existsSync('public/ui/items') ? fs.readdirSync('public/ui/items').filter(f => f.endsWith('.png')).map(f => f.slice(0, -4)) : [];
 
 // Для Tauri база относительная (файлы из пакета), для GitHub Pages подпапка репозитория
 export default {
   plugins: [pngToWebp],
-  define: { __PORTRAITS__: JSON.stringify(PORTRAITS) },
+  define: { __PORTRAITS__: JSON.stringify(PORTRAITS), __ITEM_ICONS__: JSON.stringify(ITEM_ICONS) },
   base: process.env.TAURI_ENV_PLATFORM ? './' : '/dark-fantasy-rpg/',
   publicDir: 'public',
   optimizeDeps: {

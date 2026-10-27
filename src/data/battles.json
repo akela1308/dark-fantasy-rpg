@@ -4255,5 +4255,1063 @@
         "canSurrender": true
       }
     ]
+  },
+  {
+    "id": "veshka_gang",
+    "name": "Сгоревший выселок: шайка Вешки (трусливая ватага)",
+    "intendedLevel": 1,
+    "intendedPartySize": 2,
+    "kind": "standard",
+    "xpReward": 45,
+    "goldLoot": 18,
+    "victoryFlag": "veshka_gang_defeated",
+    "behaviour": "coward",
+    "enemies": [
+      {
+        "id": "veshka",
+        "name": "Вешка",
+        "type": "enemy",
+        "hp": 60,
+        "maxHp": 60,
+        "damage": {
+          "min": 10,
+          "max": 15
+        },
+        "speed": 6,
+        "armor": 10,
+        "accuracy": 75,
+        "regen": 0,
+        "xpKill": 25,
+        "position": {
+          "row": 0,
+          "col": 1
+        },
+        "skills": [
+          "enemy_heavy",
+          "boss_fury"
+        ],
+        "ranged": false,
+        "isBoss": true,
+        "classId": "blade",
+        "arch": "blade",
+        "spriteKey": "bandit_axewoman",
+        "canSurrender": true
+      },
+      {
+        "id": "veshka_knife_1",
+        "name": "Поножовщик",
+        "type": "enemy",
+        "hp": 40,
+        "maxHp": 40,
+        "damage": {
+          "min": 9,
+          "max": 13
+        },
+        "speed": 6,
+        "armor": 6,
+        "accuracy": 75,
+        "regen": 0,
+        "xpKill": 12,
+        "position": {
+          "row": 0,
+          "col": 0
+        },
+        "skills": [
+          "enemy_heavy"
+        ],
+        "ranged": false,
+        "isBoss": false,
+        "classId": "blade",
+        "arch": "blade",
+        "spriteKey": "bandit_knifeman",
+        "canSurrender": true,
+        "commanderId": "veshka"
+      },
+      {
+        "id": "veshka_knife_2",
+        "name": "Поножовщик",
+        "type": "enemy",
+        "hp": 40,
+        "maxHp": 40,
+        "damage": {
+          "min": 9,
+          "max": 13
+        },
+        "speed": 6,
+        "armor": 6,
+        "accuracy": 75,
+        "regen": 0,
+        "xpKill": 12,
+        "position": {
+          "row": 0,
+          "col": 2
+        },
+        "skills": [
+          "enemy_heavy"
+        ],
+        "ranged": false,
+        "isBoss": false,
+        "classId": "blade",
+        "arch": "blade",
+        "spriteKey": "bandit_knifeman",
+        "canSurrender": true,
+        "commanderId": "veshka"
+      }
+    ],
+    "backgroundKey": "battle_Plane",
+    "backgroundPath": "battle/Plane.jpg"
+  },
+  {
+    "id": "forest_poachers",
+    "name": "Чёрный Лес: браконьеры с волками",
+    "intendedLevel": 2,
+    "intendedPartySize": 3,
+    "kind": "standard",
+    "xpReward": 68,
+    "goldLoot": 24,
+    "victoryFlag": "forest_poachers_defeated",
+    "behaviour": "pack",
+    "enemies": [
+      {
+        "id": "poacher_1",
+        "name": "Браконьер",
+        "type": "enemy",
+        "hp": 40,
+        "maxHp": 40,
+        "damage": {
+          "min": 11,
+          "max": 17
+        },
+        "speed": 6,
+        "armor": 6,
+        "accuracy": 83,
+        "regen": 0,
+        "xpKill": 20,
+        "position": {
+          "row": 1,
+          "col": 1
+        },
+        "skills": [
+          "enemy_volley"
+        ],
+        "ranged": true,
+        "isBoss": false,
+        "classId": "watcher",
+        "arch": "watcher",
+        "spriteKey": "bandit_poacher",
+        "canSurrender": true
+      },
+      {
+        "id": "poacher_wolf_1",
+        "name": "Волк браконьера",
+        "type": "enemy",
+        "hp": 34,
+        "maxHp": 34,
+        "damage": {
+          "min": 8,
+          "max": 13
+        },
+        "speed": 7,
+        "armor": 0,
+        "accuracy": 79,
+        "regen": 0,
+        "xpKill": 12,
+        "position": {
+          "row": 0,
+          "col": 0
+        },
+        "skills": [],
+        "ranged": false,
+        "isBoss": false,
+        "classId": "wolf",
+        "arch": "wolf",
+        "spriteKey": "grey_wolf"
+      },
+      {
+        "id": "poacher_wolf_2",
+        "name": "Волк браконьера",
+        "type": "enemy",
+        "hp": 34,
+        "maxHp": 34,
+        "damage": {
+          "min": 8,
+          "max": 13
+        },
+        "speed": 7,
+        "armor": 0,
+        "accuracy": 79,
+        "regen": 0,
+        "xpKill": 12,
+        "position": {
+          "row": 0,
+          "col": 2
+        },
+        "skills": [],
+        "ranged": false,
+        "isBoss": false,
+        "classId": "wolf",
+        "arch": "wolf",
+        "spriteKey": "grey_wolf"
+      }
+    ],
+    "backgroundKey": "battle_Forest_Battle",
+    "backgroundPath": "battle/Forest_Battle.jpg"
+  },
+  {
+    "id": "tavern_rats",
+    "name": "Комнаты наверху: крысы из подвала",
+    "intendedLevel": 1,
+    "intendedPartySize": 2,
+    "kind": "minor",
+    "xpReward": 25,
+    "goldLoot": 10,
+    "victoryFlag": "tavern_rats_defeated",
+    "behaviour": "pack",
+    "enemies": [
+      {
+        "id": "rats_1",
+        "name": "Крысы",
+        "type": "enemy",
+        "hp": 26,
+        "maxHp": 26,
+        "damage": {
+          "min": 6,
+          "max": 10
+        },
+        "speed": 7,
+        "armor": 0,
+        "accuracy": 78,
+        "regen": 0,
+        "xpKill": 8,
+        "position": {
+          "row": 0,
+          "col": 0
+        },
+        "skills": [],
+        "ranged": false,
+        "isBoss": false,
+        "classId": "wolf",
+        "arch": "wolf",
+        "spriteKey": "rats"
+      },
+      {
+        "id": "rats_2",
+        "name": "Крысы",
+        "type": "enemy",
+        "hp": 26,
+        "maxHp": 26,
+        "damage": {
+          "min": 6,
+          "max": 10
+        },
+        "speed": 7,
+        "armor": 0,
+        "accuracy": 78,
+        "regen": 0,
+        "xpKill": 8,
+        "position": {
+          "row": 0,
+          "col": 1
+        },
+        "skills": [],
+        "ranged": false,
+        "isBoss": false,
+        "classId": "wolf",
+        "arch": "wolf",
+        "spriteKey": "rats"
+      },
+      {
+        "id": "rats_3",
+        "name": "Крысы",
+        "type": "enemy",
+        "hp": 26,
+        "maxHp": 26,
+        "damage": {
+          "min": 6,
+          "max": 10
+        },
+        "speed": 7,
+        "armor": 0,
+        "accuracy": 78,
+        "regen": 0,
+        "xpKill": 8,
+        "position": {
+          "row": 0,
+          "col": 2
+        },
+        "skills": [],
+        "ranged": false,
+        "isBoss": false,
+        "classId": "wolf",
+        "arch": "wolf",
+        "spriteKey": "rats"
+      }
+    ],
+    "backgroundKey": "battle_Tavern_battle3",
+    "backgroundPath": "battle/Tavern_battle3.jpg"
+  },
+  {
+    "id": "shishiga_pack",
+    "name": "Болотная дорога: шишиги",
+    "intendedLevel": 3,
+    "intendedPartySize": 3,
+    "kind": "minor",
+    "xpReward": 60,
+    "goldLoot": 30,
+    "victoryFlag": "shishiga_pack_defeated",
+    "behaviour": "coward",
+    "enemies": [
+      {
+        "id": "shishiga_1",
+        "name": "Шишига",
+        "type": "enemy",
+        "hp": 42,
+        "maxHp": 42,
+        "damage": {
+          "min": 10,
+          "max": 15
+        },
+        "speed": 7,
+        "armor": 0,
+        "accuracy": 80,
+        "regen": 0,
+        "xpKill": 20,
+        "position": {
+          "row": 0,
+          "col": 0
+        },
+        "skills": [],
+        "ranged": false,
+        "isBoss": false,
+        "classId": "wolf",
+        "arch": "wolf",
+        "spriteKey": "shishiga"
+      },
+      {
+        "id": "shishiga_2",
+        "name": "Шишига",
+        "type": "enemy",
+        "hp": 42,
+        "maxHp": 42,
+        "damage": {
+          "min": 10,
+          "max": 15
+        },
+        "speed": 7,
+        "armor": 0,
+        "accuracy": 80,
+        "regen": 0,
+        "xpKill": 20,
+        "position": {
+          "row": 0,
+          "col": 1
+        },
+        "skills": [],
+        "ranged": false,
+        "isBoss": false,
+        "classId": "wolf",
+        "arch": "wolf",
+        "spriteKey": "shishiga"
+      },
+      {
+        "id": "shishiga_3",
+        "name": "Шишига",
+        "type": "enemy",
+        "hp": 42,
+        "maxHp": 42,
+        "damage": {
+          "min": 10,
+          "max": 15
+        },
+        "speed": 7,
+        "armor": 0,
+        "accuracy": 80,
+        "regen": 0,
+        "xpKill": 20,
+        "position": {
+          "row": 0,
+          "col": 2
+        },
+        "skills": [],
+        "ranged": false,
+        "isBoss": false,
+        "classId": "wolf",
+        "arch": "wolf",
+        "spriteKey": "shishiga"
+      }
+    ],
+    "backgroundKey": "battle_Boloto_battle1",
+    "backgroundPath": "battle/Boloto_battle1.jpg"
+  },
+  {
+    "id": "cult_acolytes",
+    "name": "Мёртвый тракт: послушники сорванной печати",
+    "intendedLevel": 4,
+    "intendedPartySize": 3,
+    "kind": "standard",
+    "xpReward": 135,
+    "goldLoot": 36,
+    "victoryFlag": "cult_acolytes_defeated",
+    "behaviour": "pack",
+    "enemies": [
+      {
+        "id": "cult_zealot_1",
+        "name": "Фанатик с крюком",
+        "type": "enemy",
+        "hp": 77,
+        "maxHp": 77,
+        "damage": {
+          "min": 16,
+          "max": 22
+        },
+        "speed": 5,
+        "armor": 11,
+        "accuracy": 77,
+        "regen": 0,
+        "xpKill": 45,
+        "position": {
+          "row": 0,
+          "col": 1
+        },
+        "skills": [
+          "enemy_heavy"
+        ],
+        "ranged": false,
+        "isBoss": false,
+        "classId": "blade",
+        "arch": "blade",
+        "spriteKey": "cult_zealot",
+        "canSurrender": true
+      },
+      {
+        "id": "cult_acolyte_1",
+        "name": "Послушник сорванной печати",
+        "type": "enemy",
+        "hp": 60,
+        "maxHp": 60,
+        "damage": {
+          "min": 15,
+          "max": 21
+        },
+        "speed": 6,
+        "armor": 7,
+        "accuracy": 83,
+        "regen": 0,
+        "xpKill": 45,
+        "position": {
+          "row": 1,
+          "col": 0
+        },
+        "skills": [],
+        "ranged": true,
+        "isBoss": false,
+        "classId": "whisperer",
+        "arch": "whisperer",
+        "spriteKey": "cult_acolyte",
+        "canSurrender": true
+      },
+      {
+        "id": "cult_acolyte_2",
+        "name": "Послушник сорванной печати",
+        "type": "enemy",
+        "hp": 60,
+        "maxHp": 60,
+        "damage": {
+          "min": 15,
+          "max": 21
+        },
+        "speed": 6,
+        "armor": 7,
+        "accuracy": 83,
+        "regen": 0,
+        "xpKill": 45,
+        "position": {
+          "row": 1,
+          "col": 2
+        },
+        "skills": [],
+        "ranged": true,
+        "isBoss": false,
+        "classId": "whisperer",
+        "arch": "whisperer",
+        "spriteKey": "cult_acolyte",
+        "canSurrender": true
+      }
+    ],
+    "backgroundKey": "battle_Plane",
+    "backgroundPath": "battle/Plane.jpg"
+  },
+  {
+    "id": "cult_priest",
+    "name": "Хижина палача: Пастырь Безымянных",
+    "intendedLevel": 4,
+    "intendedPartySize": 3,
+    "kind": "boss",
+    "xpReward": 260,
+    "goldLoot": 40,
+    "victoryFlag": "cult_priest_defeated",
+    "behaviour": "loner",
+    "enemies": [
+      {
+        "id": "cult_priest",
+        "name": "Пастырь Безымянных",
+        "type": "enemy",
+        "hp": 124,
+        "maxHp": 124,
+        "damage": {
+          "min": 20,
+          "max": 28
+        },
+        "speed": 7,
+        "armor": 16,
+        "accuracy": 84,
+        "regen": 0,
+        "xpKill": 130,
+        "position": {
+          "row": 1,
+          "col": 1
+        },
+        "skills": [
+          "boss_fury"
+        ],
+        "ranged": true,
+        "isBoss": true,
+        "classId": "whisperer",
+        "arch": "whisperer",
+        "spriteKey": "cult_priest"
+      },
+      {
+        "id": "cult_zealot_p",
+        "name": "Фанатик с крюком",
+        "type": "enemy",
+        "hp": 77,
+        "maxHp": 77,
+        "damage": {
+          "min": 16,
+          "max": 22
+        },
+        "speed": 5,
+        "armor": 11,
+        "accuracy": 77,
+        "regen": 0,
+        "xpKill": 45,
+        "position": {
+          "row": 0,
+          "col": 1
+        },
+        "skills": [
+          "enemy_heavy"
+        ],
+        "ranged": false,
+        "isBoss": false,
+        "classId": "blade",
+        "arch": "blade",
+        "spriteKey": "cult_zealot",
+        "commanderId": "cult_priest"
+      },
+      {
+        "id": "cult_acolyte_p",
+        "name": "Послушник сорванной печати",
+        "type": "enemy",
+        "hp": 60,
+        "maxHp": 60,
+        "damage": {
+          "min": 15,
+          "max": 21
+        },
+        "speed": 6,
+        "armor": 7,
+        "accuracy": 83,
+        "regen": 0,
+        "xpKill": 45,
+        "position": {
+          "row": 1,
+          "col": 0
+        },
+        "skills": [],
+        "ranged": true,
+        "isBoss": false,
+        "classId": "whisperer",
+        "arch": "whisperer",
+        "spriteKey": "cult_acolyte",
+        "commanderId": "cult_priest"
+      }
+    ],
+    "backgroundKey": "battle_Plane",
+    "backgroundPath": "battle/Plane.jpg"
+  },
+  {
+    "id": "merc_company",
+    "name": "Дорога к деревне: рота Бурого",
+    "intendedLevel": 4,
+    "intendedPartySize": 3,
+    "kind": "hard",
+    "xpReward": 180,
+    "goldLoot": 36,
+    "victoryFlag": "merc_company_defeated",
+    "behaviour": "loner",
+    "enemies": [
+      {
+        "id": "merc_captain",
+        "name": "Бурый",
+        "type": "enemy",
+        "hp": 116,
+        "maxHp": 116,
+        "damage": {
+          "min": 18,
+          "max": 25
+        },
+        "speed": 6,
+        "armor": 16,
+        "accuracy": 77,
+        "regen": 0,
+        "xpKill": 90,
+        "position": {
+          "row": 0,
+          "col": 1
+        },
+        "skills": [
+          "enemy_heavy",
+          "boss_fury"
+        ],
+        "ranged": false,
+        "isBoss": true,
+        "classId": "blade",
+        "arch": "blade",
+        "spriteKey": "merc_captain",
+        "canSurrender": true
+      },
+      {
+        "id": "merc_pike_1",
+        "name": "Наёмник-пикинёр",
+        "type": "enemy",
+        "hp": 98,
+        "maxHp": 98,
+        "damage": {
+          "min": 13,
+          "max": 18
+        },
+        "speed": 3,
+        "armor": 29,
+        "accuracy": 75,
+        "regen": 0,
+        "xpKill": 40,
+        "position": {
+          "row": 0,
+          "col": 0
+        },
+        "skills": [],
+        "ranged": false,
+        "isBoss": false,
+        "classId": "warden",
+        "arch": "warden",
+        "spriteKey": "merc_pikeman",
+        "canSurrender": true,
+        "commanderId": "merc_captain"
+      },
+      {
+        "id": "merc_pike_2",
+        "name": "Наёмник-пикинёр",
+        "type": "enemy",
+        "hp": 98,
+        "maxHp": 98,
+        "damage": {
+          "min": 13,
+          "max": 18
+        },
+        "speed": 3,
+        "armor": 29,
+        "accuracy": 75,
+        "regen": 0,
+        "xpKill": 40,
+        "position": {
+          "row": 0,
+          "col": 2
+        },
+        "skills": [],
+        "ranged": false,
+        "isBoss": false,
+        "classId": "warden",
+        "arch": "warden",
+        "spriteKey": "merc_pikeman",
+        "canSurrender": true,
+        "commanderId": "merc_captain"
+      }
+    ],
+    "backgroundKey": "battle_Grad_battle",
+    "backgroundPath": "battle/Grad_battle.jpg"
+  },
+  {
+    "id": "knight_duel",
+    "name": "Овраг с мостом: Бродячий рыцарь",
+    "intendedLevel": 4,
+    "intendedPartySize": 3,
+    "kind": "standard",
+    "xpReward": 135,
+    "goldLoot": 12,
+    "victoryFlag": "knight_duel_defeated",
+    "behaviour": "loner",
+    "enemies": [
+      {
+        "id": "wandering_knight",
+        "name": "Бродячий рыцарь",
+        "type": "enemy",
+        "hp": 160,
+        "maxHp": 160,
+        "damage": {
+          "min": 20,
+          "max": 28
+        },
+        "speed": 6,
+        "armor": 20,
+        "accuracy": 84,
+        "regen": 0,
+        "xpKill": 135,
+        "position": {
+          "row": 0,
+          "col": 1
+        },
+        "skills": [
+          "enemy_heavy",
+          "boss_fury"
+        ],
+        "ranged": false,
+        "isBoss": true,
+        "classId": "blade",
+        "arch": "blade",
+        "spriteKey": "wandering_knight",
+        "canSurrender": true
+      }
+    ],
+    "backgroundKey": "battle_Forest_Battle",
+    "backgroundPath": "battle/Forest_Battle.jpg"
+  },
+  {
+    "id": "yrka",
+    "name": "Висельный холм: Ырка",
+    "intendedLevel": 4,
+    "intendedPartySize": 3,
+    "kind": "standard",
+    "xpReward": 135,
+    "goldLoot": 12,
+    "victoryFlag": "yrka_defeated",
+    "behaviour": "loner",
+    "enemies": [
+      {
+        "id": "yrka",
+        "name": "Ырка",
+        "type": "enemy",
+        "hp": 104,
+        "maxHp": 104,
+        "damage": {
+          "min": 17,
+          "max": 24
+        },
+        "speed": 7,
+        "armor": 10,
+        "accuracy": 82,
+        "regen": 0,
+        "xpKill": 99,
+        "position": {
+          "row": 0,
+          "col": 1
+        },
+        "skills": [
+          "enemy_heavy",
+          "boss_fury"
+        ],
+        "ranged": false,
+        "isBoss": true,
+        "classId": "blade",
+        "arch": "blade",
+        "spriteKey": "yrka",
+        "lifesteal": 5
+      },
+      {
+        "id": "yrka_raven_1",
+        "name": "Ворон",
+        "type": "enemy",
+        "hp": 30,
+        "maxHp": 30,
+        "damage": {
+          "min": 8,
+          "max": 12
+        },
+        "speed": 8,
+        "armor": 0,
+        "accuracy": 82,
+        "regen": 0,
+        "xpKill": 18,
+        "position": {
+          "row": 0,
+          "col": 0
+        },
+        "skills": [],
+        "ranged": false,
+        "isBoss": false,
+        "classId": "wolf",
+        "arch": "wolf",
+        "spriteKey": "raven"
+      }
+    ],
+    "backgroundKey": "battle_Plane",
+    "backgroundPath": "battle/Plane.jpg"
+  },
+  {
+    "id": "scarecrow_noon",
+    "name": "Старый амбар: Пугало",
+    "intendedLevel": 5,
+    "intendedPartySize": 3,
+    "kind": "standard",
+    "xpReward": 180,
+    "goldLoot": 14,
+    "victoryFlag": "scarecrow_noon_defeated",
+    "behaviour": "loner",
+    "enemies": [
+      {
+        "id": "scarecrow",
+        "name": "Пугало",
+        "type": "enemy",
+        "hp": 160,
+        "maxHp": 160,
+        "damage": {
+          "min": 22,
+          "max": 32
+        },
+        "speed": 4,
+        "armor": 16,
+        "accuracy": 76,
+        "regen": 0,
+        "xpKill": 150,
+        "position": {
+          "row": 0,
+          "col": 1
+        },
+        "skills": [
+          "boss_fury"
+        ],
+        "ranged": false,
+        "isBoss": true,
+        "classId": "brute",
+        "arch": "brute",
+        "spriteKey": "scarecrow"
+      },
+      {
+        "id": "scarecrow_raven",
+        "name": "Ворон",
+        "type": "enemy",
+        "hp": 34,
+        "maxHp": 34,
+        "damage": {
+          "min": 9,
+          "max": 13
+        },
+        "speed": 8,
+        "armor": 0,
+        "accuracy": 82,
+        "regen": 0,
+        "xpKill": 15,
+        "position": {
+          "row": 0,
+          "col": 0
+        },
+        "skills": [],
+        "ranged": false,
+        "isBoss": false,
+        "classId": "wolf",
+        "arch": "wolf",
+        "spriteKey": "raven"
+      }
+    ],
+    "backgroundKey": "battle_Village_battle3",
+    "backgroundPath": "battle/Village_battle3.jpg"
+  },
+  {
+    "id": "boar_litter",
+    "name": "Алтарь трёх камней: рысь и подсвинки",
+    "intendedLevel": 4,
+    "intendedPartySize": 3,
+    "kind": "minor",
+    "xpReward": 75,
+    "goldLoot": 36,
+    "victoryFlag": "boar_litter_defeated",
+    "behaviour": "pack",
+    "enemies": [
+      {
+        "id": "lynx",
+        "name": "Рысь",
+        "type": "enemy",
+        "hp": 54,
+        "maxHp": 54,
+        "damage": {
+          "min": 14,
+          "max": 20
+        },
+        "speed": 8,
+        "armor": 0,
+        "accuracy": 84,
+        "regen": 0,
+        "xpKill": 27,
+        "position": {
+          "row": 0,
+          "col": 1
+        },
+        "skills": [],
+        "ranged": false,
+        "isBoss": false,
+        "classId": "wolf",
+        "arch": "wolf",
+        "spriteKey": "lynx"
+      },
+      {
+        "id": "young_boar_1",
+        "name": "Подсвинок",
+        "type": "enemy",
+        "hp": 46,
+        "maxHp": 46,
+        "damage": {
+          "min": 11,
+          "max": 16
+        },
+        "speed": 6,
+        "armor": 6,
+        "accuracy": 79,
+        "regen": 0,
+        "xpKill": 24,
+        "position": {
+          "row": 0,
+          "col": 0
+        },
+        "skills": [],
+        "ranged": false,
+        "isBoss": false,
+        "classId": "wolf",
+        "arch": "wolf",
+        "spriteKey": "young_boar"
+      },
+      {
+        "id": "young_boar_2",
+        "name": "Подсвинок",
+        "type": "enemy",
+        "hp": 46,
+        "maxHp": 46,
+        "damage": {
+          "min": 11,
+          "max": 16
+        },
+        "speed": 6,
+        "armor": 6,
+        "accuracy": 79,
+        "regen": 0,
+        "xpKill": 24,
+        "position": {
+          "row": 0,
+          "col": 2
+        },
+        "skills": [],
+        "ranged": false,
+        "isBoss": false,
+        "classId": "wolf",
+        "arch": "wolf",
+        "spriteKey": "young_boar"
+      }
+    ],
+    "backgroundKey": "battle_Forest_Battle",
+    "backgroundPath": "battle/Forest_Battle.jpg"
+  },
+  {
+    "id": "shatun",
+    "name": "Ледяное святилище: медведь-шатун",
+    "intendedLevel": 7,
+    "intendedPartySize": 4,
+    "kind": "hard",
+    "xpReward": 396,
+    "goldLoot": 54,
+    "victoryFlag": "shatun_defeated",
+    "behaviour": "pack",
+    "enemies": [
+      {
+        "id": "bear_shatun",
+        "name": "Медведь-шатун",
+        "type": "enemy",
+        "hp": 230,
+        "maxHp": 230,
+        "damage": {
+          "min": 32,
+          "max": 46
+        },
+        "speed": 4,
+        "armor": 20,
+        "accuracy": 78,
+        "regen": 0,
+        "xpKill": 220,
+        "position": {
+          "row": 0,
+          "col": 1
+        },
+        "skills": [
+          "boss_fury"
+        ],
+        "ranged": false,
+        "isBoss": true,
+        "classId": "brute",
+        "arch": "brute",
+        "spriteKey": "bear_shatun"
+      },
+      {
+        "id": "shatun_wolf_1",
+        "name": "Снежный волк",
+        "type": "enemy",
+        "hp": 88,
+        "maxHp": 88,
+        "damage": {
+          "min": 18,
+          "max": 26
+        },
+        "speed": 7,
+        "armor": 4,
+        "accuracy": 84,
+        "regen": 0,
+        "xpKill": 59,
+        "position": {
+          "row": 0,
+          "col": 0
+        },
+        "skills": [],
+        "ranged": false,
+        "isBoss": false,
+        "classId": "wolf",
+        "arch": "wolf",
+        "spriteKey": "snow_wolf"
+      },
+      {
+        "id": "shatun_wolf_2",
+        "name": "Снежный волк",
+        "type": "enemy",
+        "hp": 88,
+        "maxHp": 88,
+        "damage": {
+          "min": 18,
+          "max": 26
+        },
+        "speed": 7,
+        "armor": 4,
+        "accuracy": 84,
+        "regen": 0,
+        "xpKill": 59,
+        "position": {
+          "row": 0,
+          "col": 2
+        },
+        "skills": [],
+        "ranged": false,
+        "isBoss": false,
+        "classId": "wolf",
+        "arch": "wolf",
+        "spriteKey": "snow_wolf"
+      }
+    ],
+    "backgroundKey": "battle_Winter_Forest",
+    "backgroundPath": "battle/Winter_Forest.jpg"
   }
 ]

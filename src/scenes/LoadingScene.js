@@ -9,6 +9,8 @@ import { DIALOGUES } from '../systems/DialogueRunner.js';
 import MAP_ANIMS from '../data/map_animations.json';
 import BATTLE_ANIM_DATA from '../data/animations.json';
 import unitsList from '../data/units.json';
+import itemsList from '../data/items.json';
+import booksList from '../data/books.json';
 
 /**
  * LoadingScene - экран загрузки с картинкой по центру и прогресс баром.
@@ -214,6 +216,14 @@ export class LoadingScene extends Phaser.Scene {
     img('item_road_satchel',         'items/road_satchel.png');
     img('item_withered_apple',       'items/withered_apple.png');
     img('item_pilgrim_tag',          'items/pilgrim_tag.png');
+    // Иконки предметов и обложки книг из данных: ключ item_<id> -> ui/items/<id>.png (рисует поток арта).
+    // Грузятся только файлы, которые уже лежат в public/ui/items (__ITEM_ICONS__), остальные заменяет общая иконка (Economy.iconKey)
+    [...itemsList.map(i => i.icon), ...booksList.map(b => b.icon)].forEach(key => {
+      if (!key?.startsWith('item_')) return;
+      const file = key.slice(5);
+      if (typeof __ITEM_ICONS__ !== 'undefined' && !__ITEM_ICONS__.includes(file)) return;
+      img(key, `ui/items/${file}.png`);
+    });
 
         // Пропсы (интерьерные объекты)
     img('prop_table3',   'sprites/table3.png');

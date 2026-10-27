@@ -56,7 +56,7 @@
     "type": "active",
     "targetType": "enemy_single",
     "cooldown": 2,
-    "damageMultiplier": 2.0,
+    "damageMultiplier": 2,
     "cannotMiss": true
   },
   {
@@ -226,7 +226,7 @@
     "type": "active",
     "targetType": "enemy_single",
     "cooldown": 2,
-    "damageMultiplier": 1.0,
+    "damageMultiplier": 1,
     "ai": {
       "chance": 0.5
     },
@@ -276,5 +276,73 @@
     "cooldown": 0,
     "oncePerBattle": true,
     "effect": "seal_word"
+  },
+  {
+    "id": "last_word",
+    "name": "Последнее слово",
+    "description": "Удар по формуле судебного вызова: урон ×1,2, цель ослаблена на 2 хода. Из книги «Судебный поединок»",
+    "type": "active",
+    "targetType": "enemy_single",
+    "cooldown": 3,
+    "damageMultiplier": 1.2,
+    "appliesStatus": [
+      {
+        "type": "weakened",
+        "value": 0.75,
+        "duration": 2,
+        "onHit": true,
+        "label": "слабость"
+      }
+    ],
+    "source": "book"
+  },
+  {
+    "id": "stone_silence",
+    "name": "Седьмое молчание",
+    "description": "Боец замолкает, как камень: 2 хода получает на 30% меньше урона. Из книги «Семь молчаний»",
+    "type": "active",
+    "targetType": "self",
+    "cooldown": 3,
+    "appliesStatus": [
+      {
+        "type": "guarded",
+        "value": 0.7,
+        "duration": 2,
+        "target": "self",
+        "label": "молчание камня"
+      }
+    ],
+    "source": "book"
+  },
+  {
+    "id": "salt_tongue",
+    "name": "Соль под язык",
+    "description": "Снять один статус с союзника и вылечить 6 HP. Без Сборов. Из книги «Соль под языком»",
+    "type": "active",
+    "targetType": "ally_single",
+    "cooldown": 2,
+    "effect": "cleanse_heal",
+    "healAmount": 6,
+    "source": "book"
+  },
+  {
+    "id": "forest_snare",
+    "name": "Лесная петля",
+    "description": "Выстрел в ноги: урон ×0,8, цель опутана (−4 инициативы) на 2 хода. Из «Карманного лесника»",
+    "type": "active",
+    "targetType": "enemy_single",
+    "cooldown": 3,
+    "damageMultiplier": 0.8,
+    "ignoreRows": true,
+    "appliesStatus": [
+      {
+        "type": "rooted",
+        "value": 4,
+        "duration": 2,
+        "onHit": true,
+        "label": "петля"
+      }
+    ],
+    "source": "book"
   }
 ]

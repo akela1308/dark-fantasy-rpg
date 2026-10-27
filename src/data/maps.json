@@ -266,6 +266,37 @@
         "originY": 0.9684,
         "occluder": true
       }
+    ],
+    "npcs": [
+      {
+        "id": "gravedigger",
+        "name": "Сыч, могильщик",
+        "x": 1188,
+        "y": 564,
+        "anchorFeet": true,
+        "spriteKey": "map_gravedigger",
+        "portraitKey": "portrait_gravedigger",
+        "heightM": 1.72,
+        "height": 155,
+        "hoverPortrait": true,
+        "dialogue": "folk",
+        "dialogueStart": "sych",
+        "flipX": true
+      },
+      {
+        "id": "owl",
+        "name": "Сова",
+        "x": 1356,
+        "y": 564,
+        "anchorFeet": true,
+        "spriteKey": "map_owl",
+        "portraitKey": "portrait_owl",
+        "heightM": 0.5,
+        "height": 45,
+        "hoverPortrait": false,
+        "dialogue": "folk",
+        "dialogueStart": "owl"
+      }
     ]
   },
   "tavern_map": {
@@ -566,6 +597,20 @@
           "notFlag": "savko_gone"
         },
         "heightM": 1.75
+      },
+      {
+        "id": "beggar",
+        "name": "Слепой Онисим",
+        "x": 180,
+        "y": 636,
+        "anchorFeet": true,
+        "spriteKey": "map_beggar",
+        "portraitKey": "portrait_beggar",
+        "heightM": 1.68,
+        "height": 151,
+        "hoverPortrait": true,
+        "dialogue": "folk",
+        "dialogueStart": "onisim"
       }
     ],
     "walk": [
@@ -1647,7 +1692,7 @@
         "x": 885,
         "y": 695,
         "originX": 0,
-        "originY": 1.0,
+        "originY": 1,
         "occluder": true
       },
       {
@@ -1660,7 +1705,42 @@
         "occluder": true
       }
     ],
-    "doorPx": 130
+    "doorPx": 130,
+    "encounters": [
+      {
+        "id": "forest_poachers",
+        "battleId": "forest_poachers",
+        "name": "браконьеры с волками",
+        "behaviour": "pack",
+        "x": 1212,
+        "y": 516
+      }
+    ],
+    "inspectables": [
+      {
+        "id": "forest1_hunter_bag",
+        "x": 876,
+        "y": 478,
+        "key": "item_road_satchel",
+        "height": 36,
+        "depth": 492,
+        "label": "Охотничья сумка",
+        "title": "Охотничья сумка",
+        "text": "Сумка висит на сучке на высоте плеча, как вешают те, кто собирался вернуться к вечеру. Ремень перерезан, а не порван. Внутри вяленое мясо и пучок горечавки: охотник берёг желудок.",
+        "takeLabel": "Забрать найденное.",
+        "collectFlag": "inspect_forest1_hunter_bag_collected",
+        "rewards": [
+          {
+            "id": "dried_meat",
+            "quantity": 2
+          },
+          {
+            "id": "bitterwort",
+            "quantity": 2
+          }
+        ]
+      }
+    ]
   },
   "road_boloto": {
     "bgKey": "map_road_boloto",
@@ -1835,6 +1915,67 @@
         "originX": 0,
         "originY": 0.9681,
         "occluder": true
+      }
+    ],
+    "bookPickups": [
+      {
+        "depth": 468,
+        "bookId": "swamp_rules",
+        "x": 780,
+        "y": 458,
+        "height": 34,
+        "label": "Соль под языком"
+      }
+    ],
+    "npcs": [
+      {
+        "id": "fisherman",
+        "name": "Осока, рыбак",
+        "x": 324,
+        "y": 204,
+        "anchorFeet": true,
+        "spriteKey": "map_fisherman",
+        "portraitKey": "portrait_fisherman",
+        "heightM": 1.75,
+        "height": 158,
+        "hoverPortrait": true,
+        "dialogue": "folk",
+        "dialogueStart": "osoka"
+      }
+    ],
+    "encounters": [
+      {
+        "id": "shishiga_pack",
+        "battleId": "shishiga_pack",
+        "name": "шишиги",
+        "behaviour": "coward",
+        "x": 588,
+        "y": 564
+      }
+    ],
+    "inspectables": [
+      {
+        "id": "boloto_fisher_basket",
+        "x": 948,
+        "y": 454,
+        "key": "item_road_satchel",
+        "height": 36,
+        "depth": 468,
+        "label": "Рыбацкий короб",
+        "title": "Рыбацкий короб",
+        "text": "Короб брошен у края гати, крышка придавлена камнем, чтобы вода не открыла. Кто-то ушёл за огнями и не вернулся за уловом. Рыбы нет, только осока и пустая склянка.",
+        "takeLabel": "Забрать найденное.",
+        "collectFlag": "inspect_boloto_fisher_basket_collected",
+        "rewards": [
+          {
+            "id": "black_sedge",
+            "quantity": 2
+          },
+          {
+            "id": "empty_flask",
+            "quantity": 1
+          }
+        ]
       }
     ]
   },
@@ -2297,7 +2438,9 @@
         "name": "тролль Угрюм",
         "behaviour": "loner",
         "x": 1133,
-        "y": 573
+        "y": 573,
+        "dialogue": "creatures",
+        "dialogueStart": "troll"
       },
       {
         "id": "mountain_pass",
@@ -2327,6 +2470,16 @@
         "originX": 0,
         "originY": 0.9801,
         "occluder": true
+      }
+    ],
+    "bookPickups": [
+      {
+        "depth": 396,
+        "bookId": "troll_ledger",
+        "x": 324,
+        "y": 386,
+        "height": 34,
+        "label": "Книга Угрюма"
       }
     ]
   },
@@ -2878,6 +3031,34 @@
           }
         ],
         "heightM": 1.72
+      },
+      {
+        "id": "pilgrim_nun",
+        "name": "Сестра Агафья",
+        "x": 1068,
+        "y": 540,
+        "anchorFeet": true,
+        "spriteKey": "map_pilgrim_nun",
+        "portraitKey": "portrait_pilgrim_nun",
+        "heightM": 1.66,
+        "height": 149,
+        "hoverPortrait": true,
+        "dialogue": "folk",
+        "dialogueStart": "agafya"
+      },
+      {
+        "id": "sava",
+        "name": "Сава, точильщик",
+        "x": 1260,
+        "y": 492,
+        "anchorFeet": true,
+        "spriteKey": "map_knife_grinder",
+        "portraitKey": "portrait_knife_grinder",
+        "heightM": 1.7,
+        "height": 153,
+        "hoverPortrait": true,
+        "dialogue": "trade",
+        "dialogueStart": "sava"
       }
     ],
     "walk": [
@@ -2944,7 +3125,17 @@
         "occluder": true
       }
     ],
-    "doorPx": 125
+    "doorPx": 125,
+    "encounters": [
+      {
+        "id": "merc_company",
+        "battleId": "merc_company",
+        "name": "рота Бурого",
+        "behaviour": "loner",
+        "x": 1236,
+        "y": 612
+      }
+    ]
   },
   "gate": {
     "bgKey": "map_gate",
@@ -3473,6 +3664,77 @@
           }
         ],
         "heightM": 1.62
+      },
+      {
+        "id": "peasant_woman",
+        "name": "Веся, крестьянка",
+        "x": 612,
+        "y": 588,
+        "anchorFeet": true,
+        "spriteKey": "map_peasant_woman",
+        "portraitKey": "portrait_peasant_woman",
+        "heightM": 1.62,
+        "height": 146,
+        "hoverPortrait": true,
+        "dialogue": "folk",
+        "dialogueStart": "vesya"
+      },
+      {
+        "id": "old_man",
+        "name": "Дед Мокей",
+        "x": 828,
+        "y": 564,
+        "anchorFeet": true,
+        "spriteKey": "map_old_man",
+        "portraitKey": "portrait_old_man",
+        "heightM": 1.6,
+        "height": 144,
+        "hoverPortrait": true,
+        "dialogue": "folk",
+        "dialogueStart": "mokey",
+        "flipX": true
+      },
+      {
+        "id": "village_boy",
+        "name": "Тимко, мальчишка",
+        "x": 972,
+        "y": 708,
+        "anchorFeet": true,
+        "spriteKey": "map_village_boy",
+        "portraitKey": "portrait_village_boy",
+        "heightM": 1.3,
+        "height": 117,
+        "hoverPortrait": true,
+        "dialogue": "folk",
+        "dialogueStart": "timko"
+      },
+      {
+        "id": "zlata",
+        "name": "Злата, травница",
+        "x": 540,
+        "y": 492,
+        "anchorFeet": true,
+        "spriteKey": "map_herbalist",
+        "portraitKey": "portrait_herbalist",
+        "heightM": 1.65,
+        "height": 149,
+        "hoverPortrait": true,
+        "dialogue": "trade",
+        "dialogueStart": "zlata"
+      },
+      {
+        "id": "efim",
+        "name": "Ефим, лавочник",
+        "x": 1188,
+        "y": 660,
+        "anchorFeet": true,
+        "spriteKey": "map_shopkeeper",
+        "portraitKey": "portrait_shopkeeper",
+        "heightM": 1.72,
+        "height": 155,
+        "hoverPortrait": true,
+        "dialogue": "trade",
+        "dialogueStart": "efim"
       }
     ],
     "walk": [
@@ -4060,10 +4322,20 @@
       {
         "f": 0.62,
         "center": [
-          836.0,
+          836,
           470.5
         ],
         "from": "map_south_post"
+      }
+    ],
+    "bookPickups": [
+      {
+        "depth": 444,
+        "bookId": "outpost_shooter",
+        "x": 1020,
+        "y": 434,
+        "height": 34,
+        "label": "Записки стрелка"
       }
     ]
   },
@@ -4736,7 +5008,50 @@
     ],
     "tavernEntry": null,
     "bandits": false,
-    "npcs": [],
+    "npcs": [
+      {
+        "id": "horse",
+        "name": "Кляча",
+        "x": 1068,
+        "y": 588,
+        "anchorFeet": true,
+        "spriteKey": "map_horse",
+        "portraitKey": "portrait_horse",
+        "heightM": 1.9,
+        "height": 171,
+        "hoverPortrait": false,
+        "dialogue": "folk",
+        "dialogueStart": "horse"
+      },
+      {
+        "id": "goat",
+        "name": "Коза",
+        "x": 1236,
+        "y": 564,
+        "anchorFeet": true,
+        "spriteKey": "map_goat",
+        "portraitKey": "portrait_goat",
+        "heightM": 0.85,
+        "height": 77,
+        "hoverPortrait": false,
+        "dialogue": "folk",
+        "dialogueStart": "goat"
+      },
+      {
+        "id": "luka",
+        "name": "Лука, коробейник",
+        "x": 780,
+        "y": 420,
+        "anchorFeet": true,
+        "spriteKey": "map_peddler",
+        "portraitKey": "portrait_peddler",
+        "heightM": 1.7,
+        "height": 153,
+        "hoverPortrait": true,
+        "dialogue": "trade",
+        "dialogueStart": "luka"
+      }
+    ],
     "props": [
       {
         "key": "prop_three_pillars_occ_1",
@@ -4899,8 +5214,8 @@
       {
         "f": 1.2,
         "center": [
-          836.0,
-          470.0
+          836,
+          470
         ],
         "from": "map_three_pillars"
       }
@@ -5045,7 +5360,7 @@
       {
         "f": 0.75,
         "center": [
-          836.0,
+          836,
           470.5
         ],
         "from": "map_three_pillars_inside"
@@ -5629,7 +5944,36 @@
     ],
     "tavernEntry": null,
     "bandits": false,
-    "npcs": [],
+    "npcs": [
+      {
+        "id": "miller",
+        "name": "Прокоп, мельник",
+        "x": 348,
+        "y": 636,
+        "anchorFeet": true,
+        "spriteKey": "map_miller",
+        "portraitKey": "portrait_miller",
+        "heightM": 1.78,
+        "height": 160,
+        "hoverPortrait": true,
+        "dialogue": "folk",
+        "dialogueStart": "prokop"
+      },
+      {
+        "id": "cow",
+        "name": "Корова",
+        "x": 516,
+        "y": 636,
+        "anchorFeet": true,
+        "spriteKey": "map_cow",
+        "portraitKey": "portrait_cow",
+        "heightM": 1.45,
+        "height": 131,
+        "hoverPortrait": false,
+        "dialogue": "folk",
+        "dialogueStart": "cow"
+      }
+    ],
     "props": [
       {
         "key": "prop_old_mill_occ_1",
@@ -5761,7 +6105,7 @@
       {
         "f": 0.56,
         "center": [
-          836.0,
+          836,
           470.5
         ],
         "from": "map_mill_inside"
@@ -6273,7 +6617,36 @@
     ],
     "tavernEntry": null,
     "bandits": false,
-    "npcs": [],
+    "npcs": [
+      {
+        "id": "village_girl",
+        "name": "Ганка, девочка",
+        "x": 420,
+        "y": 420,
+        "anchorFeet": true,
+        "spriteKey": "map_village_girl",
+        "portraitKey": "portrait_village_girl",
+        "heightM": 1.15,
+        "height": 103,
+        "hoverPortrait": true,
+        "dialogue": "folk",
+        "dialogueStart": "ganka"
+      },
+      {
+        "id": "fox",
+        "name": "Лиса",
+        "x": 180,
+        "y": 444,
+        "anchorFeet": true,
+        "spriteKey": "map_fox",
+        "portraitKey": "portrait_fox",
+        "heightM": 0.42,
+        "height": 38,
+        "hoverPortrait": false,
+        "dialogue": "folk",
+        "dialogueStart": "fox"
+      }
+    ],
     "props": [
       {
         "key": "prop_burned_hamlet_occ_1",
@@ -6412,6 +6785,14 @@
         "behaviour": "pack",
         "x": 1007,
         "y": 698
+      },
+      {
+        "id": "veshka_gang",
+        "battleId": "veshka_gang",
+        "name": "шайка Вешки",
+        "behaviour": "coward",
+        "x": 1116,
+        "y": 372
       }
     ],
     "battleBg": "Plane",
@@ -6419,10 +6800,45 @@
       {
         "f": 1.25,
         "center": [
-          836.0,
-          420.0
+          836,
+          420
         ],
         "from": "map_burned_hamlet"
+      }
+    ],
+    "bookPickups": [
+      {
+        "depth": 636,
+        "bookId": "soldier_letters",
+        "x": 852,
+        "y": 626,
+        "height": 34,
+        "label": "Письма Олене"
+      }
+    ],
+    "inspectables": [
+      {
+        "id": "hamlet_bundle",
+        "x": 684,
+        "y": 334,
+        "key": "item_road_satchel",
+        "height": 36,
+        "depth": 348,
+        "label": "Узел погорельца",
+        "title": "Узел погорельца",
+        "text": "Узел из скатерти, завязанный в спешке. Вынесли то, что считалось ценным: ложку с выскобленным гербом и отрез холстины. Детских вещей нет. Их, видимо, несли на руках.",
+        "takeLabel": "Забрать найденное.",
+        "collectFlag": "inspect_hamlet_bundle_collected",
+        "rewards": [
+          {
+            "id": "silver_spoon",
+            "quantity": 1
+          },
+          {
+            "id": "linen",
+            "quantity": 2
+          }
+        ]
       }
     ]
   },
@@ -6584,7 +7000,7 @@
       {
         "f": 0.67,
         "center": [
-          836.0,
+          836,
           470.5
         ],
         "from": "map_hermit_cave"
@@ -6592,10 +7008,20 @@
       {
         "f": 0.75,
         "center": [
-          836.0,
+          836,
           470.5
         ],
         "from": "map_hermit_cave"
+      }
+    ],
+    "bookPickups": [
+      {
+        "depth": 468,
+        "bookId": "forgotten_seals",
+        "x": 804,
+        "y": 458,
+        "height": 34,
+        "label": "О печатях"
       }
     ]
   },
@@ -6869,10 +7295,20 @@
       {
         "f": 0.58,
         "center": [
-          836.0,
+          836,
           470.5
         ],
         "from": "map_ruin_crypt"
+      }
+    ],
+    "bookPickups": [
+      {
+        "depth": 396,
+        "bookId": "crypt_notes",
+        "x": 612,
+        "y": 386,
+        "height": 34,
+        "label": "Заметки могильщика"
       }
     ]
   },
@@ -6939,7 +7375,16 @@
     "bandits": false,
     "npcs": [],
     "props": [],
-    "encounters": [],
+    "encounters": [
+      {
+        "id": "tavern_rats",
+        "battleId": "tavern_rats",
+        "name": "крысы",
+        "behaviour": "pack",
+        "x": 132,
+        "y": 564
+      }
+    ],
     "battleBg": "Tavern_battle3",
     "doorPx": 200,
     "doors": [
@@ -6992,6 +7437,16 @@
         "label": "Комната 5",
         "dialogue": "tavern_rooms",
         "node": "locked"
+      }
+    ],
+    "bookPickups": [
+      {
+        "depth": 564,
+        "bookId": "lame_stag_song",
+        "x": 1500,
+        "y": 554,
+        "height": 34,
+        "label": "Песнь о Лосе"
       }
     ]
   },
@@ -7229,7 +7684,7 @@
       {
         "f": 0.6,
         "center": [
-          836.0,
+          836,
           470.5
         ],
         "from": "map_tavern_cellar"
@@ -7820,13 +8275,22 @@
         "height": 126
       }
     ],
-    "encounters": [],
+    "encounters": [
+      {
+        "id": "cult_acolytes",
+        "battleId": "cult_acolytes",
+        "name": "послушники сорванной печати",
+        "behaviour": "pack",
+        "x": 636,
+        "y": 660
+      }
+    ],
     "battleBg": "Plane",
     "rescale": [
       {
         "f": 0.68,
         "center": [
-          836.0,
+          836,
           470.5
         ],
         "from": "map_dead_road"
@@ -7834,13 +8298,23 @@
       {
         "f": 1.4706,
         "center": [
-          836.0,
+          836,
           470.5
         ],
         "from": "map_dead_road"
       },
       {
         "note": "возврат к исходному масштабу 27.10: дома и виселицы были меньше героя"
+      }
+    ],
+    "bookPickups": [
+      {
+        "depth": 516,
+        "bookId": "secret_script",
+        "x": 612,
+        "y": 506,
+        "height": 34,
+        "label": "Тайнопись"
       }
     ]
   },
@@ -8307,7 +8781,22 @@
     ],
     "tavernEntry": null,
     "bandits": false,
-    "npcs": [],
+    "npcs": [
+      {
+        "id": "raven",
+        "name": "Ворон",
+        "x": 324,
+        "y": 252,
+        "anchorFeet": true,
+        "spriteKey": "map_raven",
+        "portraitKey": "portrait_raven",
+        "heightM": 0.35,
+        "height": 31,
+        "hoverPortrait": false,
+        "dialogue": "folk",
+        "dialogueStart": "raven"
+      }
+    ],
     "props": [
       {
         "key": "prop_gallows_hill_occ_1",
@@ -8436,11 +8925,31 @@
         "name": "Лихо",
         "behaviour": "loner",
         "x": 980,
-        "y": 670
+        "y": 670,
+        "dialogue": "creatures",
+        "dialogueStart": "likho"
+      },
+      {
+        "id": "yrka",
+        "battleId": "yrka",
+        "name": "Ырка",
+        "behaviour": "loner",
+        "x": 1236,
+        "y": 372
       }
     ],
     "battleBg": "Plane",
-    "doorPx": 95
+    "doorPx": 95,
+    "bookPickups": [
+      {
+        "depth": 636,
+        "bookId": "likho_note",
+        "x": 492,
+        "y": 626,
+        "height": 34,
+        "label": "Записка с холма"
+      }
+    ]
   },
   "hangman_hut": {
     "bgKey": "map_hangman_hut",
@@ -8503,14 +9012,23 @@
     "bandits": false,
     "npcs": [],
     "props": [],
-    "encounters": [],
+    "encounters": [
+      {
+        "id": "cult_priest",
+        "battleId": "cult_priest",
+        "name": "Пастырь Безымянных",
+        "behaviour": "loner",
+        "x": 996,
+        "y": 516
+      }
+    ],
     "battleBg": "Plane",
     "doorPx": 210,
     "rescale": [
       {
         "f": 0.67,
         "center": [
-          836.0,
+          836,
           470.5
         ],
         "from": "map_hangman_hut"
@@ -8518,10 +9036,20 @@
       {
         "f": 0.75,
         "center": [
-          836.0,
+          836,
           470.5
         ],
         "from": "map_hangman_hut"
+      }
+    ],
+    "bookPickups": [
+      {
+        "depth": 444,
+        "bookId": "black_candle",
+        "x": 780,
+        "y": 434,
+        "height": 34,
+        "label": "Чёрная свеча"
       }
     ]
   },
@@ -8931,10 +9459,20 @@
       {
         "f": 0.75,
         "center": [
-          836.0,
+          836,
           470.5
         ],
         "from": "map_forest_camp"
+      }
+    ],
+    "bookPickups": [
+      {
+        "depth": 396,
+        "bookId": "korvin_tolls",
+        "x": 684,
+        "y": 386,
+        "height": 34,
+        "label": "Пошлины леса"
       }
     ]
   },
@@ -9006,7 +9544,7 @@
       {
         "f": 0.67,
         "center": [
-          836.0,
+          836,
           470.5
         ],
         "from": "map_hunters_lodge"
@@ -9014,10 +9552,20 @@
       {
         "f": 0.73,
         "center": [
-          836.0,
+          836,
           470.5
         ],
         "from": "map_hunters_lodge"
+      }
+    ],
+    "bookPickups": [
+      {
+        "depth": 612,
+        "bookId": "ashen_forester",
+        "x": 852,
+        "y": 602,
+        "height": 34,
+        "label": "Карманный лесник"
       }
     ]
   },
@@ -9377,6 +9925,14 @@
         "dialogue": "altar",
         "x": 779,
         "y": 538
+      },
+      {
+        "id": "boar_litter",
+        "battleId": "boar_litter",
+        "name": "рысь и подсвинки",
+        "behaviour": "pack",
+        "x": 1068,
+        "y": 612
       }
     ],
     "battleBg": "Forest_Battle",
@@ -9385,7 +9941,7 @@
       {
         "f": 0.75,
         "center": [
-          836.0,
+          836,
           470.5
         ],
         "from": "map_forest_altar"
@@ -9871,7 +10427,37 @@
     ],
     "tavernEntry": null,
     "bandits": false,
-    "npcs": [],
+    "npcs": [
+      {
+        "id": "woodcutter",
+        "name": "Гнат, дровосек",
+        "x": 588,
+        "y": 468,
+        "anchorFeet": true,
+        "spriteKey": "map_woodcutter",
+        "portraitKey": "portrait_woodcutter",
+        "heightM": 1.84,
+        "height": 166,
+        "hoverPortrait": true,
+        "dialogue": "folk",
+        "dialogueStart": "gnat"
+      },
+      {
+        "id": "deer",
+        "name": "Олень",
+        "x": 780,
+        "y": 468,
+        "anchorFeet": true,
+        "spriteKey": "map_deer",
+        "portraitKey": "portrait_deer",
+        "heightM": 1.9,
+        "height": 171,
+        "hoverPortrait": false,
+        "dialogue": "folk",
+        "dialogueStart": "deer",
+        "flipX": true
+      }
+    ],
     "props": [
       {
         "key": "prop_forest_deep_occ_1",
@@ -9908,7 +10494,9 @@
         "name": "Леший",
         "behaviour": "loner",
         "x": 1092,
-        "y": 552
+        "y": 552,
+        "dialogue": "creatures",
+        "dialogueStart": "leshy"
       }
     ],
     "battleBg": "Forest_Battle",
@@ -9917,7 +10505,7 @@
       {
         "f": 0.62,
         "center": [
-          836.0,
+          836,
           470.5
         ],
         "from": "map_forest_deep"
@@ -10563,7 +11151,22 @@
     ],
     "tavernEntry": null,
     "bandits": false,
-    "npcs": [],
+    "npcs": [
+      {
+        "id": "toll_keeper",
+        "name": "Мытарь Кондрат",
+        "x": 612,
+        "y": 516,
+        "anchorFeet": true,
+        "spriteKey": "map_toll_keeper",
+        "portraitKey": "portrait_toll_keeper",
+        "heightM": 1.7,
+        "height": 153,
+        "hoverPortrait": true,
+        "dialogue": "folk",
+        "dialogueStart": "kondrat"
+      }
+    ],
     "props": [
       {
         "key": "prop_ravine_occ_1",
@@ -10687,17 +11290,60 @@
         "height": 241
       }
     ],
-    "encounters": [],
+    "encounters": [
+      {
+        "id": "wandering_knight",
+        "battleId": "knight_duel",
+        "name": "Бродячий рыцарь",
+        "behaviour": "loner",
+        "x": 972,
+        "y": 444,
+        "dialogue": "folk",
+        "dialogueStart": "knight",
+        "showIf": {
+          "notFlag": "knight_duel_1_won"
+        }
+      }
+    ],
     "battleBg": "Forest_Battle",
     "doorPx": 125,
     "rescale": [
       {
         "f": 0.75,
         "center": [
-          836.0,
+          836,
           470.5
         ],
         "from": "map_ravine"
+      }
+    ],
+    "inspectables": [
+      {
+        "id": "ravine_sapper_pack",
+        "x": 900,
+        "y": 430,
+        "key": "item_road_satchel",
+        "height": 36,
+        "depth": 444,
+        "label": "Ранец со смолой",
+        "title": "Ранец со смолой",
+        "text": "Солдатский ранец старого образца, ремни сгнили. Внутри туесок живицы, трутовик и несколько медяков в тряпице. Номер поста на клапане сорван ножом.",
+        "takeLabel": "Забрать найденное.",
+        "collectFlag": "inspect_ravine_sapper_pack_collected",
+        "rewards": [
+          {
+            "id": "resin",
+            "quantity": 2
+          },
+          {
+            "id": "tinder_fungus",
+            "quantity": 1
+          },
+          {
+            "id": "gold",
+            "quantity": 6
+          }
+        ]
       }
     ]
   },
@@ -10900,7 +11546,7 @@
       {
         "f": 0.67,
         "center": [
-          836.0,
+          836,
           470.5
         ],
         "from": "map_ravine_cave"
@@ -10975,10 +11621,20 @@
       {
         "f": 0.65,
         "center": [
-          836.0,
+          836,
           470.5
         ],
         "from": "map_gatehouse"
+      }
+    ],
+    "bookPickups": [
+      {
+        "depth": 636,
+        "bookId": "duel_law",
+        "x": 876,
+        "y": 626,
+        "height": 34,
+        "label": "Право последнего слова"
       }
     ]
   },
@@ -11041,7 +11697,22 @@
     ],
     "tavernEntry": null,
     "bandits": false,
-    "npcs": [],
+    "npcs": [
+      {
+        "id": "widow",
+        "name": "Олена, вдова",
+        "x": 636,
+        "y": 468,
+        "anchorFeet": true,
+        "spriteKey": "map_widow",
+        "portraitKey": "portrait_widow",
+        "heightM": 1.6,
+        "height": 144,
+        "hoverPortrait": true,
+        "dialogue": "folk",
+        "dialogueStart": "olena"
+      }
+    ],
     "props": [],
     "encounters": [
       {
@@ -11068,7 +11739,7 @@
       {
         "f": 0.73,
         "center": [
-          836.0,
+          836,
           470.5
         ],
         "from": "map_chapel_inside"
@@ -11076,10 +11747,20 @@
       {
         "f": 0.77,
         "center": [
-          836.0,
+          836,
           470.5
         ],
         "from": "map_chapel_inside"
+      }
+    ],
+    "bookPickups": [
+      {
+        "depth": 636,
+        "bookId": "saint_mostnik",
+        "x": 972,
+        "y": 626,
+        "height": 34,
+        "label": "Житие Мостника"
       }
     ]
   },
@@ -11184,7 +11865,7 @@
       {
         "f": 0.625,
         "center": [
-          836.0,
+          836,
           470.5
         ],
         "from": "map_elder_house"
@@ -11250,7 +11931,22 @@
     ],
     "tavernEntry": null,
     "bandits": false,
-    "npcs": [],
+    "npcs": [
+      {
+        "id": "til",
+        "name": "Тил, кузнец",
+        "x": 1020,
+        "y": 468,
+        "anchorFeet": true,
+        "spriteKey": "map_til",
+        "portraitKey": "portrait_til",
+        "heightM": 1.76,
+        "height": 158,
+        "hoverPortrait": true,
+        "dialogue": "trade",
+        "dialogueStart": "til"
+      }
+    ],
     "props": [],
     "encounters": [],
     "battleBg": "Village_battle1",
@@ -11259,7 +11955,7 @@
       {
         "f": 0.7,
         "center": [
-          836.0,
+          836,
           470.5
         ],
         "from": "map_smithy"
@@ -11796,7 +12492,51 @@
     ],
     "tavernEntry": null,
     "bandits": false,
-    "npcs": [],
+    "npcs": [
+      {
+        "id": "plowman",
+        "name": "Ждан, пахарь",
+        "x": 588,
+        "y": 444,
+        "anchorFeet": true,
+        "spriteKey": "map_plowman",
+        "portraitKey": "portrait_plowman",
+        "heightM": 1.74,
+        "height": 157,
+        "hoverPortrait": true,
+        "dialogue": "folk",
+        "dialogueStart": "zhdan"
+      },
+      {
+        "id": "shepherd",
+        "name": "Ерёма, пастух",
+        "x": 900,
+        "y": 252,
+        "anchorFeet": true,
+        "spriteKey": "map_shepherd",
+        "portraitKey": "portrait_shepherd",
+        "heightM": 1.76,
+        "height": 158,
+        "hoverPortrait": true,
+        "dialogue": "folk",
+        "dialogueStart": "erema"
+      },
+      {
+        "id": "polevik",
+        "name": "Полевик",
+        "x": 1068,
+        "y": 204,
+        "anchorFeet": true,
+        "spriteKey": "map_polevik",
+        "portraitKey": "portrait_polevik",
+        "heightM": 1.2,
+        "height": 108,
+        "hoverPortrait": true,
+        "dialogue": "folk",
+        "dialogueStart": "polevik",
+        "flipX": true
+      }
+    ],
     "props": [
       {
         "key": "prop_village_fields_occ_1",
@@ -11931,7 +12671,9 @@
         "name": "Полудница",
         "behaviour": "loner",
         "x": 1050,
-        "y": 520
+        "y": 520,
+        "dialogue": "creatures",
+        "dialogueStart": "poludnitsa"
       }
     ],
     "battleBg": "Village_battle3",
@@ -11998,17 +12740,36 @@
     "bandits": false,
     "npcs": [],
     "props": [],
-    "encounters": [],
+    "encounters": [
+      {
+        "id": "scarecrow_noon",
+        "battleId": "scarecrow_noon",
+        "name": "пугало",
+        "behaviour": "loner",
+        "x": 876,
+        "y": 684
+      }
+    ],
     "battleBg": "Village_battle1",
     "doorPx": 165,
     "rescale": [
       {
         "f": 0.73,
         "center": [
-          836.0,
+          836,
           470.5
         ],
         "from": "map_old_barn"
+      }
+    ],
+    "bookPickups": [
+      {
+        "depth": 636,
+        "bookId": "poludnitsa_signs",
+        "x": 948,
+        "y": 626,
+        "height": 34,
+        "label": "Полуденные приметы"
       }
     ]
   },
@@ -12498,7 +13259,22 @@
     ],
     "tavernEntry": null,
     "bandits": false,
-    "npcs": [],
+    "npcs": [
+      {
+        "id": "vodyanoy",
+        "name": "Водяной",
+        "x": 516,
+        "y": 348,
+        "anchorFeet": true,
+        "spriteKey": "map_vodyanoy",
+        "portraitKey": "portrait_vodyanoy",
+        "heightM": 1.6,
+        "height": 144,
+        "hoverPortrait": true,
+        "dialogue": "trade",
+        "dialogueStart": "vodyanoy"
+      }
+    ],
     "props": [
       {
         "key": "prop_drowned_village_occ_1",
@@ -12632,7 +13408,7 @@
       {
         "f": 0.625,
         "center": [
-          836.0,
+          836,
           470.5
         ],
         "from": "map_drowned_church"
@@ -13268,7 +14044,7 @@
         "x": 860,
         "y": 480,
         "originX": 0,
-        "originY": 1.0,
+        "originY": 1,
         "occluder": true
       }
     ],
@@ -13477,7 +14253,7 @@
       {
         "f": 0.8,
         "center": [
-          836.0,
+          836,
           470.5
         ],
         "from": "map_bear_den"
@@ -14002,10 +14778,45 @@
       {
         "f": 0.8,
         "center": [
-          836.0,
+          836,
           470.5
         ],
         "from": "map_copper_mine"
+      }
+    ],
+    "bookPickups": [
+      {
+        "depth": 444,
+        "bookId": "singing_stone",
+        "x": 732,
+        "y": 434,
+        "height": 34,
+        "label": "Поющий камень"
+      }
+    ],
+    "inspectables": [
+      {
+        "id": "mine_lunch_cloth",
+        "x": 780,
+        "y": 526,
+        "key": "item_road_satchel",
+        "height": 36,
+        "depth": 540,
+        "label": "Обед шахтёра",
+        "title": "Обед шахтёра",
+        "text": "Узелок с обедом на уступе, как кладут, когда спускаются на одну смену. Хлеб окаменел. В тряпице медный самородок: шахтёр нёс его наверх, но так и не поднялся.",
+        "takeLabel": "Забрать найденное.",
+        "collectFlag": "inspect_mine_lunch_cloth_collected",
+        "rewards": [
+          {
+            "id": "copper_nugget",
+            "quantity": 1
+          },
+          {
+            "id": "bread",
+            "quantity": 1
+          }
+        ]
       }
     ]
   },
@@ -14615,7 +15426,22 @@
     ],
     "tavernEntry": null,
     "bandits": false,
-    "npcs": [],
+    "npcs": [
+      {
+        "id": "borin",
+        "name": "Борин, кузнец-дварф",
+        "x": 1044,
+        "y": 564,
+        "anchorFeet": true,
+        "spriteKey": "map_dwarf_smith",
+        "portraitKey": "portrait_dwarf_smith",
+        "heightM": 1.4,
+        "height": 126,
+        "hoverPortrait": true,
+        "dialogue": "trade",
+        "dialogueStart": "borin"
+      }
+    ],
     "props": [],
     "encounters": [],
     "battleBg": "Mountain_battle",
@@ -14624,7 +15450,7 @@
       {
         "f": 0.75,
         "center": [
-          836.0,
+          836,
           470.5
         ],
         "from": "map_dwarf_gate"
@@ -14690,7 +15516,22 @@
     ],
     "tavernEntry": null,
     "bandits": false,
-    "npcs": [],
+    "npcs": [
+      {
+        "id": "grimm",
+        "name": "Гримм Весы",
+        "x": 948,
+        "y": 468,
+        "anchorFeet": true,
+        "spriteKey": "map_dwarf_changer",
+        "portraitKey": "portrait_dwarf_changer",
+        "heightM": 1.35,
+        "height": 122,
+        "hoverPortrait": true,
+        "dialogue": "trade",
+        "dialogueStart": "grimm"
+      }
+    ],
     "props": [],
     "encounters": [],
     "battleBg": "KingThrone_battle2",
@@ -14699,10 +15540,20 @@
       {
         "f": 0.67,
         "center": [
-          836.0,
+          836,
           470.5
         ],
         "from": "map_dwarf_hall"
+      }
+    ],
+    "bookPickups": [
+      {
+        "depth": 516,
+        "bookId": "seven_silences",
+        "x": 1116,
+        "y": 506,
+        "height": 34,
+        "label": "Семь молчаний"
       }
     ]
   },
@@ -15082,7 +15933,42 @@
         "y": 564
       }
     ],
-    "battleBg": "Winter_Forest"
+    "battleBg": "Winter_Forest",
+    "bookPickups": [
+      {
+        "depth": 372,
+        "bookId": "winter_signs",
+        "x": 1068,
+        "y": 362,
+        "height": 34,
+        "label": "Зимние меты"
+      }
+    ],
+    "inspectables": [
+      {
+        "id": "winter_trap_line",
+        "x": 588,
+        "y": 550,
+        "key": "item_road_satchel",
+        "height": 36,
+        "depth": 564,
+        "label": "Мешок у капкана",
+        "title": "Мешок у капкана",
+        "text": "Мешок охотника примёрз к пню рядом с пустым капканом. Шкура в нём выделана чисто, без единой дырки от стрелы. Рядом следы, которые начинаются волчьими и кончаются босыми.",
+        "takeLabel": "Забрать найденное.",
+        "collectFlag": "inspect_winter_trap_line_collected",
+        "rewards": [
+          {
+            "id": "wolf_pelt",
+            "quantity": 1
+          },
+          {
+            "id": "honey_comb",
+            "quantity": 1
+          }
+        ]
+      }
+    ]
   },
   "frozen_lake": {
     "bgKey": "map_frozen_lake",
@@ -15506,7 +16392,7 @@
         "x": 250,
         "y": 941,
         "originX": 0,
-        "originY": 1.0,
+        "originY": 1,
         "occluder": true
       }
     ],
@@ -15525,7 +16411,9 @@
         "name": "Мороз",
         "behaviour": "loner",
         "x": 1111,
-        "y": 602
+        "y": 602,
+        "dialogue": "creatures",
+        "dialogueStart": "moroz"
       }
     ],
     "battleBg": "Winter_Forest",
@@ -15742,14 +16630,23 @@
     "bandits": false,
     "npcs": [],
     "props": [],
-    "encounters": [],
+    "encounters": [
+      {
+        "id": "shatun",
+        "battleId": "shatun",
+        "name": "медведь-шатун",
+        "behaviour": "pack",
+        "x": 876,
+        "y": 684
+      }
+    ],
     "battleBg": "Winter_Forest",
     "doorPx": 150,
     "rescale": [
       {
         "f": 0.8,
         "center": [
-          836.0,
+          836,
           470.5
         ],
         "from": "map_ice_shrine"
@@ -16574,7 +17471,22 @@
     ],
     "tavernEntry": null,
     "bandits": false,
-    "npcs": [],
+    "npcs": [
+      {
+        "id": "hort",
+        "name": "Хорт, скупщик шкур",
+        "x": 612,
+        "y": 444,
+        "anchorFeet": true,
+        "spriteKey": "map_fur_trader",
+        "portraitKey": "portrait_fur_trader",
+        "heightM": 1.82,
+        "height": 164,
+        "hoverPortrait": true,
+        "dialogue": "trade",
+        "dialogueStart": "hort"
+      }
+    ],
     "props": [
       {
         "key": "prop_grad_square_fountain",
@@ -16741,7 +17653,7 @@
       {
         "f": 0.8,
         "center": [
-          836.0,
+          836,
           470.5
         ],
         "from": "map_queens_hall"
@@ -18109,7 +19021,17 @@
         "y": 612
       }
     ],
-    "battleBg": "Winter_Grad"
+    "battleBg": "Winter_Grad",
+    "bookPickups": [
+      {
+        "depth": 396,
+        "bookId": "post_seven_log",
+        "x": 564,
+        "y": 386,
+        "height": 34,
+        "label": "Журнал поста"
+      }
+    ]
   },
   "outpost_inside": {
     "bgKey": "map_outpost_inside",
@@ -18179,7 +19101,7 @@
       {
         "f": 0.8,
         "center": [
-          836.0,
+          836,
           470.5
         ],
         "from": "map_outpost_inside"
@@ -18187,10 +19109,28 @@
       {
         "f": 0.7,
         "center": [
-          836.0,
+          836,
           470.5
         ],
         "from": "map_outpost_inside"
+      }
+    ],
+    "bookPickups": [
+      {
+        "depth": 516,
+        "bookId": "eastern_crown_tax",
+        "x": 1068,
+        "y": 506,
+        "height": 34,
+        "label": "Наставление сборщику"
+      },
+      {
+        "depth": 420,
+        "bookId": "field_surgeon",
+        "x": 804,
+        "y": 410,
+        "height": 34,
+        "label": "Записки лекарки"
       }
     ]
   },

@@ -1,0 +1,435 @@
+{
+  "id": "creatures",
+  "source": "14_БЕСТИАРИЙ_ДОРОГИ разделы 3-4: мирные пути к одиночкам; МИР_РАСШИРЕНИЕ_v1.0: книги и еда открывают их",
+  "speakers": {
+    "narrator": {
+      "name": ""
+    },
+    "troll": {
+      "name": "Тролль Угрюм"
+    },
+    "leshy": {
+      "name": "Леший"
+    },
+    "likho": {
+      "name": "Лихо"
+    },
+    "poludnitsa": {
+      "name": "Полудница"
+    },
+    "moroz": {
+      "name": "Мороз"
+    },
+    "taya": {
+      "name": "Тая",
+      "portrait": "portrait_companion_healer"
+    },
+    "vornag": {
+      "name": "Ворнаг",
+      "portrait": "portrait_companion_brawler"
+    }
+  },
+  "start": [
+    {
+      "node": "troll"
+    }
+  ],
+  "nodes": {
+    "troll": {
+      "speaker": "troll",
+      "text": "У второго моста сидит тролль размером с сарай. Мох на плечах, руки на коленях. Он не встаёт. «Есть. Есть хочу. Клан кормил. Клана нет.»",
+      "lines": [
+        {
+          "showIf": {
+            "flag": "book_troll_ledger_read"
+          },
+          "speaker": "narrator",
+          "text": "Вы помните счётную книгу: три меры каждую луну, и подпись старосты клана под каждой строкой."
+        }
+      ],
+      "choices": [
+        {
+          "label": "[Счётная книга] «Клан записал: тебе давали по три меры. Клан помнит.»",
+          "showIf": {
+            "flag": "book_troll_ledger_read"
+          },
+          "effects": {
+            "finishEncounter": "troll_ugryum",
+            "setFlag": "troll_fed",
+            "rep": {
+              "word": 1
+            },
+            "giveXp": 80
+          },
+          "next": "troll_remembered"
+        },
+        {
+          "label": "[Похлёбка] Поставить перед ним горшок.",
+          "requires": {
+            "item": "stew"
+          },
+          "reason": "нужна похлёбка",
+          "effects": {
+            "takeItem": "stew",
+            "finishEncounter": "troll_ugryum",
+            "setFlag": "troll_fed",
+            "giveXp": 60
+          },
+          "next": "troll_fed"
+        },
+        {
+          "label": "[3 хлеба] Сложить хлеб у моста.",
+          "requires": {
+            "item": {
+              "id": "bread",
+              "n": 3
+            }
+          },
+          "reason": "нужно 3 хлеба",
+          "effects": {
+            "takeItem": {
+              "id": "bread",
+              "n": 3
+            },
+            "finishEncounter": "troll_ugryum",
+            "setFlag": "troll_fed",
+            "giveXp": 60
+          },
+          "next": "troll_fed"
+        },
+        {
+          "label": "[Напасть]",
+          "startBattle": {
+            "battleId": "troll_ugryum",
+            "onWin": "troll_dead"
+          }
+        },
+        {
+          "label": "Уйти.",
+          "style": "retreat",
+          "close": true
+        }
+      ]
+    },
+    "troll_fed": {
+      "speaker": "troll",
+      "text": "Он ест долго и аккуратно, не роняя ни крошки. Потом вытирает рот мхом с плеча. «Хорошо. Иди. Мост держу.»",
+      "lines": [
+        {
+          "showIf": {
+            "companion": "companion_brawler"
+          },
+          "speaker": "vornag",
+          "text": "«Дешевле, чем драться. И честнее.»"
+        }
+      ]
+    },
+    "troll_remembered": {
+      "speaker": "troll",
+      "text": "Тролль долго молчит. «Три меры. Помню. Никто не помнил.» Он отодвигается от моста, как отодвигают стул для гостя."
+    },
+    "troll_dead": {
+      "speaker": "narrator",
+      "text": "Тролль лежит поперёк моста, как обвал. Кормить его больше некому и незачем.",
+      "effects": {
+        "finishEncounter": "troll_ugryum"
+      }
+    },
+    "leshy": {
+      "speaker": "leshy",
+      "text": "Отряд третий раз выходит на ту же поляну. На пне сидит высокий старик: кора вместо лица, мох вместо бороды. Он не смотрит на вас. Он смотрит, как вы идёте.",
+      "lines": [
+        {
+          "showIf": {
+            "any": [
+              {
+                "flag": "book_ashen_forester_read"
+              },
+              {
+                "flag": "rumor_leshy_rule"
+              }
+            ]
+          },
+          "speaker": "narrator",
+          "text": "Правило из «Карманного лесника»: заблудился у хозяина, повернись к лесу спиной и спроси дорогу."
+        }
+      ],
+      "choices": [
+        {
+          "label": "[Карманный лесник] Повернуться к лесу спиной и спросить дорогу.",
+          "showIf": {
+            "any": [
+              {
+                "flag": "book_ashen_forester_read"
+              },
+              {
+                "flag": "rumor_leshy_rule"
+              }
+            ]
+          },
+          "effects": {
+            "finishEncounter": "leshy",
+            "setFlag": "leshy_path_open",
+            "giveXp": 90
+          },
+          "next": "leshy_way"
+        },
+        {
+          "label": "[Хлеб] Оставить хлеб на пне.",
+          "requires": {
+            "item": "bread"
+          },
+          "reason": "нужен хлеб",
+          "effects": {
+            "takeItem": "bread",
+            "finishEncounter": "leshy",
+            "setFlag": "leshy_fed",
+            "giveXp": 40
+          },
+          "next": "leshy_fed"
+        },
+        {
+          "label": "[Напасть]",
+          "startBattle": {
+            "battleId": "leshy",
+            "onWin": "leshy_dead"
+          }
+        },
+        {
+          "label": "Уйти.",
+          "style": "retreat",
+          "close": true
+        }
+      ]
+    },
+    "leshy_way": {
+      "speaker": "leshy",
+      "text": "Голос за спиной скрипит, как сухая ель. «Грамотный. По правилу спросил. Иди по мху на камнях: к вечеру выйдешь, куда шёл. И не оборачивайся, пока не выйдешь.»"
+    },
+    "leshy_fed": {
+      "speaker": "narrator",
+      "text": "Хлеб исчезает, пока вы моргаете. Пень пустой. Тропа, которой минуту назад не было, уходит между елей."
+    },
+    "leshy_dead": {
+      "speaker": "narrator",
+      "text": "Лес становится просто лесом. Это хуже, чем кажется: птицы замолкают до вечера.",
+      "effects": {
+        "finishEncounter": "leshy"
+      }
+    },
+    "likho": {
+      "speaker": "likho",
+      "text": "Под дубом на Висельном холме сидит тощее, одноглазое существо. Смотрит устало, как старик на чужую свадьбу. Ждёт, что вы спросите.",
+      "lines": [
+        {
+          "showIf": {
+            "flag": "book_likho_note_read"
+          },
+          "speaker": "narrator",
+          "text": "Вы помните записку: «Не спрашивай, кто ты. Оно ответит, и ответ останется с тобой»."
+        }
+      ],
+      "choices": [
+        {
+          "label": "[Записка] Пройти мимо молча, не глядя в глаз.",
+          "showIf": {
+            "flag": "book_likho_note_read"
+          },
+          "effects": {
+            "finishEncounter": "likho",
+            "setFlag": "likho_passed",
+            "giveXp": 45
+          },
+          "next": "likho_passed"
+        },
+        {
+          "label": "[1 монета] Положить монету у корней.",
+          "requires": {
+            "gold": 1
+          },
+          "effects": {
+            "cost": 1,
+            "finishEncounter": "likho",
+            "setFlag": "likho_paid",
+            "giveXp": 30
+          },
+          "next": "likho_paid"
+        },
+        {
+          "label": "«Кто ты?»",
+          "style": "attack",
+          "confirm": "Лихо мирное, пока его не спросить. Спросить всё равно?",
+          "startBattle": {
+            "battleId": "likho",
+            "onWin": "likho_dead"
+          }
+        },
+        {
+          "label": "Уйти.",
+          "style": "retreat",
+          "close": true
+        }
+      ]
+    },
+    "likho_passed": {
+      "speaker": "narrator",
+      "text": "Вы проходите, глядя под ноги. Глаз провожает вас до самой дороги и закрывается. Позади кто-то вздыхает, будто с облегчением."
+    },
+    "likho_paid": {
+      "speaker": "narrator",
+      "text": "Лихо берёт монету двумя пальцами, разглядывает и прячет. Отворачивается. Беда, которую откупили, отстаёт ненадолго, но отстаёт."
+    },
+    "likho_dead": {
+      "speaker": "narrator",
+      "text": "С Лиха нечего взять. В этом и урок.",
+      "effects": {
+        "finishEncounter": "likho"
+      }
+    },
+    "poludnitsa": {
+      "speaker": "poludnitsa",
+      "text": "Посреди поля стоит женщина в белом. Лицо в тени платка, в руке серп. Тень от пугала короткая: полдень. «Жнёшь в мой час?»",
+      "lines": [
+        {
+          "showIf": {
+            "flag": "book_poludnitsa_signs_read"
+          },
+          "speaker": "narrator",
+          "text": "«Полуденные приметы»: застал полдень в поле, ложись в межу лицом к земле и не отвечай, пока тень не вырастет на ладонь."
+        }
+      ],
+      "choices": [
+        {
+          "label": "[Полуденные приметы] Лечь в межу лицом к земле и переждать.",
+          "showIf": {
+            "flag": "book_poludnitsa_signs_read"
+          },
+          "effects": {
+            "finishEncounter": "poludnitsa",
+            "setFlag": "poludnitsa_waited",
+            "giveXp": 60
+          },
+          "next": "pol_waited"
+        },
+        {
+          "label": "[Хлеб и соль] Положить на межу.",
+          "requires": {
+            "all": [
+              {
+                "item": "bread"
+              },
+              {
+                "item": "grey_salt"
+              }
+            ]
+          },
+          "reason": "нужны хлеб и соль",
+          "effects": {
+            "takeItem": [
+              "bread",
+              "grey_salt"
+            ],
+            "finishEncounter": "poludnitsa",
+            "setFlag": "poludnitsa_fed",
+            "giveXp": 40
+          },
+          "next": "pol_fed"
+        },
+        {
+          "label": "[Напасть]",
+          "startBattle": {
+            "battleId": "poludnitsa",
+            "onWin": "pol_dead"
+          }
+        },
+        {
+          "label": "Уйти с поля.",
+          "style": "retreat",
+          "close": true
+        }
+      ]
+    },
+    "pol_waited": {
+      "speaker": "narrator",
+      "text": "Земля пахнет пылью и полынью. Шаги проходят совсем близко, серп шуршит по стерне. Потом тень пугала вытягивается, и поле снова просто поле.",
+      "lines": [
+        {
+          "showIf": {
+            "companion": "companion_healer"
+          },
+          "speaker": "taya",
+          "text": "«Моя бабка так делала. Я думала, она просто устала.»"
+        }
+      ]
+    },
+    "pol_fed": {
+      "speaker": "poludnitsa",
+      "text": "Она наклоняется к хлебу, долго смотрит на соль. «Соль. Помнят ещё.» Когда вы поднимаете глаза, в поле никого."
+    },
+    "pol_dead": {
+      "speaker": "narrator",
+      "text": "Серп лежит в стерне. Полдень больше никого не спрашивает.",
+      "effects": {
+        "finishEncounter": "poludnitsa"
+      }
+    },
+    "moroz": {
+      "speaker": "moroz",
+      "text": "На льду стоит старик изо льда, без лица, борода из сосулек. «Один вопрос. Ложь я слышу. Ты пришёл сюда за своим или за чужим?»",
+      "lines": [
+        {
+          "showIf": {
+            "flag": "book_northern_guest_read"
+          },
+          "speaker": "narrator",
+          "text": "«Северный гость у тёплого костра»: у северного огня отвечают коротко и правду, даже если она тебе невыгодна."
+        }
+      ],
+      "choices": [
+        {
+          "label": "[Северный гость] «За чужим. И уже не уверен, что оно чужое.»",
+          "showIf": {
+            "flag": "book_northern_guest_read"
+          },
+          "effects": {
+            "finishEncounter": "moroz",
+            "setFlag": "moroz_truth",
+            "giveXp": 200
+          },
+          "next": "moroz_truth"
+        },
+        {
+          "label": "«За своим.»",
+          "next": "moroz_half"
+        },
+        {
+          "label": "[Напасть]",
+          "startBattle": {
+            "battleId": "moroz",
+            "onWin": "moroz_dead"
+          }
+        },
+        {
+          "label": "Уйти по льду назад.",
+          "style": "retreat",
+          "close": true
+        }
+      ]
+    },
+    "moroz_truth": {
+      "speaker": "moroz",
+      "text": "Лёд под ногами перестаёт трещать. «Правда. Неудобная. Такие тут держат. Иди, святилище открыто.»"
+    },
+    "moroz_half": {
+      "speaker": "moroz",
+      "text": "Мороз долго молчит, и иней ползёт по сапогам. «Полправды. Иди обратно. Когда научишься отвечать короче, приходи.»"
+    },
+    "moroz_dead": {
+      "speaker": "narrator",
+      "text": "Лёд крошится, как сахар. Озеро впервые за много зим просто замёрзшая вода.",
+      "effects": {
+        "finishEncounter": "moroz"
+      }
+    }
+  }
+}
