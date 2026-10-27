@@ -6,6 +6,7 @@
  */
 import * as Phaser from 'phaser/dist/phaser.esm.js';
 import { Frame } from './Frame.js';
+import { plate } from './Plate.js';
 import { COLOR, HEX } from './Theme.js';
 import { journal, outcomesSeen } from '../systems/QuestLog.js';
 import { checkRequires } from '../systems/DialogueConditions.js';
@@ -69,8 +70,7 @@ export class JournalWindow {
       const on = this.tab === id;
       const t = this._text(tx + 14, y + 6, label, 'body', { color: on ? COLOR.gold : COLOR.muted });
       const bw = t.width * sc.cameras.main.zoom + 28;
-      const bg = this._add(sc.add.rectangle(s(tx), s(y), s(bw), s(32), on ? 0x2a2114 : 0x000000, on ? 0.85 : 0.35)
-        .setOrigin(0).setStrokeStyle(s(1), HEX.gold, on ? 0.7 : 0.25));
+      const bg = this._add(plate(sc, 'button', s(tx + bw / 2), s(y + 16), s(bw), s(36)).setAlpha(on ? 1 : 0.55));
       bg.setDepth(t.depth - 1).setInteractive({ useHandCursor: true });
       bg.on('pointerdown', () => { this.tab = id; this.sel = null; this.scroll = 0; this.render(); });
       tx += bw + 10;
@@ -94,9 +94,10 @@ export class JournalWindow {
     list.slice(this.scroll, this.scroll + visible).forEach((e, i) => {
       const ry = top + i * ROW_H;
       const on = e.quest.id === this.sel;
-      const bg = this._add(sc.add.rectangle(s(x - 8), s(ry), s(LIST_W + 16), s(ROW_H - 4), on ? 0x2a2114 : 0x000000, on ? 0.8 : 0.001)
+      // Выбранный квест на табличке; остальные строки без подложки (прозрачная зона клика)
+      if (on) this._add(plate(sc, 'label', s(x - 8 + (LIST_W + 16) / 2), s(ry + (ROW_H - 4) / 2), s(LIST_W + 22), s(ROW_H + 2)));
+      const bg = this._add(sc.add.rectangle(s(x - 8), s(ry), s(LIST_W + 16), s(ROW_H - 4), 0x000000, 0.001)
         .setOrigin(0).setInteractive({ useHandCursor: true }));
-      if (on) bg.setStrokeStyle(s(1), HEX.gold, 0.5);
       bg.on('pointerdown', () => { this.sel = e.quest.id; this.render(); });
       const name = this._text(x, ry + 4, e.quest.name, 'body', {
         size: 15, color: this.tab === 'done' ? COLOR.muted : COLOR.gold,

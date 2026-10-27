@@ -1,3 +1,4 @@
+import { plate } from './Plate.js';
 /**
  * MusicPlayer - компактный плеер в углу экрана.
  * Музыка уже может играть с BootScene через registry.
@@ -84,8 +85,7 @@ export class MusicPlayer {
     const depth = 52;
 
     // Фон: вдвое меньше - ширина 264, высота 33
-    this._bg = this.scene.add.rectangle(0, 17, 264, 33, 0x07070f, 0.90)
-      .setOrigin(0, 0.5).setDepth(depth).setScrollFactor(0);
+    this._bg = plate(this.scene, 'label', 132, 17, 270, 38).setDepth(depth).setScrollFactor(0);
 
     // ♪ кнопка
     this._btnMute = this.scene.add.text(8, 7, '♪', {

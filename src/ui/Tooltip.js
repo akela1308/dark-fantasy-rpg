@@ -6,7 +6,8 @@
  *   tip.show(x, y, { title, body, action }, { below: false });   // экранные px, x/y: точка, к которой привязана подсказка
  *   tip.hide();
  */
-import { FONT, COLOR, HEX } from './Theme.js';
+import { FONT, COLOR } from './Theme.js';
+import { plate } from './Plate.js';
 
 const W_MAX = 260, PAD = 10;
 
@@ -37,16 +38,8 @@ export class Tooltip {
     bx = Math.max(6, Math.min(1280 - w - 6, bx));
     if (by < 6) by = Math.round(y + 8);
     by = Math.max(6, Math.min(720 - h - 6, by));
-    const g = sc.add.graphics().setScrollFactor(0).setDepth(this.depth);
-    g.fillStyle(0x0d0b0f, 0.95).fillRect(s(bx), s(by), s(w), s(h));
-    g.lineStyle(s(2), HEX.bronze, 1).strokeRect(s(bx), s(by), s(w), s(h));
-    g.lineStyle(s(1), HEX.gold, 0.35).strokeRect(s(bx + 3), s(by + 3), s(w - 6), s(h - 6));
-    // Уголки
-    const c = 7;
-    g.lineStyle(s(2), HEX.gold, 0.9);
-    [[bx, by, 1, 1], [bx + w, by, -1, 1], [bx, by + h, 1, -1], [bx + w, by + h, -1, -1]].forEach(([px, py, dx, dy]) => {
-      g.beginPath(); g.moveTo(s(px + dx * c), s(py)); g.lineTo(s(px), s(py)); g.lineTo(s(px), s(py + dy * c)); g.strokePath();
-    });
+    // Табличка: кожа в тонкой бронзе (нарисованная плашка)
+    const g = plate(sc, 'label', s(bx + w / 2), s(by + h / 2), s(w + 8), s(h + 6)).setScrollFactor(0).setDepth(this.depth);
     this.objs.push(g);
     let ty = by + PAD;
     parts.forEach(p => { p.setPosition(s(bx + PAD), s(ty)); ty += p.height * z + 4; this.objs.push(p); });

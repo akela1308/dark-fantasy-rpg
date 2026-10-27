@@ -12,6 +12,7 @@
  */
 import * as Phaser from 'phaser/dist/phaser.esm.js';
 import UI from '../data/ui.json';
+import { plate } from './Plate.js';
 import { MAP_W, MAP_H } from '../systems/WalkableZones.js';
 
 const S = UI.exits;
@@ -183,8 +184,7 @@ export class ExitMarkers {
     // В пределах экрана, мимо HUD (верхний левый угол: плеер и портреты; низ по центру: панель)
     const box = this._fit(x, y, w, h);
     t.setPosition(box.x, box.y);
-    const bg = s.add.rectangle(box.x, box.y, w, h, 0x0d0b0f, 0.86)
-      .setStrokeStyle(px(1), COLOR, 0.8).setDepth(8500);
+    const bg = plate(s, 'label', box.x, box.y, w + px(10), h + px(8)).setDepth(8500);
     this._label = [bg, t];
   }
 

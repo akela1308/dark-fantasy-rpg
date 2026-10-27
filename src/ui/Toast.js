@@ -2,7 +2,8 @@
  * Тост (этап 6): узкая бронзовая плашка с иконкой вверху по центру, гаснет сама.
  * Несколько тостов подряд встают друг под другом. Иконка по смыслу текста или явно.
  */
-import { FONT, COLOR, HEX } from './Theme.js';
+import { FONT, COLOR } from './Theme.js';
+import { plate } from './Plate.js';
 
 const ICONS = [
   [/монет|золот|пошлин|плат/i, 'icon_gold'],
@@ -26,10 +27,7 @@ export function showToast(scene, text, icon = null) {
   const tw = t.width * z;
   const w = tw + 64, h = 36;
   const x0 = 640 - w / 2;
-  const g = scene.add.graphics().setScrollFactor(0).setDepth(10000);
-  g.fillStyle(0x15110c, 0.94).fillRect(s(x0), s(y - h / 2), s(w), s(h));
-  g.lineStyle(s(2), HEX.bronze, 1).strokeRect(s(x0), s(y - h / 2), s(w), s(h));
-  g.lineStyle(s(1), HEX.gold, 0.35).strokeRect(s(x0 + 3), s(y - h / 2 + 3), s(w - 6), s(h - 6));
+  const g = plate(scene, 'label', s(640), s(y), s(w + 10), s(h + 8)).setScrollFactor(0).setDepth(10000);
   const objs = [g, t];
   if (scene.textures.exists(key)) {
     objs.push(scene.add.image(s(x0 + 22), s(y), key).setDisplaySize(s(24), s(24)).setScrollFactor(0).setDepth(10001));

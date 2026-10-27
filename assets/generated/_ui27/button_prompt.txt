@@ -1,0 +1,2 @@
+A single game UI element for a dark fantasy RPG in the same hand-painted style as the reference: a button plate of dark weathered wood framed by a forged dark bronze rim with small rivets at the four corners and a thin worn gold inner line. Wide rectangle about 4 to 1. Seen perfectly straight from the front, flat orthographic, no perspective, no shadow, centered, filling about 90% of the image width. Flat solid pure chroma green background (#00FF00) around it. No text, no letters, no symbols in the middle, the middle area is plain and empty.
+refs: public/ui/bottom_panel1.png

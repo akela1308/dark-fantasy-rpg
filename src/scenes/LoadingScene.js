@@ -1,3 +1,4 @@
+import { preloadPlates } from '../ui/Plate.js';
 import * as Phaser from 'phaser/dist/phaser.esm.js';
 import MAP_CONFIGS from '../data/maps.json';
 import { loadSheetOnce } from '../utils/loadOnce.js';
@@ -114,6 +115,7 @@ export class LoadingScene extends Phaser.Scene {
     img('hp_bar_frame',         'ui/hp_bar_frame.png');
     img('panel_frame',          'ui/panel_frame.png');
     img('frame_gothic',         'ui/frame_gothic_v1.png');
+    preloadPlates(this);
     img('character_sheet_bg',   'ui/character_sheet_bg.png');
     img('map_menu_button',      'ui/map_menu_button.png');
     img('bottom_panel',         'ui/bottom_panel.png');

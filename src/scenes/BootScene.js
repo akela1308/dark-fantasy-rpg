@@ -6,6 +6,7 @@ import { nicheButton } from '../ui/NicheButton.js';
 import { applySavedVolume } from '../ui/GameMenu.js';
 import { setBackdrop } from '../ui/Backdrop.js';
 import { FONT, COLOR } from '../ui/Theme.js';
+import { preloadPlates } from '../ui/Plate.js';
 
 export class BootScene extends Phaser.Scene {
   constructor() {
@@ -14,6 +15,7 @@ export class BootScene extends Phaser.Scene {
 
   preload() {
     this.load.image('title_bg', 'title_bg.png');
+    preloadPlates(this);
   }
 
   create() {
@@ -32,9 +34,19 @@ export class BootScene extends Phaser.Scene {
       .setAlpha(0);
 
     // Нижний градиент - читаемость кнопки
-    const gradBot = this.add.rectangle(cx, H - 100, W, 200, 0x000000, 0.65).setAlpha(0);
+    // Мягкое затемнение сверху и снизу (градиент, без видимых краёв) для читаемости заголовка и кнопок
+    const shade = (key, top) => {
+      if (!this.textures.exists(key)) {
+        const t = this.textures.createCanvas(key, 4, 256), ctx = t.getContext();
+        const gr = ctx.createLinearGradient(0, 0, 0, 256);
+        gr.addColorStop(top ? 0 : 1, 'rgba(0,0,0,0.7)'); gr.addColorStop(top ? 1 : 0, 'rgba(0,0,0,0)');
+        ctx.fillStyle = gr; ctx.fillRect(0, 0, 4, 256); t.refresh();
+      }
+      return this.add.image(cx, top ? 0 : H, key).setOrigin(0.5, top ? 0 : 1).setDisplaySize(W, top ? 330 : 300);
+    };
+    const gradBot = shade('title_shade_bot', false).setAlpha(0);
     // Верхний градиент - читаемость заголовка
-    const gradTop = this.add.rectangle(cx, 150, W, 300, 0x000000, 0.45).setAlpha(0);
+    const gradTop = shade('title_shade_top', true).setAlpha(0);
 
     // ── Заголовок ─────────────────────────────────────────────────────────
     const title = this.add.text(cx, 150, 'МОРТИС', {

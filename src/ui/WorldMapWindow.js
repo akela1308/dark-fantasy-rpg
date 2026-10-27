@@ -4,6 +4,7 @@
  * Соседние места, где ещё не были, показаны тёмными нишами с «?».
  */
 import { Frame } from './Frame.js';
+import { plate } from './Plate.js';
 import { COLOR, HEX, FONT } from './Theme.js';
 import { MAP_W, MAP_H } from '../systems/WalkableZones.js';
 
@@ -79,8 +80,8 @@ export function openWorldMap(scene, { maps, visited, current, start }) {
     const been = visited.has(k);
     const here = k === current;
     const bw = been ? NW : 54;
-    const box = f.add(scene.add.rectangle(s(nx), s(ny), s(bw), s(NH), here ? 0x2a2114 : 0x15110c, been ? 0.95 : 0.7)
-      .setStrokeStyle(s(here ? 2 : 1), here ? HEX.gold : HEX.bronze, been ? 1 : 0.5), 6);
+    const box = f.add(plate(scene, here ? 'button' : 'label', s(nx), s(ny), s(bw + 8), s(NH + 8)).setAlpha(been ? 1 : 0.6), 6);
+    if (here) box.setTint?.(0xffe2b0);
     const name = been ? (maps[k].name || k) : '?';
     const t = f.add(scene.add.text(s(nx), s(ny), name, {
       fontFamily: FONT, fontSize: `${s(12)}px`, color: here ? COLOR.goldHi : been ? COLOR.text : COLOR.dim,

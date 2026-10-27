@@ -2,6 +2,7 @@ import eventBus from '../utils/eventBus.js';
 import skillsData from '../data/skills.json';
 import { Frame } from './Frame.js';
 import { Tooltip } from './Tooltip.js';
+import { plate } from './Plate.js';
 import { FONT, COLOR, HEX } from './Theme.js';
 
 /**
@@ -82,8 +83,7 @@ export class UIManager {
     // Свернуть / развернуть: свёрнутый лог оставляет только кнопку-нишу
     this._logCollapsed = false;
     const bx = LOG.x + LOG.w - 30, by = LOG.y + 22;
-    const btnBg = sc.add.rectangle(bx, by, 26, 22, 0x0d0b0f, 0.9).setStrokeStyle(1, HEX.gold, 0.6).setDepth(11)
-      .setInteractive({ useHandCursor: true });
+    const btnBg = plate(sc, 'button', bx, by, 34, 28).setDepth(11).setInteractive({ useHandCursor: true });
     const btn = sc.add.text(bx, by, '≡', { fontFamily: FONT, fontSize: '15px', color: COLOR.gold }).setOrigin(0.5).setDepth(12);
     btnBg.on('pointerover', () => { btn.setColor(COLOR.goldHi); this.tip.show(bx, by - 14, { title: 'Лог боя', action: this._logCollapsed ? 'Клик: развернуть' : 'Клик: свернуть' }); });
     btnBg.on('pointerout', () => { btn.setColor(COLOR.gold); this.tip.hide(); });
@@ -148,7 +148,8 @@ export class UIManager {
       const sz = i === 0 ? big : small;
       const cx = x + sz / 2, cy = 8 + big / 2;
       const color = u.type === 'player' ? 0x5fbf7a : 0xc04a3a;
-      const bg = sc.add.rectangle(cx, cy, sz, sz, 0x0d0b0f, 0.92).setStrokeStyle(i === 0 ? 3 : 2, i === 0 ? HEX.gold : color, 1).setDepth(30);
+      // Рамка портрета в очереди: нарисованная табличка, у своих зеленоватый отлив, у врагов красноватый
+      const bg = plate(sc, 'label', cx, cy, sz + 8, sz + 8).setDepth(30).setTint?.(i === 0 ? 0xffe2b0 : u.type === 'player' ? 0xc8e8c0 : 0xf0b0a0) || sc.add.rectangle(cx, cy, sz, sz);
       this._queueObjs.push(bg);
       const key = `portrait_${u.spriteKey ?? u.id}`;
       if (sc.textures.exists(key)) {

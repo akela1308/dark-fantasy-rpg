@@ -30,6 +30,7 @@ import { checkRequires } from '../systems/DialogueConditions.js';
 import { JournalWindow } from '../ui/JournalWindow.js';
 import { Frame } from '../ui/Frame.js';
 import { Tooltip } from '../ui/Tooltip.js';
+import { plate } from '../ui/Plate.js';
 import { openGameMenu } from '../ui/GameMenu.js';
 import { showToast } from '../ui/Toast.js';
 import { setBackdrop } from '../ui/Backdrop.js';
@@ -2169,8 +2170,7 @@ export class MapScene extends Phaser.Scene {
     // Кнопка X - отдельная тёмная плашка, чтобы она не терялась на фоне.
     const closeX = PX + PW - s(24);
     const closeY = PY + s(24);
-    const closeBg = this.add.rectangle(closeX, closeY, s(34), s(34), 0x050505, 0.92)
-      .setStrokeStyle(s(1), 0x7b5b24, 0.95)
+    const closeBg = plate(this, 'button', closeX, closeY, s(40), s(40))
       .setDepth(DEPTH+3).setScrollFactor(0)
       .setInteractive({ useHandCursor: true }).setVisible(false);
     const closeBtn = this.add.text(closeX, closeY - s(1), '×', {
@@ -2179,11 +2179,11 @@ export class MapScene extends Phaser.Scene {
     }).setOrigin(0.5).setDepth(DEPTH+4).setScrollFactor(0)
       .setInteractive({ useHandCursor: true }).setVisible(false);
     const closeOver = () => {
-      closeBg.setStrokeStyle(s(1.5), 0xd4a832, 1);
+      closeBg.setTint?.(0xffe2b0);
       closeBtn.setColor('#F3D27A');
     };
     const closeOut = () => {
-      closeBg.setStrokeStyle(s(1), 0x7b5b24, 0.95);
+      closeBg.setTint?.(0xffffff);
       closeBtn.setColor('#C9A84C');
     };
     closeBg.on('pointerover', closeOver);
@@ -2262,8 +2262,7 @@ export class MapScene extends Phaser.Scene {
     return CHARS.map((ch, i) => {
       const tx = s(x0 + i * (tabW + gap));
       const ty = s(146);
-      const tabBg = this.add.rectangle(tx, ty, s(tabW), s(24), 0x050505, i === 0 ? 0.78 : 0.36)
-        .setStrokeStyle(s(1), i === 0 ? 0xd4a832 : 0x4a3f25, i === 0 ? 0.95 : 0.55)
+      const tabBg = plate(this, 'button', tx, ty, s(tabW + 4), s(30)).setAlpha(i === 0 ? 1 : 0.55)
         .setDepth(DEPTH+4).setScrollFactor(0)
         .setInteractive({ useHandCursor: true }).setVisible(false);
       const tabText = this.add.text(tx, ty - s(1), ch.tabLabel, {
@@ -2280,8 +2279,8 @@ export class MapScene extends Phaser.Scene {
       };
       tabBg.on('pointerdown', select);
       tabText.on('pointerdown', select);
-      tabBg.on('pointerover', () => { if (this._charSheetSelectedIdx !== i) tabBg.setAlpha(0.58); });
-      tabBg.on('pointerout', () => { if (this._charSheetSelectedIdx !== i) tabBg.setAlpha(0.36); });
+      tabBg.on('pointerover', () => { if (this._charSheetSelectedIdx !== i) tabBg.setAlpha(0.8); });
+      tabBg.on('pointerout', () => { if (this._charSheetSelectedIdx !== i) tabBg.setAlpha(0.55); });
       return { bg: tabBg, text: tabText };
     });
   }
@@ -2374,8 +2373,7 @@ export class MapScene extends Phaser.Scene {
       lineSpacing: s(3),
       wordWrap: { width: s(230) },
     }).setDepth(DEPTH + 1).setScrollFactor(0);
-    const bg = this.add.rectangle(0, 0, s(258), text.height + s(22), 0x050505, 0.94)
-      .setStrokeStyle(s(1), 0x6f5728, 0.9)
+    const bg = plate(this, 'label', 0, 0, s(266), text.height + s(28))
       .setDepth(DEPTH).setScrollFactor(0);
 
     this._inventoryTooltipEls = [bg, text];
@@ -2389,8 +2387,8 @@ export class MapScene extends Phaser.Scene {
     const [bg, text] = this._inventoryTooltipEls;
     const panelRight = (this._charSheetPX ?? 0) + (this._charSheetPW ?? 0);
     const panelBottom = (this._charSheetPY ?? 0) + (this._charSheetPH ?? 0);
-    const bgW = bg.width;
-    const bgH = bg.height;
+    const bgW = bg.displayWidth;
+    const bgH = bg.displayHeight;
     const x = Math.min(Math.max(pointer.x / zoom + s(18), (this._charSheetPX ?? 0) + s(22)), panelRight - bgW - s(18));
     const y = Math.min(Math.max(pointer.y / zoom + s(18), (this._charSheetPY ?? 0) + s(76)), panelBottom - bgH / 2 - s(18));
     bg.setPosition(x + bgW / 2, y + bgH / 2);
@@ -2657,8 +2655,8 @@ export class MapScene extends Phaser.Scene {
     const s = v => v / zoom;
     this._charSheetTabs?.forEach((tab, i) => {
       const active = i === idx;
-      tab.bg.setAlpha(active ? 0.78 : 0.36);
-      tab.bg.setStrokeStyle(s(active ? 1.2 : 1), active ? 0xd4a832 : 0x4a3f25, active ? 0.95 : 0.55);
+      tab.bg.setAlpha(active ? 1 : 0.55);
+      tab.bg.setTint?.(active ? 0xffe2b0 : 0xffffff);
       tab.text.setColor(active ? '#d4a832' : '#777063');
     });
   }

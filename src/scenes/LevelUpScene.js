@@ -6,7 +6,8 @@ import { PartySystem } from '../systems/PartySystem.js';
 import eventBus from '../utils/eventBus.js';
 import { Frame } from '../ui/Frame.js';
 import { nicheButton } from '../ui/NicheButton.js';
-import { FONT, COLOR, HEX } from '../ui/Theme.js';
+import { FONT, COLOR } from '../ui/Theme.js';
+import { plate } from '../ui/Plate.js';
 
 const CLASS_BONUSES = {
   hero_duelist: [
@@ -104,8 +105,10 @@ export class LevelUpScene extends Phaser.Scene {
       fontFamily: FONT, fontSize: `${size}px`, color, stroke: '#000', strokeThickness: 1.5, lineSpacing: 2,
       wordWrap: { width, useAdvancedWrap: true }, ...extra,
     }).setVisible(false);
-    const cards = bonuses.map(b => ({ b, lbl: mk(b.label, 16, COLOR.gold, cardW - 28), desc: mk(b.desc || '', 12, COLOR.bone, cardW - 28) }));
-    cards.forEach(c => { c.h = c.lbl.height + c.desc.height + 26; });
+    // Пергаментные карточки: тёмные чернила без обводки
+    const INK = { title: '#4a1f0c', body: '#2a1c10' };
+    const cards = bonuses.map(b => ({ b, lbl: mk(b.label, 16, INK.title, cardW - 48, { stroke: '#00000000', strokeThickness: 0, fontStyle: 'bold' }), desc: mk(b.desc || '', 12, INK.body, cardW - 48, { stroke: '#00000000', strokeThickness: 0 }) }));
+    cards.forEach(c => { c.h = c.lbl.height + c.desc.height + 42; });
     const rowsH = [];
     for (let i = 0; i < cards.length; i += cols) rowsH.push(Math.max(...cards.slice(i, i + cols).map(c => c.h)));
     const headH = 150;
@@ -131,18 +134,13 @@ export class LevelUpScene extends Phaser.Scene {
       if (col === 0 && i > 0) cy += rowsH[row - 1] + 10;
       const cx = x + col * (cardW + 16);
       const h = rowsH[row];
-      const bg = f.add(this.add.rectangle(cx, cy, cardW, h, 0x15110c, 0.95).setOrigin(0).setInteractive({ useHandCursor: true }));
-      const g = f.add(this.add.graphics());
-      const border = on => {
-        g.clear();
-        g.lineStyle(2, HEX.bronze, 1).strokeRect(cx, cy, cardW, h);
-        g.lineStyle(1, HEX.gold, on ? 0.75 : 0.25).strokeRect(cx + 4, cy + 4, cardW - 8, h - 8);
-      };
-      border(false);
-      f.add(c.lbl.setPosition(cx + 14, cy + 10).setVisible(true), 7);
-      f.add(c.desc.setPosition(cx + 14, cy + 14 + c.lbl.height).setVisible(true), 7);
-      bg.on('pointerover', () => { bg.setFillStyle(0x2a2114, 0.95); border(true); c.lbl.setColor(COLOR.goldHi); });
-      bg.on('pointerout', () => { bg.setFillStyle(0x15110c, 0.95); border(false); c.lbl.setColor(COLOR.gold); });
+      const pl = f.add(plate(this, 'parchment', cx + cardW / 2, cy + h / 2, cardW, h));
+      const bg = f.add(this.add.rectangle(cx, cy, cardW, h, 0x000000, 0).setOrigin(0).setInteractive({ useHandCursor: true }), 6);
+      f.add(c.lbl.setPosition(cx + 24, cy + 16).setVisible(true), 7);
+      f.add(c.desc.setPosition(cx + 24, cy + 20 + c.lbl.height).setVisible(true), 7);
+      bg.on('pointerover', () => { pl.setTint?.(0xffffff); c.lbl.setColor('#8a2a0a'); });
+      bg.on('pointerout', () => { pl.setTint?.(0xf2e6d2); c.lbl.setColor(INK.title); });
+      pl.setTint?.(0xf2e6d2);
       bg.on('pointerdown', () => {
         this._applyBonus(unit, c.b);
         eventBus.emit('level_up', { unit, choice: c.b.key });
