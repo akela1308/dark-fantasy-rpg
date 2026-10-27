@@ -14,11 +14,12 @@ import eventBus           from '../utils/eventBus.js';
 import { XP }             from '../utils/constants.js';
 
 import MAP_CONFIGS  from '../data/maps.json';
+import skillsData from '../data/skills.json';
 import itemsData    from '../data/items.json';
 import booksData    from '../data/books.json';
 import unitsData    from '../data/units.json';
 import classesData  from '../data/classes.json';
-import { SaveSystem } from '../utils/SaveSystem.js';
+import { SaveSystem, START_MAP } from '../utils/SaveSystem.js';
 import { getNpcAnimConfig, attachNpcAnimations } from '../systems/NpcAnimations.js';
 import { MapAmbience } from '../systems/MapAmbience.js';
 import { PartySystem } from '../systems/PartySystem.js';
@@ -29,6 +30,10 @@ import { checkRequires } from '../systems/DialogueConditions.js';
 import { JournalWindow } from '../ui/JournalWindow.js';
 import { Frame } from '../ui/Frame.js';
 import { Tooltip } from '../ui/Tooltip.js';
+import { openGameMenu } from '../ui/GameMenu.js';
+import { showToast } from '../ui/Toast.js';
+import { setBackdrop } from '../ui/Backdrop.js';
+import { openWorldMap } from '../ui/WorldMapWindow.js';
 import { repLines } from '../systems/Reputation.js';
 import { Sfx } from '../systems/Sfx.js';
 import traitsData from '../data/commanderTraits.json';
@@ -81,6 +86,7 @@ export class MapScene extends Phaser.Scene {
     // Новые локации: картинка из поля image (ключ img:<путь>), растягивается на всю карту
     if (this.textures.exists(cfg.bgKey)) {
       this.add.image(mapW / 2, mapH / 2, cfg.bgKey).setScale(1).setDepth(0);
+      setBackdrop(this, cfg.bgKey);   // размытый край карты вместо чёрных полос
     } else {
       this.add.image(mapW / 2, mapH / 2, `img:${cfg.image}`).setDisplaySize(mapW, mapH).setDepth(0);
     }
@@ -193,6 +199,14 @@ export class MapScene extends Phaser.Scene {
     // Листы спутников, которых ещё нет в отряде, догружаем в фоне (понадобятся после найма)
     if (preloadCompanionSheets(this, ['companion_brawler', 'companion_healer'])) this.load.start();
     MapEditor.attach(this, cfg); // dev-редактор зон: только с ?dev=1, клавиша E
+
+    // Esc: если открытых окон нет, открывает «Меню» (открытое окно Esc закрывает само)
+    this.input.keyboard.on('keydown-ESC', () => {
+      if (Frame.current(this) || this._dialogue?.active || this._bookOverlay || this._transitioning) return;
+      if (this.time.now - (this._dialogue?._closedAt ?? -1e9) < 150) return;   // тот же Esc только что закрыл разговор
+      if (this._charSheetOpen) { this._hideCharSheet(); return; }
+      this._openMenu();
+    });
 
     // Клик по карте
     this.input.on('pointerdown', (ptr, over = []) => {
@@ -334,11 +348,8 @@ export class MapScene extends Phaser.Scene {
     return span;
   }
 
-  _toast(text) {
-    const t = this.add.text(836, 150, text, {
-      fontFamily: 'serif', fontSize: '24px', color: '#E8DEC8', stroke: '#000', strokeThickness: 4,
-    }).setOrigin(0.5).setDepth(10000).setScrollFactor(0);
-    this.tweens.add({ targets: t, alpha: 0, y: 130, delay: 1600, duration: 700, onComplete: () => t.destroy() });
+  _toast(text, icon = null) {
+    showToast(this, text, icon);
   }
 
   // ─── Party ───────────────────────────────────────────────────────────────
@@ -1356,6 +1367,24 @@ export class MapScene extends Phaser.Scene {
     return over.some(o => o.scrollFactorX === 0);
   }
 
+  /** «Меню»: продолжить, громкость, выйти в титул (с сохранением мира). */
+  _openMenu() {
+    if (this._charSheetOpen) this._hideCharSheet();
+    openGameMenu(this, { onExit: () => {
+      SaveSystem.saveWorld(this.game.registry, this.mapKey, this.spawnId);
+      this._transitioning = true;
+      this.cameras.main.fade(400, 0, 0, 0, false, (c, p) => { if (p === 1) this.scene.start('BootScene'); });
+    } });
+  }
+
+  /** «Карта»: схема посещённых мест по графу выходов. */
+  _openWorldMap() {
+    if (this._charSheetOpen) this._hideCharSheet();
+    const reg = this.game.registry;
+    const visited = new Set(Object.keys(MAP_CONFIGS).filter(k => reg.get(`${k}_visited`) || k === this.mapKey));
+    openWorldMap(this, { maps: MAP_CONFIGS, visited, current: this.mapKey, start: START_MAP });
+  }
+
   _toggleJournal() {
     if (this._journalObjs && !this._journalObjs.closed) { this._journalObjs.close(); return; }
     if (this._charSheetOpen) this._hideCharSheet();   // одно окно за раз
@@ -1730,10 +1759,7 @@ export class MapScene extends Phaser.Scene {
     const z = exit.zone;
     const back = this.walkable.clamp(this.hero.x + (z.x < 200 ? 90 : z.x > 1400 ? -90 : 0), this.hero.y + (z.y < 300 ? 90 : z.y > 800 ? -90 : 0));
     this.hero.moveTo(back.x, back.y);
-    const t = this.add.text(836, 150, exit.lockedText || 'Путь закрыт.', {
-      fontFamily: 'serif', fontSize: '24px', color: '#E8DEC8', stroke: '#000', strokeThickness: 4,
-    }).setOrigin(0.5).setDepth(1000).setScrollFactor(0);
-    this.tweens.add({ targets: t, alpha: 0, delay: 1800, duration: 600, onComplete: () => t.destroy() });
+    this._toast(exit.lockedText || 'Путь закрыт.', 'icon_shield');
   }
 
   _checkTavernEntry() {
@@ -1908,36 +1934,17 @@ export class MapScene extends Phaser.Scene {
   _buildCharacterSheetChars() {
     const save = SaveSystem.load();
     const savedUnitsById = Object.fromEntries((save?.units || []).map(u => [u.id, u]));
-    const skillLabels = {
-      rapier_strike: 'Укол в уязвимость',
-      dueling_stance: 'Дуэльная стойка',
-      pistol_shot: 'Пистолет',
-      shield_cover: 'Прикрыть',
-      heavy_strike: 'Тяжёлый удар',
-      bandage: 'Перевязка',
-    };
-    const sheetMeta = {
-      hero_duelist: {
-        tabLabel: 'Герой',
-        portrait: 'portrait_hero_duelist',
-        sprite: 'hero_duelist',
-        mapSprite: 'map_hero',
-        desc: 'Бывший имперский дуэлянт. Мастер рапиры и пистолета.',
-      },
-      companion_brawler: {
-        tabLabel: 'Боец',
-        portrait: 'portrait_companion_brawler',
-        sprite: 'companion_brawler',
-        mapSprite: 'map_companion_brawler',
-        desc: 'Молчаливый верзила с дубиной. Стоит как стена.',
-      },
-      companion_healer: {
-        tabLabel: 'Знахарка',
-        portrait: 'portrait_companion_healer',
-        sprite: 'companion_healer',
-        mapSprite: 'map_companion_healer',
-        desc: 'Лечит раны настоями, корнями и упрямой рукой.',
-      },
+    // Имена навыков из skills.json; вид персонажа по spriteKey (Хольт, Тисс, Бран, Ресса и другие наёмные)
+    const skillName = id => skillsData.find(sk => sk.id === id)?.name || id;
+    const metaFor = u => {
+      const key = u.spriteKey || u.id;
+      return {
+        tabLabel: u.personalName || (u.id === 'hero_duelist' ? 'Дуэлянт' : u.name),
+        portrait: `portrait_${key}`,
+        sprite: key,
+        mapSprite: u.id === 'hero_duelist' ? 'map_hero' : this.textures.exists(`map_${key}`) ? `map_${key}` : `map_${u.id}`,
+        desc: u.description,
+      };
     };
 
     return PartySystem.getParty(this.game.registry)
@@ -1952,18 +1959,20 @@ export class MapScene extends Phaser.Scene {
           skills: Array.isArray(savedUnit.skills) ? savedUnit.skills : baseUnit.skills,
           passives: Array.isArray(savedUnit.passives) ? savedUnit.passives : baseUnit.passives,
         } : null;
-        const meta = sheetMeta[id];
-        if (!unit || !meta) return null;
+        if (!unit) return null;
+        const meta = metaFor(unit);
         const cls = classesData.find(c => c.id === unit.classId || c.unitId === unit.id) || null;
         const branch = cls?.branches?.find(b => b.id === unit.branchId) || null;
         const unlockLevel = Math.min(...(cls?.branches || []).map(b => b.unlockLevel || 1));
         const branchPreview = (cls?.branches || []).map(b => b.name).join(' / ');
         const resourceId = cls?.resource?.id;
         const resourceValue = resourceId ? (unit.resources?.[resourceId] ?? cls.resource.startsCombat ?? 0) : null;
-        const skills = (unit.skills || []).map(skillId => skillLabels[skillId] || skillId);
-        if (id === 'hero_duelist' && (unit.resources?.pistol_charges || 0) > 0) {
-          skills.push(`Пистолет (${unit.resources.pistol_charges} заряда)`);
-        }
+        const skills = (unit.skills || []).map(skillName);
+        // Пистолет одной строкой с зарядами (как одна кнопка в бою)
+        const pistolIdx = (unit.skills || []).indexOf('pistol_shot');
+        const charges = unit.resources?.pistol_charges || 0;
+        if (pistolIdx >= 0) skills[pistolIdx] = `${skillName('pistol_shot')} (зарядов: ${charges})`;
+        else if (charges > 0) skills.push(`${skillName('pistol_shot')} (зарядов: ${charges})`);
 
         return {
           id,
@@ -1980,8 +1989,8 @@ export class MapScene extends Phaser.Scene {
           armor: unit.armor ?? 0,
           accuracy: unit.accuracy ?? 0,
           className: cls?.name || 'Без класса',
-          branchName: branch?.name || 'Ветка не выбрана',
-          branchHint: branch?.description || `Выбор ветки откроется на ${unlockLevel || 3} уровне. Доступны: ${branchPreview || 'ветки в разработке'}.`,
+          branchName: branch?.name || 'не выбрана',
+          branchHint: branch?.description || (branchPreview ? `На ${unlockLevel || 3} уровне: ${branchPreview.replace(' / ', ' или ')}.` : ''),
           resourceName: cls?.resource?.name || 'Ресурс',
           resourceValue,
           resourceMax: cls?.resource?.max ?? null,
@@ -2070,32 +2079,7 @@ export class MapScene extends Phaser.Scene {
     this._csContent = [];
 
     // Вкладки отряда
-    const tabs = [];
-    CHARS.forEach((ch, i) => {
-      const tx = s(548 + i * 92);
-      const ty = s(146);
-      const tabBg = this.add.rectangle(tx, ty, s(82), s(24), 0x050505, i === 0 ? 0.78 : 0.36)
-        .setStrokeStyle(s(1), i === 0 ? 0xd4a832 : 0x4a3f25, i === 0 ? 0.95 : 0.55)
-        .setDepth(DEPTH+4).setScrollFactor(0)
-        .setInteractive({ useHandCursor: true }).setVisible(false);
-      const tabText = this.add.text(tx, ty - s(1), ch.tabLabel, {
-        fontSize: `${s(10)}px`,
-        color: i === 0 ? '#d4a832' : '#777063',
-        fontFamily: 'serif',
-        stroke: '#000000',
-        strokeThickness: s(1.5),
-      }).setOrigin(0.5).setDepth(DEPTH+5).setScrollFactor(0)
-        .setInteractive({ useHandCursor: true }).setVisible(false);
-      const select = () => {
-        this._setCharacterSheetTabState(i);
-        this._renderCharContent(CHARS[i], PX, PY, PW, PH, DEPTH);
-      };
-      tabBg.on('pointerdown', select);
-      tabText.on('pointerdown', select);
-      tabBg.on('pointerover', () => { if (this._charSheetSelectedIdx !== i) tabBg.setAlpha(0.58); });
-      tabBg.on('pointerout', () => { if (this._charSheetSelectedIdx !== i) tabBg.setAlpha(0.36); });
-      tabs.push({ bg: tabBg, text: tabText });
-    });
+    const tabs = this._createCharSheetTabs(CHARS, PX, PY, PW, PH, DEPTH);
 
     // Горизонтальная линия под вкладками
     const tabLine = this.add.graphics().setDepth(DEPTH+3).setScrollFactor(0).setVisible(false);
@@ -2141,6 +2125,41 @@ export class MapScene extends Phaser.Scene {
     this._charSheetDEPTH = DEPTH;
 
     this._initBottomBar();
+  }
+
+  /** Вкладки отряда в центральной колонке: ширина по числу бойцов (до шести), имя личное. */
+  _createCharSheetTabs(CHARS, PX, PY, PW, PH, DEPTH) {
+    const zoom = this.cameras.main.zoom;
+    const s = v => v / zoom;
+    const n = Math.max(1, CHARS.length);
+    const colW = 250, gap = 4;
+    const tabW = Math.min(82, (colW - (n - 1) * gap) / n);
+    const x0 = 640 - ((n - 1) * (tabW + gap)) / 2;
+    return CHARS.map((ch, i) => {
+      const tx = s(x0 + i * (tabW + gap));
+      const ty = s(146);
+      const tabBg = this.add.rectangle(tx, ty, s(tabW), s(24), 0x050505, i === 0 ? 0.78 : 0.36)
+        .setStrokeStyle(s(1), i === 0 ? 0xd4a832 : 0x4a3f25, i === 0 ? 0.95 : 0.55)
+        .setDepth(DEPTH+4).setScrollFactor(0)
+        .setInteractive({ useHandCursor: true }).setVisible(false);
+      const tabText = this.add.text(tx, ty - s(1), ch.tabLabel, {
+        fontSize: `${s(n > 4 ? 11 : 12)}px`,
+        color: i === 0 ? '#d4a832' : '#777063',
+        fontFamily: 'serif',
+        stroke: '#000000',
+        strokeThickness: s(1.5),
+      }).setOrigin(0.5).setDepth(DEPTH+5).setScrollFactor(0)
+        .setInteractive({ useHandCursor: true }).setVisible(false);
+      const select = () => {
+        this._setCharacterSheetTabState(i);
+        this._renderCharContent(this._charSheetChars[i], PX, PY, PW, PH, DEPTH);
+      };
+      tabBg.on('pointerdown', select);
+      tabText.on('pointerdown', select);
+      tabBg.on('pointerover', () => { if (this._charSheetSelectedIdx !== i) tabBg.setAlpha(0.58); });
+      tabBg.on('pointerout', () => { if (this._charSheetSelectedIdx !== i) tabBg.setAlpha(0.36); });
+      return { bg: tabBg, text: tabText };
+    });
   }
 
   _createInventoryItemElements(item, slotIdx, visible = false) {
@@ -2405,8 +2424,8 @@ export class MapScene extends Phaser.Scene {
       { label: 'Кошель', icon: 'icon_gold', action: null, tooltip: () => `Золото: ${this.game.registry.get('playerGold') ?? 0}` },
       { label: 'Журнал', icon: 'icon_hand', action: () => this._toggleJournal(), tooltip: 'Журнал заданий' },
       { label: 'Отряд', icon: 'map_menu_button', action: () => this._showCharSheet(0), tooltip: 'Отряд и инвентарь' },
-      { label: 'Карта', icon: 'icon_luck_horseshoe', action: null, tooltip: 'Карта мира появится позже' },
-      { label: 'Меню', icon: 'icon_skull', action: null, tooltip: 'Меню и настройки появятся позже' },
+      { label: 'Карта', icon: 'icon_luck_horseshoe', action: () => this._openWorldMap(), tooltip: 'Где отряд уже был' },
+      { label: 'Меню', icon: 'icon_skull', action: () => this._openMenu(), tooltip: 'Громкость, выход в титул (Esc)' },
     ];
 
     const s = v => v / zoom;
@@ -2487,10 +2506,12 @@ export class MapScene extends Phaser.Scene {
   _addCharacterSheetFigure(ch, add, DEPTH) {
     const zoom = this.cameras.main.zoom;
     const s = v => v / zoom;
-    const key = ch.mapSprite && this.textures.exists(ch.mapSprite) ? ch.mapSprite : ch.sprite;
+    // Фигура: спрайт карты, иначе боевой спрайт, иначе портрет (у наёмных спутников фигуры на карте может не быть в памяти)
+    const key = [ch.mapSprite, `map_${ch.id}`, ch.sprite, ch.portrait].find(k => k && this.textures.exists(k)) || ch.sprite;
+    const isPortrait = key === ch.portrait;
     const footX = s(640);
-    const footY = s(470);
-    const targetH = s(285);
+    const footY = s(428);
+    const targetH = s(isPortrait ? 200 : 240);
 
     const shadow = add(this.add.ellipse(footX, footY + s(6), s(112), s(18), 0x000000, 0.45)
       .setDepth(DEPTH + 4).setScrollFactor(0));
@@ -2520,6 +2541,7 @@ export class MapScene extends Phaser.Scene {
 
   _showCharSheet(idx = 0) {
     if (this._journalObjs) this._journalObjs.close();   // одно окно за раз
+    Frame.closeCurrent(this);
     this._charSheetOpen = true;
     // Синхронизируем золото из реестра при каждом открытии
     const gold = this.game.registry.get('playerGold') ?? 0;
@@ -2529,6 +2551,14 @@ export class MapScene extends Phaser.Scene {
       if (this._invGoldLabel) this._invGoldLabel.setText(`${gold}`);
     }
 
+    // Отряд и числа берутся заново при каждом открытии (HP после отдыха, новый спутник)
+    const old = (this._charSheetTabs || []).flatMap(t => [t.bg, t.text]);
+    this._charSheetElements = this._charSheetElements.filter(e => !old.includes(e));
+    old.forEach(o => o.destroy());
+    this._charSheetChars = this._buildCharacterSheetChars();
+    this._charSheetTabs = this._createCharSheetTabs(this._charSheetChars, this._charSheetPX, this._charSheetPY, this._charSheetPW, this._charSheetPH, this._charSheetDEPTH);
+    this._charSheetElements.push(...this._charSheetTabs.flatMap(t => [t.bg, t.text]));
+    idx = Math.min(idx, this._charSheetChars.length - 1);
     this._charSheetElements.forEach(e => e.setVisible(true));
     this._setCharacterSheetTabState(idx);
     this._renderCharContent(
@@ -2560,15 +2590,15 @@ export class MapScene extends Phaser.Scene {
     this._addCharacterSheetFigure(ch, add, DEPTH);
 
     // Имя персонажа
-    add(this.add.text(s(640), s(493), ch.name, {
+    add(this.add.text(s(640), s(440), ch.name, {
       fontSize: `${s(18)}px`, color: '#d4a832', fontFamily: 'serif',
       stroke: '#000000', strokeThickness: s(2),
     }).setOrigin(0.5, 0).setDepth(DEPTH+5).setScrollFactor(0));
 
     // Описание
-    add(this.add.text(s(640), s(520), ch.desc, {
-      fontSize: `${s(11)}px`, color: '#888877', fontFamily: 'serif',
-      wordWrap: { width: s(235) }, align: 'center',
+    add(this.add.text(s(640), s(466), ch.desc, {
+      fontSize: `${s(11)}px`, color: '#888877', fontFamily: 'serif', maxLines: 3,
+      wordWrap: { width: s(240), useAdvancedWrap: true }, align: 'center',
       lineSpacing: s(2),
     }).setOrigin(0.5, 0).setDepth(DEPTH+5).setScrollFactor(0));
 
@@ -2592,8 +2622,8 @@ export class MapScene extends Phaser.Scene {
         fontSize: `${s(11)}px`, color: '#888877', fontFamily: 'serif'
       }).setDepth(DEPTH+5).setScrollFactor(0));
       add(this.add.text(statsValX, y, val, {
-        fontSize: `${s(10.5)}px`, color: valueColor, fontFamily: 'serif', fontStyle: 'bold',
-        wordWrap: { width: s(178) },
+        fontSize: `${s(11)}px`, color: valueColor, fontFamily: 'serif', fontStyle: 'bold',
+        wordWrap: { width: s(130) },
       }).setOrigin(0, 0).setDepth(DEPTH+5).setScrollFactor(0));
       const lg = add(this.add.graphics().setDepth(DEPTH+4).setScrollFactor(0));
       lg.lineStyle(1, 0x333322, 0.45);
@@ -2602,39 +2632,39 @@ export class MapScene extends Phaser.Scene {
 
     sectionTitle(s(874), s(105), 'КЛАСС');
     infoRow(s(144), 'Путь', ch.className);
-    infoRow(s(174), 'Ветка', ch.branchName, ch.branchName === 'Ветка не выбрана' ? '#9A8654' : '#CCCCCC');
+    infoRow(s(174), 'Ветка', ch.branchName, ch.branchName === 'не выбрана' ? '#9A8654' : '#CCCCCC');
     const resourceText = ch.resourceMax ? `${ch.resourceValue ?? 0} / ${ch.resourceMax}` : `${ch.resourceValue ?? 0}`;
     infoRow(s(204), ch.resourceName, resourceText, '#D4AA60');
 
-    const branchHint = ch.branchHint.length > 78 ? `${ch.branchHint.slice(0, 75)}...` : ch.branchHint;
-    add(this.add.text(statsX, s(232), branchHint, {
-      fontSize: `${s(9)}px`, color: '#777063', fontFamily: 'serif',
-      wordWrap: { width: s(245) }, lineSpacing: s(1),
+    // Подсказка ветки: не шире колонки и не выше двух строк (дальше орнамент)
+    const hint = add(this.add.text(statsX, s(230), ch.branchHint, {
+      fontSize: `${s(11)}px`, color: '#888877', fontFamily: 'serif',
+      wordWrap: { width: s(215), useAdvancedWrap: true }, lineSpacing: s(1), maxLines: 2,
     }).setDepth(DEPTH+5).setScrollFactor(0));
 
-    const statsY0 = s(300);
+    const statsY0 = s(306);
 
     const stats = [
       ['Уровень',    `${ch.lvl}`],
-      ['HP',         `${ch.hp} / ${ch.maxHp}`],
+      ['Здоровье',   `${ch.hp} / ${ch.maxHp}`],
       ['Урон',       ch.dmg],
       ['Инициатива', `${ch.spd}`],
       ['Броня',      `${ch.armor}`],
     ];
 
-    sectionTitle(s(874), s(266), 'ХАРАКТЕРИСТИКИ');
+    sectionTitle(s(874), s(274), 'ХАРАКТЕРИСТИКИ');
 
     stats.forEach(([label, val], i) => {
-      infoRow(statsY0 + i * rowStep, label, val);
+      infoRow(statsY0 + i * s(28), label, val);
     });
 
     // Скиллы
-    const skillsY = statsY0 + stats.length * rowStep + s(26);
+    const skillsY = statsY0 + stats.length * s(28) + s(14);
     sectionTitle(statsX, skillsY, 'УМЕНИЯ');
     ch.skills.forEach((sk, i) => {
-      add(this.add.text(statsX, skillsY + s(24) + i * s(22), `• ${sk}`, {
-        fontSize: `${s(10.5)}px`, color: '#AAAAAA', fontFamily: 'serif',
-        wordWrap: { width: s(235) },
+      add(this.add.text(statsX, skillsY + s(24) + i * s(19), `• ${sk}`, {
+        fontSize: `${s(11)}px`, color: '#CCCCCC', fontFamily: 'serif',
+        fixedWidth: s(215),
       }).setDepth(DEPTH+5).setScrollFactor(0));
     });
 
@@ -2643,12 +2673,13 @@ export class MapScene extends Phaser.Scene {
       const xp = PartySystem.xpProgress(this.game.registry);
       const traits = (SaveSystem.load()?.units || []).find(u => u.id === 'hero_duelist')?.commanderTraits || [];
       const lines = [
-        ...repLines(this.game.registry),
+        repLines(this.game.registry).join(', '),
         `Опыт отряда: ${xp.have} / ${xp.need}, мест в отряде ${PartySystem.getSlots(this.game.registry)}`,
         traits.length ? `Черты: ${traits.map(t => TRAIT_LABELS[t] || t).join(', ')}` : '',
       ].filter(Boolean);
-      add(this.add.text(s(640), s(585), lines.join('\n'), {
-        fontSize: `${s(10.5)}px`, color: '#B8AC8C', fontFamily: 'serif', align: 'center', lineSpacing: s(2),
+      add(this.add.text(s(640), s(512), lines.join('\n'), {
+        fontSize: `${s(11)}px`, color: '#B8AC8C', fontFamily: 'serif', align: 'center', lineSpacing: s(1),
+        wordWrap: { width: s(240), useAdvancedWrap: true },
         stroke: '#000', strokeThickness: s(1),
       }).setOrigin(0.5, 0).setDepth(DEPTH+5).setScrollFactor(0));
     }

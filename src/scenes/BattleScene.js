@@ -25,6 +25,7 @@ import { enemiesForParty, lootPerEnemy, meleeReach, isActive, shouldSurrender, h
 import { getBattleAnimConfig, ensureBattleAnims, hasBattleAnims, loadBattleAnimSheets, battleAnimReady, animOrigin } from '../systems/BattleAnimations.js';
 import { showBattleResult } from '../ui/BattleResultWindow.js';
 import { Frame } from '../ui/Frame.js';
+import { setBackdrop } from '../ui/Backdrop.js';
 
 const SPRITE_IDS = [
   'hero_duelist',
@@ -210,6 +211,7 @@ export class BattleScene extends Phaser.Scene {
   _drawBg() {
     if (HAS_BG) {
       this.add.image(640, 360, this._battleBgKey).setDisplaySize(1280, 720).setDepth(0);
+      setBackdrop(this, this._battleBgKey);
     } else {
       // Атмосферный градиент-заглушка
       const bg = this.add.graphics();

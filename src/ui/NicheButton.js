@@ -24,15 +24,15 @@ export function nicheButton(scene, x, y, label, { w = 220, h = 44, onClick, dept
     });
   };
   draw(false);
-  const t = fix(scene.add.text(s(x), s(sub ? y - 8 : y), label, {
+  const t = fix(scene.add.text(s(x), s(sub ? y - 4 : y), label, {
     fontFamily: FONT, fontSize: `${s(size)}px`, color, stroke: '#000', strokeThickness: s(2), letterSpacing: s(1),
     align: 'center', wordWrap: { width: s(w - 20), useAdvancedWrap: true },
-  }).setOrigin(0.5).setDepth(depth + 2));
+  }).setOrigin(0.5, sub ? 1 : 0.5).setDepth(depth + 2));
   let st = null;
-  if (sub) st = fix(scene.add.text(s(x), s(y + 12), sub, {
+  if (sub) st = fix(scene.add.text(s(x), s(y), sub, {
     fontFamily: FONT, fontSize: `${s(11)}px`, color: COLOR.muted, stroke: '#000', strokeThickness: s(1.5),
     align: 'center', wordWrap: { width: s(w - 20), useAdvancedWrap: true },
-  }).setOrigin(0.5).setDepth(depth + 2));
+  }).setOrigin(0.5, 0).setDepth(depth + 2));
   let enabled = true;
   bg.setInteractive({ useHandCursor: true });
   bg.on('pointerover', () => { if (!enabled) return; draw(true); bg.setFillStyle(0x2a2114, 0.95); t.setColor(COLOR.goldHi); });

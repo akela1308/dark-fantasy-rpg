@@ -160,6 +160,7 @@ export class DialoguePanel {
   }
 
   hide() {
+    if (this._active) this._closedAt = this.scene.time.now;
     if (this._keys) this.scene.input.keyboard?.off('keydown', this._keys);
     this._keys = null;
     this._frame?.close(true);
