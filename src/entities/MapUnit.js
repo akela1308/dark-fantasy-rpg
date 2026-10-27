@@ -182,7 +182,8 @@ export class MapUnit {
 
   update(delta) {
     // Дошёл до поворота: встаём точно в точку пути (не срезая угол) и берём следующую
-    const reach = Math.max(1, this.speed * (delta / 1000));
+    // Не меньше порога остановки (5 px): иначе точка пути в 2-5 px считалась достигнутой, а следующая не бралась
+    const reach = Math.max(5, this.speed * (delta / 1000));
     while (this._path?.length && Math.hypot(this.targetX - this.sprite.x, this.targetY - this.sprite.y) <= reach) {
       this.sprite.x = this.targetX;
       this.sprite.y = this.targetY;
