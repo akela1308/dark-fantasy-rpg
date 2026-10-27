@@ -5648,16 +5648,6 @@
         "auto": true
       },
       {
-        "key": "prop_old_mill_occ_3",
-        "src": "maps/props/old_mill/occ_3.png",
-        "x": 287,
-        "y": 545,
-        "originX": 0,
-        "originY": 0.9968,
-        "occluder": true,
-        "auto": true
-      },
-      {
         "key": "prop_old_mill_occ_4",
         "src": "maps/props/old_mill/occ_4.png",
         "x": 1217,

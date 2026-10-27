@@ -1,8 +1,9 @@
 /**
  * ExitMarkers: игрок всегда видит, куда можно уйти с карты.
  *
- * Без наведения: у выхода на краю карты пульсирует золотая стрелка, у двери тёплое свечение по контуру проёма.
- * При наведении: метка ярче, курсор «перейти» (стрелка) или «дверь», рядом с зоной табличка с названием места.
+ * Без наведения: мягкое тёплое свечение без граней: на двери по проёму и пятно света у порога, у края карты
+ * пятно света на земле. При наведении: свет ярче, у края появляется стрелка, курсор «перейти» или «дверь»,
+ * рядом с зоной табличка с названием места.
  * Клик по зоне выхода (не меньше 64×64 экранных px) ведёт героя к выходу по пути.
  *
  * Данные: exits и tavernEntry карты из maps.json. Вид выхода определяется сам: зона у края карты это «край»,
@@ -16,6 +17,22 @@ import { MAP_W, MAP_H } from '../systems/WalkableZones.js';
 const S = UI.exits;
 const COLOR = Phaser.Display.Color.HexStringToColor(S.color).color;
 const EDGE = 6;   // зона ближе этого к краю карты считается выходом с края
+const GLOW = 'exit_glow';
+
+/** Радиальное пятно света (белое в центре, прозрачное к краю), один раз на игру. */
+function ensureGlowTexture(scene) {
+  if (scene.textures.exists(GLOW)) return;
+  const n = 128;
+  const tex = scene.textures.createCanvas(GLOW, n, n);
+  const ctx = tex.getContext();
+  const gr = ctx.createRadialGradient(n / 2, n / 2, 0, n / 2, n / 2, n / 2);
+  gr.addColorStop(0, 'rgba(255,255,255,0.85)');
+  gr.addColorStop(0.45, 'rgba(255,255,255,0.35)');
+  gr.addColorStop(1, 'rgba(255,255,255,0)');
+  ctx.fillStyle = gr;
+  ctx.fillRect(0, 0, n, n);
+  tex.refresh();
+}
 
 const svgCursor = (svg, x, y) => `url("data:image/svg+xml;utf8,${encodeURIComponent(svg)}") ${x} ${y}, pointer`;
 const CURSOR = {
@@ -50,10 +67,22 @@ export class ExitMarkers {
     const hw = Math.max(z.w, min), hh = Math.max(z.h, min);
     const hit = new Phaser.Geom.Rectangle(z.x + z.w / 2 - hw / 2, z.y + z.h / 2 - hh / 2, hw, hh);
     const item = { exit, zone: z, hit, dir, kind, text: this._text(exit, target, kind, dir) };
-    item.gfx = this.scene.add.graphics().setDepth(kind === 'door' ? z.y + z.h - 2 : 3);
+    // Свет без граней: размытое тёплое пятно (радиальный градиент), сложение цветов как у настоящего света
+    ensureGlowTexture(this.scene);
+    const sc = this.scene;
+    const cx = z.x + z.w / 2, cy = z.y + z.h / 2;
+    const glow = (x, y, w, h) => sc.add.image(x, y, GLOW).setDisplaySize(w, h).setTint(COLOR).setBlendMode(Phaser.BlendModes.ADD);
+    const parts = kind === 'door'
+      // Дверь: мягкое свечение по проёму и лужица света у порога
+      ? [glow(cx, cy, z.w * 1.15, z.h * 1.15), glow(cx, z.y + z.h, z.w * 1.7, Math.max(24, z.w * 0.45))]
+      // Край карты: вытянутое вдоль края пятно света на земле
+      : [glow(cx, cy, z.w * 1.3, z.h * 1.1)];
+    item.lights = parts;
+    item.arrows = sc.add.graphics();
+    item.gfx = sc.add.container(0, 0, [...parts, item.arrows]).setDepth(kind === 'door' ? z.y + z.h - 2 : 3);
     this._draw(item);
-    item.pulse = this.scene.tweens.add({
-      targets: item.gfx, alpha: { from: 1, to: 0.45 }, duration: S.pulseMs, yoyo: true, repeat: -1, ease: 'Sine.easeInOut',
+    item.pulse = sc.tweens.add({
+      targets: item.gfx, alpha: { from: 1, to: 0.55 }, duration: S.pulseMs, yoyo: true, repeat: -1, ease: 'Sine.easeInOut',
     });
     if (!S.enabled) item.gfx.setVisible(false);
     return item;
@@ -77,35 +106,26 @@ export class ExitMarkers {
     return `${arrow} ${name}`;
   }
 
-  // Рисунок метки: alpha задаёт яркость (спокойно или под курсором)
+  // Яркость метки: спокойно или под курсором; стрелка у края только при наведении
   _draw(item, hovered = false) {
-    const g = item.gfx;
-    const z = item.zone;
     const locked = this.isLocked(item.exit);
     const a = (hovered ? S.hoverAlpha : S.idleAlpha) * (locked ? 0.55 : 1);
+    item.lights.forEach((l, i) => l.setAlpha(a * (i ? 0.7 : 1)));
+    const g = item.arrows;
     g.clear();
-    if (item.kind === 'door') {
-      // Тёплое свечение по контуру проёма: мягкий широкий ореол и тонкая линия
-      const r = Math.min(14, z.w / 4);
-      g.lineStyle(10, COLOR, a * 0.22).strokeRoundedRect(z.x, z.y, z.w, z.h, r);
-      g.lineStyle(5, COLOR, a * 0.35).strokeRoundedRect(z.x + 2, z.y + 2, z.w - 4, z.h - 4, r);
-      g.lineStyle(2, 0xf0d890, a * 0.8).strokeRoundedRect(z.x + 4, z.y + 4, z.w - 8, z.h - 8, r);
-      g.fillStyle(COLOR, a * (hovered ? 0.16 : 0.07)).fillRoundedRect(z.x + 4, z.y + 4, z.w - 8, z.h - 8, r);
-      return;
-    }
-    // Стрелка на земле у края: два шеврона, остриём наружу
+    if (!hovered || item.kind === 'door') return;
+    const z = item.zone;
     const v = { left: [-1, 0], right: [1, 0], up: [0, -1], down: [0, 1] }[item.dir] || [1, 0];
     const cx = z.x + z.w / 2 - v[0] * Math.max(0, z.w / 2 - 34);
     const cy = z.y + z.h / 2 - v[1] * Math.max(0, z.h / 2 - 34);
-    const size = hovered ? 22 : 18;
-    if (hovered) g.fillStyle(COLOR, 0.12).fillRoundedRect(z.x, z.y, z.w, z.h, 10);
+    const size = 16;
     [0, 1].forEach(k => {
-      const ox = cx + v[0] * k * 16, oy = cy + v[1] * k * 16;
+      const ox = cx + v[0] * k * 14, oy = cy + v[1] * k * 14;
       const tipX = ox + v[0] * size, tipY = oy + v[1] * size;
-      const px = -v[1] * size, py = v[0] * size;   // поперёк направления
-      g.lineStyle(9, 0x000000, a * 0.45);
+      const px = -v[1] * size, py = v[0] * size;
+      g.lineStyle(7, 0x000000, 0.25);
       g.beginPath(); g.moveTo(ox + px, oy + py); g.lineTo(tipX, tipY); g.lineTo(ox - px, oy - py); g.strokePath();
-      g.lineStyle(5, COLOR, a * (k ? 1 : 0.7));
+      g.lineStyle(3, COLOR, k ? 0.8 : 0.5);
       g.beginPath(); g.moveTo(ox + px, oy + py); g.lineTo(tipX, tipY); g.lineTo(ox - px, oy - py); g.strokePath();
     });
   }

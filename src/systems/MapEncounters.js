@@ -96,6 +96,14 @@ export class MapEncounters {
     });
   }
 
+  /** Встреча пройдена (бой выигран): существо уходит с карты. */
+  finish(id) {
+    this.list.filter(it => it.cfg.id === id).forEach(it => {
+      it.state = 'done';
+      [it.marker, it.label, it.figure, it.ring].forEach(o => o && this.scene.tweens.add({ targets: o, alpha: 0, duration: 400, onComplete: () => o.destroy() }));
+    });
+  }
+
   _done(item) { return item.state === 'done' || this.ws.flag(`enc_${item.cfg.id}_done`); }
 
   _onClick(item) {

@@ -1,3 +1,4 @@
+import { PartySystem } from './PartySystem.js';
 import { REP_NAMES } from './WorldState.js';
 
 /**
@@ -47,7 +48,7 @@ export function checkRequires(req, ws) {
   arr(req.recruited).forEach(c => { if (!ws.roster().includes(c)) fails.push(null); });
   arr(req.notRecruited).forEach(c => { if (ws.roster().includes(c)) fails.push(null); });
   arr(req.item).forEach(i => { if (!ws.hasItem(i)) fails.push(`нужен предмет`); });
-  if (req.partyFree && ws.party().length >= (ws.registry.get('partySlots') || 1)) fails.push('нет места в отряде');
+  if (req.partyFree && ws.party().length >= PartySystem.getSlots(ws.registry)) fails.push('нет места в отряде');
   if (!fails.length) return { ok: true, reason: null };
   const named = fails.filter(Boolean);
   return { ok: false, reason: named.length ? `нужно: ${named.join(', ')}` : null };

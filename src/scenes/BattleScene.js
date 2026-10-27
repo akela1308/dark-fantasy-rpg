@@ -943,6 +943,9 @@ export class BattleScene extends Phaser.Scene {
       this._levelSpan = PartySystem.addXp(this.game.registry, xpGain);
       rows.unshift({ icon: 'icon_luck_horseshoe', text: `Опыт отряда: +${xpGain}`, color: '#e8e2d4' });
       this.game.registry.set(this._battleConfig?.victoryFlag || 'bandit_0_defeated', true);
+      // Встреча на карте пройдена сразу при победе: на возврате её не видно, и флаг попадает в сохранение
+      const pb = this.game.registry.get('pendingBattle');
+      if (pb?.encounterId && pb.battleId === this._battleId) this.game.registry.set(`enc_${pb.encounterId}_done`, true);
       if (this._battleId === 'korvin_gang') this.game.registry.set('bandit_0_defeated', true);
       // Добыча: 4 + 2 × уровень встречи с каждого врага (01_БАЛАНС 9)
       const loot = this._battleConfig ? this.enemyUnits.length * lootPerEnemy(this._battleConfig.intendedLevel) : 0;

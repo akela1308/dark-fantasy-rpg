@@ -1010,14 +1010,21 @@ export class MapScene extends Phaser.Scene {
     this._spawnNPCs(MAP_CONFIGS[this.mapKey]);
   }
 
-  /** Спутники в запасе сидят в зале «Хромого Лося»; клик открывает выбор, кто идёт в отряде. */
+  /**
+   * Спутники в запасе ждут там, где их наняли или оставили (registry waitAt_<id> = { map, x, y }),
+   * без такой метки в зале «Хромого Лося»; клик открывает выбор, кто идёт в отряде.
+   */
   _waitingCompanionNpcs() {
-    if (this.mapKey !== 'tavern_inside') return [];
     this._waitingNpcs = this._waitingNpcs || {};
-    return Object.entries(WAITING_SPOTS).map(([id, [x, y, spriteKey, heightM]]) => {
+    const reg = this.game.registry;
+    return Object.entries(WAITING_SPOTS).map(([id, [tx, ty, spriteKey, heightM]]) => {
       const u = unitsData.find(d => d.id === id);
       if (!u) return null;
-      return (this._waitingNpcs[id] = this._waitingNpcs[id] || {
+      const wa = reg.get(`waitAt_${id}`);
+      if (wa ? wa.map !== this.mapKey : this.mapKey !== 'tavern_inside') return null;
+      const x = wa ? wa.x : tx, y = wa ? wa.y : ty;
+      const key = `${id}@${this.mapKey}:${x},${y}`;   // новое место ожидания: новый NPC
+      return (this._waitingNpcs[key] = this._waitingNpcs[key] || {
         id: `waiting_${id}`, waitingFor: id, name: u.personalName || u.name, x, y, spriteKey, heightM,
         portraitKey: `portrait_${u.spriteKey || id}`, hoverPortrait: true,
         onTalk: () => this._showPartyManager(),
@@ -1124,6 +1131,7 @@ export class MapScene extends Phaser.Scene {
         this.healer.stopMove();
         // Помечаем разговор состоявшимся - при следующем визите NPC исчезнет
         if (npc.vanishKey) this.game.registry.set(npc.vanishKey, true);
+        this._talkNpc = npc;   // где стоит собеседник: нанятый без места в отряде будет ждать здесь же
         sprite.clearTint(); label.setAlpha(0);
         if (_hImg) { _hImg.setAlpha(0); _hName.setAlpha(0); }   // мини-портрет не висит весь разговор
         if (npc.onTalk) { npc.onTalk(); return; }
@@ -1526,7 +1534,7 @@ export class MapScene extends Phaser.Scene {
     const others = PartySystem.getRoster(reg).filter(id => id !== 'hero_duelist');
     const free = PartySystem.getSlots(reg) - party.length;
     const choices = others.map(id => party.includes(id)
-      ? { label: `${names[id]}: оставить ждать в «Хромом Лосе»`, style: 'retreat', onSelect: () => { PartySystem.bench(reg, id); this._applyPartyVisibility(true); this._refreshNpcs(); this._showPartyManager(); } }
+      ? { label: `${names[id]}: оставить ждать здесь`, style: 'retreat', onSelect: () => { PartySystem.bench(reg, id); { const p = this.walkable.clamp(this.hero.x + 80, this.hero.y + 10); reg.set(`waitAt_${id}`, { map: this.mapKey, x: Math.round(p.x), y: Math.round(p.y) }); } this._applyPartyVisibility(true); this._refreshNpcs(); this._showPartyManager(); } }
       : { label: `${names[id]}: взять в отряд`, disabled: free <= 0, reason: PartySystem.getSlots(reg) < 2 ? 'место в отряде откроется на 2 уровне' : 'нет места в отряде', onSelect: () => { PartySystem.activate(reg, id); this._applyPartyVisibility(true); this._recruit(id); this._refreshNpcs(); this._showPartyManager(); } });
     choices.push({ label: 'Готово.', style: 'default', onSelect: () => SaveSystem.saveWorld(reg, this.mapKey, this.spawnId) });
     this._dialogue.show({
@@ -1553,8 +1561,15 @@ export class MapScene extends Phaser.Scene {
     const reg = this.game.registry;
     const where = PartySystem.recruit(reg, id);
     if (!where) return;
+    if (where === 'reserve') {
+      // Ждёт там, где его наняли: у собеседника, иначе рядом с героем
+      const at = this._talkNpc && !this._talkNpc.waitingFor ? this._talkNpc : { x: this.hero.x + 70, y: this.hero.y };
+      const p = this.walkable.clamp(at.x, at.y);
+      reg.set(`waitAt_${id}`, { map: this.mapKey, x: Math.round(p.x), y: Math.round(p.y) });
+      this._refreshNpcs();
+    } else reg.remove(`waitAt_${id}`);
     this._toast(where === 'party' ? 'В отряде новый человек'
-      : PartySystem.getSlots(reg) < 2 ? 'Ждёт в «Хромом Лосе»: место в отряде откроется на 2 уровне' : 'Ждёт в «Хромом Лосе»: в отряде нет места');
+      : PartySystem.getSlots(reg) < 2 ? 'Ждёт здесь: место в отряде откроется на 2 уровне' : 'Ждёт здесь: в отряде нет места');
     this._applyPartyVisibility(true);
     // Новичок входит на уровне партии: экран уровней для него одного
     const lvl = PartySystem.getLevel(reg);
@@ -1622,7 +1637,7 @@ export class MapScene extends Phaser.Scene {
     const result = reg.get('lastBattleResult');
     reg.remove('pendingBattle');
     if (result !== 'victory') return false;
-    if (pb.encounterId) reg.set(`enc_${pb.encounterId}_done`, true);
+    if (pb.encounterId) { reg.set(`enc_${pb.encounterId}_done`, true); this._encounters?.finish(pb.encounterId); }
     (reg.get('lastSurrendered') || []).forEach(id => reg.set(`surrendered_${id}`, true));
     (reg.get('lastBattleDead') || []).forEach(id => reg.set(`dead_${id}`, true));
     if (pb.onWin && pb.dlg) {

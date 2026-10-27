@@ -16,6 +16,7 @@ export const LEVEL_CAP = 12;
  */
 export const HERO_ID = 'hero_duelist';
 export const MAX_SLOTS = 4;
+export const START_SLOTS = 1;
 
 // Где стоят по умолчанию (ряд 0 передний, 1 задний). Новые спутники ставятся на свободную клетку.
 const PREFERRED = {
@@ -42,11 +43,11 @@ export const PartySystem = {
   },
 
   getSlots(registry) {
-    return Math.min(MAX_SLOTS, Math.max(1, registry?.get('partySlots') ?? 1));
+    return Math.min(MAX_SLOTS, Math.max(START_SLOTS, registry?.get('partySlots') ?? START_SLOTS));
   },
 
   setSlots(registry, n) {
-    registry.set('partySlots', Math.min(MAX_SLOTS, Math.max(1, n)));
+    registry.set('partySlots', Math.min(MAX_SLOTS, Math.max(START_SLOTS, n)));
   },
 
   addSlot(registry) {
