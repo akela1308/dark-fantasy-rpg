@@ -7,6 +7,7 @@ import { findPath } from '../systems/Pathfinding.js';
 import WALK_GRIDS from '../data/walkgrid.json';
 import { ExitMarkers } from '../ui/ExitMarkers.js';
 import UI from '../data/ui.json';
+import HEIGHTS from '../data/heights.json';
 import { MusicPlayer }   from '../ui/MusicPlayer.js';
 import { DialoguePanel } from '../ui/DialoguePanel.js';
 import eventBus           from '../utils/eventBus.js';
@@ -90,8 +91,8 @@ export class MapScene extends Phaser.Scene {
     // Клампим спавн на случай если он вне walkable зоны
     const spawn = this.walkable.clamp(rawSpawn.x, rawSpawn.y);
 
-    // Внутри таверны персонажи крупнее (интерьер ближе к камере)
-    const s = this.mapKey === 'tavern_inside' ? 1.25 : 1;
+    // В интерьерах и пещерах все персонажи одного, чуть большего роста (src/data/heights.json, map)
+    const s = this._charScale = (cfg.kind === 'interior' || cfg.kind === 'cave') ? HEIGHTS.map.interiorScale : 1;
     this.hero    = new MapUnit(this, spawn.x,       spawn.y, 'map_hero',    { height: Math.round(130 * s), speed: 130, idlePeriod: 2800, paperdoll: false, walkSpriteKey: 'map_hero_walk_side', walkFrames: 29, walkFrameRate: 24, walkFrameContentHeight: 251, idleSpriteKey: 'map_hero_stand', idleFrames: 96, idleFrameRate: 24, idleFrameContentHeight: 251, idleOriginX: 0.56 });
     this.brawler = new MapUnit(this, spawn.x - 65,  spawn.y, 'map_brawler', { height: Math.round(136 * s), speed: 130, idlePeriod: 3400, paperdoll: false, walkSpriteKey: 'map_brawler_walk_v4', walkFrames: 23, walkFrameRate: 24, walkFrameContentHeight: 251, idleSpriteKey: 'map_brawler_stand_v1', idleFrames: 95, idleFrameRate: 24, idleFrameContentHeight: 251 });
     this.healer  = new MapUnit(this, spawn.x - 120, spawn.y, 'map_healer',  { height: Math.round(128 * s), speed: 130, idlePeriod: 2200, paperdoll: false, walkSpriteKey: 'map_healer_walk_v3', walkFrames: 25, walkFrameRate: 24, walkFrameContentHeight: 274, idleSpriteKey: 'map_healer_stand_v1', idleFrames: 95, idleFrameRate: 24, idleFrameContentHeight: 274 }); // 274: в высоту кадра входит посох выше головы
@@ -947,7 +948,7 @@ export class MapScene extends Phaser.Scene {
       if (!this._npcConditionsMet(npc)) return;
       // Нет арта: временная фигура (серый силуэт), имя видно при наведении
       if (!this.textures.exists(npc.spriteKey)) this._ensureNpcPlaceholder(npc);
-      const h = npc.height || 130;
+      const h = this._npcHeight(npc);
       const tex = this.textures.get(npc._tex || npc.spriteKey);
       const frameKey = npc.frame ?? (npc.ambientAnim ? 0 : '__BASE');
       const frame = tex.get(frameKey) || tex.get('__BASE');
@@ -1047,6 +1048,13 @@ export class MapScene extends Phaser.Scene {
 
       this._npcs.push({ sprite, shadow, label, cfg: npc, hoverImg: _hImg, hoverName: _hName });
     });
+  }
+
+  /** Рост NPC в мировых px: по heightM от роста героя, иначе height (подобран при герое heroPx), в помещении крупнее. */
+  _npcHeight(npc) {
+    const M = HEIGHTS.map;
+    if (npc.heightM) return Math.round(M.heroPx * this._charScale * npc.heightM / M.heroM);
+    return Math.round((npc.height || M.heroPx) * this._charScale);
   }
 
   _ensureNpcPlaceholder(npc) {
