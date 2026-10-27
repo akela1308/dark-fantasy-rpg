@@ -47,6 +47,17 @@ import { preloadCompanionSheets } from './LoadingScene.js';
 const PLACEHOLDER_IMAGE = 'maps/gen/_placeholder.png';
 
 // ─────────────────────────────────────────────────────────────────────────────
+// Где в зале «Хромого Лося» сидят спутники из запаса: [x, y, спрайт карты, рост м]
+const WAITING_SPOTS = {
+  companion_brawler: [1400, 640, 'map_companion_brawler', 1.86],
+  companion_healer:  [250, 600, 'map_companion_healer', 1.66],
+  holt:              [1240, 780, 'map_holt', 1.8],
+  tiss_recruit:      [560, 800, 'map_bandit_archer', 1.75],
+  mirko:             [980, 830, 'map_recruit', 1.74],
+  bran:              [1500, 800, 'map_archer_guard', 1.78],
+  ressa:             [380, 790, 'map_swamp_elf_girl', 1.8],
+};
+
 export class MapScene extends Phaser.Scene {
   constructor() {
     super({ key: 'MapScene' });
@@ -284,6 +295,7 @@ export class MapScene extends Phaser.Scene {
     this._followTrail(this.healer,  28);
     this.brawler.update(delta);
     this.healer.update(delta);
+    (this._extraFollowers || []).forEach((f, i) => { this._followTrail(f.unit, 40 + i * 12); f.unit.update(delta); });
 
     this._separateParty();
 
@@ -356,6 +368,7 @@ export class MapScene extends Phaser.Scene {
 
   _applyPartyVisibility(reveal = false) {
     const party = PartySystem.getParty(this.game.registry);
+    this._syncExtraFollowers(party);
     [[this.brawler, 'companion_brawler'], [this.healer, 'companion_healer']].forEach(([u, id]) => {
       u._hidden = !party.includes(id);
       const vis = !u._hidden;
@@ -366,6 +379,28 @@ export class MapScene extends Phaser.Scene {
         if (u._container) u._container.setVisible(vis);
       }
     });
+  }
+
+  /**
+   * Остальные спутники отряда (Хольт, Тисс, Мирко, Бран, Ресса) идут за героем статичной фигурой
+   * с карты (листов ходьбы у них пока нет). Те, кого нет в отряде, убираются.
+   */
+  _syncExtraFollowers(party) {
+    this._extraFollowers = (this._extraFollowers || []).filter(f => {
+      if (party.includes(f.id)) return true;
+      f.unit.destroy();
+      return false;
+    });
+    party.filter(id => WAITING_SPOTS[id] && !['hero_duelist', 'companion_brawler', 'companion_healer'].includes(id))
+      .forEach(id => {
+        if (this._extraFollowers.some(f => f.id === id)) return;
+        const [, , key, heightM] = WAITING_SPOTS[id];
+        if (!this.textures.exists(key)) return;
+        const M = HEIGHTS.map;
+        const p = this.walkable.clamp(this.hero.x - 90 - this._extraFollowers.length * 40, this.hero.y);
+        const unit = new MapUnit(this, p.x, p.y, key, { height: Math.round(M.heroPx * this._charScale * heightM / M.heroM), speed: 130, idlePeriod: 3000, paperdoll: false });
+        this._extraFollowers.push({ id, unit });
+      });
   }
 
   _drawPlaceholderOverlay(cfg) {
@@ -791,7 +826,7 @@ export class MapScene extends Phaser.Scene {
         this.hero.stopMove();
         this.brawler.stopMove();
         this.healer.stopMove();
-        this._collectBookPickup(book, img, label);
+        this._collectBookPickup(book, img, label, p);
       });
 
       this._bookPickups.push({ img, label, book });
@@ -921,8 +956,13 @@ export class MapScene extends Phaser.Scene {
     return true;
   }
 
-  _collectBookPickup(book, img, label) {
+  _collectBookPickup(book, img, label, p = {}) {
     if (book.collectFlag) SaveSystem.setFlag(book.collectFlag, true, this.game.registry);
+    // Взять без спроса (поле theftFlag у подбора): свидетель запоминает, если не было разрешения allowedFlag
+    if (p.theftFlag && !(p.allowedFlag && this.game.registry.get(p.allowedFlag))) {
+      SaveSystem.setFlag(p.theftFlag, true, this.game.registry);
+      if (p.theftText) this.time.delayedCall(300, () => this._toast(p.theftText));
+    }
     this._addInventoryItem(this._bookToInventoryItem(book));
     img.destroy();
     label.destroy();
@@ -931,6 +971,10 @@ export class MapScene extends Phaser.Scene {
 
   /** Появление по флагам и условиям (блок Г): showIfFlag, hideIfFlag, showIf. */
   _npcConditionsMet(npc) {
+    if (npc.waitingFor) {
+      const reg = this.game.registry;
+      return PartySystem.getRoster(reg).includes(npc.waitingFor) && !PartySystem.getParty(reg).includes(npc.waitingFor);
+    }
     if (npc.showIfFlag && !this.game.registry.get(npc.showIfFlag)) return false;
     if (npc.hideIfFlag && this.game.registry.get(npc.hideIfFlag)) return false;
     if (npc.showIf && this._ws && !checkRequires(npc.showIf, this._ws).ok) return false;
@@ -953,8 +997,23 @@ export class MapScene extends Phaser.Scene {
     this._spawnNPCs(MAP_CONFIGS[this.mapKey]);
   }
 
+  /** Спутники в запасе сидят в зале «Хромого Лося»; клик открывает выбор, кто идёт в отряде. */
+  _waitingCompanionNpcs() {
+    if (this.mapKey !== 'tavern_inside') return [];
+    this._waitingNpcs = this._waitingNpcs || {};
+    return Object.entries(WAITING_SPOTS).map(([id, [x, y, spriteKey, heightM]]) => {
+      const u = unitsData.find(d => d.id === id);
+      if (!u) return null;
+      return (this._waitingNpcs[id] = this._waitingNpcs[id] || {
+        id: `waiting_${id}`, waitingFor: id, name: u.personalName || u.name, x, y, spriteKey, heightM,
+        portraitKey: `portrait_${u.spriteKey || id}`, hoverPortrait: true,
+        onTalk: () => this._showPartyManager(),
+      });
+    }).filter(Boolean);
+  }
+
   _spawnNPCs(cfg) {
-    (cfg.npcs || []).forEach(npc => {
+    [...(cfg.npcs || []), ...this._waitingCompanionNpcs()].forEach(npc => {
       if (this._npcs.some(n => n.cfg === npc)) return;   // уже на карте (повторный вызов из _refreshNpcs)
       // NPC с vanishKey исчезает навсегда после разговора (флаг сохраняется в registry)
       if (npc.vanishKey && this.game.registry.get(npc.vanishKey)) return;
@@ -1052,6 +1111,7 @@ export class MapScene extends Phaser.Scene {
         this.healer.stopMove();
         // Помечаем разговор состоявшимся - при следующем визите NPC исчезнет
         if (npc.vanishKey) this.game.registry.set(npc.vanishKey, true);
+        if (npc.onTalk) { npc.onTalk(); return; }
         if (npc.dialogue && this._runner.has(npc.dialogue)) {
           this._runner.start(npc.dialogue, npc.dialogueStart || null);
           return;
@@ -1158,7 +1218,7 @@ export class MapScene extends Phaser.Scene {
       style: ch.style || 'default',
       onSelect: () => {
         // Ставим флаг если задан
-        if (ch.setFlag) this.game.registry.set(ch.setFlag, true);
+        if (ch.setFlag) SaveSystem.setFlag(ch.setFlag, true, this.game.registry);
         if (ch.startBattle) {
           this._startBattle({
             battleId: ch.startBattle,
@@ -1451,8 +1511,8 @@ export class MapScene extends Phaser.Scene {
     const others = PartySystem.getRoster(reg).filter(id => id !== 'hero_duelist');
     const free = PartySystem.getSlots(reg) - party.length;
     const choices = others.map(id => party.includes(id)
-      ? { label: `${names[id]}: оставить в таверне`, style: 'retreat', onSelect: () => { PartySystem.bench(reg, id); this._applyPartyVisibility(true); this._showPartyManager(); } }
-      : { label: `${names[id]}: взять в отряд`, disabled: free <= 0, reason: 'нет места в отряде', onSelect: () => { PartySystem.activate(reg, id); this._applyPartyVisibility(true); this._recruit(id); this._showPartyManager(); } });
+      ? { label: `${names[id]}: оставить ждать в «Хромом Лосе»`, style: 'retreat', onSelect: () => { PartySystem.bench(reg, id); this._applyPartyVisibility(true); this._refreshNpcs(); this._showPartyManager(); } }
+      : { label: `${names[id]}: взять в отряд`, disabled: free <= 0, reason: PartySystem.getSlots(reg) < 2 ? 'место в отряде откроется на 2 уровне' : 'нет места в отряде', onSelect: () => { PartySystem.activate(reg, id); this._applyPartyVisibility(true); this._recruit(id); this._refreshNpcs(); this._showPartyManager(); } });
     choices.push({ label: 'Готово.', style: 'default', onSelect: () => SaveSystem.saveWorld(reg, this.mapKey, this.spawnId) });
     this._dialogue.show({
       portraitLeft: 'portrait_hero_duelist',
@@ -1478,7 +1538,8 @@ export class MapScene extends Phaser.Scene {
     const reg = this.game.registry;
     const where = PartySystem.recruit(reg, id);
     if (!where) return;
-    this._toast(where === 'party' ? 'В отряде новый человек' : 'Ждёт в таверне: в отряде нет места');
+    this._toast(where === 'party' ? 'В отряде новый человек'
+      : PartySystem.getSlots(reg) < 2 ? 'Ждёт в «Хромом Лосе»: место в отряде откроется на 2 уровне' : 'Ждёт в «Хромом Лосе»: в отряде нет места');
     this._applyPartyVisibility(true);
     // Новичок входит на уровне партии: экран уровней для него одного
     const lvl = PartySystem.getLevel(reg);
@@ -1849,11 +1910,11 @@ export class MapScene extends Phaser.Scene {
     //   Экран: x=0–120px, y=180–555px
     //   zoom=0.765 → world = screen/0.765
     const party = PartySystem.getParty(this.game.registry);
-    const portraits = [
-      { id: 'hero_duelist',      key: 'portrait_hero_duelist',      label: 'Дуэлянт' },
-      { id: 'companion_brawler', key: 'portrait_companion_brawler', label: 'Ворнаг' },
-      { id: 'companion_healer',  key: 'portrait_companion_healer',  label: 'Тая' },
-    ].filter(p => party.includes(p.id));
+    // Все в отряде (до четырёх): портрет по spriteKey, подпись личным именем
+    const portraits = party.map(id => {
+      const u = unitsData.find(d => d.id === id) || {};
+      return { id, key: `portrait_${u.spriteKey || id}`, label: id === 'hero_duelist' ? 'Дуэлянт' : (u.personalName || u.name || id) };
+    }).filter(p => this.textures.exists(p.key));
     // Портреты: ряд под плеером в левом верхнем углу (колонка вдоль левого края закрывала выходы с карты)
     const cardW  = 100, cardH = 100;
     const startX = 58, gapX = 110, cy = 100;

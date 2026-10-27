@@ -175,7 +175,15 @@
     "where": "зал таверны",
     "truth": null,
     "startIf": {
-      "flag": "korvin_men_in_tavern"
+      "any": [
+        {
+          "flag": "bandit_paid"
+        },
+        {
+          "flag": "bandit_intimidated"
+        }
+      ],
+      "flag": "cnt_visits_tavern_inside_3"
     },
     "doneIf": {
       "flag": "bramm_trust"
@@ -930,6 +938,33 @@
             },
             {
               "flag": "bandit_commander_spared"
+            },
+            {
+              "all": [
+                {
+                  "flag": "bandit_deal_altar"
+                },
+                {
+                  "any": [
+                    {
+                      "flag": "seal_taken"
+                    },
+                    {
+                      "flag": "seal_left"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "all": [
+                {
+                  "flag": "bandit_deal_cloaks"
+                },
+                {
+                  "flag": "cloaks_leader_named"
+                }
+              ]
             }
           ]
         }

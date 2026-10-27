@@ -495,7 +495,8 @@
             "choices": [
               {
                 "label": "Запомнить следы.",
-                "style": "default"
+                "style": "default",
+                "setFlag": "dog_tracks_seen"
               }
             ]
           },
@@ -831,7 +832,10 @@
         "y": 426,
         "height": 32,
         "depth": 445,
-        "label": "Устав дорожных домов"
+        "label": "Устав дорожных домов",
+        "theftFlag": "mira_saw_theft",
+        "allowedFlag": "book_taken_with_permission",
+        "theftText": "Мира видела, как вы взяли книгу со стойки."
       }
     ],
     "torches": [

@@ -146,6 +146,7 @@ export class LoadingScene extends Phaser.Scene {
     img('map_guard',             'maps/characters/guard.png');
     img('map_archer_guard',      'maps/characters/archer_guard.png');
     img('map_recruit',           'maps/characters/recruit.png');
+    img('map_holt',              'maps/characters/holt_map_v2.png');   // Хольт в отряде: стоячая фигура (assets/generated/holt_map)
 
     // Иконки скиллов и действий (dark_rpg_icons)
     img('icon_shield',         'ui/icon_shield.png');
