@@ -4,7 +4,8 @@
 python3 tools/night_cut.py spec.json
 spec: {"slug": "brawler", "anim": "attack", "base": "brawler/k_battle.png",
        "segments": [{"clip": "brawler/clips/attack_v1.mp4", "from": 0, "to": 95, "frames": 26}],
-       "loop": false, "warm": false, "drop": [], "target": "battle"|"map", "body": 300, "ver": 1}
+       "loop": false, "warm": false, "drop": [], "target": "battle"|"map", "body": 300, "ver": 1,
+       "left": 0.85, "right": 1.0, "top": 0.22, "bottom": 0.03}   поля рамки в долях роста фигуры
 Пути от assets/generated. from/to: номера кадров клипа (24 к/с), frames: сколько кадров взять (равномерно).
 Рамка (общая для всех анимаций персонажа) считается по базовой позе, поэтому ноги во всех анимациях
 стоят в одной точке, а масштаб одинаковый.
@@ -75,7 +76,7 @@ def clean(a, warm):
     return a.clip(0, 255).astype(np.uint8)
 
 
-def base_box(base_png, left=0.85, right=1.0, top=0.22):
+def base_box(base_png, left=0.85, right=1.0, top=0.22, bottom=0.03):
     """Рамка персонажа в координатах видео 1280x720 по базовой позе."""
     im = Image.open(base_png).convert("RGB").resize((1280, 720), Image.LANCZOS)
     a = key(im)[..., 3] > 128
@@ -86,7 +87,7 @@ def base_box(base_png, left=0.85, right=1.0, top=0.22):
     fx = (feet.min() + feet.max()) / 2
     # запас: справа больше (удары вперёд), слева на падение, сверху на поднятое оружие
     bx0 = max(0, int(fx - left * bh)); bx1 = min(1280, int(fx + right * bh))
-    by0 = max(0, int(y0 - top * bh)); by1 = min(720, int(y1 + 0.03 * bh) + 2)
+    by0 = max(0, int(y0 - top * bh)); by1 = min(720, int(y1 + bottom * bh) + 2)
     return dict(box=[bx0, by0, bx1, by1], body=int(bh), feet_x=float(fx), feet_y=int(y1))
 
 
@@ -112,7 +113,7 @@ def qa_sheet(frames, path, bg, per=8, scale=0.8):
 
 def main(spec):
     slug, anim, ver = spec["slug"], spec["anim"], spec.get("ver", 1)
-    bx = base_box(os.path.join(GEN, spec["base"]), spec.get("left", 0.85), spec.get("right", 1.0), spec.get("top", 0.22))
+    bx = base_box(os.path.join(GEN, spec["base"]), spec.get("left", 0.85), spec.get("right", 1.0), spec.get("top", 0.22), spec.get("bottom", 0.03))
     x0, y0, x1, y1 = bx["box"]
     s = spec.get("body", 300) / bx["body"]
     W, H = int((x1 - x0) * s), int((y1 - y0) * s)

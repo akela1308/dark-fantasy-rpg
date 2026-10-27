@@ -37,15 +37,15 @@
     "hold": true
    },
    "hit": {
-    "file": "sprites/battle/adventurer_hit_v1.webp",
-    "frameWidth": 484,
+    "file": "sprites/battle/adventurer_hit_v2.webp",
+    "frameWidth": 583,
     "frameHeight": 328,
     "frames": 14,
     "fps": 24,
-    "originX": 0.5275,
+    "originX": 0.6084,
     "originY": 0.9758,
-    "bodyHeight": 300,
-    "key": "adventurer_hit_v1"
+    "bodyHeight": 300.0,
+    "key": "adventurer_hit_v2"
    },
    "idle": {
     "file": "sprites/battle/adventurer_idle_v1.webp",
@@ -313,15 +313,15 @@
     "hitFrame": 14
    },
    "death": {
-    "file": "sprites/battle/assassin_undead_death_v1.webp",
+    "file": "sprites/battle/assassin_undead_death_v2.webp",
     "frameWidth": 601,
-    "frameHeight": 331,
+    "frameHeight": 338,
     "frames": 30,
     "fps": 24,
     "originX": 0.6357,
-    "originY": 0.9731,
-    "bodyHeight": 300,
-    "key": "assassin_undead_death_v1",
+    "originY": 0.953,
+    "bodyHeight": 300.0,
+    "key": "assassin_undead_death_v2",
     "hold": true
    },
    "hit": {
@@ -504,15 +504,15 @@
     "hold": true
    },
    "hit": {
-    "file": "sprites/battle/bandit_brawler_hit_v1.webp",
-    "frameWidth": 510,
+    "file": "sprites/battle/bandit_brawler_hit_v2.webp",
+    "frameWidth": 603,
     "frameHeight": 339,
     "frames": 14,
     "fps": 24,
-    "originX": 0.4134,
+    "originX": 0.3497,
     "originY": 0.9796,
-    "bodyHeight": 300,
-    "key": "bandit_brawler_hit_v1"
+    "bodyHeight": 300.0,
+    "key": "bandit_brawler_hit_v2"
    },
    "idle": {
     "file": "sprites/battle/bandit_brawler_idle_v1.webp",
@@ -559,27 +559,27 @@
     "hitFrame": 10
    },
    "death": {
-    "file": "sprites/battle/bandit_commander_death_v1.webp",
+    "file": "sprites/battle/bandit_commander_death_v2.webp",
     "frameWidth": 607,
-    "frameHeight": 336,
+    "frameHeight": 342,
     "frames": 30,
     "fps": 24,
     "originX": 0.3579,
-    "originY": 0.9735,
-    "bodyHeight": 300,
-    "key": "bandit_commander_death_v1",
+    "originY": 0.9564,
+    "bodyHeight": 300.0,
+    "key": "bandit_commander_death_v2",
     "hold": true
    },
    "hit": {
-    "file": "sprites/battle/bandit_commander_hit_v1.webp",
-    "frameWidth": 517,
+    "file": "sprites/battle/bandit_commander_hit_v2.webp",
+    "frameWidth": 608,
     "frameHeight": 336,
     "frames": 14,
     "fps": 24,
-    "originX": 0.4203,
+    "originX": 0.3574,
     "originY": 0.9735,
-    "bodyHeight": 300,
-    "key": "bandit_commander_hit_v1"
+    "bodyHeight": 300.0,
+    "key": "bandit_commander_hit_v2"
    },
    "idle": {
     "file": "sprites/battle/bandit_commander_idle_v1.webp",
@@ -807,27 +807,27 @@
     "hitFrame": 6
    },
    "death": {
-    "file": "sprites/battle/cleaning_girl_death_v1.webp",
-    "frameWidth": 628,
+    "file": "sprites/battle/cleaning_girl_death_v2.webp",
+    "frameWidth": 640,
     "frameHeight": 345,
     "frames": 30,
     "fps": 24,
-    "originX": 0.379,
+    "originX": 0.3719,
     "originY": 0.971,
-    "bodyHeight": 300,
-    "key": "cleaning_girl_death_v1",
+    "bodyHeight": 300.0,
+    "key": "cleaning_girl_death_v2",
     "hold": true
    },
    "hit": {
-    "file": "sprites/battle/cleaning_girl_hit_v1.webp",
-    "frameWidth": 538,
+    "file": "sprites/battle/cleaning_girl_hit_v2.webp",
+    "frameWidth": 640,
     "frameHeight": 345,
     "frames": 14,
     "fps": 24,
-    "originX": 0.4424,
+    "originX": 0.3719,
     "originY": 0.971,
-    "bodyHeight": 300,
-    "key": "cleaning_girl_hit_v1"
+    "bodyHeight": 300.0,
+    "key": "cleaning_girl_hit_v2"
    },
    "idle": {
     "file": "sprites/battle/cleaning_girl_idle_v1.webp",
@@ -1417,15 +1417,15 @@
     "hold": true
    },
    "hit": {
-    "file": "sprites/battle/dwarf_beer3_hit_v1.webp",
-    "frameWidth": 528,
+    "file": "sprites/battle/dwarf_beer3_hit_v2.webp",
+    "frameWidth": 604,
     "frameHeight": 340,
     "frames": 13,
     "fps": 24,
-    "originX": 0.4335,
+    "originX": 0.379,
     "originY": 0.9893,
-    "bodyHeight": 300,
-    "key": "dwarf_beer3_hit_v1"
+    "bodyHeight": 300.0,
+    "key": "dwarf_beer3_hit_v2"
    },
    "idle": {
     "file": "sprites/battle/dwarf_beer3_idle_v1.webp",
@@ -1494,15 +1494,15 @@
     "hitFrame": 6
    },
    "death": {
-    "file": "sprites/battle/forest_bear_death_v1.webp",
+    "file": "sprites/battle/forest_bear_death_v2.webp",
     "frameWidth": 588,
-    "frameHeight": 320,
+    "frameHeight": 331,
     "frames": 30,
     "fps": 24,
     "originX": 0.466,
-    "originY": 0.9706,
-    "bodyHeight": 300,
-    "key": "forest_bear_death_v1",
+    "originY": 0.9383,
+    "bodyHeight": 300.0,
+    "key": "forest_bear_death_v2",
     "hold": true
    },
    "hit": {
@@ -1640,15 +1640,15 @@
     "hold": true
    },
    "hit": {
-    "file": "sprites/battle/guard_hit_v1.webp",
-    "frameWidth": 553,
+    "file": "sprites/battle/guard_hit_v2.webp",
+    "frameWidth": 621,
     "frameHeight": 345,
     "frames": 14,
     "fps": 24,
-    "originX": 0.4595,
+    "originX": 0.4092,
     "originY": 0.9737,
-    "bodyHeight": 300,
-    "key": "guard_hit_v1"
+    "bodyHeight": 300.0,
+    "key": "guard_hit_v2"
    },
    "idle": {
     "file": "sprites/battle/guard_idle_v1.webp",
@@ -2052,15 +2052,15 @@
     "hold": true
    },
    "hit": {
-    "file": "sprites/battle/lyo_hit_v1.webp",
-    "frameWidth": 488,
+    "file": "sprites/battle/lyo_hit_v2.webp",
+    "frameWidth": 588,
     "frameHeight": 329,
     "frames": 14,
     "fps": 24,
-    "originX": 0.5233,
+    "originX": 0.6057,
     "originY": 0.9734,
-    "bodyHeight": 300,
-    "key": "lyo_hit_v1"
+    "bodyHeight": 300.0,
+    "key": "lyo_hit_v2"
    },
    "idle": {
     "file": "sprites/battle/lyo_idle_v1.webp",
@@ -2186,15 +2186,15 @@
     "hitFrame": 12
    },
    "idle": {
-    "file": "sprites/battle/mountain_king_idle_v1.webp",
-    "frameWidth": 420,
-    "frameHeight": 312,
+    "file": "sprites/battle/mountain_king_idle_v2.webp",
+    "frameWidth": 487,
+    "frameHeight": 287,
     "frames": 95,
     "fps": 24,
-    "originX": 0.4289,
-    "originY": 0.9907,
-    "bodyHeight": 300,
-    "key": "mountain_king_idle_v1",
+    "originX": 0.3403,
+    "originY": 0.9909,
+    "bodyHeight": 276.0,
+    "key": "mountain_king_idle_v2",
     "loop": true
    },
    "power": {
@@ -2646,15 +2646,15 @@
     "hold": true
    },
    "hit": {
-    "file": "sprites/battle/swamp_knight_hit_v1.webp",
-    "frameWidth": 538,
+    "file": "sprites/battle/swamp_knight_hit_v2.webp",
+    "frameWidth": 640,
     "frameHeight": 348,
     "frames": 14,
     "fps": 24,
-    "originX": 0.4428,
+    "originX": 0.3723,
     "originY": 0.9727,
-    "bodyHeight": 300,
-    "key": "swamp_knight_hit_v1"
+    "bodyHeight": 300.0,
+    "key": "swamp_knight_hit_v2"
    },
    "idle": {
     "file": "sprites/battle/swamp_knight_idle_v1.webp",
