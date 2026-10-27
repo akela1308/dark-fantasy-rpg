@@ -51,6 +51,7 @@ export class Frame {
    * @param cfg.title         заголовок (пишется капителью)
    * @param cfg.depth         глубина (по умолчанию 9800)
    * @param cfg.k             масштаб орнамента (0.26)
+   * @param cfg.pad           отступ содержимого от орнамента (24)
    * @param cfg.closable      крестик и Esc (true)
    * @param cfg.modal         затемнение и перехват кликов под окном (true)
    * @param cfg.closeOnOutside клик мимо окна закрывает (true)
@@ -117,16 +118,17 @@ export class Frame {
       }
     }
 
-    // Поле содержимого: внутренний край орнамента + 24 px
+    // Поле содержимого: внутренний край орнамента + 24 px (cfg.pad для узких плашек)
+    const pad = cfg.pad ?? PAD;
     const railX = Math.round(RAIL_X * k), railY = Math.round(RAIL_Y * k);
-    let top = y0 + railY + PAD;
+    let top = y0 + railY + pad;
     if (cfg.title) {
       const t = fix(scene.add.text(s(cx), s(top - 6), caps(cfg.title), textStyle('title', s)).setOrigin(0.5, 0).setDepth(D + 5));
       const ty = top - 6 + t.height * (scene.cameras.main.zoom || 1) + 8;
-      this.divider(cx - Math.min(260, w / 2 - railX - PAD), ty, Math.min(520, w - 2 * (railX + PAD)));
+      this.divider(cx - Math.min(260, w / 2 - railX - pad), ty, Math.min(520, w - 2 * (railX + pad)));
       top = ty + 14;
     }
-    this.inner = { x: x0 + railX + PAD, y: top, w: w - 2 * (railX + PAD), h: y0 + h - railY - PAD - top };
+    this.inner = { x: x0 + railX + pad, y: top, w: w - 2 * (railX + pad), h: y0 + h - railY - pad - top };
 
     if (cfg.closable !== false) {
       const bx = x0 + w - railX - 10, by = y0 + railY + 10;
@@ -142,6 +144,12 @@ export class Frame {
     this._shutdown = () => this.close(true);
     scene.events.once('shutdown', this._shutdown);
     if (this.exclusive) open.set(scene, this);
+  }
+
+  /** Показать или спрятать окно целиком (свёрнутый лог боя). */
+  setVisible(v) {
+    this.objs.forEach(o => o.setVisible?.(v));
+    return this;
   }
 
   /** Тонкий золотой разделитель с ромбом посередине (экранные px). */

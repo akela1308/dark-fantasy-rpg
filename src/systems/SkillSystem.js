@@ -51,11 +51,11 @@ export class SkillSystem {
     }
 
     if (skill.oncePerBattle && caster._usedOnce?.has(skillId)) {
-      eventBus.emit('log', `"${skill.name}" уже использован в этом бою`);
+      eventBus.emit('log', `«${skill.name}» уже использован в этом бою`);
       return false;
     }
     if (!this._hasRequiredResources(skill, caster)) {
-      eventBus.emit('log', `Не хватает ресурса для "${skill.name}"`);
+      eventBus.emit('log', `Не хватает ресурса для «${skill.name}»`);
       return false;
     }
 
@@ -125,14 +125,14 @@ export class SkillSystem {
     if (skill.effect === 'finisher' && target) {
       const mult = 1 + (skill.finisherPerTempo || 0.5) * (ctx.tempoBefore || 0);
       landed = caster.attack(target, { ...hitOpts, mult, ignoreArmor: 1 });
-      eventBus.emit('log', `${caster.name}: "${skill.name}" (Темп ${ctx.tempoBefore})`);
+      eventBus.emit('log', `${caster.label}: «${skill.name}» (Темп ${ctx.tempoBefore})`);
     }
 
     // Лечение одной цели
     if (skill.healAmount && target && !skill.effect) {
       const amount = this.healPower(skill, caster);
       target.heal(amount);
-      eventBus.emit('log', `${caster.name} лечит ${target.name} на ${amount} HP`);
+      eventBus.emit('log', `${caster.label} → ${target.label}: +${amount} HP`);
     }
 
     // Снять статус и подлечить
@@ -142,7 +142,7 @@ export class SkillSystem {
       if (st) target.effects = target.effects.filter(e => e !== st);
       const amount = this.healPower(skill, caster);
       target.heal(amount);
-      eventBus.emit('log', `${caster.name}: "${skill.name}" для ${target.name}`);
+      eventBus.emit('log', `${caster.label}: «${skill.name}» → ${target.label}`);
     }
 
     // Лечение всех союзников долей Перевязки
@@ -150,7 +150,7 @@ export class SkillSystem {
       const base = this._skills[skill.healFrom || 'bandage'];
       const amount = Math.max(1, Math.round(this.healPower(base, caster) * (skill.healFraction || 0.5)));
       (caster._allies || [caster]).filter(u => u.isAlive).forEach(u => u.heal(amount));
-      eventBus.emit('log', `${caster.name}: "${skill.name}", все союзники +${amount} HP`);
+      eventBus.emit('log', `${caster.label}: «${skill.name}», все союзники +${amount} HP`);
     }
 
     // Слово Печати: 8 + уровень по всему заднему ряду врага, без брони
@@ -159,17 +159,17 @@ export class SkillSystem {
       const back = foes.filter(u => isActive(u) && u.position?.row === 1);
       const dmg = 8 + (caster.level || 1);
       back.forEach(u => u.takeDamage(dmg, { ignoreArmor: 1, source: caster, ranged: true }));
-      eventBus.emit('log', `${caster.name}: "${skill.name}"`);
+      eventBus.emit('log', `${caster.label}: «${skill.name}»`);
     }
 
     if (skill.effect === 'dodge_boost') {
       caster.addEffect({ type: 'dodge_boost', value: skill.effectValue, duration: skill.duration });
-      eventBus.emit('log', `${caster.name}: "${skill.name}", уклонение +${skill.effectValue * 100}%`);
+      eventBus.emit('log', `${caster.label}: «${skill.name}», уклонение +${skill.effectValue * 100}%`);
     }
 
     if (skill.effect === 'cover' && target) {
       target.addEffect({ type: 'covered_by', coveredBy: caster, duration: 1 });
-      eventBus.emit('log', `${caster.name} прикрывает ${target.name}!`);
+      eventBus.emit('log', `${caster.label} прикрывает: ${target.label}`);
     }
 
     this._applyStatuses(skill, caster, target, landed);
@@ -185,7 +185,7 @@ export class SkillSystem {
       receiver._armorBroken = (receiver._armorBroken || 0) + value;
     }
     receiver.addEffect({ type, value, duration: status.duration ?? 1, sourceId: caster.id });
-    if (status.log !== false) eventBus.emit('log', `${receiver.name}: ${status.label || type}`);
+    if (status.log !== false) eventBus.emit('log', `${receiver.label}: ${status.label || type}`);
   }
 
   _hasRequiredResources(skill, caster) {
@@ -237,7 +237,7 @@ export class SkillSystem {
       name: 'Боевой рёв',
       cooldown: 3,
       effect: (caster, target, bus) => {
-        bus.emit('log', `${caster.name} издаёт БОЕВОЙ РЁВ! Все враги усиливаются!`);
+        bus.emit('log', `${caster.label} издаёт БОЕВОЙ РЁВ! Все враги усиливаются!`);
         (caster._allies || []).filter(u => u.isAlive && u !== caster).forEach(u => {
           u.addEffect({ type: 'enraged', value: 5, duration: 2 });
         });

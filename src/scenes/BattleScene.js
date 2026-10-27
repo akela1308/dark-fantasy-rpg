@@ -646,17 +646,12 @@ export class BattleScene extends Phaser.Scene {
     const targets = isAlly
       ? this.playerUnits.filter(u => u.isAlive)
       : this.enemyUnits.filter(u => isActive(u));
-    const tint = isAlly ? 0x88FFCC : 0xFFDD55;
-    targets.forEach(u => {
-      u._sprite?.setTint?.(tint);
-    });
+    // Кольцо под ногами цели, фигура не перекрашивается
+    this.ui?.showTargets(targets, isAlly);
   }
 
   _clearTargetHighlight() {
-    [...(this.playerUnits || []), ...(this.enemyUnits || [])].forEach(u => {
-      u._sprite?.clearTint?.();
-      if (u.surrendered) u._sprite?.setTint?.(0x777777);
-    });
+    this.ui?.clearTargets();
   }
 
   _onEnemyClick(target) {
@@ -755,7 +750,7 @@ export class BattleScene extends Phaser.Scene {
       this._afterPlayerAction();
     } else {
       this._pendingSkill = skillId;
-      eventBus.emit('log', `Выберите цель для "${sk.name}"`);
+      eventBus.emit('log', `«${sk.name}»: выберите цель`);
       this._highlightTargets(sk.targetType);
       this.ui.update();
     }

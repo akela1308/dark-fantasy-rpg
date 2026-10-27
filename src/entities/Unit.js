@@ -13,6 +13,7 @@ export class Unit {
   constructor(data) {
     this.id       = data.id;
     this.name     = data.name;
+    this.personalName = data.personalName || null;   // личное имя спутника («Ворнаг»)
     this.type     = data.type; // 'player' | 'enemy'
     this.hp       = data.hp;
     this.maxHp    = data.maxHp;
@@ -59,6 +60,9 @@ export class Unit {
     this._reactionUsed = false;
     this._allies    = null;
   }
+  /** Имя для лога и окон: личное имя спутника, иначе название юнита. */
+  get label() { return this.personalName || this.name; }
+
 
   // --- Урон ---
   takeDamage(amount, opts = {}) {
@@ -68,13 +72,13 @@ export class Unit {
     const cover = this.effects.find(e => e.type === 'covered_by' && e.coveredBy?.isAlive);
     if (cover) {
       this.effects = this.effects.filter(e => e !== cover);
-      eventBus.emit('log', `${cover.coveredBy.name} принимает удар вместо ${this.name}!`);
+      eventBus.emit('log', `${cover.coveredBy.label} принимает удар на себя`);
       return cover.coveredBy.takeDamage(amount, { ...opts, coveredAlly: this });
     }
 
     const dodge = this.effects.find(e => e.type === 'dodge_boost');
     if (dodge && Math.random() < dodge.value) {
-      eventBus.emit('log', `${this.name} уклоняется!`);
+      eventBus.emit('log', `${this.label} уклоняется!`);
       eventBus.emit('unit_missed', { unit: this });
       return 0;
     }
@@ -117,7 +121,7 @@ export class Unit {
     if (!src || opts.reaction || !src.isAlive || src.ranged || opts.ranged) return;
     if (!this.passives.includes('punish_intruders') || this._reactionUsed || !isActive(this)) return;
     this._reactionUsed = true;
-    eventBus.emit('log', `${this.name}: кара непрошенным!`);
+    eventBus.emit('log', `${this.label}: кара непрошенным!`);
     this.attack(src, { reaction: true, basic: true, ignoreReach: true });
   }
 
@@ -170,7 +174,7 @@ export class Unit {
     const atk = { accuracy: this.accuracy + (opts.accuracyBonus || 0), speed: effectiveSpeed(this) };
     const tgt = { speed: effectiveSpeed(target) };
     if (!opts.cannotMiss && !challenged && !rollHit(atk, tgt)) {
-      eventBus.emit('log', `${this.name} промахивается по ${target.name}!`);
+      eventBus.emit('log', `${this.label} → ${target.label}: промах`);
       eventBus.emit('unit_missed', { unit: target });
       target._reactToMiss?.(this, opts);
       return 0;
@@ -197,8 +201,8 @@ export class Unit {
       reaction: opts.reaction, ranged: rangedHit,
     });
     const msg = isCrit
-      ? `💥 ${this.name} КРИТ по ${target.name}: ${actual} урона!`
-      : `${this.name} атакует ${target.name}: ${actual} урона`;
+      ? `${this.label} → ${target.label}: −${actual}, крит!`
+      : `${this.label} → ${target.label}: −${actual}`;
     eventBus.emit('log', msg);
 
     if (this.lifesteal > 0 && actual > 0) this.heal(this.lifesteal);
@@ -215,7 +219,7 @@ export class Unit {
     if (opts.basic && !opts.reaction && !target.isAlive && (this.commanderTraits || []).includes('second_strike') && !this._secondStrikeUsed) {
       this._secondStrikeUsed = true;
       this._extraAction = true;
-      eventBus.emit('log', `${this.name}: второй выпад!`);
+      eventBus.emit('log', `${this.label}: второй выпад!`);
     }
     return actual;
   }
@@ -225,7 +229,7 @@ export class Unit {
     if (opts.reaction || !this.passives.includes('riposte') || this._reactionUsed) return;
     if (!isActive(this) || !attacker.isAlive || attacker.ranged || opts.ignoreRows) return;
     this._reactionUsed = true;
-    eventBus.emit('log', `${this.name}: ответный выпад!`);
+    eventBus.emit('log', `${this.label}: ответный выпад!`);
     this.attack(attacker, { reaction: true, basic: true, ignoreRows: true });
   }
 
@@ -294,7 +298,7 @@ export class Unit {
     if (this.regen > 0 && this.isAlive && this.hp < this.maxHp) {
       const amount = Math.max(1, Math.round(this.maxHp * this.regen / 100));
       this.heal(amount);
-      eventBus.emit('log', `${this.name} восстанавливает ${amount} HP (регенерация)`);
+      eventBus.emit('log', `${this.label} восстанавливает ${amount} HP (регенерация)`);
     }
   }
 

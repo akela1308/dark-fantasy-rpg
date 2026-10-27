@@ -2,7 +2,7 @@
   {
     "id": "rapier_strike",
     "name": "Укол в уязвимость",
-    "description": "Точный удар рапирой. Урон ×1.8, метка на 2 хода, +1 Темп",
+    "description": "Точный удар рапирой. Урон ×1,8, метка на 2 хода, +1 Темп",
     "type": "active",
     "targetType": "enemy_single",
     "cooldown": 1,
@@ -83,7 +83,7 @@
   {
     "id": "heavy_strike",
     "name": "Тяжёлый удар",
-    "description": "Мощный удар дубиной на накопленной Мощи. Урон ×1.6",
+    "description": "Мощный удар дубиной на накопленной Мощи. Урон ×1,6",
     "type": "active",
     "targetType": "enemy_single",
     "cooldown": 1,
@@ -126,7 +126,7 @@
   {
     "id": "last_argument_shot",
     "name": "Последний Аргумент",
-    "description": "Тратит весь Темп: урон ×(1 + 0.5 × Темп), без учёта брони. Раз в бой",
+    "description": "Тратит весь Темп: урон ×(1 + 0,5 × Темп), без учёта брони. Раз в бой",
     "type": "active",
     "targetType": "enemy_single",
     "cooldown": 0,
@@ -210,7 +210,7 @@
   {
     "id": "enemy_heavy",
     "name": "Тяжёлый удар",
-    "description": "Удар ×1.5",
+    "description": "Удар ×1,5",
     "type": "active",
     "targetType": "enemy_single",
     "cooldown": 2,

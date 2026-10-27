@@ -28,6 +28,7 @@ import { MapEncounters } from '../systems/MapEncounters.js';
 import { checkRequires } from '../systems/DialogueConditions.js';
 import { JournalWindow } from '../ui/JournalWindow.js';
 import { Frame } from '../ui/Frame.js';
+import { Tooltip } from '../ui/Tooltip.js';
 import { repLines } from '../systems/Reputation.js';
 import { Sfx } from '../systems/Sfx.js';
 import traitsData from '../data/commanderTraits.json';
@@ -2414,29 +2415,6 @@ export class MapScene extends Phaser.Scene {
     // Шипы сверху смещают визуальный центр ячеек вниз на ~9% высоты панели
     const ICON_CY = BAR_Y + BAR_H * 0.09;
     const ICON_SZ = s(40);  // 40 canvas px для иконок
-    const tooltipPad = s(7);
-    const makeTooltip = (x, y, textSource) => {
-      const txt = this.add.text(x, y, '', {
-        fontSize: `${s(11)}px`, color: '#F0E0B0', fontFamily: 'serif',
-        stroke: '#000000', strokeThickness: s(2),
-      }).setOrigin(0.5).setDepth(DEPTH + 11).setScrollFactor(0).setVisible(false);
-      const bg = this.add.rectangle(x, y, s(120), s(26), 0x000000, 0.9)
-        .setStrokeStyle(s(1), 0x6f5728, 0.9)
-        .setDepth(DEPTH + 10).setScrollFactor(0).setVisible(false);
-      return {
-        show: () => {
-          txt.setText(typeof textSource === 'function' ? textSource() : textSource);
-          bg.setSize(txt.width + tooltipPad * 2, txt.height + tooltipPad * 2);
-          bg.setVisible(true);
-          txt.setVisible(true);
-        },
-        hide: () => {
-          bg.setVisible(false);
-          txt.setVisible(false);
-        },
-      };
-    };
-
     SLOTS.forEach((slot, i) => {
       const sx = Math.round(imgStartX + SLOT_FRACTIONS[i] * imgW);
       const sy = ICON_CY;
@@ -2450,16 +2428,21 @@ export class MapScene extends Phaser.Scene {
         .setDisplaySize(ICON_SZ, ICON_SZ)
         .setDepth(DEPTH + 4).setScrollFactor(0).setAlpha(baseAlpha);
 
-      const label = this.add.text(sx, sy + s(30), slot.label, {
-        fontSize: `${s(8)}px`,
+      const label = this.add.text(sx, sy + s(31), slot.label, {
+        fontSize: `${s(11)}px`,
         color: enabled || i === 0 ? '#C9A84C' : '#796941',
-        fontFamily: 'serif',
-        stroke: '#000000', strokeThickness: s(2),
+        fontFamily: 'Georgia, "Times New Roman", serif',
+        stroke: '#000000', strokeThickness: s(3),
       }).setOrigin(0.5, 0.5).setDepth(DEPTH + 5).setScrollFactor(0);
 
       const glow = this.add.rectangle(sx, sy, SLOT_W_WORLD, SLOT_W_WORLD, 0xC9A84C, 0)
         .setDepth(DEPTH + 2).setScrollFactor(0);
-      const tooltip = makeTooltip(sx, sy - SLOT_W_WORLD * 0.72, slot.tooltip);
+      const tip = new Tooltip(this, DEPTH + 10);
+      const tooltip = {
+        show: () => tip.show(sx * zoom, (sy - SLOT_W_WORLD * 0.55) * zoom,
+          { title: slot.label, body: typeof slot.tooltip === 'function' ? slot.tooltip() : slot.tooltip }),
+        hide: () => tip.hide(),
+      };
 
       hit.setInteractive({ useHandCursor: enabled });
       hit.on('pointerover', () => {

@@ -1,81 +1,182 @@
-import { COLORS, GRID } from '../utils/constants.js';
-import { BattleGrid }   from '../systems/BattleGrid.js';
 import eventBus from '../utils/eventBus.js';
 import skillsData from '../data/skills.json';
+import { Frame } from './Frame.js';
+import { Tooltip } from './Tooltip.js';
+import { FONT, COLOR, HEX } from './Theme.js';
 
 /**
- * UIManager - HP-бары, лог, кнопки действий, подсветка хода.
+ * UIManager: интерфейс боя (этап 6).
+ * Внизу слева бронзовая полоса с нишами (из bottom_panel1, как на карте): навыки, «Защита», «Пропустить».
+ * Имена навыков в подсказке, под нишей только заряды или ожидание. Внизу справа лог в рамке окна:
+ * урон красным, лечение зелёным. Сверху очередь ходов портретами. Цели навыка отмечены кольцом под ногами.
  */
+const SKILL_ICONS = {
+  rapier_strike:  'icon_rapier_strike',
+  dueling_stance: 'icon_dueling_stance',
+  pistol_shot:    'icon_pistol',
+  last_argument_shot: 'icon_pistol',
+  shield_cover:   'icon_shield',
+  heavy_strike:   'icon_might',
+  bandage:        'icon_heart',
+  aimed_shot:     'icon_bow',
+  challenge:      'icon_dual_sword',
+  bitter_poultice: 'icon_drop',
+  resin_brew:     'icon_healing_potion',
+  dope_smoke:     'icon_drop',
+};
+
+// Полоса навыков: куски bottom_panel1.png (866×288). Столбы между нишами на x 121, 250, 377, 504, 622
+const BAR = { key: 'bottom_panel1', H: 150, X: 120, left: [0, 121], niche: [121, 128], right: [622, 244], nicheCx: 64, lastCx: 84 };
+const ICON = 46;
+
+// Лог боя
+const LOG = { x: 632, y: 588, w: 548, h: 130, lines: 5, step: 15 };
+
 export class UIManager {
   constructor(scene) {
     this.scene = scene;
-    this._logLines   = [];
+    this._log = [];
+    this._logTexts = [];
     this._actionBtns = [];
-    this._borders    = [];
+    this._borders = [];
+    this._rings = [];
+    this._queueObjs = [];
+    this.tip = new Tooltip(scene, 9000);
   }
 
   init(playerUnits, enemyUnits, turnManager) {
     this.playerUnits = playerUnits;
     this.enemyUnits  = enemyUnits;
     this.turnManager = turnManager;
-
+    this._ensureBarFrames();
     this._createLogPanel();
-    this._createActionPanel();
     this._createTurnLabel();
+  }
+
+  _ensureBarFrames() {
+    const tex = this.scene.textures.exists(BAR.key) ? this.scene.textures.get(BAR.key) : null;
+    if (!tex || tex.has('bar_l')) return;
+    tex.add('bar_l', 0, BAR.left[0], 0, BAR.left[1], 288);
+    tex.add('bar_n', 0, BAR.niche[0], 0, BAR.niche[1], 288);
+    tex.add('bar_r', 0, BAR.right[0], 0, BAR.right[1], 288);
   }
 
   // ── Лог событий ───────────────────────────────────────────────────────
 
   _createLogPanel() {
-    const x = 660, y = 600, w = 600, h = 120;  // лог - справа
-    this._logBg = this.scene.add.rectangle(x + w/2, y + h/2, w, h, 0x07060a, 0.9)
-      .setStrokeStyle(1, 0x3a3020, 0.6).setDepth(3);
-    this.scene.add.text(x + 10, y + 6, 'ЛОГ БОЯ', { fontSize: '11px', color: '#555577', fontFamily: 'serif' }).setScrollFactor(0).setDepth(3);
-
-    // Кнопка свернуть/развернуть
-    this._logCollapsed = false;
-    const toggleBtn = this.scene.add.text(x + w - 14, y + 6, '≡', {
-      fontSize: '14px', color: '#888877', fontFamily: 'serif',
-    }).setOrigin(1, 0).setDepth(5).setInteractive({ useHandCursor: true });
-    toggleBtn.on('pointerover', () => toggleBtn.setColor('#FFD700'));
-    toggleBtn.on('pointerout',  () => toggleBtn.setColor(this._logCollapsed ? '#FFD700' : '#888877'));
-    toggleBtn.on('pointerdown', () => {
-      this._logCollapsed = !this._logCollapsed;
-      this._logContainer.setVisible(!this._logCollapsed);
-      this._logBg.setAlpha(this._logCollapsed ? 0.3 : 0.9);
-      toggleBtn.setColor(this._logCollapsed ? '#FFD700' : '#888877');
+    const sc = this.scene;
+    this._logFrame = new Frame(sc, {
+      x: LOG.x + LOG.w / 2, y: LOG.y + LOG.h / 2, w: LOG.w, h: LOG.h, k: 0.12, pad: 8,
+      depth: 3, modal: false, closable: false, exclusive: false, medal: false,
     });
-
-    this._logContainer = this.scene.add.container(x + 10, y + 22).setDepth(3);
-    for (let i = 0; i < 5; i++) {
-      const t = this.scene.add.text(0, i * 19, '', { fontSize: '13px', color: '#AAAAAA', fontFamily: 'serif' });
-      this._logLines.push(t);
-      this._logContainer.add(t);
+    const inner = this._logFrame.inner;
+    for (let i = 0; i < LOG.lines; i++) {
+      const t = sc.add.text(inner.x, inner.y - 1 + i * LOG.step, '', {
+        fontFamily: FONT, fontSize: '13px', color: COLOR.bone, stroke: '#000', strokeThickness: 2,
+        fixedWidth: inner.w - 24,
+      }).setDepth(10);
+      this._logTexts.push(t);
     }
+    // Свернуть / развернуть: свёрнутый лог оставляет только кнопку-нишу
+    this._logCollapsed = false;
+    const bx = LOG.x + LOG.w - 30, by = LOG.y + 22;
+    const btnBg = sc.add.rectangle(bx, by, 26, 22, 0x0d0b0f, 0.9).setStrokeStyle(1, HEX.gold, 0.6).setDepth(11)
+      .setInteractive({ useHandCursor: true });
+    const btn = sc.add.text(bx, by, '≡', { fontFamily: FONT, fontSize: '15px', color: COLOR.gold }).setOrigin(0.5).setDepth(12);
+    btnBg.on('pointerover', () => { btn.setColor(COLOR.goldHi); this.tip.show(bx, by - 14, { title: 'Лог боя', action: this._logCollapsed ? 'Клик: развернуть' : 'Клик: свернуть' }); });
+    btnBg.on('pointerout', () => { btn.setColor(COLOR.gold); this.tip.hide(); });
+    btnBg.on('pointerdown', () => {
+      this._logCollapsed = !this._logCollapsed;
+      this._logFrame.setVisible(!this._logCollapsed);
+      this._logTexts.forEach(t => t.setVisible(!this._logCollapsed));
+      this.tip.hide();
+    });
+    this._logBtn = [btnBg, btn];
   }
 
   appendLog(msg) {
-    // Сдвиг строк вверх
-    for (let i = 0; i < this._logLines.length - 1; i++) {
-      this._logLines[i].setText(this._logLines[i + 1].text);
-    }
-    this._logLines[this._logLines.length - 1].setText('› ' + msg);
+    this._log.push(String(msg));
+    if (this._log.length > LOG.lines) this._log.shift();
+    this._logTexts.forEach((t, i) => {
+      const m = this._log[i - (LOG.lines - this._log.length)] ?? '';
+      t.setText(m ? `› ${m}` : '').setColor(this._logColor(m));
+    });
   }
 
-  // ── Панель действий ───────────────────────────────────────────────────
-
-  _createActionPanel() {
-    const x = 20, y = 600, w = 600, h = 120;  // скиллы - слева
-    this.scene.add.rectangle(x + w/2, y + h/2, w, h, 0x07060a, 0.9)
-      .setStrokeStyle(1, 0x3a3020, 0.6).setDepth(3);
-
-    this._actionPanel = this.scene.add.container(x + 10, y + 10).setDepth(3);
+  // Цвет строки: урон красным, лечение зелёным, промах и уклонение серым
+  _logColor(m) {
+    if (/−\d|урона|КРИТ/.test(m)) return COLOR.damage;
+    if (/\+\d+ HP|лечит|восстанавливает/.test(m)) return COLOR.heal;
+    if (/промах|уклоняется|недоступен|пропускает/.test(m)) return COLOR.muted;
+    return COLOR.bone;
   }
+
+  // ── Очередь ходов и подпись ───────────────────────────────────────────
 
   _createTurnLabel() {
-    this._turnLabel = this.scene.add.text(640, 30, '', {
-      fontFamily: 'serif', fontSize: '18px', color: '#E8E8E8',
-    }).setOrigin(0.5, 0).setDepth(3);
+    this._turnLabel = this.scene.add.text(640, 62, '', {
+      fontFamily: FONT, fontSize: '16px', color: COLOR.gold, stroke: '#000', strokeThickness: 3, letterSpacing: 1,
+    }).setOrigin(0.5, 0).setDepth(30);
+  }
+
+  _updateTurnLabel() {
+    const unit = this.turnManager.active;
+    if (!unit) return;
+    const isPlayer = this.turnManager.isPlayerTurn();
+    this._turnLabel.setText(isPlayer ? `Ход: ${unit.label}` : `Ход противника: ${unit.label}`);
+    this._turnLabel.setColor(isPlayer ? COLOR.gold : '#e05050');
+  }
+
+  /** Портреты по порядку ходов: текущий первым и крупнее. */
+  _updateQueue() {
+    this._queueObjs.forEach(o => o.destroy());
+    this._queueObjs = [];
+    const list = this._upcoming(9);
+    if (!list.length) return;
+    const sc = this.scene;
+    const big = 48, small = 38, gap = 6;
+    const total = big + (list.length - 1) * (small + gap) + gap;
+    let x = 640 - total / 2;
+    list.forEach((u, i) => {
+      const sz = i === 0 ? big : small;
+      const cx = x + sz / 2, cy = 8 + big / 2;
+      const color = u.type === 'player' ? 0x5fbf7a : 0xc04a3a;
+      const bg = sc.add.rectangle(cx, cy, sz, sz, 0x0d0b0f, 0.92).setStrokeStyle(i === 0 ? 3 : 2, i === 0 ? HEX.gold : color, 1).setDepth(30);
+      this._queueObjs.push(bg);
+      const key = `portrait_${u.spriteKey ?? u.id}`;
+      if (sc.textures.exists(key)) {
+        const img = sc.add.image(0, 0, key).setOrigin(0).setDepth(31);
+        // Квадрат из середины портрета (без рамки по краям)
+        const fw = img.width, fh = img.height;
+        const side = Math.min(fw, fh) * 0.62;
+        const cxp = fw / 2 - side / 2, cyp = fh * 0.42 - side / 2;
+        const k = (sz - 4) / side;
+        img.setCrop(cxp, Math.max(0, cyp), side, side).setScale(k);
+        img.setPosition(cx - (sz - 4) / 2 - cxp * k, cy - (sz - 4) / 2 - Math.max(0, cyp) * k);
+        this._queueObjs.push(img);
+      } else {
+        this._queueObjs.push(sc.add.text(cx, cy, (u.label || '?')[0], {
+          fontFamily: FONT, fontSize: `${Math.round(sz * 0.5)}px`, color: COLOR.bone,
+        }).setOrigin(0.5).setDepth(31));
+      }
+      const hit = sc.add.zone(cx, cy, sz, sz).setDepth(32).setInteractive();
+      hit.on('pointerover', () => this.tip.show(cx, cy + sz / 2, { title: u.label, body: `HP ${u.hp}/${u.maxHp}` }, { below: true }));
+      hit.on('pointerout', () => this.tip.hide());
+      this._queueObjs.push(hit);
+      x += sz + gap;
+    });
+  }
+
+  _upcoming(n) {
+    const tm = this.turnManager;
+    const alive = u => u.isAlive && !u.surrendered && !u.fled;
+    const out = [];
+    for (let i = tm.index; i < tm.queue.length && out.length < n; i++) if (alive(tm.queue[i])) out.push(tm.queue[i]);
+    // Следующий раунд: тот же порядок по скорости
+    const next = [...(tm.all || tm.queue)].filter(alive).sort((a, b) => (b.speed || 0) - (a.speed || 0));
+    for (let i = 0; out.length < n && next.length && i < n; i++) out.push(next[i % next.length]);
+    if (out[0] !== tm.active && tm.active) out.unshift(tm.active);
+    return out.slice(0, n);
   }
 
   // ── Обновление UI ─────────────────────────────────────────────────────
@@ -83,244 +184,162 @@ export class UIManager {
   update() {
     if (this.scene.battleOver) { this.hideActions(); return; }
     this._updateTurnLabel();
+    this._updateQueue();
     this._updateActionButtons();
     this._updateBorders();
   }
 
-  _updateTurnLabel() {
-    const unit = this.turnManager.active;
-    if (!unit) return;
-    const isPlayer = this.turnManager.isPlayerTurn();
-    this._turnLabel.setText(isPlayer
-      ? `⚔ Ход: ${unit.name}`
-      : `⏳ Ход противника: ${unit.name}`
-    );
-    this._turnLabel.setColor(isPlayer ? '#C9A84C' : '#CC2222');
-  }
-
   _updateActionButtons() {
-    this._hideTooltip();
+    this.tip.hide();
     this._actionBtns.forEach(b => b.destroy());
     this._actionBtns = [];
-
     if (this.scene.battleOver || !this.turnManager.isPlayerTurn()) return;
     const unit = this.turnManager.active;
     if (!unit) return;
 
-    // Маппинг скилла → иконка
-    const SKILL_ICONS = {
-      rapier_strike:  'icon_rapier_strike',
-      dueling_stance: 'icon_dueling_stance',
-      pistol_shot:    'icon_pistol',
-      shield_cover:   'icon_might',          // боец: прикрыть
-      heavy_strike:   'icon_might',          // боец: тяжёлый удар
-      bandage:        'icon_heart',           // знахарка: перевязка
-      aimed_shot:     'icon_bow',             // лучник: прицельный выстрел
-    };
-
-    // Собираем все скиллы включая пистолет
-    const buttons = [];
     const ss = this.scene.skillSystem;
     const pending = this.scene._pendingSkill;
     const skillIds = [...unit.skills];
-    // Пистолет одной кнопкой: заряды пишутся под ней, а не отдельной кнопкой
+    // Пистолет одной кнопкой: заряды пишутся на нише, а не отдельной кнопкой
     if ((unit.resources?.pistol_charges || 0) > 0 && !skillIds.includes('pistol_shot')) skillIds.push('pistol_shot');
+    const buttons = [];
     skillIds.forEach(skillId => {
       const skill = skillsData.find(s => s.id === skillId);
       if (!skill) return;
-      const reason = ss?.unavailableReason(skillId, unit) ?? (unit.isOnCooldown(skillId) ? `КД ${unit.cooldowns[skillId]}` : null);
+      const reason = ss?.unavailableReason(skillId, unit) ?? (unit.isOnCooldown(skillId) ? `ждать ${unit.cooldowns[skillId]} х.` : null);
       const charges = skill.usesResource ? unit.resources?.[skill.usesResource] : undefined;
-      const sub = reason ?? (charges !== undefined ? `×${charges}` : null);
-      const desc = [skill.description, reason ? `Недоступно: ${reason}` : null].filter(Boolean).join('\n') || null;
-      buttons.push({ skillId, label: skill.name, desc, icon: SKILL_ICONS[skillId] || null, sub, tint: reason ? 0x444444 : null,
-        selected: pending === skillId, cb: reason ? null : () => eventBus.emit('skill_selected', skillId) });
+      const cd = unit.isOnCooldown?.(skillId) ? unit.cooldowns[skillId] : 0;
+      const badge = cd ? `⌛${cd}` : charges !== undefined ? `×${charges}` : null;
+      const body = [skill.description, charges !== undefined ? `Заряды: ${charges}` : null].filter(Boolean).join('\n');
+      buttons.push({
+        icon: SKILL_ICONS[skillId] || 'icon_dual_sword', badge,
+        tip: { title: skill.name, body, action: reason ? `Недоступно: ${reason}` : pending === skillId ? 'Выбрано. Клик или Esc: отменить' : 'Клик: выбрать, затем цель' },
+        selected: pending === skillId, disabled: !!reason,
+        cb: reason ? null : () => eventBus.emit('skill_selected', skillId),
+      });
     });
-
-    // Горизонтальный ряд иконок - центр левой панели (x=20+300=320)
-    const btnSize = 64;
-    const gap     = 12;
-    const totalW  = buttons.length * (btnSize + gap) - gap;
-    const startX  = 320 - totalW / 2;
-    const btnY    = 670;
-
-    buttons.forEach((b, i) => {
-      const bx = startX + i * (btnSize + gap) + btnSize / 2;
-      this._addIconBtn(bx, btnY, b.label, b.icon, b.sub, b.tint, b.cb, b.desc, b.selected);
-    });
-
-    // Вспомогательная функция: маленькая иконка слева от текста
-    const _addMiniIcon = (x, y, key, alpha = 0.85) => {
-      if (this.scene.textures.exists(key)) {
-        const ico = this.scene.add.image(x, y, key)
-          .setDisplaySize(18, 18).setDepth(3).setAlpha(alpha);
-        this._actionBtns.push(ico);
-      }
-    };
-
-    // Кнопка Пропустить - правый край левой панели
-    _addMiniIcon(525, 616, 'icon_broken_sword', 0.6);
-    const skip = this.scene.add.text(610, 608, 'Пропустить', {
-      fontSize: '13px', color: '#666666', fontFamily: 'serif',
-    }).setOrigin(1, 0).setInteractive({ useHandCursor: true }).setDepth(3);
-    skip.on('pointerover', () => skip.setColor('#AAAAAA'));
-    skip.on('pointerout',  () => skip.setColor('#666666'));
-    skip.on('pointerdown', () => eventBus.emit('skip_turn'));
-    this._actionBtns.push(skip);
-
-    // Кнопка Защита - правый край левой панели (x=610)
     const isDefending = unit.effects.some(e => e.type === 'defending');
-    _addMiniIcon(525, 636, 'icon_shield', isDefending ? 1.0 : 0.75);
-    const defend = this.scene.add.text(610, 628, isDefending ? 'Защита ✓' : 'Защита', {
-      fontSize: '13px', color: isDefending ? '#44FF88' : '#8899AA', fontFamily: 'serif',
-    }).setOrigin(1, 0).setInteractive({ useHandCursor: true }).setDepth(3);
-    defend.on('pointerover', () => defend.setAlpha(0.7));
-    defend.on('pointerout',  () => defend.setAlpha(1));
-    defend.on('pointerdown', () => eventBus.emit('defend_action'));
-    this._actionBtns.push(defend);
+    buttons.push({
+      icon: 'icon_shield', badge: isDefending ? '✓' : null,
+      tip: { title: 'Защита', body: 'До следующего хода урон по этому бойцу вдвое меньше. Ход заканчивается.', action: 'Клик: встать в защиту' },
+      cb: () => eventBus.emit('defend_action'),
+    });
+    buttons.push({
+      icon: 'icon_broken_sword',
+      tip: { title: 'Пропустить ход', body: 'Боец ничего не делает до следующего круга.', action: 'Клик: пропустить' },
+      cb: () => eventBus.emit('skip_turn'),
+    });
 
-    // Подсказка - левый край левой панели
-    const hint = this.scene.add.text(30, 608, 'Кликни по врагу для атаки:', {
-      fontSize: '12px', color: '#555577', fontFamily: 'serif'
-    }).setDepth(3);
-    this._actionBtns.push(hint);
+    const centers = this._drawBar(buttons.length);
+    buttons.forEach((b, i) => this._niche(centers[i].x, centers[i].y, b));
+
+    // Подсказка над полосой
+    const hint = pending
+      ? `«${skillsData.find(s => s.id === pending)?.name || pending}»: выберите цель. Esc отменяет`
+      : 'Клик по врагу: обычная атака. Навык: выбрать, затем цель';
+    this._actionBtns.push(this.scene.add.text(BAR.X + 14, 720 - BAR.H + 6, hint, {
+      fontFamily: FONT, fontSize: '12px', color: pending ? COLOR.gold : COLOR.bone, stroke: '#000', strokeThickness: 3,
+    }).setOrigin(0, 1).setDepth(10));
   }
 
-  _addIconBtn(x, y, label, iconKey, sub, tint, cb, desc, selected = false) {
-    const size   = 64;
-    const active = !!cb;
+  /** Бронзовая полоса на n ниш; возвращает центры ниш (экранные px). */
+  _drawBar(n) {
+    const sc = this.scene;
+    const k = BAR.H / 288;
+    const cy = 720 - BAR.H / 2 + 2;
+    const has = sc.textures.exists(BAR.key) && sc.textures.get(BAR.key).has('bar_l');
+    const centers = [];
+    let x = BAR.X;
+    const piece = (frame, w) => {
+      if (has) this._actionBtns.push(sc.add.image(x, cy, BAR.key, frame).setOrigin(0, 0.5).setScale(k).setDepth(4).setInteractive());
+      x += w * k;
+    };
+    piece('bar_l', BAR.left[1]);
+    for (let i = 0; i < n - 1; i++) { centers.push(x + BAR.nicheCx * k); piece('bar_n', BAR.niche[1]); }
+    centers.push(x + BAR.lastCx * k);
+    piece('bar_r', BAR.right[1]);
+    const iconY = cy + BAR.H * 0.09;
+    return centers.map(cx => ({ x: cx, y: iconY }));
+  }
 
-    // Выбранный навык: золотое свечение вокруг ниши
-    if (selected) {
-      const glow = this.scene.add.rectangle(x, y, size + 8, size + 8)
-        .setStrokeStyle(3, 0xd4a832, 1).setDepth(5);
-      this.scene.tweens.add({ targets: glow, alpha: 0.45, duration: 600, yoyo: true, repeat: -1 });
+  _niche(x, y, b) {
+    const sc = this.scene;
+    const active = !!b.cb;
+    if (b.selected) {
+      const glow = sc.add.rectangle(x, y, ICON + 12, ICON + 12).setStrokeStyle(3, HEX.gold, 1).setDepth(7);
+      sc.tweens.add({ targets: glow, alpha: 0.4, duration: 600, yoyo: true, repeat: -1 });
       this._actionBtns.push(glow);
     }
-
-    // Иконка скилла (под рамкой)
-    if (iconKey && this.scene.textures.exists(iconKey)) {
-      const ico = this.scene.add.image(x, y, iconKey)
-        .setDisplaySize(size - 8, size - 8)
-        .setDepth(3)
-        .setAlpha(active ? 0.9 : 0.3);
-      if (tint) ico.setTint(tint);
+    if (sc.textures.exists(b.icon)) {
+      const ico = sc.add.image(x, y, b.icon).setDisplaySize(ICON, ICON).setDepth(5).setAlpha(active ? 0.95 : 0.35);
+      if (!active) ico.setTint(0x555555);
       this._actionBtns.push(ico);
     }
-
-    // Рамка поверх иконки
-    const frame = this.scene.add.image(x, y, 'skill_button')
-      .setDisplaySize(size, size)
-      .setDepth(4)
-      .setAlpha(active ? 1 : 0.4);
-
-    // Название скилла под кнопкой
-    const lbl = this.scene.add.text(x, y + size / 2 + 4, label, {
-      fontSize: '11px', color: active ? '#C9A84C' : '#555555', fontFamily: 'serif',
-    }).setOrigin(0.5, 0).setDepth(4);
-
-    // Подпись (КД или заряды)
-    if (sub) {
-      const s = this.scene.add.text(x, y + size / 2 + 17, sub, {
-        fontSize: '10px', color: '#888888', fontFamily: 'serif',
-      }).setOrigin(0.5, 0).setDepth(4);
-      this._actionBtns.push(s);
+    if (b.badge) {
+      this._actionBtns.push(sc.add.text(x + ICON / 2 + 1, y + ICON / 2 + 1, b.badge, {
+        fontFamily: FONT, fontSize: '12px', color: b.badge === '✓' ? '#7fcf6a' : COLOR.goldHi, stroke: '#000', strokeThickness: 3,
+      }).setOrigin(1, 1).setDepth(8));
     }
-
-    if (desc && !active) {
-      // Недоступный навык всё равно объясняет, почему
-      frame.setInteractive();
-      frame.on('pointerover', () => this._showTooltip(x, y - 42, desc));
-      frame.on('pointerout', () => this._hideTooltip());
-    }
-
-    if (active) {
-      frame.setInteractive({ useHandCursor: true });
-      frame.on('pointerover', () => {
-        frame.setAlpha(0.6);
-        if (desc) this._showTooltip(x, y - 42, desc);
-      });
-      frame.on('pointerout', () => {
-        frame.setAlpha(1);
-        this._hideTooltip();
-      });
-      frame.on('pointerdown', cb);
-    }
-
-    this._actionBtns.push(frame, lbl);
+    const hit = sc.add.rectangle(x, y, ICON + 8, ICON + 8, HEX.gold, 0).setDepth(9).setInteractive({ useHandCursor: active });
+    hit.on('pointerover', () => { if (active) hit.setFillStyle(HEX.gold, 0.12); this.tip.show(x, y - ICON / 2 - 6, b.tip); });
+    hit.on('pointerout', () => { hit.setFillStyle(HEX.gold, 0); this.tip.hide(); });
+    if (active) hit.on('pointerdown', () => { this.tip.hide(); b.cb(); });
+    this._actionBtns.push(hit);
   }
 
-
-  _showTooltip(x, y, text) {
-    this._hideTooltip();
-    const pad = 8;
-    const txt = this.scene.add.text(x, y, text, {
-      fontSize: '12px', color: '#E8E2D4', fontFamily: 'serif',
-      stroke: '#000', strokeThickness: 2,
-      wordWrap: { width: 180 },
-    }).setOrigin(0.5, 1).setDepth(20);
-
-    const b = txt.getBounds();
-    const bg = this.scene.add.rectangle(
-      b.centerX, b.centerY, b.width + pad * 2, b.height + pad * 2,
-      0x0d0b0f, 0.92
-    ).setStrokeStyle(1, 0x8a7030, 0.8).setDepth(19);
-
-    this._tooltipObjs = [bg, txt];
-  }
-
-  _hideTooltip() {
-    if (this._tooltipObjs) {
-      this._tooltipObjs.forEach(o => o.destroy());
-      this._tooltipObjs = null;
-    }
-  }
-
-  _addBtn(x, y, label, color, cb) {
-    const btn = this.scene.add.text(x, y, label, {
-      fontSize: '14px', color, fontFamily: 'serif',
-    }).setInteractive({ useHandCursor: true }).setDepth(3);
-    btn.on('pointerover', () => btn.setAlpha(0.7));
-    btn.on('pointerout',  () => btn.setAlpha(1));
-    btn.on('pointerdown', cb);
-    this._actionBtns.push(btn);
-  }
-
-  /** Конец боя: убрать кнопки, подсказку, подпись хода и кольцо активного юнита. */
+  /** Конец боя: убрать кнопки, подсказку, очередь, подпись хода и кольца. */
   hideActions() {
-    this._hideTooltip();
+    this.tip.hide();
     this._actionBtns.forEach(b => b.destroy());
     this._actionBtns = [];
     this._borders.forEach(b => b.destroy());
     this._borders = [];
+    this.clearTargets();
+    this._queueObjs.forEach(o => o.destroy());
+    this._queueObjs = [];
     this._turnLabel?.setVisible(false);
   }
 
-  // ── Подсветка активного юнита ──────────────────────────────────────────
+  // ── Кольца: активный боец и цели навыка ───────────────────────────────
 
-  highlightActive(unit) {
+  highlightActive() {
     if (this.scene.battleOver) return;
     this._updateBorders();
+  }
+
+  _ringW(unit) {
+    return unit._bodyPx ? Math.max(70, unit._bodyPx * 0.6) : (unit._sprite.displayWidth || 80);   // по фигуре, а не по кадру листа
   }
 
   _updateBorders() {
     this._borders.forEach(b => b.destroy());
     this._borders = [];
+    const unit = this.turnManager.active;
+    if (!unit?.isAlive || !unit._sprite) return;
+    const w = this._ringW(unit);
+    const gfx = this.scene.add.graphics().setDepth(1);
+    gfx.lineStyle(3, unit.type === 'player' ? 0x00ff88 : 0xff3322, 0.9);
+    gfx.strokeEllipse(unit._sprite.x, unit._sprite.y, w * 0.9, w * 0.25);
+    this._borders.push(gfx);
+  }
 
-    const active = this.turnManager.active;
-
-    [...this.playerUnits, ...this.enemyUnits].forEach(unit => {
-      if (!unit.isAlive || !unit._sprite) return;
-      const isActive = unit === active;
-      if (!isActive) return;
-      // Draw glow ring around active unit using graphics
-      const x = unit._sprite.x;
-      const y = unit._sprite.y;
-      const w = unit._bodyPx ? Math.max(70, unit._bodyPx * 0.6) : (unit._sprite.displayWidth || 80);   // по фигуре, а не по кадру листа
-      const color = unit.type === 'player' ? 0x00FF88 : 0xFF3322;
-      const gfx = this.scene.add.graphics().setDepth(1);
-      gfx.lineStyle(3, color, 0.9);
-      gfx.strokeEllipse(x, y, w * 0.9, w * 0.25);
-      this._borders.push(gfx);
+  /** Возможные цели навыка: пульсирующее кольцо под ногами (не заливка фигуры). */
+  showTargets(units, ally = false) {
+    this.clearTargets();
+    const color = ally ? 0x7fcf6a : HEX.gold;
+    units.forEach(u => {
+      if (!u._sprite) return;
+      const w = this._ringW(u);
+      const g = this.scene.add.graphics().setDepth(1);
+      g.lineStyle(2, color, 0.95).strokeEllipse(u._sprite.x, u._sprite.y, w * 1.0, w * 0.3);
+      g.lineStyle(6, color, 0.25).strokeEllipse(u._sprite.x, u._sprite.y, w * 1.0, w * 0.3);
+      this.scene.tweens.add({ targets: g, alpha: 0.45, duration: 650, yoyo: true, repeat: -1 });
+      this._rings.push(g);
     });
+  }
+
+  clearTargets() {
+    this._rings.forEach(g => g.destroy());
+    this._rings = [];
   }
 }

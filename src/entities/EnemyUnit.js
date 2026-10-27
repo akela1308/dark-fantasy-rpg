@@ -47,7 +47,7 @@ export class EnemyUnit extends Unit {
         const amount = Math.round(w.maxHp * 0.15);
         w.heal(amount);
         this.cooldowns.enemy_heal = 2;
-        eventBus.emit('log', `${this.name} шепчет над ${w.name}: +${amount} HP`);
+        eventBus.emit('log', `${this.label} → ${w.label}: +${amount} HP`);
         return { type: 'heal', target: w };
       }
     }
