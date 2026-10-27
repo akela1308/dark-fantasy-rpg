@@ -18,6 +18,7 @@ from PIL import Image, ImageFilter
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 W, H = 1672, 941
+EDGE_PX = 6
 MAPS = f"{ROOT}/src/data/maps.json"
 SPECS = f"{ROOT}/tools/walkgrid_specs.json"
 
@@ -62,10 +63,15 @@ def main(a):
         out = Image.new("RGB", (W, H), (0, 0, 0)) if bg == "black" else Image.open(bg).convert("RGB").resize((W, H), Image.LANCZOS)
         small = old.resize((round(W * f), round(H * f)), Image.LANCZOS)
         # Края уменьшенной картинки растворяются в фоне (полоса 4% размера)
-        feather = max(6, round(min(small.size) * 0.04))
+        feather = max(6, round(min(small.size) * (0.06 if opt("--bg", "black") != "black" else 0.04)))
         mask = Image.new("L", small.size, 0)
         mask.paste(255, (feather, feather, small.width - feather, small.height - feather))
         mask = mask.filter(ImageFilter.GaussianBlur(feather / 2))
+        if bg != "black":
+            # почти чёрные места старой картинки (пустота, ночное небо) уступают дорисованному фону: без шва
+            from PIL import ImageChops
+            dark = small.convert("L").point(lambda v: max(0, min(255, (v - 8) * 10))).filter(ImageFilter.GaussianBlur(6))
+            mask = ImageChops.multiply(mask, dark)
         out.paste(small, (round(ox), round(oy)), mask)
     print(f"{name}: f={f} преобразование (0,0)->{tuple(round(v) for v in T(0, 0))}, ({W},{H})->{tuple(round(v) for v in T(W, H))}")
     if "--dry" in a:
@@ -79,15 +85,27 @@ def main(a):
         z.update(x=round(x), y=round(y), w=round(z["w"] * f), h=round(z["h"] * f))
 
     for p in cfg.get("spawnPoints", {}).values(): xy(p)
+    corridors = []   # при уменьшении на дорисованный фон: проход от края старой картинки до нового края карты
+    MIN = 84
     for e in cfg.get("exits", []) + ([cfg["tavernEntry"]] if cfg.get("tavernEntry") else []):
         z = e["zone"]
-        edge = [z["x"] <= 6, z["y"] <= 6, z["x"] + z["w"] >= W - 6, z["y"] + z["h"] >= H - 6]
+        edge = [z["x"] <= EDGE_PX, z["y"] <= EDGE_PX, z["x"] + z["w"] >= W - EDGE_PX, z["y"] + z["h"] >= H - EDGE_PX]
         rect(z)
-        # Выход с края остаётся на краю новой картинки, полосой не уже 76 px
-        if edge[0]: z["w"] = max(76, z["x"] + z["w"]) if z["x"] < 0 else z["w"]; z["x"] = 0 if edge[0] else z["x"]
-        if edge[2]: z["x"] = min(z["x"], W - 76); z["w"] = W - z["x"]
-        if edge[1]: z["h"] = max(76, z["y"] + z["h"]) if z["y"] < 0 else z["h"]; z["y"] = 0
-        if edge[3]: z["y"] = min(z["y"], H - 76); z["h"] = H - z["y"]
+        if f >= 1 or opt("--bg", "black") != "black":
+            # Выход с края остаётся на краю новой картинки
+            if edge[0]:
+                r = z["x"] + z["w"]; corridors.append([0, z["y"], max(0, z["x"]) + 24, z["h"]]); z["x"] = 0; z["w"] = max(MIN, r)
+            if edge[2]:
+                corridors.append([z["x"] - 24, z["y"], W - z["x"] + 24, z["h"]]); z["x"] = min(z["x"], W - MIN); z["w"] = W - z["x"]
+            if edge[1]:
+                b = z["y"] + z["h"]; corridors.append([z["x"], 0, z["w"], max(0, z["y"]) + 24]); z["y"] = 0; z["h"] = max(MIN, b)
+            if edge[3]:
+                corridors.append([z["x"], z["y"] - 24, z["w"], H - z["y"] + 24]); z["y"] = min(z["y"], H - MIN); z["h"] = H - z["y"]
+        # Зона клика не меньше 84×84 (64 экранных px): растёт от центра
+        for a, b, lim in (("x", "w", W), ("y", "h", H)):
+            if z[b] < MIN:
+                c = z[a] + z[b] / 2
+                z[a] = round(min(max(0, c - MIN / 2), lim - MIN)); z[b] = MIN
         z["x"], z["y"] = max(0, z["x"]), max(0, z["y"])
         z["w"], z["h"] = min(z["w"], W - z["x"]), min(z["h"], H - z["y"])
     for z in cfg.get("walk") or []: rect(z)
@@ -122,6 +140,8 @@ def main(a):
                 x, y = T(op[1], op[2]); new.append([op[0], round(x), round(y), round(op[3] * f), round(op[4] * f)])
             else:
                 new.append([op[0], [[round(v) for v in T(px, py)] for px, py in op[1]]])
+        if f < 1 and corridors:
+            new += [["+r", *[round(v) for v in c]] for c in corridors]
         specs[name] = new
         open(SPECS, "w").write(json.dumps(specs, ensure_ascii=False, indent=1) + "\n")
     print("картинка", rel)
