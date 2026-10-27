@@ -57,7 +57,7 @@ export function applyCommanderTraitChoice(unit, choice, registry) {
 
   const levelKey = String(unit.level);
   unit.commanderChoices[levelKey] = choice.traitId;
-  eventBus.emit('log', `${unit.name}: черта "${choice.label}"`);
+  eventBus.emit('log', `${unit.label || unit.name}: черта «${choice.label}»`);
   return true;
 }
 

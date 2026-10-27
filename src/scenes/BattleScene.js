@@ -23,6 +23,8 @@ import { applyItemBonuses } from '../systems/Items.js';
 import { Sfx } from '../systems/Sfx.js';
 import { enemiesForParty, lootPerEnemy, meleeReach, isActive, shouldSurrender, hasFury, RULES } from '../systems/CombatRules.js';
 import { getBattleAnimConfig, ensureBattleAnims, hasBattleAnims, loadBattleAnimSheets, battleAnimReady, animOrigin } from '../systems/BattleAnimations.js';
+import { showBattleResult } from '../ui/BattleResultWindow.js';
+import { Frame } from '../ui/Frame.js';
 
 const SPRITE_IDS = [
   'hero_duelist',
@@ -869,24 +871,22 @@ export class BattleScene extends Phaser.Scene {
   _endBattle(result) {
     this.battleOver = true;
     const { width, height } = this.scale;
-    // Оверлей результата поверх всего (юниты теперь имеют глубину по Y ~385-590,
-    // HP-бары ~1190) - затемнение и текст должны быть выше них.
-    const OVERLAY_DEPTH = 2000;
     // Затемнение ловит клики: кнопки боя под ним больше не работают
-    this.add.rectangle(width/2, height/2, width, height, 0x000000, 0.75).setDepth(OVERLAY_DEPTH).setInteractive();
+    const OVERLAY_DEPTH = 2000;
+    this.add.rectangle(width/2, height/2, width, height, 0x000000, 0.55).setDepth(OVERLAY_DEPTH - 2).setInteractive();
     this._pendingSkill = null;
     this._clearTargetHighlight();
     this.ui.hideActions();
 
     const iron = this.game.registry.get('gameMode') === 'iron';
-    const title = result === 'victory' ? 'ПОБЕДА' : 'ВЫ ПАЛИ';
-    const color = result === 'victory' ? '#C9A84C' : '#CC2222';
-
-    const t = this.add.text(width/2, height/2 - 80, title, {
-      fontFamily: 'serif', fontSize: '72px', color,
-      stroke: '#000', strokeThickness: 4,
-    }).setOrigin(0.5).setAlpha(0).setDepth(OVERLAY_DEPTH + 1);
-    this.tweens.add({ targets: t, alpha: 1, duration: 600 });
+    const rows = [];
+    const toMap = () => {
+      eventBus.clear();
+      this.scene.start('LoadingScene', {
+        destination: 'MapScene',
+        destinationData: { mapKey: this._fromMapKey, spawnId: this._fromSpawnId },
+      });
+    };
 
     if (result === 'victory') {
       this.playerUnits.filter(u => u.isAlive).forEach(u => this._react(u, 'victory'));
@@ -897,7 +897,8 @@ export class BattleScene extends Phaser.Scene {
         u.injured = true;
         u.maxHp = Math.round(u.baseMaxHp * RULES.INJURY_MULT);
         u.hp = 1;
-        eventBus.emit('log', `${u.name}: рана, до отдыха максимум HP ${u.maxHp}`);
+        eventBus.emit('log', `${u.label}: рана, до отдыха максимум HP ${u.maxHp}`);
+        rows.push({ icon: 'icon_drop', text: `${u.label}: рана, до отдыха HP не выше ${u.maxHp}`, color: '#d08a6a' });
       });
       // Сдавшиеся: решение «добить / отпустить» показывает карта (03_ДИАЛОГИ 6.7)
       const surrendered = this.enemyUnits.filter(u => u.surrendered && u.isAlive).map(u => u.id);
@@ -909,108 +910,68 @@ export class BattleScene extends Phaser.Scene {
       // Общий опыт партии за решённую встречу (01_БАЛАНС 3), не за трупы
       const xpGain = this._battleConfig?.xpReward ?? 0;
       this._levelSpan = PartySystem.addXp(this.game.registry, xpGain);
-      this.add.text(width/2, height/2, `Опыт отряда: +${xpGain}`, {
-        fontFamily: 'serif', fontSize: '26px', color: '#E8E8E8',
-      }).setOrigin(0.5).setDepth(OVERLAY_DEPTH + 1);
+      rows.unshift({ icon: 'icon_luck_horseshoe', text: `Опыт отряда: +${xpGain}`, color: '#e8e2d4' });
       this.game.registry.set(this._battleConfig?.victoryFlag || 'bandit_0_defeated', true);
       if (this._battleId === 'korvin_gang') this.game.registry.set('bandit_0_defeated', true);
       // Добыча: 4 + 2 × уровень встречи с каждого врага (01_БАЛАНС 9)
       const loot = this._battleConfig ? this.enemyUnits.length * lootPerEnemy(this._battleConfig.intendedLevel) : 0;
       if (loot > 0) {
         SaveSystem.addGold(loot, this.game.registry);
-        this.add.text(width/2, height/2 + 34, `Добыча: ${loot} монет`, {
-          fontFamily: 'serif', fontSize: '20px', color: '#C9A84C',
-        }).setOrigin(0.5).setDepth(OVERLAY_DEPTH + 1);
+        rows.splice(1, 0, { icon: 'icon_gold', text: `Добыча: ${loot} монет`, color: '#d4a832' });
       }
     }
 
-    const showButtons = () => {
+    const showWindow = () => {
       if (result === 'victory') {
-        // ── ЖЕЛЕЗНЫЙ РЕЖИМ: сохраняем после всех level-up бонусов ──────
+        const span = this._levelSpan || { from: 1, to: 1 };
+        if (span.to > span.from) {
+          // Сначала итог боя, по кнопке экран нового уровня (он же потом ведёт на карту)
+          rows.push({ icon: 'icon_might', text: `Новый уровень отряда: ${span.to}`, color: '#f0d890' });
+          showBattleResult(this, { victory: true, rows, depth: OVERLAY_DEPTH, buttons: [{ label: 'Новый уровень', onClick: () => {
+            Frame.closeCurrent(this);
+            // Повышаются все завербованные: партия и те, кто ждёт в таверне
+            const roster = PartySystem.buildRosterUnits(this.game.registry, this.playerUnits);
+            this.scene.launch('LevelUpScene', {
+              leveledUnits: roster, allPlayerUnits: roster, toLevel: span.to,
+              fromMapKey: this._fromMapKey, fromSpawnId: this._fromSpawnId,
+            });
+          } }] });
+          return;
+        }
+        // ── Сохранение после победы ──────
         SaveSystem.save(this.playerUnits, this._fromMapKey, this._fromSpawnId, this.game.registry);
-        // Кнопка возврата на карту
-        const btnMap = this.add.text(width/2, height/2 + 80, '[ На карту ]', {
-          fontFamily: 'serif', fontSize: '26px', color: '#C9A84C',
-        }).setOrigin(0.5).setDepth(OVERLAY_DEPTH + 1).setInteractive({ useHandCursor: true });
-        btnMap.on('pointerover', () => btnMap.setColor('#FFD700'));
-        btnMap.on('pointerout',  () => btnMap.setColor('#C9A84C'));
-        btnMap.on('pointerdown', () => {
-          eventBus.clear();
-          this.scene.start('LoadingScene', {
-            destination: 'MapScene',
-            destinationData: { mapKey: this._fromMapKey, spawnId: this._fromSpawnId },
-          });
-        });
+        showBattleResult(this, { victory: true, rows, depth: OVERLAY_DEPTH, buttons: [{ label: 'На карту', onClick: toMap }] });
       } else if (!iron) {
         // ── ХРОНИКА: поражение возвращает к последнему отдыху ─────────────
         const rest = SaveSystem.restoreRestPoint();
-        this.add.text(width/2, height/2, rest
-          ? 'Дорога оборвалась.\nВы очнулись у последнего привала.'
-          : 'Дорога оборвалась.\nОтдыха ещё не было: всё сначала.', {
-          fontFamily: 'serif', fontSize: '22px', color: '#888888',
-          align: 'center', lineSpacing: 8,
-        }).setOrigin(0.5).setDepth(OVERLAY_DEPTH + 1);
-        const btnBack = this.add.text(width/2, height/2 + 100, '[ К последнему привалу ]', {
-          fontFamily: 'serif', fontSize: '26px', color: '#C9A84C',
-        }).setOrigin(0.5).setDepth(OVERLAY_DEPTH + 1).setInteractive({ useHandCursor: true });
-        btnBack.on('pointerover', () => btnBack.setColor('#FFD700'));
-        btnBack.on('pointerout',  () => btnBack.setColor('#C9A84C'));
-        btnBack.on('pointerdown', () => {
-          eventBus.clear();
-          if (rest) {
-            SaveSystem.applyFlagsToRegistry(this.game.registry, { force: true });
-          } else {
-            SaveSystem.newGame(this.game.registry, { mode: 'chronicle' });
-          }
-          this.scene.start('LoadingScene', {
-            destination: 'MapScene',
-            destinationData: rest ? { mapKey: rest.mapKey, spawnId: rest.spawnId } : { mapKey: 'south_post', spawnId: 'default' },
-          });
+        showBattleResult(this, {
+          victory: false, depth: OVERLAY_DEPTH,
+          note: rest ? 'Дорога оборвалась.\nВы очнулись у последнего привала.' : 'Дорога оборвалась.\nОтдыха ещё не было: всё сначала.',
+          buttons: [{ label: rest ? 'К последнему привалу' : 'Начать сначала', onClick: () => {
+            eventBus.clear();
+            if (rest) SaveSystem.applyFlagsToRegistry(this.game.registry, { force: true });
+            else SaveSystem.newGame(this.game.registry, { mode: 'chronicle' });
+            this.scene.start('LoadingScene', {
+              destination: 'MapScene',
+              destinationData: rest ? { mapKey: rest.mapKey, spawnId: rest.spawnId } : { mapKey: 'south_post', spawnId: 'default' },
+            });
+          } }],
         });
       } else {
         // ── ЖЕЛЕЗНЫЙ РЕЖИМ: поражение = удаление сохранения ─────────────
         SaveSystem.deleteSave();
-
-        this.add.text(width/2, height/2, 'Сохранение уничтожено.\nВсё начинается заново.', {
-          fontFamily: 'serif', fontSize: '22px', color: '#888888',
-          align: 'center', lineSpacing: 8,
-        }).setOrigin(0.5).setDepth(OVERLAY_DEPTH + 1);
-
-        const btnRestart = this.add.text(width/2, height/2 + 100, '[ Начать заново ]', {
-          fontFamily: 'serif', fontSize: '26px', color: '#CC4444',
-        }).setOrigin(0.5).setDepth(OVERLAY_DEPTH + 1).setInteractive({ useHandCursor: true });
-        btnRestart.on('pointerover', () => btnRestart.setColor('#FF6666'));
-        btnRestart.on('pointerout',  () => btnRestart.setColor('#CC4444'));
-        btnRestart.on('pointerdown', () => {
-          eventBus.clear();
-          this.scene.start('LoadingScene', {
-            destination: 'BootScene',
-            destinationData: {},
-          });
+        showBattleResult(this, {
+          victory: false, depth: OVERLAY_DEPTH,
+          note: 'Сохранение уничтожено.\nВсё начинается заново.',
+          buttons: [{ label: 'Начать заново', color: '#e06060', onClick: () => {
+            eventBus.clear();
+            this.scene.start('LoadingScene', { destination: 'BootScene', destinationData: {} });
+          } }],
         });
       }
     };
 
-    if (result === 'victory') {
-      const span = this._levelSpan || { from: 1, to: 1 };
-      if (span.to > span.from) {
-        // Повышаются все завербованные: партия и те, кто ждёт в таверне
-        const roster = PartySystem.buildRosterUnits(this.game.registry, this.playerUnits);
-        this.time.delayedCall(800, () => {
-          this.scene.launch('LevelUpScene', {
-            leveledUnits:   roster,
-            allPlayerUnits: roster,
-            toLevel:        span.to,
-            fromMapKey:     this._fromMapKey,
-            fromSpawnId:    this._fromSpawnId,
-          });
-        });
-      } else {
-        this.time.delayedCall(800, showButtons);
-      }
-    } else {
-      this.time.delayedCall(1200, showButtons);
-    }
+    this.time.delayedCall(result === 'victory' ? 800 : 1200, showWindow);
   }
 
   // ── EventBus ──────────────────────────────────────────────────────────

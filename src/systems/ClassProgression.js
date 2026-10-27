@@ -105,7 +105,7 @@ export function applyProgressionChoice(unit, choice) {
   if (choice.type === 'skill') {
     if (choice.skillId && !unit.skills.includes(choice.skillId)) {
       unit.skills.push(choice.skillId);
-      eventBus.emit('log', `${unit.name}: изучен навык "${choice.label}"`);
+      eventBus.emit('log', `${unit.label || unit.name}: изучен навык «${choice.label}»`);
     }
     markChoice(unit, choice);
     return true;
@@ -114,7 +114,7 @@ export function applyProgressionChoice(unit, choice) {
   if (choice.type === 'passive') {
     if (choice.passiveId && !unit.passives.includes(choice.passiveId)) {
       unit.passives.push(choice.passiveId);
-      eventBus.emit('log', `${unit.name}: открыта пассивка "${choice.label}"`);
+      eventBus.emit('log', `${unit.label || unit.name}: открыто умение «${choice.label}»`);
     }
     markChoice(unit, choice);
     return true;
@@ -122,7 +122,7 @@ export function applyProgressionChoice(unit, choice) {
 
   if (choice.type === 'branch') {
     unit.branchId = choice.branchId || choice.key;
-    eventBus.emit('log', `${unit.name}: выбран путь "${choice.label}"`);
+    eventBus.emit('log', `${unit.label || unit.name}: выбран путь «${choice.label}»`);
     // Первый навык ветки приходит вместе с веткой
     const first = choice.firstNode;
     if (first?.skillId && !unit.skills.includes(first.skillId)) unit.skills.push(first.skillId);
@@ -135,7 +135,7 @@ export function applyProgressionChoice(unit, choice) {
     applyPerk(unit, choice.effects || {});
     unit.classTags = unit.classTags || [];
     unit.classTags.push(choice.key);
-    eventBus.emit('log', `${unit.name}: ${choice.label}`);
+    eventBus.emit('log', `${unit.label || unit.name}: ${choice.label}`);
     markChoice(unit, choice);
     return true;
   }
@@ -145,7 +145,7 @@ export function applyProgressionChoice(unit, choice) {
     if (resourceId) {
       const current = unit.resources[resourceId] || 0;
       unit.resources[resourceId] = current + (choice.amount || 0);
-      eventBus.emit('log', `${unit.name}: ${choice.label}`);
+      eventBus.emit('log', `${unit.label || unit.name}: ${choice.label}`);
     }
     markChoice(unit, choice);
     return true;
