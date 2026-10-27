@@ -301,5 +301,86 @@
     "desc": "the wooden post with the small lantern"
    }
   ]
+ },
+ "burned_hamlet": {
+  "image": "public/maps/gen/burned_hamlet_k2.jpg",
+  "objects": [
+   {
+    "id": "house_left",
+    "box": [
+     30,
+     70,
+     402,
+     436
+    ],
+    "base": 428,
+    "desc": "the half-burned timber framed house on the left with its broken shingle roof and chimney"
+   },
+   {
+    "id": "house_right",
+    "box": [
+     1322,
+     120,
+     1672,
+     420
+    ],
+    "base": 414,
+    "desc": "the half-burned timber framed house on the right edge with its broken roof"
+   }
+  ]
+ },
+ "old_mill": {
+  "image": "public/maps/gen/old_mill_pick.jpg",
+  "objects": [
+   {
+    "id": "mill",
+    "box": [
+     660,
+     25,
+     1300,
+     600
+    ],
+    "base": 460,
+    "desc": "the old wooden water mill house with its mossy shingle roof, the crows on the roof, the stone foundation and the big water wheel on its left side"
+   }
+  ]
+ },
+ "three_pillars_inside": {
+  "image": "public/maps/gen/three_pillars_inside_k3.jpg",
+  "objects": [
+   {
+    "id": "long_table",
+    "box": [
+     505,
+     315,
+     790,
+     470
+    ],
+    "base": 462,
+    "desc": "the long rough wooden table with the two benches near the left wall"
+   },
+   {
+    "id": "round_table",
+    "box": [
+     580,
+     535,
+     795,
+     705
+    ],
+    "base": 696,
+    "desc": "the small round wooden table with the two wooden chairs"
+   },
+   {
+    "id": "hearth_bench",
+    "box": [
+     1050,
+     455,
+     1215,
+     590
+    ],
+    "base": 582,
+    "desc": "the wooden bench with a backrest standing in front of the fireplace"
+   }
+  ]
  }
 }

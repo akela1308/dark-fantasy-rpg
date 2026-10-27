@@ -4966,7 +4966,35 @@
         "heightM": 0.42
       }
     ],
-    "props": [],
+    "props": [
+      {
+        "key": "prop_three_pillars_inside_long_table",
+        "src": "maps/props/three_pillars_inside/long_table.png",
+        "x": 508,
+        "y": 462,
+        "originX": 0,
+        "originY": 0.9789,
+        "occluder": true
+      },
+      {
+        "key": "prop_three_pillars_inside_round_table",
+        "src": "maps/props/three_pillars_inside/round_table.png",
+        "x": 585,
+        "y": 696,
+        "originX": 0,
+        "originY": 0.9787,
+        "occluder": true
+      },
+      {
+        "key": "prop_three_pillars_inside_hearth_bench",
+        "src": "maps/props/three_pillars_inside/hearth_bench.png",
+        "x": 1060,
+        "y": 582,
+        "originX": 0,
+        "originY": 1.0256,
+        "occluder": true
+      }
+    ],
     "encounters": [],
     "battleBg": "Tavern_battle2",
     "rescale": [
@@ -5610,16 +5638,6 @@
         "auto": true
       },
       {
-        "key": "prop_old_mill_occ_6",
-        "src": "maps/props/old_mill/occ_6.png",
-        "x": 497,
-        "y": 940,
-        "originX": 0,
-        "originY": 0.9967,
-        "occluder": true,
-        "auto": true
-      },
-      {
         "key": "prop_old_mill_occ_7",
         "src": "maps/props/old_mill/occ_7.png",
         "x": 1023,
@@ -5628,6 +5646,15 @@
         "originY": 0.9894,
         "occluder": true,
         "auto": true
+      },
+      {
+        "key": "prop_old_mill_mill",
+        "src": "maps/props/old_mill/mill.png",
+        "x": 674,
+        "y": 460,
+        "originX": 0,
+        "originY": 0.9931,
+        "occluder": true
       }
     ],
     "encounters": [],
@@ -6323,6 +6350,24 @@
         "occluder": true,
         "auto": true,
         "height": 85
+      },
+      {
+        "key": "prop_burned_hamlet_house_left",
+        "src": "maps/props/burned_hamlet/house_left.png",
+        "x": 30,
+        "y": 428,
+        "originX": 0,
+        "originY": 0.9916,
+        "occluder": true
+      },
+      {
+        "key": "prop_burned_hamlet_house_right",
+        "src": "maps/props/burned_hamlet/house_right.png",
+        "x": 1324,
+        "y": 414,
+        "originX": 0,
+        "originY": 0.9899,
+        "occluder": true
       }
     ],
     "encounters": [
