@@ -25,7 +25,7 @@ MAPS = os.path.join(ROOT, "src/data/maps.json")
 GRIDS = os.path.join(ROOT, "src/data/walkgrid.json")
 SPECS = os.path.join(ROOT, "tools/walkgrid_specs.json")
 OLD = {  # старые карты Максима: фон по bgKey (LoadingScene.OLD_MAP_IMAGES)
-    "map_map1": "maps/map1.png", "map_tavern_map": "maps/tavern_map.png", "map_tavern_inside": "maps/tavern_inside.png",
+    "map_map1": "maps/map1.png", "map_tavern_map": "maps/tavern_map_v2.png", "map_tavern_inside": "maps/tavern_inside.png",
     "map_mountains_map": "maps/mountains_map.png", "map_swamp_map": "maps/swamp_map.png", "map_forest1": "maps/forest1.png",
     "map_elf_boloto": "maps/elf_boloto.png", "map_elf_boloto1": "maps/elf_boloto1.png", "map_road_boloto": "maps/road_boloto.png",
     "map_kingthrone": "maps/kingthrone.png", "map_road_to_village": "maps/road_to_village.png", "map_gate": "maps/gate.png",

@@ -4865,7 +4865,7 @@
   },
   "three_pillars_inside": {
     "bgKey": "map_three_pillars_inside",
-    "image": "maps/gen/three_pillars_inside_k2.jpg",
+    "image": "maps/gen/three_pillars_inside_k3.jpg",
     "name": "Дорожный дом «Три столба», зал",
     "region": "Юг",
     "level": 1,
@@ -4955,8 +4955,8 @@
       {
         "id": "cat",
         "name": "Кот",
-        "x": 779,
-        "y": 568,
+        "x": 1131,
+        "y": 494,
         "spriteKey": "map_cat",
         "portraitKey": "portrait_cat",
         "height": 50,
@@ -9120,7 +9120,7 @@
   },
   "forest_deep": {
     "bgKey": "map_forest_deep",
-    "image": "maps/gen/forest_deep_pick.jpg",
+    "image": "maps/gen/forest_deep_clean1.jpg",
     "name": "Глухой лес",
     "region": "Лес",
     "level": 4,
