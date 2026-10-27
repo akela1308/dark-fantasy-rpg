@@ -49,13 +49,13 @@ const PLACEHOLDER_IMAGE = 'maps/gen/_placeholder.png';
 // ─────────────────────────────────────────────────────────────────────────────
 // Где в зале «Хромого Лося» сидят спутники из запаса: [x, y, спрайт карты, рост м]
 const WAITING_SPOTS = {
-  companion_brawler: [1400, 640, 'map_companion_brawler', 1.86],
-  companion_healer:  [250, 600, 'map_companion_healer', 1.66],
-  holt:              [1240, 780, 'map_holt', 1.8],
-  tiss_recruit:      [560, 800, 'map_bandit_archer', 1.75],
-  mirko:             [980, 830, 'map_recruit', 1.74],
-  bran:              [1500, 800, 'map_archer_guard', 1.78],
-  ressa:             [380, 790, 'map_swamp_elf_girl', 1.8],
+  companion_brawler: [1250, 560, 'map_companion_brawler', 1.86],
+  companion_healer:  [330, 700, 'map_companion_healer', 1.66],
+  holt:              [1000, 560, 'map_holt', 1.8],
+  tiss_recruit:      [450, 780, 'map_bandit_archer', 1.75],
+  mirko:             [1150, 620, 'map_recruit', 1.74],
+  bran:              [1320, 500, 'map_archer_guard', 1.78],
+  ressa:             [880, 520, 'map_swamp_elf_girl', 1.8],
 };
 
 export class MapScene extends Phaser.Scene {
@@ -78,6 +78,8 @@ export class MapScene extends Phaser.Scene {
     this._transitioning = false;
     // Сцена переиспользуется: окна прошлой карты уничтожены вместе с ней, ссылки на них сбрасываем
     this._journalObjs   = null;
+    this._doorTimer = null;
+    this._doorTarget = null;
     this._extraFollowers = [];   // сцена переиспользуется: спрайты прошлого запуска уже уничтожены
     this._waitingNpcs = {};
     this._bookOverlay   = null;
@@ -206,6 +208,7 @@ export class MapScene extends Phaser.Scene {
     // Книги и записки на карте
     this._bookPickups = [];
     this._spawnBookPickups(cfg);
+    this._spawnDoors(cfg);
 
     // Малые интерактивные предметы окружения
     this._inspectables = [];
@@ -236,6 +239,7 @@ export class MapScene extends Phaser.Scene {
     this.input.on('pointerdown', (ptr, over = []) => {
       if (ptr.rightButtonDown()) return;
       if (this._uiBlocksMapClick(over)) return;
+      if (over.some(o => o._isDoor)) return;
       const exit = this._exitMarkers?.exitAt(ptr.worldX, ptr.worldY);
       if (exit && this._walkToExit(exit)) return;
       this._walkHeroTo(ptr.worldX, ptr.worldY);
@@ -811,6 +815,42 @@ export class MapScene extends Phaser.Scene {
       if (p.height) img.setScale(p.height / img.height);
       if (p.alpha !== undefined) img.setAlpha(p.alpha);
     });
+  }
+
+  /**
+   * Двери, которые открывают разговор, а не ведут на другую карту (комнаты наверху «Хромого Лося»).
+   * maps.json → doors: [{ id, x, y, w, h, label, dialogue, node, glow }]: клик ведёт героя к порогу (низ двери),
+   * на месте начинается диалог. glow: тёплый свет у порога (приоткрытая дверь).
+   */
+  _spawnDoors(cfg) {
+    (cfg.doors || []).forEach(d => {
+      const zone = this.add.zone(d.x + d.w / 2, d.y + d.h / 2, d.w, d.h).setInteractive({ useHandCursor: true }).setDepth(d.y + d.h);
+      zone._isDoor = true;   // клик по двери не уходит в карту
+      const label = this.add.text(d.x + d.w / 2, d.y - 8, d.label || 'Дверь', {
+        fontFamily: 'Georgia, serif', fontSize: '18px', color: '#f0e0b0', stroke: '#000', strokeThickness: 4,
+      }).setOrigin(0.5, 1).setDepth(8501).setAlpha(0);
+      zone.on('pointerover', () => label.setAlpha(1));
+      zone.on('pointerout', () => label.setAlpha(0));
+      zone.on('pointerdown', (p, lx, ly, ev) => {
+        ev?.stopPropagation();
+        if (this._transitioning || this._dialogue?.active) return;
+        this._walkHeroTo(d.x + d.w / 2, d.y + d.h + 30);
+        // Цель: конец найденного пути (ближайшая проходимая клетка у порога)
+        const end = this.hero._path?.length ? this.hero._path[this.hero._path.length - 1] : { x: this.hero.targetX, y: this.hero.targetY };
+        this._doorTarget = { d, tx: end.x, ty: end.y, t: this.time.now };
+      });
+    });
+    if ((cfg.doors || []).length && !this._doorTimer) {
+      this._doorTimer = this.time.addEvent({ delay: 150, loop: true, callback: () => {
+        const dt = this._doorTarget;
+        if (!dt) return;
+        const near = Math.hypot(this.hero.x - dt.tx, this.hero.y - dt.ty) < 24;
+        if (near || (!this.hero.moving && this.time.now - dt.t > 400)) {
+          this._doorTarget = null;
+          if (near && this._runner.has(dt.d.dialogue)) { this.hero.stopMove(); this._runner.start(dt.d.dialogue, dt.d.node || null); }
+        }
+      } });
+    }
   }
 
   _spawnBookPickups(cfg) {
@@ -1534,7 +1574,7 @@ export class MapScene extends Phaser.Scene {
     const others = PartySystem.getRoster(reg).filter(id => id !== 'hero_duelist');
     const free = PartySystem.getSlots(reg) - party.length;
     const choices = others.map(id => party.includes(id)
-      ? { label: `${names[id]}: оставить ждать здесь`, style: 'retreat', onSelect: () => { PartySystem.bench(reg, id); { const p = this.walkable.clamp(this.hero.x + 80, this.hero.y + 10); reg.set(`waitAt_${id}`, { map: this.mapKey, x: Math.round(p.x), y: Math.round(p.y) }); } this._applyPartyVisibility(true); this._refreshNpcs(); this._showPartyManager(); } }
+      ? { label: `${names[id]}: пусть ждёт в «Хромом Лосе»`, style: 'retreat', onSelect: () => { PartySystem.bench(reg, id); this._applyPartyVisibility(true); this._refreshNpcs(); this._showPartyManager(); } }
       : { label: `${names[id]}: взять в отряд`, disabled: free <= 0, reason: PartySystem.getSlots(reg) < 2 ? 'место в отряде откроется на 2 уровне' : 'нет места в отряде', onSelect: () => { PartySystem.activate(reg, id); this._applyPartyVisibility(true); this._recruit(id); this._refreshNpcs(); this._showPartyManager(); } });
     choices.push({ label: 'Готово.', style: 'default', onSelect: () => SaveSystem.saveWorld(reg, this.mapKey, this.spawnId) });
     this._dialogue.show({
@@ -1561,15 +1601,11 @@ export class MapScene extends Phaser.Scene {
     const reg = this.game.registry;
     const where = PartySystem.recruit(reg, id);
     if (!where) return;
-    if (where === 'reserve') {
-      // Ждёт там, где его наняли: у собеседника, иначе рядом с героем
-      const at = this._talkNpc && !this._talkNpc.waitingFor ? this._talkNpc : { x: this.hero.x + 70, y: this.hero.y };
-      const p = this.walkable.clamp(at.x, at.y);
-      reg.set(`waitAt_${id}`, { map: this.mapKey, x: Math.round(p.x), y: Math.round(p.y) });
-      this._refreshNpcs();
-    } else reg.remove(`waitAt_${id}`);
+    // Без места в отряде спутник ждёт в зале «Хромого Лося» (решение Максима 27.10)
+    reg.remove(`waitAt_${id}`);
+    this._refreshNpcs();
     this._toast(where === 'party' ? 'В отряде новый человек'
-      : PartySystem.getSlots(reg) < 2 ? 'Ждёт здесь: место в отряде откроется на 2 уровне' : 'Ждёт здесь: в отряде нет места');
+      : PartySystem.getSlots(reg) < 2 ? 'Ждёт в «Хромом Лосе»: место в отряде откроется на 2 уровне' : 'Ждёт в «Хромом Лосе»: в отряде нет места');
     this._applyPartyVisibility(true);
     // Новичок входит на уровне партии: экран уровней для него одного
     const lvl = PartySystem.getLevel(reg);

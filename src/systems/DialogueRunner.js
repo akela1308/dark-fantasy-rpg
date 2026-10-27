@@ -102,7 +102,7 @@ export class DialogueRunner {
       const slots = PartySystem.getSlots(this.ws.registry);
       const full = ch.effects?.recruit && this.ws.party().length >= slots;
       return {
-        label: full ? `${ch.label}  [в отряде пока нет места: подождёт здесь]` : ch.label,
+        label: full ? `${ch.label}  [в отряде пока нет места: будет ждать в «Хромом Лосе»]` : ch.label,
         // Серым только уход без последствий: согласие с эффектами («Идём.») остаётся золотым
         style: ch.style || (ch.startBattle ? 'attack' : ch.close && !ch.next && !ch.effects ? 'retreat' : 'default'),
         disabled: !check.ok,

@@ -61,10 +61,10 @@
       },
       {
         "zone": {
-          "x": 545,
+          "x": 535,
           "y": 400,
-          "w": 84,
-          "h": 96
+          "w": 104,
+          "h": 118
         },
         "toMap": "ruin_crypt",
         "spawnId": "from_map1"
@@ -354,7 +354,7 @@
         "toMap": "tavern_cellar",
         "spawnId": "from_tavern_map",
         "requiresFlag": "cellar_open",
-        "lockedText": "Люк заперт. Ключ у Савко."
+        "lockedText": "Люк заперт."
       }
     ],
     "labels": [
@@ -680,8 +680,8 @@
         "y": 700
       },
       "from_tavern_rooms": {
-        "x": 478,
-        "y": 400
+        "x": 1420,
+        "y": 500
       }
     },
     "exits": [
@@ -697,13 +697,16 @@
       },
       {
         "zone": {
-          "x": 430,
-          "y": 290,
-          "w": 96,
-          "h": 90
+          "x": 1490,
+          "y": 430,
+          "w": 100,
+          "h": 100
         },
         "toMap": "tavern_rooms",
-        "spawnId": "from_tavern_inside"
+        "spawnId": "from_tavern_inside",
+        "kind": "edge",
+        "dir": "right",
+        "label": "→ Комнаты наверху"
       }
     ],
     "labels": [
@@ -919,7 +922,8 @@
         "dialogue": "rowan",
         "showIf": {
           "notFlag": "rowan_gone"
-        }
+        },
+        "heightM": 1.3
       },
       {
         "x": 1120,
@@ -1180,7 +1184,8 @@
           }
         ],
         "dialogue": "dwarves",
-        "dialogueStart": "ort"
+        "dialogueStart": "ort",
+        "heightM": 1.22
       },
       {
         "x": 698,
@@ -1245,7 +1250,8 @@
           }
         ],
         "dialogue": "dwarves",
-        "dialogueStart": "bramm"
+        "dialogueStart": "bramm",
+        "heightM": 1.22
       },
       {
         "id": "taya",
@@ -1266,8 +1272,8 @@
       {
         "id": "vornag_tavern",
         "name": "Ворнаг",
-        "x": 1400,
-        "y": 640,
+        "x": 1250,
+        "y": 560,
         "spriteKey": "map_companion_brawler",
         "portraitKey": "portrait_companion_brawler",
         "height": 160,
@@ -1345,7 +1351,8 @@
             }
           ],
           "notFlag": "halvar_message"
-        }
+        },
+        "heightM": 1.22
       }
     ],
     "walk": [
@@ -4974,7 +4981,8 @@
         "dialogue": "three_pillars",
         "hoverPortrait": true,
         "dialogueStart": "agna",
-        "heightM": 1.68
+        "heightM": 1.68,
+        "flipX": true
       },
       {
         "id": "holt",
@@ -6874,7 +6882,7 @@
   },
   "tavern_rooms": {
     "bgKey": "map_tavern_rooms",
-    "image": "maps/gen/tavern_rooms_pick.jpg",
+    "image": "maps/gen/tavern_rooms_k2.jpg",
     "name": "Комнаты наверху",
     "region": "Дорога",
     "level": 1,
@@ -6882,24 +6890,26 @@
     "walkTemplate": "room",
     "spawnPoints": {
       "from_tavern_inside": {
-        "x": 330,
-        "y": 560
+        "x": 660,
+        "y": 640
       },
       "default": {
-        "x": 330,
-        "y": 560
+        "x": 660,
+        "y": 640
       }
     },
     "exits": [
       {
         "zone": {
-          "x": 100,
-          "y": 430,
+          "x": 470,
+          "y": 500,
           "w": 130,
           "h": 120
         },
         "toMap": "tavern_inside",
-        "spawnId": "from_tavern_rooms"
+        "spawnId": "from_tavern_rooms",
+        "label": "Спуститься: Зал «Хромого Лося»",
+        "kind": "door"
       }
     ],
     "labels": [
@@ -6935,7 +6945,59 @@
     "props": [],
     "encounters": [],
     "battleBg": "Tavern_battle3",
-    "doorPx": 200
+    "doorPx": 200,
+    "doors": [
+      {
+        "id": "r1",
+        "x": 430,
+        "y": 215,
+        "w": 60,
+        "h": 130,
+        "label": "Комната 1",
+        "dialogue": "tavern_rooms",
+        "node": "locked"
+      },
+      {
+        "id": "r2",
+        "x": 680,
+        "y": 130,
+        "w": 60,
+        "h": 130,
+        "label": "Комната 2",
+        "dialogue": "tavern_rooms",
+        "node": "snore"
+      },
+      {
+        "id": "r3",
+        "x": 900,
+        "y": 135,
+        "w": 60,
+        "h": 130,
+        "label": "Комната 3",
+        "dialogue": "tavern_rooms",
+        "node": "locked"
+      },
+      {
+        "id": "r4",
+        "x": 1180,
+        "y": 240,
+        "w": 70,
+        "h": 150,
+        "label": "Комната 4",
+        "dialogue": "tavern_rooms",
+        "node": "room4"
+      },
+      {
+        "id": "r5",
+        "x": 1430,
+        "y": 320,
+        "w": 70,
+        "h": 140,
+        "label": "Комната 5",
+        "dialogue": "tavern_rooms",
+        "node": "locked"
+      }
+    ]
   },
   "tavern_cellar": {
     "bgKey": "map_tavern_cellar",

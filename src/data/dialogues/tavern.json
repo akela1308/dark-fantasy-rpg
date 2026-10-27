@@ -113,7 +113,7 @@
           },
           "effects": {
             "cost": 5,
-            "rest": true
+            "setFlag": "tavern_room_paid"
           },
           "next": "rested"
         },
@@ -128,7 +128,7 @@
           },
           "effects": {
             "cost": 7,
-            "rest": true
+            "setFlag": "tavern_room_paid"
           },
           "next": "rested"
         },
@@ -142,7 +142,7 @@
           },
           "effects": {
             "cost": 15,
-            "rest": true
+            "setFlag": "tavern_room_paid"
           },
           "next": "rested"
         },
@@ -259,7 +259,7 @@
     },
     "rested": {
       "speaker": "vorn",
-      "text": "Ночь под крышей «Лося». Раны затянулись, Сборы пополнены, пистоль заряжен.",
+      "text": "«Четвёртая наверху, по правую руку. Дверь открыта, ключ внутри. Утром оставь его на крюке.»",
       "next": "vorn"
     },
     "beer": {

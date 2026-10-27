@@ -1,0 +1,38 @@
+{
+  "id": "tavern_rooms",
+  "source": "Комнаты наверху «Хромого Лося» (правка 27.10): дверь четыре открыта, если заплачено Ворну",
+  "speakers": {
+    "narrator": { "name": "" }
+  },
+  "start": [ { "node": "locked" } ],
+  "nodes": {
+    "room4": {
+      "goto": [
+        { "showIf": { "flag": "tavern_room_paid" }, "node": "room" },
+        { "node": "locked" }
+      ]
+    },
+    "room": {
+      "speaker": "narrator",
+      "text": "Тесная комната: кровать с соломенным тюфяком, таз с водой, на подоконнике огарок. Дверь запирается изнутри на крюк.",
+      "choices": [
+        { "label": "Лечь спать.", "effects": { "rest": true, "clearFlag": "tavern_room_paid" }, "next": "slept" },
+        { "label": "Не сейчас.", "style": "retreat", "close": true }
+      ]
+    },
+    "slept": {
+      "speaker": "narrator",
+      "text": "Ночь проходит тихо, только внизу кто-то долго двигает лавки. Утром раны затянулись, Сборы пополнены, пистоль заряжен."
+    },
+    "locked": {
+      "speaker": "narrator",
+      "text": "Дверь заперта.",
+      "choices": [ { "label": "Отойти.", "style": "retreat", "close": true } ]
+    },
+    "snore": {
+      "speaker": "narrator",
+      "text": "Заперто. Из-за двери слышен храп.",
+      "choices": [ { "label": "Отойти.", "style": "retreat", "close": true } ]
+    }
+  }
+}
