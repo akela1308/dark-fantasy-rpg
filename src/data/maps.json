@@ -6762,8 +6762,8 @@
         "battleId": "crypt_shades",
         "name": "упыри",
         "behaviour": "lair",
-        "x": 987,
-        "y": 565,
+        "x": 800,
+        "y": 650,
         "triggerFlag": "crypt_shades_woken"
       }
     ],

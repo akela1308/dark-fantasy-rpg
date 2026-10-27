@@ -2005,7 +2005,7 @@
         "canSurrender": true
       },
       {
-        "id": "cloaks_hideout_1",
+        "id": "cloaks_hideout_1_2",
         "name": "Стрелок плащей",
         "type": "enemy",
         "arch": "watcher",
@@ -2075,7 +2075,7 @@
         "spriteKey": "drowned"
       },
       {
-        "id": "drowned_dead_1",
+        "id": "drowned_dead_1_2",
         "name": "Болотная тварь",
         "type": "enemy",
         "arch": "wolf",
@@ -2263,7 +2263,7 @@
         "art": "TODO_silhouette"
       },
       {
-        "id": "mine_creatures_1",
+        "id": "mine_creatures_1_2",
         "name": "Паучья матка",
         "type": "enemy",
         "arch": "whisperer",
@@ -2286,7 +2286,8 @@
         "skills": [],
         "ranged": true,
         "isBoss": false,
-        "art": "TODO_silhouette"
+        "art": "TODO_silhouette",
+        "spriteKey": "mine_creatures_1"
       }
     ],
     "backgroundKey": "battle_Mountain_battle",
@@ -2366,7 +2367,7 @@
         ]
       },
       {
-        "id": "mine_shades_1",
+        "id": "mine_shades_1_2",
         "name": "Тень десятника",
         "type": "enemy",
         "arch": "watcher",
@@ -2394,7 +2395,8 @@
         "art": "TODO_silhouette",
         "tags": [
           "forgotten"
-        ]
+        ],
+        "spriteKey": "mine_shades_1"
       }
     ],
     "backgroundKey": "battle_Mountain_battle",
@@ -2535,7 +2537,7 @@
         "spriteKey": "winter_monster"
       },
       {
-        "id": "deer_beast_1",
+        "id": "deer_beast_1_2",
         "name": "Волк",
         "type": "enemy",
         "arch": "wolf",
@@ -2587,7 +2589,7 @@
         "spriteKey": "grey_wolf"
       },
       {
-        "id": "deer_beast_1",
+        "id": "deer_beast_1_3",
         "name": "Зимний стрелок",
         "type": "enemy",
         "arch": "watcher",
@@ -2684,7 +2686,7 @@
         "canSurrender": true
       },
       {
-        "id": "grad_guards_1",
+        "id": "grad_guards_1_2",
         "name": "Дозорный",
         "type": "enemy",
         "arch": "watcher",
@@ -2713,7 +2715,7 @@
         "canSurrender": true
       },
       {
-        "id": "grad_guards_2",
+        "id": "grad_guards_2_2",
         "name": "Дозорный",
         "type": "enemy",
         "arch": "watcher",
@@ -2815,7 +2817,7 @@
         "canSurrender": true
       },
       {
-        "id": "alley_cloaks_1",
+        "id": "alley_cloaks_1_2",
         "name": "Дозорный",
         "type": "enemy",
         "arch": "watcher",
@@ -2917,7 +2919,7 @@
         "canSurrender": true
       },
       {
-        "id": "cloaks_patrol_1",
+        "id": "cloaks_patrol_1_2",
         "name": "Дозорный",
         "type": "enemy",
         "arch": "watcher",
@@ -2946,7 +2948,7 @@
         "canSurrender": true
       },
       {
-        "id": "cloaks_patrol_1",
+        "id": "cloaks_patrol_1_3",
         "name": "Шептун",
         "type": "enemy",
         "arch": "whisperer",
@@ -2972,7 +2974,8 @@
         "art": "TODO_silhouette",
         "tags": [
           "forgotten"
-        ]
+        ],
+        "spriteKey": "cloaks_patrol_1"
       }
     ],
     "backgroundKey": "battle_Winter_Forest",
@@ -3020,7 +3023,7 @@
         "canSurrender": false
       },
       {
-        "id": "gast_boss_1",
+        "id": "gast_boss_1_2",
         "name": "Клинок",
         "type": "enemy",
         "arch": "blade",
@@ -3049,7 +3052,7 @@
         "canSurrender": true
       },
       {
-        "id": "gast_boss_1",
+        "id": "gast_boss_1_3",
         "name": "Дозорный",
         "type": "enemy",
         "arch": "watcher",
@@ -3078,7 +3081,7 @@
         "canSurrender": true
       },
       {
-        "id": "gast_boss_1",
+        "id": "gast_boss_1_4",
         "name": "Шептун",
         "type": "enemy",
         "arch": "whisperer",
@@ -3104,7 +3107,8 @@
         "art": "TODO_silhouette",
         "tags": [
           "forgotten"
-        ]
+        ],
+        "spriteKey": "gast_boss_1"
       }
     ],
     "backgroundKey": "battle_Winter_Forest",
@@ -3153,7 +3157,7 @@
         ]
       },
       {
-        "id": "frontier_beast_1",
+        "id": "frontier_beast_1_2",
         "name": "Шептун",
         "type": "enemy",
         "arch": "whisperer",
@@ -3179,7 +3183,8 @@
         "art": "TODO_silhouette",
         "tags": [
           "forgotten"
-        ]
+        ],
+        "spriteKey": "frontier_beast_1"
       },
       {
         "id": "frontier_beast_2",
@@ -3211,7 +3216,7 @@
         ]
       },
       {
-        "id": "frontier_beast_1",
+        "id": "frontier_beast_1_3",
         "name": "Дозорный",
         "type": "enemy",
         "arch": "watcher",
@@ -3283,7 +3288,7 @@
         "spriteKey": "winter_queen"
       },
       {
-        "id": "queen_optional_1",
+        "id": "queen_optional_1_2",
         "name": "Страж",
         "type": "enemy",
         "arch": "warden",
@@ -3337,7 +3342,7 @@
         "canSurrender": true
       },
       {
-        "id": "queen_optional_1",
+        "id": "queen_optional_1_3",
         "name": "Дозорный",
         "type": "enemy",
         "arch": "watcher",
@@ -3409,7 +3414,7 @@
         "spriteKey": "mountain_king"
       },
       {
-        "id": "mountain_king_optional_1",
+        "id": "mountain_king_optional_1_2",
         "name": "Каменный страж",
         "type": "enemy",
         "arch": "warden",
@@ -3432,7 +3437,8 @@
         "skills": [],
         "ranged": false,
         "isBoss": false,
-        "art": "TODO_silhouette"
+        "art": "TODO_silhouette",
+        "spriteKey": "mountain_king_optional_1"
       },
       {
         "id": "mountain_king_optional_2",
@@ -3648,7 +3654,7 @@
         "spriteKey": "mavka"
       },
       {
-        "id": "mavki_lights_1",
+        "id": "mavki_lights_1_2",
         "name": "Болотная тварь",
         "type": "enemy",
         "arch": "wolf",
@@ -3803,7 +3809,7 @@
         "art": "TODO_silhouette"
       },
       {
-        "id": "leshy_1",
+        "id": "leshy_1_2",
         "name": "Волк",
         "type": "enemy",
         "arch": "wolf",
@@ -4008,7 +4014,7 @@
         "art": "TODO_silhouette"
       },
       {
-        "id": "wolfolaks_1",
+        "id": "wolfolaks_1_2",
         "name": "Зимний стрелок",
         "type": "enemy",
         "arch": "watcher",
@@ -4082,7 +4088,7 @@
         ]
       },
       {
-        "id": "moroz_1",
+        "id": "moroz_1_2",
         "name": "Шептун",
         "type": "enemy",
         "arch": "whisperer",
@@ -4108,7 +4114,8 @@
         "art": "TODO_silhouette",
         "tags": [
           "forgotten"
-        ]
+        ],
+        "spriteKey": "moroz_1"
       },
       {
         "id": "moroz_2",
