@@ -214,28 +214,6 @@
   "image": "public/maps/road_to_village.png",
   "objects": [
    {
-    "id": "signpost",
-    "box": [
-     1343,
-     288,
-     1407,
-     456
-    ],
-    "base": 450,
-    "desc": "the tall wooden signpost with several direction boards"
-   },
-   {
-    "id": "lantern_post",
-    "box": [
-     1450,
-     298,
-     1507,
-     451
-    ],
-    "base": 445,
-    "desc": "the wooden post with the hanging lantern"
-   },
-   {
     "id": "crow_stump",
     "box": [
      336,
@@ -245,6 +223,39 @@
     ],
     "base": 650,
     "desc": "the broken tree stump with the crow sitting on top"
+   },
+   {
+    "id": "stump_raven",
+    "box": [
+     340,
+     520,
+     410,
+     625
+    ],
+    "base": 620,
+    "desc": "broken dead tree stump with a black raven perched on top"
+   },
+   {
+    "id": "lantern_post",
+    "box": [
+     150,
+     325,
+     225,
+     475
+    ],
+    "base": 470,
+    "desc": "wooden gallows-shaped lantern post with a hanging lamp"
+   },
+   {
+    "id": "signpost",
+    "box": [
+     1345,
+     300,
+     1420,
+     425
+    ],
+    "base": 422,
+    "desc": "old wooden crossroads signpost with several arrow boards"
    }
   ]
  },
@@ -254,13 +265,46 @@
    {
     "id": "well",
     "box": [
-     546,
-     553,
-     702,
-     740
+     560,
+     565,
+     715,
+     712
     ],
-    "base": 732,
-    "desc": "the wooden well with its little shingled roof and the stone ring"
+    "base": 705,
+    "desc": "old stone village well with a small wooden shingle roof"
+   },
+   {
+    "id": "lantern_post_left",
+    "box": [
+     45,
+     455,
+     100,
+     625
+    ],
+    "base": 620,
+    "desc": "wooden post with a hanging iron lantern at the roadside"
+   },
+   {
+    "id": "lantern_post_right",
+    "box": [
+     1435,
+     415,
+     1500,
+     702
+    ],
+    "base": 700,
+    "desc": "tall wooden fence post with a hanging lantern"
+   },
+   {
+    "id": "cart",
+    "box": [
+     870,
+     440,
+     1020,
+     552
+    ],
+    "base": 550,
+    "desc": "broken wooden hand cart with two spoked wheels"
    }
   ]
  },
@@ -380,6 +424,330 @@
     ],
     "base": 582,
     "desc": "the wooden bench with a backrest standing in front of the fireplace"
+   }
+  ]
+ },
+ "drowned_village": {
+  "image": "public/maps/gen/drowned_village_pick.jpg",
+  "objects": [
+   {
+    "id": "church_spire",
+    "box": [
+     905,
+     40,
+     1165,
+     475
+    ],
+    "base": 470,
+    "desc": "half-sunken gothic wooden church spire with arched windows, tilted, rising from dark swamp water"
+   }
+  ]
+ },
+ "frozen_lake": {
+  "image": "public/maps/gen/frozen_lake_pick.jpg",
+  "objects": [
+   {
+    "id": "lake_south_pines",
+    "box": [
+     250,
+     690,
+     810,
+     941
+    ],
+    "base": 941,
+    "desc": "row of snow-covered pine trees and ice crystals on the southern shore of a frozen lake"
+   }
+  ]
+ },
+ "gallows_hill": {
+  "image": "public/maps/gen/gallows_hill_pick.jpg",
+  "objects": [
+   {
+    "id": "gallows",
+    "box": [
+     625,
+     150,
+     780,
+     370
+    ],
+    "base": 365,
+    "desc": "wooden gallows with a hanging noose and a lantern on a small timber platform with steps"
+   }
+  ]
+ },
+ "grad_alley": {
+  "image": "public/maps/gen/grad_alley_pick.jpg",
+  "objects": [
+   {
+    "id": "lamp_post",
+    "box": [
+     820,
+     268,
+     868,
+     438
+    ],
+    "base": 435,
+    "desc": "wooden lamp post with a glowing hanging lantern"
+   }
+  ]
+ },
+ "grad_square": {
+  "image": "public/maps/gen/grad_square_pick.jpg",
+  "objects": [
+   {
+    "id": "fountain",
+    "box": [
+     795,
+     315,
+     972,
+     485
+    ],
+    "base": 470,
+    "desc": "tiered stone fountain frozen with icicles on a cobbled square"
+   },
+   {
+    "id": "pine_se",
+    "box": [
+     1512,
+     680,
+     1602,
+     880
+    ],
+    "base": 860,
+    "desc": "snow-covered fir tree between timber houses"
+   },
+   {
+    "id": "lamp_post",
+    "box": [
+     985,
+     395,
+     1017,
+     478
+    ],
+    "base": 472,
+    "desc": "wooden lamp post with a hanging lantern"
+   }
+  ]
+ },
+ "mine_deep": {
+  "image": "public/maps/gen/mine_deep_pick.jpg",
+  "objects": [
+   {
+    "id": "rocks_left",
+    "box": [
+     560,
+     520,
+     760,
+     660
+    ],
+    "base": 650,
+    "desc": "pile of large cave boulders with scattered mining tools"
+   }
+  ]
+ },
+ "mountains_map": {
+  "image": "public/maps/mountains_map.png",
+  "objects": [
+   {
+    "id": "statue",
+    "box": [
+     805,
+     390,
+     915,
+     550
+    ],
+    "base": 545,
+    "desc": "stone statue of a hooded dwarf warrior on a square plinth"
+   }
+  ]
+ },
+ "north_frontier": {
+  "image": "public/maps/gen/north_frontier_pick.jpg",
+  "objects": [
+   {
+    "id": "standing_stones_south",
+    "box": [
+     540,
+     440,
+     965,
+     668
+    ],
+    "base": 645,
+    "desc": "row of tall dark snow-capped standing stones"
+   },
+   {
+    "id": "pine_link",
+    "box": [
+     455,
+     585,
+     545,
+     810
+    ],
+    "base": 805,
+    "desc": "snow-covered fir tree"
+   },
+   {
+    "id": "lantern_post_west",
+    "box": [
+     60,
+     468,
+     106,
+     572
+    ],
+    "base": 568,
+    "desc": "wooden roadside post with a hanging lantern"
+   }
+  ]
+ },
+ "north_road": {
+  "image": "public/maps/gen/north_road_pick.jpg",
+  "objects": [
+   {
+    "id": "lantern_cross",
+    "box": [
+     540,
+     205,
+     705,
+     515
+    ],
+    "base": 512,
+    "desc": "tall wooden roadside post with crossbar and hanging glowing lantern"
+   },
+   {
+    "id": "stone_markers",
+    "box": [
+     750,
+     200,
+     1015,
+     474
+    ],
+    "base": 470,
+    "desc": "row of snow-capped standing stone road markers"
+   },
+   {
+    "id": "rocks_east",
+    "box": [
+     1190,
+     470,
+     1475,
+     708
+    ],
+    "base": 700,
+    "desc": "pile of snow-covered boulders beside a snowy road"
+   }
+  ]
+ },
+ "swamp_obelisk": {
+  "image": "public/maps/gen/swamp_obelisk_pick.jpg",
+  "objects": [
+   {
+    "id": "obelisk",
+    "box": [
+     860,
+     20,
+     1015,
+     480
+    ],
+    "base": 480,
+    "desc": "tall dark stone obelisk with carved rune circle, wrapped by thick glowing roots at its base"
+   }
+  ]
+ },
+ "village_fields": {
+  "image": "public/maps/gen/village_fields_pick.jpg",
+  "objects": [
+   {
+    "id": "barn",
+    "box": [
+     1125,
+     55,
+     1545,
+     425
+    ],
+    "base": 420,
+    "desc": "collapsing old wooden barn with broken roof beams"
+   },
+   {
+    "id": "willow_left",
+    "box": [
+     860,
+     585,
+     1070,
+     800
+    ],
+    "base": 790,
+    "desc": "drooping weeping willow tree by a stream"
+   },
+   {
+    "id": "willow_mid",
+    "box": [
+     1075,
+     505,
+     1260,
+     700
+    ],
+    "base": 690,
+    "desc": "drooping weeping willow tree"
+   },
+   {
+    "id": "lantern_post",
+    "box": [
+     890,
+     70,
+     945,
+     190
+    ],
+    "base": 186,
+    "desc": "wooden lantern post with a glowing hanging lamp at a crossroads"
+   }
+  ]
+ },
+ "winter_grad_gate": {
+  "image": "public/maps/gen/winter_grad_gate_pick.jpg",
+  "objects": [
+   {
+    "id": "left_rocks_crates",
+    "box": [
+     215,
+     600,
+     435,
+     765
+    ],
+    "base": 760,
+    "desc": "snow-covered boulders and wooden supply crates"
+   },
+   {
+    "id": "right_rocks_crates",
+    "box": [
+     1305,
+     600,
+     1455,
+     768
+    ],
+    "base": 765,
+    "desc": "snow-covered boulders with wooden crates"
+   },
+   {
+    "id": "left_lantern_post",
+    "box": [
+     525,
+     598,
+     575,
+     745
+    ],
+    "base": 742,
+    "desc": "wooden gallows-style post with a hanging lantern"
+   },
+   {
+    "id": "right_lantern_post",
+    "box": [
+     1115,
+     598,
+     1165,
+     745
+    ],
+    "base": 742,
+    "desc": "wooden gallows-style post with a hanging lantern"
    }
   ]
  }
