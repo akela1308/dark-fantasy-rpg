@@ -16,6 +16,7 @@ SPRITE = {  # spriteKey в maps.json -> папка персонажа
  "map_wild_dog": "wild_dog", "map_grey_wolf": "grey_wolf", "map_boar": "boar", "map_mavka": "mavka",
  "map_drowned": "drowned", "map_kobold": "kobold",
  "map_companion_brawler": "brawler", "map_companion_healer": "healer",   # Ворнаг и Тая как NPC до найма
+ "map_holt_sit": "holt", "map_mangy_dog": "mangy_dog",   # правка 27.10: новый Хольт с трубкой, облезлый пёс мародёров
 }
 REJECTED = set()
 best = {}

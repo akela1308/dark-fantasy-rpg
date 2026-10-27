@@ -1794,6 +1794,84 @@
   },
   "name": "Тая (Знахарка)"
  },
+ "holt": {
+  "anims": {
+   "attack": {
+    "file": "sprites/battle/holt_attack_v1_s60.webp",
+    "frameWidth": 352,
+    "frameHeight": 197,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.3994,
+    "originY": 0.9717,
+    "bodyHeight": 180.2,
+    "key": "holt_attack_v1_s60",
+    "hitFrame": 4
+   },
+   "death": {
+    "file": "sprites/battle/holt_death_v2_s60.webp",
+    "frameWidth": 352,
+    "frameHeight": 197,
+    "frames": 30,
+    "fps": 24,
+    "originX": 0.3994,
+    "originY": 0.9717,
+    "bodyHeight": 180.2,
+    "key": "holt_death_v2_s60",
+    "hold": true
+   },
+   "hit": {
+    "file": "sprites/battle/holt_hit_v1_s60.webp",
+    "frameWidth": 320,
+    "frameHeight": 197,
+    "frames": 14,
+    "fps": 24,
+    "originX": 0.4383,
+    "originY": 0.9717,
+    "bodyHeight": 179.8,
+    "key": "holt_hit_v1_s60"
+   },
+   "idle": {
+    "file": "sprites/battle/holt_idle_v1_s60.webp",
+    "frameWidth": 295,
+    "frameHeight": 181,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.4385,
+    "originY": 0.9739,
+    "bodyHeight": 165.8,
+    "key": "holt_idle_v1_s60",
+    "loop": true
+   },
+   "reload": {
+    "file": "sprites/battle/holt_reload_v2_s60.webp",
+    "frameWidth": 320,
+    "frameHeight": 197,
+    "frames": 38,
+    "fps": 24,
+    "originX": 0.4383,
+    "originY": 0.9717,
+    "bodyHeight": 179.8,
+    "key": "holt_reload_v2_s60"
+   },
+   "victory": {
+    "file": "sprites/battle/holt_victory_v1_s60.webp",
+    "frameWidth": 320,
+    "frameHeight": 197,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4383,
+    "originY": 0.9717,
+    "bodyHeight": 179.8,
+    "key": "holt_victory_v1_s60",
+    "hold": true
+   }
+  },
+  "actions": {
+   "basic": "attack"
+  },
+  "name": "Хольт, следопыт"
+ },
  "jester": {
   "anims": {
    "amb1": {
@@ -2091,6 +2169,73 @@
    "basic": "attack"
   },
   "name": "Лё, болотный старейшина (новый, предварительно)"
+ },
+ "mangy_dog": {
+  "anims": {
+   "attack": {
+    "file": "sprites/battle/mangy_dog_attack_v1_s60.webp",
+    "frameWidth": 361,
+    "frameHeight": 225,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4988,
+    "originY": 0.9761,
+    "bodyHeight": 179.9,
+    "key": "mangy_dog_attack_v1_s60",
+    "hitFrame": 6
+   },
+   "death": {
+    "file": "sprites/battle/mangy_dog_death_v2_s60.webp",
+    "frameWidth": 437,
+    "frameHeight": 225,
+    "frames": 28,
+    "fps": 24,
+    "originX": 0.5853,
+    "originY": 0.9761,
+    "bodyHeight": 180.1,
+    "key": "mangy_dog_death_v2_s60",
+    "hold": true
+   },
+   "hit": {
+    "file": "sprites/battle/mangy_dog_hit_v1_s60.webp",
+    "frameWidth": 333,
+    "frameHeight": 225,
+    "frames": 14,
+    "fps": 24,
+    "originX": 0.46,
+    "originY": 0.9761,
+    "bodyHeight": 180.0,
+    "key": "mangy_dog_hit_v1_s60"
+   },
+   "idle": {
+    "file": "sprites/battle/mangy_dog_idle_v1_s60.webp",
+    "frameWidth": 281,
+    "frameHeight": 190,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.4608,
+    "originY": 0.9773,
+    "bodyHeight": 152.1,
+    "key": "mangy_dog_idle_v1_s60",
+    "loop": true
+   },
+   "victory": {
+    "file": "sprites/battle/mangy_dog_victory_v1_s60.webp",
+    "frameWidth": 333,
+    "frameHeight": 225,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.46,
+    "originY": 0.9761,
+    "bodyHeight": 180.0,
+    "key": "mangy_dog_victory_v1_s60",
+    "hold": true
+   }
+  },
+  "actions": {
+   "basic": "attack"
+  },
+  "name": "Облезлый пёс"
  },
  "mavka": {
   "anims": {
@@ -2529,6 +2674,73 @@
    "heavy_strike": "power"
   },
   "name": "Щитоносец"
+ },
+ "swamp_beast": {
+  "anims": {
+   "attack": {
+    "file": "sprites/battle/swamp_beast_attack_v1_s60.webp",
+    "frameWidth": 323,
+    "frameHeight": 200,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.557,
+    "originY": 0.9748,
+    "bodyHeight": 179.8,
+    "key": "swamp_beast_attack_v1_s60",
+    "hitFrame": 10
+   },
+   "death": {
+    "file": "sprites/battle/swamp_beast_death_v2_s60.webp",
+    "frameWidth": 357,
+    "frameHeight": 200,
+    "frames": 27,
+    "fps": 24,
+    "originX": 0.5984,
+    "originY": 0.9748,
+    "bodyHeight": 180.0,
+    "key": "swamp_beast_death_v2_s60",
+    "hold": true
+   },
+   "hit": {
+    "file": "sprites/battle/swamp_beast_hit_v1_s60.webp",
+    "frameWidth": 296,
+    "frameHeight": 200,
+    "frames": 14,
+    "fps": 24,
+    "originX": 0.5164,
+    "originY": 0.9748,
+    "bodyHeight": 179.8,
+    "key": "swamp_beast_hit_v1_s60"
+   },
+   "idle": {
+    "file": "sprites/battle/swamp_beast_idle_v1_s60.webp",
+    "frameWidth": 296,
+    "frameHeight": 200,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.5164,
+    "originY": 0.9748,
+    "bodyHeight": 179.8,
+    "key": "swamp_beast_idle_v1_s60",
+    "loop": true
+   },
+   "victory": {
+    "file": "sprites/battle/swamp_beast_victory_v1_s60.webp",
+    "frameWidth": 296,
+    "frameHeight": 200,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.5164,
+    "originY": 0.9748,
+    "bodyHeight": 179.8,
+    "key": "swamp_beast_victory_v1_s60",
+    "hold": true
+   }
+  },
+  "actions": {
+   "basic": "attack"
+  },
+  "name": "Болотная тварь"
  },
  "swamp_elf_battle": {
   "anims": {

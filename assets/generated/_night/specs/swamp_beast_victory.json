@@ -1,0 +1,1 @@
+{"slug": "swamp_beast", "anim": "victory", "base": "swamp_beast/k_battle.png", "body": 300, "segments": [{"clip": "swamp_beast/clips/victory_v1.mp4", "from": 0, "to": 95, "frames": 29}], "hold": true}

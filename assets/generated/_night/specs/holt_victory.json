@@ -1,0 +1,1 @@
+{"slug": "holt", "anim": "victory", "base": "holt/k_battle.png", "body": 300, "segments": [{"clip": "holt/clips/victory_v1.mp4", "from": 4, "to": 95, "frames": 29}], "hold": true}

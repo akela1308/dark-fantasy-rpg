@@ -46,7 +46,10 @@
     "moroz_1": 2.2,
     "poludnitsa_1": 1.8,
     "forgotten_warden": 2.0,
-    "frontier_beast_1": 2.0
+    "frontier_beast_1": 2.0,
+    "holt": 1.8,
+    "mangy_dog": 0.72,
+    "swamp_beast": 1.05
   },
   "map": {
     "heroPx": 130,

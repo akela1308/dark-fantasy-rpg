@@ -63,7 +63,7 @@
         "isBoss": false,
         "classId": "wolf",
         "arch": "wolf",
-        "spriteKey": "dog"
+        "spriteKey": "mangy_dog"
       }
     ],
     "backgroundKey": "battle_Plane",
@@ -625,7 +625,7 @@
         "isBoss": false,
         "classId": "wolf",
         "arch": "wolf",
-        "spriteKey": "dog"
+        "spriteKey": "swamp_beast"
       },
       {
         "id": "swamp_beast_2",
@@ -651,7 +651,7 @@
         "isBoss": false,
         "classId": "wolf",
         "arch": "wolf",
-        "spriteKey": "dog"
+        "spriteKey": "swamp_beast"
       },
       {
         "id": "swamp_beast_3",
@@ -677,7 +677,7 @@
         "isBoss": false,
         "classId": "wolf",
         "arch": "wolf",
-        "spriteKey": "dog"
+        "spriteKey": "swamp_beast"
       }
     ],
     "backgroundKey": "battle_Boloto_battle",
@@ -745,7 +745,7 @@
         "isBoss": false,
         "classId": "wolf",
         "arch": "wolf",
-        "spriteKey": "dog"
+        "spriteKey": "swamp_beast"
       },
       {
         "id": "swamp_beast_2",
@@ -771,7 +771,7 @@
         "isBoss": false,
         "classId": "wolf",
         "arch": "wolf",
-        "spriteKey": "dog"
+        "spriteKey": "swamp_beast"
       }
     ],
     "backgroundKey": "battle_Boloto_battle",
@@ -2098,7 +2098,7 @@
         "skills": [],
         "ranged": false,
         "isBoss": false,
-        "spriteKey": "dog"
+        "spriteKey": "swamp_beast"
       },
       {
         "id": "drowned_dead_2",
@@ -2124,7 +2124,7 @@
         "skills": [],
         "ranged": false,
         "isBoss": false,
-        "spriteKey": "dog"
+        "spriteKey": "swamp_beast"
       }
     ],
     "backgroundKey": "battle_Boloto_battle",
@@ -3677,7 +3677,7 @@
         "skills": [],
         "ranged": false,
         "isBoss": false,
-        "spriteKey": "dog"
+        "spriteKey": "swamp_beast"
       }
     ],
     "backgroundKey": "battle_Boloto_battle",

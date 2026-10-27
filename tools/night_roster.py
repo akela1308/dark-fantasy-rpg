@@ -165,6 +165,14 @@ R = [
  dict(slug="cat", name="Кошка", src=ROOT+"/арты/Сфе.png", kind="beast",
       map="sitting calmly", battle=None,
       ambient=["washes its face with a paw", "stretches and sits down"]),
+ # Правка 27.10: уникальные персонажи вместо повторов (новый Хольт, дворняга мародёров, болотная тварь)
+ dict(slug="holt", name="Хольт, следопыт", src=None, kind="crossbow", map="sitting with a clay pipe",
+      battle="one small crossbow in the front hand pointing to the right, one long hunting knife in the rear hand",
+      desc="former forester of about 45, no hood, grey-streaked beard, scar, leather jerkin, moss-green cloak"),
+ dict(slug="mangy_dog", name="Облезлый пёс", src=None, kind="beast", map="standing", battle="no weapon, fangs",
+      desc="a mangy half-starved stray mongrel, grey-brown and ginger patches, torn ear, rope collar"),
+ dict(slug="swamp_beast", name="Болотная тварь", src=None, kind="monster", battle="no weapon, claws and needle teeth",
+      desc="a hunched amphibious swamp creature of black mud, reeds and roots with a pike-like head"),
 ]
 
 COMMON = ("Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. "

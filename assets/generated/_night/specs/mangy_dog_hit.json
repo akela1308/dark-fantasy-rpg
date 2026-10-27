@@ -1,0 +1,1 @@
+{"slug": "mangy_dog", "anim": "hit", "base": "mangy_dog/k_battle.png", "body": 300, "segments": [{"clip": "mangy_dog/clips/hit_v2.mp4", "from": 0, "to": 95, "frames": 14}]}

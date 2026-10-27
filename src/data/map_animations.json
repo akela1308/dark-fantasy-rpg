@@ -1101,5 +1101,43 @@
    6000,
    14000
   ]
+ },
+ "map_holt_sit": {
+  "slug": "holt",
+  "idle": {
+   "file": "maps/characters/anim/holt_mapidle_v1_s60.webp",
+   "frameWidth": 211,
+   "frameHeight": 170,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.4453,
+   "originY": 0.9754,
+   "bodyHeight": 156.3,
+   "key": "holt_mapidle_v1_s60"
+  },
+  "ambient": [],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
+ "map_mangy_dog": {
+  "slug": "mangy_dog",
+  "idle": {
+   "file": "maps/characters/anim/mangy_dog_mapidle_v1_s60.webp",
+   "frameWidth": 210,
+   "frameHeight": 195,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.4461,
+   "originY": 0.9761,
+   "bodyHeight": 156.0,
+   "key": "mangy_dog_mapidle_v1_s60"
+  },
+  "ambient": [],
+  "delay": [
+   6000,
+   14000
+  ]
  }
 }

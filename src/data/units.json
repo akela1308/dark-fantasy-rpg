@@ -138,7 +138,7 @@
     "resources": {},
     "type": "player",
     "ranged": true,
-    "spriteKey": "adventurer",
+    "spriteKey": "holt",
     "originId": null,
     "branchId": null,
     "passives": [],

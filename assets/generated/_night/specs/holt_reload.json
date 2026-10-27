@@ -1,0 +1,1 @@
+{"slug": "holt", "anim": "reload", "base": "holt/k_battle.png", "body": 300, "segments": [{"clip": "holt/clips/reload_v1.mp4", "from": 0, "to": 90, "frames": 38}], "ver": 2}

@@ -1,0 +1,1 @@
+{"slug": "holt", "anim": "idle", "base": "holt/k_battle.png", "body": 300, "segments": [{"clip": "holt/clips/bidle_v1.mp4", "from": 0, "to": 95, "frames": 96}], "loop": true, "left": 0.85, "right": 1.0}
