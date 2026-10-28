@@ -21,16 +21,22 @@ def key(path):
 
 
 def despike(im):
-    a = np.array(im)
-    h, w = a.shape[:2]
-    bw, bh = int(w * 0.09), int(h * 0.12)   # полуширина зоны шипа и глубина кромки
-    cx, cy = w // 2, h // 2
-    src_x, src_y = int(w * 0.3), int(h * 0.3)
-    for rows in (slice(0, bh), slice(h - bh, h)):   # верх и низ: копия кромки слева от центра
-        a[rows, cx - bw:cx + bw] = a[rows, src_x - bw:src_x + bw]
-    for cols in (slice(0, bh), slice(w - bh, w)):   # бока: копия кромки выше центра
-        a[cy - bw:cy + bw, cols] = a[src_y - bw:src_y + bw, cols]
-    return Image.fromarray(a, "RGBA")
+    """Шипы посередине сторон убираются: вся середина каждой кромки заменяется растянутой полоской чистой кромки
+    (NineSlice растягивает именно середину, поэтому на кнопке любой ширины кромка ровная, без швов)."""
+    w, h = im.size
+    out = im.copy()
+    cx0, cx1 = int(w * 0.16), int(w * 0.84)      # середина верхней и нижней кромки
+    cy0, cy1 = int(h * 0.22), int(h * 0.78)      # середина боковых кромок
+    eh, ew = int(h * 0.2), int(w * 0.09)         # глубина кромок
+    sx = int(w * 0.24)                           # чистый столбик кромки
+    sy = int(h * 0.3)                            # чистая строка кромки
+    for y0, y1 in ((0, eh), (h - eh, h)):
+        strip = im.crop((sx, y0, sx + 6, y1)).resize((cx1 - cx0, y1 - y0))
+        out.paste(strip, (cx0, y0))
+    for x0, x1 in ((0, ew), (w - ew, w)):
+        strip = im.crop((x0, sy, x1, sy + 6)).resize((x1 - x0, cy1 - cy0))
+        out.paste(strip, (x0, cy0))
+    return out
 
 
 def save(im, name, width):
@@ -46,4 +52,6 @@ if __name__ == "__main__":
     rgb = ImageEnhance.Brightness(ImageEnhance.Color(p.convert("RGB")).enhance(0.8)).enhance(0.78)
     rgb.putalpha(p.split()[3]); save(rgb, "parchment", 720)
     save(despike(key(f"{G}/button.png")), "button", 560)
+    # v2: ровная кромка без шипов (button_v3.png), её и использует игра
+    b = key(f"{G}/button_v3.png"); b.resize((640, round(b.height * 640 / b.width))).save(f"{ROOT}/public/ui/plate_button_v2.png", optimize=True)
     save(key(f"{G}/label.png"), "label", 600)

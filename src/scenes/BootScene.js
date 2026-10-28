@@ -1,5 +1,5 @@
 import * as Phaser from 'phaser/dist/phaser.esm.js';
-import { SaveSystem, START_MAP, START_SPAWN, SLOTS } from '../utils/SaveSystem.js';
+import { SaveSystem, START_MAP, START_SPAWN } from '../utils/SaveSystem.js';
 import MAP_CONFIGS from '../data/maps.json';
 import { Frame } from '../ui/Frame.js';
 import { nicheButton } from '../ui/NicheButton.js';
@@ -56,7 +56,6 @@ export class BootScene extends Phaser.Scene {
       stroke:     '#1a0f00',
       strokeThickness: 6,
       letterSpacing: 14,
-      shadow: { offsetX: 0, offsetY: 0, color: '#C9A84C', blur: 24, fill: true },
     }).setOrigin(0.5).setAlpha(0);
 
     const subtitle = this.add.text(cx, 250, 'ТЁМНОЕ ФЭНТЕЗИ', {
@@ -71,9 +70,6 @@ export class BootScene extends Phaser.Scene {
     const lineL = this.add.rectangle(cx - 240, 274, 170, 1, 0x8a7030, 1).setAlpha(0);
     const lineR = this.add.rectangle(cx + 240, 274, 170, 1, 0x8a7030, 1).setAlpha(0);
 
-    const ver = this.add.text(W - 16, H - 12, 'v0.3, прототип', {
-      fontFamily: FONT, fontSize: '11px', color: '#6a6352',
-    }).setOrigin(1, 1).setAlpha(0);
 
     const fadeIn = (obj, delay, duration) => {
       this.tweens.add({ targets: obj, alpha: 1, duration: duration || 1200, delay, ease: 'Power2' });
@@ -85,7 +81,6 @@ export class BootScene extends Phaser.Scene {
     fadeIn(subtitle, 1200, 1000);
     fadeIn(lineL, 1400, 800);
     fadeIn(lineR, 1400, 800);
-    fadeIn(ver, 2400, 800);
     this.time.delayedCall(3000, () => {
       this.tweens.add({ targets: title, alpha: { from: 1, to: 0.88 }, duration: 2800, yoyo: true, repeat: -1, ease: 'Sine.easeInOut' });
     });
@@ -127,9 +122,9 @@ export class BootScene extends Phaser.Scene {
     if (save) {
       const info = SaveSystem.slotInfo(SaveSystem.getSlot());
       const where = MAP_CONFIGS[info?.mapKey]?.name || info?.mapKey || '';
-      const b1 = nicheButton(this, cx, 590, 'Продолжить', { w: 300, h: 56, size: 20, depth: 10, onClick: continueGame,
+      const b1 = nicheButton(this, cx, 580, 'Продолжить', { w: 340, h: 74, size: 22, depth: 10, onClick: continueGame,
         sub: `уровень ${info?.level || 1}, ${where}, ${info?.mode === 'iron' ? 'Железо' : 'Хроника'}` });
-      const b2 = nicheButton(this, cx, 650, 'Новая игра', { w: 300, h: 40, size: 16, depth: 10, onClick: () => this._confirmNew(newGame, MODES) });
+      const b2 = nicheButton(this, cx, 664, 'Новая игра', { w: 340, h: 48, size: 18, depth: 10, onClick: () => this._confirmNew(newGame, MODES) });
       menu.push(...b1.objs, ...b2.objs);
       this._enter = continueGame;
     } else {
@@ -151,17 +146,6 @@ export class BootScene extends Phaser.Scene {
       this._enter = () => newGame(this._mode);
     }
 
-    // Три слота сохранений (04_ТЕХПЛАН 2.2): клик выбирает слот
-    const cur = SaveSystem.getSlot();
-    SLOTS.forEach((n, i) => {
-      const info = SaveSystem.slotInfo(n);
-      const label = info ? `Слот ${n}: ур. ${info.level}, ${MAP_CONFIGS[info.mapKey]?.name || info.mapKey}` : `Слот ${n}: пусто`;
-      const t = this.add.text(cx + (i - 1) * 300, 24, label, {
-        fontFamily: FONT, fontSize: '13px', color: n === cur ? '#d4a832' : '#8a826c', stroke: '#000', strokeThickness: 3,
-      }).setOrigin(0.5).setInteractive({ useHandCursor: true });
-      t.on('pointerdown', () => { SaveSystem.setSlot(n); this.scene.restart(); });
-      menu.push(t);
-    });
     if (abandoned) {
       menu.push(this.add.text(cx, 530, 'Бой был брошен. В режиме Железо это поражение: сохранение стёрто.', {
         fontFamily: FONT, fontSize: '14px', color: '#e06060', stroke: '#000', strokeThickness: 3,

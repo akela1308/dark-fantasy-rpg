@@ -9,7 +9,7 @@
  */
 export const PLATES = {
   parchment: { key: 'plate_parchment', file: 'ui/plate_parchment_v1.png', l: 46, r: 46, t: 40, b: 40, corner: 0.22 },
-  button:    { key: 'plate_button', file: 'ui/plate_button_v1.png', l: 64, r: 64, t: 56, b: 56, corner: 0.3 },
+  button:    { key: 'plate_button', file: 'ui/plate_button_v2.png', l: 30, r: 30, t: 30, b: 30, corner: 0.22 },
   label:     { key: 'plate_label', file: 'ui/plate_label_v1.png', l: 40, r: 40, t: 34, b: 34, corner: 0.3 },
 };
 

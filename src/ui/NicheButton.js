@@ -17,12 +17,12 @@ export function nicheButton(scene, x, y, label, { w = 220, h = 44, onClick, dept
   const bg = fix(scene.add.rectangle(s(x), s(y), s(w), s(h), 0x000000, 0).setDepth(depth + 1));
   const draw = hover => pl.setTint?.(hover ? 0xffe2b0 : 0xffffff);
   draw(false);
-  const t = fix(scene.add.text(s(x), s(sub ? y - 4 : y), label, {
+  const t = fix(scene.add.text(s(x), s(sub ? y + 1 : y), label, {
     fontFamily: FONT, fontSize: `${s(size)}px`, color, stroke: '#000', strokeThickness: s(2), letterSpacing: s(1),
     align: 'center', wordWrap: { width: s(w - 20), useAdvancedWrap: true },
   }).setOrigin(0.5, sub ? 1 : 0.5).setDepth(depth + 2));
   let st = null;
-  if (sub) st = fix(scene.add.text(s(x), s(y), sub, {
+  if (sub) st = fix(scene.add.text(s(x), s(y + 3), sub, {
     fontFamily: FONT, fontSize: `${s(11)}px`, color: COLOR.muted, stroke: '#000', strokeThickness: s(1.5),
     align: 'center', wordWrap: { width: s(w - 20), useAdvancedWrap: true },
   }).setOrigin(0.5, 0).setDepth(depth + 2));
