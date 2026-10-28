@@ -22,9 +22,22 @@ function walk(dir, base = dir, out = []) {
   return out;
 }
 
+// Полноразмерные листы боя, у которых есть уменьшенная копия *_s60 и на которые src/ не ссылается
+// (игра грузит копию, tools/shrink_sheets.py), в сборку не идут: иначе сайт не влезает в 1 ГБ GitHub Pages.
+function srcText() {
+  return walk('src').map(f => fs.readFileSync(path.join('src', f), 'utf8')).join('\n');
+}
+function isUnusedFullSheet(rel, dir, src) {
+  const m = rel.match(/^sprites\/battle\/(.+)\.(png|webp|json)$/);
+  if (!m || m[1].endsWith('_s60')) return false;
+  const twin = ['png', 'webp', 'json'].some(e => fs.existsSync(path.join(dir, `sprites/battle/${m[1]}_s60.${e}`)));
+  return twin && !src.includes(`battle/${m[1]}.`);
+}
+
 function dropUnused(dir) {
+  const src = srcText();
   for (const rel of walk(dir)) {
-    if (DROP.some(([re]) => re.test(rel))) fs.rmSync(path.join(dir, rel));
+    if (DROP.some(([re]) => re.test(rel)) || isUnusedFullSheet(rel, dir, src)) fs.rmSync(path.join(dir, rel));
   }
 }
 
