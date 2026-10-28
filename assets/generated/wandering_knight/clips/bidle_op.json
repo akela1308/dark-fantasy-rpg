@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/309e3c6e-525b-4464-bbf0-026eebbce634",
+ "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: one long sword in the front hand, one battered heater shield on the rear arm; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. ",
+ "img": "../wandering_knight/k_battle.png",
+ "last": "../wandering_knight/k_battle.png",
+ "sec": 4
+}

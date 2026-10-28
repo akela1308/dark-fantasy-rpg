@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/22e14b53-6643-491e-9081-db0a210393c7",
+ "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: sniffs the air and shakes the frost from its fur. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles. ",
+ "img": "../bear_shatun/k_idle.png",
+ "last": "../bear_shatun/k_idle.png",
+ "sec": 4
+}

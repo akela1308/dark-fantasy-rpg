@@ -1,0 +1,2 @@
+A single inventory item icon for a dark fantasy game: copy only the hand-painted painterly oil rendering and muted palette of the reference. The object: ONE single tarnished old silver spoon lying diagonally, a scraped-off coat of arms on the handle, worn. Exactly one spoon, nothing else. Centered, filling about 80% of the image. No frame, no text, no shadow, no glow. Flat solid uniform pure magenta background (#FF00FF).
+refs: /Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/public/items/book_lame_stag.png

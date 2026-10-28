@@ -1,0 +1,1 @@
+{"slug": "grad_guard", "anim": "idle", "base": "grad_guard/k_battle.png", "body": 300, "segments": [{"clip": "grad_guard/clips/bidle_v2.mp4", "from": 0, "to": 95, "frames": 96}], "loop": true, "left": 0.85, "right": 1.0, "ver": 2, "drop": [19]}

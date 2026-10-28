@@ -1,0 +1,1 @@
+{"slug": "bandit_axewoman", "anim": "victory", "base": "bandit_axewoman/k_battle.png", "body": 300, "segments": [{"clip": "bandit_axewoman/clips/victory_v2.mp4", "from": 0, "to": 95, "frames": 29}], "hold": true, "ver": 1}

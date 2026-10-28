@@ -1,0 +1,1 @@
+{"slug": "snow_wolf_leader", "anim": "hit", "base": "snow_wolf_leader/k_battle.png", "body": 300, "segments": [{"clip": "snow_wolf_leader/clips/hit_v1.mp4", "from": 0, "to": 95, "frames": 14}], "ver": 1, "drop": [2, 3], "keepall": true, "left": 1.6, "right": 1.6}

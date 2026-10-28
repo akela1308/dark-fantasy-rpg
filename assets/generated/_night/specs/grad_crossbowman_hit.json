@@ -1,0 +1,1 @@
+{"slug": "grad_crossbowman", "anim": "hit", "base": "grad_crossbowman/k_battle.png", "body": 300, "segments": [{"clip": "grad_crossbowman/clips/hit_v2.mp4", "from": 0, "to": 95, "frames": 14}], "ver": 1}

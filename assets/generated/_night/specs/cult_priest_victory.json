@@ -1,0 +1,1 @@
+{"slug": "cult_priest", "anim": "victory", "base": "cult_priest/k_battle.png", "body": 300, "segments": [{"clip": "cult_priest/clips/victory_v2.mp4", "from": 0, "to": 95, "frames": 29}], "hold": true, "ver": 1, "keepall": true}

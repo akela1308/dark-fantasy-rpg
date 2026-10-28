@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/0e3f69d2-87d5-41e3-b69e-b608c2239032",
+ "prompt": "IMPORTANT: he stays in three-quarter view turned to the RIGHT for the whole clip, never turns to face the camera. The sword stays in the hand on the right side of the image and the shield stays on the arm on the left side of the image. Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one long sword in the front hand, one battered heater shield on the rear arm; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. ",
+ "img": "../wandering_knight/k_battle.png",
+ "last": null,
+ "sec": 4
+}

@@ -1,0 +1,1 @@
+{"slug": "snow_wolf", "anim": "victory", "base": "snow_wolf/k_battle.png", "body": 300, "segments": [{"clip": "snow_wolf/clips/victory_v1.mp4", "from": 0, "to": 95, "frames": 29}], "hold": true, "ver": 1, "keepall": true, "left": 1.6, "right": 1.6}

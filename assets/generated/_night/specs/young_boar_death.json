@@ -1,0 +1,1 @@
+{"slug": "young_boar", "anim": "death", "base": "young_boar/k_battle.png", "body": 300, "segments": [{"clip": "young_boar/clips/death_v2.mp4", "from": 0, "to": 95, "frames": 30}], "left": 1.6, "right": 1.6, "hold": true, "ver": 1, "drop": [2, 3], "keepall": true}

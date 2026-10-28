@@ -1,0 +1,1 @@
+{"slug": "snow_wolf", "anim": "attack", "base": "snow_wolf/k_battle.png", "body": 300, "segments": [{"clip": "snow_wolf/clips/attack_v1.mp4", "from": 0, "to": 95, "frames": 29}], "hit": "auto", "right": 1.6, "left": 1.6, "ver": 1, "keepall": true}

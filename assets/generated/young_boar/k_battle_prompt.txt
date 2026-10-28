@@ -1,0 +1,2 @@
+Edit of the reference image: the same animal (same fur, colors, marks and size). Pose: standing on four legs, side view, facing the RIGHT side of the image, head lowered, teeth bared, ready to attack, never on hind legs. Exactly one, full body, about 60% of the image height. Flat solid pure chroma green background (#00FF00), the same green everywhere, no shadow, no floor, no effects, no glow, no text, no watermark, no other objects or characters.
+refs: /Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/assets/generated/young_boar/k_idle.png

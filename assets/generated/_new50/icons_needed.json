@@ -1,0 +1,332 @@
+[
+  {
+    "key": "item_bread",
+    "file": "ui/items/bread.png",
+    "prompt": "a dark heavy loaf of rye bread with bran crust, a bite-sized chunk torn off, worn, slightly dirty, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_stew",
+    "file": "ui/items/stew.png",
+    "prompt": "a small blackened clay pot of barley and onion stew with a wooden spoon, worn, slightly dirty, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_dried_meat",
+    "file": "ui/items/dried_meat.png",
+    "prompt": "tough strips of salted dried horse meat tied with twine, worn, slightly dirty, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_smoked_fish",
+    "file": "ui/items/smoked_fish.png",
+    "prompt": "a smoked swamp tench fish, golden brown skin, hanging by a reed loop, worn, slightly dirty, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_hard_cheese",
+    "file": "ui/items/hard_cheese.png",
+    "prompt": "a wedge of dry sheep cheese with mold on the rind, worn, slightly dirty, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_honey_comb",
+    "file": "ui/items/honey_comb.png",
+    "prompt": "a dark wild honeycomb piece on a birch-bark sheet, dripping honey, worn, slightly dirty, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_dark_beer",
+    "file": "ui/items/dark_beer.png",
+    "prompt": "a small clay jug of dark beer with foam stains, worn, slightly dirty, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_bitter_draught",
+    "file": "ui/items/bitter_draught.png",
+    "prompt": "a cracked glass vial of brown bitter herbal brew with a rag stopper, worn, slightly dirty, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_sedge_tincture",
+    "file": "ui/items/sedge_tincture.png",
+    "prompt": "a murky green-black tincture in a thick glass bottle, sedge blades tied to the neck, worn, slightly dirty, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_swamp_bandage",
+    "file": "ui/items/swamp_bandage.png",
+    "prompt": "a rolled linen bandage stained greenish with sedge juice, worn, slightly dirty, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_moss_salve",
+    "file": "ui/items/moss_salve.png",
+    "prompt": "a small clay jar of grey-green moss salve with a wax lid, worn, slightly dirty, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_resin_balm",
+    "file": "ui/items/resin_balm.png",
+    "prompt": "a squat jar of amber pine resin balm sealed with yellow wax, worn, slightly dirty, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_strong_tincture",
+    "file": "ui/items/strong_tincture.png",
+    "prompt": "a tall dark glass bottle of strong root tincture, wax-sealed cork, tied label, worn, slightly dirty, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_gentian_antidote",
+    "file": "ui/items/gentian_antidote.png",
+    "prompt": "a corked vial of bitter gentian antidote with a blue gentian flower tied to it, worn, slightly dirty, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_warding_salt",
+    "file": "ui/items/warding_salt.png",
+    "prompt": "a small cloth pouch of grey salt tied with red thread, salt spilling, worn, slightly dirty, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_whetstone",
+    "file": "ui/items/whetstone.png",
+    "prompt": "a grey whetstone with an oil stain and a worn middle, worn, slightly dirty, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_paper_cartridges",
+    "file": "ui/items/paper_cartridges.png",
+    "prompt": "three paper powder cartridges tied with string, greasy paper, worn, slightly dirty, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_smelling_salts",
+    "file": "ui/items/smelling_salts.png",
+    "prompt": "a tiny tin box of smelling salts with tinder fungus crumbs, worn, slightly dirty, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_light_step",
+    "file": "ui/items/light_step.png",
+    "prompt": "a small flask of pale mint-green brew with a mint sprig, worn, slightly dirty, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_black_sedge",
+    "file": "ui/items/black_sedge.png",
+    "prompt": "a bundle of black swamp sedge stems, wet, tied with grass, worn, slightly dirty, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_burial_moss",
+    "file": "ui/items/burial_moss.png",
+    "prompt": "a clump of dry grey-green moss peeled off a gravestone, worn, slightly dirty, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_bitterwort",
+    "file": "ui/items/bitterwort.png",
+    "prompt": "a gentian root with a small blue flower, dirt on the root, worn, slightly dirty, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_resin",
+    "file": "ui/items/resin.png",
+    "prompt": "a birch-bark container of sticky pine resin, worn, slightly dirty, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_marsh_root",
+    "file": "ui/items/marsh_root.png",
+    "prompt": "a pale fleshy marsh root, muddy, with thin hair roots, worn, slightly dirty, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_grey_salt",
+    "file": "ui/items/grey_salt.png",
+    "prompt": "a heap of coarse grey road salt on a scrap of cloth, worn, slightly dirty, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_badger_fat",
+    "file": "ui/items/badger_fat.png",
+    "prompt": "a small clay pot of rendered badger fat, worn, slightly dirty, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_beeswax",
+    "file": "ui/items/beeswax.png",
+    "prompt": "a lump of yellow beeswax with candle stubs, worn, slightly dirty, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_linen",
+    "file": "ui/items/linen.png",
+    "prompt": "a folded strip of clean undyed linen torn for bandages, worn, slightly dirty, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_tinder_fungus",
+    "file": "ui/items/tinder_fungus.png",
+    "prompt": "a hoof-shaped tinder fungus from a birch trunk, worn, slightly dirty, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_deadman_fingers",
+    "file": "ui/items/deadman_fingers.png",
+    "prompt": "grey finger-like grave mushrooms in a cluster, worn, slightly dirty, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_wolfsbane",
+    "file": "ui/items/wolfsbane.png",
+    "prompt": "a poisonous wolfsbane root with purple hooded flowers, worn, slightly dirty, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_empty_flask",
+    "file": "ui/items/empty_flask.png",
+    "prompt": "an empty murky glass flask with a chipped neck, worn, slightly dirty, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_imperial_silver",
+    "file": "ui/items/imperial_silver.png",
+    "prompt": "an old worn imperial silver coin with a rubbed-off face, worn, slightly dirty, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_copper_ring",
+    "file": "ui/items/copper_ring.png",
+    "prompt": "a plain copper ring with a scratch where a name was, worn, slightly dirty, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_post_signet",
+    "file": "ui/items/post_signet.png",
+    "prompt": "a torn-off bronze signet seal of a road post with a number, worn, slightly dirty, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_amber_bead",
+    "file": "ui/items/amber_bead.png",
+    "prompt": "an amber bead with a tiny insect trapped inside, worn, slightly dirty, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_wolf_pelt",
+    "file": "ui/items/wolf_pelt.png",
+    "prompt": "a folded grey wolf pelt, roughly tanned, worn, slightly dirty, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_boar_tusk",
+    "file": "ui/items/boar_tusk.png",
+    "prompt": "a yellowed young boar tusk, worn, slightly dirty, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_silver_spoon",
+    "file": "ui/items/silver_spoon.png",
+    "prompt": "a tarnished silver spoon with a scraped-off coat of arms, worn, slightly dirty, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_tin_icon",
+    "file": "ui/items/tin_icon.png",
+    "prompt": "a small tin folding travel icon with two worn panels, worn, slightly dirty, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_copper_nugget",
+    "file": "ui/items/copper_nugget.png",
+    "prompt": "a raw copper ore nugget with green patina, worn, slightly dirty, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_book_swamp_rules",
+    "file": "ui/items/book_swamp_rules.png",
+    "prompt": "a thin booklet in oiled leather, salt crust on the edges, closed, worn, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_book_singing_stone",
+    "file": "ui/items/book_singing_stone.png",
+    "prompt": "a heavy dwarf book with copper corner caps, closed, worn, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_book_seven_silences",
+    "file": "ui/items/book_seven_silences.png",
+    "prompt": "a narrow dwarf book with stone clasps, closed, worn, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_book_duel_law",
+    "file": "ui/items/book_duel_law.png",
+    "prompt": "an imperial court duel code, black leather, faded gold seal stamp, closed, worn, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_book_ashen_forester",
+    "file": "ui/items/book_ashen_forester.png",
+    "prompt": "a small pocket field guide with resin stains and dog-eared corners, closed, worn, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_book_eastern_crown_tax",
+    "file": "ui/items/book_eastern_crown_tax.png",
+    "prompt": "a dry official tax manual with a crown seal stamped on the page edges, closed, worn, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_book_northern_guest",
+    "file": "ui/items/book_northern_guest.png",
+    "prompt": "a smoke-stained book of northern tales, fur-trimmed spine, closed, worn, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_book_children_of_fog",
+    "file": "ui/items/book_children_of_fog.png",
+    "prompt": "a damp book of swamp fairy tales with a child drawing of a bridge and many eyes, closed, worn, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_book_black_candle",
+    "file": "ui/items/book_black_candle.png",
+    "prompt": "an untitled forbidden book with black wax dripped over the page edges, closed, worn, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_book_prayers",
+    "file": "ui/items/book_prayers.png",
+    "prompt": "a thin road prayer book with grass blade bookmarks, closed, worn, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_book_field_surgeon",
+    "file": "ui/items/book_field_surgeon.png",
+    "prompt": "a regimental healer notebook with brown blood stains, closed, worn, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_book_bitter_tinctures",
+    "file": "ui/items/book_bitter_tinctures.png",
+    "prompt": "an herbal of bitter tinctures, dried leaves pressed between pages, closed, worn, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_book_post_seven_log",
+    "file": "ui/items/book_post_seven_log.png",
+    "prompt": "a military post logbook with a stamped number seven, closed, worn, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_book_outpost_shooter",
+    "file": "ui/items/book_outpost_shooter.png",
+    "prompt": "a folded thin notebook with two paper cartridges tucked inside, closed, worn, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_book_crypt_notes",
+    "file": "ui/items/book_crypt_notes.png",
+    "prompt": "gravedigger notes on funeral tags sewn together with twine, closed, worn, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_book_poludnitsa_signs",
+    "file": "ui/items/book_poludnitsa_signs.png",
+    "prompt": "a peasant almanac with a sickle and sun drawn on the cover, closed, worn, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_book_likho_note",
+    "file": "ui/items/book_likho_note.png",
+    "prompt": "a folded sheet of paper weighed down by a small stone, closed, worn, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_book_troll_ledger",
+    "file": "ui/items/book_troll_ledger.png",
+    "prompt": "a dwarf ledger with straight columns, stone-grey binding, closed, worn, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_book_secret_script",
+    "file": "ui/items/book_secret_script.png",
+    "prompt": "a homemade booklet of chalk and charcoal sketches of road marks, closed, worn, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_book_water_bargain",
+    "file": "ui/items/book_water_bargain.png",
+    "prompt": "a booklet bound with fish glue, wavy pages warped by damp, closed, worn, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_book_copper_arithmetic",
+    "file": "ui/items/book_copper_arithmetic.png",
+    "prompt": "a dwarf arithmetic primer with copper studs, closed, worn, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_book_winter_signs",
+    "file": "ui/items/book_winter_signs.png",
+    "prompt": "a birch-bark booklet sewn with sinew, closed, worn, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_book_saint_mostnik",
+    "file": "ui/items/book_saint_mostnik.png",
+    "prompt": "a hagiography with a rubbed-off gilded initial and a bridge icon, closed, worn, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_book_soldier_letters",
+    "file": "ui/items/book_soldier_letters.png",
+    "prompt": "a bundle of unsent letters tied with a faded ribbon, closed, worn, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  },
+  {
+    "key": "item_book_grad_chronicle",
+    "file": "ui/items/book_grad_chronicle.png",
+    "prompt": "a city chronicle with painted-over pages, flaking northern paint, closed, worn, painterly dark fantasy item icon, muted earthy palette, no glow, transparent background"
+  }
+]

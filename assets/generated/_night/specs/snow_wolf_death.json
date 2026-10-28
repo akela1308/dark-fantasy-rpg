@@ -1,0 +1,1 @@
+{"slug": "snow_wolf", "anim": "death", "base": "snow_wolf/k_battle.png", "body": 300, "segments": [{"clip": "snow_wolf/clips/death_v2.mp4", "from": 0, "to": 95, "frames": 30}], "left": 1.6, "right": 1.6, "hold": true, "ver": 1, "keepall": true}

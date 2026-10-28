@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/25d7bc35-4055-4c88-b45d-74989294da1d",
+ "prompt": "Idle loop for the whole clip: the animal stays in place in the same pose, breathes calmly, the flanks rise and fall, small natural movements of the ears and tail. No steps, no turning. The last frame is exactly the same pose as the first. Always exactly the same three rats, each with one tail; no rat appears or disappears. They stay on all four legs. No visual effects, no flashes, no trails, no glow, no particles. ",
+ "img": "../rats/k_battle.png",
+ "last": "../rats/k_battle.png",
+ "sec": 4
+}

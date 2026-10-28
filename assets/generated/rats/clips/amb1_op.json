@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/83fa4023-5d31-4ec9-aa63-081f5f9f3ca5",
+ "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: the rats sniff around, whiskers twitching. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Always exactly the same three rats, each with one tail; no rat appears or disappears. They stay on all four legs. No visual effects, no flashes, no trails, no glow, no particles. ",
+ "img": "../rats/k_idle.png",
+ "last": "../rats/k_idle.png",
+ "sec": 4
+}

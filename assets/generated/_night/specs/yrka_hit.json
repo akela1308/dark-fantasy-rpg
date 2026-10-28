@@ -1,0 +1,1 @@
+{"slug": "yrka", "anim": "hit", "base": "yrka/k_battle.png", "body": 300, "segments": [{"clip": "yrka/clips/hit_v1.mp4", "from": 3, "to": 95, "frames": 14}], "ver": 1, "keepall": true}

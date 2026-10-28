@@ -1,0 +1,1 @@
+{"slug": "village_girl", "anim": "mapidle", "base": "village_girl/k_idle.png", "body": 260, "segments": [{"clip": "village_girl/clips/idle_v1.mp4", "from": 0, "to": 95, "frames": 96}], "loop": true, "left": 0.6, "right": 0.75, "target": "map", "ver": 1, "keepall": true}

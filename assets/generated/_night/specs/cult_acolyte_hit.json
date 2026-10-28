@@ -1,0 +1,1 @@
+{"slug": "cult_acolyte", "anim": "hit", "base": "cult_acolyte/k_battle.png", "body": 300, "segments": [{"clip": "cult_acolyte/clips/hit_v2.mp4", "from": 0, "to": 95, "frames": 14}], "ver": 1, "keepall": true}

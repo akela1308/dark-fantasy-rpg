@@ -1,0 +1,1 @@
+{"slug": "fox", "anim": "mapidle", "base": "fox/k_idle.png", "body": 260, "segments": [{"clip": "fox/clips/idle_v2.mp4", "from": 0, "to": 95, "frames": 96}], "loop": true, "left": 1.6, "right": 1.6, "target": "map", "ver": 1, "keepall": true}

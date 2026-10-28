@@ -1,0 +1,1 @@
+{"slug": "scarecrow", "anim": "attack", "base": "scarecrow/k_battle.png", "body": 300, "segments": [{"clip": "scarecrow/clips/attack_v1.mp4", "from": 0, "to": 95, "frames": 29}], "hit": "auto", "right": 1.4, "left": 1.0, "ver": 1, "drop": [1, 2, 3], "keepall": true}

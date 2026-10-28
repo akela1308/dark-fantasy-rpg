@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/c52cabeb-f2a2-4696-bbe6-e0f9ddd400e0",
+ "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: lifts the sword a little and lowers the point back to the ground. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. ",
+ "img": "../wandering_knight/k_idle.png",
+ "last": "../wandering_knight/k_idle.png",
+ "sec": 4
+}

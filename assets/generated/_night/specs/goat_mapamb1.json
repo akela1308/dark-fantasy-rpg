@@ -1,0 +1,1 @@
+{"slug": "goat", "anim": "mapamb1", "base": "goat/k_idle.png", "body": 260, "segments": [{"clip": "goat/clips/amb1_v1.mp4", "from": 0, "to": 95, "frames": 72}], "left": 1.6, "right": 1.6, "target": "map", "ver": 1, "keepall": true}

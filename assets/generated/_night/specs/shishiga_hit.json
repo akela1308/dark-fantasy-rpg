@@ -1,0 +1,1 @@
+{"slug": "shishiga", "anim": "hit", "base": "shishiga/k_battle.png", "body": 300, "segments": [{"clip": "shishiga/clips/hit_v1.mp4", "from": 0, "to": 95, "frames": 14}], "ver": 1, "drop": [1], "keepall": true}

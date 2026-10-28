@@ -1,0 +1,1 @@
+{"slug": "rats", "anim": "idle", "base": "rats/k_battle.png", "body": 300, "segments": [{"clip": "rats/clips/bidle_v1.mp4", "from": 0, "to": 95, "frames": 96}], "loop": true, "left": 1.6, "right": 1.6, "ver": 2, "keepall": true}

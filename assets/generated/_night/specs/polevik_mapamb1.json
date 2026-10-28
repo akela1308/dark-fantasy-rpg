@@ -1,0 +1,1 @@
+{"slug": "polevik", "anim": "mapamb1", "base": "polevik/k_idle.png", "body": 260, "segments": [{"clip": "polevik/clips/amb1_v2.mp4", "from": 0, "to": 95, "frames": 72}], "left": 0.7, "right": 0.9, "target": "map", "ver": 1, "keepall": true}

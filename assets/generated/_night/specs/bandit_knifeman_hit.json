@@ -1,0 +1,1 @@
+{"slug": "bandit_knifeman", "anim": "hit", "base": "bandit_knifeman/k_battle.png", "body": 300, "segments": [{"clip": "bandit_knifeman/clips/hit_v2.mp4", "from": 0, "to": 95, "frames": 14}], "ver": 1, "right": 1.35, "keepall": true}

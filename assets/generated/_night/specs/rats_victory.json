@@ -1,0 +1,1 @@
+{"slug": "rats", "anim": "victory", "base": "rats/k_battle.png", "body": 300, "segments": [{"clip": "rats/clips/victory_r2_v1.mp4", "from": 0, "to": 95, "frames": 29}], "hold": true, "ver": 1, "keepall": true, "left": 1.6, "right": 1.6}

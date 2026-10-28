@@ -466,6 +466,73 @@
   },
   "name": "Тисс (стрелок Корвина)"
  },
+ "bandit_axewoman": {
+  "anims": {
+   "attack": {
+    "file": "sprites/battle/bandit_axewoman_attack_v1_s60.webp",
+    "frameWidth": 353,
+    "frameHeight": 197,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.377,
+    "originY": 0.9719,
+    "bodyHeight": 180.1,
+    "key": "bandit_axewoman_attack_v1_s60",
+    "hitFrame": 11
+   },
+   "death": {
+    "file": "sprites/battle/bandit_axewoman_death_v1_s60.webp",
+    "frameWidth": 353,
+    "frameHeight": 197,
+    "frames": 27,
+    "fps": 24,
+    "originX": 0.377,
+    "originY": 0.9719,
+    "bodyHeight": 180.1,
+    "key": "bandit_axewoman_death_v1_s60",
+    "hold": true
+   },
+   "hit": {
+    "file": "sprites/battle/bandit_axewoman_hit_v1_s60.webp",
+    "frameWidth": 313,
+    "frameHeight": 197,
+    "frames": 14,
+    "fps": 24,
+    "originX": 0.4255,
+    "originY": 0.9719,
+    "bodyHeight": 180.2,
+    "key": "bandit_axewoman_hit_v1_s60"
+   },
+   "idle": {
+    "file": "sprites/battle/bandit_axewoman_idle_v2_s60.webp",
+    "frameWidth": 287,
+    "frameHeight": 181,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.4258,
+    "originY": 0.9741,
+    "bodyHeight": 165.4,
+    "key": "bandit_axewoman_idle_v2_s60",
+    "loop": true
+   },
+   "victory": {
+    "file": "sprites/battle/bandit_axewoman_victory_v1_s60.webp",
+    "frameWidth": 313,
+    "frameHeight": 197,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4255,
+    "originY": 0.9719,
+    "bodyHeight": 180.2,
+    "key": "bandit_axewoman_victory_v1_s60",
+    "hold": true
+   }
+  },
+  "actions": {
+   "basic": "attack"
+  },
+  "name": "Вешка, разбойница"
+ },
  "bandit_brawler": {
   "anims": {
    "amb2": {
@@ -622,6 +689,207 @@
    "basic": "attack"
   },
   "name": "Корвин Сухой (Главарь)"
+ },
+ "bandit_knifeman": {
+  "anims": {
+   "attack": {
+    "file": "sprites/battle/bandit_knifeman_attack_v1_s60.webp",
+    "frameWidth": 370,
+    "frameHeight": 204,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.32,
+    "originY": 0.9734,
+    "bodyHeight": 179.9,
+    "key": "bandit_knifeman_attack_v1_s60",
+    "hitFrame": 9
+   },
+   "death": {
+    "file": "sprites/battle/bandit_knifeman_death_v1_s60.webp",
+    "frameWidth": 352,
+    "frameHeight": 204,
+    "frames": 30,
+    "fps": 24,
+    "originX": 0.3363,
+    "originY": 0.9734,
+    "bodyHeight": 179.9,
+    "key": "bandit_knifeman_death_v1_s60",
+    "hold": true
+   },
+   "hit": {
+    "file": "sprites/battle/bandit_knifeman_hit_v1_s60.webp",
+    "frameWidth": 361,
+    "frameHeight": 204,
+    "frames": 14,
+    "fps": 24,
+    "originX": 0.3279,
+    "originY": 0.9734,
+    "bodyHeight": 179.9,
+    "key": "bandit_knifeman_hit_v1_s60"
+   },
+   "idle": {
+    "file": "sprites/battle/bandit_knifeman_idle_v2_s60.webp",
+    "frameWidth": 305,
+    "frameHeight": 172,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.3289,
+    "originY": 0.9761,
+    "bodyHeight": 152.4,
+    "key": "bandit_knifeman_idle_v2_s60",
+    "loop": true
+   },
+   "victory": {
+    "file": "sprites/battle/bandit_knifeman_victory_v1_s60.webp",
+    "frameWidth": 298,
+    "frameHeight": 204,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.3972,
+    "originY": 0.9734,
+    "bodyHeight": 179.9,
+    "key": "bandit_knifeman_victory_v1_s60",
+    "hold": true
+   }
+  },
+  "actions": {
+   "basic": "attack"
+  },
+  "name": "Поножовщик"
+ },
+ "bandit_poacher": {
+  "anims": {
+   "attack": {
+    "file": "sprites/battle/bandit_poacher_attack_v1_s60.webp",
+    "frameWidth": 349,
+    "frameHeight": 196,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.3998,
+    "originY": 0.9716,
+    "bodyHeight": 180.2,
+    "key": "bandit_poacher_attack_v1_s60",
+    "hitFrame": 9
+   },
+   "death": {
+    "file": "sprites/battle/bandit_poacher_death_v1_s60.webp",
+    "frameWidth": 349,
+    "frameHeight": 196,
+    "frames": 30,
+    "fps": 24,
+    "originX": 0.3998,
+    "originY": 0.9716,
+    "bodyHeight": 180.2,
+    "key": "bandit_poacher_death_v1_s60",
+    "hold": true
+   },
+   "hit": {
+    "file": "sprites/battle/bandit_poacher_hit_v1_s60.webp",
+    "frameWidth": 319,
+    "frameHeight": 196,
+    "frames": 14,
+    "fps": 24,
+    "originX": 0.4366,
+    "originY": 0.9716,
+    "bodyHeight": 179.9,
+    "key": "bandit_poacher_hit_v1_s60"
+   },
+   "idle": {
+    "file": "sprites/battle/bandit_poacher_idle_v2_s60.webp",
+    "frameWidth": 293,
+    "frameHeight": 180,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.437,
+    "originY": 0.9744,
+    "bodyHeight": 165.4,
+    "key": "bandit_poacher_idle_v2_s60",
+    "loop": true
+   },
+   "victory": {
+    "file": "sprites/battle/bandit_poacher_victory_v1_s60.webp",
+    "frameWidth": 319,
+    "frameHeight": 196,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4366,
+    "originY": 0.9716,
+    "bodyHeight": 179.9,
+    "key": "bandit_poacher_victory_v1_s60",
+    "hold": true
+   }
+  },
+  "actions": {
+   "basic": "attack"
+  },
+  "name": "Браконьер"
+ },
+ "bear_shatun": {
+  "anims": {
+   "attack": {
+    "file": "sprites/battle/bear_shatun_attack_v1_s60.webp",
+    "frameWidth": 361,
+    "frameHeight": 202,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.489,
+    "originY": 0.9727,
+    "bodyHeight": 179.9,
+    "key": "bear_shatun_attack_v1_s60",
+    "hitFrame": 6
+   },
+   "death": {
+    "file": "sprites/battle/bear_shatun_death_v1_s60.webp",
+    "frameWidth": 361,
+    "frameHeight": 202,
+    "frames": 30,
+    "fps": 24,
+    "originX": 0.489,
+    "originY": 0.9727,
+    "bodyHeight": 179.9,
+    "key": "bear_shatun_death_v1_s60",
+    "hold": true
+   },
+   "hit": {
+    "file": "sprites/battle/bear_shatun_hit_v1_s60.webp",
+    "frameWidth": 361,
+    "frameHeight": 202,
+    "frames": 13,
+    "fps": 24,
+    "originX": 0.489,
+    "originY": 0.9727,
+    "bodyHeight": 179.9,
+    "key": "bear_shatun_hit_v1_s60"
+   },
+   "idle": {
+    "file": "sprites/battle/bear_shatun_idle_v2_s60.webp",
+    "frameWidth": 305,
+    "frameHeight": 171,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.4904,
+    "originY": 0.9735,
+    "bodyHeight": 152.4,
+    "key": "bear_shatun_idle_v2_s60",
+    "loop": true
+   },
+   "victory": {
+    "file": "sprites/battle/bear_shatun_victory_v1_s60.webp",
+    "frameWidth": 361,
+    "frameHeight": 202,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.489,
+    "originY": 0.9727,
+    "bodyHeight": 179.9,
+    "key": "bear_shatun_victory_v1_s60",
+    "hold": true
+   }
+  },
+  "actions": {
+   "basic": "attack"
+  },
+  "name": "Медведь-шатун"
  },
  "boar": {
   "anims": {
@@ -876,6 +1144,207 @@
    "basic": "attack"
   },
   "name": "Мира, уборщица"
+ },
+ "cult_acolyte": {
+  "anims": {
+   "attack": {
+    "file": "sprites/battle/cult_acolyte_attack_v1_s60.webp",
+    "frameWidth": 376,
+    "frameHeight": 206,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.473,
+    "originY": 0.9717,
+    "bodyHeight": 180.2,
+    "key": "cult_acolyte_attack_v1_s60",
+    "hitFrame": 9
+   },
+   "death": {
+    "file": "sprites/battle/cult_acolyte_death_v1_s60.webp",
+    "frameWidth": 376,
+    "frameHeight": 206,
+    "frames": 30,
+    "fps": 24,
+    "originX": 0.473,
+    "originY": 0.9717,
+    "bodyHeight": 180.2,
+    "key": "cult_acolyte_death_v1_s60",
+    "hold": true
+   },
+   "hit": {
+    "file": "sprites/battle/cult_acolyte_hit_v1_s60.webp",
+    "frameWidth": 333,
+    "frameHeight": 206,
+    "frames": 14,
+    "fps": 24,
+    "originX": 0.4603,
+    "originY": 0.9717,
+    "bodyHeight": 180.0,
+    "key": "cult_acolyte_hit_v1_s60"
+   },
+   "idle": {
+    "file": "sprites/battle/cult_acolyte_idle_v2_s60.webp",
+    "frameWidth": 306,
+    "frameHeight": 190,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.4608,
+    "originY": 0.9732,
+    "bodyHeight": 165.6,
+    "key": "cult_acolyte_idle_v2_s60",
+    "loop": true
+   },
+   "victory": {
+    "file": "sprites/battle/cult_acolyte_victory_v1_s60.webp",
+    "frameWidth": 333,
+    "frameHeight": 206,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4603,
+    "originY": 0.9717,
+    "bodyHeight": 180.0,
+    "key": "cult_acolyte_victory_v1_s60",
+    "hold": true
+   }
+  },
+  "actions": {
+   "basic": "attack"
+  },
+  "name": "Послушник сорванной печати"
+ },
+ "cult_priest": {
+  "anims": {
+   "attack": {
+    "file": "sprites/battle/cult_priest_attack_v1_s60.webp",
+    "frameWidth": 345,
+    "frameHeight": 194,
+    "frames": 27,
+    "fps": 24,
+    "originX": 0.3829,
+    "originY": 0.9873,
+    "bodyHeight": 180.0,
+    "key": "cult_priest_attack_v1_s60",
+    "hitFrame": 5
+   },
+   "death": {
+    "file": "sprites/battle/cult_priest_death_v1_s60.webp",
+    "frameWidth": 345,
+    "frameHeight": 194,
+    "frames": 27,
+    "fps": 24,
+    "originX": 0.3829,
+    "originY": 0.9873,
+    "bodyHeight": 180.0,
+    "key": "cult_priest_death_v1_s60",
+    "hold": true
+   },
+   "hit": {
+    "file": "sprites/battle/cult_priest_hit_v1_s60.webp",
+    "frameWidth": 311,
+    "frameHeight": 194,
+    "frames": 12,
+    "fps": 24,
+    "originX": 0.4242,
+    "originY": 0.9873,
+    "bodyHeight": 179.8,
+    "key": "cult_priest_hit_v1_s60"
+   },
+   "idle": {
+    "file": "sprites/battle/cult_priest_idle_v2_s60.webp",
+    "frameWidth": 286,
+    "frameHeight": 178,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.4246,
+    "originY": 0.9878,
+    "bodyHeight": 165.5,
+    "key": "cult_priest_idle_v2_s60",
+    "loop": true
+   },
+   "victory": {
+    "file": "sprites/battle/cult_priest_victory_v1_s60.webp",
+    "frameWidth": 311,
+    "frameHeight": 194,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4242,
+    "originY": 0.9873,
+    "bodyHeight": 179.8,
+    "key": "cult_priest_victory_v1_s60",
+    "hold": true
+   }
+  },
+  "actions": {
+   "basic": "attack"
+  },
+  "name": "Пастырь Безымянных"
+ },
+ "cult_zealot": {
+  "anims": {
+   "attack": {
+    "file": "sprites/battle/cult_zealot_attack_v1_s60.webp",
+    "frameWidth": 354,
+    "frameHeight": 199,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.3974,
+    "originY": 0.9717,
+    "bodyHeight": 180.0,
+    "key": "cult_zealot_attack_v1_s60",
+    "hitFrame": 13
+   },
+   "death": {
+    "file": "sprites/battle/cult_zealot_death_v1_s60.webp",
+    "frameWidth": 354,
+    "frameHeight": 199,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.3974,
+    "originY": 0.9717,
+    "bodyHeight": 180.0,
+    "key": "cult_zealot_death_v1_s60",
+    "hold": true
+   },
+   "hit": {
+    "file": "sprites/battle/cult_zealot_hit_v1_s60.webp",
+    "frameWidth": 320,
+    "frameHeight": 199,
+    "frames": 14,
+    "fps": 24,
+    "originX": 0.4391,
+    "originY": 0.9717,
+    "bodyHeight": 179.8,
+    "key": "cult_zealot_hit_v1_s60"
+   },
+   "idle": {
+    "file": "sprites/battle/cult_zealot_idle_v2_s60.webp",
+    "frameWidth": 295,
+    "frameHeight": 183,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.4393,
+    "originY": 0.9731,
+    "bodyHeight": 165.8,
+    "key": "cult_zealot_idle_v2_s60",
+    "loop": true
+   },
+   "victory": {
+    "file": "sprites/battle/cult_zealot_victory_v1_s60.webp",
+    "frameWidth": 320,
+    "frameHeight": 199,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4391,
+    "originY": 0.9717,
+    "bodyHeight": 179.8,
+    "key": "cult_zealot_victory_v1_s60",
+    "hold": true
+   }
+  },
+  "actions": {
+   "basic": "attack"
+  },
+  "name": "Фанатик с крюком"
  },
  "dog": {
   "anims": {
@@ -1636,6 +2105,140 @@
   "actions": {},
   "name": "gallows_reader"
  },
+ "grad_crossbowman": {
+  "anims": {
+   "attack": {
+    "file": "sprites/battle/grad_crossbowman_attack_v1_s60.webp",
+    "frameWidth": 352,
+    "frameHeight": 196,
+    "frames": 28,
+    "fps": 24,
+    "originX": 0.3783,
+    "originY": 0.9707,
+    "bodyHeight": 180.2,
+    "key": "grad_crossbowman_attack_v1_s60",
+    "hitFrame": 7
+   },
+   "death": {
+    "file": "sprites/battle/grad_crossbowman_death_v1_s60.webp",
+    "frameWidth": 352,
+    "frameHeight": 196,
+    "frames": 27,
+    "fps": 24,
+    "originX": 0.3783,
+    "originY": 0.9707,
+    "bodyHeight": 180.2,
+    "key": "grad_crossbowman_death_v1_s60",
+    "hold": true
+   },
+   "hit": {
+    "file": "sprites/battle/grad_crossbowman_hit_v1_s60.webp",
+    "frameWidth": 313,
+    "frameHeight": 196,
+    "frames": 14,
+    "fps": 24,
+    "originX": 0.4255,
+    "originY": 0.9707,
+    "bodyHeight": 180.2,
+    "key": "grad_crossbowman_hit_v1_s60"
+   },
+   "idle": {
+    "file": "sprites/battle/grad_crossbowman_idle_v2_s60.webp",
+    "frameWidth": 287,
+    "frameHeight": 180,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.4258,
+    "originY": 0.9734,
+    "bodyHeight": 165.4,
+    "key": "grad_crossbowman_idle_v2_s60",
+    "loop": true
+   },
+   "victory": {
+    "file": "sprites/battle/grad_crossbowman_victory_v1_s60.webp",
+    "frameWidth": 313,
+    "frameHeight": 196,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4255,
+    "originY": 0.9707,
+    "bodyHeight": 180.2,
+    "key": "grad_crossbowman_victory_v1_s60",
+    "hold": true
+   }
+  },
+  "actions": {
+   "basic": "attack"
+  },
+  "name": "Арбалетчик Града"
+ },
+ "grad_guard": {
+  "anims": {
+   "attack": {
+    "file": "sprites/battle/grad_guard_attack_v1_s60.webp",
+    "frameWidth": 372,
+    "frameHeight": 203,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.3674,
+    "originY": 0.9736,
+    "bodyHeight": 180.0,
+    "key": "grad_guard_attack_v1_s60",
+    "hitFrame": 9
+   },
+   "death": {
+    "file": "sprites/battle/grad_guard_death_v1_s60.webp",
+    "frameWidth": 370,
+    "frameHeight": 203,
+    "frames": 28,
+    "fps": 24,
+    "originX": 0.3692,
+    "originY": 0.9736,
+    "bodyHeight": 179.9,
+    "key": "grad_guard_death_v1_s60",
+    "hold": true
+   },
+   "hit": {
+    "file": "sprites/battle/grad_guard_hit_v1_s60.webp",
+    "frameWidth": 316,
+    "frameHeight": 203,
+    "frames": 13,
+    "fps": 24,
+    "originX": 0.4322,
+    "originY": 0.9736,
+    "bodyHeight": 179.9,
+    "key": "grad_guard_hit_v1_s60"
+   },
+   "idle": {
+    "file": "sprites/battle/grad_guard_idle_v2_s60.webp",
+    "frameWidth": 290,
+    "frameHeight": 187,
+    "frames": 94,
+    "fps": 24,
+    "originX": 0.433,
+    "originY": 0.9763,
+    "bodyHeight": 165.4,
+    "key": "grad_guard_idle_v2_s60",
+    "loop": true
+   },
+   "victory": {
+    "file": "sprites/battle/grad_guard_victory_v1_s60.webp",
+    "frameWidth": 316,
+    "frameHeight": 203,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4322,
+    "originY": 0.9736,
+    "bodyHeight": 179.9,
+    "key": "grad_guard_victory_v1_s60",
+    "hold": true
+   }
+  },
+  "actions": {
+   "basic": "attack"
+  },
+  "name": "Стражник Града"
+ },
  "grey_wolf": {
   "anims": {
    "attack": {
@@ -2284,6 +2887,73 @@
   },
   "name": "likho"
  },
+ "lynx": {
+  "anims": {
+   "attack": {
+    "file": "sprites/battle/lynx_attack_v1_s60.webp",
+    "frameWidth": 353,
+    "frameHeight": 198,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.5809,
+    "originY": 0.9717,
+    "bodyHeight": 180.1,
+    "key": "lynx_attack_v1_s60",
+    "hitFrame": 4
+   },
+   "death": {
+    "file": "sprites/battle/lynx_death_v1_s60.webp",
+    "frameWidth": 353,
+    "frameHeight": 198,
+    "frames": 28,
+    "fps": 24,
+    "originX": 0.5809,
+    "originY": 0.9717,
+    "bodyHeight": 180.1,
+    "key": "lynx_death_v1_s60",
+    "hold": true
+   },
+   "hit": {
+    "file": "sprites/battle/lynx_hit_v1_s60.webp",
+    "frameWidth": 353,
+    "frameHeight": 198,
+    "frames": 14,
+    "fps": 24,
+    "originX": 0.5809,
+    "originY": 0.9717,
+    "bodyHeight": 180.1,
+    "key": "lynx_hit_v1_s60"
+   },
+   "idle": {
+    "file": "sprites/battle/lynx_idle_v2_s60.webp",
+    "frameWidth": 298,
+    "frameHeight": 167,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.5829,
+    "originY": 0.9763,
+    "bodyHeight": 152.5,
+    "key": "lynx_idle_v2_s60",
+    "loop": true
+   },
+   "victory": {
+    "file": "sprites/battle/lynx_victory_v1_s60.webp",
+    "frameWidth": 353,
+    "frameHeight": 198,
+    "frames": 25,
+    "fps": 24,
+    "originX": 0.5809,
+    "originY": 0.9717,
+    "bodyHeight": 180.1,
+    "key": "lynx_victory_v1_s60",
+    "hold": true
+   }
+  },
+  "actions": {
+   "basic": "attack"
+  },
+  "name": "Рысь"
+ },
  "lyo": {
   "anims": {
    "attack": {
@@ -2509,6 +3179,140 @@
   },
   "name": "Мавка (бестиарий)"
  },
+ "merc_captain": {
+  "anims": {
+   "attack": {
+    "file": "sprites/battle/merc_captain_attack_v1_s60.webp",
+    "frameWidth": 367,
+    "frameHeight": 196,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4914,
+    "originY": 0.972,
+    "bodyHeight": 180.2,
+    "key": "merc_captain_attack_v1_s60",
+    "hitFrame": 14
+   },
+   "death": {
+    "file": "sprites/battle/merc_captain_death_v1_s60.webp",
+    "frameWidth": 370,
+    "frameHeight": 196,
+    "frames": 30,
+    "fps": 24,
+    "originX": 0.496,
+    "originY": 0.972,
+    "bodyHeight": 179.9,
+    "key": "merc_captain_death_v1_s60",
+    "hold": true
+   },
+   "hit": {
+    "file": "sprites/battle/merc_captain_hit_v1_s60.webp",
+    "frameWidth": 333,
+    "frameHeight": 196,
+    "frames": 14,
+    "fps": 24,
+    "originX": 0.4602,
+    "originY": 0.972,
+    "bodyHeight": 180.0,
+    "key": "merc_captain_hit_v1_s60"
+   },
+   "idle": {
+    "file": "sprites/battle/merc_captain_idle_v2_s60.webp",
+    "frameWidth": 306,
+    "frameHeight": 179,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.4607,
+    "originY": 0.975,
+    "bodyHeight": 165.6,
+    "key": "merc_captain_idle_v2_s60",
+    "loop": true
+   },
+   "victory": {
+    "file": "sprites/battle/merc_captain_victory_v1_s60.webp",
+    "frameWidth": 333,
+    "frameHeight": 196,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4602,
+    "originY": 0.972,
+    "bodyHeight": 180.0,
+    "key": "merc_captain_victory_v1_s60",
+    "hold": true
+   }
+  },
+  "actions": {
+   "basic": "attack"
+  },
+  "name": "Бурый, капитан наёмников"
+ },
+ "merc_pikeman": {
+  "anims": {
+   "attack": {
+    "file": "sprites/battle/merc_pikeman_attack_v1_s60.webp",
+    "frameWidth": 346,
+    "frameHeight": 194,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.3996,
+    "originY": 0.9718,
+    "bodyHeight": 180.2,
+    "key": "merc_pikeman_attack_v1_s60",
+    "hitFrame": 11
+   },
+   "death": {
+    "file": "sprites/battle/merc_pikeman_death_v1_s60.webp",
+    "frameWidth": 346,
+    "frameHeight": 194,
+    "frames": 30,
+    "fps": 24,
+    "originX": 0.3996,
+    "originY": 0.9718,
+    "bodyHeight": 180.2,
+    "key": "merc_pikeman_death_v1_s60",
+    "hold": true
+   },
+   "hit": {
+    "file": "sprites/battle/merc_pikeman_hit_v1_s60.webp",
+    "frameWidth": 346,
+    "frameHeight": 194,
+    "frames": 14,
+    "fps": 24,
+    "originX": 0.3996,
+    "originY": 0.9718,
+    "bodyHeight": 180.2,
+    "key": "merc_pikeman_hit_v1_s60"
+   },
+   "idle": {
+    "file": "sprites/battle/merc_pikeman_idle_v2_s60.webp",
+    "frameWidth": 292,
+    "frameHeight": 164,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.4009,
+    "originY": 0.9726,
+    "bodyHeight": 152.5,
+    "key": "merc_pikeman_idle_v2_s60",
+    "loop": true
+   },
+   "victory": {
+    "file": "sprites/battle/merc_pikeman_victory_v1_s60.webp",
+    "frameWidth": 318,
+    "frameHeight": 194,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4343,
+    "originY": 0.9718,
+    "bodyHeight": 180.0,
+    "key": "merc_pikeman_victory_v1_s60",
+    "hold": true
+   }
+  },
+  "actions": {
+   "basic": "attack"
+  },
+  "name": "Наёмник-пикинёр"
+ },
  "mine_shade": {
   "anims": {
    "idle": {
@@ -2643,6 +3447,73 @@
   "actions": {},
   "name": "novice"
  },
+ "polevik": {
+  "anims": {
+   "attack": {
+    "file": "sprites/battle/polevik_attack_v1_s60.webp",
+    "frameWidth": 361,
+    "frameHeight": 197,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4236,
+    "originY": 0.9705,
+    "bodyHeight": 179.9,
+    "key": "polevik_attack_v1_s60",
+    "hitFrame": 10
+   },
+   "death": {
+    "file": "sprites/battle/polevik_death_v1_s60.webp",
+    "frameWidth": 361,
+    "frameHeight": 197,
+    "frames": 30,
+    "fps": 24,
+    "originX": 0.4236,
+    "originY": 0.9705,
+    "bodyHeight": 179.9,
+    "key": "polevik_death_v1_s60",
+    "hold": true
+   },
+   "hit": {
+    "file": "sprites/battle/polevik_hit_v1_s60.webp",
+    "frameWidth": 332,
+    "frameHeight": 197,
+    "frames": 12,
+    "fps": 24,
+    "originX": 0.4603,
+    "originY": 0.9705,
+    "bodyHeight": 179.8,
+    "key": "polevik_hit_v1_s60"
+   },
+   "idle": {
+    "file": "sprites/battle/polevik_idle_v2_s60.webp",
+    "frameWidth": 305,
+    "frameHeight": 181,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.4609,
+    "originY": 0.9727,
+    "bodyHeight": 165.4,
+    "key": "polevik_idle_v2_s60",
+    "loop": true
+   },
+   "victory": {
+    "file": "sprites/battle/polevik_victory_v1_s60.webp",
+    "frameWidth": 332,
+    "frameHeight": 197,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4603,
+    "originY": 0.9705,
+    "bodyHeight": 179.8,
+    "key": "polevik_victory_v1_s60",
+    "hold": true
+   }
+  },
+  "actions": {
+   "basic": "attack"
+  },
+  "name": "Полевик"
+ },
  "poludnitsa": {
   "anims": {
    "idle": {
@@ -2660,6 +3531,73 @@
   },
   "actions": {},
   "name": "poludnitsa"
+ },
+ "rats": {
+  "anims": {
+   "attack": {
+    "file": "sprites/battle/rats_attack_v1_s60.webp",
+    "frameWidth": 330,
+    "frameHeight": 185,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.3831,
+    "originY": 0.989,
+    "bodyHeight": 180.0,
+    "key": "rats_attack_v1_s60",
+    "hitFrame": 9
+   },
+   "death": {
+    "file": "sprites/battle/rats_death_v1_s60.webp",
+    "frameWidth": 330,
+    "frameHeight": 185,
+    "frames": 25,
+    "fps": 24,
+    "originX": 0.3831,
+    "originY": 0.989,
+    "bodyHeight": 180.0,
+    "key": "rats_death_v1_s60",
+    "hold": true
+   },
+   "hit": {
+    "file": "sprites/battle/rats_hit_v1_s60.webp",
+    "frameWidth": 330,
+    "frameHeight": 185,
+    "frames": 14,
+    "fps": 24,
+    "originX": 0.3831,
+    "originY": 0.989,
+    "bodyHeight": 180.0,
+    "key": "rats_hit_v1_s60"
+   },
+   "idle": {
+    "file": "sprites/battle/rats_idle_v2_s60.webp",
+    "frameWidth": 304,
+    "frameHeight": 170,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.3831,
+    "originY": 0.99,
+    "bodyHeight": 165.8,
+    "key": "rats_idle_v2_s60",
+    "loop": true
+   },
+   "victory": {
+    "file": "sprites/battle/rats_victory_v1_s60.webp",
+    "frameWidth": 330,
+    "frameHeight": 185,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.3831,
+    "originY": 0.989,
+    "bodyHeight": 180.0,
+    "key": "rats_victory_v1_s60",
+    "hold": true
+   }
+  },
+  "actions": {
+   "basic": "attack"
+  },
+  "name": "Крысы"
  },
  "reader": {
   "anims": {
@@ -2914,6 +3852,73 @@
   },
   "name": "Рыж, староста Придорожного (новый, предварительно)"
  },
+ "scarecrow": {
+  "anims": {
+   "attack": {
+    "file": "sprites/battle/scarecrow_attack_v1_s60.webp",
+    "frameWidth": 350,
+    "frameHeight": 197,
+    "frames": 26,
+    "fps": 24,
+    "originX": 0.3808,
+    "originY": 0.9717,
+    "bodyHeight": 179.8,
+    "key": "scarecrow_attack_v1_s60",
+    "hitFrame": 1
+   },
+   "death": {
+    "file": "sprites/battle/scarecrow_death_v1_s60.webp",
+    "frameWidth": 350,
+    "frameHeight": 197,
+    "frames": 30,
+    "fps": 24,
+    "originX": 0.3808,
+    "originY": 0.9717,
+    "bodyHeight": 179.8,
+    "key": "scarecrow_death_v1_s60",
+    "hold": true
+   },
+   "hit": {
+    "file": "sprites/battle/scarecrow_hit_v1_s60.webp",
+    "frameWidth": 313,
+    "frameHeight": 197,
+    "frames": 14,
+    "fps": 24,
+    "originX": 0.426,
+    "originY": 0.9717,
+    "bodyHeight": 179.9,
+    "key": "scarecrow_hit_v1_s60"
+   },
+   "idle": {
+    "file": "sprites/battle/scarecrow_idle_v2_s60.webp",
+    "frameWidth": 288,
+    "frameHeight": 181,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.4262,
+    "originY": 0.9742,
+    "bodyHeight": 165.6,
+    "key": "scarecrow_idle_v2_s60",
+    "loop": true
+   },
+   "victory": {
+    "file": "sprites/battle/scarecrow_victory_v1_s60.webp",
+    "frameWidth": 313,
+    "frameHeight": 197,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.426,
+    "originY": 0.9717,
+    "bodyHeight": 179.9,
+    "key": "scarecrow_victory_v1_s60",
+    "hold": true
+   }
+  },
+  "actions": {
+   "basic": "attack"
+  },
+  "name": "Пугало"
+ },
  "shade": {
   "anims": {
    "idle": {
@@ -3011,6 +4016,207 @@
    "heavy_strike": "power"
   },
   "name": "Щитоносец"
+ },
+ "shishiga": {
+  "anims": {
+   "attack": {
+    "file": "sprites/battle/shishiga_attack_v1_s60.webp",
+    "frameWidth": 339,
+    "frameHeight": 191,
+    "frames": 26,
+    "fps": 24,
+    "originX": 0.3327,
+    "originY": 0.9781,
+    "bodyHeight": 180.0,
+    "key": "shishiga_attack_v1_s60",
+    "hitFrame": 3
+   },
+   "death": {
+    "file": "sprites/battle/shishiga_death_v1_s60.webp",
+    "frameWidth": 339,
+    "frameHeight": 191,
+    "frames": 28,
+    "fps": 24,
+    "originX": 0.3327,
+    "originY": 0.9781,
+    "bodyHeight": 180.0,
+    "key": "shishiga_death_v1_s60",
+    "hold": true
+   },
+   "hit": {
+    "file": "sprites/battle/shishiga_hit_v1_s60.webp",
+    "frameWidth": 292,
+    "frameHeight": 191,
+    "frames": 13,
+    "fps": 24,
+    "originX": 0.386,
+    "originY": 0.9781,
+    "bodyHeight": 179.9,
+    "key": "shishiga_hit_v1_s60"
+   },
+   "idle": {
+    "file": "sprites/battle/shishiga_idle_v2_s60.webp",
+    "frameWidth": 292,
+    "frameHeight": 191,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.386,
+    "originY": 0.9781,
+    "bodyHeight": 179.9,
+    "key": "shishiga_idle_v2_s60",
+    "loop": true
+   },
+   "victory": {
+    "file": "sprites/battle/shishiga_victory_v1_s60.webp",
+    "frameWidth": 292,
+    "frameHeight": 191,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.386,
+    "originY": 0.9781,
+    "bodyHeight": 179.9,
+    "key": "shishiga_victory_v1_s60",
+    "hold": true
+   }
+  },
+  "actions": {
+   "basic": "attack"
+  },
+  "name": "Шишига"
+ },
+ "snow_wolf": {
+  "anims": {
+   "attack": {
+    "file": "sprites/battle/snow_wolf_attack_v1_s60.webp",
+    "frameWidth": 337,
+    "frameHeight": 190,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.5987,
+    "originY": 0.9758,
+    "bodyHeight": 179.9,
+    "key": "snow_wolf_attack_v1_s60",
+    "hitFrame": 7
+   },
+   "death": {
+    "file": "sprites/battle/snow_wolf_death_v1_s60.webp",
+    "frameWidth": 337,
+    "frameHeight": 190,
+    "frames": 30,
+    "fps": 24,
+    "originX": 0.5987,
+    "originY": 0.9758,
+    "bodyHeight": 179.9,
+    "key": "snow_wolf_death_v1_s60",
+    "hold": true
+   },
+   "hit": {
+    "file": "sprites/battle/snow_wolf_hit_v1_s60.webp",
+    "frameWidth": 337,
+    "frameHeight": 190,
+    "frames": 13,
+    "fps": 24,
+    "originX": 0.5987,
+    "originY": 0.9758,
+    "bodyHeight": 179.9,
+    "key": "snow_wolf_hit_v1_s60"
+   },
+   "idle": {
+    "file": "sprites/battle/snow_wolf_idle_v2_s60.webp",
+    "frameWidth": 310,
+    "frameHeight": 174,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.5987,
+    "originY": 0.9782,
+    "bodyHeight": 165.5,
+    "key": "snow_wolf_idle_v2_s60",
+    "loop": true
+   },
+   "victory": {
+    "file": "sprites/battle/snow_wolf_victory_v1_s60.webp",
+    "frameWidth": 337,
+    "frameHeight": 190,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.5987,
+    "originY": 0.9758,
+    "bodyHeight": 179.9,
+    "key": "snow_wolf_victory_v1_s60",
+    "hold": true
+   }
+  },
+  "actions": {
+   "basic": "attack"
+  },
+  "name": "Снежный волк"
+ },
+ "snow_wolf_leader": {
+  "anims": {
+   "attack": {
+    "file": "sprites/battle/snow_wolf_leader_attack_v1_s60.webp",
+    "frameWidth": 328,
+    "frameHeight": 184,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.6131,
+    "originY": 0.9939,
+    "bodyHeight": 180.2,
+    "key": "snow_wolf_leader_attack_v1_s60",
+    "hitFrame": 5
+   },
+   "death": {
+    "file": "sprites/battle/snow_wolf_leader_death_v1_s60.webp",
+    "frameWidth": 328,
+    "frameHeight": 184,
+    "frames": 26,
+    "fps": 24,
+    "originX": 0.6131,
+    "originY": 0.9939,
+    "bodyHeight": 180.2,
+    "key": "snow_wolf_leader_death_v1_s60",
+    "hold": true
+   },
+   "hit": {
+    "file": "sprites/battle/snow_wolf_leader_hit_v1_s60.webp",
+    "frameWidth": 328,
+    "frameHeight": 184,
+    "frames": 12,
+    "fps": 24,
+    "originX": 0.6131,
+    "originY": 0.9939,
+    "bodyHeight": 180.2,
+    "key": "snow_wolf_leader_hit_v1_s60"
+   },
+   "idle": {
+    "file": "sprites/battle/snow_wolf_leader_idle_v2_s60.webp",
+    "frameWidth": 301,
+    "frameHeight": 169,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.6135,
+    "originY": 0.9954,
+    "bodyHeight": 165.5,
+    "key": "snow_wolf_leader_idle_v2_s60",
+    "loop": true
+   },
+   "victory": {
+    "file": "sprites/battle/snow_wolf_leader_victory_v1_s60.webp",
+    "frameWidth": 328,
+    "frameHeight": 184,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.6131,
+    "originY": 0.9939,
+    "bodyHeight": 180.2,
+    "key": "snow_wolf_leader_victory_v1_s60",
+    "hold": true
+   }
+  },
+  "actions": {
+   "basic": "attack"
+  },
+  "name": "Вожак снежной стаи"
  },
  "stone_guard": {
   "anims": {
@@ -3522,6 +4728,61 @@
   "actions": {},
   "name": "Висельный чтец"
  },
+ "wandering_knight": {
+  "anims": {
+   "attack": {
+    "file": "sprites/battle/wandering_knight_attack_v1_s60.webp",
+    "frameWidth": 364,
+    "frameHeight": 203,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.3738,
+    "originY": 0.973,
+    "bodyHeight": 180.2,
+    "key": "wandering_knight_attack_v1_s60",
+    "hitFrame": 8
+   },
+   "death": {
+    "file": "sprites/battle/wandering_knight_death_v1_s60.webp",
+    "frameWidth": 364,
+    "frameHeight": 203,
+    "frames": 30,
+    "fps": 24,
+    "originX": 0.3738,
+    "originY": 0.973,
+    "bodyHeight": 180.2,
+    "key": "wandering_knight_death_v1_s60",
+    "hold": true
+   },
+   "hit": {
+    "file": "sprites/battle/wandering_knight_hit_v1_s60.webp",
+    "frameWidth": 316,
+    "frameHeight": 203,
+    "frames": 14,
+    "fps": 24,
+    "originX": 0.4307,
+    "originY": 0.973,
+    "bodyHeight": 180.2,
+    "key": "wandering_knight_hit_v1_s60"
+   },
+   "idle": {
+    "file": "sprites/battle/wandering_knight_idle_v2_s60.webp",
+    "frameWidth": 290,
+    "frameHeight": 187,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.4315,
+    "originY": 0.9758,
+    "bodyHeight": 165.7,
+    "key": "wandering_knight_idle_v2_s60",
+    "loop": true
+   }
+  },
+  "actions": {
+   "basic": "attack"
+  },
+  "name": "Бродячий рыцарь"
+ },
  "whisperer": {
   "anims": {
    "idle": {
@@ -3921,5 +5182,139 @@
   },
   "actions": {},
   "name": "wolfolak"
+ },
+ "young_boar": {
+  "anims": {
+   "attack": {
+    "file": "sprites/battle/young_boar_attack_v1_s60.webp",
+    "frameWidth": 373,
+    "frameHeight": 203,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.5749,
+    "originY": 0.9723,
+    "bodyHeight": 180.2,
+    "key": "young_boar_attack_v1_s60",
+    "hitFrame": 6
+   },
+   "death": {
+    "file": "sprites/battle/young_boar_death_v1_s60.webp",
+    "frameWidth": 373,
+    "frameHeight": 203,
+    "frames": 28,
+    "fps": 24,
+    "originX": 0.5749,
+    "originY": 0.9723,
+    "bodyHeight": 180.2,
+    "key": "young_boar_death_v1_s60",
+    "hold": true
+   },
+   "hit": {
+    "file": "sprites/battle/young_boar_hit_v1_s60.webp",
+    "frameWidth": 373,
+    "frameHeight": 203,
+    "frames": 14,
+    "fps": 24,
+    "originX": 0.5749,
+    "originY": 0.9723,
+    "bodyHeight": 180.2,
+    "key": "young_boar_hit_v1_s60"
+   },
+   "idle": {
+    "file": "sprites/battle/young_boar_idle_v2_s60.webp",
+    "frameWidth": 315,
+    "frameHeight": 171,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.5756,
+    "originY": 0.976,
+    "bodyHeight": 152.3,
+    "key": "young_boar_idle_v2_s60",
+    "loop": true
+   },
+   "victory": {
+    "file": "sprites/battle/young_boar_victory_v1_s60.webp",
+    "frameWidth": 373,
+    "frameHeight": 203,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.5749,
+    "originY": 0.9723,
+    "bodyHeight": 180.2,
+    "key": "young_boar_victory_v1_s60",
+    "hold": true
+   }
+  },
+  "actions": {
+   "basic": "attack"
+  },
+  "name": "Подсвинок"
+ },
+ "yrka": {
+  "anims": {
+   "attack": {
+    "file": "sprites/battle/yrka_attack_v1_s60.webp",
+    "frameWidth": 363,
+    "frameHeight": 201,
+    "frames": 26,
+    "fps": 24,
+    "originX": 0.3907,
+    "originY": 0.9704,
+    "bodyHeight": 180.0,
+    "key": "yrka_attack_v1_s60",
+    "hitFrame": 6
+   },
+   "death": {
+    "file": "sprites/battle/yrka_death_v1_s60.webp",
+    "frameWidth": 363,
+    "frameHeight": 201,
+    "frames": 30,
+    "fps": 24,
+    "originX": 0.3907,
+    "originY": 0.9704,
+    "bodyHeight": 180.0,
+    "key": "yrka_death_v1_s60",
+    "hold": true
+   },
+   "hit": {
+    "file": "sprites/battle/yrka_hit_v1_s60.webp",
+    "frameWidth": 322,
+    "frameHeight": 201,
+    "frames": 14,
+    "fps": 24,
+    "originX": 0.441,
+    "originY": 0.9704,
+    "bodyHeight": 180.2,
+    "key": "yrka_hit_v1_s60"
+   },
+   "idle": {
+    "file": "sprites/battle/yrka_idle_v2_s60.webp",
+    "frameWidth": 296,
+    "frameHeight": 185,
+    "frames": 95,
+    "fps": 24,
+    "originX": 0.4411,
+    "originY": 0.971,
+    "bodyHeight": 165.7,
+    "key": "yrka_idle_v2_s60",
+    "loop": true
+   },
+   "victory": {
+    "file": "sprites/battle/yrka_victory_v1_s60.webp",
+    "frameWidth": 322,
+    "frameHeight": 201,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.441,
+    "originY": 0.9704,
+    "bodyHeight": 180.2,
+    "key": "yrka_victory_v1_s60",
+    "hold": true
+   }
+  },
+  "actions": {
+   "basic": "attack"
+  },
+  "name": "Ырка"
  }
 }

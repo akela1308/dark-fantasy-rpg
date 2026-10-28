@@ -1,0 +1,1 @@
+{"slug": "merc_pikeman", "anim": "idle", "base": "merc_pikeman/k_battle.png", "body": 300, "segments": [{"clip": "merc_pikeman/clips/bidle_v2.mp4", "from": 0, "to": 95, "frames": 96}], "loop": true, "left": 0.85, "right": 1.4, "ver": 2, "keepall": false}

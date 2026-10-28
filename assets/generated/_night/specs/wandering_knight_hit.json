@@ -1,0 +1,1 @@
+{"slug": "wandering_knight", "anim": "hit", "base": "wandering_knight/k_battle.png", "body": 300, "segments": [{"clip": "wandering_knight/clips/hit_v1.mp4", "from": 0, "to": 95, "frames": 14}], "ver": 1, "keepall": false}

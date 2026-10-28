@@ -1,0 +1,1504 @@
+[
+ {
+  "name": "../grad_guard/clips/bidle",
+  "first": "../grad_guard/k_battle.png",
+  "last": "../grad_guard/k_battle.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: one long spear in the front hand, one tall wooden kite shield on the rear arm; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../grad_guard/clips/attack",
+  "first": "../grad_guard/k_battle.png",
+  "last": "../grad_guard/k_battle.png",
+  "prompt": "One single attack to the right: a short wind-up, one fast strong strike forward to the right with the weapon, then a recovery back into the same ready stance. Slow motion, one single even movement. One strike only. HANDS CANON: one long spear in the front hand, one tall wooden kite shield on the rear arm; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../grad_guard/clips/hit",
+  "first": "../grad_guard/k_battle.png",
+  "last": "../grad_guard/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one long spear in the front hand, one tall wooden kite shield on the rear arm; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../grad_guard/clips/death",
+  "first": "../grad_guard/k_battle.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one long spear in the front hand, one tall wooden kite shield on the rear arm; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../grad_guard/clips/victory",
+  "first": "../grad_guard/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one long spear in the front hand, one tall wooden kite shield on the rear arm; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../grad_crossbowman/clips/bidle",
+  "first": "../grad_crossbowman/k_battle.png",
+  "last": "../grad_crossbowman/k_battle.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: one heavy crossbow held with both hands, pointing to the right; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../grad_crossbowman/clips/attack",
+  "first": "../grad_crossbowman/k_battle.png",
+  "last": "../grad_crossbowman/k_battle.png",
+  "prompt": "One single shot to the right: raises the crossbow and aims to the right, shoots with a small recoil, then returns to the same ready stance. Slow motion, one single even movement. One strike only. HANDS CANON: one heavy crossbow held with both hands, pointing to the right; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../grad_crossbowman/clips/hit",
+  "first": "../grad_crossbowman/k_battle.png",
+  "last": "../grad_crossbowman/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one heavy crossbow held with both hands, pointing to the right; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../grad_crossbowman/clips/death",
+  "first": "../grad_crossbowman/k_battle.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one heavy crossbow held with both hands, pointing to the right; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../grad_crossbowman/clips/victory",
+  "first": "../grad_crossbowman/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one heavy crossbow held with both hands, pointing to the right; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../merc_pikeman/clips/bidle",
+  "first": "../merc_pikeman/k_battle.png",
+  "last": "../merc_pikeman/k_battle.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: one long pike held with both hands, pointing to the right; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../merc_pikeman/clips/attack",
+  "first": "../merc_pikeman/k_battle.png",
+  "last": "../merc_pikeman/k_battle.png",
+  "prompt": "One single attack to the right: a short wind-up, one fast strong strike forward to the right with the weapon, then a recovery back into the same ready stance. Slow motion, one single even movement. One strike only. HANDS CANON: one long pike held with both hands, pointing to the right; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../merc_pikeman/clips/hit",
+  "first": "../merc_pikeman/k_battle.png",
+  "last": "../merc_pikeman/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one long pike held with both hands, pointing to the right; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../merc_pikeman/clips/death",
+  "first": "../merc_pikeman/k_battle.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one long pike held with both hands, pointing to the right; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../merc_pikeman/clips/victory",
+  "first": "../merc_pikeman/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one long pike held with both hands, pointing to the right; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../merc_captain/clips/bidle",
+  "first": "../merc_captain/k_battle.png",
+  "last": "../merc_captain/k_battle.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: one long sword in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../merc_captain/clips/attack",
+  "first": "../merc_captain/k_battle.png",
+  "last": "../merc_captain/k_battle.png",
+  "prompt": "One single attack to the right: a short wind-up, one fast strong strike forward to the right with the weapon, then a recovery back into the same ready stance. Slow motion, one single even movement. One strike only. HANDS CANON: one long sword in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../merc_captain/clips/hit",
+  "first": "../merc_captain/k_battle.png",
+  "last": "../merc_captain/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one long sword in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../merc_captain/clips/death",
+  "first": "../merc_captain/k_battle.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one long sword in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../merc_captain/clips/victory",
+  "first": "../merc_captain/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one long sword in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../bandit_knifeman/clips/bidle",
+  "first": "../bandit_knifeman/k_battle.png",
+  "last": "../bandit_knifeman/k_battle.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: one long knife in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../bandit_knifeman/clips/attack",
+  "first": "../bandit_knifeman/k_battle.png",
+  "last": "../bandit_knifeman/k_battle.png",
+  "prompt": "One single attack to the right: a short wind-up, one fast strong strike forward to the right with the weapon, then a recovery back into the same ready stance. Slow motion, one single even movement. One strike only. HANDS CANON: one long knife in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../bandit_knifeman/clips/hit",
+  "first": "../bandit_knifeman/k_battle.png",
+  "last": "../bandit_knifeman/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one long knife in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../bandit_knifeman/clips/death",
+  "first": "../bandit_knifeman/k_battle.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one long knife in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../bandit_knifeman/clips/victory",
+  "first": "../bandit_knifeman/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one long knife in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../bandit_poacher/clips/bidle",
+  "first": "../bandit_poacher/k_battle.png",
+  "last": "../bandit_poacher/k_battle.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: one short bow held in the front hand, the rear hand free to draw the string; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../bandit_poacher/clips/attack",
+  "first": "../bandit_poacher/k_battle.png",
+  "last": "../bandit_poacher/k_battle.png",
+  "prompt": "One single bow shot to the right: draws the bowstring back to the cheek, aims to the right, releases, then lowers the bow back into the same ready stance. Slow motion, one single even movement. One strike only. HANDS CANON: one short bow held in the front hand, the rear hand free to draw the string; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../bandit_poacher/clips/hit",
+  "first": "../bandit_poacher/k_battle.png",
+  "last": "../bandit_poacher/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one short bow held in the front hand, the rear hand free to draw the string; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../bandit_poacher/clips/death",
+  "first": "../bandit_poacher/k_battle.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one short bow held in the front hand, the rear hand free to draw the string; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../bandit_poacher/clips/victory",
+  "first": "../bandit_poacher/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one short bow held in the front hand, the rear hand free to draw the string; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../bandit_axewoman/clips/bidle",
+  "first": "../bandit_axewoman/k_battle.png",
+  "last": "../bandit_axewoman/k_battle.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: one hand axe in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../bandit_axewoman/clips/attack",
+  "first": "../bandit_axewoman/k_battle.png",
+  "last": "../bandit_axewoman/k_battle.png",
+  "prompt": "One single attack to the right: a short wind-up, one fast strong strike forward to the right with the weapon, then a recovery back into the same ready stance. Slow motion, one single even movement. One strike only. HANDS CANON: one hand axe in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../bandit_axewoman/clips/hit",
+  "first": "../bandit_axewoman/k_battle.png",
+  "last": "../bandit_axewoman/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one hand axe in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../bandit_axewoman/clips/death",
+  "first": "../bandit_axewoman/k_battle.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one hand axe in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../bandit_axewoman/clips/victory",
+  "first": "../bandit_axewoman/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one hand axe in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../cult_acolyte/clips/bidle",
+  "first": "../cult_acolyte/k_battle.png",
+  "last": "../cult_acolyte/k_battle.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: one iron censer on a chain in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../cult_acolyte/clips/attack",
+  "first": "../cult_acolyte/k_battle.png",
+  "last": "../cult_acolyte/k_battle.png",
+  "prompt": "One single spell cast to the right: raises the hand and the staff or item, makes one strong pushing gesture toward the right, then returns to the same ready stance. No glow, no particles. Slow motion, one single even movement. One strike only. HANDS CANON: one iron censer on a chain in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../cult_acolyte/clips/hit",
+  "first": "../cult_acolyte/k_battle.png",
+  "last": "../cult_acolyte/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one iron censer on a chain in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../cult_acolyte/clips/death",
+  "first": "../cult_acolyte/k_battle.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one iron censer on a chain in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../cult_acolyte/clips/victory",
+  "first": "../cult_acolyte/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one iron censer on a chain in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../cult_zealot/clips/bidle",
+  "first": "../cult_zealot/k_battle.png",
+  "last": "../cult_zealot/k_battle.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: one long iron hook on a wooden shaft held with both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../cult_zealot/clips/attack",
+  "first": "../cult_zealot/k_battle.png",
+  "last": "../cult_zealot/k_battle.png",
+  "prompt": "One single attack to the right: a short wind-up, one fast strong strike forward to the right with the weapon, then a recovery back into the same ready stance. Slow motion, one single even movement. One strike only. HANDS CANON: one long iron hook on a wooden shaft held with both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../cult_zealot/clips/hit",
+  "first": "../cult_zealot/k_battle.png",
+  "last": "../cult_zealot/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one long iron hook on a wooden shaft held with both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../cult_zealot/clips/death",
+  "first": "../cult_zealot/k_battle.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one long iron hook on a wooden shaft held with both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../cult_zealot/clips/victory",
+  "first": "../cult_zealot/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one long iron hook on a wooden shaft held with both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../cult_priest/clips/bidle",
+  "first": "../cult_priest/k_battle.png",
+  "last": "../cult_priest/k_battle.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: the staff with the cracked seal disk in the rear hand, the front hand free for a gesture; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../cult_priest/clips/attack",
+  "first": "../cult_priest/k_battle.png",
+  "last": "../cult_priest/k_battle.png",
+  "prompt": "One single spell cast to the right: raises the hand and the staff or item, makes one strong pushing gesture toward the right, then returns to the same ready stance. No glow, no particles. Slow motion, one single even movement. One strike only. HANDS CANON: the staff with the cracked seal disk in the rear hand, the front hand free for a gesture; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../cult_priest/clips/hit",
+  "first": "../cult_priest/k_battle.png",
+  "last": "../cult_priest/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: the staff with the cracked seal disk in the rear hand, the front hand free for a gesture; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../cult_priest/clips/death",
+  "first": "../cult_priest/k_battle.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: the staff with the cracked seal disk in the rear hand, the front hand free for a gesture; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../cult_priest/clips/victory",
+  "first": "../cult_priest/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: the staff with the cracked seal disk in the rear hand, the front hand free for a gesture; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../wandering_knight/clips/bidle",
+  "first": "../wandering_knight/k_battle.png",
+  "last": "../wandering_knight/k_battle.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: one long sword in the front hand, one battered heater shield on the rear arm; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../wandering_knight/clips/attack",
+  "first": "../wandering_knight/k_battle.png",
+  "last": "../wandering_knight/k_battle.png",
+  "prompt": "One single attack to the right: a short wind-up, one fast strong strike forward to the right with the weapon, then a recovery back into the same ready stance. Slow motion, one single even movement. One strike only. HANDS CANON: one long sword in the front hand, one battered heater shield on the rear arm; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../wandering_knight/clips/hit",
+  "first": "../wandering_knight/k_battle.png",
+  "last": "../wandering_knight/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one long sword in the front hand, one battered heater shield on the rear arm; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../wandering_knight/clips/death",
+  "first": "../wandering_knight/k_battle.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one long sword in the front hand, one battered heater shield on the rear arm; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../wandering_knight/clips/victory",
+  "first": "../wandering_knight/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one long sword in the front hand, one battered heater shield on the rear arm; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../yrka/clips/bidle",
+  "first": "../yrka/k_battle.png",
+  "last": "../yrka/k_battle.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: no weapon, long bony fingers on both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../yrka/clips/attack",
+  "first": "../yrka/k_battle.png",
+  "last": "../yrka/k_battle.png",
+  "prompt": "One single attack to the right: lunges forward to the right slashing with the claws or the weapon, then recovers back into the same stance. Slow motion, one single even movement. One strike only. HANDS CANON: no weapon, long bony fingers on both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../yrka/clips/hit",
+  "first": "../yrka/k_battle.png",
+  "last": "../yrka/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: no weapon, long bony fingers on both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../yrka/clips/death",
+  "first": "../yrka/k_battle.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: no weapon, long bony fingers on both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../yrka/clips/victory",
+  "first": "../yrka/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: no weapon, long bony fingers on both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../shishiga/clips/bidle",
+  "first": "../shishiga/k_battle.png",
+  "last": "../shishiga/k_battle.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: no weapon, small claws on both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../shishiga/clips/attack",
+  "first": "../shishiga/k_battle.png",
+  "last": "../shishiga/k_battle.png",
+  "prompt": "One single attack to the right: lunges forward to the right slashing with the claws or the weapon, then recovers back into the same stance. Slow motion, one single even movement. One strike only. HANDS CANON: no weapon, small claws on both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../shishiga/clips/hit",
+  "first": "../shishiga/k_battle.png",
+  "last": "../shishiga/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: no weapon, small claws on both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../shishiga/clips/death",
+  "first": "../shishiga/k_battle.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: no weapon, small claws on both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../shishiga/clips/victory",
+  "first": "../shishiga/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: no weapon, small claws on both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../polevik/clips/bidle",
+  "first": "../polevik/k_battle.png",
+  "last": "../polevik/k_battle.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: no weapon, both hands free for gestures; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../polevik/clips/attack",
+  "first": "../polevik/k_battle.png",
+  "last": "../polevik/k_battle.png",
+  "prompt": "One single spell cast to the right: raises the hand and the staff or item, makes one strong pushing gesture toward the right, then returns to the same ready stance. No glow, no particles. Slow motion, one single even movement. One strike only. HANDS CANON: no weapon, both hands free for gestures; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../polevik/clips/hit",
+  "first": "../polevik/k_battle.png",
+  "last": "../polevik/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: no weapon, both hands free for gestures; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../polevik/clips/death",
+  "first": "../polevik/k_battle.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: no weapon, both hands free for gestures; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../polevik/clips/victory",
+  "first": "../polevik/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: no weapon, both hands free for gestures; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../scarecrow/clips/bidle",
+  "first": "../scarecrow/k_battle.png",
+  "last": "../scarecrow/k_battle.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: one rusty sickle tied to the front arm, the rear hand straw fingers; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../scarecrow/clips/attack",
+  "first": "../scarecrow/k_battle.png",
+  "last": "../scarecrow/k_battle.png",
+  "prompt": "One single attack to the right: lunges forward to the right slashing with the claws or the weapon, then recovers back into the same stance. Slow motion, one single even movement. One strike only. HANDS CANON: one rusty sickle tied to the front arm, the rear hand straw fingers; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../scarecrow/clips/hit",
+  "first": "../scarecrow/k_battle.png",
+  "last": "../scarecrow/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one rusty sickle tied to the front arm, the rear hand straw fingers; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../scarecrow/clips/death",
+  "first": "../scarecrow/k_battle.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one rusty sickle tied to the front arm, the rear hand straw fingers; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../scarecrow/clips/victory",
+  "first": "../scarecrow/k_battle.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one rusty sickle tied to the front arm, the rear hand straw fingers; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../young_boar/clips/bidle",
+  "first": "../young_boar/k_battle.png",
+  "last": "../young_boar/k_battle.png",
+  "prompt": "Idle loop for the whole clip: the animal stays in place in the same pose, breathes calmly, the flanks rise and fall, small natural movements of the ears and tail. No steps, no turning. The last frame is exactly the same pose as the first. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../young_boar/clips/attack",
+  "first": "../young_boar/k_battle.png",
+  "last": "../young_boar/k_battle.png",
+  "prompt": "One single attack to the right: the animal lunges forward to the right and snaps its jaws or swipes a paw, then steps back into the same stance. Slow motion, one single even movement. One strike only. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../young_boar/clips/hit",
+  "first": "../young_boar/k_battle.png",
+  "last": "../young_boar/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../young_boar/clips/death",
+  "first": "../young_boar/k_battle.png",
+  "prompt": "Is fatally struck from the right: the animal staggers, collapses onto its side and lies still on the ground at the end of the clip. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../young_boar/clips/victory",
+  "first": "../young_boar/k_battle.png",
+  "prompt": "Victory: the animal stays on all four legs the whole clip, lifts its head and barks or roars once, then stands proudly still. It never stands up on its hind legs, never changes its body shape. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../bear_shatun/clips/bidle",
+  "first": "../bear_shatun/k_battle.png",
+  "last": "../bear_shatun/k_battle.png",
+  "prompt": "Idle loop for the whole clip: the animal stays in place in the same pose, breathes calmly, the flanks rise and fall, small natural movements of the ears and tail. No steps, no turning. The last frame is exactly the same pose as the first. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../bear_shatun/clips/attack",
+  "first": "../bear_shatun/k_battle.png",
+  "last": "../bear_shatun/k_battle.png",
+  "prompt": "One single attack to the right: the animal lunges forward to the right and snaps its jaws or swipes a paw, then steps back into the same stance. Slow motion, one single even movement. One strike only. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../bear_shatun/clips/hit",
+  "first": "../bear_shatun/k_battle.png",
+  "last": "../bear_shatun/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../bear_shatun/clips/death",
+  "first": "../bear_shatun/k_battle.png",
+  "prompt": "Is fatally struck from the right: the animal staggers, collapses onto its side and lies still on the ground at the end of the clip. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../bear_shatun/clips/victory",
+  "first": "../bear_shatun/k_battle.png",
+  "prompt": "Victory: the animal stays on all four legs the whole clip, lifts its head and barks or roars once, then stands proudly still. It never stands up on its hind legs, never changes its body shape. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../lynx/clips/bidle",
+  "first": "../lynx/k_battle.png",
+  "last": "../lynx/k_battle.png",
+  "prompt": "Idle loop for the whole clip: the animal stays in place in the same pose, breathes calmly, the flanks rise and fall, small natural movements of the ears and tail. No steps, no turning. The last frame is exactly the same pose as the first. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../lynx/clips/attack",
+  "first": "../lynx/k_battle.png",
+  "last": "../lynx/k_battle.png",
+  "prompt": "One single attack to the right: the animal lunges forward to the right and snaps its jaws or swipes a paw, then steps back into the same stance. Slow motion, one single even movement. One strike only. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../lynx/clips/hit",
+  "first": "../lynx/k_battle.png",
+  "last": "../lynx/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../lynx/clips/death",
+  "first": "../lynx/k_battle.png",
+  "prompt": "Is fatally struck from the right: the animal staggers, collapses onto its side and lies still on the ground at the end of the clip. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../lynx/clips/victory",
+  "first": "../lynx/k_battle.png",
+  "prompt": "Victory: the animal stays on all four legs the whole clip, lifts its head and barks or roars once, then stands proudly still. It never stands up on its hind legs, never changes its body shape. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../rats/clips/bidle",
+  "first": "../rats/k_battle.png",
+  "last": "../rats/k_battle.png",
+  "prompt": "Idle loop for the whole clip: the animal stays in place in the same pose, breathes calmly, the flanks rise and fall, small natural movements of the ears and tail. No steps, no turning. The last frame is exactly the same pose as the first. Always exactly the same three rats, each with one tail; no rat appears or disappears. They stay on all four legs. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../rats/clips/attack",
+  "first": "../rats/k_battle.png",
+  "last": "../rats/k_battle.png",
+  "prompt": "One single attack to the right: the animal lunges forward to the right and snaps its jaws or swipes a paw, then steps back into the same stance. Slow motion, one single even movement. One strike only. Always exactly the same three rats, each with one tail; no rat appears or disappears. They stay on all four legs. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../rats/clips/hit",
+  "first": "../rats/k_battle.png",
+  "last": "../rats/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. Always exactly the same three rats, each with one tail; no rat appears or disappears. They stay on all four legs. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../rats/clips/death",
+  "first": "../rats/k_battle.png",
+  "prompt": "Is fatally struck from the right: the animal staggers, collapses onto its side and lies still on the ground at the end of the clip. Always exactly the same three rats, each with one tail; no rat appears or disappears. They stay on all four legs. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../rats/clips/victory",
+  "first": "../rats/k_battle.png",
+  "prompt": "Victory: the animal stays on all four legs the whole clip, lifts its head and barks or roars once, then stands proudly still. It never stands up on its hind legs, never changes its body shape. Always exactly the same three rats, each with one tail; no rat appears or disappears. They stay on all four legs. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../snow_wolf/clips/bidle",
+  "first": "../snow_wolf/k_battle.png",
+  "last": "../snow_wolf/k_battle.png",
+  "prompt": "Idle loop for the whole clip: the animal stays in place in the same pose, breathes calmly, the flanks rise and fall, small natural movements of the ears and tail. No steps, no turning. The last frame is exactly the same pose as the first. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../snow_wolf/clips/attack",
+  "first": "../snow_wolf/k_battle.png",
+  "last": "../snow_wolf/k_battle.png",
+  "prompt": "One single attack to the right: the animal lunges forward to the right and snaps its jaws or swipes a paw, then steps back into the same stance. Slow motion, one single even movement. One strike only. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../snow_wolf/clips/hit",
+  "first": "../snow_wolf/k_battle.png",
+  "last": "../snow_wolf/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../snow_wolf/clips/death",
+  "first": "../snow_wolf/k_battle.png",
+  "prompt": "Is fatally struck from the right: the animal staggers, collapses onto its side and lies still on the ground at the end of the clip. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../snow_wolf/clips/victory",
+  "first": "../snow_wolf/k_battle.png",
+  "prompt": "Victory: the animal stays on all four legs the whole clip, lifts its head and barks or roars once, then stands proudly still. It never stands up on its hind legs, never changes its body shape. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../snow_wolf_leader/clips/bidle",
+  "first": "../snow_wolf_leader/k_battle.png",
+  "last": "../snow_wolf_leader/k_battle.png",
+  "prompt": "Idle loop for the whole clip: the animal stays in place in the same pose, breathes calmly, the flanks rise and fall, small natural movements of the ears and tail. No steps, no turning. The last frame is exactly the same pose as the first. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../snow_wolf_leader/clips/attack",
+  "first": "../snow_wolf_leader/k_battle.png",
+  "last": "../snow_wolf_leader/k_battle.png",
+  "prompt": "One single attack to the right: the animal lunges forward to the right and snaps its jaws or swipes a paw, then steps back into the same stance. Slow motion, one single even movement. One strike only. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../snow_wolf_leader/clips/hit",
+  "first": "../snow_wolf_leader/k_battle.png",
+  "last": "../snow_wolf_leader/k_battle.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../snow_wolf_leader/clips/death",
+  "first": "../snow_wolf_leader/k_battle.png",
+  "prompt": "Is fatally struck from the right: the animal staggers, collapses onto its side and lies still on the ground at the end of the clip. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../snow_wolf_leader/clips/victory",
+  "first": "../snow_wolf_leader/k_battle.png",
+  "prompt": "Victory: the animal stays on all four legs the whole clip, lifts its head and barks or roars once, then stands proudly still. It never stands up on its hind legs, never changes its body shape. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../plowman/clips/idle",
+  "first": "../plowman/k_idle.png",
+  "last": "../plowman/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the character stays in place in the same pose, breathes slowly and calmly, the chest rises and falls, a slight shift of weight, clothes, cloak and hair move gently. No steps, no gestures, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../peasant_woman/clips/idle",
+  "first": "../peasant_woman/k_idle.png",
+  "last": "../peasant_woman/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the character stays in place in the same pose, breathes slowly and calmly, the chest rises and falls, a slight shift of weight, clothes, cloak and hair move gently. No steps, no gestures, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../old_man/clips/idle",
+  "first": "../old_man/k_idle.png",
+  "last": "../old_man/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the character stays in place in the same pose, breathes slowly and calmly, the chest rises and falls, a slight shift of weight, clothes, cloak and hair move gently. No steps, no gestures, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../village_boy/clips/idle",
+  "first": "../village_boy/k_idle.png",
+  "last": "../village_boy/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the character stays in place in the same pose, breathes slowly and calmly, the chest rises and falls, a slight shift of weight, clothes, cloak and hair move gently. No steps, no gestures, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../village_girl/clips/idle",
+  "first": "../village_girl/k_idle.png",
+  "last": "../village_girl/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the character stays in place in the same pose, breathes slowly and calmly, the chest rises and falls, a slight shift of weight, clothes, cloak and hair move gently. No steps, no gestures, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../shepherd/clips/idle",
+  "first": "../shepherd/k_idle.png",
+  "last": "../shepherd/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the character stays in place in the same pose, breathes slowly and calmly, the chest rises and falls, a slight shift of weight, clothes, cloak and hair move gently. No steps, no gestures, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../woodcutter/clips/idle",
+  "first": "../woodcutter/k_idle.png",
+  "last": "../woodcutter/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the character stays in place in the same pose, breathes slowly and calmly, the chest rises and falls, a slight shift of weight, clothes, cloak and hair move gently. No steps, no gestures, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../miller/clips/idle",
+  "first": "../miller/k_idle.png",
+  "last": "../miller/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the character stays in place in the same pose, breathes slowly and calmly, the chest rises and falls, a slight shift of weight, clothes, cloak and hair move gently. No steps, no gestures, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../gravedigger/clips/idle",
+  "first": "../gravedigger/k_idle.png",
+  "last": "../gravedigger/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the character stays in place in the same pose, breathes slowly and calmly, the chest rises and falls, a slight shift of weight, clothes, cloak and hair move gently. No steps, no gestures, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../widow/clips/idle",
+  "first": "../widow/k_idle.png",
+  "last": "../widow/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the character stays in place in the same pose, breathes slowly and calmly, the chest rises and falls, a slight shift of weight, clothes, cloak and hair move gently. No steps, no gestures, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../fisherman/clips/idle",
+  "first": "../fisherman/k_idle.png",
+  "last": "../fisherman/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the character stays in place in the same pose, breathes slowly and calmly, the chest rises and falls, a slight shift of weight, clothes, cloak and hair move gently. No steps, no gestures, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../beggar/clips/idle",
+  "first": "../beggar/k_idle.png",
+  "last": "../beggar/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the character stays in place in the same pose, breathes slowly and calmly, the chest rises and falls, a slight shift of weight, clothes, cloak and hair move gently. No steps, no gestures, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../toll_keeper/clips/idle",
+  "first": "../toll_keeper/k_idle.png",
+  "last": "../toll_keeper/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the character stays in place in the same pose, breathes slowly and calmly, the chest rises and falls, a slight shift of weight, clothes, cloak and hair move gently. No steps, no gestures, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../pilgrim_nun/clips/idle",
+  "first": "../pilgrim_nun/k_idle.png",
+  "last": "../pilgrim_nun/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the character stays in place in the same pose, breathes slowly and calmly, the chest rises and falls, a slight shift of weight, clothes, cloak and hair move gently. No steps, no gestures, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../herbalist/clips/idle",
+  "first": "../herbalist/k_idle.png",
+  "last": "../herbalist/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the character stays in place in the same pose, breathes slowly and calmly, the chest rises and falls, a slight shift of weight, clothes, cloak and hair move gently. No steps, no gestures, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../shopkeeper/clips/idle",
+  "first": "../shopkeeper/k_idle.png",
+  "last": "../shopkeeper/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the character stays in place in the same pose, breathes slowly and calmly, the chest rises and falls, a slight shift of weight, clothes, cloak and hair move gently. No steps, no gestures, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../dwarf_changer/clips/idle",
+  "first": "../dwarf_changer/k_idle.png",
+  "last": "../dwarf_changer/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the character stays in place in the same pose, breathes slowly and calmly, the chest rises and falls, a slight shift of weight, clothes, cloak and hair move gently. No steps, no gestures, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../peddler/clips/idle",
+  "first": "../peddler/k_idle.png",
+  "last": "../peddler/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the character stays in place in the same pose, breathes slowly and calmly, the chest rises and falls, a slight shift of weight, clothes, cloak and hair move gently. No steps, no gestures, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../fur_trader/clips/idle",
+  "first": "../fur_trader/k_idle.png",
+  "last": "../fur_trader/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the character stays in place in the same pose, breathes slowly and calmly, the chest rises and falls, a slight shift of weight, clothes, cloak and hair move gently. No steps, no gestures, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../knife_grinder/clips/idle",
+  "first": "../knife_grinder/k_idle.png",
+  "last": "../knife_grinder/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the character stays in place in the same pose, breathes slowly and calmly, the chest rises and falls, a slight shift of weight, clothes, cloak and hair move gently. No steps, no gestures, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../dwarf_smith/clips/idle",
+  "first": "../dwarf_smith/k_idle.png",
+  "last": "../dwarf_smith/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the character stays in place in the same pose, breathes slowly and calmly, the chest rises and falls, a slight shift of weight, clothes, cloak and hair move gently. No steps, no gestures, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../grad_guard/clips/idle",
+  "first": "../grad_guard/k_idle.png",
+  "last": "../grad_guard/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the character stays in place in the same pose, breathes slowly and calmly, the chest rises and falls, a slight shift of weight, clothes, cloak and hair move gently. No steps, no gestures, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../grad_crossbowman/clips/idle",
+  "first": "../grad_crossbowman/k_idle.png",
+  "last": "../grad_crossbowman/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the character stays in place in the same pose, breathes slowly and calmly, the chest rises and falls, a slight shift of weight, clothes, cloak and hair move gently. No steps, no gestures, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../merc_captain/clips/idle",
+  "first": "../merc_captain/k_idle.png",
+  "last": "../merc_captain/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the character stays in place in the same pose, breathes slowly and calmly, the chest rises and falls, a slight shift of weight, clothes, cloak and hair move gently. No steps, no gestures, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../bandit_knifeman/clips/idle",
+  "first": "../bandit_knifeman/k_idle.png",
+  "last": "../bandit_knifeman/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the character stays in place in the same pose, breathes slowly and calmly, the chest rises and falls, a slight shift of weight, clothes, cloak and hair move gently. No steps, no gestures, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../bandit_axewoman/clips/idle",
+  "first": "../bandit_axewoman/k_idle.png",
+  "last": "../bandit_axewoman/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the character stays in place in the same pose, breathes slowly and calmly, the chest rises and falls, a slight shift of weight, clothes, cloak and hair move gently. No steps, no gestures, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../cult_acolyte/clips/idle",
+  "first": "../cult_acolyte/k_idle.png",
+  "last": "../cult_acolyte/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the character stays in place in the same pose, breathes slowly and calmly, the chest rises and falls, a slight shift of weight, clothes, cloak and hair move gently. No steps, no gestures, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../cult_priest/clips/idle",
+  "first": "../cult_priest/k_idle.png",
+  "last": "../cult_priest/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the character stays in place in the same pose, breathes slowly and calmly, the chest rises and falls, a slight shift of weight, clothes, cloak and hair move gently. No steps, no gestures, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../vodyanoy/clips/idle",
+  "first": "../vodyanoy/k_idle.png",
+  "last": "../vodyanoy/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the character stays in place in the same pose, breathes slowly and calmly, the chest rises and falls, a slight shift of weight, clothes, cloak and hair move gently. No steps, no gestures, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../wandering_knight/clips/idle",
+  "first": "../wandering_knight/k_idle.png",
+  "last": "../wandering_knight/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the character stays in place in the same pose, breathes slowly and calmly, the chest rises and falls, a slight shift of weight, clothes, cloak and hair move gently. No steps, no gestures, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../polevik/clips/idle",
+  "first": "../polevik/k_idle.png",
+  "last": "../polevik/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the character stays in place in the same pose, breathes slowly and calmly, the chest rises and falls, a slight shift of weight, clothes, cloak and hair move gently. No steps, no gestures, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../scarecrow/clips/idle",
+  "first": "../scarecrow/k_idle.png",
+  "last": "../scarecrow/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the character stays in place in the same pose, breathes slowly and calmly, the chest rises and falls, a slight shift of weight, clothes, cloak and hair move gently. No steps, no gestures, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../horse/clips/idle",
+  "first": "../horse/k_idle.png",
+  "last": "../horse/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the animal stays in place in the same pose, breathes calmly, the flanks rise and fall, small natural movements of the ears and tail. No steps, no turning. The last frame is exactly the same pose as the first. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../cow/clips/idle",
+  "first": "../cow/k_idle.png",
+  "last": "../cow/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the animal stays in place in the same pose, breathes calmly, the flanks rise and fall, small natural movements of the ears and tail. No steps, no turning. The last frame is exactly the same pose as the first. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../goat/clips/idle",
+  "first": "../goat/k_idle.png",
+  "last": "../goat/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the animal stays in place in the same pose, breathes calmly, the flanks rise and fall, small natural movements of the ears and tail. No steps, no turning. The last frame is exactly the same pose as the first. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../raven/clips/idle",
+  "first": "../raven/k_idle.png",
+  "last": "../raven/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the animal stays in place in the same pose, breathes calmly, the flanks rise and fall, small natural movements of the ears and tail. No steps, no turning. The last frame is exactly the same pose as the first. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../young_boar/clips/idle",
+  "first": "../young_boar/k_idle.png",
+  "last": "../young_boar/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the animal stays in place in the same pose, breathes calmly, the flanks rise and fall, small natural movements of the ears and tail. No steps, no turning. The last frame is exactly the same pose as the first. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../fox/clips/idle",
+  "first": "../fox/k_idle.png",
+  "last": "../fox/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the animal stays in place in the same pose, breathes calmly, the flanks rise and fall, small natural movements of the ears and tail. No steps, no turning. The last frame is exactly the same pose as the first. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../deer/clips/idle",
+  "first": "../deer/k_idle.png",
+  "last": "../deer/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the animal stays in place in the same pose, breathes calmly, the flanks rise and fall, small natural movements of the ears and tail. No steps, no turning. The last frame is exactly the same pose as the first. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../bear_shatun/clips/idle",
+  "first": "../bear_shatun/k_idle.png",
+  "last": "../bear_shatun/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the animal stays in place in the same pose, breathes calmly, the flanks rise and fall, small natural movements of the ears and tail. No steps, no turning. The last frame is exactly the same pose as the first. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../lynx/clips/idle",
+  "first": "../lynx/k_idle.png",
+  "last": "../lynx/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the animal stays in place in the same pose, breathes calmly, the flanks rise and fall, small natural movements of the ears and tail. No steps, no turning. The last frame is exactly the same pose as the first. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../owl/clips/idle",
+  "first": "../owl/k_idle.png",
+  "last": "../owl/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the animal stays in place in the same pose, breathes calmly, the flanks rise and fall, small natural movements of the ears and tail. No steps, no turning. The last frame is exactly the same pose as the first. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../rats/clips/idle",
+  "first": "../rats/k_idle.png",
+  "last": "../rats/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the animal stays in place in the same pose, breathes calmly, the flanks rise and fall, small natural movements of the ears and tail. No steps, no turning. The last frame is exactly the same pose as the first. Always exactly the same three rats, each with one tail; no rat appears or disappears. They stay on all four legs. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../snow_wolf/clips/idle",
+  "first": "../snow_wolf/k_idle.png",
+  "last": "../snow_wolf/k_idle.png",
+  "prompt": "Idle loop for the whole clip: the animal stays in place in the same pose, breathes calmly, the flanks rise and fall, small natural movements of the ears and tail. No steps, no turning. The last frame is exactly the same pose as the first. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../plowman/clips/amb1",
+  "first": "../plowman/k_idle.png",
+  "last": "../plowman/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: wipes the sweat from his forehead with his sleeve. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../peasant_woman/clips/amb1",
+  "first": "../peasant_woman/k_idle.png",
+  "last": "../peasant_woman/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: shifts the basket to the other arm and sighs. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../old_man/clips/amb1",
+  "first": "../old_man/k_idle.png",
+  "last": "../old_man/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: coughs and leans harder on the cane. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../village_boy/clips/amb1",
+  "first": "../village_boy/k_idle.png",
+  "last": "../village_boy/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: swings the wooden toy sword once in the air. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../village_girl/clips/amb1",
+  "first": "../village_girl/k_idle.png",
+  "last": "../village_girl/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: hugs the rag doll closer and looks around. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../shepherd/clips/amb1",
+  "first": "../shepherd/k_idle.png",
+  "last": "../shepherd/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: lifts the horn to his lips and blows it briefly. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../woodcutter/clips/amb1",
+  "first": "../woodcutter/k_idle.png",
+  "last": "../woodcutter/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: rolls his shoulders, the axe stays on his shoulder. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../miller/clips/amb1",
+  "first": "../miller/k_idle.png",
+  "last": "../miller/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: pats the flour dust off his apron. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../gravedigger/clips/amb1",
+  "first": "../gravedigger/k_idle.png",
+  "last": "../gravedigger/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: pushes the shovel into the ground and leans on it. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../widow/clips/amb1",
+  "first": "../widow/k_idle.png",
+  "last": "../widow/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: lowers her head over the candle in prayer. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../fisherman/clips/amb1",
+  "first": "../fisherman/k_idle.png",
+  "last": "../fisherman/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: adjusts the net on his shoulder. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../beggar/clips/amb1",
+  "first": "../beggar/k_idle.png",
+  "last": "../beggar/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: shakes the bowl a little, listening for coins. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../toll_keeper/clips/amb1",
+  "first": "../toll_keeper/k_idle.png",
+  "last": "../toll_keeper/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: opens the ledger, looks into it and closes it. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../pilgrim_nun/clips/amb1",
+  "first": "../pilgrim_nun/k_idle.png",
+  "last": "../pilgrim_nun/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: raises the lantern a little and looks into the distance. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../herbalist/clips/amb1",
+  "first": "../herbalist/k_idle.png",
+  "last": "../herbalist/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: smells the clay jar and nods. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../shopkeeper/clips/amb1",
+  "first": "../shopkeeper/k_idle.png",
+  "last": "../shopkeeper/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: clicks a few beads on the abacus. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../dwarf_changer/clips/amb1",
+  "first": "../dwarf_changer/k_idle.png",
+  "last": "../dwarf_changer/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: weighs something on the brass scales and squints. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../peddler/clips/amb1",
+  "first": "../peddler/k_idle.png",
+  "last": "../peddler/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: hitches the pack box higher on his back. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../fur_trader/clips/amb1",
+  "first": "../fur_trader/k_idle.png",
+  "last": "../fur_trader/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: strokes the furs on his shoulder. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../knife_grinder/clips/amb1",
+  "first": "../knife_grinder/k_idle.png",
+  "last": "../knife_grinder/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: runs the whetstone along his thumb nail checking it. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../dwarf_smith/clips/amb1",
+  "first": "../dwarf_smith/k_idle.png",
+  "last": "../dwarf_smith/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: taps the small hammer on the tongs. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../grad_guard/clips/amb1",
+  "first": "../grad_guard/k_idle.png",
+  "last": "../grad_guard/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: shifts the shield on his arm and looks around. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../grad_crossbowman/clips/amb1",
+  "first": "../grad_crossbowman/k_idle.png",
+  "last": "../grad_crossbowman/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: checks the crossbow string with his fingers. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../merc_captain/clips/amb1",
+  "first": "../merc_captain/k_idle.png",
+  "last": "../merc_captain/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: looks around and strokes his beard. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../bandit_knifeman/clips/amb1",
+  "first": "../bandit_knifeman/k_idle.png",
+  "last": "../bandit_knifeman/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: tosses the knife a little in his hand and catches it by the handle. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../bandit_axewoman/clips/amb1",
+  "first": "../bandit_axewoman/k_idle.png",
+  "last": "../bandit_axewoman/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: lowers the axe from her shoulder and lifts it back. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../cult_acolyte/clips/amb1",
+  "first": "../cult_acolyte/k_idle.png",
+  "last": "../cult_acolyte/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: swings the censer slowly once. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../cult_priest/clips/amb1",
+  "first": "../cult_priest/k_idle.png",
+  "last": "../cult_priest/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: raises the free hand slowly as if blessing. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../vodyanoy/clips/amb1",
+  "first": "../vodyanoy/k_idle.png",
+  "last": "../vodyanoy/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: scratches his weed beard and chuckles. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../wandering_knight/clips/amb1",
+  "first": "../wandering_knight/k_idle.png",
+  "last": "../wandering_knight/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: lifts the sword a little and lowers the point back to the ground. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../polevik/clips/amb1",
+  "first": "../polevik/k_idle.png",
+  "last": "../polevik/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: pulls a straw from his beard and chews it. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../scarecrow/clips/amb1",
+  "first": "../scarecrow/k_idle.png",
+  "last": "../scarecrow/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: the head slowly tilts to the side and back. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../horse/clips/amb1",
+  "first": "../horse/k_idle.png",
+  "last": "../horse/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: lowers the head, snorts and shakes the mane. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../cow/clips/amb1",
+  "first": "../cow/k_idle.png",
+  "last": "../cow/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: lowers the head and chews, the tail swishes. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../goat/clips/amb1",
+  "first": "../goat/k_idle.png",
+  "last": "../goat/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: bleats and shakes its head. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../raven/clips/amb1",
+  "first": "../raven/k_idle.png",
+  "last": "../raven/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: hops once in place and caws. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../young_boar/clips/amb1",
+  "first": "../young_boar/k_idle.png",
+  "last": "../young_boar/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: sniffs and roots the ground with the snout. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../fox/clips/amb1",
+  "first": "../fox/k_idle.png",
+  "last": "../fox/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: sits back and scratches behind the ear with a hind leg, then stands. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../deer/clips/amb1",
+  "first": "../deer/k_idle.png",
+  "last": "../deer/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: lowers the head to graze and lifts it again. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../bear_shatun/clips/amb1",
+  "first": "../bear_shatun/k_idle.png",
+  "last": "../bear_shatun/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: sniffs the air and shakes the frost from its fur. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../lynx/clips/amb1",
+  "first": "../lynx/k_idle.png",
+  "last": "../lynx/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: licks a front paw and puts it down. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../owl/clips/amb1",
+  "first": "../owl/k_idle.png",
+  "last": "../owl/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: turns the head far to the side and back, blinks. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../rats/clips/amb1",
+  "first": "../rats/k_idle.png",
+  "last": "../rats/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: the rats sniff around, whiskers twitching. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. Always exactly the same three rats, each with one tail; no rat appears or disappears. They stay on all four legs. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../snow_wolf/clips/amb1",
+  "first": "../snow_wolf/k_idle.png",
+  "last": "../snow_wolf/k_idle.png",
+  "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: lowers the head and sniffs the ground. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ }
+]

@@ -1,0 +1,1 @@
+{"slug": "bear_shatun", "anim": "attack", "base": "bear_shatun/k_battle.png", "body": 300, "segments": [{"clip": "bear_shatun/clips/attack_v2.mp4", "from": 5, "to": 95, "frames": 29}], "hit": "auto", "right": 1.6, "left": 1.6, "ver": 1, "keepall": true}

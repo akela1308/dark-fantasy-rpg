@@ -1139,5 +1139,1357 @@
    6000,
    14000
   ]
+ },
+ "map_plowman": {
+  "slug": "plowman",
+  "idle": {
+   "file": "maps/characters/anim/plowman_mapidle_v1_s60.webp",
+   "frameWidth": 211,
+   "frameHeight": 172,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.4454,
+   "originY": 0.9732,
+   "bodyHeight": 156.3,
+   "key": "plowman_mapidle_v1_s60"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/plowman_mapamb1_v1_s60.webp",
+    "frameWidth": 249,
+    "frameHeight": 172,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4391,
+    "originY": 0.9732,
+    "bodyHeight": 156.0,
+    "key": "plowman_mapamb1_v1_s60"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
+ "map_peasant_woman": {
+  "slug": "peasant_woman",
+  "idle": {
+   "file": "maps/characters/anim/peasant_woman_mapidle_v1_s60.webp",
+   "frameWidth": 211,
+   "frameHeight": 172,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.445,
+   "originY": 0.973,
+   "bodyHeight": 156.3,
+   "key": "peasant_woman_mapidle_v1_s60"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/peasant_woman_mapamb1_v1_s60.webp",
+    "frameWidth": 250,
+    "frameHeight": 172,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.438,
+    "originY": 0.973,
+    "bodyHeight": 156.2,
+    "key": "peasant_woman_mapamb1_v1_s60"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
+ "map_old_man": {
+  "slug": "old_man",
+  "idle": {
+   "file": "maps/characters/anim/old_man_mapidle_v1_s60.webp",
+   "frameWidth": 210,
+   "frameHeight": 175,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.4458,
+   "originY": 0.9743,
+   "bodyHeight": 156.0,
+   "key": "old_man_mapidle_v1_s60"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/old_man_mapamb1_v1_s60.webp",
+    "frameWidth": 249,
+    "frameHeight": 175,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4388,
+    "originY": 0.9743,
+    "bodyHeight": 156.0,
+    "key": "old_man_mapamb1_v1_s60"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
+ "map_village_boy": {
+  "slug": "village_boy",
+  "idle": {
+   "file": "maps/characters/anim/village_boy_mapidle_v1_s60.webp",
+   "frameWidth": 211,
+   "frameHeight": 173,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.4455,
+   "originY": 0.9704,
+   "bodyHeight": 156.3,
+   "key": "village_boy_mapidle_v1_s60"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/village_boy_mapamb1_v1_s60.webp",
+    "frameWidth": 249,
+    "frameHeight": 173,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4388,
+    "originY": 0.9704,
+    "bodyHeight": 156.0,
+    "key": "village_boy_mapamb1_v1_s60"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
+ "map_village_girl": {
+  "slug": "village_girl",
+  "idle": {
+   "file": "maps/characters/anim/village_girl_mapidle_v1_s60.webp",
+   "frameWidth": 210,
+   "frameHeight": 178,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.446,
+   "originY": 0.9715,
+   "bodyHeight": 156.0,
+   "key": "village_girl_mapidle_v1_s60"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/village_girl_mapamb1_v1_s60.webp",
+    "frameWidth": 250,
+    "frameHeight": 178,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4384,
+    "originY": 0.9715,
+    "bodyHeight": 156.2,
+    "key": "village_girl_mapamb1_v1_s60"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
+ "map_shepherd": {
+  "slug": "shepherd",
+  "idle": {
+   "file": "maps/characters/anim/shepherd_mapidle_v1_s60.webp",
+   "frameWidth": 210,
+   "frameHeight": 174,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.4458,
+   "originY": 0.9733,
+   "bodyHeight": 156.0,
+   "key": "shepherd_mapidle_v1_s60"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/shepherd_mapamb1_v1_s60.webp",
+    "frameWidth": 249,
+    "frameHeight": 174,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4388,
+    "originY": 0.9733,
+    "bodyHeight": 156.0,
+    "key": "shepherd_mapamb1_v1_s60"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
+ "map_woodcutter": {
+  "slug": "woodcutter",
+  "idle": {
+   "file": "maps/characters/anim/woodcutter_mapidle_v1_s60.webp",
+   "frameWidth": 252,
+   "frameHeight": 166,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.6195,
+   "originY": 0.9717,
+   "bodyHeight": 156.0,
+   "key": "woodcutter_mapidle_v1_s60"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/woodcutter_mapamb1_v1_s60.webp",
+    "frameWidth": 205,
+    "frameHeight": 166,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.5326,
+    "originY": 0.9717,
+    "bodyHeight": 155.8,
+    "key": "woodcutter_mapamb1_v1_s60"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
+ "map_miller": {
+  "slug": "miller",
+  "idle": {
+   "file": "maps/characters/anim/miller_mapidle_v1_s60.webp",
+   "frameWidth": 210,
+   "frameHeight": 172,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.4465,
+   "originY": 0.9707,
+   "bodyHeight": 156.0,
+   "key": "miller_mapidle_v1_s60"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/miller_mapamb1_v1_s60.webp",
+    "frameWidth": 250,
+    "frameHeight": 172,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4379,
+    "originY": 0.9707,
+    "bodyHeight": 156.2,
+    "key": "miller_mapamb1_v1_s60"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
+ "map_gravedigger": {
+  "slug": "gravedigger",
+  "idle": {
+   "file": "maps/characters/anim/gravedigger_mapidle_v1_s60.webp",
+   "frameWidth": 211,
+   "frameHeight": 172,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.445,
+   "originY": 0.971,
+   "bodyHeight": 156.3,
+   "key": "gravedigger_mapidle_v1_s60"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/gravedigger_mapamb1_v1_s60.webp",
+    "frameWidth": 247,
+    "frameHeight": 172,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4433,
+    "originY": 0.971,
+    "bodyHeight": 156.3,
+    "key": "gravedigger_mapamb1_v1_s60"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
+ "map_widow": {
+  "slug": "widow",
+  "idle": {
+   "file": "maps/characters/anim/widow_mapidle_v1_s60.webp",
+   "frameWidth": 210,
+   "frameHeight": 179,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.4465,
+   "originY": 0.9747,
+   "bodyHeight": 156.0,
+   "key": "widow_mapidle_v1_s60"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/widow_mapamb1_v1_s60.webp",
+    "frameWidth": 250,
+    "frameHeight": 179,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4379,
+    "originY": 0.9747,
+    "bodyHeight": 156.2,
+    "key": "widow_mapamb1_v1_s60"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
+ "map_fisherman": {
+  "slug": "fisherman",
+  "idle": {
+   "file": "maps/characters/anim/fisherman_mapidle_v1_s60.webp",
+   "frameWidth": 210,
+   "frameHeight": 172,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.4457,
+   "originY": 0.9728,
+   "bodyHeight": 156.0,
+   "key": "fisherman_mapidle_v1_s60"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/fisherman_mapamb1_v1_s60.webp",
+    "frameWidth": 250,
+    "frameHeight": 172,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4375,
+    "originY": 0.9728,
+    "bodyHeight": 156.2,
+    "key": "fisherman_mapamb1_v1_s60"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
+ "map_beggar": {
+  "slug": "beggar",
+  "idle": {
+   "file": "maps/characters/anim/beggar_mapidle_v1_s60.webp",
+   "frameWidth": 211,
+   "frameHeight": 171,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.4449,
+   "originY": 0.9725,
+   "bodyHeight": 156.3,
+   "key": "beggar_mapidle_v1_s60"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/beggar_mapamb1_v1_s60.webp",
+    "frameWidth": 250,
+    "frameHeight": 171,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4383,
+    "originY": 0.9725,
+    "bodyHeight": 156.2,
+    "key": "beggar_mapamb1_v1_s60"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
+ "map_toll_keeper": {
+  "slug": "toll_keeper",
+  "idle": {
+   "file": "maps/characters/anim/toll_keeper_mapidle_v1_s60.webp",
+   "frameWidth": 211,
+   "frameHeight": 172,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.4449,
+   "originY": 0.9734,
+   "bodyHeight": 156.3,
+   "key": "toll_keeper_mapidle_v1_s60"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/toll_keeper_mapamb1_v1_s60.webp",
+    "frameWidth": 249,
+    "frameHeight": 172,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4389,
+    "originY": 0.9734,
+    "bodyHeight": 156.0,
+    "key": "toll_keeper_mapamb1_v1_s60"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
+ "map_pilgrim_nun": {
+  "slug": "pilgrim_nun",
+  "idle": {
+   "file": "maps/characters/anim/pilgrim_nun_mapidle_v1_s60.webp",
+   "frameWidth": 210,
+   "frameHeight": 173,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.4458,
+   "originY": 0.9717,
+   "bodyHeight": 156.0,
+   "key": "pilgrim_nun_mapidle_v1_s60"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/pilgrim_nun_mapamb1_v1_s60.webp",
+    "frameWidth": 249,
+    "frameHeight": 173,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4388,
+    "originY": 0.9717,
+    "bodyHeight": 156.0,
+    "key": "pilgrim_nun_mapamb1_v1_s60"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
+ "map_herbalist": {
+  "slug": "herbalist",
+  "idle": {
+   "file": "maps/characters/anim/herbalist_mapidle_v1_s60.webp",
+   "frameWidth": 211,
+   "frameHeight": 175,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.445,
+   "originY": 0.9713,
+   "bodyHeight": 156.3,
+   "key": "herbalist_mapidle_v1_s60"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/herbalist_mapamb1_v1_s60.webp",
+    "frameWidth": 250,
+    "frameHeight": 175,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.438,
+    "originY": 0.9713,
+    "bodyHeight": 156.2,
+    "key": "herbalist_mapamb1_v1_s60"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
+ "map_shopkeeper": {
+  "slug": "shopkeeper",
+  "idle": {
+   "file": "maps/characters/anim/shopkeeper_mapidle_v1_s60.webp",
+   "frameWidth": 211,
+   "frameHeight": 170,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.445,
+   "originY": 0.9713,
+   "bodyHeight": 156.3,
+   "key": "shopkeeper_mapidle_v1_s60"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/shopkeeper_mapamb1_v1_s60.webp",
+    "frameWidth": 250,
+    "frameHeight": 170,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.438,
+    "originY": 0.9713,
+    "bodyHeight": 156.2,
+    "key": "shopkeeper_mapamb1_v1_s60"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
+ "map_dwarf_changer": {
+  "slug": "dwarf_changer",
+  "idle": {
+   "file": "maps/characters/anim/dwarf_changer_mapidle_v1_s60.webp",
+   "frameWidth": 211,
+   "frameHeight": 183,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.4447,
+   "originY": 0.9742,
+   "bodyHeight": 156.3,
+   "key": "dwarf_changer_mapidle_v1_s60"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/dwarf_changer_mapamb1_v1_s60.webp",
+    "frameWidth": 250,
+    "frameHeight": 183,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4379,
+    "originY": 0.9742,
+    "bodyHeight": 156.2,
+    "key": "dwarf_changer_mapamb1_v1_s60"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
+ "map_peddler": {
+  "slug": "peddler",
+  "idle": {
+   "file": "maps/characters/anim/peddler_mapidle_v1_s60.webp",
+   "frameWidth": 211,
+   "frameHeight": 172,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.4454,
+   "originY": 0.9722,
+   "bodyHeight": 156.3,
+   "key": "peddler_mapidle_v1_s60"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/peddler_mapamb1_v1_s60.webp",
+    "frameWidth": 249,
+    "frameHeight": 172,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4391,
+    "originY": 0.9722,
+    "bodyHeight": 156.0,
+    "key": "peddler_mapamb1_v1_s60"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
+ "map_fur_trader": {
+  "slug": "fur_trader",
+  "idle": {
+   "file": "maps/characters/anim/fur_trader_mapidle_v1_s60.webp",
+   "frameWidth": 211,
+   "frameHeight": 166,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.4449,
+   "originY": 0.9741,
+   "bodyHeight": 156.3,
+   "key": "fur_trader_mapidle_v1_s60"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/fur_trader_mapamb1_v1_s60.webp",
+    "frameWidth": 238,
+    "frameHeight": 166,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4592,
+    "originY": 0.9741,
+    "bodyHeight": 155.9,
+    "key": "fur_trader_mapamb1_v1_s60"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
+ "map_knife_grinder": {
+  "slug": "knife_grinder",
+  "idle": {
+   "file": "maps/characters/anim/knife_grinder_mapidle_v1_s60.webp",
+   "frameWidth": 210,
+   "frameHeight": 182,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.4463,
+   "originY": 0.9731,
+   "bodyHeight": 156.0,
+   "key": "knife_grinder_mapidle_v1_s60"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/knife_grinder_mapamb1_v1_s60.webp",
+    "frameWidth": 250,
+    "frameHeight": 182,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4375,
+    "originY": 0.9731,
+    "bodyHeight": 156.2,
+    "key": "knife_grinder_mapamb1_v1_s60"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
+ "map_dwarf_smith": {
+  "slug": "dwarf_smith",
+  "idle": {
+   "file": "maps/characters/anim/dwarf_smith_mapidle_v1_s60.webp",
+   "frameWidth": 211,
+   "frameHeight": 176,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.445,
+   "originY": 0.9718,
+   "bodyHeight": 156.3,
+   "key": "dwarf_smith_mapidle_v1_s60"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/dwarf_smith_mapamb1_v1_s60.webp",
+    "frameWidth": 250,
+    "frameHeight": 176,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.438,
+    "originY": 0.9718,
+    "bodyHeight": 156.2,
+    "key": "dwarf_smith_mapamb1_v1_s60"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
+ "map_grad_guard": {
+  "slug": "grad_guard",
+  "idle": {
+   "file": "maps/characters/anim/grad_guard_mapidle_v1_s60.webp",
+   "frameWidth": 211,
+   "frameHeight": 165,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.4455,
+   "originY": 0.9726,
+   "bodyHeight": 156.3,
+   "key": "grad_guard_mapidle_v1_s60"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/grad_guard_mapamb1_v1_s60.webp",
+    "frameWidth": 250,
+    "frameHeight": 165,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4383,
+    "originY": 0.9726,
+    "bodyHeight": 156.2,
+    "key": "grad_guard_mapamb1_v1_s60"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
+ "map_grad_crossbowman": {
+  "slug": "grad_crossbowman",
+  "idle": {
+   "file": "maps/characters/anim/grad_crossbowman_mapidle_v1_s60.webp",
+   "frameWidth": 210,
+   "frameHeight": 170,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.4463,
+   "originY": 0.9703,
+   "bodyHeight": 156.0,
+   "key": "grad_crossbowman_mapidle_v1_s60"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/grad_crossbowman_mapamb1_v1_s60.webp",
+    "frameWidth": 250,
+    "frameHeight": 170,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4375,
+    "originY": 0.9703,
+    "bodyHeight": 156.2,
+    "key": "grad_crossbowman_mapamb1_v1_s60"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
+ "map_merc_captain": {
+  "slug": "merc_captain",
+  "idle": {
+   "file": "maps/characters/anim/merc_captain_mapidle_v1_s60.webp",
+   "frameWidth": 210,
+   "frameHeight": 170,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.4458,
+   "originY": 0.9728,
+   "bodyHeight": 156.0,
+   "key": "merc_captain_mapidle_v1_s60"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/merc_captain_mapamb1_v1_s60.webp",
+    "frameWidth": 234,
+    "frameHeight": 170,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4669,
+    "originY": 0.9728,
+    "bodyHeight": 156.0,
+    "key": "merc_captain_mapamb1_v1_s60"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
+ "map_bandit_knifeman": {
+  "slug": "bandit_knifeman",
+  "idle": {
+   "file": "maps/characters/anim/bandit_knifeman_mapidle_v1_s60.webp",
+   "frameWidth": 210,
+   "frameHeight": 172,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.4464,
+   "originY": 0.9736,
+   "bodyHeight": 156.0,
+   "key": "bandit_knifeman_mapidle_v1_s60"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/bandit_knifeman_mapamb1_v1_s60.webp",
+    "frameWidth": 250,
+    "frameHeight": 172,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4382,
+    "originY": 0.9736,
+    "bodyHeight": 156.2,
+    "key": "bandit_knifeman_mapamb1_v1_s60"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
+ "map_bandit_axewoman": {
+  "slug": "bandit_axewoman",
+  "idle": {
+   "file": "maps/characters/anim/bandit_axewoman_mapidle_v1_s60.webp",
+   "frameWidth": 195,
+   "frameHeight": 173,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.48,
+   "originY": 0.9705,
+   "bodyHeight": 156.0,
+   "key": "bandit_axewoman_mapidle_v1_s60"
+  },
+  "ambient": [],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
+ "map_cult_acolyte": {
+  "slug": "cult_acolyte",
+  "idle": {
+   "file": "maps/characters/anim/cult_acolyte_mapidle_v1_s60.webp",
+   "frameWidth": 210,
+   "frameHeight": 174,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.4462,
+   "originY": 0.9725,
+   "bodyHeight": 156.0,
+   "key": "cult_acolyte_mapidle_v1_s60"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/cult_acolyte_mapamb1_v1_s60.webp",
+    "frameWidth": 250,
+    "frameHeight": 174,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4383,
+    "originY": 0.9725,
+    "bodyHeight": 156.2,
+    "key": "cult_acolyte_mapamb1_v1_s60"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
+ "map_cult_priest": {
+  "slug": "cult_priest",
+  "idle": {
+   "file": "maps/characters/anim/cult_priest_mapidle_v1_s60.webp",
+   "frameWidth": 211,
+   "frameHeight": 172,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.4454,
+   "originY": 0.9738,
+   "bodyHeight": 156.3,
+   "key": "cult_priest_mapidle_v1_s60"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/cult_priest_mapamb1_v1_s60.webp",
+    "frameWidth": 249,
+    "frameHeight": 172,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4391,
+    "originY": 0.9738,
+    "bodyHeight": 156.0,
+    "key": "cult_priest_mapamb1_v1_s60"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
+ "map_vodyanoy": {
+  "slug": "vodyanoy",
+  "idle": {
+   "file": "maps/characters/anim/vodyanoy_mapidle_v1_s60.webp",
+   "frameWidth": 211,
+   "frameHeight": 173,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.4449,
+   "originY": 0.9715,
+   "bodyHeight": 156.3,
+   "key": "vodyanoy_mapidle_v1_s60"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/vodyanoy_mapamb1_v1_s60.webp",
+    "frameWidth": 249,
+    "frameHeight": 173,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4389,
+    "originY": 0.9715,
+    "bodyHeight": 156.0,
+    "key": "vodyanoy_mapamb1_v1_s60"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
+ "map_wandering_knight": {
+  "slug": "wandering_knight",
+  "idle": {
+   "file": "maps/characters/anim/wandering_knight_mapidle_v1_s60.webp",
+   "frameWidth": 211,
+   "frameHeight": 175,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.445,
+   "originY": 0.9742,
+   "bodyHeight": 156.3,
+   "key": "wandering_knight_mapidle_v1_s60"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/wandering_knight_mapamb1_v1_s60.webp",
+    "frameWidth": 250,
+    "frameHeight": 175,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.438,
+    "originY": 0.9742,
+    "bodyHeight": 156.2,
+    "key": "wandering_knight_mapamb1_v1_s60"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
+ "map_polevik": {
+  "slug": "polevik",
+  "idle": {
+   "file": "maps/characters/anim/polevik_mapidle_v1_s60.webp",
+   "frameWidth": 211,
+   "frameHeight": 172,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.4453,
+   "originY": 0.9723,
+   "bodyHeight": 156.3,
+   "key": "polevik_mapidle_v1_s60"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/polevik_mapamb1_v1_s60.webp",
+    "frameWidth": 250,
+    "frameHeight": 172,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4379,
+    "originY": 0.9723,
+    "bodyHeight": 156.2,
+    "key": "polevik_mapamb1_v1_s60"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
+ "map_scarecrow": {
+  "slug": "scarecrow",
+  "idle": {
+   "file": "maps/characters/anim/scarecrow_mapidle_v1_s60.webp",
+   "frameWidth": 210,
+   "frameHeight": 170,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.4458,
+   "originY": 0.9733,
+   "bodyHeight": 156.0,
+   "key": "scarecrow_mapidle_v1_s60"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/scarecrow_mapamb1_v1_s60.webp",
+    "frameWidth": 249,
+    "frameHeight": 170,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4387,
+    "originY": 0.9733,
+    "bodyHeight": 156.0,
+    "key": "scarecrow_mapamb1_v1_s60"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
+ "map_horse": {
+  "slug": "horse",
+  "idle": {
+   "file": "maps/characters/anim/horse_mapidle_v1_s60.webp",
+   "frameWidth": 313,
+   "frameHeight": 173,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.4017,
+   "originY": 0.9707,
+   "bodyHeight": 156.2,
+   "key": "horse_mapidle_v1_s60"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/horse_mapamb1_v1_s60.webp",
+    "frameWidth": 313,
+    "frameHeight": 173,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4017,
+    "originY": 0.9707,
+    "bodyHeight": 156.2,
+    "key": "horse_mapamb1_v1_s60"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
+ "map_cow": {
+  "slug": "cow",
+  "idle": {
+   "file": "maps/characters/anim/cow_mapidle_v1_s60.webp",
+   "frameWidth": 293,
+   "frameHeight": 164,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.559,
+   "originY": 0.9782,
+   "bodyHeight": 156.1,
+   "key": "cow_mapidle_v1_s60"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/cow_mapamb1_v1_s60.webp",
+    "frameWidth": 293,
+    "frameHeight": 164,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.559,
+    "originY": 0.9782,
+    "bodyHeight": 156.1,
+    "key": "cow_mapamb1_v1_s60"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
+ "map_goat": {
+  "slug": "goat",
+  "idle": {
+   "file": "maps/characters/anim/goat_mapidle_v1_s60.webp",
+   "frameWidth": 294,
+   "frameHeight": 165,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.4107,
+   "originY": 0.9775,
+   "bodyHeight": 156.0,
+   "key": "goat_mapidle_v1_s60"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/goat_mapamb1_v1_s60.webp",
+    "frameWidth": 294,
+    "frameHeight": 165,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4107,
+    "originY": 0.9775,
+    "bodyHeight": 156.0,
+    "key": "goat_mapamb1_v1_s60"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
+ "map_raven": {
+  "slug": "raven",
+  "idle": {
+   "file": "maps/characters/anim/raven_mapidle_v1_s60.webp",
+   "frameWidth": 308,
+   "frameHeight": 164,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.5983,
+   "originY": 0.9728,
+   "bodyHeight": 143.3,
+   "key": "raven_mapidle_v1_s60"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/raven_mapamb1_v1_s60.webp",
+    "frameWidth": 335,
+    "frameHeight": 179,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.598,
+    "originY": 0.9722,
+    "bodyHeight": 155.8,
+    "key": "raven_mapamb1_v1_s60"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
+ "map_young_boar": {
+  "slug": "young_boar",
+  "idle": {
+   "file": "maps/characters/anim/young_boar_mapidle_v1_s60.webp",
+   "frameWidth": 312,
+   "frameHeight": 165,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.5921,
+   "originY": 0.9766,
+   "bodyHeight": 132.1,
+   "key": "young_boar_mapidle_v1_s60"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/young_boar_mapamb1_v1_s60.webp",
+    "frameWidth": 370,
+    "frameHeight": 195,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.5905,
+    "originY": 0.9763,
+    "bodyHeight": 156.2,
+    "key": "young_boar_mapamb1_v1_s60"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
+ "map_fox": {
+  "slug": "fox",
+  "idle": {
+   "file": "maps/characters/anim/fox_mapidle_v1_s60.webp",
+   "frameWidth": 307,
+   "frameHeight": 163,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.6464,
+   "originY": 0.9737,
+   "bodyHeight": 143.4,
+   "key": "fox_mapidle_v1_s60"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/fox_mapamb1_v1_s60.webp",
+    "frameWidth": 334,
+    "frameHeight": 178,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.6458,
+    "originY": 0.9725,
+    "bodyHeight": 155.9,
+    "key": "fox_mapamb1_v1_s60"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
+ "map_deer": {
+  "slug": "deer",
+  "idle": {
+   "file": "maps/characters/anim/deer_mapidle_v1_s60.webp",
+   "frameWidth": 301,
+   "frameHeight": 168,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.424,
+   "originY": 0.9719,
+   "bodyHeight": 156.2,
+   "key": "deer_mapidle_v1_s60"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/deer_mapamb1_v1_s60.webp",
+    "frameWidth": 301,
+    "frameHeight": 168,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.424,
+    "originY": 0.9719,
+    "bodyHeight": 156.2,
+    "key": "deer_mapamb1_v1_s60"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
+ "map_bear_shatun": {
+  "slug": "bear_shatun",
+  "idle": {
+   "file": "maps/characters/anim/bear_shatun_mapidle_v1_s60.webp",
+   "frameWidth": 317,
+   "frameHeight": 175,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.3795,
+   "originY": 0.9738,
+   "bodyHeight": 156.1,
+   "key": "bear_shatun_mapidle_v1_s60"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/bear_shatun_mapamb1_v1_s60.webp",
+    "frameWidth": 317,
+    "frameHeight": 175,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.3795,
+    "originY": 0.9738,
+    "bodyHeight": 156.1,
+    "key": "bear_shatun_mapamb1_v1_s60"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
+ "map_lynx": {
+  "slug": "lynx",
+  "idle": {
+   "file": "maps/characters/anim/lynx_mapidle_v1_s60.webp",
+   "frameWidth": 300,
+   "frameHeight": 164,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.5078,
+   "originY": 0.9751,
+   "bodyHeight": 143.5,
+   "key": "lynx_mapidle_v1_s60"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/lynx_mapamb1_v1_s60.webp",
+    "frameWidth": 326,
+    "frameHeight": 178,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.5073,
+    "originY": 0.9743,
+    "bodyHeight": 155.8,
+    "key": "lynx_mapamb1_v1_s60"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
+ "map_owl": {
+  "slug": "owl",
+  "idle": {
+   "file": "maps/characters/anim/owl_mapidle_v1_s60.webp",
+   "frameWidth": 309,
+   "frameHeight": 174,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.5209,
+   "originY": 0.9952,
+   "bodyHeight": 156.0,
+   "key": "owl_mapidle_v1_s60"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/owl_mapamb1_v1_s60.webp",
+    "frameWidth": 309,
+    "frameHeight": 174,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.5209,
+    "originY": 0.9952,
+    "bodyHeight": 156.0,
+    "key": "owl_mapamb1_v1_s60"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
+ "map_rats": {
+  "slug": "rats",
+  "idle": {
+   "file": "maps/characters/anim/rats_mapidle_v1_s60.webp",
+   "frameWidth": 323,
+   "frameHeight": 166,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.373,
+   "originY": 0.9735,
+   "bodyHeight": 143.6,
+   "key": "rats_mapidle_v1_s60"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/rats_mapamb1_v1_s60.webp",
+    "frameWidth": 351,
+    "frameHeight": 180,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.3728,
+    "originY": 0.9735,
+    "bodyHeight": 156.0,
+    "key": "rats_mapamb1_v1_s60"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
+ },
+ "map_snow_wolf": {
+  "slug": "snow_wolf",
+  "idle": {
+   "file": "maps/characters/anim/snow_wolf_mapidle_v1_s60.webp",
+   "frameWidth": 304,
+   "frameHeight": 171,
+   "frames": 95,
+   "fps": 24,
+   "originX": 0.4202,
+   "originY": 0.9749,
+   "bodyHeight": 155.9,
+   "key": "snow_wolf_mapidle_v1_s60"
+  },
+  "ambient": [
+   {
+    "file": "maps/characters/anim/snow_wolf_mapamb1_v1_s60.webp",
+    "frameWidth": 304,
+    "frameHeight": 171,
+    "frames": 72,
+    "fps": 24,
+    "originX": 0.4202,
+    "originY": 0.9749,
+    "bodyHeight": 155.9,
+    "key": "snow_wolf_mapamb1_v1_s60"
+   }
+  ],
+  "delay": [
+   6000,
+   14000
+  ]
  }
 }

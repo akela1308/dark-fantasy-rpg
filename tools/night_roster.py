@@ -175,6 +175,17 @@ R = [
       desc="a hunched amphibious swamp creature of black mud, reeds and roots with a pike-like head"),
 ]
 
+# ── Ещё 50 персонажей (27.10): ростер в assets/generated/_new50/roster.json (tools/new50_roster.py) ──
+_N50 = BASE + "/_new50/roster.json"
+if os.path.exists(_N50):
+    for _c in json.load(open(_N50)):
+        _s = _c["slug"]
+        R.append(dict(slug=_s, name=_c["name"], new50=True,
+                      src=f"{BASE}/{_s}/" + ("k_idle.png" if _c["map"] else "k_battle.png"),
+                      kind=_c.get("battleKind") or ("beast" if _c["style"] == "beast" else "peaceful"),
+                      map=(_c.get("mapPose") or "standing") if _c["map"] else None,
+                      battle=_c.get("weapons") if _c["battle"] else None, desc=_c["desc"]))
+
 COMMON = ("Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. "
           "Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. "
           "Flat solid uniform pure chroma green background (#00FF00), the same green everywhere, no gradient, no furniture, no walls, no shadow, no floor, no effects, no glow on the background, "

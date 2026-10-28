@@ -18,6 +18,11 @@ SPRITE = {  # spriteKey в maps.json -> папка персонажа
  "map_companion_brawler": "brawler", "map_companion_healer": "healer",   # Ворнаг и Тая как NPC до найма
  "map_holt_sit": "holt", "map_mangy_dog": "mangy_dog",   # правка 27.10: новый Хольт с трубкой, облезлый пёс мародёров
 }
+# ещё 50 персонажей (27.10): spriteKey map_<slug> -> папка <slug> (ростер assets/generated/_new50/roster.json)
+_N50 = os.path.join(GAME, "assets/generated/_new50/roster.json")
+if os.path.exists(_N50):
+    for _c in json.load(open(_N50)):
+        if _c.get("map"): SPRITE.setdefault("map_" + _c["slug"], _c["slug"])
 REJECTED = set()
 best = {}
 for f in glob.glob(GAME + "/public/maps/characters/anim/*_v*.json"):

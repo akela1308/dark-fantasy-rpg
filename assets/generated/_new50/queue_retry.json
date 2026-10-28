@@ -1,0 +1,54 @@
+[
+ {
+  "name": "../grad_crossbowman/clips/attack_r2",
+  "first": "../grad_crossbowman/k_battle.png",
+  "last": "../grad_crossbowman/k_battle.png",
+  "prompt": "IMPORTANT: it is a CROSSBOW for the whole clip, never a bow: a horizontal wooden stock held at the shoulder with a short steel bow mounted across its front end. He never draws a string by hand, he only squeezes the trigger under the stock. One single shot to the right: raises the crossbow and aims to the right, shoots with a small recoil, then returns to the same ready stance. Slow motion, one single even movement. One strike only. HANDS CANON: one heavy crossbow held with both hands, pointing to the right; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../cult_zealot/clips/attack_r2",
+  "first": "../cult_zealot/k_battle.png",
+  "last": "../cult_zealot/k_battle.png",
+  "prompt": "IMPORTANT: the weapon is a long wooden shaft with an OPEN iron hook at the end, like a shepherd crook made of iron; the hook stays an open curve for the whole clip, it never closes into a ring or a circle. He thrusts and pulls with the hook. One single attack to the right: a short wind-up, one fast strong strike forward to the right with the weapon, then a recovery back into the same ready stance. Slow motion, one single even movement. One strike only. HANDS CANON: one long iron hook on a wooden shaft held with both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../wandering_knight/clips/victory_r2",
+  "first": "../wandering_knight/k_battle.png",
+  "prompt": "IMPORTANT: he stays in three-quarter view turned to the RIGHT for the whole clip, never turns to face the camera. The sword stays in the hand on the right side of the image and the shield stays on the arm on the left side of the image. Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one long sword in the front hand, one battered heater shield on the rear arm; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../bear_shatun/clips/death_r2",
+  "first": "../bear_shatun/k_battle.png",
+  "prompt": "IMPORTANT: the bear never rears up and never rolls over: its legs simply give way and it sinks down onto its belly and side, low to the ground the whole time. Is fatally struck from the right: the animal staggers, collapses onto its side and lies still on the ground at the end of the clip. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../rats/clips/death_r2",
+  "first": "../rats/k_battle.png",
+  "prompt": "IMPORTANT: all three rats stay visible for the whole clip; they collapse onto their sides one after another and lie still, still exactly three rats. Is fatally struck from the right: the animal staggers, collapses onto its side and lies still on the ground at the end of the clip. Always exactly the same three rats, each with one tail; no rat appears or disappears. They stay on all four legs. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../rats/clips/victory_r2",
+  "first": "../rats/k_battle.png",
+  "prompt": "IMPORTANT: the three rats stay low on all four legs in profile facing right, they only squeak with open mouths and twitch their tails; they never sit up and never turn to the camera. Victory: the animal stays on all four legs the whole clip, lifts its head and barks or roars once, then stands proudly still. It never stands up on its hind legs, never changes its body shape. Always exactly the same three rats, each with one tail; no rat appears or disappears. They stay on all four legs. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "../village_boy/clips/idle_r2",
+  "first": "../village_boy/k_idle.png",
+  "last": "../village_boy/k_idle.png",
+  "prompt": "A calm young villager stands quietly. Idle loop for the whole clip: the character stays in place in the same pose, breathes slowly and calmly, the chest rises and falls, a slight shift of weight, clothes, cloak and hair move gently. No steps, no gestures, no turning. The last frame is exactly the same pose as the first. Every item stays in the same hand as in the first frame, never duplicated, never dropped. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2
+ }
+]

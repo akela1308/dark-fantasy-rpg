@@ -1,0 +1,1 @@
+{"slug": "shopkeeper", "anim": "mapidle", "base": "shopkeeper/k_idle.png", "body": 260, "segments": [{"clip": "shopkeeper/clips/idle_v1.mp4", "from": 0, "to": 95, "frames": 96}], "loop": true, "left": 0.6, "right": 0.75, "target": "map", "ver": 1, "keepall": true}

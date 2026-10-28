@@ -1,0 +1,1 @@
+{"slug": "rats", "anim": "death", "base": "rats/k_battle.png", "body": 300, "segments": [{"clip": "rats/clips/death_r2_v1.mp4", "from": 0, "to": 95, "frames": 30}], "left": 1.6, "right": 1.6, "hold": true, "ver": 1, "drop": [4, 5, 6, 7, 8], "keepall": true}

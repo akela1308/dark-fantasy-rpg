@@ -24,6 +24,7 @@ GEN = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "
 PUB = os.path.abspath(os.path.join(GEN, "..", "..", "public"))
 MAX_W = 4096
 TMPS = []   # временные папки кадров, удаляются в конце
+KEEP_ALL = False   # spec keepall
 
 
 def key(im):
@@ -43,6 +44,10 @@ def key(im):
     dark = (r + g + b) < 20
     bgmask[:, dark.mean(0) > 0.98] = True
     bgmask[dark.mean(1) > 0.98, :] = True        # чёрные полосы сверху/снизу
+    if KEEP_ALL:   # чёрные поля по бокам (клип 3:4 в кадре 16:9), даже если в них заходит лопата или посох
+        nd, labd = cv2.connectedComponents(dark.astype(np.uint8), connectivity=4)
+        for i in set(np.unique(np.concatenate([labd[:, 0], labd[:, -1]])).tolist()) - {0}:
+            bgmask |= labd == i
     bgmask[:3, :] = True; bgmask[-3:, :] = True    # тонкая рамка по краю видео
     bgmask[:, :3] = True; bgmask[:, -3:] = True
     alpha = (~bgmask).astype(np.float32)
@@ -54,7 +59,13 @@ def key(im):
     alpha[flash] = 0
     solid = (alpha > 0.5).astype(np.uint8)
     n2, lab2, st2, _ = cv2.connectedComponentsWithStats(solid, connectivity=8)
-    if n2 > 1:
+    keep_main = 1 + int(np.argmax(st2[1:, cv2.CC_STAT_AREA])) if n2 > 1 else 0
+    if n2 > 1 and KEEP_ALL:   # spec keepall: отдельные куски (кадило на цепи, стая) не выбрасываем, только мелкий сор
+        for i in range(1, n2):
+            if (st2[i, cv2.CC_STAT_AREA] < 150 or st2[i, cv2.CC_STAT_WIDTH] <= 6 or st2[i, cv2.CC_STAT_HEIGHT] <= 6
+                    or (i != keep_main and (st2[i, cv2.CC_STAT_LEFT] <= 4 or st2[i, cv2.CC_STAT_LEFT] + st2[i, cv2.CC_STAT_WIDTH] >= solid.shape[1] - 4))):
+                alpha[lab2 == i] = 0   # мелкий сор, тонкие полосы и куски у края кадра видео
+    elif n2 > 1:
         keep = 1 + int(np.argmax(st2[1:, cv2.CC_STAT_AREA]))
         main = cv2.dilate((lab2 == keep).astype(np.uint8), np.ones((9, 9), np.uint8)).astype(bool)
         alpha[~main] = 0
@@ -112,6 +123,8 @@ def qa_sheet(frames, path, bg, per=8, scale=0.8):
 
 
 def main(spec):
+    global KEEP_ALL
+    KEEP_ALL = bool(spec.get("keepall"))
     slug, anim, ver = spec["slug"], spec["anim"], spec.get("ver", 1)
     bx = base_box(os.path.join(GEN, spec["base"]), spec.get("left", 0.85), spec.get("right", 1.0), spec.get("top", 0.22), spec.get("bottom", 0.03))
     x0, y0, x1, y1 = bx["box"]
