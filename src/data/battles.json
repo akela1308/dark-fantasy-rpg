@@ -3208,7 +3208,7 @@
         "tags": [
           "forgotten"
         ],
-        "spriteKey": "frontier_beast"
+        "spriteKey": "whisperer"
       },
       {
         "id": "frontier_beast_2",
@@ -4148,7 +4148,7 @@
         "tags": [
           "forgotten"
         ],
-        "spriteKey": "moroz"
+        "spriteKey": "whisperer"
       },
       {
         "id": "moroz_2",

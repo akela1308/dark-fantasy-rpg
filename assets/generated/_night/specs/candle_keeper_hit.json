@@ -1,0 +1,1 @@
+{"slug": "candle_keeper", "anim": "hit", "base": "candle_keeper/k_battle.png", "body": 300, "segments": [{"clip": "candle_keeper/clips/hit_v1.mp4", "from": 0, "to": 39, "frames": 14}], "drop": [2, 3, 4]}

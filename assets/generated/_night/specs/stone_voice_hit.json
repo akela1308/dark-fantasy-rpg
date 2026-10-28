@@ -1,0 +1,1 @@
+{"slug": "stone_voice", "anim": "hit", "base": "stone_voice/k_battle.png", "body": 300, "segments": [{"clip": "stone_voice/clips/hit_v1.mp4", "from": 0, "to": 60, "frames": 14}]}

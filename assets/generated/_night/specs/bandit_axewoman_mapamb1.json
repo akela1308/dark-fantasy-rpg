@@ -1,1 +1,1 @@
-{"slug": "bandit_axewoman", "anim": "mapamb1", "base": "bandit_axewoman/k_idle.png", "body": 260, "segments": [{"clip": "bandit_axewoman/clips/amb1_v1.mp4", "from": 0, "to": 95, "frames": 72}], "left": 0.7, "right": 0.9, "target": "map", "ver": 1, "keepall": true}
+{"slug": "bandit_axewoman", "anim": "mapamb1", "base": "bandit_axewoman/k_idle.png", "body": 260, "segments": [{"clip": "bandit_axewoman/clips/amb1_r2_v1.mp4", "from": 0, "to": 95, "frames": 72}], "left": 0.7, "right": 0.9, "target": "map", "ver": 2}

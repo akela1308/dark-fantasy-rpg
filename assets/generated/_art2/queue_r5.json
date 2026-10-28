@@ -1,0 +1,18 @@
+[
+ {
+  "name": "../shade/clips/attack_r2",
+  "first": "../shade/k_battle.png",
+  "last": "../shade/k_battle.png",
+  "sec": 4,
+  "n": 2,
+  "prompt": "One single attack to the right: the shade lunges forward to the right and rakes once with its long bare dark fingers, then recovers back into the same stance. Slow motion, one single even movement. One strike only. HANDS CANON: no weapon, only long thin dark bare fingers on both hands. It always stays faceless, no face ever appears. The figure keeps exactly the same body and limbs for the whole clip. No weapon of any kind appears: no sword, no knife, no blade, nothing in the hands. No visual effects, no flashes, no trails, no glow, no particles."
+ },
+ {
+  "name": "../stone_voice/clips/attack_r2",
+  "first": "../stone_voice/k_battle.png",
+  "last": "../stone_voice/k_battle.png",
+  "sec": 4,
+  "n": 2,
+  "prompt": "One single attack to the right: the living stone leans forward to the right and slams once with its bare thick front arm of roots and rock, like a fist punch, then returns to the same stance. Slow motion, one single even movement. One strike only. HANDS CANON: no weapon, bare short thick arms of roots and rock. The body stays one rigid mossy standing stone with the same carved face, only the arms move. No rock pieces fly off. No weapon of any kind appears: no sword, no knife, no blade, nothing in the hands. No visual effects, no flashes, no trails, no glow, no particles."
+ }
+]

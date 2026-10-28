@@ -1,0 +1,17 @@
+[
+ {
+  "name": "../novice/clips/attack_r2",
+  "first": "../novice/k_battle.png",
+  "last": "../novice/k_battle.png",
+  "sec": 4,
+  "n": 2,
+  "prompt": "One single attack to the right: a short nervous lunge forward to the right with one quick stab of the small knife, then he pulls back into the same stance. Slow motion, one single even movement. One strike only. HANDS CANON: one short curved knife gripped with both hands in front of the chest; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapon. The knife keeps exactly the same small size and shape for the whole clip, it is a short knife the length of a hand, it never becomes a sword or a saber. The figure keeps exactly the same thin body, the same robe, the same face and the same limbs for the whole clip, the robe never comes off. No visual effects, no flashes, no trails, no glow, no particles."
+ },
+ {
+  "name": "../novice/clips/victory_r2",
+  "first": "../novice/k_battle.png",
+  "sec": 4,
+  "n": 2,
+  "prompt": "Victory: he straightens up a little, presses the small knife to his chest with both hands and nods fervently with a fanatical smile, then holds the pose still until the end. No steps. HANDS CANON: one short curved knife gripped with both hands in front of the chest; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapon. The knife keeps exactly the same small size and shape for the whole clip, it is a short knife the length of a hand, it never becomes a sword or a saber. The figure keeps exactly the same thin body, the same robe, the same face and the same limbs for the whole clip, the robe never comes off. No visual effects, no flashes, no trails, no glow, no particles."
+ }
+]

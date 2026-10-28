@@ -1,0 +1,1 @@
+{"slug": "forgotten_warden", "anim": "hit", "base": "forgotten_warden/k_battle.png", "body": 300, "segments": [{"clip": "forgotten_warden/clips/hit_v1.mp4", "from": 0, "to": 95, "frames": 14}]}

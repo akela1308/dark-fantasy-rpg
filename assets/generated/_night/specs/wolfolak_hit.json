@@ -1,0 +1,1 @@
+{"slug": "wolfolak", "anim": "hit", "base": "wolfolak/k_battle.png", "body": 300, "segments": [{"clip": "wolfolak/clips/hit_v2.mp4", "from": 0, "to": 95, "frames": 14}]}

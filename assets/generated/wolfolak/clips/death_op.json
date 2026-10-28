@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/f9d4d5b6-674c-4a21-9924-7c342b1b6e2c",
+ "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: no weapon, long claws on both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. It stays on two legs, never drops to all fours. No visual effects, no flashes, no trails, no glow, no particles. ",
+ "img": "../wolfolak/k_battle.png",
+ "last": null,
+ "sec": 4
+}

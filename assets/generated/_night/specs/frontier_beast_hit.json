@@ -1,0 +1,1 @@
+{"slug": "frontier_beast", "anim": "hit", "base": "frontier_beast/k_battle.png", "body": 300, "segments": [{"clip": "frontier_beast/clips/hit_v1.mp4", "from": 0, "to": 95, "frames": 14}]}

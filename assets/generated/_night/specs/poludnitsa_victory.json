@@ -1,0 +1,1 @@
+{"slug": "poludnitsa", "anim": "victory", "base": "poludnitsa/k_battle.png", "body": 300, "segments": [{"clip": "poludnitsa/clips/victory_r2_v1.mp4", "from": 0, "to": 95, "frames": 29}], "hold": true}

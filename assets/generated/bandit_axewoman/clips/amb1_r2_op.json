@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/8c0ba731-2c14-4f02-a4f5-620c12ca99e5",
+ "prompt": "One single everyday action in the middle of the clip, then back to the starting pose: she slowly turns her head to look over her shoulder and then back. At the start and at the end exactly the same pose as the first frame. No other gestures, no steps away, no turning. The hand axe stays resting on her shoulder in the same hand the whole clip and does not move, never changes its shape, never duplicated. The figure keeps exactly the same body and the same limbs. No visual effects, no flashes, no trails, no glow, no particles. ",
+ "img": "../bandit_axewoman/k_idle.png",
+ "last": "../bandit_axewoman/k_idle.png",
+ "sec": 4
+}

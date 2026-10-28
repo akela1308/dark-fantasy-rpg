@@ -1,0 +1,1 @@
+{"slug": "stone_guard", "anim": "idle", "base": "stone_guard/k_battle.png", "body": 300, "segments": [{"clip": "stone_guard/clips/bidle_v1.mp4", "from": 0, "to": 95, "frames": 48}, {"clip": "stone_guard/clips/bidle_v1.mp4", "from": 95, "to": 0, "frames": 48}], "loop": true, "left": 0.85, "right": 1.0, "ver": 2}

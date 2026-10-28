@@ -1,0 +1,1 @@
+{"slug": "reader", "anim": "hit", "base": "reader/k_battle.png", "body": 300, "segments": [{"clip": "reader/clips/hit_v1.mp4", "from": 0, "to": 76, "frames": 14}], "drop": [1]}

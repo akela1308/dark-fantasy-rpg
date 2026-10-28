@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/1fb91ed1-94d8-45fe-b457-4d7ad83f2835",
+ "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: no weapon, long thin dark fingers; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. It always stays faceless, no face ever appears. No visual effects, no flashes, no trails, no glow, no particles. ",
+ "img": "../shade/k_battle.png",
+ "last": "../shade/k_battle.png",
+ "sec": 4
+}

@@ -1,0 +1,1 @@
+{"slug": "gallows_reader", "anim": "hit", "base": "gallows_reader/k_battle.png", "body": 300, "segments": [{"clip": "gallows_reader/clips/hit_v2.mp4", "from": 0, "to": 95, "frames": 14}]}

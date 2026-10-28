@@ -1,0 +1,1 @@
+{"slug": "moroz", "anim": "death", "base": "moroz/k_battle.png", "body": 300, "segments": [{"clip": "moroz/clips/death_v1.mp4", "from": 0, "to": 95, "frames": 30}], "left": 1.5, "right": 1.3, "hold": true, "drop": [10, 11]}

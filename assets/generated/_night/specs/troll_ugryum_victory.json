@@ -1,0 +1,1 @@
+{"slug": "troll_ugryum", "anim": "victory", "base": "troll_ugryum/k_battle.png", "body": 300, "segments": [{"clip": "troll_ugryum/clips/victory_v1.mp4", "from": 0, "to": 95, "frames": 29}], "hold": true}

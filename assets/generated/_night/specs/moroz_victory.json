@@ -1,0 +1,1 @@
+{"slug": "moroz", "anim": "victory", "base": "moroz/k_battle.png", "body": 300, "segments": [{"clip": "moroz/clips/victory_v2.mp4", "from": 5, "to": 95, "frames": 29}], "hold": true}

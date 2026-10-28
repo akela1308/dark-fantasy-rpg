@@ -1,0 +1,1 @@
+{"slug": "shade", "anim": "attack", "base": "shade/k_battle.png", "body": 300, "segments": [{"clip": "shade/clips/attack_r2_v2.mp4", "from": 0, "to": 66, "frames": 29}], "hit": "auto", "right": 1.4, "left": 1.0}

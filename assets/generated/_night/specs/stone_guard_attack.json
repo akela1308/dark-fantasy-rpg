@@ -1,0 +1,1 @@
+{"slug": "stone_guard", "anim": "attack", "base": "stone_guard/k_battle.png", "body": 300, "segments": [{"clip": "stone_guard/clips/attack_v1.mp4", "from": 7, "to": 82, "frames": 29}], "hit": "auto", "right": 1.4, "left": 1.0, "drop": [19]}

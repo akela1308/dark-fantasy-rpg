@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/631f7efc-148c-43b5-8d45-66b569682f75",
+ "prompt": "Slow motion. One single smooth movement for the whole clip: from his guard he slowly lowers the long sword until it points straight down with the point on the ground in front of his front foot, the shield lowers and relaxes, he raises his helmeted head proudly. No other gestures, no steps, no swings, no twirls. HANDS CANON: one long sword in the front hand, one battered heater shield on the rear arm; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same armor and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. ",
+ "img": "../wandering_knight/k_battle.png",
+ "last": "../wandering_knight/k_victory.png",
+ "sec": 4
+}

@@ -1,0 +1,1 @@
+{"slug": "leshy", "anim": "hit", "base": "leshy/k_battle.png", "body": 300, "segments": [{"clip": "leshy/clips/hit_v1.mp4", "from": 0, "to": 66, "frames": 14}]}

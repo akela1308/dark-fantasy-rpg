@@ -1,0 +1,1 @@
+{"slug": "moroz", "anim": "attack", "base": "moroz/k_battle.png", "body": 300, "segments": [{"clip": "moroz/clips/attack_v1.mp4", "from": 6, "to": 72, "frames": 29}], "hit": "auto", "right": 1.4, "left": 1.0, "drop": [11, 12]}

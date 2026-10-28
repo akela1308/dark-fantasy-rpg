@@ -1,0 +1,1 @@
+{"slug": "wolfolak", "anim": "idle", "base": "wolfolak/k_battle.png", "body": 300, "segments": [{"clip": "wolfolak/clips/bidle_v1.mp4", "from": 0, "to": 95, "frames": 48}, {"clip": "wolfolak/clips/bidle_v1.mp4", "from": 95, "to": 0, "frames": 48}], "loop": true, "left": 0.85, "right": 1.0, "ver": 2}

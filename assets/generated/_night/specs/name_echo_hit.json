@@ -1,0 +1,1 @@
+{"slug": "name_echo", "anim": "hit", "base": "name_echo/k_battle.png", "body": 300, "segments": [{"clip": "name_echo/clips/hit_v1.mp4", "from": 0, "to": 73, "frames": 14}]}

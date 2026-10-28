@@ -1,0 +1,1 @@
+{"slug": "stone_guard", "anim": "victory", "base": "stone_guard/k_battle.png", "body": 300, "segments": [{"clip": "stone_guard/clips/victory_v1.mp4", "from": 0, "to": 95, "frames": 29}], "hold": true}

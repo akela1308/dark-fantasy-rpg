@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/bc9eea98-1bf9-448b-a56e-fd57c2288782",
+ "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one wooden staff held low in the rear hand, the front hand grips the wooden yoke with unlit candles on the shoulders; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. The candles stay unlit, no flames. No visual effects, no flashes, no trails, no glow, no particles. ",
+ "img": "../candle_keeper/k_battle.png",
+ "last": "../candle_keeper/k_battle.png",
+ "sec": 4
+}

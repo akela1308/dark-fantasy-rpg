@@ -1,0 +1,10 @@
+[
+ {
+  "name": "../wandering_knight/clips/victory_r4",
+  "first": "../wandering_knight/k_battle.png",
+  "prompt": "Slow motion. One single smooth movement for the whole clip: the knight does NOT turn, his body stays in exactly the same three-quarter view facing right as in the first frame, the shield stays on his rear arm on the left side of the image the whole time. Only his sword arm moves: he slowly lowers the long sword until it points straight down with the point on the ground in front of his front foot, and he lifts his helmeted head a little. No turning, no rotation of the body, no steps, no swings, no twirls. HANDS CANON: one long sword in the front hand on the right side of the image, one battered heater shield on the rear arm on the left side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same armor and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.",
+  "sec": 4,
+  "n": 2,
+  "last": "../wandering_knight/k_victory.png"
+ }
+]

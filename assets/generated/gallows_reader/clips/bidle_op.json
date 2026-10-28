@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/c0e0b7d7-abe1-4027-a6a5-034b3d649200",
+ "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: one old wooden tablet in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. The noose rope stays around the neck. No visual effects, no flashes, no trails, no glow, no particles. ",
+ "img": "../gallows_reader/k_battle.png",
+ "last": "../gallows_reader/k_battle.png",
+ "sec": 4
+}

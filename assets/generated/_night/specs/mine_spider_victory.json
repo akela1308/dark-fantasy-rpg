@@ -1,0 +1,1 @@
+{"slug": "mine_spider", "anim": "victory", "base": "mine_spider/k_battle.png", "body": 300, "segments": [{"clip": "mine_spider/clips/victory_v1.mp4", "from": 3, "to": 95, "frames": 29}], "hold": true}

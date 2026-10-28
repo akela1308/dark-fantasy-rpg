@@ -148,7 +148,7 @@ R = [
       map="standing", battle="no weapon, tusks", ambient=["paws the ground", "snorts and shakes its head"]),
  dict(slug="leshy", name="Леший (бестиарий)", src=None, kind="caster", style="monster",
       desc="the leshy, an old forest spirit, very tall and thin, bark instead of a face, beard of moss and lichen, robe of leaves and roots, not scary, old and tired",
-      map="standing", battle="a long gnarled branch staff in the rear hand, the front hand free",
+      map="standing", battle="no weapon, long root-like claws on both hands",
       ambient=["slowly turns the bark face to listen", "leans on the branch staff"]),
  dict(slug="mavka", name="Мавка (бестиарий)", src=None, kind="caster", style="monster",
       desc="a mavka, a drowned village girl, wet long white shirt, long dark wet hair with water weeds, pale ordinary face, barefoot",
@@ -185,6 +185,32 @@ if os.path.exists(_N50):
                       kind=_c.get("battleKind") or ("beast" if _c["style"] == "beast" else "peaceful"),
                       map=(_c.get("mapPose") or "standing") if _c["map"] else None,
                       battle=_c.get("weapons") if _c["battle"] else None, desc=_c["desc"]))
+
+# ── Поток «Арт-2» (28.10): твари бестиария, у которых был только статичный кадр (оружие и руки по k_battle.png) ──
+for _s, _n, _k, _w in [
+ ("poludnitsa", "Полудница", "monster", "one large rusty sickle in the rear hand crossed in front of the body, the front hand empty"),
+ ("troll_ugryum", "Угрюм, горный тролль", "heavy", "one club made of a whole tree trunk held with both hands"),
+ ("wolfolak", "Волколак", "monster", "no weapon, long claws on both hands"),
+ ("moroz", "Мороз", "caster", "one tall staff of clear ice held in both hands, pointing to the right"),
+ ("frontier_beast", "Предел", "monster", "no weapon, long thin claws on both hands"),
+ ("whisperer", "Шептун", "caster", "no weapon in the hands, the book chained to the belt"),
+ ("stone_guard", "Каменный страж", "heavy", "one stone halberd held with both hands"),
+ ("mine_spider", "Рудничный паук", "beast", "no weapon, fangs and legs"),
+ ("mine_shade", "Тень шахтёра", "human", "one pickaxe held with both hands"),
+ ("fields_creature", "Старая тварь", "monster", "no weapon, long twig fingers on both hands"),
+ ("gallows_reader", "Висельный чтец", "caster", "one old wooden tablet in the front hand, the rear hand empty"),
+ ("hanged", "Висельник", "monster", "no weapon, clawed hands"),
+ ("shade", "Тень", "monster", "no weapon, long thin dark fingers"),
+ ("stone_voice", "Голос камня", "monster", "no weapon, short thick arms of roots and rock"),
+ ("candle_keeper", "Хранитель свечей", "caster", "one wooden staff held low in the rear hand, the front hand grips the yoke with unlit candles"),
+ ("reader", "Чтец", "caster", "one big open book held in both hands"),
+ ("novice", "Послушник", "human", "one short curved knife gripped with both hands in front of the chest"),
+ ("forgotten_warden", "Забытый Страж", "human", "one broken spear held with both hands, chains on the arms"),
+ ("name_echo", "Эхо имени", "human", "one halberd held with both hands"),
+]:
+    if not any(c["slug"] == _s for c in R):
+        R.append(dict(slug=_s, name=_n, src=f"{BASE}/{_s}/k_battle.png", kind=_k, battle=_w, art2=True,
+                      **({"style": "beast"} if _k == "beast" else {})))
 
 COMMON = ("Exactly one figure, the exact same character as in the reference: same face, hair, body, clothes, colors and items. "
           "Full body visible, nothing cut off, centered in the image, the figure about 75% of the image height, the feet near the bottom. "
