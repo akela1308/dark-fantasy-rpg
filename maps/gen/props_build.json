@@ -135,24 +135,6 @@
  ],
  "road_to_village": [
   {
-   "key": "prop_road_to_village_signpost",
-   "src": "maps/props/road_to_village/signpost.png",
-   "x": 1347,
-   "y": 450,
-   "originX": 0,
-   "originY": 0.9815,
-   "occluder": true
-  },
-  {
-   "key": "prop_road_to_village_lantern_post",
-   "src": "maps/props/road_to_village/lantern_post.png",
-   "x": 1457,
-   "y": 445,
-   "originX": 0,
-   "originY": 1.0222,
-   "occluder": true
-  },
-  {
    "key": "prop_road_to_village_crow_stump",
    "src": "maps/props/road_to_village/crow_stump.png",
    "x": 336,
@@ -160,16 +142,52 @@
    "originX": 0,
    "originY": 0.9762,
    "occluder": true
+  },
+  {
+   "key": "prop_road_to_village_stump_raven",
+   "src": "maps/props/road_to_village/stump_raven.png",
+   "x": 342,
+   "y": 620,
+   "originX": 0,
+   "originY": 0.9688,
+   "occluder": true
+  },
+  {
+   "key": "prop_road_to_village_lantern_post",
+   "src": "maps/props/road_to_village/lantern_post.png",
+   "x": 150,
+   "y": 470,
+   "originX": 0,
+   "originY": 1.5132,
+   "occluder": true
   }
  ],
  "village": [
   {
    "key": "prop_village_well",
    "src": "maps/props/village/well.png",
-   "x": 549,
-   "y": 732,
+   "x": 674,
+   "y": 705,
    "originX": 0,
-   "originY": 0.9832,
+   "originY": 1.3077,
+   "occluder": true
+  },
+  {
+   "key": "prop_village_lantern_post_left",
+   "src": "maps/props/village/lantern_post_left.png",
+   "x": 45,
+   "y": 620,
+   "originX": 0,
+   "originY": 1.375,
+   "occluder": true
+  },
+  {
+   "key": "prop_village_cart",
+   "src": "maps/props/village/cart.png",
+   "x": 884,
+   "y": 550,
+   "originX": 0,
+   "originY": 1.0412,
    "occluder": true
   }
  ],
@@ -388,176 +406,33 @@
  ],
  "old_mill": [
   {
-   "key": "prop_old_mill_occ_1",
-   "src": "maps/props/old_mill/occ_1.png",
-   "x": 579,
-   "y": 204,
+   "key": "prop_old_mill_mill",
+   "src": "maps/props/old_mill/mill.png",
+   "x": 674,
+   "y": 460,
    "originX": 0,
-   "originY": 0.9951,
-   "occluder": true,
-   "auto": true
-  },
-  {
-   "key": "prop_old_mill_occ_2",
-   "src": "maps/props/old_mill/occ_2.png",
-   "x": 0,
-   "y": 940,
-   "originX": 0,
-   "originY": 0.9988,
-   "occluder": true,
-   "auto": true
-  },
-  {
-   "key": "prop_old_mill_occ_3",
-   "src": "maps/props/old_mill/occ_3.png",
-   "x": 287,
-   "y": 545,
-   "originX": 0,
-   "originY": 0.9968,
-   "occluder": true,
-   "auto": true
-  },
-  {
-   "key": "prop_old_mill_occ_4",
-   "src": "maps/props/old_mill/occ_4.png",
-   "x": 1217,
-   "y": 940,
-   "originX": 0,
-   "originY": 0.9981,
-   "occluder": true,
-   "auto": true
-  },
-  {
-   "key": "prop_old_mill_occ_5",
-   "src": "maps/props/old_mill/occ_5.png",
-   "x": 532,
-   "y": 643,
-   "originX": 0,
-   "originY": 0.9872,
-   "occluder": true,
-   "auto": true
-  },
-  {
-   "key": "prop_old_mill_occ_6",
-   "src": "maps/props/old_mill/occ_6.png",
-   "x": 497,
-   "y": 940,
-   "originX": 0,
-   "originY": 0.9967,
-   "occluder": true,
-   "auto": true
-  },
-  {
-   "key": "prop_old_mill_occ_7",
-   "src": "maps/props/old_mill/occ_7.png",
-   "x": 1023,
-   "y": 894,
-   "originX": 0,
-   "originY": 0.9894,
-   "occluder": true,
-   "auto": true
+   "originY": 0.9931,
+   "occluder": true
   }
  ],
  "burned_hamlet": [
   {
-   "key": "prop_burned_hamlet_occ_1",
-   "src": "maps/props/burned_hamlet/occ_1.png",
-   "x": 937,
-   "y": 329,
+   "key": "prop_burned_hamlet_house_left",
+   "src": "maps/props/burned_hamlet/house_left.png",
+   "x": 30,
+   "y": 428,
    "originX": 0,
-   "originY": 0.997,
-   "occluder": true,
-   "auto": true
+   "originY": 0.9916,
+   "occluder": true
   },
   {
-   "key": "prop_burned_hamlet_occ_2",
-   "src": "maps/props/burned_hamlet/occ_2.png",
-   "x": 0,
-   "y": 444,
+   "key": "prop_burned_hamlet_house_right",
+   "src": "maps/props/burned_hamlet/house_right.png",
+   "x": 1324,
+   "y": 414,
    "originX": 0,
-   "originY": 0.9977,
-   "occluder": true,
-   "auto": true
-  },
-  {
-   "key": "prop_burned_hamlet_occ_3",
-   "src": "maps/props/burned_hamlet/occ_3.png",
-   "x": 900,
-   "y": 492,
-   "originX": 0,
-   "originY": 0.9952,
-   "occluder": true,
-   "auto": true
-  },
-  {
-   "key": "prop_burned_hamlet_occ_4",
-   "src": "maps/props/burned_hamlet/occ_4.png",
-   "x": 193,
-   "y": 432,
-   "originX": 0,
-   "originY": 0.9846,
-   "occluder": true,
-   "auto": true
-  },
-  {
-   "key": "prop_burned_hamlet_occ_5",
-   "src": "maps/props/burned_hamlet/occ_5.png",
-   "x": 693,
-   "y": 527,
-   "originX": 0,
-   "originY": 0.9912,
-   "occluder": true,
-   "auto": true
-  },
-  {
-   "key": "prop_burned_hamlet_occ_6",
-   "src": "maps/props/burned_hamlet/occ_6.png",
-   "x": 0,
-   "y": 940,
-   "originX": 0,
-   "originY": 0.998,
-   "occluder": true,
-   "auto": true
-  },
-  {
-   "key": "prop_burned_hamlet_occ_7",
-   "src": "maps/props/burned_hamlet/occ_7.png",
-   "x": 778,
-   "y": 531,
-   "originX": 0,
-   "originY": 0.9892,
-   "occluder": true,
-   "auto": true
-  },
-  {
-   "key": "prop_burned_hamlet_occ_8",
-   "src": "maps/props/burned_hamlet/occ_8.png",
-   "x": 1326,
-   "y": 940,
-   "originX": 0,
-   "originY": 0.9976,
-   "occluder": true,
-   "auto": true
-  },
-  {
-   "key": "prop_burned_hamlet_occ_9",
-   "src": "maps/props/burned_hamlet/occ_9.png",
-   "x": 215,
-   "y": 709,
-   "originX": 0,
-   "originY": 0.9923,
-   "occluder": true,
-   "auto": true
-  },
-  {
-   "key": "prop_burned_hamlet_occ_10",
-   "src": "maps/props/burned_hamlet/occ_10.png",
-   "x": 1230,
-   "y": 723,
-   "originX": 0,
-   "originY": 0.9853,
-   "occluder": true,
-   "auto": true
+   "originY": 0.9899,
+   "occluder": true
   }
  ],
  "dead_road": [
@@ -644,206 +519,42 @@
  ],
  "gallows_hill": [
   {
-   "key": "prop_gallows_hill_occ_1",
-   "src": "maps/props/gallows_hill/occ_1.png",
-   "x": 0,
-   "y": 391,
+   "key": "prop_gallows_hill_gallows",
+   "src": "maps/props/gallows_hill/gallows.png",
+   "x": 627,
+   "y": 365,
    "originX": 0,
-   "originY": 0.9974,
-   "occluder": true,
-   "auto": true
-  },
-  {
-   "key": "prop_gallows_hill_occ_2",
-   "src": "maps/props/gallows_hill/occ_2.png",
-   "x": 1370,
-   "y": 428,
-   "originX": 0,
-   "originY": 0.9977,
-   "occluder": true,
-   "auto": true
-  },
-  {
-   "key": "prop_gallows_hill_occ_3",
-   "src": "maps/props/gallows_hill/occ_3.png",
-   "x": 790,
-   "y": 648,
-   "originX": 0,
-   "originY": 0.9965,
-   "occluder": true,
-   "auto": true
-  },
-  {
-   "key": "prop_gallows_hill_occ_4",
-   "src": "maps/props/gallows_hill/occ_4.png",
-   "x": 1269,
-   "y": 543,
-   "originX": 0,
-   "originY": 0.988,
-   "occluder": true,
-   "auto": true
-  },
-  {
-   "key": "prop_gallows_hill_occ_5",
-   "src": "maps/props/gallows_hill/occ_5.png",
-   "x": 312,
-   "y": 560,
-   "originX": 0,
-   "originY": 0.9898,
-   "occluder": true,
-   "auto": true
-  },
-  {
-   "key": "prop_gallows_hill_occ_6",
-   "src": "maps/props/gallows_hill/occ_6.png",
-   "x": 0,
-   "y": 731,
-   "originX": 0,
-   "originY": 0.9959,
-   "occluder": true,
-   "auto": true
-  },
-  {
-   "key": "prop_gallows_hill_occ_7",
-   "src": "maps/props/gallows_hill/occ_7.png",
-   "x": 1291,
-   "y": 726,
-   "originX": 0,
-   "originY": 0.9959,
-   "occluder": true,
-   "auto": true
-  },
-  {
-   "key": "prop_gallows_hill_occ_8",
-   "src": "maps/props/gallows_hill/occ_8.png",
-   "x": 549,
-   "y": 643,
-   "originX": 0,
-   "originY": 0.9911,
-   "occluder": true,
-   "auto": true
-  },
-  {
-   "key": "prop_gallows_hill_occ_9",
-   "src": "maps/props/gallows_hill/occ_9.png",
-   "x": 344,
-   "y": 779,
-   "originX": 0,
-   "originY": 0.9881,
-   "occluder": true,
-   "auto": true
-  },
-  {
-   "key": "prop_gallows_hill_occ_10",
-   "src": "maps/props/gallows_hill/occ_10.png",
-   "x": 1162,
-   "y": 759,
-   "originX": 0,
-   "originY": 0.9844,
-   "occluder": true,
-   "auto": true
-  },
-  {
-   "key": "prop_gallows_hill_occ_11",
-   "src": "maps/props/gallows_hill/occ_11.png",
-   "x": 511,
-   "y": 785,
-   "originX": 0,
-   "originY": 0.9857,
-   "occluder": true,
-   "auto": true
+   "originY": 0.9859,
+   "occluder": true
   }
  ],
  "village_fields": [
   {
-   "key": "prop_village_fields_occ_1",
-   "src": "maps/props/village_fields/occ_1.png",
-   "x": 960,
-   "y": 144,
+   "key": "prop_village_fields_barn",
+   "src": "maps/props/village_fields/barn.png",
+   "x": 1135,
+   "y": 420,
    "originX": 0,
-   "originY": 0.9931,
-   "occluder": true,
-   "auto": true
+   "originY": 1.0056,
+   "occluder": true
   },
   {
-   "key": "prop_village_fields_occ_2",
-   "src": "maps/props/village_fields/occ_2.png",
-   "x": 1627,
-   "y": 122,
+   "key": "prop_village_fields_willow_left",
+   "src": "maps/props/village_fields/willow_left.png",
+   "x": 863,
+   "y": 790,
    "originX": 0,
-   "originY": 0.9833,
-   "occluder": true,
-   "auto": true
+   "originY": 0.9856,
+   "occluder": true
   },
   {
-   "key": "prop_village_fields_occ_3",
-   "src": "maps/props/village_fields/occ_3.png",
-   "x": 893,
-   "y": 193,
+   "key": "prop_village_fields_willow_mid",
+   "src": "maps/props/village_fields/willow_mid.png",
+   "x": 1075,
+   "y": 690,
    "originX": 0,
-   "originY": 0.992,
-   "occluder": true,
-   "auto": true
-  },
-  {
-   "key": "prop_village_fields_occ_4",
-   "src": "maps/props/village_fields/occ_4.png",
-   "x": 525,
-   "y": 322,
-   "originX": 0,
-   "originY": 0.9921,
-   "occluder": true,
-   "auto": true
-  },
-  {
-   "key": "prop_village_fields_occ_5",
-   "src": "maps/props/village_fields/occ_5.png",
-   "x": 1170,
-   "y": 398,
-   "originX": 0,
-   "originY": 0.9926,
-   "occluder": true,
-   "auto": true
-  },
-  {
-   "key": "prop_village_fields_occ_6",
-   "src": "maps/props/village_fields/occ_6.png",
-   "x": 1512,
-   "y": 529,
-   "originX": 0,
-   "originY": 0.996,
-   "occluder": true,
-   "auto": true
-  },
-  {
-   "key": "prop_village_fields_occ_7",
-   "src": "maps/props/village_fields/occ_7.png",
-   "x": 716,
-   "y": 446,
-   "originX": 0,
-   "originY": 0.9921,
-   "occluder": true,
-   "auto": true
-  },
-  {
-   "key": "prop_village_fields_occ_8",
-   "src": "maps/props/village_fields/occ_8.png",
-   "x": 0,
-   "y": 539,
-   "originX": 0,
-   "originY": 0.9944,
-   "occluder": true,
-   "auto": true
-  },
-  {
-   "key": "prop_village_fields_occ_9",
-   "src": "maps/props/village_fields/occ_9.png",
-   "x": 329,
-   "y": 737,
-   "originX": 0,
-   "originY": 0.9965,
-   "occluder": true,
-   "auto": true
+   "originY": 0.984,
+   "occluder": true
   }
  ],
  "forest_camp": [
@@ -1086,76 +797,195 @@
  ],
  "drowned_village": [
   {
-   "key": "prop_drowned_village_occ_1",
-   "src": "maps/props/drowned_village/occ_1.png",
-   "x": 1336,
-   "y": 130,
+   "key": "prop_drowned_village_church_spire",
+   "src": "maps/props/drowned_village/church_spire.png",
+   "x": 907,
+   "y": 470,
    "originX": 0,
-   "originY": 0.9924,
-   "occluder": true,
-   "auto": true
-  },
-  {
-   "key": "prop_drowned_village_occ_2",
-   "src": "maps/props/drowned_village/occ_2.png",
-   "x": 1386,
-   "y": 148,
-   "originX": 0,
-   "originY": 0.9933,
-   "occluder": true,
-   "auto": true
-  },
-  {
-   "key": "prop_drowned_village_occ_3",
-   "src": "maps/props/drowned_village/occ_3.png",
-   "x": 1367,
-   "y": 131,
-   "originX": 0,
-   "originY": 0.9848,
-   "occluder": true,
-   "auto": true
-  },
-  {
-   "key": "prop_drowned_village_occ_4",
-   "src": "maps/props/drowned_village/occ_4.png",
-   "x": 611,
-   "y": 414,
-   "originX": 0,
-   "originY": 0.9938,
-   "occluder": true,
-   "auto": true
+   "originY": 0.9923,
+   "occluder": true
   }
  ],
  "swamp_obelisk": [
   {
-   "key": "prop_swamp_obelisk_occ_1",
-   "src": "maps/props/swamp_obelisk/occ_1.png",
-   "x": 850,
-   "y": 641,
+   "key": "prop_swamp_obelisk_obelisk",
+   "src": "maps/props/swamp_obelisk/obelisk.png",
+   "x": 860,
+   "y": 480,
    "originX": 0,
-   "originY": 0.9984,
-   "occluder": true,
-   "auto": true
+   "originY": 1.0,
+   "occluder": true
+  }
+ ],
+ "three_pillars_inside": [
+  {
+   "key": "prop_three_pillars_inside_long_table",
+   "src": "maps/props/three_pillars_inside/long_table.png",
+   "x": 508,
+   "y": 462,
+   "originX": 0,
+   "originY": 0.9789,
+   "occluder": true
   },
   {
-   "key": "prop_swamp_obelisk_occ_2",
-   "src": "maps/props/swamp_obelisk/occ_2.png",
-   "x": 0,
-   "y": 784,
+   "key": "prop_three_pillars_inside_round_table",
+   "src": "maps/props/three_pillars_inside/round_table.png",
+   "x": 585,
+   "y": 696,
    "originX": 0,
-   "originY": 0.9984,
-   "occluder": true,
-   "auto": true
+   "originY": 0.9787,
+   "occluder": true
   },
   {
-   "key": "prop_swamp_obelisk_occ_3",
-   "src": "maps/props/swamp_obelisk/occ_3.png",
-   "x": 139,
-   "y": 745,
+   "key": "prop_three_pillars_inside_hearth_bench",
+   "src": "maps/props/three_pillars_inside/hearth_bench.png",
+   "x": 1060,
+   "y": 582,
    "originX": 0,
-   "originY": 0.993,
-   "occluder": true,
-   "auto": true
+   "originY": 1.0256,
+   "occluder": true
+  }
+ ],
+ "frozen_lake": [
+  {
+   "key": "prop_frozen_lake_lake_south_pines",
+   "src": "maps/props/frozen_lake/lake_south_pines.png",
+   "x": 250,
+   "y": 941,
+   "originX": 0,
+   "originY": 1.0,
+   "occluder": true
+  }
+ ],
+ "grad_alley": [
+  {
+   "key": "prop_grad_alley_lamp_post",
+   "src": "maps/props/grad_alley/lamp_post.png",
+   "x": 820,
+   "y": 435,
+   "originX": 0,
+   "originY": 0.9824,
+   "occluder": true
+  }
+ ],
+ "grad_square": [
+  {
+   "key": "prop_grad_square_fountain",
+   "src": "maps/props/grad_square/fountain.png",
+   "x": 795,
+   "y": 470,
+   "originX": 0,
+   "originY": 0.9806,
+   "occluder": true
+  },
+  {
+   "key": "prop_grad_square_pine_se",
+   "src": "maps/props/grad_square/pine_se.png",
+   "x": 1512,
+   "y": 860,
+   "originX": 0,
+   "originY": 0.9836,
+   "occluder": true
+  }
+ ],
+ "mine_deep": [
+  {
+   "key": "prop_mine_deep_rocks_left",
+   "src": "maps/props/mine_deep/rocks_left.png",
+   "x": 560,
+   "y": 650,
+   "originX": 0,
+   "originY": 0.9725,
+   "occluder": true
+  }
+ ],
+ "mountains_map": [
+  {
+   "key": "prop_mountains_map_statue",
+   "src": "maps/props/mountains_map/statue.png",
+   "x": 805,
+   "y": 545,
+   "originX": 0,
+   "originY": 0.9801,
+   "occluder": true
+  }
+ ],
+ "north_frontier": [
+  {
+   "key": "prop_north_frontier_standing_stones_south",
+   "src": "maps/props/north_frontier/standing_stones_south.png",
+   "x": 551,
+   "y": 645,
+   "originX": 0,
+   "originY": 3.0147,
+   "occluder": true
+  },
+  {
+   "key": "prop_north_frontier_pine_link",
+   "src": "maps/props/north_frontier/pine_link.png",
+   "x": 455,
+   "y": 805,
+   "originX": 0,
+   "originY": 0.9859,
+   "occluder": true
+  }
+ ],
+ "north_road": [
+  {
+   "key": "prop_north_road_lantern_cross",
+   "src": "maps/props/north_road/lantern_cross.png",
+   "x": 630,
+   "y": 512,
+   "originX": 0,
+   "originY": 3.2316,
+   "occluder": true
+  },
+  {
+   "key": "prop_north_road_stone_markers",
+   "src": "maps/props/north_road/stone_markers.png",
+   "x": 750,
+   "y": 470,
+   "originX": 0,
+   "originY": 2.4107,
+   "occluder": true
+  },
+  {
+   "key": "prop_north_road_rocks_east",
+   "src": "maps/props/north_road/rocks_east.png",
+   "x": 1193,
+   "y": 700,
+   "originX": 0,
+   "originY": 0.9871,
+   "occluder": true
+  }
+ ],
+ "winter_grad_gate": [
+  {
+   "key": "prop_winter_grad_gate_left_rocks_crates",
+   "src": "maps/props/winter_grad_gate/left_rocks_crates.png",
+   "x": 221,
+   "y": 760,
+   "originX": 0,
+   "originY": 0.9809,
+   "occluder": true
+  },
+  {
+   "key": "prop_winter_grad_gate_right_rocks_crates",
+   "src": "maps/props/winter_grad_gate/right_rocks_crates.png",
+   "x": 1305,
+   "y": 765,
+   "originX": 0,
+   "originY": 0.9286,
+   "occluder": true
+  },
+  {
+   "key": "prop_winter_grad_gate_right_lantern_post",
+   "src": "maps/props/winter_grad_gate/right_lantern_post.png",
+   "x": 1136,
+   "y": 742,
+   "originX": 0,
+   "originY": 3.1304,
+   "occluder": true
   }
  ]
 }

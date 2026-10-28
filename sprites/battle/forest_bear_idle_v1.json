@@ -1,1 +1,1 @@
-{"frameWidth": 509, "frameHeight": 294, "frames": 95, "fps": 24, "cols": 8, "originX": 0.4612, "originY": 0.9719, "bodyHeight": 300, "file": "sprites/battle/forest_bear_idle_v1.webp", "hitFrame": null, "hold": false, "loop": true}
+{"frameWidth": 509, "frameHeight": 294, "frames": 95, "fps": 24, "cols": 8, "originX": 0.4612, "originY": 0.9719, "bodyHeight": 275.6, "file": "sprites/battle/forest_bear_idle_v1.webp", "hitFrame": null, "hold": false, "loop": true, "bodyFixed": true}
