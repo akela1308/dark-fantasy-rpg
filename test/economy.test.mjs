@@ -142,3 +142,31 @@ test('книга даёт эффект один раз: навык и рецеп
   assert.ok(E.craft('swamp_bandage', ws).ok);
   assert.ok(ws.hasItem('swamp_bandage'));
 });
+
+test('пиво усиливает выпившего, переживает F5 до боя и расходуется одним боем', () => {
+  mem.clear();
+  const reg = new Reg(); SaveSystem.newGame(reg);
+  reg.set('roster', ['hero_duelist', 'companion_brawler']);
+  reg.set('party', ['hero_duelist', 'companion_brawler']); reg.set('partySlots', 2);
+  const ws = new WorldState(reg);
+  ws.giveItem('dark_beer', 1);
+  assert.ok(E.useItem('dark_beer', 'companion_brawler', ws, { mapKey: 'south_post' }).ok);
+  const pending = reg.get('next_battle_buffs');
+  assert.equal(pending[0].unit, 'companion_brawler');
+  assert.equal(ws.hasItem('dark_beer'), false);
+  const persisted = SaveSystem.load().world.next_battle_buffs;
+  assert.deepEqual(persisted, pending);
+  reg.set('next_battle_buffs', structuredClone(persisted));
+  const battle = PartySystem.buildPlayerUnits(reg);
+  battle.forEach(u => u.prepareForBattle({})); applyItemBonuses(battle, reg);
+  const hero = battle.find(u => u.id === 'hero_duelist'), brawler = battle.find(u => u.id === 'companion_brawler');
+  assert.equal(hero.hasEffect('enraged'), false);
+  assert.equal(brawler.getEffect('enraged')?.value, 1);
+  brawler.damage = { min: 10, max: 10 };
+  assert.equal(brawler.rollDamage(), 11);
+  brawler.endTurn(); assert.equal(brawler.rollDamage(), 11);
+  brawler.endTurn(); assert.equal(brawler.rollDamage(), 10);
+  const next = PartySystem.buildPlayerUnits(reg);
+  next.forEach(u => u.prepareForBattle({})); applyItemBonuses(next, reg);
+  assert.ok(next.every(u => !u.hasEffect('enraged')));
+});

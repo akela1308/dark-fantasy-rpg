@@ -31,3 +31,28 @@ test('показ Темпа и зарядов соответствует реа�
  assert.ok(tip.includes('Темп 1'));assert.ok(tip.includes('Пистоль 1'));
  assert.equal(ss.canUse('pistol_shot',hero),false);
 });
+
+for (const inactive of ['dead', 'surrendered']) {
+ test(`конец очереди (${inactive}): новый раунд снимает стартовую инициативу и пересортирует живых`, () => {
+  const hero = new PlayerUnit(structuredClone(units.find(u => u.id === 'hero_duelist')));
+  const enemy = new EnemyUnit({id:'fast',name:'Враг',hp:100,speed:8,damage:{min:1,max:1}});
+  const last = new EnemyUnit({id:'last',name:'Последний',hp:100,speed:1,damage:{min:1,max:1}});
+  hero.speed=7;hero._initiativeBonus=3;
+  const tm=new TurnManager();tm.init([hero,enemy,last]);
+  assert.equal(tm.active,hero);
+  tm.nextTurn();assert.equal(tm.active,enemy);
+  if(inactive==='dead')last.isAlive=false;else last.surrendered=true;
+  tm.nextTurn();
+  assert.equal(tm.turn,1);assert.equal(hero._initiativeBonus,0);
+  assert.equal(tm.active,enemy,'со второго раунда быстрее враг');
+  tm.nextTurn();assert.equal(tm.active,hero);
+  tm.nextTurn();assert.equal(tm.turn,2);assert.equal(tm.active,enemy);
+ });
+}
+
+test('пустая или полностью выбывшая очередь завершается без зацикливания', () => {
+ const tm=new TurnManager();tm.init([]);assert.equal(tm.active,null);assert.equal(tm.isPlayerTurn(),false);
+ const hero=new PlayerUnit(structuredClone(units.find(u=>u.id==='hero_duelist')));
+ tm.init([hero]);hero.isAlive=false;tm.nextTurn();
+ assert.equal(tm.active,null);assert.equal(tm.isPlayerTurn(),false);
+});

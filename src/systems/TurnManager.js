@@ -22,6 +22,7 @@ export class TurnManager {
     this.index = 0;
     this.turn  = 0;
     this.phase = PHASE.PLAYER_INPUT;
+    this.active = null;
     eventBus.emit('log', 'Бой начался');
     this._advanceToNextAlive();
   }
@@ -33,34 +34,35 @@ export class TurnManager {
     }
 
     this.index++;
-    if (this.index >= this.queue.length) {
-      // Новый раунд: порядок пересчитывается (корни меняют инициативу)
-      this.index = 0;
-      this.turn++;
-      (this.all || []).forEach(u => { u._initiativeBonus = 0; });
-      this.queue = this._order();
-    }
-
     this._advanceToNextAlive();
   }
 
-  // Пропустить мёртвых
+  _startNextRound() {
+    this.index = 0;
+    this.turn++;
+    (this.all || []).forEach(u => { u._initiativeBonus = 0; });
+    this.queue = this._order();
+  }
+
+  // Crossing the end while skipping dead/surrendered units is also a new round.
   _advanceToNextAlive() {
-    let attempts = 0;
-    while (attempts < this.queue.length) {
+    if (!this.queue.some(isActive)) {
+      this.active = null;
+      this.phase = PHASE.END;
+      eventBus.emit('all_dead');
+      return;
+    }
+    for (;;) {
+      if (this.index >= this.queue.length) this._startNextRound();
       const unit = this.queue[this.index];
-      if (unit && isActive(unit)) {
+      if (isActive(unit)) {
         this.active = unit;
         this._setPhase(unit);
         eventBus.emit('turn_started', unit);
         return;
       }
-      this.index = (this.index + 1) % this.queue.length;
-      attempts++;
+      this.index++;
     }
-    // Все мертвы - конец
-    this.phase = PHASE.END;
-    eventBus.emit('all_dead');
   }
 
   _order() {

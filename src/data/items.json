@@ -264,6 +264,7 @@
     "use": {
       "heal": 5,
       "battleBuff": {
+        "target": "one",
         "type": "enraged",
         "value": 1,
         "duration": 2
