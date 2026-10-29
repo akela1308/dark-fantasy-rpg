@@ -34,7 +34,7 @@ const pause = ms => new Promise(r => setTimeout(r, ms));
    console.log('Battle ready', {party,ambush,mode});
   }
   // Real hit and completion events, with a deterministic lethal fixture.
-  await battle();
+  await battle({mode:'iron'});
   await page.evaluate(() => {
    const s=window.__game.scene.getScene('BattleScene'), a=s.playerUnits[0];
    s.enemyUnits.forEach((u,i)=>{u.hp=i?0:1;u.isAlive=!i;});
@@ -51,6 +51,8 @@ const pause = ms => new Promise(r => setTimeout(r, ms));
    window.__flow.blocked=s._animLock&&active===s.turnManager.active&&!a.effects.some(e=>e.type==='dodge_boost');
   });
   await page.waitForFunction(()=>window.__game.scene.getScene('BattleScene').battleOver,{timeout:10000});
+  const victorySave=await page.evaluate(()=>JSON.parse(localStorage.getItem('darkfantasy_ironman_v1')));
+  assert.equal(victorySave.inBattle,undefined);assert.equal(victorySave.world.partyXp,25);
   const lethal=await page.evaluate(()=>({...window.__flow,lock:window.__game.scene.getScene('BattleScene')._animLock}));
   assert.equal(lethal.endFrame,23);assert.equal(lethal.blocked,true);assert.equal(lethal.lock,false);
   await pause(1000);await page.screenshot({path:path.join(out,'victory.png')});results.push({name:'lethal strike finishes all 23 frames; repeated input blocked',...lethal});

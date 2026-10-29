@@ -973,10 +973,15 @@ export class BattleScene extends Phaser.Scene {
       }
     }
 
+    // Итог уже виден: F5 во время задержки окна не должен отменить победу
+    // или превратить её в поражение Железа.
+    const rest = result === 'defeat' && !iron ? SaveSystem.restoreRestPoint() : null;
+    if (result === 'victory') SaveSystem.save(this.playerUnits, this._fromMapKey, this._fromSpawnId, this.game.registry);
+    else if (iron) SaveSystem.deleteSave();
+
     const showWindow = () => {
       if (result === 'victory') {
         // Сохранение сразу после победы: метка «идёт бой» снимается, F5 на экране итога или уровня ничего не теряет
-        SaveSystem.save(this.playerUnits, this._fromMapKey, this._fromSpawnId, this.game.registry);
         const span = this._levelSpan || { from: 1, to: 1 };
         if (span.to > span.from) {
           // Сначала итог боя, по кнопке экран нового уровня (он же потом ведёт на карту)
@@ -993,11 +998,9 @@ export class BattleScene extends Phaser.Scene {
           return;
         }
         // ── Сохранение после победы ──────
-        SaveSystem.save(this.playerUnits, this._fromMapKey, this._fromSpawnId, this.game.registry);
         showBattleResult(this, { victory: true, rows, depth: OVERLAY_DEPTH, buttons: [{ label: 'На карту', onClick: toMap }] });
       } else if (!iron) {
         // ── ХРОНИКА: поражение возвращает к последнему отдыху ─────────────
-        const rest = SaveSystem.restoreRestPoint();
         showBattleResult(this, {
           victory: false, depth: OVERLAY_DEPTH,
           note: rest ? 'Дорога оборвалась.\nВы очнулись у последнего привала.' : 'Дорога оборвалась.\nОтдыха ещё не было: всё сначала.',
@@ -1013,7 +1016,6 @@ export class BattleScene extends Phaser.Scene {
         });
       } else {
         // ── ЖЕЛЕЗНЫЙ РЕЖИМ: поражение = удаление сохранения ─────────────
-        SaveSystem.deleteSave();
         showBattleResult(this, {
           victory: false, depth: OVERLAY_DEPTH,
           note: 'Сохранение уничтожено.\nВсё начинается заново.',

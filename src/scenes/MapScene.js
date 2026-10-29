@@ -23,6 +23,7 @@ import { SaveSystem, START_MAP } from '../utils/SaveSystem.js';
 import { getNpcAnimConfig, attachNpcAnimations } from '../systems/NpcAnimations.js';
 import { MapAmbience } from '../systems/MapAmbience.js';
 import { PartySystem } from '../systems/PartySystem.js';
+import { openMapProgression, recoverMapProgression } from '../systems/ProgressionRecovery.js';
 import { WorldState } from '../systems/WorldState.js';
 import { DialogueRunner } from '../systems/DialogueRunner.js';
 import { MapEncounters } from '../systems/MapEncounters.js';
@@ -268,7 +269,12 @@ export class MapScene extends Phaser.Scene {
     this._buildHUD(cfg);
 
     // Возврат с боя, начатого из диалога: продолжение разговора (пощада, сдача, награда)
-    this.time.delayedCall(700, () => this._resumePendingBattle() || this._runOnEnter(cfg));
+    this._progressionPending = false;
+    this.input.enabled = true;
+    const enterMap = () => this._resumePendingBattle() || this._runOnEnter(cfg);
+    if (!recoverMapProgression(this, () => this.time.delayedCall(100, enterMap))) {
+      this.time.delayedCall(700, enterMap);
+    }
 
     // ─── Dev Grid (клавиша G) ────────────────────────────────────────────
     this._devGrid = null;
@@ -302,6 +308,7 @@ export class MapScene extends Phaser.Scene {
   // ─── Update ──────────────────────────────────────────────────────────────
 
   update(time, delta) {
+    if (this._progressionPending || this.scene.isActive('LevelUpScene')) return;
     // Скроллинг тумана
     if (this._fogLayers) {
       this._fogLayers.forEach(t => { t.tilePositionX += t._speedX * delta / 16.67; }); // по времени, а не по кадрам: плавно при любом FPS
@@ -375,10 +382,7 @@ export class MapScene extends Phaser.Scene {
     if (amount > 0) this._toast?.(`Опыт отряда: +${amount}`);
     if (span.to > span.from) {
       const roster = PartySystem.buildRosterUnits(reg);
-      this.scene.launch('LevelUpScene', {
-        leveledUnits: roster, allPlayerUnits: roster, toLevel: span.to,
-        fromMapKey: this.mapKey, fromSpawnId: this.spawnId,
-      });
+      openMapProgression(this, roster, span.to);
     } else {
       SaveSystem.saveWorld(reg, this.mapKey, this.spawnId);
     }
@@ -1501,7 +1505,7 @@ export class MapScene extends Phaser.Scene {
 
   /** Клик по HUD, окну или во время перехода не двигает героя. */
   _uiBlocksMapClick(over) {
-    if (this._transitioning || this._bookOverlay || this._journalObjs || this._charSheetOpen || Frame.current(this)) return true;
+    if (this._progressionPending || this.scene.isActive('LevelUpScene') || this._transitioning || this._bookOverlay || this._journalObjs || this._charSheetOpen || Frame.current(this)) return true;
     if (this._dialogue?.active) return true;
     // Всё, что приколото к экрану (HUD, плеер, окна), перехватывает клик
     return over.some(o => o.scrollFactorX === 0);
@@ -1705,9 +1709,7 @@ export class MapScene extends Phaser.Scene {
     const lvl = PartySystem.getLevel(reg);
     const unit = PartySystem.buildRosterUnits(reg).find(u => u.id === id);
     if (unit && (unit.level || 1) < lvl) {
-      this.time.delayedCall(400, () => this.scene.launch('LevelUpScene', {
-        leveledUnits: [unit], allPlayerUnits: [unit], toLevel: lvl, fromMapKey: this.mapKey, fromSpawnId: this.spawnId,
-      }));
+      this.time.delayedCall(400, () => recoverMapProgression(this));
     } else if (unit) {
       SaveSystem.save([unit], this.mapKey, this.spawnId, reg);
     }
