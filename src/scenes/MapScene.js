@@ -1,3 +1,4 @@
+import { knowledgePages } from '../ui/BookKnowledge.js';
 import * as Phaser from 'phaser/dist/phaser.esm.js';
 
 import { MapUnit }       from '../entities/MapUnit.js';
@@ -2579,7 +2580,7 @@ export class MapScene extends Phaser.Scene {
     }).setOrigin(0.5, 0.5).setDepth(DEPTH + 3).setScrollFactor(0));
 
     let pageIndex = 0;
-    const pages = book.pages?.length ? book.pages : ['Страницы пусты.'];
+    const pages = [...(book.pages?.length ? book.pages : ['Страницы пусты.']), ...knowledgePages(book)];
 
     const prevBtn = add(this.add.text(s(318), s(650), '‹ Назад', {
       fontSize: `${Math.round(16 / zoom)}px`,

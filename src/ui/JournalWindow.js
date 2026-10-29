@@ -1,3 +1,4 @@
+import UI from '../data/ui.json';
 /**
  * Журнал заданий (этап 6): окно Frame в две колонки.
  * Слева список квестов (название золотом, место серым из поля where), справа выбранный квест:
@@ -21,13 +22,13 @@ export class JournalWindow {
     this.ws = ws;
     this.tab = 'active';
     this.sel = null;
-    this.scroll = 0;
+    this.scroll = 0; this.detailScroll = 0;
     this.frame = new Frame(scene, { w: W, h: H, y: 350, title: 'Журнал', onClose, backdropDepth: 7990 });
     this.parts = [];
     this._wheel = (ptr, over, dx, dy) => this._onWheel(ptr, dy);
     scene.input.on('wheel', this._wheel);
     const off = () => scene.input.off('wheel', this._wheel);
-    this.frame.cfg.onClose = () => { off(); onClose?.(); };
+    this.frame.cfg.onClose = () => { off(); scene.events.off('shutdown', off); this.detailMask?.destroy(); this.detailMask = null; onClose?.(); };
     scene.events.once('shutdown', off);
     this.render();
   }
@@ -44,8 +45,12 @@ export class JournalWindow {
   }
 
   _clear() {
+    const old = new Set(this.parts);
+    this.frame.objs = this.frame.objs.filter(o => !old.has(o));
     this.parts.forEach(o => { try { o.destroy(); } catch {} });
     this.parts = [];
+    this.detailMask?.destroy();
+    this.detailMask = null;
   }
 
   _add(o) { this.frame.add(o); this.parts.push(o); return o; }
@@ -72,7 +77,7 @@ export class JournalWindow {
       const bw = t.width * sc.cameras.main.zoom + 28;
       const bg = this._add(plate(sc, 'button', s(tx + bw / 2), s(y + 16), s(bw), s(36)).setAlpha(on ? 1 : 0.55));
       bg.setDepth(t.depth - 1).setInteractive({ useHandCursor: true });
-      bg.on('pointerdown', () => { this.tab = id; this.sel = null; this.scroll = 0; this.render(); });
+      bg.on('pointerdown', () => { this.tab = id; this.sel = null; this.scroll = 0; this.detailScroll = 0; this.render(); });
       tx += bw + 10;
     });
 
@@ -98,7 +103,7 @@ export class JournalWindow {
       if (on) this._add(plate(sc, 'label', s(x - 8 + (LIST_W + 16) / 2), s(ry + (ROW_H - 4) / 2), s(LIST_W + 22), s(ROW_H + 2)));
       const bg = this._add(sc.add.rectangle(s(x - 8), s(ry), s(LIST_W + 16), s(ROW_H - 4), 0x000000, 0.001)
         .setOrigin(0).setInteractive({ useHandCursor: true }));
-      bg.on('pointerdown', () => { this.sel = e.quest.id; this.render(); });
+      bg.on('pointerdown', () => { this.sel = e.quest.id; this.detailScroll = 0; this.render(); });
       const name = this._text(x, ry + 4, e.quest.name, 'body', {
         size: 15, color: this.tab === 'done' ? COLOR.muted : COLOR.gold,
         fixedWidth: s(LIST_W), wordWrap: undefined,
@@ -121,7 +126,8 @@ export class JournalWindow {
     const sc = this.scene, s = this.frame.s;
     const z = sc.cameras.main.zoom || 1;
     const q = e.quest;
-    let cy = y;
+    const begin = this.parts.length;
+    let cy = y - this.detailScroll;
     const line = (str, kind, extra = {}, gap = 6) => {
       const t = this._text(x, cy, str, kind, { wordWrap: { width: s(w), useAdvancedWrap: true }, lineSpacing: s(3), ...extra });
       cy += t.height * z + gap;
@@ -134,7 +140,8 @@ export class JournalWindow {
     const passed = q.stages.filter(st => st !== e.stage && checkRequires(st.doneIf, this.ws).ok);
     if (!done && e.stage) {
       line('Сейчас', 'small', { color: COLOR.gold, letterSpacing: s(2) }, 4);
-      line(e.stage.text, 'body', { size: 16, color: COLOR.text }, 18);
+      line(e.stage.text, 'body', { size: 16, color: COLOR.text }, 12);
+      if (e.stage.hint) line(e.stage.hint, 'body', { size: 13, color: COLOR.gold }, 18);
     }
     if (passed.length) {
       line(done ? 'Пройдено' : 'Уже сделано', 'small', { color: COLOR.gold, letterSpacing: s(2) }, 4);
@@ -149,6 +156,13 @@ export class JournalWindow {
       line('Исходы', 'small', { color: COLOR.gold, letterSpacing: s(2) }, 4);
       outs.forEach(o => line(`◆ ${o}`, 'body', { size: 13, color: COLOR.bone }, 6));
     }
+    this.detailMax = Math.max(0, cy + this.detailScroll - y - h + 24);
+    const content = this.parts.slice(begin);
+    const maskShape = this._add(sc.add.graphics().setVisible(false));
+    maskShape.fillStyle(0xffffff).fillRect(s(x), s(y), s(w), s(h - 24));
+    this.detailMask = maskShape.createGeometryMask();
+    content.forEach(o => o.setMask(this.detailMask));
+    if (this.detailMax) this._text(x, y + h - 18, UI.journalHints.scroll, 'small', { color: COLOR.dim });
   }
 
   // Зачёркивание: линия через середину каждой строки текста
@@ -167,13 +181,16 @@ export class JournalWindow {
   /** Открыть квест по id (выбрать и прокрутить список к нему). */
   select(id) {
     this.sel = id;
+    this.detailScroll = 0;
     this._follow = true;
     this.render();
   }
 
   _onWheel(ptr, dy) {
     if (this.closed) return;
-    this.scroll += dy > 0 ? 1 : -1;
+    if (ptr.x > this.frame.inner.x + LIST_W + 30) {
+      this.detailScroll = Phaser.Math.Clamp(this.detailScroll + (dy > 0 ? 60 : -60), 0, this.detailMax || 0);
+    } else this.scroll += dy > 0 ? 1 : -1;
     this.render();
   }
 }

@@ -381,12 +381,14 @@ export class BattleScene extends Phaser.Scene {
       if (unit.type === 'enemy' && !animated) {
         sprite.setInteractive({ useHandCursor: true });
         sprite.on('pointerdown', () => this._onEnemyClick(unit));
-        sprite.on('pointerover', () => sprite.setAlpha(0.8));
-        sprite.on('pointerout',  () => sprite.setAlpha(1.0));
+        sprite.on('pointerover', () => { sprite.setAlpha(0.8); this.ui.showTarget(unit); });
+        sprite.on('pointerout',  () => { sprite.setAlpha(1.0); this.ui.tip.hide(); });
       }
       if (unit.type === 'player' && !animated) {
         sprite.setInteractive({ useHandCursor: true });
         sprite.on('pointerdown', () => this._onAllyClick(unit));
+        sprite.on('pointerover', () => this.ui.showTarget(unit));
+        sprite.on('pointerout', () => this.ui.tip.hide());
       }
 
       if (!animated) this._unitSprites.push(sprite);
@@ -436,10 +438,12 @@ export class BattleScene extends Phaser.Scene {
     spr.setInteractive({ useHandCursor: true, pixelPerfect: true, alphaTolerance: 8 });
     if (unit.type === 'enemy') {
       spr.on('pointerdown', () => this._onEnemyClick(unit));
-      spr.on('pointerover', () => spr.setAlpha(0.8));
-      spr.on('pointerout',  () => spr.setAlpha(1.0));
+      spr.on('pointerover', () => { spr.setAlpha(0.8); this.ui.showTarget(unit); });
+      spr.on('pointerout',  () => { spr.setAlpha(1.0); this.ui.tip.hide(); });
     } else {
       spr.on('pointerdown', () => this._onAllyClick(unit));
+      spr.on('pointerover', () => this.ui.showTarget(unit));
+      spr.on('pointerout', () => this.ui.tip.hide());
     }
     unit._animSprite = spr;
     unit._animCfg = cfg;

@@ -1,3 +1,4 @@
+import { targetPreview } from './BattleTargetPreview.js';
 import eventBus from '../utils/eventBus.js';
 import skillsData from '../data/skills.json';
 import { Frame } from './Frame.js';
@@ -197,6 +198,11 @@ export class UIManager {
   }
 
   // ── Обновление UI ─────────────────────────────────────────────────────
+
+  showTarget(unit) {
+    if (this.scene.battleOver || !unit.isAlive) return;
+    this.tip.show(unit._spriteX, unit._spriteY - 60, targetPreview(this.scene, unit));
+  }
 
   update() {
     if (this.scene.battleOver) { this.hideActions(); return; }

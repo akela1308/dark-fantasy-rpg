@@ -1,3 +1,4 @@
+import UI from '../data/ui.json';
 import itemsData from '../data/items.json';
 import booksData from '../data/books.json';
 import shopsData from '../data/shops.json';
@@ -64,7 +65,8 @@ export function useSummary(item) {
   if (u.healAll) parts.push(`+${u.healAll} HP всем`);
   if (u.cureInjury) parts.push('снимает рану');
   const b = u.battleBuff;
-  if (b) parts.push('действует в следующем бою');
+  if (b) parts.push(`${UI.itemHints.nextBattle}${UI.itemHints.targets[b.target] ? `: ${UI.itemHints.targets[b.target]}` : ''}`);
+  if (u.oncePerRest) parts.push(UI.itemHints.oncePerRest);
   return parts.join(', ');
 }
 

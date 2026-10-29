@@ -56,10 +56,17 @@
         {
           "label": "«У столба лежит гонец.»",
           "showIf": {
-            "flag": "courier_letter_found",
             "notFlag": [
               "courier_buried",
               "courier_left"
+            ],
+            "any": [
+              {
+                "flag": "courier_letter_found"
+              },
+              {
+                "flag": "road_looters_done"
+              }
             ]
           },
           "next": "courier"
