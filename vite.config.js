@@ -105,6 +105,7 @@ export default {
   },
   build: {
     outDir: 'dist',
-    emptyOutDir: false,
+    // Повторная сборка не должна накапливать старые JS/WebP и съедать лимит Pages.
+    emptyOutDir: true,
   },
 };

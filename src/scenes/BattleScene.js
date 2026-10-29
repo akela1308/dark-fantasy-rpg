@@ -618,14 +618,15 @@ export class BattleScene extends Phaser.Scene {
     });
   }
 
-  _animHeal(unit) {
+  _animHeal(unit, support = false) {
     if (!unit._sprite) return;
-    const glow = this.add.ellipse(unit._spriteX, unit._spriteY, 90, 90, 0x44FF88, 0.45).setDepth(900);
+    const glow = this.add.ellipse(unit._spriteX, unit._spriteY, 90, 90, support ? 0xd4a832 : 0x44FF88, 0.45).setDepth(900);
     this.tweens.add({
       targets: glow, alpha: 0, scaleX: 2.2, scaleY: 2.2,
       duration: 550, ease: 'Power2',
       onComplete: () => glow.destroy(),
     });
+    if (support) return; // прикрытие и другие нелечащие навыки не показывают ложное «+HP»
     const txt = this.add.text(unit._spriteX, unit._spriteY - 20, '+HP', {
       fontSize: '17px', color: '#44FF88', fontFamily: 'serif',
       stroke: '#000', strokeThickness: 2
@@ -689,9 +690,12 @@ export class BattleScene extends Phaser.Scene {
   _highlightTargets(type) {
     this._clearTargetHighlight();
     const isAlly = type === 'ally_single';
+    const actor = this.turnManager.active;
+    const skill = this._pendingSkill ? this.skillSystem.get(this._pendingSkill) : null;
+    const ignoresRows = actor?.ranged || actor?.ignoreRows || skill?.ignoreRows;
     const targets = isAlly
       ? this.playerUnits.filter(u => u.isAlive)
-      : this.enemyUnits.filter(u => isActive(u));
+      : this.enemyUnits.filter(u => isActive(u) && (ignoresRows || meleeReach(actor, u, this.enemyUnits).ok));
     // Кольцо под ногами цели, фигура не перекрашивается
     this.ui?.showTargets(targets, isAlly);
   }
@@ -751,7 +755,7 @@ export class BattleScene extends Phaser.Scene {
       this._afterPlayerAction();
     };
     if (!anim) {
-      if (support) this._animHeal(actor);
+      if (support) this._animHeal(actor, true);
       else this._playAttackAnim(actor, target);
       apply();
       this.time.delayedCall(support ? 450 : 240, done);

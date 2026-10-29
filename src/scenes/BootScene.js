@@ -7,6 +7,7 @@ import { applySavedVolume } from '../ui/GameMenu.js';
 import { setBackdrop } from '../ui/Backdrop.js';
 import { FONT, COLOR } from '../ui/Theme.js';
 import { preloadPlates } from '../ui/Plate.js';
+import UI from '../data/ui.json';
 
 export class BootScene extends Phaser.Scene {
   constructor() {
@@ -115,10 +116,7 @@ export class BootScene extends Phaser.Scene {
     const menu = [];
     const fadeMenu = objs => objs.forEach(o => { o.setAlpha(0); fadeIn(o, 1800, 900); });
     this._mode = 'chronicle';
-    const MODES = {
-      chronicle: ['Хроника', 'Поражение возвращает к последнему привалу'],
-      iron: ['Железо', 'Смерть отряда стирает сохранение'],
-    };
+    const MODES = UI.battle.modes;
     if (save) {
       const info = SaveSystem.slotInfo(SaveSystem.getSlot());
       const where = MAP_CONFIGS[info?.mapKey]?.name || info?.mapKey || '';

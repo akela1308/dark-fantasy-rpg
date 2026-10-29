@@ -163,7 +163,9 @@ export class SkillSystem {
     }
 
     if (skill.effect === 'dodge_boost') {
-      caster.addEffect({ type: 'dodge_boost', value: skill.effectValue, duration: skill.duration });
+      // endTurn списывает ход сразу после применения. Как у «Защиты»,
+      // этот технический тик не должен съедать защиту до ответа противника.
+      caster.addEffect({ type: 'dodge_boost', value: skill.effectValue, duration: skill.duration + 1 });
       eventBus.emit('log', `${caster.label}: «${skill.name}», уклонение +${skill.effectValue * 100}%`);
     }
 

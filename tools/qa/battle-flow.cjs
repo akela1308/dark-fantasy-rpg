@@ -33,6 +33,14 @@ const pause = ms => new Promise(r => setTimeout(r, ms));
    await page.waitForFunction(() => { const s=window.__game.scene.getScene('BattleScene'); return s.scene.isActive() && s.playerUnits?.[0]?._animSprite?.active && !s.load.isLoading(); }, {timeout:60000});
    console.log('Battle ready', {party,ambush,mode});
   }
+  // Readouts and target rings reflect resources and reachable rows.
+  await battle({party:['hero_duelist','companion_brawler','companion_healer']});
+  const readout=await page.evaluate(()=>{const s=window.__game.scene.getScene('BattleScene'),a=s.playerUnits[0];s.turnManager.active=a;s.turnManager.index=s.turnManager.queue.indexOf(a);s.turnManager._setPhase(a);
+   s.enemyUnits.forEach((u,i)=>u.position={row:i>=2?1:0,col:i%2});s._renderAll();
+   const melee=s.ui._rings.length; a.resources.tempo=1;s._onSkillSelect('pistol_shot');const pistol=s.ui._rings.length;
+   return {melee,pistol,enemies:s.enemyUnits.length,text:s.ui._stateLabel.text};});
+  assert.equal(readout.melee,2);assert.equal(readout.pistol,readout.enemies);assert.ok(readout.text.includes('Темп 1/3'));assert.ok(readout.text.includes('Пистоль 2'));
+  await page.screenshot({path:path.join(out,'battle-readout-targets.png')});results.push({name:'resource readout and reachable targets',...readout});
   // Real hit and completion events, with a deterministic lethal fixture.
   await battle({mode:'iron'});
   await page.evaluate(() => {
@@ -73,7 +81,7 @@ const pause = ms => new Promise(r => setTimeout(r, ms));
   await page.evaluate(()=>{const s=window.__game.scene.getScene('BattleScene');s._onSkillSelect('dueling_stance');window.__stance={anim:s.playerUnits[0]._animSprite.anims.currentAnim.key,lock:s._animLock};});
   await pause(180);await page.screenshot({path:path.join(out,'stance.png')});
   assert.ok((await page.evaluate(()=>window.__stance.anim)).includes('block'));
-  await page.waitForFunction(()=>!window.__game.scene.getScene('BattleScene')._animLock,{timeout:10000});results.push({name:'self skill plays stance and completes'});
+  await page.waitForFunction(()=>!window.__game.scene.getScene('BattleScene')._animLock,{timeout:10000});assert.equal(await page.evaluate(()=>window.__game.scene.getScene('BattleScene').playerUnits[0].getEffect('dodge_boost')?.value),0.3);results.push({name:'self skill plays stance; dodge survives into enemy turn'});
   // No sheet ready: the fallback still locks input until its motion finishes.
   await battle();
   const fallback=await page.evaluate(()=>{const s=window.__game.scene.getScene('BattleScene');let count=0;s._performAction(s.playerUnits[0],s.enemyUnits[0],null,()=>count++);s._onEnemyClick(s.enemyUnits[0]);return {count,lock:s._animLock};});
@@ -92,6 +100,19 @@ const pause = ms => new Promise(r => setTimeout(r, ms));
   await battle({mode:'iron'});await page.reload();
   await page.waitForFunction(()=>typeof window.__game?.scene.getScene('BootScene')._enter==='function',{timeout:60000});
   assert.equal(await page.evaluate(()=>localStorage.getItem('darkfantasy_ironman_v1')),null);results.push({name:'Iron reload during battle deletes save'});
+  // Full first encounter with real stats, AI, skill costs and hit rolls. No HP/damage fixtures.
+  for (const mode of ['chronicle','iron']) {
+   await battle({mode});
+   await page.evaluate(()=>{const s=window.__game.scene.getScene('BattleScene'),end=s._endBattle;s._endBattle=function(result){window.__actualResult=result;return end.call(this,result);};window.__actualResult=null;});
+   const deadline=Date.now()+90000;let actions=0;
+   while(Date.now()<deadline){
+    const state=await page.evaluate(()=>{const s=window.__game.scene.getScene('BattleScene');if(s.battleOver)return 'done';if(s._animLock||!s.turnManager.isPlayerTurn())return 'wait';const a=s.turnManager.active,foes=s.enemyUnits.filter(u=>u.isAlive&&!u.surrendered);const target=foes.reduce((a,b)=>a.hp<b.hp?a:b);const skill=['pistol_shot','rapier_strike'].find(id=>a.skills.includes(id)&&s.skillSystem.canUse(id,a));if(skill)s._onSkillSelect(skill);s._onEnemyClick(target);return 'acted';});
+    if(state==='done')break;if(state==='acted')actions++;await pause(120);
+   }
+   assert.equal(await page.evaluate(()=>window.__game.scene.getScene('BattleScene').battleOver),true);
+   await pause(1400);const result=await page.evaluate(()=>({result:window.__actualResult,hp:window.__game.scene.getScene('BattleScene').playerUnits[0].hp,save:!!localStorage.getItem('darkfantasy_ironman_v1')}));
+   await page.screenshot({path:path.join(out,`natural-${mode}.png`)});results.push({name:'full first encounter, unmodified combat stats',mode,actions,...result});console.log('Natural battle',mode,result);
+  }
   assert.deepEqual(errors,[]);
   fs.writeFileSync(path.join(out,'battle-results.json'),JSON.stringify({results,errors},null,2));
   console.log(JSON.stringify({results,errors},null,2));

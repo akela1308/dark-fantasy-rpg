@@ -10,7 +10,8 @@
     "deploy": "gh-pages -d dist",
     "test": "node --test 'test/*.test.mjs'",
     "tauri": "tauri",
-    "build:tauri": "vite build --outDir dist-tauri --emptyOutDir"
+    "build:tauri": "vite build --outDir dist-tauri --emptyOutDir",
+    "check:build": "node tools/qa/check-build.mjs"
   },
   "dependencies": {
     "phaser": "^3.80.1"

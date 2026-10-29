@@ -1,5 +1,7 @@
 # Dark Fantasy RPG — CLAUDE.md
 
+> Актуализация 29.10.2026: подробности архитектуры ниже частично исторические. Текущее состояние и воспроизводимые проверки: `assets/generated/_qa/codex-2026-10-29/REPORT.md`. Фактические версии по lockfile: Phaser 3.90.0, Vite 5.4.21. Есть 59 карт, 56 предметов, 30 книг, 12 лавок; levelPlan основных классов 2-12, но 18 поздних узлов отключены. Новые регрессии сохранений/боя и браузерные проверки в `test/` и `tools/qa/`. После сборки выполнять `npm run check:build`. Изменения только в revision-2026-10; push main требует явного разрешения владельца.
+
 ## What is this project?
 
 A browser-based tactical turn-based RPG built with **Phaser 3** and **Vite**, inspired by

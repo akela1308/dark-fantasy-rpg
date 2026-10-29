@@ -4,6 +4,8 @@ import { Frame } from './Frame.js';
 import { Tooltip } from './Tooltip.js';
 import { plate } from './Plate.js';
 import { FONT, COLOR, HEX } from './Theme.js';
+import { resourceSummary, statusSummary, skillResourceSummary } from './BattleReadout.js';
+import { effectiveSpeed } from '../systems/CombatRules.js';
 
 /**
  * UIManager: интерфейс боя (этап 6).
@@ -124,6 +126,10 @@ export class UIManager {
     this._turnLabel = this.scene.add.text(640, 62, '', {
       fontFamily: FONT, fontSize: '16px', color: COLOR.gold, stroke: '#000', strokeThickness: 3, letterSpacing: 1,
     }).setOrigin(0.5, 0).setDepth(30);
+    this._stateLabel = this.scene.add.text(640, 85, '', {
+      fontFamily: FONT, fontSize: '13px', color: COLOR.bone, stroke: '#000', strokeThickness: 3,
+      align: 'center', wordWrap: { width: 850 },
+    }).setOrigin(0.5, 0).setDepth(30);
   }
 
   _updateTurnLabel() {
@@ -132,6 +138,7 @@ export class UIManager {
     const isPlayer = this.turnManager.isPlayerTurn();
     this._turnLabel.setText(this.scene._animLock ? `Действует: ${unit.label}` : isPlayer ? `Ход: ${unit.label}` : `Ход противника: ${unit.label}`);
     this._turnLabel.setColor(isPlayer ? COLOR.gold : '#e05050');
+    this._stateLabel.setText([resourceSummary(unit), statusSummary(unit)].filter(Boolean).join(' · '));
   }
 
   /** Портреты по порядку ходов: текущий первым и крупнее. */
@@ -168,7 +175,8 @@ export class UIManager {
         }).setOrigin(0.5).setDepth(31));
       }
       const hit = sc.add.zone(cx, cy, sz, sz).setDepth(32).setInteractive();
-      hit.on('pointerover', () => this.tip.show(cx, cy + sz / 2, { title: u.label, body: `HP ${u.hp}/${u.maxHp}` }, { below: true }));
+      hit.on('pointerover', () => this.tip.show(cx, cy + sz / 2, { title: u.label,
+        body: [`HP ${u.hp}/${u.maxHp}`, resourceSummary(u), statusSummary(u)].filter(Boolean).join('\n') }, { below: true }));
       hit.on('pointerout', () => this.tip.hide());
       this._queueObjs.push(hit);
       x += sz + gap;
@@ -181,7 +189,8 @@ export class UIManager {
     const out = [];
     for (let i = tm.index; i < tm.queue.length && out.length < n; i++) if (alive(tm.queue[i])) out.push(tm.queue[i]);
     // Следующий раунд: тот же порядок по скорости
-    const next = [...(tm.all || tm.queue)].filter(alive).sort((a, b) => (b.speed || 0) - (a.speed || 0));
+    const nextSpeed = u => effectiveSpeed({ ...u, _initiativeBonus: 0 });
+    const next = [...(tm.all || tm.queue)].filter(alive).sort((a, b) => nextSpeed(b) - nextSpeed(a));
     for (let i = 0; out.length < n && next.length && i < n; i++) out.push(next[i % next.length]);
     if (out[0] !== tm.active && tm.active) out.unshift(tm.active);
     return out.slice(0, n);
@@ -218,7 +227,7 @@ export class UIManager {
       const charges = skill.usesResource ? unit.resources?.[skill.usesResource] : undefined;
       const cd = unit.isOnCooldown?.(skillId) ? unit.cooldowns[skillId] : 0;
       const badge = cd ? `⌛${cd}` : charges !== undefined ? `×${charges}` : null;
-      const body = [skill.description, charges !== undefined ? `Заряды: ${charges}` : null].filter(Boolean).join('\n');
+      const body = [skill.description, skillResourceSummary(skill), charges !== undefined ? `Заряды: ${charges}` : null].filter(Boolean).join('\n');
       buttons.push({
         icon: SKILL_ICONS[skillId] || 'icon_dual_sword', badge,
         tip: { title: skill.name, body, action: reason ? `Недоступно: ${reason}` : pending === skillId ? 'Выбрано. Клик или Esc: отменить' : (skill.targetType === 'self' ? 'Клик: применить сразу' : 'Клик: выбрать, затем цель') },
@@ -307,6 +316,7 @@ export class UIManager {
     this._queueObjs.forEach(o => o.destroy());
     this._queueObjs = [];
     this._turnLabel?.setVisible(false);
+    this._stateLabel?.setVisible(false);
   }
 
   // ── Кольца: активный боец и цели навыка ───────────────────────────────
