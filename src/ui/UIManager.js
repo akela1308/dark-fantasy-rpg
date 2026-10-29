@@ -130,7 +130,7 @@ export class UIManager {
     const unit = this.turnManager.active;
     if (!unit) return;
     const isPlayer = this.turnManager.isPlayerTurn();
-    this._turnLabel.setText(isPlayer ? `Ход: ${unit.label}` : `Ход противника: ${unit.label}`);
+    this._turnLabel.setText(this.scene._animLock ? `Действует: ${unit.label}` : isPlayer ? `Ход: ${unit.label}` : `Ход противника: ${unit.label}`);
     this._turnLabel.setColor(isPlayer ? COLOR.gold : '#e05050');
   }
 
@@ -201,7 +201,7 @@ export class UIManager {
     this.tip.hide();
     this._actionBtns.forEach(b => b.destroy());
     this._actionBtns = [];
-    if (this.scene.battleOver || !this.turnManager.isPlayerTurn()) return;
+    if (this.scene.battleOver || this.scene._animLock || !this.turnManager.isPlayerTurn()) return;
     const unit = this.turnManager.active;
     if (!unit) return;
 

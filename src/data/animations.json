@@ -1697,6 +1697,8 @@
   "actions": {
    "basic": "slash",
    "rapier_strike": "lunge",
+   "dueling_stance": "block",
+   "last_argument_shot": "shot",
    "pistol_shot": "shot",
    "aimed_shot": "shot"
   },
@@ -2795,7 +2797,10 @@
   },
   "actions": {
    "basic": "attack",
-   "bandage": "cast2"
+   "bandage": "cast2",
+   "bitter_poultice": "cast2",
+   "resin_brew": "cast2",
+   "salt_tongue": "cast2"
   },
   "name": "Тая (Знахарка)"
  },

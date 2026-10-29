@@ -186,6 +186,7 @@ export class BattleScene extends Phaser.Scene {
     this.music.create();
     // Удары, смерть и победа догружаются в фоне; пока листа нет, действие идёт без покадровой анимации
     if (loadBattleAnimSheets(this, this._animUnitIds || [], false)) this.load.start();
+    if (!this.turnManager.isPlayerTurn()) this._runAITurn();
   }
 
   // ── Инициализация ─────────────────────────────────────────────────────
@@ -198,6 +199,7 @@ export class BattleScene extends Phaser.Scene {
     this.battleLog   = [];
     this.battleOver  = false;
     this._animLock   = false;
+    this._furyUsed   = false;
     this._pendingSkill = null;
   }
 
@@ -467,8 +469,16 @@ export class BattleScene extends Phaser.Scene {
     const spr = unit._animSprite;
     const cfg = unit._animCfg;
     const a = cfg.anims[name];
-    const reaction = ['hit', 'death', 'victory', 'block'].includes(name);
+    const reaction = !onHit;
     if (!reaction) unit._animBusy = true;
+    // Смерть от ответного выпада может прервать удар. Завершение хода
+    // переносится на конец новой анимации, иначе ввод останется заблокирован.
+    const previousDone = spr._actionDone;
+    spr._actionDone = previousDone && onDone
+      ? () => { onDone(); previousDone(); }
+      : onDone || previousDone;
+    const run = {};
+    spr._animationRun = run;
     let hit = false;
     const fireHit = () => {
       if (hit) return;
@@ -489,9 +499,12 @@ export class BattleScene extends Phaser.Scene {
     spr.once('animationcomplete', () => {
       spr.off('animationupdate', onUpdate);
       fireHit();
+      if (spr._animationRun !== run) return;
       if (!reaction) unit._animBusy = false;
-      onDone?.();
+      const done = spr._actionDone;
+      spr._actionDone = null;
       if (!a.hold) this._returnToIdle(unit);   // смерть и победа держат последний кадр
+      done?.(); // следующий ход может запустить победу: стойка не должна её перебить
     });
   }
 
@@ -728,34 +741,39 @@ export class BattleScene extends Phaser.Scene {
   }
 
   // Действие с анимацией: урон засчитывается на кадре удара, до конца хода ввод заблокирован
-  _performAction(actor, target, anim, apply) {
-    if (!anim) {
-      this._playAttackAnim(actor, target);
-      apply();
-      this._afterPlayerAction();
-      return;
-    }
+  _performAction(actor, target, anim, apply, support = false) {
     this._animLock = true;
     this._clearTargetHighlight();
-    this._playUnitAnim(actor, anim, () => {
+    this.ui.update();
+    const done = () => {
+      actor._animBusy = false;
       this._animLock = false;
-      apply();
       this._afterPlayerAction();
-    });
+    };
+    if (!anim) {
+      if (support) this._animHeal(actor);
+      else this._playAttackAnim(actor, target);
+      apply();
+      this.time.delayedCall(support ? 450 : 240, done);
+      return;
+    }
+    this._playUnitAnim(actor, anim, apply, done);
   }
 
   _onAllyClick(target) {
     if (this.battleOver || this._animLock) return;
     if (!this.turnManager.isPlayerTurn()) return;
     if (!this._pendingSkill) return;
+    if (!target?.isAlive) return;
     const actor = this.turnManager.active;
     const sk = this.skillSystem.get(this._pendingSkill);
     if (sk && (sk.targetType === 'ally_single' || sk.targetType === 'self')) {
       const reason = this.skillSystem.unavailableReason(this._pendingSkill, actor);
       if (reason) { eventBus.emit('log', `«${sk.name}» недоступен: ${reason}`); this._cancelPendingSkill(); return; }
-      actor.handleSkill(this._pendingSkill, target, this.skillSystem);
+      const skillId = this._pendingSkill;
       this._pendingSkill = null;
-      this._afterPlayerAction();
+      this._performAction(actor, sk.targetType === 'self' ? actor : target, this._actionAnim(actor, skillId),
+        () => actor.handleSkill(skillId, sk.targetType === 'self' ? actor : target, this.skillSystem), true);
     }
   }
 
@@ -779,8 +797,8 @@ export class BattleScene extends Phaser.Scene {
     if (reason) { eventBus.emit('log', `«${sk.name}» недоступен: ${reason}`); return; }
     if (sk.targetType === 'self') {
       this._pendingSkill = null;
-      actor.handleSkill(skillId, actor, this.skillSystem);
-      this._afterPlayerAction();
+      this._performAction(actor, actor, this._actionAnim(actor, skillId),
+        () => actor.handleSkill(skillId, actor, this.skillSystem), true);
     } else {
       this._pendingSkill = skillId;
       eventBus.emit('log', `«${sk.name}»: выберите цель`);
