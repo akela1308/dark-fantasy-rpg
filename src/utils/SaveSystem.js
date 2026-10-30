@@ -50,7 +50,7 @@ function serializeUnit(u) {
     baseMaxHp: u.baseMaxHp ?? u.maxHp,
     damage:    { ...u.damage },
     speed:     u.speed,
-    armor:     u.armor,
+    armor:     (u.armor || 0) + (u._armorBroken || 0),
     accuracy:  u.accuracy,
     lifesteal: u.lifesteal,
     regen:     u.regen,

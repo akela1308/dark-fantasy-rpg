@@ -272,19 +272,29 @@ export class Unit {
     return this.effects.find(e => e.type === type) || null;
   }
 
+  _restoreEffect(effect) {
+    if (effect.type !== 'armor_broken') return;
+    const amount = effect.value || 0;
+    this.armor += amount;
+    this._armorBroken = Math.max(0, (this._armorBroken || 0) - amount);
+  }
+
+  removeEffectInstance(effect) {
+    if (!this.effects.includes(effect)) return false;
+    this._restoreEffect(effect);
+    this.effects = this.effects.filter(e => e !== effect);
+    return true;
+  }
+
   removeEffect(type) {
-    const before = this.effects.length;
-    this.effects = this.effects.filter(e => e.type !== type);
-    return before !== this.effects.length;
+    const matches = this.effects.filter(e => e.type === type);
+    matches.forEach(e => this.removeEffectInstance(e));
+    return matches.length > 0;
   }
 
   tickEffects() {
     const next = this.effects.map(e => ({ ...e, duration: e.duration - 1 }));
-    // Проломленная броня возвращается, когда эффект кончился
-    next.filter(e => e.duration <= 0 && e.type === 'armor_broken').forEach(e => {
-      this.armor += e.value || 0;
-      this._armorBroken = Math.max(0, (this._armorBroken || 0) - (e.value || 0));
-    });
+    next.filter(e => e.duration <= 0).forEach(e => this._restoreEffect(e));
     this.effects = next.filter(e => e.duration > 0);
   }
 
@@ -307,6 +317,7 @@ export class Unit {
    * Сборы не трогаются (восстанавливаются только отдыхом).
    */
   prepareForBattle(baseResources = {}) {
+    this.removeEffect('armor_broken');
     this.cooldowns = {};
     this.effects = [];
     this.surrendered = false;
@@ -323,6 +334,7 @@ export class Unit {
   }
 
   resetForBattle() {
+    this.removeEffect('armor_broken');
     this.hp       = this.maxHp;
     this.isAlive  = true;
     this.cooldowns = {};

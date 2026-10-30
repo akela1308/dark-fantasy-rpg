@@ -107,7 +107,7 @@ export class MapEncounters {
   _done(item) { return item.state === 'done' || this.ws.flag(`enc_${item.cfg.id}_done`); }
 
   _onClick(item) {
-    if (this._done(item) || this.scene._dialogue?.active) return;
+    if (this._done(item) || this.scene._dialogue?.active || !checkRequires(item.cfg.showIf, this.ws).ok) return;
     if (item.cfg.behaviour === 'loner') this.hooks.talk?.(item.cfg);
     if (item.cfg.behaviour === 'lair') this._wake(item);
   }
@@ -124,7 +124,9 @@ export class MapEncounters {
     if (this._cooldown > 0) { this._cooldown -= delta; return; }
     if (this.scene._transitioning || this.scene._dialogue?.active) return;
     for (const item of this.list) {
-      if (this._done(item) || item.triggered) continue;
+      if (this._done(item)) continue;
+      if (!checkRequires(item.cfg.showIf, this.ws).ok) { this.finish(item.cfg.id); continue; }
+      if (item.triggered) continue;
       const e = item.cfg;
       const radius = e.radius ?? DEFAULT_RADIUS[e.behaviour] ?? 100;
 

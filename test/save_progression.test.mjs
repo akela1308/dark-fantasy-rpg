@@ -66,3 +66,26 @@ test('Железо: F5 в бою стирает прогресс, сохранё
  SaveSystem.saveWorld(reg,'south_post','default');
  assert.equal(SaveSystem.resolveAbandonedBattle(),false);assert.equal(SaveSystem.load().world.partyXp,25);
 });
+
+test('уровни 3–4, резерв и поражение: привал возвращает состав и выбранное развитие', () => {
+ const reg=new Reg();SaveSystem.newGame(reg);
+ for(const id of ['companion_brawler','companion_healer'])PartySystem.recruit(reg,id);
+ PartySystem.addXp(reg,PartySystem.xpTotalFor(4));
+ const roster=PartySystem.buildRosterUnits(reg);
+ for(const u of roster)for(let level=2;level<=4;level++){
+  CP.applyLevelGrowth(u,level);u.level=level;
+  for(const n of CP.getAutoNodes(u,level))CP.applyProgressionChoice(u,n);
+  const choices=CP.getClassProgressionChoices(u,level);
+  if(choices)CP.applyProgressionChoice(u,choices[0]);
+ }
+ PartySystem.bench(reg,'companion_brawler');assert.equal(PartySystem.activate(reg,'companion_healer'),true);
+ SaveSystem.save(roster,'tavern_inside','default',reg);PartySystem.restAll(reg,'tavern_inside','default');
+ const saved=SaveSystem.load();assert.ok(saved.units.every(u=>u.level===4));
+ PartySystem.bench(reg,'companion_healer');PartySystem.activate(reg,'companion_brawler');
+ PartySystem.addXp(reg,200);SaveSystem.saveWorld(reg,'chapel_inside','default');SaveSystem.markBattle('chapel_cult');
+ SaveSystem.restoreRestPoint();const restored=new Reg();SaveSystem.applyFlagsToRegistry(restored,{force:true});
+ assert.deepEqual(PartySystem.getParty(restored),['hero_duelist','companion_healer']);
+ assert.equal(PartySystem.getXp(restored),PartySystem.xpTotalFor(4));
+ assert.deepEqual(SaveSystem.load().units,saved.units);
+ assert.equal(pendingProgression(restored).pending.length,0);
+});

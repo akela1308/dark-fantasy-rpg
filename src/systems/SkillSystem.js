@@ -139,7 +139,7 @@ export class SkillSystem {
     if (skill.effect === 'cleanse_heal' && target) {
       const bad = ['weakened', 'staggered', 'marked', 'rooted', 'armor_broken'];
       const st = target.effects.find(e => bad.includes(e.type));
-      if (st) target.effects = target.effects.filter(e => e !== st);
+      if (st) target.removeEffectInstance(st);
       const amount = this.healPower(skill, caster);
       target.heal(amount);
       eventBus.emit('log', `${caster.label}: «${skill.name}» → ${target.label}`);
@@ -183,6 +183,7 @@ export class SkillSystem {
     // На боссе корни дают только −2 инициативы (01_БАЛАНС 2)
     if (type === 'rooted' && receiver.isBoss) value = RULES.ROOT_SPEED_BOSS;
     if (type === 'armor_broken') {
+      value = Math.min(Math.max(0, receiver.armor || 0), Math.max(0, value || 0));
       receiver.armor = Math.max(0, (receiver.armor || 0) - value);
       receiver._armorBroken = (receiver._armorBroken || 0) + value;
     }
