@@ -65,7 +65,8 @@ export class MapEncounters {
     const enemy = battlesData.find(b => b.id === e.battleId)?.enemies?.[0];
     if (!enemy) return;
     const key = enemy.spriteKey ?? enemy.id;
-    const idle = getBattleAnimConfig(key)?.anims?.idle;
+    const anim = getBattleAnimConfig(key);
+    const idle = anim?.anims?.idle;
     if (!idle) return;
     if (loadSheetOnce(s, idle.key, idle.file, { frameWidth: idle.frameWidth, frameHeight: idle.frameHeight })) s.load.start();
     whenTextures(s, [idle.key], () => {
@@ -74,7 +75,7 @@ export class MapEncounters {
       const hM = HEIGHTS.units[key] ?? HEIGHTS.battle.default;
       const px = M.heroPx * (s._charScale || 1) * hM / M.heroM;
       const spr = s.add.sprite(item.marker.x, item.marker.y, idle.key, 0)
-        .setOrigin(idle.originX, idle.originY).setScale(px / idle.bodyHeight).setFlipX(true).setDepth(item.marker.y);
+        .setOrigin(idle.originX, idle.originY).setScale(px / idle.bodyHeight).setFlipX(!anim.faceLeft).setDepth(item.marker.y);
       // Круг становится кольцом под ногами, клик и наведение остаются на нём и на фигуре
       const w = Math.max(40, px * 0.55);
       s.tweens.killTweensOf(item.marker);

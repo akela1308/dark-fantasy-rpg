@@ -32,7 +32,7 @@
     },
     {
       "showIf": {
-        "flag": "reader_killed",
+        "flag": "dead_road_reader_defeated",
         "notFlag": "savko_reader_told"
       },
       "node": "reader_dead"

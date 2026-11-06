@@ -8179,7 +8179,7 @@
         "showIf": {
           "notFlag": [
             "reader_spared",
-            "dead_road_reader_won"
+            "dead_road_reader_defeated"
           ]
         },
         "heightM": 1.78

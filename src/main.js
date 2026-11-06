@@ -7,6 +7,7 @@ import { LevelUpScene } from './scenes/LevelUpScene.js';
 import { ChapterEndScene } from './scenes/ChapterEndScene.js';
 import { GAME_WIDTH, GAME_HEIGHT } from './utils/constants.js';
 import { Store } from './utils/storeAdapter.js';
+import portraitVersions from './data/portrait_versions.json';
 
 // Портрет с новой версией (<имя>_v2.png: вырезан фон и т.п.) грузится вместо старого под тем же ключом
 if (typeof __PORTRAITS__ !== 'undefined') {
@@ -21,17 +22,19 @@ if (typeof __PORTRAITS__ !== 'undefined') {
   };
 }
 
-// В собранной игре все PNG перекодированы в WebP (vite.config.js, png-to-webp): подменяем путь при загрузке
-if (typeof __PNG_AS_WEBP__ !== 'undefined' && __PNG_AS_WEBP__) {
-  const L = Phaser.Loader.LoaderPlugin.prototype;
-  const addFile = L.addFile;
-  L.addFile = function (file) {
-    [].concat(file).forEach(f => {
-      if (f && typeof f.url === 'string' && f.url.endsWith('.png')) f.url = f.url.slice(0, -4) + '.webp';
-    });
-    return addFile.call(this, file);
-  };
-}
+// Подмена путей при загрузке. Новые версии портретов: готовый арт не перезаписывается, карта в portrait_versions.json.
+// В собранной игре все PNG перекодированы в WebP (vite.config.js, png-to-webp).
+const L = Phaser.Loader.LoaderPlugin.prototype;
+const addFile = L.addFile;
+L.addFile = function (file) {
+  [].concat(file).forEach(f => {
+    if (!f || typeof f.url !== 'string') return;
+    const m = f.url.match(/portraits\/([^/]+)\.png$/);
+    if (m && portraitVersions[m[1]]) f.url = f.url.replace(`${m[1]}.png`, `${portraitVersions[m[1]]}.png`);
+    if (typeof __PNG_AS_WEBP__ !== 'undefined' && __PNG_AS_WEBP__ && f.url.endsWith('.png')) f.url = f.url.slice(0, -4) + '.webp';
+  });
+  return addFile.call(this, file);
+};
 
 const config = {
   type: Phaser.AUTO,

@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/50a203ce-7db7-49c7-98d2-0b4c73d2c2ce",
+ "prompt": "One single attack to the right: lunges forward to the right slashing with the claws or the weapon, then recovers back into the same stance. HANDS CANON: no weapon, long claws on both hands; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head. CRITICAL: the weapon keeps exactly the same size, length and shape in every frame, it is a rigid solid object. It never stretches, bends, duplicates, disappears or moves to the other hand. No weapon or object appears if the first frame does not show it. No flashes, no sparks, no glow. Slow, restrained movement.",
+ "img": "vurdalak/k_battle_w.png",
+ "last": "vurdalak/k_battle_w.png",
+ "sec": 4
+}

@@ -401,7 +401,14 @@
       "flag": "savko_believed"
     },
     "doneIf": {
-      "flag": "sealed_basement_defeated"
+      "any": [
+        {
+          "flag": "sealed_basement_defeated"
+        },
+        {
+          "flag": "sealed_basement_4_defeated"
+        }
+      ]
     },
     "stages": [
       {
@@ -429,7 +436,14 @@
         "id": "door",
         "text": "Открыть в подвале дверь со знаком.",
         "doneIf": {
-          "flag": "sealed_basement_defeated"
+          "any": [
+            {
+              "flag": "sealed_basement_defeated"
+            },
+            {
+              "flag": "sealed_basement_4_defeated"
+            }
+          ]
         }
       }
     ],
@@ -707,7 +721,7 @@
           "flag": "reader_spared"
         },
         {
-          "flag": "dead_road_reader_won"
+          "flag": "dead_road_reader_defeated"
         }
       ]
     },
@@ -721,7 +735,7 @@
               "flag": "reader_spared"
             },
             {
-              "flag": "dead_road_reader_won"
+              "flag": "dead_road_reader_defeated"
             }
           ]
         }
@@ -733,7 +747,7 @@
         "text": "Чтец дочитал. Проход по тракту свободен."
       },
       {
-        "flag": "reader_killed",
+        "flag": "dead_road_reader_defeated",
         "text": "Таблички остались пустыми. Савко об этом узнаёт и уйдёт."
       }
     ],

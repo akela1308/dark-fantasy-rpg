@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/92ff9f1c-82a8-46eb-887c-10a6989d3c46",
+ "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one small pickaxe in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head. CRITICAL: the weapon keeps exactly the same size, length and shape in every frame, it is a rigid solid object. It never stretches, bends, duplicates, disappears or moves to the other hand. No weapon or object appears if the first frame does not show it. No flashes, no sparks, no glow. Slow, restrained movement.",
+ "img": "kobold/k_battle_w.png",
+ "last": null,
+ "sec": 4
+}

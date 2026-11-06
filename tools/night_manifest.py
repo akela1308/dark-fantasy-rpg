@@ -54,6 +54,8 @@ NAMES = {UNIT.get(c["slug"], c["slug"]): c["name"] for c in night_roster.R}
 NAMES["hero_duelist"] = "Падший Дуэлянт"
 for uid, cfg in out.items():
     cfg["name"] = NAMES.get(uid, uid)
+for uid in ("boar", "assassin_undead", "lyo"):   # кадры нарисованы лицом влево
+    if uid in out: out[uid]["faceLeft"] = True
 ready = {u: c for u, c in out.items() if "idle" in c["anims"]}
 json.dump(ready, open(GAME + "/src/data/animations.json", "w"), ensure_ascii=False, indent=1)
 print({u: sorted(c["anims"]) for u, c in ready.items()})

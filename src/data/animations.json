@@ -375,7 +375,8 @@
   "actions": {
    "basic": "attack"
   },
-  "name": "Гаст Забытый"
+  "name": "Гаст Забытый",
+  "faceLeft": true
  },
  "bandit_archer": {
   "anims": {
@@ -956,7 +957,8 @@
   "actions": {
    "basic": "attack"
   },
-  "name": "Вепрь Старого Бора (бестиарий)"
+  "name": "Вепрь Старого Бора (бестиарий)",
+  "faceLeft": true
  },
  "companion_brawler": {
   "anims": {
@@ -3379,7 +3381,8 @@
   "actions": {
    "basic": "attack"
   },
-  "name": "Лё, болотный старейшина (новый, предварительно)"
+  "name": "Лё, болотный старейшина (новый, предварительно)",
+  "faceLeft": true
  },
  "mangy_dog": {
   "anims": {

@@ -427,7 +427,8 @@ export class BattleScene extends Phaser.Scene {
     if (unit._animSprite?.active) return unit._animSprite;
     ensureBattleAnims(this, cfg);
     const idle = cfg.anims.idle;
-    const flip = unit.type === 'enemy';   // все кадры нарисованы лицом вправо, враги смотрят влево
+    // Кадры нарисованы лицом вправо (faceLeft: наоборот), враги смотрят влево
+    const flip = (unit.type === 'enemy') !== !!cfg.faceLeft;
     const spr = this.add.sprite(0, 0, idle.key, 0)
       .setOrigin(...animOrigin(cfg, idle, flip))
       .setFlipX(flip)
