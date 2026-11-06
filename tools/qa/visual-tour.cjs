@@ -48,7 +48,7 @@ const battleIds=(process.env.TOUR_BATTLES?process.env.TOUR_BATTLES.split(','):Ar
   where='battle:'+id;const t0=Date.now();
   try{
    await page.evaluate(id=>{const g=window.__game,r=g.registry,p=['hero_duelist','companion_brawler','companion_healer'];r.set('party',p);r.set('roster',p);r.set('partySlots',3);g.scene.getScenes(true)[0].scene.start('LoadingScene',{destination:'BattleScene',destinationData:{battleId:id,fromMapKey:'village',fromSpawnId:'default'}});},id);
-   await page.waitForFunction(()=>{const s=window.__game.scene.getScene('BattleScene');return s?.scene.isActive()&&s.turnManager?.active;},{timeout:90000});
+   await page.waitForFunction(()=>{const s=window.__game.scene.getScene('BattleScene');return s?.scene.isActive()&&s.turnManager?.active;},{timeout:25000});
    const load=Date.now()-t0;await pause(2200);await page.screenshot({path:`${OUT}/battle_${id}.jpg`,type:'jpeg',quality:82});
    log.battles[id]={load,...await fps()};
   }catch(e){log.battles[id]={fail:e.message.slice(0,160)};await page.screenshot({path:`${OUT}/battle_${id}_FAIL.jpg`,type:'jpeg'}).catch(()=>{});}

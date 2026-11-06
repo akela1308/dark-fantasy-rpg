@@ -8,13 +8,13 @@ export class MusicPlayer {
   constructor(scene) {
     this.scene  = scene;
     this.tracks = [
-      { key: 'track_ashes2',     file: 'Ashes of Velanth 2.mp3',       label: 'Ashes of Velanth II' },
-      { key: 'track_ashes',      file: 'Ashes of Velanth.mp3',         label: 'Ashes of Velanth' },
-      { key: 'track_ward',       file: 'Ashes of the Last Ward.mp3',   label: 'Ashes of the Last Ward' },
-      { key: 'track_monastery2', file: 'Ashes of the Monastery 2.mp3', label: 'Ashes of Monastery II' },
-      { key: 'track_monastery',  file: 'Ashes of the Monastery.mp3',   label: 'Ashes of the Monastery' },
-      { key: 'track_pass',       file: 'Ashes of the Pass.mp3',        label: 'Ashes of the Pass' },
-      { key: 'track_dark',       file: 'Dark Song.mp3',                label: 'Dark Song' },
+      { key: 'track_ashes2',     file: 'Ashes of Velanth 2.mp3',       label: 'Пепел Веланта II' },
+      { key: 'track_ashes',      file: 'Ashes of Velanth.mp3',         label: 'Пепел Веланта' },
+      { key: 'track_ward',       file: 'Ashes of the Last Ward.mp3',   label: 'Пепел последней стражи' },
+      { key: 'track_monastery2', file: 'Ashes of the Monastery 2.mp3', label: 'Пепел монастыря II' },
+      { key: 'track_monastery',  file: 'Ashes of the Monastery.mp3',   label: 'Пепел монастыря' },
+      { key: 'track_pass',       file: 'Ashes of the Pass.mp3',        label: 'Пепел перевала' },
+      { key: 'track_dark',       file: 'Dark Song.mp3',                label: 'Тёмная песня' },
     ];
     this.muted   = false;
     this.current = null;

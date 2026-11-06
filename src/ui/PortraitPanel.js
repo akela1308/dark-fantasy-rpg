@@ -5,6 +5,7 @@
  * Под каждым: HP бар + "HP/maxHP".
  */
 // Список файлов из public/portraits (vite.config.js). Без файла остаётся заглушка, а не 404
+import { HpBar, preloadHpBar } from './HpBar.js';
 export const HAS_PORTRAIT = key => typeof __PORTRAITS__ === 'undefined' || __PORTRAITS__.includes(key);
 
 export class PortraitPanel {
@@ -12,7 +13,7 @@ export class PortraitPanel {
     this.scene       = scene;
     this.playerUnits = playerUnits;
     this.enemyUnits  = enemyUnits;
-    this._cards      = []; // { unit, barFill, barBg, hpText, portrait, activeBorder, activePulse }
+    this._cards      = []; // { unit, bar, hpText, portrait, activeBorder, activePulse }
     this._activeTween = null;
     this._activeUnit  = null;
   }
@@ -24,9 +25,7 @@ export class PortraitPanel {
       const pk = u.spriteKey ?? u.id;   // портрет ищется по тому же ключу, что и в create()
       if (HAS_PORTRAIT(pk)) this.scene.load.image(`portrait_${pk}`, `portraits/${pk}.png`);
     });
-    if (!this.scene.textures.exists('hp_bar_frame')) {
-      this.scene.load.image('hp_bar_frame', 'ui/hp_bar_frame.png');
-    }
+    preloadHpBar(this.scene);
   }
 
   // Вызов в create()
@@ -38,15 +37,9 @@ export class PortraitPanel {
   // Перестроить все карточки (вызывать после каждого хода)
   update(activeUnit) {
     this._cards.forEach(card => {
-      const { unit, barFill, hpText, dimOverlay, activeBorder, portrait, baseScale } = card;
+      const { unit, bar, hpText, dimOverlay, activeBorder, portrait, baseScale } = card;
       const pct = Math.max(0, unit.hp / unit.maxHp);
-      const barW = 88;
-
-      // HP бар
-      barFill.setDisplaySize(Math.max(1, barW * pct), 6);
-      barFill.setX(card.barX + (barW * pct) / 2);
-      const color = pct > 0.5 ? 0x44CC44 : pct > 0.25 ? 0xCCAA00 : 0xCC2222;
-      barFill.setFillStyle(color);
+      bar.set(pct);
       hpText.setText(`${Math.max(0, unit.hp)}/${unit.maxHp}`);
       dimOverlay.setAlpha(unit.isAlive ? 0 : 0.7);
 
@@ -103,21 +96,10 @@ export class PortraitPanel {
       // activeBorder убран
       const activeBorder = null;
 
-      // HP бар фон
+      // Полоска здоровья: рисованная рамка и заливка
       const barX = isLeft ? panelX + 4 : panelX - cardW + 4;
       const barY = cy + cardH / 2 - 22;
-      this.scene.add.rectangle(barX + 44, barY, 88, 6, 0x111111, 0.9)
-        .setDepth(depth + 1);
-
-      // HP бар заполнение
-      const pct      = unit.hp / unit.maxHp;
-      const barColor = pct > 0.5 ? 0x44CC44 : pct > 0.25 ? 0xCCAA00 : 0xCC2222;
-      const barFill  = this.scene.add.rectangle(barX + 44, barY, 88 * pct, 6, barColor)
-        .setOrigin(0.5).setDepth(depth + 2);
-
-      // Готическая рамка HP-бара поверх
-      this.scene.add.image(barX + 44, barY, 'hp_bar_frame')
-        .setDisplaySize(92, 14).setDepth(depth + 3);
+      const bar = new HpBar(this.scene, barX + 44, barY, 88, 6, depth + 1).set(unit.hp / unit.maxHp);
 
       // HP текст
       const hpText = this.scene.add.text(cx, barY + 9, `${unit.hp}/${unit.maxHp}`, {
@@ -129,7 +111,7 @@ export class PortraitPanel {
         .setDepth(depth + 3);
 
       this._cards.push({
-        unit, barFill, hpText, dimOverlay, activeBorder, portrait, baseScale,
+        unit, bar, hpText, dimOverlay, activeBorder, portrait, baseScale,
         barX: barX + 4,
       });
     });

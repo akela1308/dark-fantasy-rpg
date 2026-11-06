@@ -6,6 +6,7 @@ import { BattleGrid }   from '../systems/BattleGrid.js';
 import { UIManager }    from '../ui/UIManager.js';
 import { MusicPlayer }    from '../ui/MusicPlayer.js';
 import { PortraitPanel, HAS_PORTRAIT } from '../ui/PortraitPanel.js';
+import { HpBar, preloadHpBar } from '../ui/HpBar.js';
 import { battleBodyPx } from '../systems/UnitHeights.js';
 import { COLORS, XP, AI_DELAY } from '../utils/constants.js';
 import eventBus from '../utils/eventBus.js';
@@ -107,6 +108,7 @@ export class BattleScene extends Phaser.Scene {
   }
 
   preload() {
+    preloadHpBar(this);
     this._loadingScreen();
     const img = (key, path) => { if (!this.textures.exists(key)) this.load.image(key, path); };
     if (this._battleConfig?.backgroundKey && this._battleConfig?.backgroundPath) {
@@ -362,20 +364,14 @@ export class BattleScene extends Phaser.Scene {
       const spriteTop = y - bodyPx;
       const barY     = spriteTop - 6;
       const pct      = Math.max(0, unit.hp / unit.maxHp);
-      const barColor = pct > 0.5 ? 0x44CC44 : pct > 0.25 ? 0xCCAA00 : 0xCC2222;
 
       // HP-бары всегда поверх всех спрайтов (макс. глубина спрайта ≈ 590)
-      const barBg = this.add.rectangle(x, barY, barW, barH, 0x111111, 0.85)
-        .setDepth(rowDepth + 600);
-      const barFill = this.add.rectangle(x - barW / 2, barY, barW * pct, barH, barColor)
-        .setOrigin(0, 0.5).setDepth(rowDepth + 601);
-
-      unit._hpBar    = barFill;
-      unit._hpBarBg  = barBg;
+      const bar = new HpBar(this, x, barY, barW, barH, rowDepth + 600).set(pct);
+      unit._hpBar    = bar;
       unit._hpBarMaxW = barW;
       unit._hpBarY   = barY;
 
-      this._unitSprites.push(barBg, barFill);
+      this._unitSprites.push(...bar.parts);
 
       // Интерактивность
       if (unit.type === 'enemy' && !animated) {
@@ -412,10 +408,7 @@ export class BattleScene extends Phaser.Scene {
 
   _updateHpBar(unit) {
     if (!unit._hpBar || !unit._hpBarMaxW) return;
-    const pct   = Math.max(0, unit.hp / unit.maxHp);
-    const color = pct > 0.5 ? 0x44CC44 : pct > 0.25 ? 0xCCAA00 : 0xCC2222;
-    unit._hpBar.setDisplaySize(Math.max(1, unit._hpBarMaxW * pct), 5);
-    unit._hpBar.setFillStyle(color);
+    unit._hpBar.set(unit.hp / unit.maxHp);
     this.portraits?.update(this.turnManager.active);
   }
 
