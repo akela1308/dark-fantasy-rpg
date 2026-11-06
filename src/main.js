@@ -8,6 +8,7 @@ import { ChapterEndScene } from './scenes/ChapterEndScene.js';
 import { GAME_WIDTH, GAME_HEIGHT } from './utils/constants.js';
 import { Store } from './utils/storeAdapter.js';
 import portraitVersions from './data/portrait_versions.json';
+import { prepareHiResText, installHiRes } from './systems/HiRes.js';
 
 // Портрет с новой версией (<имя>_v2.png: вырезан фон и т.п.) грузится вместо старого под тем же ключом
 if (typeof __PORTRAITS__ !== 'undefined') {
@@ -54,7 +55,9 @@ const config = {
 
 // Десктоп (Tauri): сохранения поднимаются из файлов до старта игры
 Store.init().finally(() => {
+  prepareHiResText();
   const game = new Phaser.Game(config);
+  game.events.once('ready', () => installHiRes(game));
   // Во весь экран: если окно чуть шире или выше 16:9 (до 12%), игра заполняет его целиком и срезает края
   // (ENVELOP); при сильно другой форме окна вписывается целиком (FIT), полосы закрывает размытый фон
   const fitMode = () => {
