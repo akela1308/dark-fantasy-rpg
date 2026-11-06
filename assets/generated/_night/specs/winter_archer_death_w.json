@@ -1,0 +1,1 @@
+{"slug": "winter_archer", "anim": "death", "base": "winter_archer/k_battle_w.png", "body": 300, "segments": [{"clip": "winter_archer/clips/death_w_v1.mp4", "from": 0, "to": 95, "frames": 30}], "left": 1.5, "right": 1.45, "hold": true, "ver": 2, "top": 0.95}

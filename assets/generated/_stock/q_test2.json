@@ -1,0 +1,18 @@
+[
+ {
+  "name": "_stock/bg/battle_Boloto_battle_b",
+  "first": "../../public/battle/Boloto_battle.jpg",
+  "prompt": "A living painting. The camera is locked off and absolutely still. The painted image stays exactly the same: every building, rock, tree and path stays pixel-still. Motion is extremely subtle and slow and only in a faint shimmer on the water. No clouds appear, no fog patches appear, nothing appears or disappears, the brightness stays the same.",
+  "sec": 8,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_forest1_b",
+  "first": "../../public/maps/forest1.png",
+  "prompt": "A living painting. The camera is locked off and absolutely still. The painted image stays exactly the same: every building, rock, tree and path stays pixel-still. Motion is extremely subtle and slow and only in the very tips of the branches. No clouds appear, no fog patches appear, nothing appears or disappears, the brightness stays the same.",
+  "sec": 8,
+  "n": 2,
+  "raw": true
+ }
+]

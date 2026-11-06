@@ -1,0 +1,472 @@
+[
+ {
+  "name": "duelist/clips/dodge_s",
+  "first": "duelist/k_idle_w.png",
+  "prompt": "One quick evasive move: leans and sidesteps back to the left, avoiding a blow from the right, then returns to the same ready stance. Feet end where they started. HANDS CANON: the thin rapier stays in his front hand on the right side of the image, ONE single flintlock pistol stays in his rear hand on the left side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "duelist/k_idle_w.png"
+ },
+ {
+  "name": "duelist/clips/guard_s",
+  "first": "duelist/k_idle_w.png",
+  "prompt": "Braces and parries a heavy blow coming from the right with the weapon, the body absorbs the impact, then returns to the same ready stance. HANDS CANON: the thin rapier stays in his front hand on the right side of the image, ONE single flintlock pistol stays in his rear hand on the left side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "duelist/k_idle_w.png"
+ },
+ {
+  "name": "duelist/clips/getup_s",
+  "first": "duelist/k_idle_w.png",
+  "prompt": "Is knocked down onto the ground by a blow from the right, then struggles back up with effort and returns to the same ready stance. HANDS CANON: the thin rapier stays in his front hand on the right side of the image, ONE single flintlock pistol stays in his rear hand on the left side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "duelist/k_idle_w.png"
+ },
+ {
+  "name": "duelist/clips/wounded_s",
+  "first": "duelist/k_idle_w.png",
+  "prompt": "Badly wounded: sinks down to one knee with a pained face, leans forward, breathes heavily and stays down on one knee until the end of the clip. HANDS CANON: the thin rapier stays in his front hand on the right side of the image, ONE single flintlock pistol stays in his rear hand on the left side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "duelist/clips/focus_s",
+  "first": "duelist/k_idle_w.png",
+  "prompt": "Prepares for battle: plants the feet, closes the eyes for a moment, breathes in deeply, tightens the grip, opens the eyes and looks to the right. Returns to the same ready stance. HANDS CANON: the thin rapier stays in his front hand on the right side of the image, ONE single flintlock pistol stays in his rear hand on the left side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "duelist/k_idle_w.png"
+ },
+ {
+  "name": "duelist/clips/taunt_s",
+  "first": "duelist/k_idle_w.png",
+  "prompt": "A contemptuous challenge to the enemy on the right: jerks the chin up and makes one short threatening gesture with the free hand or the weapon, then returns to the same ready stance. HANDS CANON: the thin rapier stays in his front hand on the right side of the image, ONE single flintlock pistol stays in his rear hand on the left side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "duelist/k_idle_w.png"
+ },
+ {
+  "name": "brawler/clips/dodge_s",
+  "first": "brawler/k_battle_w.png",
+  "prompt": "One quick evasive move: leans and sidesteps back to the left, avoiding a blow from the right, then returns to the same ready stance. Feet end where they started. HANDS CANON: a heavy wooden club in the front hand, the rear hand a bare fist; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "brawler/k_battle_w.png"
+ },
+ {
+  "name": "brawler/clips/guard_s",
+  "first": "brawler/k_battle_w.png",
+  "prompt": "Braces and parries a heavy blow coming from the right with the weapon, the body absorbs the impact, then returns to the same ready stance. HANDS CANON: a heavy wooden club in the front hand, the rear hand a bare fist; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "brawler/k_battle_w.png"
+ },
+ {
+  "name": "brawler/clips/getup_s",
+  "first": "brawler/k_battle_w.png",
+  "prompt": "Is knocked down onto the ground by a blow from the right, then struggles back up with effort and returns to the same ready stance. HANDS CANON: a heavy wooden club in the front hand, the rear hand a bare fist; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "brawler/k_battle_w.png"
+ },
+ {
+  "name": "brawler/clips/wounded_s",
+  "first": "brawler/k_battle_w.png",
+  "prompt": "Badly wounded: sinks down to one knee with a pained face, leans forward, breathes heavily and stays down on one knee until the end of the clip. HANDS CANON: a heavy wooden club in the front hand, the rear hand a bare fist; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "brawler/clips/focus_s",
+  "first": "brawler/k_battle_w.png",
+  "prompt": "Prepares for battle: plants the feet, closes the eyes for a moment, breathes in deeply, tightens the grip, opens the eyes and looks to the right. Returns to the same ready stance. HANDS CANON: a heavy wooden club in the front hand, the rear hand a bare fist; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "brawler/k_battle_w.png"
+ },
+ {
+  "name": "brawler/clips/taunt_s",
+  "first": "brawler/k_battle_w.png",
+  "prompt": "A contemptuous challenge to the enemy on the right: jerks the chin up and makes one short threatening gesture with the free hand or the weapon, then returns to the same ready stance. HANDS CANON: a heavy wooden club in the front hand, the rear hand a bare fist; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "brawler/k_battle_w.png"
+ },
+ {
+  "name": "healer/clips/dodge_s",
+  "first": "healer/k_battle_w.png",
+  "prompt": "One quick evasive move: leans and sidesteps back to the left, avoiding a blow from the right, then returns to the same ready stance. Feet end where they started. HANDS CANON: the gnarled wooden staff in the rear hand, a small bundle of dried herbs in the front hand; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "healer/k_battle_w.png"
+ },
+ {
+  "name": "healer/clips/guard_s",
+  "first": "healer/k_battle_w.png",
+  "prompt": "Braces and parries a heavy blow coming from the right with the weapon, the body absorbs the impact, then returns to the same ready stance. HANDS CANON: the gnarled wooden staff in the rear hand, a small bundle of dried herbs in the front hand; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "healer/k_battle_w.png"
+ },
+ {
+  "name": "healer/clips/getup_s",
+  "first": "healer/k_battle_w.png",
+  "prompt": "Is knocked down onto the ground by a blow from the right, then struggles back up with effort and returns to the same ready stance. HANDS CANON: the gnarled wooden staff in the rear hand, a small bundle of dried herbs in the front hand; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "healer/k_battle_w.png"
+ },
+ {
+  "name": "healer/clips/wounded_s",
+  "first": "healer/k_battle_w.png",
+  "prompt": "Badly wounded: sinks down to one knee with a pained face, leans forward, breathes heavily and stays down on one knee until the end of the clip. HANDS CANON: the gnarled wooden staff in the rear hand, a small bundle of dried herbs in the front hand; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "healer/clips/focus_s",
+  "first": "healer/k_battle_w.png",
+  "prompt": "Prepares for battle: plants the feet, closes the eyes for a moment, breathes in deeply, tightens the grip, opens the eyes and looks to the right. Returns to the same ready stance. HANDS CANON: the gnarled wooden staff in the rear hand, a small bundle of dried herbs in the front hand; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "healer/k_battle_w.png"
+ },
+ {
+  "name": "healer/clips/taunt_s",
+  "first": "healer/k_battle_w.png",
+  "prompt": "A contemptuous challenge to the enemy on the right: jerks the chin up and makes one short threatening gesture with the free hand or the weapon, then returns to the same ready stance. HANDS CANON: the gnarled wooden staff in the rear hand, a small bundle of dried herbs in the front hand; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "healer/k_battle_w.png"
+ },
+ {
+  "name": "holt/clips/dodge_s",
+  "first": "holt/k_battle_w.png",
+  "prompt": "One quick evasive move: leans and sidesteps back to the left, avoiding a blow from the right, then returns to the same ready stance. Feet end where they started. HANDS CANON: one small crossbow in the front hand pointing to the right, one long hunting knife in the rear hand; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "holt/k_battle_w.png"
+ },
+ {
+  "name": "holt/clips/guard_s",
+  "first": "holt/k_battle_w.png",
+  "prompt": "Braces and parries a heavy blow coming from the right with the weapon, the body absorbs the impact, then returns to the same ready stance. HANDS CANON: one small crossbow in the front hand pointing to the right, one long hunting knife in the rear hand; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "holt/k_battle_w.png"
+ },
+ {
+  "name": "holt/clips/getup_s",
+  "first": "holt/k_battle_w.png",
+  "prompt": "Is knocked down onto the ground by a blow from the right, then struggles back up with effort and returns to the same ready stance. HANDS CANON: one small crossbow in the front hand pointing to the right, one long hunting knife in the rear hand; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "holt/k_battle_w.png"
+ },
+ {
+  "name": "holt/clips/wounded_s",
+  "first": "holt/k_battle_w.png",
+  "prompt": "Badly wounded: sinks down to one knee with a pained face, leans forward, breathes heavily and stays down on one knee until the end of the clip. HANDS CANON: one small crossbow in the front hand pointing to the right, one long hunting knife in the rear hand; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "holt/clips/focus_s",
+  "first": "holt/k_battle_w.png",
+  "prompt": "Prepares for battle: plants the feet, closes the eyes for a moment, breathes in deeply, tightens the grip, opens the eyes and looks to the right. Returns to the same ready stance. HANDS CANON: one small crossbow in the front hand pointing to the right, one long hunting knife in the rear hand; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "holt/k_battle_w.png"
+ },
+ {
+  "name": "holt/clips/taunt_s",
+  "first": "holt/k_battle_w.png",
+  "prompt": "A contemptuous challenge to the enemy on the right: jerks the chin up and makes one short threatening gesture with the free hand or the weapon, then returns to the same ready stance. HANDS CANON: one small crossbow in the front hand pointing to the right, one long hunting knife in the rear hand; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "holt/k_battle_w.png"
+ },
+ {
+  "name": "shield/clips/dodge_s",
+  "first": "shield/k_battle_w.png",
+  "prompt": "One quick evasive move: leans and sidesteps back to the left, avoiding a blow from the right, then returns to the same ready stance. Feet end where they started. HANDS CANON: one big spiked club held with both hands in front of him; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "shield/k_battle_w.png"
+ },
+ {
+  "name": "shield/clips/guard_s",
+  "first": "shield/k_battle_w.png",
+  "prompt": "Braces and parries a heavy blow coming from the right with the weapon, the body absorbs the impact, then returns to the same ready stance. HANDS CANON: one big spiked club held with both hands in front of him; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "shield/k_battle_w.png"
+ },
+ {
+  "name": "shield/clips/getup_s",
+  "first": "shield/k_battle_w.png",
+  "prompt": "Is knocked down onto the ground by a blow from the right, then struggles back up with effort and returns to the same ready stance. HANDS CANON: one big spiked club held with both hands in front of him; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "shield/k_battle_w.png"
+ },
+ {
+  "name": "shield/clips/wounded_s",
+  "first": "shield/k_battle_w.png",
+  "prompt": "Badly wounded: sinks down to one knee with a pained face, leans forward, breathes heavily and stays down on one knee until the end of the clip. HANDS CANON: one big spiked club held with both hands in front of him; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "shield/clips/focus_s",
+  "first": "shield/k_battle_w.png",
+  "prompt": "Prepares for battle: plants the feet, closes the eyes for a moment, breathes in deeply, tightens the grip, opens the eyes and looks to the right. Returns to the same ready stance. HANDS CANON: one big spiked club held with both hands in front of him; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "shield/k_battle_w.png"
+ },
+ {
+  "name": "shield/clips/taunt_s",
+  "first": "shield/k_battle_w.png",
+  "prompt": "A contemptuous challenge to the enemy on the right: jerks the chin up and makes one short threatening gesture with the free hand or the weapon, then returns to the same ready stance. HANDS CANON: one big spiked club held with both hands in front of him; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "shield/k_battle_w.png"
+ },
+ {
+  "name": "til/clips/dodge_s",
+  "first": "til/k_battle_w.png",
+  "prompt": "One quick evasive move: leans and sidesteps back to the left, avoiding a blow from the right, then returns to the same ready stance. Feet end where they started. HANDS CANON: one blacksmith hammer in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "til/k_battle_w.png"
+ },
+ {
+  "name": "til/clips/guard_s",
+  "first": "til/k_battle_w.png",
+  "prompt": "Braces and parries a heavy blow coming from the right with the weapon, the body absorbs the impact, then returns to the same ready stance. HANDS CANON: one blacksmith hammer in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "til/k_battle_w.png"
+ },
+ {
+  "name": "til/clips/getup_s",
+  "first": "til/k_battle_w.png",
+  "prompt": "Is knocked down onto the ground by a blow from the right, then struggles back up with effort and returns to the same ready stance. HANDS CANON: one blacksmith hammer in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "til/k_battle_w.png"
+ },
+ {
+  "name": "til/clips/wounded_s",
+  "first": "til/k_battle_w.png",
+  "prompt": "Badly wounded: sinks down to one knee with a pained face, leans forward, breathes heavily and stays down on one knee until the end of the clip. HANDS CANON: one blacksmith hammer in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "til/clips/focus_s",
+  "first": "til/k_battle_w.png",
+  "prompt": "Prepares for battle: plants the feet, closes the eyes for a moment, breathes in deeply, tightens the grip, opens the eyes and looks to the right. Returns to the same ready stance. HANDS CANON: one blacksmith hammer in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "til/k_battle_w.png"
+ },
+ {
+  "name": "til/clips/taunt_s",
+  "first": "til/k_battle_w.png",
+  "prompt": "A contemptuous challenge to the enemy on the right: jerks the chin up and makes one short threatening gesture with the free hand or the weapon, then returns to the same ready stance. HANDS CANON: one blacksmith hammer in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "til/k_battle_w.png"
+ },
+ {
+  "name": "bandit_archer/clips/dodge_s",
+  "first": "bandit_archer/k_battle_w.png",
+  "prompt": "One quick evasive move: leans and sidesteps back to the left, avoiding a blow from the right, then returns to the same ready stance. Feet end where they started. HANDS CANON: one crossbow held with both hands, pointing to the right; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "bandit_archer/k_battle_w.png"
+ },
+ {
+  "name": "bandit_archer/clips/guard_s",
+  "first": "bandit_archer/k_battle_w.png",
+  "prompt": "Braces and parries a heavy blow coming from the right with the weapon, the body absorbs the impact, then returns to the same ready stance. HANDS CANON: one crossbow held with both hands, pointing to the right; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "bandit_archer/k_battle_w.png"
+ },
+ {
+  "name": "bandit_archer/clips/getup_s",
+  "first": "bandit_archer/k_battle_w.png",
+  "prompt": "Is knocked down onto the ground by a blow from the right, then struggles back up with effort and returns to the same ready stance. HANDS CANON: one crossbow held with both hands, pointing to the right; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "bandit_archer/k_battle_w.png"
+ },
+ {
+  "name": "bandit_archer/clips/wounded_s",
+  "first": "bandit_archer/k_battle_w.png",
+  "prompt": "Badly wounded: sinks down to one knee with a pained face, leans forward, breathes heavily and stays down on one knee until the end of the clip. HANDS CANON: one crossbow held with both hands, pointing to the right; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "bandit_archer/clips/focus_s",
+  "first": "bandit_archer/k_battle_w.png",
+  "prompt": "Prepares for battle: plants the feet, closes the eyes for a moment, breathes in deeply, tightens the grip, opens the eyes and looks to the right. Returns to the same ready stance. HANDS CANON: one crossbow held with both hands, pointing to the right; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "bandit_archer/k_battle_w.png"
+ },
+ {
+  "name": "bandit_archer/clips/taunt_s",
+  "first": "bandit_archer/k_battle_w.png",
+  "prompt": "A contemptuous challenge to the enemy on the right: jerks the chin up and makes one short threatening gesture with the free hand or the weapon, then returns to the same ready stance. HANDS CANON: one crossbow held with both hands, pointing to the right; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "bandit_archer/k_battle_w.png"
+ },
+ {
+  "name": "recruit/clips/dodge_s",
+  "first": "recruit/k_battle_w.png",
+  "prompt": "One quick evasive move: leans and sidesteps back to the left, avoiding a blow from the right, then returns to the same ready stance. Feet end where they started. HANDS CANON: one short sword in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "recruit/k_battle_w.png"
+ },
+ {
+  "name": "recruit/clips/guard_s",
+  "first": "recruit/k_battle_w.png",
+  "prompt": "Braces and parries a heavy blow coming from the right with the weapon, the body absorbs the impact, then returns to the same ready stance. HANDS CANON: one short sword in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "recruit/k_battle_w.png"
+ },
+ {
+  "name": "recruit/clips/getup_s",
+  "first": "recruit/k_battle_w.png",
+  "prompt": "Is knocked down onto the ground by a blow from the right, then struggles back up with effort and returns to the same ready stance. HANDS CANON: one short sword in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "recruit/k_battle_w.png"
+ },
+ {
+  "name": "recruit/clips/wounded_s",
+  "first": "recruit/k_battle_w.png",
+  "prompt": "Badly wounded: sinks down to one knee with a pained face, leans forward, breathes heavily and stays down on one knee until the end of the clip. HANDS CANON: one short sword in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "recruit/clips/focus_s",
+  "first": "recruit/k_battle_w.png",
+  "prompt": "Prepares for battle: plants the feet, closes the eyes for a moment, breathes in deeply, tightens the grip, opens the eyes and looks to the right. Returns to the same ready stance. HANDS CANON: one short sword in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "recruit/k_battle_w.png"
+ },
+ {
+  "name": "recruit/clips/taunt_s",
+  "first": "recruit/k_battle_w.png",
+  "prompt": "A contemptuous challenge to the enemy on the right: jerks the chin up and makes one short threatening gesture with the free hand or the weapon, then returns to the same ready stance. HANDS CANON: one short sword in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "recruit/k_battle_w.png"
+ },
+ {
+  "name": "archer_guard/clips/dodge_s",
+  "first": "archer_guard/k_battle_w.png",
+  "prompt": "One quick evasive move: leans and sidesteps back to the left, avoiding a blow from the right, then returns to the same ready stance. Feet end where they started. HANDS CANON: one longbow held in the front hand, the rear hand free to draw the string; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "archer_guard/k_battle_w.png"
+ },
+ {
+  "name": "archer_guard/clips/guard_s",
+  "first": "archer_guard/k_battle_w.png",
+  "prompt": "Braces and parries a heavy blow coming from the right with the weapon, the body absorbs the impact, then returns to the same ready stance. HANDS CANON: one longbow held in the front hand, the rear hand free to draw the string; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "archer_guard/k_battle_w.png"
+ },
+ {
+  "name": "archer_guard/clips/getup_s",
+  "first": "archer_guard/k_battle_w.png",
+  "prompt": "Is knocked down onto the ground by a blow from the right, then struggles back up with effort and returns to the same ready stance. HANDS CANON: one longbow held in the front hand, the rear hand free to draw the string; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "archer_guard/k_battle_w.png"
+ },
+ {
+  "name": "archer_guard/clips/wounded_s",
+  "first": "archer_guard/k_battle_w.png",
+  "prompt": "Badly wounded: sinks down to one knee with a pained face, leans forward, breathes heavily and stays down on one knee until the end of the clip. HANDS CANON: one longbow held in the front hand, the rear hand free to draw the string; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "archer_guard/clips/focus_s",
+  "first": "archer_guard/k_battle_w.png",
+  "prompt": "Prepares for battle: plants the feet, closes the eyes for a moment, breathes in deeply, tightens the grip, opens the eyes and looks to the right. Returns to the same ready stance. HANDS CANON: one longbow held in the front hand, the rear hand free to draw the string; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "archer_guard/k_battle_w.png"
+ },
+ {
+  "name": "archer_guard/clips/taunt_s",
+  "first": "archer_guard/k_battle_w.png",
+  "prompt": "A contemptuous challenge to the enemy on the right: jerks the chin up and makes one short threatening gesture with the free hand or the weapon, then returns to the same ready stance. HANDS CANON: one longbow held in the front hand, the rear hand free to draw the string; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "archer_guard/k_battle_w.png"
+ },
+ {
+  "name": "swamp_elf/clips/dodge_s",
+  "first": "swamp_elf/k_battle_w.png",
+  "prompt": "One quick evasive move: leans and sidesteps back to the left, avoiding a blow from the right, then returns to the same ready stance. Feet end where they started. HANDS CANON: one bow held in the front hand, the rear hand free to draw the string; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "swamp_elf/k_battle_w.png"
+ },
+ {
+  "name": "swamp_elf/clips/guard_s",
+  "first": "swamp_elf/k_battle_w.png",
+  "prompt": "Braces and parries a heavy blow coming from the right with the weapon, the body absorbs the impact, then returns to the same ready stance. HANDS CANON: one bow held in the front hand, the rear hand free to draw the string; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "swamp_elf/k_battle_w.png"
+ },
+ {
+  "name": "swamp_elf/clips/getup_s",
+  "first": "swamp_elf/k_battle_w.png",
+  "prompt": "Is knocked down onto the ground by a blow from the right, then struggles back up with effort and returns to the same ready stance. HANDS CANON: one bow held in the front hand, the rear hand free to draw the string; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "swamp_elf/k_battle_w.png"
+ },
+ {
+  "name": "swamp_elf/clips/wounded_s",
+  "first": "swamp_elf/k_battle_w.png",
+  "prompt": "Badly wounded: sinks down to one knee with a pained face, leans forward, breathes heavily and stays down on one knee until the end of the clip. HANDS CANON: one bow held in the front hand, the rear hand free to draw the string; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "swamp_elf/clips/focus_s",
+  "first": "swamp_elf/k_battle_w.png",
+  "prompt": "Prepares for battle: plants the feet, closes the eyes for a moment, breathes in deeply, tightens the grip, opens the eyes and looks to the right. Returns to the same ready stance. HANDS CANON: one bow held in the front hand, the rear hand free to draw the string; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "swamp_elf/k_battle_w.png"
+ },
+ {
+  "name": "swamp_elf/clips/taunt_s",
+  "first": "swamp_elf/k_battle_w.png",
+  "prompt": "A contemptuous challenge to the enemy on the right: jerks the chin up and makes one short threatening gesture with the free hand or the weapon, then returns to the same ready stance. HANDS CANON: one bow held in the front hand, the rear hand free to draw the string; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "swamp_elf/k_battle_w.png"
+ }
+]

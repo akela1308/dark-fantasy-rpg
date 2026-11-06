@@ -1,0 +1,1 @@
+{"slug": "wandering_knight", "anim": "victory", "base": "wandering_knight/k_battle_w.png", "body": 300, "segments": [{"clip": "wandering_knight/clips/victory_r4_w_v1.mp4", "from": 0, "to": 95, "frames": 29}], "hold": true, "ver": 3, "top": 0.95, "left": 1.25, "right": 1.45}

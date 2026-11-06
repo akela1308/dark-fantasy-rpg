@@ -22,16 +22,16 @@ function walk(dir, base = dir, out = []) {
   return out;
 }
 
-// Полноразмерные листы боя, у которых есть уменьшенная копия *_s60 и на которые src/ не ссылается
-// (игра грузит копию, tools/shrink_sheets.py), в сборку не идут: иначе сайт не влезает в 1 ГБ GitHub Pages.
+// Листы боя, на которые src/ не ссылается (полноразмерные с копией *_s60 и заменённые версии), в сборку не идут:
+// иначе сайт не влезает в 1 ГБ GitHub Pages.
 function srcText() {
   return walk('src').map(f => fs.readFileSync(path.join('src', f), 'utf8')).join('\n');
 }
 function isUnusedFullSheet(rel, dir, src) {
-  const m = rel.match(/^sprites\/battle\/(.+)\.(png|webp|json)$/);
-  if (!m || m[1].endsWith('_s60')) return false;
-  const twin = ['png', 'webp', 'json'].some(e => fs.existsSync(path.join(dir, `sprites/battle/${m[1]}_s60.${e}`)));
-  return twin && !src.includes(`battle/${m[1]}.`);
+  const m = rel.match(/^sprites\/battle\/(.+_v\d+(?:_s60)?)\.(png|webp|json)$/);
+  if (!m) return false;
+  // Заменённая версия (есть лист той же анимации новее) тоже не нужна, если на неё нет ссылки
+  return !src.includes(`battle/${m[1]}.`);
 }
 
 function dropUnused(dir) {

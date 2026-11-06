@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/3dc05469-00ca-4131-8bbc-1e17604fbe1c",
+ "prompt": "Pure black background, nothing else in the frame. The effect is small: it stays inside the central third of the frame and never touches the edges, unless it is a full-screen weather effect. a slow low bank of pale fog drifts from left to right along the bottom. Hand-painted dark fantasy game effect, muted natural colors, locked camera. No text.",
+ "img": "_stock/black.png",
+ "last": null,
+ "sec": 4
+}

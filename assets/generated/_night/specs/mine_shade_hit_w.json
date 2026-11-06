@@ -1,0 +1,1 @@
+{"slug": "mine_shade", "anim": "hit", "base": "mine_shade/k_battle_w.png", "body": 300, "segments": [{"clip": "mine_shade/clips/hit_w_v1.mp4", "from": 0, "to": 95, "frames": 14}], "ver": 2, "top": 0.95, "left": 1.25, "right": 1.45}

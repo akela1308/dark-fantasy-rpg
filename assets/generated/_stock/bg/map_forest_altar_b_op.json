@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/c2d9717a-12bd-411d-9d18-9f21a1e67eb1",
+ "prompt": "A living painting. The camera is locked off and absolutely still. The painted image stays exactly the same: every building, rock, tree and path stays pixel-still. Motion is extremely subtle and slow and only in fog and candle flames. No clouds appear, no fog patches appear, nothing appears or disappears, the brightness stays the same.",
+ "img": "../../public/maps/gen/forest_altar_k2.jpg",
+ "last": null,
+ "sec": 8
+}

@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/076a481f-920c-4f76-a69f-20745ff4703c",
+ "prompt": "Pure black background, nothing else in the frame. The effect is small: it stays inside the central third of the frame and never touches the edges, unless it is a full-screen weather effect. thin black smoke tendrils with dull red edges curl outward from the center and fade. Hand-painted dark fantasy game effect, muted natural colors, locked camera. No text.",
+ "img": "_stock/black.png",
+ "last": null,
+ "sec": 4
+}

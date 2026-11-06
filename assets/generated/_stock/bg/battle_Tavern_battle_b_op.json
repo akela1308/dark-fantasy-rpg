@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/7e5fa9ae-9dd9-41b9-9746-7516b8ab0d76",
+ "prompt": "A living painting. The camera is locked off and absolutely still. The painted image stays exactly the same: every building, rock, tree and path stays pixel-still. Motion is extremely subtle and slow and only in hearth fire and candles flicker, smoke drifts. No clouds appear, no fog patches appear, nothing appears or disappears, the brightness stays the same.",
+ "img": "../../public/battle/Tavern_battle.jpg",
+ "last": null,
+ "sec": 8
+}

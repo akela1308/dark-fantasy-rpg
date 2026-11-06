@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/808d9f4c-5b02-4c3e-8ee0-b72f1325f9ec",
+ "prompt": "Slow motion. One single powerful diagonal downward cut for the whole clip: the rapier sweeps from above his head down and forward to the lower right, the body leans slightly forward with the weight of the blow. No other gestures, no second swing. HANDS CANON: the thin rapier stays in his front hand on the right side of the image, ONE single flintlock pistol stays in his rear hand on the left side of the image, low near the hip. Never swap, never duplicate the weapons.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+ "img": "duelist/k_slash_up_w.png",
+ "last": "duelist/k_slash_down_w.png",
+ "sec": 4
+}

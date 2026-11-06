@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/f571b617-6ab5-4868-8ef4-1922e4d10f1f",
+ "prompt": "Slow motion. One single smooth movement: he raises the rapier high above his head in triumph, the pistol hand rests on his hip. HANDS CANON: the thin rapier stays in his front hand on the right side of the image, ONE single flintlock pistol stays in his rear hand on the left side of the image. Never swap, never duplicate the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+ "img": "duelist/k_idle_w2.png",
+ "last": "duelist/k_victory_w2.png",
+ "sec": 4
+}

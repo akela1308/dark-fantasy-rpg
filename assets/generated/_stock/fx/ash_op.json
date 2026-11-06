@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/a85aa95c-2841-4775-a86d-bd3fdb1337b8",
+ "prompt": "Pure black background, nothing else in the frame. The effect is small: it stays inside the central third of the frame and never touches the edges, unless it is a full-screen weather effect. grey ash falls slowly across the whole frame. Hand-painted dark fantasy game effect, muted natural colors, locked camera. No text.",
+ "img": "_stock/black.png",
+ "last": null,
+ "sec": 4
+}

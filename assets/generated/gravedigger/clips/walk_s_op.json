@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/eb2476e1-6de1-4125-8bc9-8c696d0cca90",
+ "prompt": "Walks in place on the spot, like on a treadmill: a steady, natural, realistic walking cycle, weight shifting from foot to foot, slight up and down motion of the body, arms swinging in opposition to the legs, clothes moving with each step. The body stays in exactly the same place in the frame, does not travel across the frame, never turns around, always walks facing right. Camera locked, no zoom. Hands and held items stay exactly as in the first frame. The whole figure stays inside the frame. No visual effects, no flashes, no trails, no glow, no particles.",
+ "img": "_stock/pad/walk_gravedigger.png",
+ "last": "_stock/pad/walk_gravedigger.png",
+ "sec": 4
+}

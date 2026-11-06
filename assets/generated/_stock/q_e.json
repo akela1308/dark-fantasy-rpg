@@ -1,0 +1,258 @@
+[
+ {
+  "name": "_stock/fx/fire_burst",
+  "first": "_stock/black.png",
+  "prompt": "Pure black background, nothing else in the frame. a burst of orange fire erupts in the center and burns out. Hand-painted dark fantasy game effect, muted natural colors, locked camera. No text.",
+  "sec": 4,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/fx/fire_loop",
+  "first": "_stock/black.png",
+  "prompt": "Pure black background, nothing else in the frame. a steady campfire flame burning in the center, seamless. Hand-painted dark fantasy game effect, muted natural colors, locked camera. No text.",
+  "sec": 4,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/fx/torch_loop",
+  "first": "_stock/black.png",
+  "prompt": "Pure black background, nothing else in the frame. a single torch flame flickering in the center. Hand-painted dark fantasy game effect, muted natural colors, locked camera. No text.",
+  "sec": 4,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/fx/candle_loop",
+  "first": "_stock/black.png",
+  "prompt": "Pure black background, nothing else in the frame. a single small candle flame trembling in the center. Hand-painted dark fantasy game effect, muted natural colors, locked camera. No text.",
+  "sec": 4,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/fx/embers",
+  "first": "_stock/black.png",
+  "prompt": "Pure black background, nothing else in the frame. orange embers rise and drift upward across the frame. Hand-painted dark fantasy game effect, muted natural colors, locked camera. No text.",
+  "sec": 4,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/fx/ash",
+  "first": "_stock/black.png",
+  "prompt": "Pure black background, nothing else in the frame. grey ash falls slowly across the whole frame. Hand-painted dark fantasy game effect, muted natural colors, locked camera. No text.",
+  "sec": 4,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/fx/smoke_puff",
+  "first": "_stock/black.png",
+  "prompt": "Pure black background, nothing else in the frame. a puff of grey gunpowder smoke expands from the center and dissipates. Hand-painted dark fantasy game effect, muted natural colors, locked camera. No text.",
+  "sec": 4,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/fx/smoke_loop",
+  "first": "_stock/black.png",
+  "prompt": "Pure black background, nothing else in the frame. thin grey smoke rises slowly from the bottom center. Hand-painted dark fantasy game effect, muted natural colors, locked camera. No text.",
+  "sec": 4,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/fx/muzzle",
+  "first": "_stock/black.png",
+  "prompt": "Pure black background, nothing else in the frame. one short muzzle flash with a jet of sparks to the right, then thin smoke. Hand-painted dark fantasy game effect, muted natural colors, locked camera. No text.",
+  "sec": 4,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/fx/dust_hit",
+  "first": "_stock/black.png",
+  "prompt": "Pure black background, nothing else in the frame. a burst of brown dust and small stones from an impact on the ground. Hand-painted dark fantasy game effect, muted natural colors, locked camera. No text.",
+  "sec": 4,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/fx/blood_spray",
+  "first": "_stock/black.png",
+  "prompt": "Pure black background, nothing else in the frame. a spray of dark red blood droplets flies to the right from the center and falls. Hand-painted dark fantasy game effect, muted natural colors, locked camera. No text.",
+  "sec": 4,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/fx/blood_splat",
+  "first": "_stock/black.png",
+  "prompt": "Pure black background, nothing else in the frame. dark red blood splashes outward from the center. Hand-painted dark fantasy game effect, muted natural colors, locked camera. No text.",
+  "sec": 4,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/fx/slash_arc",
+  "first": "_stock/black.png",
+  "prompt": "Pure black background, nothing else in the frame. one pale steel-colored curved slash streak sweeps across the center and fades. Hand-painted dark fantasy game effect, muted natural colors, locked camera. No text.",
+  "sec": 4,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/fx/slash_heavy",
+  "first": "_stock/black.png",
+  "prompt": "Pure black background, nothing else in the frame. one wide heavy arc of pale light and dust sweeps down through the center and fades. Hand-painted dark fantasy game effect, muted natural colors, locked camera. No text.",
+  "sec": 4,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/fx/sparks",
+  "first": "_stock/black.png",
+  "prompt": "Pure black background, nothing else in the frame. a short burst of bright metal sparks from the center, as from steel striking steel. Hand-painted dark fantasy game effect, muted natural colors, locked camera. No text.",
+  "sec": 4,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/fx/bell_wave",
+  "first": "_stock/black.png",
+  "prompt": "Pure black background, nothing else in the frame. one pale circular shockwave expands from the center and fades. Hand-painted dark fantasy game effect, muted natural colors, locked camera. No text.",
+  "sec": 4,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/fx/heal_motes",
+  "first": "_stock/black.png",
+  "prompt": "Pure black background, nothing else in the frame. warm golden motes of light slowly rise from the bottom and fade. Hand-painted dark fantasy game effect, muted natural colors, locked camera. No text.",
+  "sec": 4,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/fx/herb_mist",
+  "first": "_stock/black.png",
+  "prompt": "Pure black background, nothing else in the frame. a soft pale green mist swirls in the center and fades. Hand-painted dark fantasy game effect, muted natural colors, locked camera. No text.",
+  "sec": 4,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/fx/poison",
+  "first": "_stock/black.png",
+  "prompt": "Pure black background, nothing else in the frame. a sickly yellow-green vapor rolls out from the center and fades. Hand-painted dark fantasy game effect, muted natural colors, locked camera. No text.",
+  "sec": 4,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/fx/curse",
+  "first": "_stock/black.png",
+  "prompt": "Pure black background, nothing else in the frame. thin black smoke tendrils with dull red edges curl outward from the center and fade. Hand-painted dark fantasy game effect, muted natural colors, locked camera. No text.",
+  "sec": 4,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/fx/ghost_hands",
+  "first": "_stock/black.png",
+  "prompt": "Pure black background, nothing else in the frame. pale ghostly hands of mist reach up from the bottom and dissolve. Hand-painted dark fantasy game effect, muted natural colors, locked camera. No text.",
+  "sec": 4,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/fx/frost_burst",
+  "first": "_stock/black.png",
+  "prompt": "Pure black background, nothing else in the frame. a burst of ice crystals and white frost expands from the center and fades. Hand-painted dark fantasy game effect, muted natural colors, locked camera. No text.",
+  "sec": 4,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/fx/ice_shards",
+  "first": "_stock/black.png",
+  "prompt": "Pure black background, nothing else in the frame. sharp ice shards fly from the left to the right and vanish. Hand-painted dark fantasy game effect, muted natural colors, locked camera. No text.",
+  "sec": 4,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/fx/snow_loop",
+  "first": "_stock/black.png",
+  "prompt": "Pure black background, nothing else in the frame. snowflakes fall steadily across the whole frame, wind from the left. Hand-painted dark fantasy game effect, muted natural colors, locked camera. No text.",
+  "sec": 4,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/fx/rain_loop",
+  "first": "_stock/black.png",
+  "prompt": "Pure black background, nothing else in the frame. thin rain streaks fall across the whole frame. Hand-painted dark fantasy game effect, muted natural colors, locked camera. No text.",
+  "sec": 4,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/fx/fog_loop",
+  "first": "_stock/black.png",
+  "prompt": "Pure black background, nothing else in the frame. a slow low bank of pale fog drifts from left to right along the bottom. Hand-painted dark fantasy game effect, muted natural colors, locked camera. No text.",
+  "sec": 4,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/fx/leaves",
+  "first": "_stock/black.png",
+  "prompt": "Pure black background, nothing else in the frame. dry dark leaves blow across the frame from left to right. Hand-painted dark fantasy game effect, muted natural colors, locked camera. No text.",
+  "sec": 4,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/fx/crows",
+  "first": "_stock/black.png",
+  "prompt": "Pure black background, nothing else in the frame. several black crows fly across the frame from left to right. Hand-painted dark fantasy game effect, muted natural colors, locked camera. No text.",
+  "sec": 4,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/fx/bats",
+  "first": "_stock/black.png",
+  "prompt": "Pure black background, nothing else in the frame. a small swarm of black bats flutters across the frame. Hand-painted dark fantasy game effect, muted natural colors, locked camera. No text.",
+  "sec": 4,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/fx/flies",
+  "first": "_stock/black.png",
+  "prompt": "Pure black background, nothing else in the frame. a small swarm of black flies circles in the center. Hand-painted dark fantasy game effect, muted natural colors, locked camera. No text.",
+  "sec": 4,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/fx/seal_crack",
+  "first": "_stock/black.png",
+  "prompt": "Pure black background, nothing else in the frame. a thin crack of pale light spreads across the center like a breaking wax seal, then fades. Hand-painted dark fantasy game effect, muted natural colors, locked camera. No text.",
+  "sec": 4,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/fx/wax_drip",
+  "first": "_stock/black.png",
+  "prompt": "Pure black background, nothing else in the frame. dark red wax drips slowly down from the top center. Hand-painted dark fantasy game effect, muted natural colors, locked camera. No text.",
+  "sec": 4,
+  "n": 2,
+  "raw": true
+ }
+]

@@ -1,0 +1,1 @@
+{"slug": "brawler", "anim": "power", "base": "brawler/k_battle_w.png", "body": 300, "segments": [{"clip": "brawler/clips/power_w_v1.mp4", "from": 0, "to": 95, "frames": 38}], "hit": 16, "right": 1.45, "left": 1.25, "drop": [17], "ver": 2, "top": 0.95}

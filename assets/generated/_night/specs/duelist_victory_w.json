@@ -1,0 +1,1 @@
+{"slug": "duelist", "anim": "victory", "base": "duelist/k_idle_w2.png", "body": 304, "segments": [{"clip": "duelist/clips2/victory_w2_v1.mp4", "from": 0, "to": 48, "frames": 16}], "ver": 3, "top": 1.2, "left": 1.25, "right": 1.45}

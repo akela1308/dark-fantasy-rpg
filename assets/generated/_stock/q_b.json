@@ -1,0 +1,130 @@
+[
+ {
+  "name": "assassin/clips/attack_s",
+  "first": "assassin/k_battle_w.png",
+  "prompt": "One single attack to the right: a short wind-up, one fast strong strike forward to the right with the weapon, then a recovery back into the same ready stance. HANDS CANON: one curved blade in each hand, exactly two blades; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "assassin/k_battle_w.png"
+ },
+ {
+  "name": "assassin/clips/hit_s",
+  "first": "assassin/k_battle_w.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one curved blade in each hand, exactly two blades; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "assassin/k_battle_w.png"
+ },
+ {
+  "name": "drowned/clips/attack_s",
+  "first": "drowned/k_battle_w.png",
+  "prompt": "One single attack to the right: lunges forward to the right slashing with the claws or the weapon, then recovers back into the same stance. HANDS CANON: no weapon, heavy grasping hands; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "drowned/k_battle_w.png"
+ },
+ {
+  "name": "kikimora/clips/attack_s",
+  "first": "kikimora/k_battle_w.png",
+  "prompt": "One single attack to the right: lunges forward to the right slashing with the claws or the weapon, then recovers back into the same stance. HANDS CANON: no weapon, long claws on both hands; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "kikimora/k_battle_w.png"
+ },
+ {
+  "name": "kobold/clips/death_s",
+  "first": "kobold/k_battle_w.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one small pickaxe in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "kobold/clips/victory_s",
+  "first": "kobold/k_battle_w.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one small pickaxe in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "mountain_king/clips/hit_s",
+  "first": "mountain_king/k_battle_w.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one huge war hammer in the front hand; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "mountain_king/k_battle_w.png"
+ },
+ {
+  "name": "mountain_king/clips/death_s",
+  "first": "mountain_king/k_battle_w.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one huge war hammer in the front hand; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "mountain_king/clips/victory_s",
+  "first": "mountain_king/k_battle_w.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one huge war hammer in the front hand; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "shield/clips/hit_s",
+  "first": "shield/k_battle_w.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one big spiked club held with both hands in front of him; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "shield/k_battle_w.png"
+ },
+ {
+  "name": "vurdalak/clips/attack_s",
+  "first": "vurdalak/k_battle_w.png",
+  "prompt": "One single attack to the right: lunges forward to the right slashing with the claws or the weapon, then recovers back into the same stance. HANDS CANON: no weapon, long claws on both hands; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "vurdalak/k_battle_w.png"
+ },
+ {
+  "name": "winter_girl/clips/hit_s",
+  "first": "winter_girl/k_battle_w.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one staff with a stone on top in the rear hand, the front hand free; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "winter_girl/k_battle_w.png"
+ },
+ {
+  "name": "winter_girl/clips/victory_s",
+  "first": "winter_girl/k_battle_w.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one staff with a stone on top in the rear hand, the front hand free; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "winter_monster/clips/victory_s",
+  "first": "winter_monster/k_battle_w.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one gnarled wooden snag club in the front hand; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "winter_queen/clips/attack_s",
+  "first": "winter_queen/k_battle_w.png",
+  "prompt": "One single spell cast to the right: raises the hand and the staff or item, makes one strong pushing gesture toward the right, then returns to the same ready stance. No glow, no particles. HANDS CANON: one small sphere floating above the front hand, no other weapon; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "winter_queen/k_battle_w.png"
+ },
+ {
+  "name": "winter_queen/clips/death_s",
+  "first": "winter_queen/k_battle_w.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one small sphere floating above the front hand, no other weapon; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "winter_queen/clips/victory_s",
+  "first": "winter_queen/k_battle_w.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one small sphere floating above the front hand, no other weapon; the front hand is the hand on the right side of the image. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles. The camera is far back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ }
+]

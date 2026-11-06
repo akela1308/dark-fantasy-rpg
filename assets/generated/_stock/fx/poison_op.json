@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/3252a5db-182f-424a-a22a-eb3bd74210df",
+ "prompt": "Pure black background, nothing else in the frame. The effect is small: it stays inside the central third of the frame and never touches the edges, unless it is a full-screen weather effect. a sickly yellow-green vapor rolls out from the center and fades. Hand-painted dark fantasy game effect, muted natural colors, locked camera. No text.",
+ "img": "_stock/black.png",
+ "last": null,
+ "sec": 4
+}

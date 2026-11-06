@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/801e378a-f3a5-470a-945b-19260877a423",
+ "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one long sword in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+ "img": "merc_captain/k_battle_w.png",
+ "last": null,
+ "sec": 4
+}

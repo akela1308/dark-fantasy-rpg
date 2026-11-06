@@ -1,0 +1,434 @@
+[
+ {
+  "name": "_stock/bg/battle_Boloto_battle",
+  "first": "../../public/battle/Boloto_battle.jpg",
+  "prompt": "A living painting, a seamless loop. The camera is locked off and absolutely still. The painted image, its composition, buildings, rocks and trees stay exactly the same. Only the atmosphere moves very gently: swamp fog drifts, water ripples. No people appear, no new objects, no cuts.",
+  "sec": 8,
+  "n": 2,
+  "last": "../../public/battle/Boloto_battle.jpg",
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/battle_Boloto_battle1",
+  "first": "../../public/battle/Boloto_battle1.jpg",
+  "prompt": "A living painting, a seamless loop. The camera is locked off and absolutely still. The painted image, its composition, buildings, rocks and trees stay exactly the same. Only the atmosphere moves very gently: swamp fog drifts, water ripples. No people appear, no new objects, no cuts.",
+  "sec": 8,
+  "n": 2,
+  "last": "../../public/battle/Boloto_battle1.jpg",
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/battle_Forest_Battle",
+  "first": "../../public/battle/Forest_Battle.jpg",
+  "prompt": "A living painting, a seamless loop. The camera is locked off and absolutely still. The painted image, its composition, buildings, rocks and trees stay exactly the same. Only the atmosphere moves very gently: fog drifts between the trees, leaves stir. No people appear, no new objects, no cuts.",
+  "sec": 8,
+  "n": 2,
+  "last": "../../public/battle/Forest_Battle.jpg",
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/battle_Forest_Road",
+  "first": "../../public/battle/Forest_Road.jpg",
+  "prompt": "A living painting, a seamless loop. The camera is locked off and absolutely still. The painted image, its composition, buildings, rocks and trees stay exactly the same. Only the atmosphere moves very gently: fog drifts along the road, branches sway. No people appear, no new objects, no cuts.",
+  "sec": 8,
+  "n": 2,
+  "last": "../../public/battle/Forest_Road.jpg",
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/battle_Grad_battle",
+  "first": "../../public/battle/Grad_battle.jpg",
+  "prompt": "A living painting, a seamless loop. The camera is locked off and absolutely still. The painted image, its composition, buildings, rocks and trees stay exactly the same. Only the atmosphere moves very gently: snow falls, torches flicker. No people appear, no new objects, no cuts.",
+  "sec": 8,
+  "n": 2,
+  "last": "../../public/battle/Grad_battle.jpg",
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/battle_KingThrone_battle",
+  "first": "../../public/battle/KingThrone_battle.jpg",
+  "prompt": "A living painting, a seamless loop. The camera is locked off and absolutely still. The painted image, its composition, buildings, rocks and trees stay exactly the same. Only the atmosphere moves very gently: torches and candles flicker, dust floats in the light. No people appear, no new objects, no cuts.",
+  "sec": 8,
+  "n": 2,
+  "last": "../../public/battle/KingThrone_battle.jpg",
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/battle_KingThrone_battle2",
+  "first": "../../public/battle/KingThrone_battle2.jpg",
+  "prompt": "A living painting, a seamless loop. The camera is locked off and absolutely still. The painted image, its composition, buildings, rocks and trees stay exactly the same. Only the atmosphere moves very gently: torches and candles flicker, dust floats in the light. No people appear, no new objects, no cuts.",
+  "sec": 8,
+  "n": 2,
+  "last": "../../public/battle/KingThrone_battle2.jpg",
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/battle_Mountain_battle",
+  "first": "../../public/battle/Mountain_battle.jpg",
+  "prompt": "A living painting, a seamless loop. The camera is locked off and absolutely still. The painted image, its composition, buildings, rocks and trees stay exactly the same. Only the atmosphere moves very gently: clouds drift, snow blows off the ridges. No people appear, no new objects, no cuts.",
+  "sec": 8,
+  "n": 2,
+  "last": "../../public/battle/Mountain_battle.jpg",
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/battle_Plane",
+  "first": "../../public/battle/Plane.jpg",
+  "prompt": "A living painting, a seamless loop. The camera is locked off and absolutely still. The painted image, its composition, buildings, rocks and trees stay exactly the same. Only the atmosphere moves very gently: grass sways, clouds drift. No people appear, no new objects, no cuts.",
+  "sec": 8,
+  "n": 2,
+  "last": "../../public/battle/Plane.jpg",
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/battle_Tavern_battle",
+  "first": "../../public/battle/Tavern_battle.jpg",
+  "prompt": "A living painting, a seamless loop. The camera is locked off and absolutely still. The painted image, its composition, buildings, rocks and trees stay exactly the same. Only the atmosphere moves very gently: hearth fire and candles flicker, smoke drifts. No people appear, no new objects, no cuts.",
+  "sec": 8,
+  "n": 2,
+  "last": "../../public/battle/Tavern_battle.jpg",
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/battle_Tavern_battle2",
+  "first": "../../public/battle/Tavern_battle2.jpg",
+  "prompt": "A living painting, a seamless loop. The camera is locked off and absolutely still. The painted image, its composition, buildings, rocks and trees stay exactly the same. Only the atmosphere moves very gently: hearth fire and candles flicker, smoke drifts. No people appear, no new objects, no cuts.",
+  "sec": 8,
+  "n": 2,
+  "last": "../../public/battle/Tavern_battle2.jpg",
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/battle_Tavern_battle3",
+  "first": "../../public/battle/Tavern_battle3.jpg",
+  "prompt": "A living painting, a seamless loop. The camera is locked off and absolutely still. The painted image, its composition, buildings, rocks and trees stay exactly the same. Only the atmosphere moves very gently: hearth fire and candles flicker, smoke drifts. No people appear, no new objects, no cuts.",
+  "sec": 8,
+  "n": 2,
+  "last": "../../public/battle/Tavern_battle3.jpg",
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/battle_Tavern_battle4",
+  "first": "../../public/battle/Tavern_battle4.jpg",
+  "prompt": "A living painting, a seamless loop. The camera is locked off and absolutely still. The painted image, its composition, buildings, rocks and trees stay exactly the same. Only the atmosphere moves very gently: hearth fire and candles flicker, smoke drifts. No people appear, no new objects, no cuts.",
+  "sec": 8,
+  "n": 2,
+  "last": "../../public/battle/Tavern_battle4.jpg",
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/battle_Village_battle1",
+  "first": "../../public/battle/Village_battle1.jpg",
+  "prompt": "A living painting, a seamless loop. The camera is locked off and absolutely still. The painted image, its composition, buildings, rocks and trees stay exactly the same. Only the atmosphere moves very gently: smoke rises from chimneys, grass sways. No people appear, no new objects, no cuts.",
+  "sec": 8,
+  "n": 2,
+  "last": "../../public/battle/Village_battle1.jpg",
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/battle_Village_battle2",
+  "first": "../../public/battle/Village_battle2.jpg",
+  "prompt": "A living painting, a seamless loop. The camera is locked off and absolutely still. The painted image, its composition, buildings, rocks and trees stay exactly the same. Only the atmosphere moves very gently: smoke rises from chimneys, grass sways. No people appear, no new objects, no cuts.",
+  "sec": 8,
+  "n": 2,
+  "last": "../../public/battle/Village_battle2.jpg",
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/battle_Village_battle3",
+  "first": "../../public/battle/Village_battle3.jpg",
+  "prompt": "A living painting, a seamless loop. The camera is locked off and absolutely still. The painted image, its composition, buildings, rocks and trees stay exactly the same. Only the atmosphere moves very gently: smoke rises from chimneys, grass sways. No people appear, no new objects, no cuts.",
+  "sec": 8,
+  "n": 2,
+  "last": "../../public/battle/Village_battle3.jpg",
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/battle_Winter_Forest",
+  "first": "../../public/battle/Winter_Forest.jpg",
+  "prompt": "A living painting, a seamless loop. The camera is locked off and absolutely still. The painted image, its composition, buildings, rocks and trees stay exactly the same. Only the atmosphere moves very gently: snow falls, branches tremble. No people appear, no new objects, no cuts.",
+  "sec": 8,
+  "n": 2,
+  "last": "../../public/battle/Winter_Forest.jpg",
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/battle_Winter_Grad",
+  "first": "../../public/battle/Winter_Grad.jpg",
+  "prompt": "A living painting, a seamless loop. The camera is locked off and absolutely still. The painted image, its composition, buildings, rocks and trees stay exactly the same. Only the atmosphere moves very gently: snow falls, torches flicker. No people appear, no new objects, no cuts.",
+  "sec": 8,
+  "n": 2,
+  "last": "../../public/battle/Winter_Grad.jpg",
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_forest1",
+  "first": "../../public/maps/forest1.png",
+  "prompt": "A living painting, a seamless loop. The camera is locked off and absolutely still. The painted image, its composition, buildings, rocks and trees stay exactly the same. Only the atmosphere moves very gently: fog and branches. No people appear, no new objects, no cuts.",
+  "sec": 8,
+  "n": 2,
+  "last": "../../public/maps/forest1.png",
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_tavern_map",
+  "first": "../../public/maps/tavern_map.png",
+  "prompt": "A living painting, a seamless loop. The camera is locked off and absolutely still. The painted image, its composition, buildings, rocks and trees stay exactly the same. Only the atmosphere moves very gently: chimney smoke and lantern flames. No people appear, no new objects, no cuts.",
+  "sec": 8,
+  "n": 2,
+  "last": "../../public/maps/tavern_map.png",
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_tavern_inside",
+  "first": "../../public/maps/tavern_inside.png",
+  "prompt": "A living painting, a seamless loop. The camera is locked off and absolutely still. The painted image, its composition, buildings, rocks and trees stay exactly the same. Only the atmosphere moves very gently: hearth fire and candles. No people appear, no new objects, no cuts.",
+  "sec": 8,
+  "n": 2,
+  "last": "../../public/maps/tavern_inside.png",
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_elf_boloto",
+  "first": "../../public/maps/elf_boloto.png",
+  "prompt": "A living painting, a seamless loop. The camera is locked off and absolutely still. The painted image, its composition, buildings, rocks and trees stay exactly the same. Only the atmosphere moves very gently: swamp fog and water ripples. No people appear, no new objects, no cuts.",
+  "sec": 8,
+  "n": 2,
+  "last": "../../public/maps/elf_boloto.png",
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_road_boloto",
+  "first": "../../public/maps/road_boloto.png",
+  "prompt": "A living painting, a seamless loop. The camera is locked off and absolutely still. The painted image, its composition, buildings, rocks and trees stay exactly the same. Only the atmosphere moves very gently: fog and water ripples. No people appear, no new objects, no cuts.",
+  "sec": 8,
+  "n": 2,
+  "last": "../../public/maps/road_boloto.png",
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_mountains_map",
+  "first": "../../public/maps/mountains_map.png",
+  "prompt": "A living painting, a seamless loop. The camera is locked off and absolutely still. The painted image, its composition, buildings, rocks and trees stay exactly the same. Only the atmosphere moves very gently: clouds and blowing snow. No people appear, no new objects, no cuts.",
+  "sec": 8,
+  "n": 2,
+  "last": "../../public/maps/mountains_map.png",
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_kingthrone",
+  "first": "../../public/maps/kingthrone.png",
+  "prompt": "A living painting, a seamless loop. The camera is locked off and absolutely still. The painted image, its composition, buildings, rocks and trees stay exactly the same. Only the atmosphere moves very gently: torches and dust. No people appear, no new objects, no cuts.",
+  "sec": 8,
+  "n": 2,
+  "last": "../../public/maps/kingthrone.png",
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_village",
+  "first": "../../public/maps/village.png",
+  "prompt": "A living painting, a seamless loop. The camera is locked off and absolutely still. The painted image, its composition, buildings, rocks and trees stay exactly the same. Only the atmosphere moves very gently: chimney smoke and grass. No people appear, no new objects, no cuts.",
+  "sec": 8,
+  "n": 2,
+  "last": "../../public/maps/village.png",
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_south_post",
+  "first": "../../public/maps/gen/south_post_k2.jpg",
+  "prompt": "A living painting, a seamless loop. The camera is locked off and absolutely still. The painted image, its composition, buildings, rocks and trees stay exactly the same. Only the atmosphere moves very gently: fog and a brazier flame. No people appear, no new objects, no cuts.",
+  "sec": 8,
+  "n": 2,
+  "last": "../../public/maps/gen/south_post_k2.jpg",
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_three_pillars",
+  "first": "../../public/maps/gen/three_pillars_k2.jpg",
+  "prompt": "A living painting, a seamless loop. The camera is locked off and absolutely still. The painted image, its composition, buildings, rocks and trees stay exactly the same. Only the atmosphere moves very gently: chimney smoke and fog. No people appear, no new objects, no cuts.",
+  "sec": 8,
+  "n": 2,
+  "last": "../../public/maps/gen/three_pillars_k2.jpg",
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_old_mill",
+  "first": "../../public/maps/gen/old_mill_pick.jpg",
+  "prompt": "A living painting, a seamless loop. The camera is locked off and absolutely still. The painted image, its composition, buildings, rocks and trees stay exactly the same. Only the atmosphere moves very gently: water and grass. No people appear, no new objects, no cuts.",
+  "sec": 8,
+  "n": 2,
+  "last": "../../public/maps/gen/old_mill_pick.jpg",
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_burned_hamlet",
+  "first": "../../public/maps/gen/burned_hamlet_k2.jpg",
+  "prompt": "A living painting, a seamless loop. The camera is locked off and absolutely still. The painted image, its composition, buildings, rocks and trees stay exactly the same. Only the atmosphere moves very gently: thin smoke and ash. No people appear, no new objects, no cuts.",
+  "sec": 8,
+  "n": 2,
+  "last": "../../public/maps/gen/burned_hamlet_k2.jpg",
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_dead_road",
+  "first": "../../public/maps/gen/dead_road_pick.png",
+  "prompt": "A living painting, a seamless loop. The camera is locked off and absolutely still. The painted image, its composition, buildings, rocks and trees stay exactly the same. Only the atmosphere moves very gently: fog and crows' shadows of clouds. No people appear, no new objects, no cuts.",
+  "sec": 8,
+  "n": 2,
+  "last": "../../public/maps/gen/dead_road_pick.png",
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_gallows_hill",
+  "first": "../../public/maps/gen/gallows_hill_pick.jpg",
+  "prompt": "A living painting, a seamless loop. The camera is locked off and absolutely still. The painted image, its composition, buildings, rocks and trees stay exactly the same. Only the atmosphere moves very gently: wind in the grass and clouds. No people appear, no new objects, no cuts.",
+  "sec": 8,
+  "n": 2,
+  "last": "../../public/maps/gen/gallows_hill_pick.jpg",
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_forest_camp",
+  "first": "../../public/maps/gen/forest_camp_k2.jpg",
+  "prompt": "A living painting, a seamless loop. The camera is locked off and absolutely still. The painted image, its composition, buildings, rocks and trees stay exactly the same. Only the atmosphere moves very gently: campfire smoke. No people appear, no new objects, no cuts.",
+  "sec": 8,
+  "n": 2,
+  "last": "../../public/maps/gen/forest_camp_k2.jpg",
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_forest_altar",
+  "first": "../../public/maps/gen/forest_altar_k2.jpg",
+  "prompt": "A living painting, a seamless loop. The camera is locked off and absolutely still. The painted image, its composition, buildings, rocks and trees stay exactly the same. Only the atmosphere moves very gently: fog and candle flames. No people appear, no new objects, no cuts.",
+  "sec": 8,
+  "n": 2,
+  "last": "../../public/maps/gen/forest_altar_k2.jpg",
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_forest_deep",
+  "first": "../../public/maps/gen/forest_deep_k2.jpg",
+  "prompt": "A living painting, a seamless loop. The camera is locked off and absolutely still. The painted image, its composition, buildings, rocks and trees stay exactly the same. Only the atmosphere moves very gently: fog and branches. No people appear, no new objects, no cuts.",
+  "sec": 8,
+  "n": 2,
+  "last": "../../public/maps/gen/forest_deep_k2.jpg",
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_ravine",
+  "first": "../../public/maps/gen/ravine_k2.jpg",
+  "prompt": "A living painting, a seamless loop. The camera is locked off and absolutely still. The painted image, its composition, buildings, rocks and trees stay exactly the same. Only the atmosphere moves very gently: fog and water. No people appear, no new objects, no cuts.",
+  "sec": 8,
+  "n": 2,
+  "last": "../../public/maps/gen/ravine_k2.jpg",
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_drowned_village",
+  "first": "../../public/maps/gen/drowned_village_pick.png",
+  "prompt": "A living painting, a seamless loop. The camera is locked off and absolutely still. The painted image, its composition, buildings, rocks and trees stay exactly the same. Only the atmosphere moves very gently: fog and water ripples. No people appear, no new objects, no cuts.",
+  "sec": 8,
+  "n": 2,
+  "last": "../../public/maps/gen/drowned_village_pick.png",
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_swamp_map",
+  "first": "../../public/maps/swamp_map.png",
+  "prompt": "A living painting, a seamless loop. The camera is locked off and absolutely still. The painted image, its composition, buildings, rocks and trees stay exactly the same. Only the atmosphere moves very gently: swamp fog. No people appear, no new objects, no cuts.",
+  "sec": 8,
+  "n": 2,
+  "last": "../../public/maps/swamp_map.png",
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_copper_mine",
+  "first": "../../public/maps/gen/copper_mine_k2.jpg",
+  "prompt": "A living painting, a seamless loop. The camera is locked off and absolutely still. The painted image, its composition, buildings, rocks and trees stay exactly the same. Only the atmosphere moves very gently: lamp flames and dust. No people appear, no new objects, no cuts.",
+  "sec": 8,
+  "n": 2,
+  "last": "../../public/maps/gen/copper_mine_k2.jpg",
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_dwarf_hall",
+  "first": "../../public/maps/gen/dwarf_hall_k2.jpg",
+  "prompt": "A living painting, a seamless loop. The camera is locked off and absolutely still. The painted image, its composition, buildings, rocks and trees stay exactly the same. Only the atmosphere moves very gently: forge fire and dust. No people appear, no new objects, no cuts.",
+  "sec": 8,
+  "n": 2,
+  "last": "../../public/maps/gen/dwarf_hall_k2.jpg",
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_winter_forest",
+  "first": "../../public/maps/gen/winter_forest_pick.jpg",
+  "prompt": "A living painting, a seamless loop. The camera is locked off and absolutely still. The painted image, its composition, buildings, rocks and trees stay exactly the same. Only the atmosphere moves very gently: falling snow. No people appear, no new objects, no cuts.",
+  "sec": 8,
+  "n": 2,
+  "last": "../../public/maps/gen/winter_forest_pick.jpg",
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_frozen_lake",
+  "first": "../../public/maps/gen/frozen_lake_pick.jpg",
+  "prompt": "A living painting, a seamless loop. The camera is locked off and absolutely still. The painted image, its composition, buildings, rocks and trees stay exactly the same. Only the atmosphere moves very gently: blowing snow. No people appear, no new objects, no cuts.",
+  "sec": 8,
+  "n": 2,
+  "last": "../../public/maps/gen/frozen_lake_pick.jpg",
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_ice_shrine",
+  "first": "../../public/maps/gen/ice_shrine_k2.jpg",
+  "prompt": "A living painting, a seamless loop. The camera is locked off and absolutely still. The painted image, its composition, buildings, rocks and trees stay exactly the same. Only the atmosphere moves very gently: cold mist. No people appear, no new objects, no cuts.",
+  "sec": 8,
+  "n": 2,
+  "last": "../../public/maps/gen/ice_shrine_k2.jpg",
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_winter_grad_gate",
+  "first": "../../public/maps/gen/winter_grad_gate_pick.jpg",
+  "prompt": "A living painting, a seamless loop. The camera is locked off and absolutely still. The painted image, its composition, buildings, rocks and trees stay exactly the same. Only the atmosphere moves very gently: snow and torches. No people appear, no new objects, no cuts.",
+  "sec": 8,
+  "n": 2,
+  "last": "../../public/maps/gen/winter_grad_gate_pick.jpg",
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_grad_square",
+  "first": "../../public/maps/gen/grad_square_pick.png",
+  "prompt": "A living painting, a seamless loop. The camera is locked off and absolutely still. The painted image, its composition, buildings, rocks and trees stay exactly the same. Only the atmosphere moves very gently: snow and torches. No people appear, no new objects, no cuts.",
+  "sec": 8,
+  "n": 2,
+  "last": "../../public/maps/gen/grad_square_pick.png",
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_queens_hall",
+  "first": "../../public/maps/gen/queens_hall_k2.jpg",
+  "prompt": "A living painting, a seamless loop. The camera is locked off and absolutely still. The painted image, its composition, buildings, rocks and trees stay exactly the same. Only the atmosphere moves very gently: candles and cold mist. No people appear, no new objects, no cuts.",
+  "sec": 8,
+  "n": 2,
+  "last": "../../public/maps/gen/queens_hall_k2.jpg",
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_north_road",
+  "first": "../../public/maps/gen/north_road_pick.png",
+  "prompt": "A living painting, a seamless loop. The camera is locked off and absolutely still. The painted image, its composition, buildings, rocks and trees stay exactly the same. Only the atmosphere moves very gently: blowing snow. No people appear, no new objects, no cuts.",
+  "sec": 8,
+  "n": 2,
+  "last": "../../public/maps/gen/north_road_pick.png",
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_north_frontier",
+  "first": "../../public/maps/gen/north_frontier_pick.jpg",
+  "prompt": "A living painting, a seamless loop. The camera is locked off and absolutely still. The painted image, its composition, buildings, rocks and trees stay exactly the same. Only the atmosphere moves very gently: blowing snow and torn banners. No people appear, no new objects, no cuts.",
+  "sec": 8,
+  "n": 2,
+  "last": "../../public/maps/gen/north_frontier_pick.jpg",
+  "raw": true
+ }
+]

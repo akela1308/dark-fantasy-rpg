@@ -1,0 +1,1 @@
+{"slug": "wandering_knight", "anim": "death", "base": "wandering_knight/k_battle_w.png", "body": 300, "segments": [{"clip": "wandering_knight/clips/death_w_v1.mp4", "from": 0, "to": 95, "frames": 30}], "left": 1.5, "right": 1.45, "hold": true, "ver": 2, "keepall": false, "top": 0.95}

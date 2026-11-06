@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/000ac87a-cc38-4332-8f8c-53d8b92d9855",
+ "prompt": "A living painting. The camera is locked off and absolutely still. The painted image stays exactly the same: every building, rock, tree and path stays pixel-still. Motion is extremely subtle and slow and only in grass sways, clouds drift. No clouds appear, no fog patches appear, nothing appears or disappears, the brightness stays the same.",
+ "img": "../../public/battle/Plane.jpg",
+ "last": null,
+ "sec": 8
+}

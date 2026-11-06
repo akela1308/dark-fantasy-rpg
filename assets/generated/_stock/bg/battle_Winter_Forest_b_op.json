@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/b307a506-3326-4259-818c-8afa9282632a",
+ "prompt": "A living painting. The camera is locked off and absolutely still. The painted image stays exactly the same: every building, rock, tree and path stays pixel-still. Motion is extremely subtle and slow and only in snow falls, branches tremble. No clouds appear, no fog patches appear, nothing appears or disappears, the brightness stays the same.",
+ "img": "../../public/battle/Winter_Forest.jpg",
+ "last": null,
+ "sec": 8
+}

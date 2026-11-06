@@ -1,0 +1,30 @@
+Traceback (most recent call last):
+  File "/private/tmp/claude-501/-Users-maksimilin-Desktop-Dark-Fantasy-dark-fantasy-rpg/08e99c92-16e2-400d-afe8-537c481027df/scratchpad/nbenv/lib/python3.13/site-packages/PIL/ImageFile.py", line 405, in load
+    s = read(read_bytes)
+  File "/private/tmp/claude-501/-Users-maksimilin-Desktop-Dark-Fantasy-dark-fantasy-rpg/08e99c92-16e2-400d-afe8-537c481027df/scratchpad/nbenv/lib/python3.13/site-packages/PIL/PngImagePlugin.py", line 1022, in load_read
+    cid, pos, length = self.png.read()
+                       ~~~~~~~~~~~~~^^
+  File "/private/tmp/claude-501/-Users-maksimilin-Desktop-Dark-Fantasy-dark-fantasy-rpg/08e99c92-16e2-400d-afe8-537c481027df/scratchpad/nbenv/lib/python3.13/site-packages/PIL/PngImagePlugin.py", line 188, in read
+    length = i32(s)
+  File "/private/tmp/claude-501/-Users-maksimilin-Desktop-Dark-Fantasy-dark-fantasy-rpg/08e99c92-16e2-400d-afe8-537c481027df/scratchpad/nbenv/lib/python3.13/site-packages/PIL/_binary.py", line 98, in i32be
+    return unpack_from(">I", c, o)[0]
+           ~~~~~~~~~~~^^^^^^^^^^^^
+struct.error: unpack_from requires a buffer of at least 4 bytes for unpacking 4 bytes at offset 0 (actual buffer size is 0)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/tools/veo_client.py", line 104, in <module>
+    {"image": image, "vsubmit": vsubmit, "vpoll": vpoll}[cmd](a)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/tools/veo_client.py", line 85, in vsubmit
+    inst = {"prompt": pre + prompt, "image": {"bytesBase64Encoded": b64img(img, 1920), "mimeType": "image/jpeg"}}
+                                                                    ~~~~~~^^^^^^^^^^^
+  File "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg/tools/veo_client.py", line 46, in b64img
+    im = im.convert("RGB"); im.thumbnail((side, side)); b = io.BytesIO(); im.save(b, "JPEG", quality=92)
+  File "/private/tmp/claude-501/-Users-maksimilin-Desktop-Dark-Fantasy-dark-fantasy-rpg/08e99c92-16e2-400d-afe8-537c481027df/scratchpad/nbenv/lib/python3.13/site-packages/PIL/Image.py", line 1067, in convert
+    self.load()
+    ~~~~~~~~~^^
+  File "/private/tmp/claude-501/-Users-maksimilin-Desktop-Dark-Fantasy-dark-fantasy-rpg/08e99c92-16e2-400d-afe8-537c481027df/scratchpad/nbenv/lib/python3.13/site-packages/PIL/ImageFile.py", line 412, in load
+    raise OSError(msg) from e
+OSError: image file is truncated

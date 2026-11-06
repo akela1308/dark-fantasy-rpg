@@ -25,15 +25,15 @@
     "hitFrame": 3
    },
    "death": {
-    "file": "sprites/battle/adventurer_death_v1_s60.webp",
-    "frameWidth": 350,
-    "frameHeight": 197,
+    "file": "sprites/battle/adventurer_death_v2_s60.webp",
+    "frameWidth": 476,
+    "frameHeight": 274,
     "frames": 30,
     "fps": 24,
-    "originX": 0.6084,
-    "originY": 0.9758,
+    "originX": 0.5679,
+    "originY": 0.9819,
     "bodyHeight": 180.1,
-    "key": "adventurer_death_v1_s60",
+    "key": "adventurer_death_v2_s60",
     "hold": true
    },
    "hit": {
@@ -60,15 +60,15 @@
     "loop": true
    },
    "victory": {
-    "file": "sprites/battle/adventurer_victory_v1_s60.webp",
-    "frameWidth": 290,
-    "frameHeight": 197,
+    "file": "sprites/battle/adventurer_victory_v2_s60.webp",
+    "frameWidth": 431,
+    "frameHeight": 274,
     "frames": 29,
     "fps": 24,
-    "originX": 0.5275,
-    "originY": 0.9758,
-    "bodyHeight": 179.8,
-    "key": "adventurer_victory_v1_s60",
+    "originX": 0.5227,
+    "originY": 0.9819,
+    "bodyHeight": 180.1,
+    "key": "adventurer_victory_v2_s60",
     "hold": true
    }
   },
@@ -80,7 +80,7 @@
  "agna": {
   "anims": {
    "attack": {
-    "file": "sprites/battle/agna_attack_v1_s60.webp",
+    "file": "sprites/battle/agna_attack_v2_s60.webp",
     "frameWidth": 353,
     "frameHeight": 199,
     "frames": 29,
@@ -88,19 +88,19 @@
     "originX": 0.3783,
     "originY": 0.9773,
     "bodyHeight": 179.8,
-    "key": "agna_attack_v1_s60",
+    "key": "agna_attack_v2_s60",
     "hitFrame": 11
    },
    "death": {
-    "file": "sprites/battle/agna_death_v1_s60.webp",
-    "frameWidth": 353,
-    "frameHeight": 199,
+    "file": "sprites/battle/agna_death_v2_s60.webp",
+    "frameWidth": 464,
+    "frameHeight": 277,
     "frames": 30,
     "fps": 24,
-    "originX": 0.3783,
-    "originY": 0.9773,
-    "bodyHeight": 179.8,
-    "key": "agna_death_v1_s60",
+    "originX": 0.4374,
+    "originY": 0.9831,
+    "bodyHeight": 180.1,
+    "key": "agna_death_v2_s60",
     "hold": true
    },
    "hit": {
@@ -127,15 +127,15 @@
     "loop": true
    },
    "victory": {
-    "file": "sprites/battle/agna_victory_v1_s60.webp",
-    "frameWidth": 313,
-    "frameHeight": 199,
+    "file": "sprites/battle/agna_victory_v2_s60.webp",
+    "frameWidth": 464,
+    "frameHeight": 277,
     "frames": 29,
     "fps": 24,
-    "originX": 0.4268,
-    "originY": 0.9773,
-    "bodyHeight": 179.9,
-    "key": "agna_victory_v1_s60",
+    "originX": 0.4374,
+    "originY": 0.9831,
+    "bodyHeight": 180.1,
+    "key": "agna_victory_v2_s60",
     "hold": true
    }
   },
@@ -147,62 +147,62 @@
  "archer_guard": {
   "anims": {
    "attack": {
-    "file": "sprites/battle/archer_guard_attack_v1_s60.webp",
-    "frameWidth": 371,
-    "frameHeight": 204,
+    "file": "sprites/battle/archer_guard_attack_v2_s60.webp",
+    "frameWidth": 485,
+    "frameHeight": 286,
     "frames": 29,
     "fps": 24,
-    "originX": 0.4104,
-    "originY": 0.972,
-    "bodyHeight": 179.8,
-    "key": "archer_guard_attack_v1_s60",
+    "originX": 0.4637,
+    "originY": 0.9794,
+    "bodyHeight": 179.9,
+    "key": "archer_guard_attack_v2_s60",
     "hitFrame": 15
    },
    "death": {
-    "file": "sprites/battle/archer_guard_death_v1_s60.webp",
-    "frameWidth": 371,
-    "frameHeight": 204,
+    "file": "sprites/battle/archer_guard_death_v2_s60.webp",
+    "frameWidth": 486,
+    "frameHeight": 286,
     "frames": 30,
     "fps": 24,
-    "originX": 0.4104,
-    "originY": 0.972,
-    "bodyHeight": 179.8,
-    "key": "archer_guard_death_v1_s60",
+    "originX": 0.464,
+    "originY": 0.9794,
+    "bodyHeight": 180.0,
+    "key": "archer_guard_death_v2_s60",
     "hold": true
    },
    "hit": {
-    "file": "sprites/battle/archer_guard_hit_v1_s60.webp",
-    "frameWidth": 332,
-    "frameHeight": 204,
+    "file": "sprites/battle/archer_guard_hit_v2_s60.webp",
+    "frameWidth": 485,
+    "frameHeight": 286,
     "frames": 16,
     "fps": 24,
-    "originX": 0.4585,
-    "originY": 0.972,
-    "bodyHeight": 179.8,
-    "key": "archer_guard_hit_v1_s60"
+    "originX": 0.4637,
+    "originY": 0.9794,
+    "bodyHeight": 179.9,
+    "key": "archer_guard_hit_v2_s60"
    },
    "idle": {
-    "file": "sprites/battle/archer_guard_idle_v1_s60.webp",
-    "frameWidth": 252,
-    "frameHeight": 204,
+    "file": "sprites/battle/archer_guard_idle_v2_s60.webp",
+    "frameWidth": 410,
+    "frameHeight": 241,
     "frames": 48,
     "fps": 24,
-    "originX": 0.4286,
-    "originY": 0.972,
-    "bodyHeight": 180.0,
-    "key": "archer_guard_idle_v1_s60",
+    "originX": 0.4642,
+    "originY": 0.9837,
+    "bodyHeight": 152.2,
+    "key": "archer_guard_idle_v2_s60",
     "loop": true
    },
    "victory": {
-    "file": "sprites/battle/archer_guard_victory_v1_s60.webp",
-    "frameWidth": 332,
-    "frameHeight": 204,
+    "file": "sprites/battle/archer_guard_victory_v2_s60.webp",
+    "frameWidth": 485,
+    "frameHeight": 286,
     "frames": 29,
     "fps": 24,
-    "originX": 0.4585,
-    "originY": 0.972,
-    "bodyHeight": 179.8,
-    "key": "archer_guard_victory_v1_s60",
+    "originX": 0.4637,
+    "originY": 0.9794,
+    "bodyHeight": 179.9,
+    "key": "archer_guard_victory_v2_s60",
     "hold": true
    }
   },
@@ -225,15 +225,15 @@
     "key": "assassin_amb2_v1_s60"
    },
    "death": {
-    "file": "sprites/battle/assassin_death_v1_s60.webp",
-    "frameWidth": 337,
-    "frameHeight": 189,
+    "file": "sprites/battle/assassin_death_v2_s60.webp",
+    "frameWidth": 461,
+    "frameHeight": 263,
     "frames": 30,
     "fps": 24,
-    "originX": 0.3995,
-    "originY": 0.9858,
-    "bodyHeight": 180.2,
-    "key": "assassin_death_v1_s60",
+    "originX": 0.4352,
+    "originY": 0.9896,
+    "bodyHeight": 180.1,
+    "key": "assassin_death_v2_s60",
     "hold": true
    },
    "idle": {
@@ -249,27 +249,27 @@
     "loop": true
    },
    "power": {
-    "file": "sprites/battle/assassin_power_v1_s60.webp",
-    "frameWidth": 337,
-    "frameHeight": 189,
+    "file": "sprites/battle/assassin_power_v2_s60.webp",
+    "frameWidth": 461,
+    "frameHeight": 263,
     "frames": 38,
     "fps": 24,
-    "originX": 0.3995,
-    "originY": 0.9858,
-    "bodyHeight": 180.2,
-    "key": "assassin_power_v1_s60",
-    "hitFrame": 11
+    "originX": 0.4352,
+    "originY": 0.9896,
+    "bodyHeight": 180.1,
+    "key": "assassin_power_v2_s60",
+    "hitFrame": 17
    },
    "victory": {
-    "file": "sprites/battle/assassin_victory_v1_s60.webp",
-    "frameWidth": 314,
-    "frameHeight": 189,
+    "file": "sprites/battle/assassin_victory_v2_s60.webp",
+    "frameWidth": 461,
+    "frameHeight": 263,
     "frames": 29,
     "fps": 24,
-    "originX": 0.4277,
-    "originY": 0.9858,
-    "bodyHeight": 179.8,
-    "key": "assassin_victory_v1_s60",
+    "originX": 0.4352,
+    "originY": 0.9896,
+    "bodyHeight": 180.1,
+    "key": "assassin_victory_v2_s60",
     "hold": true
    }
   },
@@ -301,16 +301,16 @@
     "key": "assassin_undead_amb2_v1_s60"
    },
    "attack": {
-    "file": "sprites/battle/assassin_undead_attack_v1_s60.webp",
-    "frameWidth": 312,
-    "frameHeight": 199,
+    "file": "sprites/battle/assassin_undead_attack_v2_s60.webp",
+    "frameWidth": 428,
+    "frameHeight": 278,
     "frames": 29,
     "fps": 24,
-    "originX": 0.5774,
-    "originY": 0.9731,
-    "bodyHeight": 180.0,
-    "key": "assassin_undead_attack_v1_s60",
-    "hitFrame": 14
+    "originX": 0.5264,
+    "originY": 0.9797,
+    "bodyHeight": 180.1,
+    "key": "assassin_undead_attack_v2_s60",
+    "hitFrame": 12
    },
    "death": {
     "file": "sprites/battle/assassin_undead_death_v2_s60.webp",
@@ -348,27 +348,27 @@
     "loop": true
    },
    "power": {
-    "file": "sprites/battle/assassin_undead_power_v1_s60.webp",
-    "frameWidth": 312,
-    "frameHeight": 199,
+    "file": "sprites/battle/assassin_undead_power_v2_s60.webp",
+    "frameWidth": 428,
+    "frameHeight": 278,
     "frames": 37,
     "fps": 24,
-    "originX": 0.5774,
-    "originY": 0.9731,
-    "bodyHeight": 180.0,
-    "key": "assassin_undead_power_v1_s60",
+    "originX": 0.5264,
+    "originY": 0.9797,
+    "bodyHeight": 180.1,
+    "key": "assassin_undead_power_v2_s60",
     "hitFrame": 20
    },
    "victory": {
-    "file": "sprites/battle/assassin_undead_victory_v1_s60.webp",
-    "frameWidth": 284,
-    "frameHeight": 199,
+    "file": "sprites/battle/assassin_undead_victory_v2_s60.webp",
+    "frameWidth": 428,
+    "frameHeight": 278,
     "frames": 29,
     "fps": 24,
-    "originX": 0.5382,
-    "originY": 0.9731,
-    "bodyHeight": 179.7,
-    "key": "assassin_undead_victory_v1_s60",
+    "originX": 0.5264,
+    "originY": 0.9797,
+    "bodyHeight": 180.1,
+    "key": "assassin_undead_victory_v2_s60",
     "hold": true
    }
   },
@@ -449,15 +449,15 @@
     "loop": true
    },
    "victory": {
-    "file": "sprites/battle/bandit_archer_victory_v1_s60.webp",
-    "frameWidth": 277,
-    "frameHeight": 190,
+    "file": "sprites/battle/bandit_archer_victory_v2_s60.webp",
+    "frameWidth": 415,
+    "frameHeight": 264,
     "frames": 29,
     "fps": 24,
-    "originX": 0.5522,
-    "originY": 0.9856,
+    "originX": 0.5419,
+    "originY": 0.9893,
     "bodyHeight": 179.9,
-    "key": "bandit_archer_victory_v1_s60",
+    "key": "bandit_archer_victory_v2_s60",
     "hold": true
    }
   },
@@ -481,15 +481,15 @@
     "hitFrame": 11
    },
    "death": {
-    "file": "sprites/battle/bandit_axewoman_death_v1_s60.webp",
-    "frameWidth": 353,
-    "frameHeight": 197,
+    "file": "sprites/battle/bandit_axewoman_death_v2_s60.webp",
+    "frameWidth": 463,
+    "frameHeight": 275,
     "frames": 27,
     "fps": 24,
-    "originX": 0.377,
-    "originY": 0.9719,
-    "bodyHeight": 180.1,
-    "key": "bandit_axewoman_death_v1_s60",
+    "originX": 0.4364,
+    "originY": 0.9783,
+    "bodyHeight": 180.2,
+    "key": "bandit_axewoman_death_v2_s60",
     "hold": true
    },
    "hit": {
@@ -516,15 +516,15 @@
     "loop": true
    },
    "victory": {
-    "file": "sprites/battle/bandit_axewoman_victory_v1_s60.webp",
-    "frameWidth": 313,
-    "frameHeight": 197,
+    "file": "sprites/battle/bandit_axewoman_victory_v2_s60.webp",
+    "frameWidth": 463,
+    "frameHeight": 275,
     "frames": 29,
     "fps": 24,
-    "originX": 0.4255,
-    "originY": 0.9719,
+    "originX": 0.4364,
+    "originY": 0.9783,
     "bodyHeight": 180.2,
-    "key": "bandit_axewoman_victory_v1_s60",
+    "key": "bandit_axewoman_victory_v2_s60",
     "hold": true
    }
   },
@@ -547,19 +547,19 @@
     "key": "bandit_brawler_amb2_v1_s60"
    },
    "attack": {
-    "file": "sprites/battle/bandit_brawler_attack_v1_s60.webp",
-    "frameWidth": 362,
-    "frameHeight": 203,
+    "file": "sprites/battle/bandit_brawler_attack_v2_s60.webp",
+    "frameWidth": 458,
+    "frameHeight": 284,
     "frames": 28,
     "fps": 24,
-    "originX": 0.3497,
-    "originY": 0.9796,
-    "bodyHeight": 180.1,
-    "key": "bandit_brawler_attack_v1_s60",
+    "originX": 0.4314,
+    "originY": 0.9848,
+    "bodyHeight": 179.8,
+    "key": "bandit_brawler_attack_v2_s60",
     "hitFrame": 10
    },
    "death": {
-    "file": "sprites/battle/bandit_brawler_death_v1_s60.webp",
+    "file": "sprites/battle/bandit_brawler_death_v2_s60.webp",
     "frameWidth": 360,
     "frameHeight": 203,
     "frames": 30,
@@ -567,19 +567,19 @@
     "originX": 0.3514,
     "originY": 0.9796,
     "bodyHeight": 180.0,
-    "key": "bandit_brawler_death_v1_s60",
+    "key": "bandit_brawler_death_v2_s60",
     "hold": true
    },
    "hit": {
-    "file": "sprites/battle/bandit_brawler_hit_v2_s60.webp",
-    "frameWidth": 362,
-    "frameHeight": 203,
+    "file": "sprites/battle/bandit_brawler_hit_v3_s60.webp",
+    "frameWidth": 458,
+    "frameHeight": 284,
     "frames": 14,
     "fps": 24,
-    "originX": 0.3497,
-    "originY": 0.9796,
-    "bodyHeight": 180.1,
-    "key": "bandit_brawler_hit_v2_s60"
+    "originX": 0.4314,
+    "originY": 0.9848,
+    "bodyHeight": 179.8,
+    "key": "bandit_brawler_hit_v3_s60"
    },
    "idle": {
     "file": "sprites/battle/bandit_brawler_idle_v1_s60.webp",
@@ -594,15 +594,15 @@
     "loop": true
    },
    "victory": {
-    "file": "sprites/battle/bandit_brawler_victory_v1_s60.webp",
-    "frameWidth": 306,
-    "frameHeight": 203,
+    "file": "sprites/battle/bandit_brawler_victory_v2_s60.webp",
+    "frameWidth": 458,
+    "frameHeight": 284,
     "frames": 29,
     "fps": 24,
-    "originX": 0.4134,
-    "originY": 0.9796,
-    "bodyHeight": 180.0,
-    "key": "bandit_brawler_victory_v1_s60",
+    "originX": 0.4314,
+    "originY": 0.9848,
+    "bodyHeight": 179.8,
+    "key": "bandit_brawler_victory_v2_s60",
     "hold": true
    }
   },
@@ -614,39 +614,39 @@
  "bandit_commander": {
   "anims": {
    "attack": {
-    "file": "sprites/battle/bandit_commander_attack_v1_s60.webp",
-    "frameWidth": 365,
-    "frameHeight": 202,
+    "file": "sprites/battle/bandit_commander_attack_v2_s60.webp",
+    "frameWidth": 462,
+    "frameHeight": 282,
     "frames": 29,
     "fps": 24,
-    "originX": 0.3574,
-    "originY": 0.9735,
-    "bodyHeight": 180.1,
-    "key": "bandit_commander_attack_v1_s60",
-    "hitFrame": 10
+    "originX": 0.436,
+    "originY": 0.9799,
+    "bodyHeight": 180.0,
+    "key": "bandit_commander_attack_v2_s60",
+    "hitFrame": 8
    },
    "death": {
-    "file": "sprites/battle/bandit_commander_death_v2_s60.webp",
-    "frameWidth": 364,
-    "frameHeight": 205,
+    "file": "sprites/battle/bandit_commander_death_v3_s60.webp",
+    "frameWidth": 462,
+    "frameHeight": 282,
     "frames": 30,
     "fps": 24,
-    "originX": 0.3579,
-    "originY": 0.9564,
-    "bodyHeight": 179.9,
-    "key": "bandit_commander_death_v2_s60",
+    "originX": 0.436,
+    "originY": 0.9799,
+    "bodyHeight": 180.0,
+    "key": "bandit_commander_death_v3_s60",
     "hold": true
    },
    "hit": {
-    "file": "sprites/battle/bandit_commander_hit_v2_s60.webp",
-    "frameWidth": 365,
-    "frameHeight": 202,
+    "file": "sprites/battle/bandit_commander_hit_v3_s60.webp",
+    "frameWidth": 462,
+    "frameHeight": 282,
     "frames": 14,
     "fps": 24,
-    "originX": 0.3574,
-    "originY": 0.9735,
-    "bodyHeight": 180.1,
-    "key": "bandit_commander_hit_v2_s60"
+    "originX": 0.436,
+    "originY": 0.9799,
+    "bodyHeight": 180.0,
+    "key": "bandit_commander_hit_v3_s60"
    },
    "idle": {
     "file": "sprites/battle/bandit_commander_idle_v1_s60.webp",
@@ -661,27 +661,27 @@
     "loop": true
    },
    "power": {
-    "file": "sprites/battle/bandit_commander_power_v1_s60.webp",
-    "frameWidth": 365,
-    "frameHeight": 202,
+    "file": "sprites/battle/bandit_commander_power_v2_s60.webp",
+    "frameWidth": 462,
+    "frameHeight": 282,
     "frames": 38,
     "fps": 24,
-    "originX": 0.3574,
-    "originY": 0.9735,
-    "bodyHeight": 180.1,
-    "key": "bandit_commander_power_v1_s60",
+    "originX": 0.436,
+    "originY": 0.9799,
+    "bodyHeight": 180.0,
+    "key": "bandit_commander_power_v2_s60",
     "hitFrame": 14
    },
    "victory": {
-    "file": "sprites/battle/bandit_commander_victory_v1_s60.webp",
-    "frameWidth": 310,
-    "frameHeight": 202,
+    "file": "sprites/battle/bandit_commander_victory_v2_s60.webp",
+    "frameWidth": 462,
+    "frameHeight": 282,
     "frames": 29,
     "fps": 24,
-    "originX": 0.4203,
-    "originY": 0.9735,
-    "bodyHeight": 179.9,
-    "key": "bandit_commander_victory_v1_s60",
+    "originX": 0.436,
+    "originY": 0.9799,
+    "bodyHeight": 180.0,
+    "key": "bandit_commander_victory_v2_s60",
     "hold": true
    }
   },
@@ -693,39 +693,39 @@
  "bandit_knifeman": {
   "anims": {
    "attack": {
-    "file": "sprites/battle/bandit_knifeman_attack_v1_s60.webp",
-    "frameWidth": 370,
-    "frameHeight": 204,
+    "file": "sprites/battle/bandit_knifeman_attack_v2_s60.webp",
+    "frameWidth": 451,
+    "frameHeight": 286,
     "frames": 29,
     "fps": 24,
-    "originX": 0.32,
-    "originY": 0.9734,
+    "originX": 0.4226,
+    "originY": 0.9807,
     "bodyHeight": 179.9,
-    "key": "bandit_knifeman_attack_v1_s60",
+    "key": "bandit_knifeman_attack_v2_s60",
     "hitFrame": 9
    },
    "death": {
-    "file": "sprites/battle/bandit_knifeman_death_v1_s60.webp",
-    "frameWidth": 352,
-    "frameHeight": 204,
+    "file": "sprites/battle/bandit_knifeman_death_v2_s60.webp",
+    "frameWidth": 451,
+    "frameHeight": 286,
     "frames": 30,
     "fps": 24,
-    "originX": 0.3363,
-    "originY": 0.9734,
+    "originX": 0.4226,
+    "originY": 0.9807,
     "bodyHeight": 179.9,
-    "key": "bandit_knifeman_death_v1_s60",
+    "key": "bandit_knifeman_death_v2_s60",
     "hold": true
    },
    "hit": {
-    "file": "sprites/battle/bandit_knifeman_hit_v1_s60.webp",
-    "frameWidth": 361,
-    "frameHeight": 204,
+    "file": "sprites/battle/bandit_knifeman_hit_v2_s60.webp",
+    "frameWidth": 451,
+    "frameHeight": 286,
     "frames": 14,
     "fps": 24,
-    "originX": 0.3279,
-    "originY": 0.9734,
+    "originX": 0.4226,
+    "originY": 0.9807,
     "bodyHeight": 179.9,
-    "key": "bandit_knifeman_hit_v1_s60"
+    "key": "bandit_knifeman_hit_v2_s60"
    },
    "idle": {
     "file": "sprites/battle/bandit_knifeman_idle_v2_s60.webp",
@@ -740,15 +740,15 @@
     "loop": true
    },
    "victory": {
-    "file": "sprites/battle/bandit_knifeman_victory_v1_s60.webp",
-    "frameWidth": 298,
-    "frameHeight": 204,
+    "file": "sprites/battle/bandit_knifeman_victory_v2_s60.webp",
+    "frameWidth": 451,
+    "frameHeight": 286,
     "frames": 29,
     "fps": 24,
-    "originX": 0.3972,
-    "originY": 0.9734,
+    "originX": 0.4226,
+    "originY": 0.9807,
     "bodyHeight": 179.9,
-    "key": "bandit_knifeman_victory_v1_s60",
+    "key": "bandit_knifeman_victory_v2_s60",
     "hold": true
    }
   },
@@ -760,16 +760,16 @@
  "bandit_poacher": {
   "anims": {
    "attack": {
-    "file": "sprites/battle/bandit_poacher_attack_v1_s60.webp",
-    "frameWidth": 349,
-    "frameHeight": 196,
+    "file": "sprites/battle/bandit_poacher_attack_v2_s60.webp",
+    "frameWidth": 469,
+    "frameHeight": 273,
     "frames": 29,
     "fps": 24,
-    "originX": 0.3998,
-    "originY": 0.9716,
+    "originX": 0.4433,
+    "originY": 0.9793,
     "bodyHeight": 180.2,
-    "key": "bandit_poacher_attack_v1_s60",
-    "hitFrame": 9
+    "key": "bandit_poacher_attack_v2_s60",
+    "hitFrame": 5
    },
    "death": {
     "file": "sprites/battle/bandit_poacher_death_v1_s60.webp",
@@ -784,7 +784,7 @@
     "hold": true
    },
    "hit": {
-    "file": "sprites/battle/bandit_poacher_hit_v1_s60.webp",
+    "file": "sprites/battle/bandit_poacher_hit_v2_s60.webp",
     "frameWidth": 319,
     "frameHeight": 196,
     "frames": 14,
@@ -792,7 +792,7 @@
     "originX": 0.4366,
     "originY": 0.9716,
     "bodyHeight": 179.9,
-    "key": "bandit_poacher_hit_v1_s60"
+    "key": "bandit_poacher_hit_v2_s60"
    },
    "idle": {
     "file": "sprites/battle/bandit_poacher_idle_v2_s60.webp",
@@ -807,15 +807,15 @@
     "loop": true
    },
    "victory": {
-    "file": "sprites/battle/bandit_poacher_victory_v1_s60.webp",
-    "frameWidth": 319,
-    "frameHeight": 196,
+    "file": "sprites/battle/bandit_poacher_victory_v2_s60.webp",
+    "frameWidth": 469,
+    "frameHeight": 273,
     "frames": 29,
     "fps": 24,
-    "originX": 0.4366,
-    "originY": 0.9716,
-    "bodyHeight": 179.9,
-    "key": "bandit_poacher_victory_v1_s60",
+    "originX": 0.4433,
+    "originY": 0.9793,
+    "bodyHeight": 180.2,
+    "key": "bandit_poacher_victory_v2_s60",
     "hold": true
    }
   },
@@ -874,15 +874,15 @@
     "loop": true
    },
    "victory": {
-    "file": "sprites/battle/bear_shatun_victory_v1_s60.webp",
-    "frameWidth": 361,
-    "frameHeight": 202,
+    "file": "sprites/battle/bear_shatun_victory_v2_s60.webp",
+    "frameWidth": 503,
+    "frameHeight": 282,
     "frames": 29,
     "fps": 24,
-    "originX": 0.489,
-    "originY": 0.9727,
-    "bodyHeight": 179.9,
-    "key": "bear_shatun_victory_v1_s60",
+    "originX": 0.4917,
+    "originY": 0.9797,
+    "bodyHeight": 180.1,
+    "key": "bear_shatun_victory_v2_s60",
     "hold": true
    }
   },
@@ -941,15 +941,15 @@
     "loop": true
    },
    "victory": {
-    "file": "sprites/battle/boar_victory_v1_s60.webp",
-    "frameWidth": 338,
-    "frameHeight": 190,
+    "file": "sprites/battle/boar_victory_v2_s60.webp",
+    "frameWidth": 471,
+    "frameHeight": 265,
     "frames": 29,
     "fps": 24,
-    "originX": 0.4862,
-    "originY": 0.9812,
-    "bodyHeight": 179.8,
-    "key": "boar_victory_v1_s60",
+    "originX": 0.4896,
+    "originY": 0.9863,
+    "bodyHeight": 180.0,
+    "key": "boar_victory_v2_s60",
     "hold": true
    }
   },
@@ -983,7 +983,7 @@
     "key": "brawler_amb2_v1_s60"
    },
    "attack": {
-    "file": "sprites/battle/brawler_attack_v1_s60.webp",
+    "file": "sprites/battle/brawler_attack_v2_s60.webp",
     "frameWidth": 355,
     "frameHeight": 199,
     "frames": 29,
@@ -991,31 +991,31 @@
     "originX": 0.3988,
     "originY": 0.9735,
     "bodyHeight": 179.9,
-    "key": "brawler_attack_v1_s60",
+    "key": "brawler_attack_v2_s60",
     "hitFrame": 10
    },
    "death": {
-    "file": "sprites/battle/brawler_death_v1_s60.webp",
-    "frameWidth": 355,
-    "frameHeight": 199,
+    "file": "sprites/battle/brawler_death_v2_s60.webp",
+    "frameWidth": 472,
+    "frameHeight": 277,
     "frames": 30,
     "fps": 24,
-    "originX": 0.3988,
-    "originY": 0.9735,
+    "originX": 0.448,
+    "originY": 0.9803,
     "bodyHeight": 179.9,
-    "key": "brawler_death_v1_s60",
+    "key": "brawler_death_v2_s60",
     "hold": true
    },
    "hit": {
-    "file": "sprites/battle/brawler_hit_v1_s60.webp",
-    "frameWidth": 322,
-    "frameHeight": 199,
+    "file": "sprites/battle/brawler_hit_v2_s60.webp",
+    "frameWidth": 472,
+    "frameHeight": 277,
     "frames": 14,
     "fps": 24,
-    "originX": 0.4405,
-    "originY": 0.9735,
-    "bodyHeight": 180.2,
-    "key": "brawler_hit_v1_s60"
+    "originX": 0.448,
+    "originY": 0.9803,
+    "bodyHeight": 179.9,
+    "key": "brawler_hit_v2_s60"
    },
    "idle": {
     "file": "sprites/battle/brawler_idle_v1_s60.webp",
@@ -1030,27 +1030,27 @@
     "loop": true
    },
    "power": {
-    "file": "sprites/battle/brawler_power_v1_s60.webp",
-    "frameWidth": 355,
-    "frameHeight": 199,
+    "file": "sprites/battle/brawler_power_v2_s60.webp",
+    "frameWidth": 472,
+    "frameHeight": 277,
     "frames": 37,
     "fps": 24,
-    "originX": 0.3988,
-    "originY": 0.9735,
+    "originX": 0.448,
+    "originY": 0.9803,
     "bodyHeight": 179.9,
-    "key": "brawler_power_v1_s60",
+    "key": "brawler_power_v2_s60",
     "hitFrame": 16
    },
    "victory": {
-    "file": "sprites/battle/brawler_victory_v1_s60.webp",
-    "frameWidth": 322,
-    "frameHeight": 199,
+    "file": "sprites/battle/brawler_victory_v2_s60.webp",
+    "frameWidth": 472,
+    "frameHeight": 277,
     "frames": 24,
     "fps": 24,
-    "originX": 0.4405,
-    "originY": 0.9735,
-    "bodyHeight": 180.2,
-    "key": "brawler_victory_v1_s60",
+    "originX": 0.448,
+    "originY": 0.9803,
+    "bodyHeight": 179.9,
+    "key": "brawler_victory_v2_s60",
     "hold": true
    }
   },
@@ -1110,15 +1110,15 @@
     "loop": true
    },
    "victory": {
-    "file": "sprites/battle/candle_keeper_victory_v1_s60.webp",
-    "frameWidth": 305,
-    "frameHeight": 193,
+    "file": "sprites/battle/candle_keeper_victory_v2_s60.webp",
+    "frameWidth": 453,
+    "frameHeight": 269,
     "frames": 29,
     "fps": 24,
-    "originX": 0.4112,
-    "originY": 0.9748,
-    "bodyHeight": 180.1,
-    "key": "candle_keeper_victory_v1_s60",
+    "originX": 0.425,
+    "originY": 0.9807,
+    "bodyHeight": 180.0,
+    "key": "candle_keeper_victory_v2_s60",
     "hold": true
    }
   },
@@ -1130,27 +1130,27 @@
  "cleaning_girl": {
   "anims": {
    "attack": {
-    "file": "sprites/battle/cleaning_girl_attack_v1_s60.webp",
-    "frameWidth": 384,
-    "frameHeight": 207,
+    "file": "sprites/battle/cleaning_girl_attack_v2_s60.webp",
+    "frameWidth": 479,
+    "frameHeight": 291,
     "frames": 29,
     "fps": 24,
-    "originX": 0.3719,
-    "originY": 0.971,
-    "bodyHeight": 180.0,
-    "key": "cleaning_girl_attack_v1_s60",
-    "hitFrame": 6
+    "originX": 0.4558,
+    "originY": 0.9817,
+    "bodyHeight": 180.1,
+    "key": "cleaning_girl_attack_v2_s60",
+    "hitFrame": 12
    },
    "death": {
-    "file": "sprites/battle/cleaning_girl_death_v2_s60.webp",
-    "frameWidth": 384,
-    "frameHeight": 207,
+    "file": "sprites/battle/cleaning_girl_death_v3_s60.webp",
+    "frameWidth": 479,
+    "frameHeight": 291,
     "frames": 30,
     "fps": 24,
-    "originX": 0.3719,
-    "originY": 0.971,
-    "bodyHeight": 180.0,
-    "key": "cleaning_girl_death_v2_s60",
+    "originX": 0.4558,
+    "originY": 0.9817,
+    "bodyHeight": 180.1,
+    "key": "cleaning_girl_death_v3_s60",
     "hold": true
    },
    "hit": {
@@ -1177,15 +1177,15 @@
     "loop": true
    },
    "victory": {
-    "file": "sprites/battle/cleaning_girl_victory_v1_s60.webp",
-    "frameWidth": 323,
-    "frameHeight": 207,
+    "file": "sprites/battle/cleaning_girl_victory_v2_s60.webp",
+    "frameWidth": 479,
+    "frameHeight": 291,
     "frames": 29,
     "fps": 24,
-    "originX": 0.4424,
-    "originY": 0.971,
+    "originX": 0.4558,
+    "originY": 0.9817,
     "bodyHeight": 180.1,
-    "key": "cleaning_girl_victory_v1_s60",
+    "key": "cleaning_girl_victory_v2_s60",
     "hold": true
    }
   },
@@ -1221,15 +1221,15 @@
     "hold": true
    },
    "hit": {
-    "file": "sprites/battle/cult_acolyte_hit_v1_s60.webp",
-    "frameWidth": 333,
+    "file": "sprites/battle/cult_acolyte_hit_v2_s60.webp",
+    "frameWidth": 351,
     "frameHeight": 206,
     "frames": 14,
     "fps": 24,
-    "originX": 0.4603,
+    "originX": 0.4367,
     "originY": 0.9717,
     "bodyHeight": 180.0,
-    "key": "cult_acolyte_hit_v1_s60"
+    "key": "cult_acolyte_hit_v2_s60"
    },
    "idle": {
     "file": "sprites/battle/cult_acolyte_idle_v2_s60.webp",
@@ -1331,39 +1331,39 @@
  "cult_zealot": {
   "anims": {
    "attack": {
-    "file": "sprites/battle/cult_zealot_attack_v1_s60.webp",
-    "frameWidth": 354,
-    "frameHeight": 199,
+    "file": "sprites/battle/cult_zealot_attack_v2_s60.webp",
+    "frameWidth": 471,
+    "frameHeight": 277,
     "frames": 29,
     "fps": 24,
-    "originX": 0.3974,
-    "originY": 0.9717,
+    "originX": 0.446,
+    "originY": 0.9803,
     "bodyHeight": 180.0,
-    "key": "cult_zealot_attack_v1_s60",
-    "hitFrame": 13
+    "key": "cult_zealot_attack_v2_s60",
+    "hitFrame": 10
    },
    "death": {
-    "file": "sprites/battle/cult_zealot_death_v1_s60.webp",
-    "frameWidth": 354,
-    "frameHeight": 199,
+    "file": "sprites/battle/cult_zealot_death_v2_s60.webp",
+    "frameWidth": 471,
+    "frameHeight": 277,
     "frames": 29,
     "fps": 24,
-    "originX": 0.3974,
-    "originY": 0.9717,
+    "originX": 0.446,
+    "originY": 0.9803,
     "bodyHeight": 180.0,
-    "key": "cult_zealot_death_v1_s60",
+    "key": "cult_zealot_death_v2_s60",
     "hold": true
    },
    "hit": {
-    "file": "sprites/battle/cult_zealot_hit_v1_s60.webp",
-    "frameWidth": 320,
-    "frameHeight": 199,
+    "file": "sprites/battle/cult_zealot_hit_v2_s60.webp",
+    "frameWidth": 471,
+    "frameHeight": 277,
     "frames": 14,
     "fps": 24,
-    "originX": 0.4391,
-    "originY": 0.9717,
-    "bodyHeight": 179.8,
-    "key": "cult_zealot_hit_v1_s60"
+    "originX": 0.446,
+    "originY": 0.9803,
+    "bodyHeight": 180.0,
+    "key": "cult_zealot_hit_v2_s60"
    },
    "idle": {
     "file": "sprites/battle/cult_zealot_idle_v2_s60.webp",
@@ -1378,15 +1378,15 @@
     "loop": true
    },
    "victory": {
-    "file": "sprites/battle/cult_zealot_victory_v1_s60.webp",
-    "frameWidth": 320,
-    "frameHeight": 199,
+    "file": "sprites/battle/cult_zealot_victory_v2_s60.webp",
+    "frameWidth": 471,
+    "frameHeight": 277,
     "frames": 29,
     "fps": 24,
-    "originX": 0.4391,
-    "originY": 0.9717,
-    "bodyHeight": 179.8,
-    "key": "cult_zealot_victory_v1_s60",
+    "originX": 0.446,
+    "originY": 0.9803,
+    "bodyHeight": 180.0,
+    "key": "cult_zealot_victory_v2_s60",
     "hold": true
    }
   },
@@ -1500,15 +1500,15 @@
     "loop": true
    },
    "victory": {
-    "file": "sprites/battle/drowned_victory_v1_s60.webp",
-    "frameWidth": 333,
-    "frameHeight": 191,
+    "file": "sprites/battle/drowned_victory_v2_s60.webp",
+    "frameWidth": 478,
+    "frameHeight": 267,
     "frames": 29,
     "fps": 24,
-    "originX": 0.46,
-    "originY": 0.9699,
-    "bodyHeight": 180.0,
-    "key": "drowned_victory_v1_s60",
+    "originX": 0.4613,
+    "originY": 0.9791,
+    "bodyHeight": 180.2,
+    "key": "drowned_victory_v2_s60",
     "hold": true
    }
   },
@@ -1585,15 +1585,15 @@
  "hero_duelist": {
   "anims": {
    "block": {
-    "file": "sprites/battle/duelist_block_v1_s60.webp",
-    "frameWidth": 331,
-    "frameHeight": 190,
+    "file": "sprites/battle/duelist_block_v2_s60.webp",
+    "frameWidth": 472,
+    "frameHeight": 265,
     "frames": 22,
     "fps": 24,
-    "originX": 0.4504,
-    "originY": 0.9882,
+    "originX": 0.4563,
+    "originY": 0.9907,
     "bodyHeight": 182.6,
-    "key": "duelist_block_v1_s60"
+    "key": "duelist_block_v2_s60"
    },
    "death": {
     "file": "sprites/battle/duelist_death_v1_s60.webp",
@@ -1630,27 +1630,27 @@
     "key": "duelist_reload_v1_s60"
    },
    "slash": {
-    "file": "sprites/battle/duelist_slash_v1_s60.webp",
-    "frameWidth": 331,
-    "frameHeight": 190,
+    "file": "sprites/battle/duelist_slash_v2_s60.webp",
+    "frameWidth": 472,
+    "frameHeight": 265,
     "frames": 23,
     "fps": 24,
-    "originX": 0.4504,
-    "originY": 0.9882,
+    "originX": 0.4563,
+    "originY": 0.9907,
     "bodyHeight": 182.6,
-    "key": "duelist_slash_v1_s60",
+    "key": "duelist_slash_v2_s60",
     "hitFrame": 17
    },
    "victory": {
-    "file": "sprites/battle/duelist_victory_v1_s60.webp",
-    "frameWidth": 331,
-    "frameHeight": 190,
+    "file": "sprites/battle/duelist_victory_v3_s60.webp",
+    "frameWidth": 493,
+    "frameHeight": 341,
     "frames": 16,
     "fps": 24,
-    "originX": 0.4504,
-    "originY": 0.9882,
-    "bodyHeight": 182.6,
-    "key": "duelist_victory_v1_s60",
+    "originX": 0.4636,
+    "originY": 0.9926,
+    "bodyHeight": 182.5,
+    "key": "duelist_victory_v3_s60",
     "hold": true
    },
    "idle": {
@@ -1718,7 +1718,7 @@
     "key": "dwarf_amb2_v1_s60"
    },
    "attack": {
-    "file": "sprites/battle/dwarf_attack_v1_s60.webp",
+    "file": "sprites/battle/dwarf_attack_v2_s60.webp",
     "frameWidth": 376,
     "frameHeight": 206,
     "frames": 28,
@@ -1726,11 +1726,11 @@
     "originX": 0.3893,
     "originY": 0.9717,
     "bodyHeight": 180.2,
-    "key": "dwarf_attack_v1_s60",
+    "key": "dwarf_attack_v2_s60",
     "hitFrame": 8
    },
    "death": {
-    "file": "sprites/battle/dwarf_death_v1_s60.webp",
+    "file": "sprites/battle/dwarf_death_v2_s60.webp",
     "frameWidth": 376,
     "frameHeight": 206,
     "frames": 30,
@@ -1738,11 +1738,11 @@
     "originX": 0.3893,
     "originY": 0.9717,
     "bodyHeight": 180.2,
-    "key": "dwarf_death_v1_s60",
+    "key": "dwarf_death_v2_s60",
     "hold": true
    },
    "hit": {
-    "file": "sprites/battle/dwarf_hit_v1_s60.webp",
+    "file": "sprites/battle/dwarf_hit_v2_s60.webp",
     "frameWidth": 326,
     "frameHeight": 206,
     "frames": 14,
@@ -1750,7 +1750,7 @@
     "originX": 0.4488,
     "originY": 0.9717,
     "bodyHeight": 180.1,
-    "key": "dwarf_hit_v1_s60"
+    "key": "dwarf_hit_v2_s60"
    },
    "idle": {
     "file": "sprites/battle/dwarf_idle_v1_s60.webp",
@@ -1765,27 +1765,27 @@
     "loop": true
    },
    "power": {
-    "file": "sprites/battle/dwarf_power_v1_s60.webp",
-    "frameWidth": 376,
-    "frameHeight": 206,
+    "file": "sprites/battle/dwarf_power_v2_s60.webp",
+    "frameWidth": 480,
+    "frameHeight": 288,
     "frames": 38,
     "fps": 24,
-    "originX": 0.3893,
-    "originY": 0.9717,
-    "bodyHeight": 180.2,
-    "key": "dwarf_power_v1_s60",
-    "hitFrame": 22
+    "originX": 0.4575,
+    "originY": 0.9807,
+    "bodyHeight": 180.0,
+    "key": "dwarf_power_v2_s60",
+    "hitFrame": 29
    },
    "victory": {
-    "file": "sprites/battle/dwarf_victory_v1_s60.webp",
-    "frameWidth": 326,
-    "frameHeight": 206,
+    "file": "sprites/battle/dwarf_victory_v2_s60.webp",
+    "frameWidth": 480,
+    "frameHeight": 288,
     "frames": 29,
     "fps": 24,
-    "originX": 0.4488,
-    "originY": 0.9717,
-    "bodyHeight": 180.1,
-    "key": "dwarf_victory_v1_s60",
+    "originX": 0.4575,
+    "originY": 0.9807,
+    "bodyHeight": 180.0,
+    "key": "dwarf_victory_v2_s60",
     "hold": true
    }
   },
@@ -1844,15 +1844,15 @@
     "loop": true
    },
    "victory": {
-    "file": "sprites/battle/dwarf_beer1_victory_v1_s60.webp",
-    "frameWidth": 317,
-    "frameHeight": 204,
+    "file": "sprites/battle/dwarf_beer1_victory_v2_s60.webp",
+    "frameWidth": 469,
+    "frameHeight": 285,
     "frames": 29,
     "fps": 24,
-    "originX": 0.4336,
-    "originY": 0.9746,
-    "bodyHeight": 180.1,
-    "key": "dwarf_beer1_victory_v1_s60",
+    "originX": 0.4455,
+    "originY": 0.9801,
+    "bodyHeight": 179.9,
+    "key": "dwarf_beer1_victory_v2_s60",
     "hold": true
    }
   },
@@ -1876,15 +1876,15 @@
     "hitFrame": 4
    },
    "death": {
-    "file": "sprites/battle/dwarf_beer2_death_v1_s60.webp",
-    "frameWidth": 370,
-    "frameHeight": 206,
+    "file": "sprites/battle/dwarf_beer2_death_v2_s60.webp",
+    "frameWidth": 473,
+    "frameHeight": 288,
     "frames": 30,
     "fps": 24,
-    "originX": 0.3799,
-    "originY": 0.9729,
-    "bodyHeight": 180.2,
-    "key": "dwarf_beer2_death_v1_s60",
+    "originX": 0.4495,
+    "originY": 0.9794,
+    "bodyHeight": 180.1,
+    "key": "dwarf_beer2_death_v2_s60",
     "hold": true
    },
    "hit": {
@@ -1911,15 +1911,15 @@
     "loop": true
    },
    "victory": {
-    "file": "sprites/battle/dwarf_beer2_victory_v1_s60.webp",
-    "frameWidth": 320,
-    "frameHeight": 206,
+    "file": "sprites/battle/dwarf_beer2_victory_v2_s60.webp",
+    "frameWidth": 473,
+    "frameHeight": 288,
     "frames": 29,
     "fps": 24,
-    "originX": 0.4383,
-    "originY": 0.9729,
-    "bodyHeight": 179.8,
-    "key": "dwarf_beer2_victory_v1_s60",
+    "originX": 0.4495,
+    "originY": 0.9794,
+    "bodyHeight": 180.1,
+    "key": "dwarf_beer2_victory_v2_s60",
     "hold": true
    }
   },
@@ -1931,7 +1931,7 @@
  "dwarf_beer3": {
   "anims": {
    "attack": {
-    "file": "sprites/battle/dwarf_beer3_attack_v1_s60.webp",
+    "file": "sprites/battle/dwarf_beer3_attack_v2_s60.webp",
     "frameWidth": 362,
     "frameHeight": 204,
     "frames": 29,
@@ -1939,7 +1939,7 @@
     "originX": 0.379,
     "originY": 0.9893,
     "bodyHeight": 179.8,
-    "key": "dwarf_beer3_attack_v1_s60",
+    "key": "dwarf_beer3_attack_v2_s60",
     "hitFrame": 6
    },
    "death": {
@@ -1955,15 +1955,15 @@
     "hold": true
    },
    "hit": {
-    "file": "sprites/battle/dwarf_beer3_hit_v2_s60.webp",
-    "frameWidth": 362,
+    "file": "sprites/battle/dwarf_beer3_hit_v3_s60.webp",
+    "frameWidth": 317,
     "frameHeight": 204,
     "frames": 13,
     "fps": 24,
-    "originX": 0.379,
+    "originX": 0.4335,
     "originY": 0.9893,
-    "bodyHeight": 179.8,
-    "key": "dwarf_beer3_hit_v2_s60"
+    "bodyHeight": 180.1,
+    "key": "dwarf_beer3_hit_v3_s60"
    },
    "idle": {
     "file": "sprites/battle/dwarf_beer3_idle_v1_s60.webp",
@@ -1978,15 +1978,15 @@
     "loop": true
    },
    "victory": {
-    "file": "sprites/battle/dwarf_beer3_victory_v1_s60.webp",
-    "frameWidth": 317,
-    "frameHeight": 204,
+    "file": "sprites/battle/dwarf_beer3_victory_v2_s60.webp",
+    "frameWidth": 469,
+    "frameHeight": 284,
     "frames": 29,
     "fps": 24,
-    "originX": 0.4335,
-    "originY": 0.9893,
-    "bodyHeight": 180.1,
-    "key": "dwarf_beer3_victory_v1_s60",
+    "originX": 0.4446,
+    "originY": 0.9931,
+    "bodyHeight": 179.9,
+    "key": "dwarf_beer3_victory_v2_s60",
     "hold": true
    }
   },
@@ -2022,15 +2022,15 @@
     "hold": true
    },
    "hit": {
-    "file": "sprites/battle/fields_creature_hit_v1_s60.webp",
-    "frameWidth": 296,
+    "file": "sprites/battle/fields_creature_hit_v2_s60.webp",
+    "frameWidth": 355,
     "frameHeight": 199,
     "frames": 14,
     "fps": 24,
-    "originX": 0.3919,
+    "originX": 0.3269,
     "originY": 0.9718,
-    "bodyHeight": 180.1,
-    "key": "fields_creature_hit_v1_s60"
+    "bodyHeight": 180.2,
+    "key": "fields_creature_hit_v2_s60"
    },
    "idle": {
     "file": "sprites/battle/fields_creature_idle_v2_s60.webp",
@@ -2045,7 +2045,7 @@
     "loop": true
    },
    "victory": {
-    "file": "sprites/battle/fields_creature_victory_v1_s60.webp",
+    "file": "sprites/battle/fields_creature_victory_v2_s60.webp",
     "frameWidth": 296,
     "frameHeight": 199,
     "frames": 29,
@@ -2053,7 +2053,7 @@
     "originX": 0.3919,
     "originY": 0.9718,
     "bodyHeight": 180.1,
-    "key": "fields_creature_victory_v1_s60",
+    "key": "fields_creature_victory_v2_s60",
     "hold": true
    }
   },
@@ -2154,39 +2154,39 @@
  "forgotten_warden": {
   "anims": {
    "attack": {
-    "file": "sprites/battle/forgotten_warden_attack_v1_s60.webp",
-    "frameWidth": 343,
-    "frameHeight": 193,
+    "file": "sprites/battle/forgotten_warden_attack_v2_s60.webp",
+    "frameWidth": 454,
+    "frameHeight": 269,
     "frames": 28,
     "fps": 24,
-    "originX": 0.3685,
-    "originY": 0.9805,
-    "bodyHeight": 179.9,
-    "key": "forgotten_warden_attack_v1_s60",
-    "hitFrame": 13
+    "originX": 0.4265,
+    "originY": 0.9836,
+    "bodyHeight": 180.2,
+    "key": "forgotten_warden_attack_v2_s60",
+    "hitFrame": 10
    },
    "death": {
-    "file": "sprites/battle/forgotten_warden_death_v1_s60.webp",
-    "frameWidth": 343,
-    "frameHeight": 193,
+    "file": "sprites/battle/forgotten_warden_death_v2_s60.webp",
+    "frameWidth": 454,
+    "frameHeight": 269,
     "frames": 30,
     "fps": 24,
-    "originX": 0.3685,
-    "originY": 0.9805,
-    "bodyHeight": 179.9,
-    "key": "forgotten_warden_death_v1_s60",
+    "originX": 0.4265,
+    "originY": 0.9836,
+    "bodyHeight": 180.2,
+    "key": "forgotten_warden_death_v2_s60",
     "hold": true
    },
    "hit": {
-    "file": "sprites/battle/forgotten_warden_hit_v1_s60.webp",
-    "frameWidth": 306,
+    "file": "sprites/battle/forgotten_warden_hit_v2_s60.webp",
+    "frameWidth": 343,
     "frameHeight": 193,
     "frames": 14,
     "fps": 24,
-    "originX": 0.4133,
+    "originX": 0.3685,
     "originY": 0.9805,
-    "bodyHeight": 180.0,
-    "key": "forgotten_warden_hit_v1_s60"
+    "bodyHeight": 179.9,
+    "key": "forgotten_warden_hit_v2_s60"
    },
    "idle": {
     "file": "sprites/battle/forgotten_warden_idle_v2_s60.webp",
@@ -2221,7 +2221,7 @@
  "frontier_beast": {
   "anims": {
    "attack": {
-    "file": "sprites/battle/frontier_beast_attack_v1_s60.webp",
+    "file": "sprites/battle/frontier_beast_attack_v2_s60.webp",
     "frameWidth": 328,
     "frameHeight": 184,
     "frames": 27,
@@ -2229,54 +2229,54 @@
     "originX": 0.3059,
     "originY": 0.9883,
     "bodyHeight": 179.9,
-    "key": "frontier_beast_attack_v1_s60",
+    "key": "frontier_beast_attack_v2_s60",
     "hitFrame": 5
    },
    "death": {
-    "file": "sprites/battle/frontier_beast_death_v1_s60.webp",
-    "frameWidth": 328,
-    "frameHeight": 184,
+    "file": "sprites/battle/frontier_beast_death_v2_s60.webp",
+    "frameWidth": 424,
+    "frameHeight": 256,
     "frames": 30,
     "fps": 24,
-    "originX": 0.3059,
-    "originY": 0.9883,
+    "originX": 0.3866,
+    "originY": 0.9923,
     "bodyHeight": 179.9,
-    "key": "frontier_beast_death_v1_s60",
+    "key": "frontier_beast_death_v2_s60",
     "hold": true
    },
    "hit": {
-    "file": "sprites/battle/frontier_beast_hit_v1_s60.webp",
-    "frameWidth": 280,
-    "frameHeight": 184,
+    "file": "sprites/battle/frontier_beast_hit_v2_s60.webp",
+    "frameWidth": 424,
+    "frameHeight": 256,
     "frames": 14,
     "fps": 24,
-    "originX": 0.3583,
-    "originY": 0.9883,
+    "originX": 0.3866,
+    "originY": 0.9923,
     "bodyHeight": 179.9,
-    "key": "frontier_beast_hit_v1_s60"
+    "key": "frontier_beast_hit_v2_s60"
    },
    "idle": {
-    "file": "sprites/battle/frontier_beast_idle_v2_s60.webp",
-    "frameWidth": 280,
-    "frameHeight": 184,
+    "file": "sprites/battle/frontier_beast_idle_v3_s60.webp",
+    "frameWidth": 304,
+    "frameHeight": 182,
     "frames": 95,
-    "fps": 14,
-    "originX": 0.3583,
-    "originY": 0.9883,
-    "bodyHeight": 179.9,
-    "key": "frontier_beast_idle_v2_s60",
+    "fps": 24,
+    "originX": 0.387,
+    "originY": 0.9995,
+    "bodyHeight": 129.1,
+    "key": "frontier_beast_idle_v3_s60",
     "loop": true
    },
    "victory": {
-    "file": "sprites/battle/frontier_beast_victory_v1_s60.webp",
-    "frameWidth": 280,
-    "frameHeight": 184,
+    "file": "sprites/battle/frontier_beast_victory_v2_s60.webp",
+    "frameWidth": 424,
+    "frameHeight": 256,
     "frames": 29,
     "fps": 24,
-    "originX": 0.3583,
-    "originY": 0.9883,
+    "originX": 0.3866,
+    "originY": 0.9923,
     "bodyHeight": 179.9,
-    "key": "frontier_beast_victory_v1_s60",
+    "key": "frontier_beast_victory_v2_s60",
     "hold": true
    }
   },
@@ -2335,15 +2335,15 @@
     "loop": true
    },
    "victory": {
-    "file": "sprites/battle/gallows_reader_victory_v1_s60.webp",
-    "frameWidth": 301,
-    "frameHeight": 191,
+    "file": "sprites/battle/gallows_reader_victory_v2_s60.webp",
+    "frameWidth": 448,
+    "frameHeight": 266,
     "frames": 29,
     "fps": 24,
-    "originX": 0.4038,
-    "originY": 0.9766,
+    "originX": 0.4193,
+    "originY": 0.9831,
     "bodyHeight": 179.9,
-    "key": "gallows_reader_victory_v1_s60",
+    "key": "gallows_reader_victory_v2_s60",
     "hold": true
    }
   },
@@ -2402,15 +2402,15 @@
     "loop": true
    },
    "victory": {
-    "file": "sprites/battle/grad_crossbowman_victory_v1_s60.webp",
-    "frameWidth": 313,
-    "frameHeight": 196,
+    "file": "sprites/battle/grad_crossbowman_victory_v2_s60.webp",
+    "frameWidth": 462,
+    "frameHeight": 274,
     "frames": 29,
     "fps": 24,
-    "originX": 0.4255,
-    "originY": 0.9707,
-    "bodyHeight": 180.2,
-    "key": "grad_crossbowman_victory_v1_s60",
+    "originX": 0.4363,
+    "originY": 0.9778,
+    "bodyHeight": 180.0,
+    "key": "grad_crossbowman_victory_v2_s60",
     "hold": true
    }
   },
@@ -2422,39 +2422,39 @@
  "grad_guard": {
   "anims": {
    "attack": {
-    "file": "sprites/battle/grad_guard_attack_v1_s60.webp",
+    "file": "sprites/battle/grad_guard_attack_v2_s60.webp",
+    "frameWidth": 470,
+    "frameHeight": 286,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4451,
+    "originY": 0.9801,
+    "bodyHeight": 180.1,
+    "key": "grad_guard_attack_v2_s60",
+    "hitFrame": 10
+   },
+   "death": {
+    "file": "sprites/battle/grad_guard_death_v2_s60.webp",
+    "frameWidth": 470,
+    "frameHeight": 286,
+    "frames": 28,
+    "fps": 24,
+    "originX": 0.4451,
+    "originY": 0.9801,
+    "bodyHeight": 180.1,
+    "key": "grad_guard_death_v2_s60",
+    "hold": true
+   },
+   "hit": {
+    "file": "sprites/battle/grad_guard_hit_v2_s60.webp",
     "frameWidth": 372,
     "frameHeight": 203,
-    "frames": 29,
+    "frames": 13,
     "fps": 24,
     "originX": 0.3674,
     "originY": 0.9736,
     "bodyHeight": 180.0,
-    "key": "grad_guard_attack_v1_s60",
-    "hitFrame": 9
-   },
-   "death": {
-    "file": "sprites/battle/grad_guard_death_v1_s60.webp",
-    "frameWidth": 370,
-    "frameHeight": 203,
-    "frames": 28,
-    "fps": 24,
-    "originX": 0.3692,
-    "originY": 0.9736,
-    "bodyHeight": 179.9,
-    "key": "grad_guard_death_v1_s60",
-    "hold": true
-   },
-   "hit": {
-    "file": "sprites/battle/grad_guard_hit_v1_s60.webp",
-    "frameWidth": 316,
-    "frameHeight": 203,
-    "frames": 13,
-    "fps": 24,
-    "originX": 0.4322,
-    "originY": 0.9736,
-    "bodyHeight": 179.9,
-    "key": "grad_guard_hit_v1_s60"
+    "key": "grad_guard_hit_v2_s60"
    },
    "idle": {
     "file": "sprites/battle/grad_guard_idle_v2_s60.webp",
@@ -2469,15 +2469,15 @@
     "loop": true
    },
    "victory": {
-    "file": "sprites/battle/grad_guard_victory_v1_s60.webp",
-    "frameWidth": 316,
-    "frameHeight": 203,
+    "file": "sprites/battle/grad_guard_victory_v2_s60.webp",
+    "frameWidth": 470,
+    "frameHeight": 286,
     "frames": 29,
     "fps": 24,
-    "originX": 0.4322,
-    "originY": 0.9736,
-    "bodyHeight": 179.9,
-    "key": "grad_guard_victory_v1_s60",
+    "originX": 0.4451,
+    "originY": 0.9801,
+    "bodyHeight": 180.1,
+    "key": "grad_guard_victory_v2_s60",
     "hold": true
    }
   },
@@ -2501,27 +2501,27 @@
     "hitFrame": 5
    },
    "death": {
-    "file": "sprites/battle/grey_wolf_death_v1_s60.webp",
-    "frameWidth": 341,
-    "frameHeight": 192,
+    "file": "sprites/battle/grey_wolf_death_v2_s60.webp",
+    "frameWidth": 443,
+    "frameHeight": 267,
     "frames": 30,
     "fps": 24,
-    "originX": 0.5847,
-    "originY": 0.9695,
+    "originX": 0.5284,
+    "originY": 0.9792,
     "bodyHeight": 179.8,
-    "key": "grey_wolf_death_v1_s60",
+    "key": "grey_wolf_death_v2_s60",
     "hold": true
    },
    "hit": {
-    "file": "sprites/battle/grey_wolf_hit_v1_s60.webp",
-    "frameWidth": 341,
-    "frameHeight": 192,
+    "file": "sprites/battle/grey_wolf_hit_v2_s60.webp",
+    "frameWidth": 443,
+    "frameHeight": 267,
     "frames": 14,
     "fps": 24,
-    "originX": 0.5847,
-    "originY": 0.9695,
+    "originX": 0.5284,
+    "originY": 0.9792,
     "bodyHeight": 179.8,
-    "key": "grey_wolf_hit_v1_s60"
+    "key": "grey_wolf_hit_v2_s60"
    },
    "idle": {
     "file": "sprites/battle/grey_wolf_idle_v1_s60.webp",
@@ -2536,15 +2536,15 @@
     "loop": true
    },
    "victory": {
-    "file": "sprites/battle/grey_wolf_victory_v1_s60.webp",
-    "frameWidth": 341,
-    "frameHeight": 192,
+    "file": "sprites/battle/grey_wolf_victory_v2_s60.webp",
+    "frameWidth": 443,
+    "frameHeight": 267,
     "frames": 29,
     "fps": 24,
-    "originX": 0.5847,
-    "originY": 0.9695,
+    "originX": 0.5284,
+    "originY": 0.9792,
     "bodyHeight": 179.8,
-    "key": "grey_wolf_victory_v1_s60",
+    "key": "grey_wolf_victory_v2_s60",
     "hold": true
    }
   },
@@ -2556,7 +2556,7 @@
  "guard": {
   "anims": {
    "attack": {
-    "file": "sprites/battle/guard_attack_v1_s60.webp",
+    "file": "sprites/battle/guard_attack_v2_s60.webp",
     "frameWidth": 373,
     "frameHeight": 207,
     "frames": 29,
@@ -2564,31 +2564,31 @@
     "originX": 0.4092,
     "originY": 0.9737,
     "bodyHeight": 180.2,
-    "key": "guard_attack_v1_s60",
+    "key": "guard_attack_v2_s60",
     "hitFrame": 10
    },
    "death": {
-    "file": "sprites/battle/guard_death_v1_s60.webp",
-    "frameWidth": 373,
-    "frameHeight": 207,
+    "file": "sprites/battle/guard_death_v2_s60.webp",
+    "frameWidth": 486,
+    "frameHeight": 290,
     "frames": 30,
     "fps": 24,
-    "originX": 0.4092,
-    "originY": 0.9737,
-    "bodyHeight": 180.2,
-    "key": "guard_death_v1_s60",
+    "originX": 0.4638,
+    "originY": 0.9792,
+    "bodyHeight": 180.0,
+    "key": "guard_death_v2_s60",
     "hold": true
    },
    "hit": {
-    "file": "sprites/battle/guard_hit_v2_s60.webp",
-    "frameWidth": 373,
+    "file": "sprites/battle/guard_hit_v3_s60.webp",
+    "frameWidth": 332,
     "frameHeight": 207,
     "frames": 14,
     "fps": 24,
-    "originX": 0.4092,
+    "originX": 0.4595,
     "originY": 0.9737,
-    "bodyHeight": 180.2,
-    "key": "guard_hit_v2_s60"
+    "bodyHeight": 180.1,
+    "key": "guard_hit_v3_s60"
    },
    "idle": {
     "file": "sprites/battle/guard_idle_v1_s60.webp",
@@ -2603,27 +2603,27 @@
     "loop": true
    },
    "power": {
-    "file": "sprites/battle/guard_power_v1_s60.webp",
-    "frameWidth": 373,
-    "frameHeight": 207,
+    "file": "sprites/battle/guard_power_v2_s60.webp",
+    "frameWidth": 485,
+    "frameHeight": 290,
     "frames": 38,
     "fps": 24,
-    "originX": 0.4092,
-    "originY": 0.9737,
-    "bodyHeight": 180.2,
-    "key": "guard_power_v1_s60",
-    "hitFrame": 27
+    "originX": 0.4635,
+    "originY": 0.9792,
+    "bodyHeight": 179.9,
+    "key": "guard_power_v2_s60",
+    "hitFrame": 17
    },
    "victory": {
-    "file": "sprites/battle/guard_victory_v1_s60.webp",
-    "frameWidth": 332,
-    "frameHeight": 207,
+    "file": "sprites/battle/guard_victory_v2_s60.webp",
+    "frameWidth": 485,
+    "frameHeight": 290,
     "frames": 29,
     "fps": 24,
-    "originX": 0.4595,
-    "originY": 0.9737,
-    "bodyHeight": 180.1,
-    "key": "guard_victory_v1_s60",
+    "originX": 0.4635,
+    "originY": 0.9792,
+    "bodyHeight": 179.9,
+    "key": "guard_victory_v2_s60",
     "hold": true
    }
   },
@@ -2647,15 +2647,15 @@
     "hitFrame": 7
    },
    "death": {
-    "file": "sprites/battle/hanged_death_v1_s60.webp",
-    "frameWidth": 343,
-    "frameHeight": 193,
+    "file": "sprites/battle/hanged_death_v2_s60.webp",
+    "frameWidth": 454,
+    "frameHeight": 268,
     "frames": 28,
     "fps": 24,
-    "originX": 0.3682,
-    "originY": 0.9735,
+    "originX": 0.4256,
+    "originY": 0.9796,
     "bodyHeight": 180.2,
-    "key": "hanged_death_v1_s60",
+    "key": "hanged_death_v2_s60",
     "hold": true
    },
    "hit": {
@@ -2748,7 +2748,7 @@
     "hitFrame": 28
    },
    "death": {
-    "file": "sprites/battle/healer_death_v1_s60.webp",
+    "file": "sprites/battle/healer_death_v2_s60.webp",
     "frameWidth": 345,
     "frameHeight": 192,
     "frames": 29,
@@ -2756,7 +2756,7 @@
     "originX": 0.5041,
     "originY": 0.9698,
     "bodyHeight": 180.0,
-    "key": "healer_death_v1_s60",
+    "key": "healer_death_v2_s60",
     "hold": true
    },
    "hit": {
@@ -2819,15 +2819,15 @@
     "hitFrame": 4
    },
    "death": {
-    "file": "sprites/battle/holt_death_v2_s60.webp",
-    "frameWidth": 352,
-    "frameHeight": 197,
+    "file": "sprites/battle/holt_death_v3_s60.webp",
+    "frameWidth": 469,
+    "frameHeight": 275,
     "frames": 30,
     "fps": 24,
-    "originX": 0.3994,
-    "originY": 0.9717,
-    "bodyHeight": 180.2,
-    "key": "holt_death_v2_s60",
+    "originX": 0.4455,
+    "originY": 0.9791,
+    "bodyHeight": 179.9,
+    "key": "holt_death_v3_s60",
     "hold": true
    },
    "hit": {
@@ -3043,15 +3043,15 @@
     "loop": true
    },
    "victory": {
-    "file": "sprites/battle/kikimora_victory_v1_s60.webp",
-    "frameWidth": 322,
-    "frameHeight": 191,
+    "file": "sprites/battle/kikimora_victory_v2_s60.webp",
+    "frameWidth": 443,
+    "frameHeight": 266,
     "frames": 29,
     "fps": 24,
-    "originX": 0.3585,
-    "originY": 0.9821,
-    "bodyHeight": 179.9,
-    "key": "kikimora_victory_v1_s60",
+    "originX": 0.4111,
+    "originY": 0.9871,
+    "bodyHeight": 180.1,
+    "key": "kikimora_victory_v2_s60",
     "hold": true
    }
   },
@@ -3104,39 +3104,39 @@
  "leshy": {
   "anims": {
    "attack": {
-    "file": "sprites/battle/leshy_attack_v1_s60.webp",
-    "frameWidth": 332,
-    "frameHeight": 187,
+    "file": "sprites/battle/leshy_attack_v2_s60.webp",
+    "frameWidth": 450,
+    "frameHeight": 260,
     "frames": 24,
     "fps": 24,
-    "originX": 0.3752,
-    "originY": 0.9771,
-    "bodyHeight": 180.1,
-    "key": "leshy_attack_v1_s60",
-    "hitFrame": 5
+    "originX": 0.4213,
+    "originY": 0.9836,
+    "bodyHeight": 180.0,
+    "key": "leshy_attack_v2_s60",
+    "hitFrame": 13
    },
    "death": {
-    "file": "sprites/battle/leshy_death_v1_s60.webp",
-    "frameWidth": 332,
-    "frameHeight": 187,
+    "file": "sprites/battle/leshy_death_v2_s60.webp",
+    "frameWidth": 450,
+    "frameHeight": 260,
     "frames": 27,
     "fps": 24,
-    "originX": 0.3752,
-    "originY": 0.9771,
-    "bodyHeight": 180.1,
-    "key": "leshy_death_v1_s60",
+    "originX": 0.4213,
+    "originY": 0.9836,
+    "bodyHeight": 180.0,
+    "key": "leshy_death_v2_s60",
     "hold": true
    },
    "hit": {
-    "file": "sprites/battle/leshy_hit_v1_s60.webp",
-    "frameWidth": 304,
-    "frameHeight": 187,
+    "file": "sprites/battle/leshy_hit_v2_s60.webp",
+    "frameWidth": 450,
+    "frameHeight": 260,
     "frames": 14,
     "fps": 24,
-    "originX": 0.4093,
-    "originY": 0.9771,
-    "bodyHeight": 179.9,
-    "key": "leshy_hit_v1_s60"
+    "originX": 0.4213,
+    "originY": 0.9836,
+    "bodyHeight": 180.0,
+    "key": "leshy_hit_v2_s60"
    },
    "idle": {
     "file": "sprites/battle/leshy_idle_v2_s60.webp",
@@ -3151,15 +3151,15 @@
     "loop": true
    },
    "victory": {
-    "file": "sprites/battle/leshy_victory_v1_s60.webp",
-    "frameWidth": 304,
-    "frameHeight": 187,
+    "file": "sprites/battle/leshy_victory_v2_s60.webp",
+    "frameWidth": 450,
+    "frameHeight": 260,
     "frames": 29,
     "fps": 24,
-    "originX": 0.4093,
-    "originY": 0.9771,
-    "bodyHeight": 179.9,
-    "key": "leshy_victory_v1_s60",
+    "originX": 0.4213,
+    "originY": 0.9836,
+    "bodyHeight": 180.0,
+    "key": "leshy_victory_v2_s60",
     "hold": true
    }
   },
@@ -3195,15 +3195,15 @@
     "hold": true
    },
    "hit": {
-    "file": "sprites/battle/likho_hit_v1_s60.webp",
-    "frameWidth": 306,
+    "file": "sprites/battle/likho_hit_v2_s60.webp",
+    "frameWidth": 349,
     "frameHeight": 196,
     "frames": 14,
     "fps": 24,
-    "originX": 0.4124,
+    "originX": 0.3614,
     "originY": 0.9801,
-    "bodyHeight": 180.0,
-    "key": "likho_hit_v1_s60"
+    "bodyHeight": 179.9,
+    "key": "likho_hit_v2_s60"
    },
    "idle": {
     "file": "sprites/battle/likho_idle_v2_s60.webp",
@@ -3238,27 +3238,27 @@
  "lynx": {
   "anims": {
    "attack": {
-    "file": "sprites/battle/lynx_attack_v1_s60.webp",
-    "frameWidth": 353,
-    "frameHeight": 198,
+    "file": "sprites/battle/lynx_attack_v2_s60.webp",
+    "frameWidth": 491,
+    "frameHeight": 276,
     "frames": 29,
     "fps": 24,
-    "originX": 0.5809,
-    "originY": 0.9717,
+    "originX": 0.5587,
+    "originY": 0.979,
     "bodyHeight": 180.1,
-    "key": "lynx_attack_v1_s60",
-    "hitFrame": 4
+    "key": "lynx_attack_v2_s60",
+    "hitFrame": 9
    },
    "death": {
-    "file": "sprites/battle/lynx_death_v1_s60.webp",
-    "frameWidth": 353,
-    "frameHeight": 198,
+    "file": "sprites/battle/lynx_death_v2_s60.webp",
+    "frameWidth": 491,
+    "frameHeight": 276,
     "frames": 28,
     "fps": 24,
-    "originX": 0.5809,
-    "originY": 0.9717,
+    "originX": 0.5587,
+    "originY": 0.979,
     "bodyHeight": 180.1,
-    "key": "lynx_death_v1_s60",
+    "key": "lynx_death_v2_s60",
     "hold": true
    },
    "hit": {
@@ -3273,27 +3273,27 @@
     "key": "lynx_hit_v1_s60"
    },
    "idle": {
-    "file": "sprites/battle/lynx_idle_v2_s60.webp",
-    "frameWidth": 298,
-    "frameHeight": 167,
+    "file": "sprites/battle/lynx_idle_v3_s60.webp",
+    "frameWidth": 296,
+    "frameHeight": 166,
     "frames": 95,
     "fps": 24,
-    "originX": 0.5829,
-    "originY": 0.9763,
-    "bodyHeight": 152.5,
-    "key": "lynx_idle_v2_s60",
+    "originX": 0.561,
+    "originY": 0.9893,
+    "bodyHeight": 109.0,
+    "key": "lynx_idle_v3_s60",
     "loop": true
    },
    "victory": {
-    "file": "sprites/battle/lynx_victory_v1_s60.webp",
-    "frameWidth": 353,
-    "frameHeight": 198,
+    "file": "sprites/battle/lynx_victory_v2_s60.webp",
+    "frameWidth": 491,
+    "frameHeight": 276,
     "frames": 25,
     "fps": 24,
-    "originX": 0.5809,
-    "originY": 0.9717,
+    "originX": 0.5587,
+    "originY": 0.979,
     "bodyHeight": 180.1,
-    "key": "lynx_victory_v1_s60",
+    "key": "lynx_victory_v2_s60",
     "hold": true
    }
   },
@@ -3396,50 +3396,50 @@
     "hitFrame": 6
    },
    "death": {
-    "file": "sprites/battle/mangy_dog_death_v2_s60.webp",
+    "file": "sprites/battle/mangy_dog_death_v3_s60.webp",
     "frameWidth": 437,
-    "frameHeight": 225,
+    "frameHeight": 240,
     "frames": 28,
     "fps": 24,
     "originX": 0.5853,
-    "originY": 0.9761,
+    "originY": 0.9777,
     "bodyHeight": 180.1,
-    "key": "mangy_dog_death_v2_s60",
+    "key": "mangy_dog_death_v3_s60",
     "hold": true
    },
    "hit": {
-    "file": "sprites/battle/mangy_dog_hit_v1_s60.webp",
-    "frameWidth": 333,
-    "frameHeight": 225,
+    "file": "sprites/battle/mangy_dog_hit_v2_s60.webp",
+    "frameWidth": 405,
+    "frameHeight": 240,
     "frames": 14,
     "fps": 24,
-    "originX": 0.46,
-    "originY": 0.9761,
+    "originX": 0.5562,
+    "originY": 0.9777,
     "bodyHeight": 180.0,
-    "key": "mangy_dog_hit_v1_s60"
+    "key": "mangy_dog_hit_v2_s60"
    },
    "idle": {
-    "file": "sprites/battle/mangy_dog_idle_v1_s60.webp",
-    "frameWidth": 281,
-    "frameHeight": 190,
+    "file": "sprites/battle/mangy_dog_idle_v2_s60.webp",
+    "frameWidth": 315,
+    "frameHeight": 175,
     "frames": 95,
     "fps": 24,
-    "originX": 0.4608,
-    "originY": 0.9773,
-    "bodyHeight": 152.1,
-    "key": "mangy_dog_idle_v1_s60",
+    "originX": 0.5568,
+    "originY": 0.9795,
+    "bodyHeight": 140.2,
+    "key": "mangy_dog_idle_v2_s60",
     "loop": true
    },
    "victory": {
-    "file": "sprites/battle/mangy_dog_victory_v1_s60.webp",
-    "frameWidth": 333,
-    "frameHeight": 225,
+    "file": "sprites/battle/mangy_dog_victory_v2_s60.webp",
+    "frameWidth": 405,
+    "frameHeight": 240,
     "frames": 29,
     "fps": 24,
-    "originX": 0.46,
-    "originY": 0.9761,
+    "originX": 0.5562,
+    "originY": 0.9777,
     "bodyHeight": 180.0,
-    "key": "mangy_dog_victory_v1_s60",
+    "key": "mangy_dog_victory_v2_s60",
     "hold": true
    }
   },
@@ -3530,19 +3530,19 @@
  "merc_captain": {
   "anims": {
    "attack": {
-    "file": "sprites/battle/merc_captain_attack_v1_s60.webp",
-    "frameWidth": 367,
-    "frameHeight": 196,
+    "file": "sprites/battle/merc_captain_attack_v2_s60.webp",
+    "frameWidth": 484,
+    "frameHeight": 277,
     "frames": 29,
     "fps": 24,
-    "originX": 0.4914,
-    "originY": 0.972,
-    "bodyHeight": 180.2,
-    "key": "merc_captain_attack_v1_s60",
-    "hitFrame": 14
+    "originX": 0.4653,
+    "originY": 0.9791,
+    "bodyHeight": 179.9,
+    "key": "merc_captain_attack_v2_s60",
+    "hitFrame": 10
    },
    "death": {
-    "file": "sprites/battle/merc_captain_death_v1_s60.webp",
+    "file": "sprites/battle/merc_captain_death_v2_s60.webp",
     "frameWidth": 370,
     "frameHeight": 196,
     "frames": 30,
@@ -3550,11 +3550,11 @@
     "originX": 0.496,
     "originY": 0.972,
     "bodyHeight": 179.9,
-    "key": "merc_captain_death_v1_s60",
+    "key": "merc_captain_death_v2_s60",
     "hold": true
    },
    "hit": {
-    "file": "sprites/battle/merc_captain_hit_v1_s60.webp",
+    "file": "sprites/battle/merc_captain_hit_v2_s60.webp",
     "frameWidth": 333,
     "frameHeight": 196,
     "frames": 14,
@@ -3562,7 +3562,7 @@
     "originX": 0.4602,
     "originY": 0.972,
     "bodyHeight": 180.0,
-    "key": "merc_captain_hit_v1_s60"
+    "key": "merc_captain_hit_v2_s60"
    },
    "idle": {
     "file": "sprites/battle/merc_captain_idle_v2_s60.webp",
@@ -3577,15 +3577,15 @@
     "loop": true
    },
    "victory": {
-    "file": "sprites/battle/merc_captain_victory_v1_s60.webp",
-    "frameWidth": 333,
-    "frameHeight": 196,
+    "file": "sprites/battle/merc_captain_victory_v2_s60.webp",
+    "frameWidth": 484,
+    "frameHeight": 277,
     "frames": 29,
     "fps": 24,
-    "originX": 0.4602,
-    "originY": 0.972,
-    "bodyHeight": 180.0,
-    "key": "merc_captain_victory_v1_s60",
+    "originX": 0.4653,
+    "originY": 0.9791,
+    "bodyHeight": 179.9,
+    "key": "merc_captain_victory_v2_s60",
     "hold": true
    }
   },
@@ -3609,15 +3609,15 @@
     "hitFrame": 11
    },
    "death": {
-    "file": "sprites/battle/merc_pikeman_death_v1_s60.webp",
-    "frameWidth": 346,
-    "frameHeight": 194,
+    "file": "sprites/battle/merc_pikeman_death_v2_s60.webp",
+    "frameWidth": 466,
+    "frameHeight": 270,
     "frames": 30,
     "fps": 24,
-    "originX": 0.3996,
-    "originY": 0.9718,
-    "bodyHeight": 180.2,
-    "key": "merc_pikeman_death_v1_s60",
+    "originX": 0.4409,
+    "originY": 0.9812,
+    "bodyHeight": 179.9,
+    "key": "merc_pikeman_death_v2_s60",
     "hold": true
    },
    "hit": {
@@ -3644,15 +3644,15 @@
     "loop": true
    },
    "victory": {
-    "file": "sprites/battle/merc_pikeman_victory_v1_s60.webp",
-    "frameWidth": 318,
+    "file": "sprites/battle/merc_pikeman_victory_v2_s60.webp",
+    "frameWidth": 346,
     "frameHeight": 194,
     "frames": 29,
     "fps": 24,
-    "originX": 0.4343,
+    "originX": 0.3996,
     "originY": 0.9718,
-    "bodyHeight": 180.0,
-    "key": "merc_pikeman_victory_v1_s60",
+    "bodyHeight": 180.2,
+    "key": "merc_pikeman_victory_v2_s60",
     "hold": true
    }
   },
@@ -3664,19 +3664,19 @@
  "mine_shade": {
   "anims": {
    "attack": {
-    "file": "sprites/battle/mine_shade_attack_v1_s60.webp",
-    "frameWidth": 350,
-    "frameHeight": 197,
+    "file": "sprites/battle/mine_shade_attack_v2_s60.webp",
+    "frameWidth": 457,
+    "frameHeight": 274,
     "frames": 29,
     "fps": 24,
-    "originX": 0.3663,
-    "originY": 0.9787,
-    "bodyHeight": 179.8,
-    "key": "mine_shade_attack_v1_s60",
-    "hitFrame": 10
+    "originX": 0.4299,
+    "originY": 0.9834,
+    "bodyHeight": 179.9,
+    "key": "mine_shade_attack_v2_s60",
+    "hitFrame": 9
    },
    "death": {
-    "file": "sprites/battle/mine_shade_death_v1_s60.webp",
+    "file": "sprites/battle/mine_shade_death_v2_s60.webp",
     "frameWidth": 350,
     "frameHeight": 197,
     "frames": 30,
@@ -3684,19 +3684,19 @@
     "originX": 0.3663,
     "originY": 0.9787,
     "bodyHeight": 179.8,
-    "key": "mine_shade_death_v1_s60",
+    "key": "mine_shade_death_v2_s60",
     "hold": true
    },
    "hit": {
-    "file": "sprites/battle/mine_shade_hit_v1_s60.webp",
-    "frameWidth": 308,
-    "frameHeight": 197,
+    "file": "sprites/battle/mine_shade_hit_v2_s60.webp",
+    "frameWidth": 457,
+    "frameHeight": 274,
     "frames": 14,
     "fps": 24,
-    "originX": 0.417,
-    "originY": 0.9787,
-    "bodyHeight": 180.1,
-    "key": "mine_shade_hit_v1_s60"
+    "originX": 0.4299,
+    "originY": 0.9834,
+    "bodyHeight": 179.9,
+    "key": "mine_shade_hit_v2_s60"
    },
    "idle": {
     "file": "sprites/battle/mine_shade_idle_v2_s60.webp",
@@ -3711,15 +3711,15 @@
     "loop": true
    },
    "victory": {
-    "file": "sprites/battle/mine_shade_victory_v1_s60.webp",
-    "frameWidth": 308,
-    "frameHeight": 197,
+    "file": "sprites/battle/mine_shade_victory_v2_s60.webp",
+    "frameWidth": 457,
+    "frameHeight": 274,
     "frames": 26,
     "fps": 24,
-    "originX": 0.417,
-    "originY": 0.9787,
-    "bodyHeight": 180.1,
-    "key": "mine_shade_victory_v1_s60",
+    "originX": 0.4299,
+    "originY": 0.9834,
+    "bodyHeight": 179.9,
+    "key": "mine_shade_victory_v2_s60",
     "hold": true
    }
   },
@@ -3755,38 +3755,38 @@
     "hold": true
    },
    "hit": {
-    "file": "sprites/battle/mine_spider_hit_v1_s60.webp",
-    "frameWidth": 316,
+    "file": "sprites/battle/mine_spider_hit_v2_s60.webp",
+    "frameWidth": 338,
     "frameHeight": 190,
     "frames": 13,
     "fps": 24,
-    "originX": 0.4311,
+    "originX": 0.4028,
     "originY": 0.9814,
-    "bodyHeight": 180.2,
-    "key": "mine_spider_hit_v1_s60"
+    "bodyHeight": 180.1,
+    "key": "mine_spider_hit_v2_s60"
    },
    "idle": {
-    "file": "sprites/battle/mine_spider_idle_v2_s60.webp",
-    "frameWidth": 290,
+    "file": "sprites/battle/mine_spider_idle_v3_s60.webp",
+    "frameWidth": 310,
     "frameHeight": 174,
     "frames": 95,
-    "fps": 14,
-    "originX": 0.4319,
+    "fps": 24,
+    "originX": 0.4035,
     "originY": 0.9838,
-    "bodyHeight": 165.7,
-    "key": "mine_spider_idle_v2_s60",
+    "bodyHeight": 165.5,
+    "key": "mine_spider_idle_v3_s60",
     "loop": true
    },
    "victory": {
-    "file": "sprites/battle/mine_spider_victory_v1_s60.webp",
-    "frameWidth": 316,
+    "file": "sprites/battle/mine_spider_victory_v2_s60.webp",
+    "frameWidth": 338,
     "frameHeight": 190,
     "frames": 29,
     "fps": 24,
-    "originX": 0.4311,
+    "originX": 0.4028,
     "originY": 0.9814,
-    "bodyHeight": 180.2,
-    "key": "mine_spider_victory_v1_s60",
+    "bodyHeight": 180.1,
+    "key": "mine_spider_victory_v2_s60",
     "hold": true
    }
   },
@@ -3845,15 +3845,15 @@
     "loop": true
    },
    "victory": {
-    "file": "sprites/battle/moroz_victory_v1_s60.webp",
-    "frameWidth": 328,
-    "frameHeight": 189,
+    "file": "sprites/battle/moroz_victory_v2_s60.webp",
+    "frameWidth": 466,
+    "frameHeight": 262,
     "frames": 29,
     "fps": 24,
-    "originX": 0.4668,
-    "originY": 0.983,
-    "bodyHeight": 179.9,
-    "key": "moroz_victory_v1_s60",
+    "originX": 0.4836,
+    "originY": 0.9881,
+    "bodyHeight": 180.2,
+    "key": "moroz_victory_v2_s60",
     "hold": true
    }
   },
@@ -3865,16 +3865,16 @@
  "mountain_king": {
   "anims": {
    "attack": {
-    "file": "sprites/battle/mountain_king_attack_v1_s60.webp",
-    "frameWidth": 332,
-    "frameHeight": 187,
+    "file": "sprites/battle/mountain_king_attack_v2_s60.webp",
+    "frameWidth": 448,
+    "frameHeight": 260,
     "frames": 29,
     "fps": 24,
-    "originX": 0.369,
-    "originY": 0.9907,
-    "bodyHeight": 179.8,
-    "key": "mountain_king_attack_v1_s60",
-    "hitFrame": 12
+    "originX": 0.419,
+    "originY": 0.9931,
+    "bodyHeight": 179.9,
+    "key": "mountain_king_attack_v2_s60",
+    "hitFrame": 15
    },
    "idle": {
     "file": "sprites/battle/mountain_king_idle_v2_s60.webp",
@@ -3889,15 +3889,15 @@
     "loop": true
    },
    "power": {
-    "file": "sprites/battle/mountain_king_power_v1_s60.webp",
-    "frameWidth": 332,
-    "frameHeight": 187,
+    "file": "sprites/battle/mountain_king_power_v2_s60.webp",
+    "frameWidth": 448,
+    "frameHeight": 260,
     "frames": 36,
     "fps": 24,
-    "originX": 0.369,
-    "originY": 0.9907,
-    "bodyHeight": 179.8,
-    "key": "mountain_king_power_v1_s60",
+    "originX": 0.419,
+    "originY": 0.9931,
+    "bodyHeight": 179.9,
+    "key": "mountain_king_power_v2_s60",
     "hitFrame": 20
    }
   },
@@ -3909,7 +3909,7 @@
  "name_echo": {
   "anims": {
    "attack": {
-    "file": "sprites/battle/name_echo_attack_v1_s60.webp",
+    "file": "sprites/battle/name_echo_attack_v2_s60.webp",
     "frameWidth": 350,
     "frameHeight": 197,
     "frames": 29,
@@ -3917,11 +3917,11 @@
     "originX": 0.3683,
     "originY": 0.9745,
     "bodyHeight": 179.8,
-    "key": "name_echo_attack_v1_s60",
+    "key": "name_echo_attack_v2_s60",
     "hitFrame": 15
    },
    "death": {
-    "file": "sprites/battle/name_echo_death_v1_s60.webp",
+    "file": "sprites/battle/name_echo_death_v2_s60.webp",
     "frameWidth": 350,
     "frameHeight": 197,
     "frames": 30,
@@ -3929,19 +3929,19 @@
     "originX": 0.3683,
     "originY": 0.9745,
     "bodyHeight": 179.8,
-    "key": "name_echo_death_v1_s60",
+    "key": "name_echo_death_v2_s60",
     "hold": true
    },
    "hit": {
-    "file": "sprites/battle/name_echo_hit_v1_s60.webp",
-    "frameWidth": 309,
+    "file": "sprites/battle/name_echo_hit_v2_s60.webp",
+    "frameWidth": 350,
     "frameHeight": 197,
     "frames": 14,
     "fps": 24,
-    "originX": 0.4176,
+    "originX": 0.3683,
     "originY": 0.9745,
-    "bodyHeight": 180.0,
-    "key": "name_echo_hit_v1_s60"
+    "bodyHeight": 179.8,
+    "key": "name_echo_hit_v2_s60"
    },
    "idle": {
     "file": "sprites/battle/name_echo_idle_v2_s60.webp",
@@ -3956,15 +3956,15 @@
     "loop": true
    },
    "victory": {
-    "file": "sprites/battle/name_echo_victory_v1_s60.webp",
-    "frameWidth": 309,
-    "frameHeight": 197,
+    "file": "sprites/battle/name_echo_victory_v2_s60.webp",
+    "frameWidth": 458,
+    "frameHeight": 274,
     "frames": 29,
     "fps": 24,
-    "originX": 0.4176,
-    "originY": 0.9745,
-    "bodyHeight": 180.0,
-    "key": "name_echo_victory_v1_s60",
+    "originX": 0.4315,
+    "originY": 0.9805,
+    "bodyHeight": 180.1,
+    "key": "name_echo_victory_v2_s60",
     "hold": true
    }
   },
@@ -4122,7 +4122,7 @@
     "hitFrame": 11
    },
    "death": {
-    "file": "sprites/battle/poludnitsa_death_v1_s60.webp",
+    "file": "sprites/battle/poludnitsa_death_v2_s60.webp",
     "frameWidth": 367,
     "frameHeight": 205,
     "frames": 30,
@@ -4130,19 +4130,19 @@
     "originX": 0.3623,
     "originY": 0.974,
     "bodyHeight": 180.2,
-    "key": "poludnitsa_death_v1_s60",
+    "key": "poludnitsa_death_v2_s60",
     "hold": true
    },
    "hit": {
-    "file": "sprites/battle/poludnitsa_hit_v1_s60.webp",
-    "frameWidth": 313,
-    "frameHeight": 205,
+    "file": "sprites/battle/poludnitsa_hit_v2_s60.webp",
+    "frameWidth": 466,
+    "frameHeight": 287,
     "frames": 14,
     "fps": 24,
-    "originX": 0.4249,
-    "originY": 0.974,
-    "bodyHeight": 180.2,
-    "key": "poludnitsa_hit_v1_s60"
+    "originX": 0.441,
+    "originY": 0.9797,
+    "bodyHeight": 179.9,
+    "key": "poludnitsa_hit_v2_s60"
    },
    "idle": {
     "file": "sprites/battle/poludnitsa_idle_v2_s60.webp",
@@ -4177,39 +4177,39 @@
  "rats": {
   "anims": {
    "attack": {
-    "file": "sprites/battle/rats_attack_v1_s60.webp",
-    "frameWidth": 330,
-    "frameHeight": 185,
+    "file": "sprites/battle/rats_attack_v2_s60.webp",
+    "frameWidth": 460,
+    "frameHeight": 259,
     "frames": 29,
     "fps": 24,
-    "originX": 0.3831,
-    "originY": 0.989,
-    "bodyHeight": 180.0,
-    "key": "rats_attack_v1_s60",
-    "hitFrame": 9
+    "originX": 0.4155,
+    "originY": 0.9892,
+    "bodyHeight": 180.2,
+    "key": "rats_attack_v2_s60",
+    "hitFrame": 3
    },
    "death": {
-    "file": "sprites/battle/rats_death_v1_s60.webp",
-    "frameWidth": 330,
-    "frameHeight": 185,
+    "file": "sprites/battle/rats_death_v2_s60.webp",
+    "frameWidth": 460,
+    "frameHeight": 259,
     "frames": 25,
     "fps": 24,
-    "originX": 0.3831,
-    "originY": 0.989,
-    "bodyHeight": 180.0,
-    "key": "rats_death_v1_s60",
+    "originX": 0.4155,
+    "originY": 0.9892,
+    "bodyHeight": 180.2,
+    "key": "rats_death_v2_s60",
     "hold": true
    },
    "hit": {
-    "file": "sprites/battle/rats_hit_v1_s60.webp",
-    "frameWidth": 330,
-    "frameHeight": 185,
+    "file": "sprites/battle/rats_hit_v2_s60.webp",
+    "frameWidth": 460,
+    "frameHeight": 259,
     "frames": 14,
     "fps": 24,
-    "originX": 0.3831,
-    "originY": 0.989,
-    "bodyHeight": 180.0,
-    "key": "rats_hit_v1_s60"
+    "originX": 0.4155,
+    "originY": 0.9892,
+    "bodyHeight": 180.2,
+    "key": "rats_hit_v2_s60"
    },
    "idle": {
     "file": "sprites/battle/rats_idle_v2_s60.webp",
@@ -4224,15 +4224,15 @@
     "loop": true
    },
    "victory": {
-    "file": "sprites/battle/rats_victory_v1_s60.webp",
-    "frameWidth": 330,
-    "frameHeight": 185,
+    "file": "sprites/battle/rats_victory_v2_s60.webp",
+    "frameWidth": 460,
+    "frameHeight": 259,
     "frames": 29,
     "fps": 24,
-    "originX": 0.3831,
-    "originY": 0.989,
-    "bodyHeight": 180.0,
-    "key": "rats_victory_v1_s60",
+    "originX": 0.4155,
+    "originY": 0.9892,
+    "bodyHeight": 180.2,
+    "key": "rats_victory_v2_s60",
     "hold": true
    }
   },
@@ -4311,19 +4311,19 @@
  "recruit": {
   "anims": {
    "attack": {
-    "file": "sprites/battle/recruit_attack_v1_s60.webp",
-    "frameWidth": 376,
-    "frameHeight": 206,
+    "file": "sprites/battle/recruit_attack_v2_s60.webp",
+    "frameWidth": 481,
+    "frameHeight": 288,
     "frames": 29,
     "fps": 24,
-    "originX": 0.3925,
-    "originY": 0.9717,
-    "bodyHeight": 180.2,
-    "key": "recruit_attack_v1_s60",
-    "hitFrame": 12
+    "originX": 0.4585,
+    "originY": 0.9807,
+    "bodyHeight": 179.9,
+    "key": "recruit_attack_v2_s60",
+    "hitFrame": 11
    },
    "death": {
-    "file": "sprites/battle/recruit_death_v1_s60.webp",
+    "file": "sprites/battle/recruit_death_v2_s60.webp",
     "frameWidth": 376,
     "frameHeight": 206,
     "frames": 30,
@@ -4331,19 +4331,19 @@
     "originX": 0.3925,
     "originY": 0.9717,
     "bodyHeight": 180.2,
-    "key": "recruit_death_v1_s60",
+    "key": "recruit_death_v2_s60",
     "hold": true
    },
    "hit": {
-    "file": "sprites/battle/recruit_hit_v1_s60.webp",
-    "frameWidth": 327,
-    "frameHeight": 206,
+    "file": "sprites/battle/recruit_hit_v2_s60.webp",
+    "frameWidth": 481,
+    "frameHeight": 288,
     "frames": 14,
     "fps": 24,
-    "originX": 0.4508,
-    "originY": 0.9717,
-    "bodyHeight": 180.0,
-    "key": "recruit_hit_v1_s60"
+    "originX": 0.4585,
+    "originY": 0.9807,
+    "bodyHeight": 179.9,
+    "key": "recruit_hit_v2_s60"
    },
    "idle": {
     "file": "sprites/battle/recruit_idle_v1_s60.webp",
@@ -4358,15 +4358,15 @@
     "loop": true
    },
    "victory": {
-    "file": "sprites/battle/recruit_victory_v1_s60.webp",
-    "frameWidth": 327,
-    "frameHeight": 206,
+    "file": "sprites/battle/recruit_victory_v2_s60.webp",
+    "frameWidth": 481,
+    "frameHeight": 288,
     "frames": 29,
     "fps": 24,
-    "originX": 0.4508,
-    "originY": 0.9717,
-    "bodyHeight": 180.0,
-    "key": "recruit_victory_v1_s60",
+    "originX": 0.4585,
+    "originY": 0.9807,
+    "bodyHeight": 179.9,
+    "key": "recruit_victory_v2_s60",
     "hold": true
    }
   },
@@ -4412,7 +4412,7 @@
     "hitFrame": 6
    },
    "death": {
-    "file": "sprites/battle/rowan_death_v1_s60.webp",
+    "file": "sprites/battle/rowan_death_v2_s60.webp",
     "frameWidth": 368,
     "frameHeight": 206,
     "frames": 30,
@@ -4420,19 +4420,19 @@
     "originX": 0.3815,
     "originY": 0.974,
     "bodyHeight": 179.8,
-    "key": "rowan_death_v1_s60",
+    "key": "rowan_death_v2_s60",
     "hold": true
    },
    "hit": {
-    "file": "sprites/battle/rowan_hit_v1_s60.webp",
-    "frameWidth": 320,
-    "frameHeight": 206,
+    "file": "sprites/battle/rowan_hit_v2_s60.webp",
+    "frameWidth": 473,
+    "frameHeight": 287,
     "frames": 14,
     "fps": 24,
-    "originX": 0.4387,
-    "originY": 0.974,
+    "originX": 0.4492,
+    "originY": 0.9792,
     "bodyHeight": 179.8,
-    "key": "rowan_hit_v1_s60"
+    "key": "rowan_hit_v2_s60"
    },
    "idle": {
     "file": "sprites/battle/rowan_idle_v1_s60.webp",
@@ -4447,19 +4447,19 @@
     "loop": true
    },
    "power": {
-    "file": "sprites/battle/rowan_power_v1_s60.webp",
-    "frameWidth": 368,
-    "frameHeight": 206,
+    "file": "sprites/battle/rowan_power_v2_s60.webp",
+    "frameWidth": 473,
+    "frameHeight": 287,
     "frames": 38,
     "fps": 24,
-    "originX": 0.3815,
-    "originY": 0.974,
+    "originX": 0.4492,
+    "originY": 0.9792,
     "bodyHeight": 179.8,
-    "key": "rowan_power_v1_s60",
-    "hitFrame": 18
+    "key": "rowan_power_v2_s60",
+    "hitFrame": 15
    },
    "victory": {
-    "file": "sprites/battle/rowan_victory_v1_s60.webp",
+    "file": "sprites/battle/rowan_victory_v2_s60.webp",
     "frameWidth": 320,
     "frameHeight": 206,
     "frames": 29,
@@ -4467,7 +4467,7 @@
     "originX": 0.4387,
     "originY": 0.974,
     "bodyHeight": 179.8,
-    "key": "rowan_victory_v1_s60",
+    "key": "rowan_victory_v2_s60",
     "hold": true
    }
   },
@@ -4479,16 +4479,16 @@
  "ryzh": {
   "anims": {
    "attack": {
-    "file": "sprites/battle/ryzh_attack_v1_s60.webp",
-    "frameWidth": 360,
-    "frameHeight": 202,
+    "file": "sprites/battle/ryzh_attack_v2_s60.webp",
+    "frameWidth": 472,
+    "frameHeight": 282,
     "frames": 29,
     "fps": 24,
-    "originX": 0.3902,
-    "originY": 0.9737,
-    "bodyHeight": 180.0,
-    "key": "ryzh_attack_v1_s60",
-    "hitFrame": 9
+    "originX": 0.4482,
+    "originY": 0.9804,
+    "bodyHeight": 180.2,
+    "key": "ryzh_attack_v2_s60",
+    "hitFrame": 6
    },
    "death": {
     "file": "sprites/battle/ryzh_death_v1_s60.webp",
@@ -4526,15 +4526,15 @@
     "loop": true
    },
    "victory": {
-    "file": "sprites/battle/ryzh_victory_v1_s60.webp",
-    "frameWidth": 320,
-    "frameHeight": 202,
+    "file": "sprites/battle/ryzh_victory_v2_s60.webp",
+    "frameWidth": 472,
+    "frameHeight": 282,
     "frames": 29,
     "fps": 24,
-    "originX": 0.4393,
-    "originY": 0.9737,
-    "bodyHeight": 180.1,
-    "key": "ryzh_victory_v1_s60",
+    "originX": 0.4482,
+    "originY": 0.9804,
+    "bodyHeight": 180.2,
+    "key": "ryzh_victory_v2_s60",
     "hold": true
    }
   },
@@ -4625,27 +4625,27 @@
     "hitFrame": 8
    },
    "death": {
-    "file": "sprites/battle/shade_death_v1_s60.webp",
-    "frameWidth": 352,
-    "frameHeight": 196,
+    "file": "sprites/battle/shade_death_v2_s60.webp",
+    "frameWidth": 448,
+    "frameHeight": 274,
     "frames": 28,
     "fps": 24,
-    "originX": 0.3362,
-    "originY": 0.9724,
+    "originX": 0.4179,
+    "originY": 0.9791,
     "bodyHeight": 179.9,
-    "key": "shade_death_v1_s60",
+    "key": "shade_death_v2_s60",
     "hold": true
    },
    "hit": {
-    "file": "sprites/battle/shade_hit_v1_s60.webp",
-    "frameWidth": 298,
+    "file": "sprites/battle/shade_hit_v2_s60.webp",
+    "frameWidth": 353,
     "frameHeight": 196,
     "frames": 13,
     "fps": 24,
-    "originX": 0.397,
+    "originX": 0.3356,
     "originY": 0.9724,
-    "bodyHeight": 179.9,
-    "key": "shade_hit_v1_s60"
+    "bodyHeight": 180.1,
+    "key": "shade_hit_v2_s60"
    },
    "idle": {
     "file": "sprites/battle/shade_idle_v2_s60.webp",
@@ -4691,16 +4691,16 @@
     "key": "shield_amb2_v1_s60"
    },
    "attack": {
-    "file": "sprites/battle/shield_attack_v1_s60.webp",
-    "frameWidth": 366,
-    "frameHeight": 200,
+    "file": "sprites/battle/shield_attack_v2_s60.webp",
+    "frameWidth": 475,
+    "frameHeight": 281,
     "frames": 29,
     "fps": 24,
-    "originX": 0.3905,
-    "originY": 0.9739,
-    "bodyHeight": 180.0,
-    "key": "shield_attack_v1_s60",
-    "hitFrame": 13
+    "originX": 0.4517,
+    "originY": 0.98,
+    "bodyHeight": 179.9,
+    "key": "shield_attack_v2_s60",
+    "hitFrame": 10
    },
    "death": {
     "file": "sprites/battle/shield_death_v1_s60.webp",
@@ -4727,27 +4727,27 @@
     "loop": true
    },
    "power": {
-    "file": "sprites/battle/shield_power_v1_s60.webp",
-    "frameWidth": 366,
-    "frameHeight": 200,
+    "file": "sprites/battle/shield_power_v2_s60.webp",
+    "frameWidth": 475,
+    "frameHeight": 281,
     "frames": 38,
     "fps": 24,
-    "originX": 0.3905,
-    "originY": 0.9739,
-    "bodyHeight": 180.0,
-    "key": "shield_power_v1_s60",
-    "hitFrame": 23
+    "originX": 0.4517,
+    "originY": 0.98,
+    "bodyHeight": 179.9,
+    "key": "shield_power_v2_s60",
+    "hitFrame": 16
    },
    "victory": {
-    "file": "sprites/battle/shield_victory_v1_s60.webp",
-    "frameWidth": 322,
-    "frameHeight": 200,
+    "file": "sprites/battle/shield_victory_v2_s60.webp",
+    "frameWidth": 475,
+    "frameHeight": 281,
     "frames": 29,
     "fps": 24,
-    "originX": 0.4436,
-    "originY": 0.9739,
+    "originX": 0.4517,
+    "originY": 0.98,
     "bodyHeight": 179.9,
-    "key": "shield_victory_v1_s60",
+    "key": "shield_victory_v2_s60",
     "hold": true
    }
   },
@@ -4772,15 +4772,15 @@
     "hitFrame": 3
    },
    "death": {
-    "file": "sprites/battle/shishiga_death_v1_s60.webp",
-    "frameWidth": 339,
-    "frameHeight": 191,
+    "file": "sprites/battle/shishiga_death_v2_s60.webp",
+    "frameWidth": 439,
+    "frameHeight": 265,
     "frames": 28,
     "fps": 24,
-    "originX": 0.3327,
-    "originY": 0.9781,
-    "bodyHeight": 180.0,
-    "key": "shishiga_death_v1_s60",
+    "originX": 0.4073,
+    "originY": 0.9847,
+    "bodyHeight": 179.9,
+    "key": "shishiga_death_v2_s60",
     "hold": true
    },
    "hit": {
@@ -4827,7 +4827,7 @@
  "snow_wolf": {
   "anims": {
    "attack": {
-    "file": "sprites/battle/snow_wolf_attack_v1_s60.webp",
+    "file": "sprites/battle/snow_wolf_attack_v2_s60.webp",
     "frameWidth": 337,
     "frameHeight": 190,
     "frames": 29,
@@ -4835,31 +4835,31 @@
     "originX": 0.5987,
     "originY": 0.9758,
     "bodyHeight": 179.9,
-    "key": "snow_wolf_attack_v1_s60",
+    "key": "snow_wolf_attack_v2_s60",
     "hitFrame": 7
    },
    "death": {
-    "file": "sprites/battle/snow_wolf_death_v1_s60.webp",
-    "frameWidth": 337,
-    "frameHeight": 190,
+    "file": "sprites/battle/snow_wolf_death_v2_s60.webp",
+    "frameWidth": 469,
+    "frameHeight": 263,
     "frames": 30,
     "fps": 24,
-    "originX": 0.5987,
-    "originY": 0.9758,
+    "originX": 0.5704,
+    "originY": 0.984,
     "bodyHeight": 179.9,
-    "key": "snow_wolf_death_v1_s60",
+    "key": "snow_wolf_death_v2_s60",
     "hold": true
    },
    "hit": {
-    "file": "sprites/battle/snow_wolf_hit_v1_s60.webp",
-    "frameWidth": 337,
-    "frameHeight": 190,
+    "file": "sprites/battle/snow_wolf_hit_v2_s60.webp",
+    "frameWidth": 469,
+    "frameHeight": 263,
     "frames": 13,
     "fps": 24,
-    "originX": 0.5987,
-    "originY": 0.9758,
+    "originX": 0.5704,
+    "originY": 0.984,
     "bodyHeight": 179.9,
-    "key": "snow_wolf_hit_v1_s60"
+    "key": "snow_wolf_hit_v2_s60"
    },
    "idle": {
     "file": "sprites/battle/snow_wolf_idle_v2_s60.webp",
@@ -4874,15 +4874,15 @@
     "loop": true
    },
    "victory": {
-    "file": "sprites/battle/snow_wolf_victory_v1_s60.webp",
-    "frameWidth": 337,
-    "frameHeight": 190,
+    "file": "sprites/battle/snow_wolf_victory_v2_s60.webp",
+    "frameWidth": 469,
+    "frameHeight": 263,
     "frames": 29,
     "fps": 24,
-    "originX": 0.5987,
-    "originY": 0.9758,
+    "originX": 0.5704,
+    "originY": 0.984,
     "bodyHeight": 179.9,
-    "key": "snow_wolf_victory_v1_s60",
+    "key": "snow_wolf_victory_v2_s60",
     "hold": true
    }
   },
@@ -4894,7 +4894,7 @@
  "snow_wolf_leader": {
   "anims": {
    "attack": {
-    "file": "sprites/battle/snow_wolf_leader_attack_v1_s60.webp",
+    "file": "sprites/battle/snow_wolf_leader_attack_v2_s60.webp",
     "frameWidth": 328,
     "frameHeight": 184,
     "frames": 29,
@@ -4902,19 +4902,19 @@
     "originX": 0.6131,
     "originY": 0.9939,
     "bodyHeight": 180.2,
-    "key": "snow_wolf_leader_attack_v1_s60",
+    "key": "snow_wolf_leader_attack_v2_s60",
     "hitFrame": 5
    },
    "death": {
-    "file": "sprites/battle/snow_wolf_leader_death_v1_s60.webp",
-    "frameWidth": 328,
-    "frameHeight": 184,
+    "file": "sprites/battle/snow_wolf_leader_death_v2_s60.webp",
+    "frameWidth": 456,
+    "frameHeight": 256,
     "frames": 26,
     "fps": 24,
-    "originX": 0.6131,
-    "originY": 0.9939,
-    "bodyHeight": 180.2,
-    "key": "snow_wolf_leader_death_v1_s60",
+    "originX": 0.5812,
+    "originY": 0.9961,
+    "bodyHeight": 180.0,
+    "key": "snow_wolf_leader_death_v2_s60",
     "hold": true
    },
    "hit": {
@@ -4929,7 +4929,7 @@
     "key": "snow_wolf_leader_hit_v1_s60"
    },
    "idle": {
-    "file": "sprites/battle/snow_wolf_leader_idle_v2_s60.webp",
+    "file": "sprites/battle/snow_wolf_leader_idle_v3_s60.webp",
     "frameWidth": 301,
     "frameHeight": 169,
     "frames": 95,
@@ -4937,19 +4937,19 @@
     "originX": 0.6135,
     "originY": 0.9954,
     "bodyHeight": 165.5,
-    "key": "snow_wolf_leader_idle_v2_s60",
+    "key": "snow_wolf_leader_idle_v3_s60",
     "loop": true
    },
    "victory": {
-    "file": "sprites/battle/snow_wolf_leader_victory_v1_s60.webp",
-    "frameWidth": 328,
-    "frameHeight": 184,
+    "file": "sprites/battle/snow_wolf_leader_victory_v2_s60.webp",
+    "frameWidth": 456,
+    "frameHeight": 256,
     "frames": 29,
     "fps": 24,
-    "originX": 0.6131,
-    "originY": 0.9939,
-    "bodyHeight": 180.2,
-    "key": "snow_wolf_leader_victory_v1_s60",
+    "originX": 0.5812,
+    "originY": 0.9961,
+    "bodyHeight": 180.0,
+    "key": "snow_wolf_leader_victory_v2_s60",
     "hold": true
    }
   },
@@ -4973,50 +4973,50 @@
     "hitFrame": 23
    },
    "death": {
-    "file": "sprites/battle/stone_guard_death_v1_s60.webp",
-    "frameWidth": 359,
-    "frameHeight": 203,
+    "file": "sprites/battle/stone_guard_death_v2_s60.webp",
+    "frameWidth": 457,
+    "frameHeight": 282,
     "frames": 30,
     "fps": 24,
-    "originX": 0.3497,
-    "originY": 0.978,
-    "bodyHeight": 179.8,
-    "key": "stone_guard_death_v1_s60",
+    "originX": 0.4294,
+    "originY": 0.9846,
+    "bodyHeight": 180.2,
+    "key": "stone_guard_death_v2_s60",
     "hold": true
    },
    "hit": {
-    "file": "sprites/battle/stone_guard_hit_v1_s60.webp",
-    "frameWidth": 305,
-    "frameHeight": 203,
+    "file": "sprites/battle/stone_guard_hit_v2_s60.webp",
+    "frameWidth": 457,
+    "frameHeight": 282,
     "frames": 14,
     "fps": 24,
-    "originX": 0.4116,
-    "originY": 0.978,
-    "bodyHeight": 179.8,
-    "key": "stone_guard_hit_v1_s60"
+    "originX": 0.4294,
+    "originY": 0.9846,
+    "bodyHeight": 180.2,
+    "key": "stone_guard_hit_v2_s60"
    },
    "idle": {
-    "file": "sprites/battle/stone_guard_idle_v2_s60.webp",
-    "frameWidth": 305,
-    "frameHeight": 203,
+    "file": "sprites/battle/stone_guard_idle_v3_s60.webp",
+    "frameWidth": 304,
+    "frameHeight": 171,
     "frames": 95,
-    "fps": 14,
-    "originX": 0.4116,
-    "originY": 0.978,
-    "bodyHeight": 179.8,
-    "key": "stone_guard_idle_v2_s60",
+    "fps": 24,
+    "originX": 0.3497,
+    "originY": 0.9817,
+    "bodyHeight": 152.2,
+    "key": "stone_guard_idle_v3_s60",
     "loop": true
    },
    "victory": {
-    "file": "sprites/battle/stone_guard_victory_v1_s60.webp",
-    "frameWidth": 305,
-    "frameHeight": 203,
+    "file": "sprites/battle/stone_guard_victory_v2_s60.webp",
+    "frameWidth": 457,
+    "frameHeight": 282,
     "frames": 29,
     "fps": 24,
-    "originX": 0.4116,
-    "originY": 0.978,
-    "bodyHeight": 179.8,
-    "key": "stone_guard_victory_v1_s60",
+    "originX": 0.4294,
+    "originY": 0.9846,
+    "bodyHeight": 180.2,
+    "key": "stone_guard_victory_v2_s60",
     "hold": true
    }
   },
@@ -5142,15 +5142,15 @@
     "loop": true
    },
    "victory": {
-    "file": "sprites/battle/swamp_beast_victory_v1_s60.webp",
-    "frameWidth": 296,
+    "file": "sprites/battle/swamp_beast_victory_v2_s60.webp",
+    "frameWidth": 357,
     "frameHeight": 200,
     "frames": 29,
     "fps": 24,
-    "originX": 0.5164,
+    "originX": 0.5984,
     "originY": 0.9748,
-    "bodyHeight": 179.8,
-    "key": "swamp_beast_victory_v1_s60",
+    "bodyHeight": 180.0,
+    "key": "swamp_beast_victory_v2_s60",
     "hold": true
    }
   },
@@ -5184,27 +5184,27 @@
     "key": "swamp_elf_amb2_v1_s60"
    },
    "attack": {
-    "file": "sprites/battle/swamp_elf_attack_v1_s60.webp",
-    "frameWidth": 347,
-    "frameHeight": 195,
+    "file": "sprites/battle/swamp_elf_attack_v2_s60.webp",
+    "frameWidth": 476,
+    "frameHeight": 271,
     "frames": 29,
     "fps": 24,
-    "originX": 0.4083,
-    "originY": 0.9732,
-    "bodyHeight": 179.8,
-    "key": "swamp_elf_attack_v1_s60",
-    "hitFrame": 11
+    "originX": 0.4521,
+    "originY": 0.981,
+    "bodyHeight": 180.1,
+    "key": "swamp_elf_attack_v2_s60",
+    "hitFrame": 8
    },
    "death": {
-    "file": "sprites/battle/swamp_elf_death_v1_s60.webp",
-    "frameWidth": 347,
-    "frameHeight": 195,
+    "file": "sprites/battle/swamp_elf_death_v2_s60.webp",
+    "frameWidth": 476,
+    "frameHeight": 271,
     "frames": 30,
     "fps": 24,
-    "originX": 0.4083,
-    "originY": 0.9732,
-    "bodyHeight": 179.8,
-    "key": "swamp_elf_death_v1_s60",
+    "originX": 0.4521,
+    "originY": 0.981,
+    "bodyHeight": 180.1,
+    "key": "swamp_elf_death_v2_s60",
     "hold": true
    },
    "hit": {
@@ -5231,15 +5231,15 @@
     "loop": true
    },
    "victory": {
-    "file": "sprites/battle/swamp_elf_victory_v1_s60.webp",
-    "frameWidth": 322,
-    "frameHeight": 195,
+    "file": "sprites/battle/swamp_elf_victory_v2_s60.webp",
+    "frameWidth": 476,
+    "frameHeight": 271,
     "frames": 29,
     "fps": 24,
-    "originX": 0.4411,
-    "originY": 0.9732,
-    "bodyHeight": 180.2,
-    "key": "swamp_elf_victory_v1_s60",
+    "originX": 0.4521,
+    "originY": 0.981,
+    "bodyHeight": 180.1,
+    "key": "swamp_elf_victory_v2_s60",
     "hold": true
    }
   },
@@ -5251,39 +5251,39 @@
  "swamp_knight": {
   "anims": {
    "attack": {
-    "file": "sprites/battle/swamp_knight_attack_v1_s60.webp",
-    "frameWidth": 384,
-    "frameHeight": 209,
+    "file": "sprites/battle/swamp_knight_attack_v2_s60.webp",
+    "frameWidth": 479,
+    "frameHeight": 293,
     "frames": 29,
     "fps": 24,
-    "originX": 0.3723,
-    "originY": 0.9727,
-    "bodyHeight": 180.0,
-    "key": "swamp_knight_attack_v1_s60",
-    "hitFrame": 14
+    "originX": 0.4558,
+    "originY": 0.9807,
+    "bodyHeight": 180.1,
+    "key": "swamp_knight_attack_v2_s60",
+    "hitFrame": 9
    },
    "death": {
-    "file": "sprites/battle/swamp_knight_death_v1_s60.webp",
-    "frameWidth": 377,
-    "frameHeight": 209,
+    "file": "sprites/battle/swamp_knight_death_v2_s60.webp",
+    "frameWidth": 479,
+    "frameHeight": 293,
     "frames": 30,
     "fps": 24,
-    "originX": 0.3794,
-    "originY": 0.9727,
+    "originX": 0.4558,
+    "originY": 0.9807,
     "bodyHeight": 180.1,
-    "key": "swamp_knight_death_v1_s60",
+    "key": "swamp_knight_death_v2_s60",
     "hold": true
    },
    "hit": {
-    "file": "sprites/battle/swamp_knight_hit_v2_s60.webp",
-    "frameWidth": 384,
+    "file": "sprites/battle/swamp_knight_hit_v3_s60.webp",
+    "frameWidth": 323,
     "frameHeight": 209,
     "frames": 14,
     "fps": 24,
-    "originX": 0.3723,
+    "originX": 0.4428,
     "originY": 0.9727,
-    "bodyHeight": 180.0,
-    "key": "swamp_knight_hit_v2_s60"
+    "bodyHeight": 180.1,
+    "key": "swamp_knight_hit_v3_s60"
    },
    "idle": {
     "file": "sprites/battle/swamp_knight_idle_v1_s60.webp",
@@ -5298,27 +5298,27 @@
     "loop": true
    },
    "power": {
-    "file": "sprites/battle/swamp_knight_power_v1_s60.webp",
-    "frameWidth": 384,
-    "frameHeight": 209,
+    "file": "sprites/battle/swamp_knight_power_v2_s60.webp",
+    "frameWidth": 479,
+    "frameHeight": 293,
     "frames": 38,
     "fps": 24,
-    "originX": 0.3723,
-    "originY": 0.9727,
-    "bodyHeight": 180.0,
-    "key": "swamp_knight_power_v1_s60",
-    "hitFrame": 17
+    "originX": 0.4558,
+    "originY": 0.9807,
+    "bodyHeight": 180.1,
+    "key": "swamp_knight_power_v2_s60",
+    "hitFrame": 26
    },
    "victory": {
-    "file": "sprites/battle/swamp_knight_victory_v1_s60.webp",
-    "frameWidth": 323,
-    "frameHeight": 209,
+    "file": "sprites/battle/swamp_knight_victory_v2_s60.webp",
+    "frameWidth": 479,
+    "frameHeight": 293,
     "frames": 29,
     "fps": 24,
-    "originX": 0.4428,
-    "originY": 0.9727,
+    "originX": 0.4558,
+    "originY": 0.9807,
     "bodyHeight": 180.1,
-    "key": "swamp_knight_victory_v1_s60",
+    "key": "swamp_knight_victory_v2_s60",
     "hold": true
    }
   },
@@ -5377,15 +5377,15 @@
     "loop": true
    },
    "victory": {
-    "file": "sprites/battle/tavernman_victory_v1_s60.webp",
-    "frameWidth": 311,
-    "frameHeight": 203,
+    "file": "sprites/battle/tavernman_victory_v2_s60.webp",
+    "frameWidth": 463,
+    "frameHeight": 283,
     "frames": 29,
     "fps": 24,
-    "originX": 0.423,
-    "originY": 0.9713,
-    "bodyHeight": 180.1,
-    "key": "tavernman_victory_v1_s60",
+    "originX": 0.4372,
+    "originY": 0.9798,
+    "bodyHeight": 180.2,
+    "key": "tavernman_victory_v2_s60",
     "hold": true
    }
   },
@@ -5409,7 +5409,7 @@
     "hitFrame": 11
    },
    "death": {
-    "file": "sprites/battle/til_death_v1_s60.webp",
+    "file": "sprites/battle/til_death_v2_s60.webp",
     "frameWidth": 351,
     "frameHeight": 197,
     "frames": 30,
@@ -5417,7 +5417,7 @@
     "originX": 0.4796,
     "originY": 0.9758,
     "bodyHeight": 180.0,
-    "key": "til_death_v1_s60",
+    "key": "til_death_v2_s60",
     "hold": true
    },
    "hit": {
@@ -5444,19 +5444,19 @@
     "loop": true
    },
    "power": {
-    "file": "sprites/battle/til_power_v1_s60.webp",
-    "frameWidth": 351,
-    "frameHeight": 197,
+    "file": "sprites/battle/til_power_v2_s60.webp",
+    "frameWidth": 461,
+    "frameHeight": 274,
     "frames": 38,
     "fps": 24,
-    "originX": 0.4796,
-    "originY": 0.9758,
-    "bodyHeight": 180.0,
-    "key": "til_power_v1_s60",
-    "hitFrame": 14
+    "originX": 0.4352,
+    "originY": 0.9833,
+    "bodyHeight": 179.8,
+    "key": "til_power_v2_s60",
+    "hitFrame": 16
    },
    "victory": {
-    "file": "sprites/battle/til_victory_v1_s60.webp",
+    "file": "sprites/battle/til_victory_v2_s60.webp",
     "frameWidth": 333,
     "frameHeight": 197,
     "frames": 29,
@@ -5464,7 +5464,7 @@
     "originX": 0.4602,
     "originY": 0.9758,
     "bodyHeight": 180.0,
-    "key": "til_victory_v1_s60",
+    "key": "til_victory_v2_s60",
     "hold": true
    }
   },
@@ -5476,62 +5476,62 @@
  "troll_ugryum": {
   "anims": {
    "attack": {
-    "file": "sprites/battle/troll_ugryum_attack_v1_s60.webp",
-    "frameWidth": 346,
-    "frameHeight": 194,
+    "file": "sprites/battle/troll_ugryum_attack_v2_s60.webp",
+    "frameWidth": 453,
+    "frameHeight": 271,
     "frames": 29,
     "fps": 24,
-    "originX": 0.3593,
-    "originY": 0.9844,
-    "bodyHeight": 179.9,
-    "key": "troll_ugryum_attack_v1_s60",
-    "hitFrame": 18
+    "originX": 0.4244,
+    "originY": 0.9879,
+    "bodyHeight": 180.0,
+    "key": "troll_ugryum_attack_v2_s60",
+    "hitFrame": 17
    },
    "death": {
-    "file": "sprites/battle/troll_ugryum_death_v1_s60.webp",
-    "frameWidth": 346,
-    "frameHeight": 194,
+    "file": "sprites/battle/troll_ugryum_death_v2_s60.webp",
+    "frameWidth": 453,
+    "frameHeight": 271,
     "frames": 30,
     "fps": 24,
-    "originX": 0.3593,
-    "originY": 0.9844,
-    "bodyHeight": 179.9,
-    "key": "troll_ugryum_death_v1_s60",
+    "originX": 0.4244,
+    "originY": 0.9879,
+    "bodyHeight": 180.0,
+    "key": "troll_ugryum_death_v2_s60",
     "hold": true
    },
    "hit": {
-    "file": "sprites/battle/troll_ugryum_hit_v1_s60.webp",
-    "frameWidth": 304,
-    "frameHeight": 194,
+    "file": "sprites/battle/troll_ugryum_hit_v2_s60.webp",
+    "frameWidth": 453,
+    "frameHeight": 271,
     "frames": 14,
     "fps": 24,
-    "originX": 0.4089,
-    "originY": 0.9844,
-    "bodyHeight": 179.9,
-    "key": "troll_ugryum_hit_v1_s60"
+    "originX": 0.4244,
+    "originY": 0.9879,
+    "bodyHeight": 180.0,
+    "key": "troll_ugryum_hit_v2_s60"
    },
    "idle": {
-    "file": "sprites/battle/troll_ugryum_idle_v2_s60.webp",
-    "frameWidth": 304,
-    "frameHeight": 194,
+    "file": "sprites/battle/troll_ugryum_idle_v3_s60.webp",
+    "frameWidth": 292,
+    "frameHeight": 164,
     "frames": 95,
-    "fps": 14,
-    "originX": 0.4089,
-    "originY": 0.9844,
-    "bodyHeight": 179.9,
-    "key": "troll_ugryum_idle_v2_s60",
+    "fps": 24,
+    "originX": 0.3603,
+    "originY": 0.9852,
+    "bodyHeight": 152.2,
+    "key": "troll_ugryum_idle_v3_s60",
     "loop": true
    },
    "victory": {
-    "file": "sprites/battle/troll_ugryum_victory_v1_s60.webp",
-    "frameWidth": 304,
-    "frameHeight": 194,
+    "file": "sprites/battle/troll_ugryum_victory_v2_s60.webp",
+    "frameWidth": 453,
+    "frameHeight": 271,
     "frames": 29,
     "fps": 24,
-    "originX": 0.4089,
-    "originY": 0.9844,
-    "bodyHeight": 179.9,
-    "key": "troll_ugryum_victory_v1_s60",
+    "originX": 0.4244,
+    "originY": 0.9879,
+    "bodyHeight": 180.0,
+    "key": "troll_ugryum_victory_v2_s60",
     "hold": true
    }
   },
@@ -5565,15 +5565,15 @@
     "key": "vurdalak_amb2_v1_s60"
    },
    "death": {
-    "file": "sprites/battle/vurdalak_death_v1_s60.webp",
-    "frameWidth": 350,
-    "frameHeight": 196,
+    "file": "sprites/battle/vurdalak_death_v2_s60.webp",
+    "frameWidth": 479,
+    "frameHeight": 274,
     "frames": 30,
     "fps": 24,
-    "originX": 0.4273,
-    "originY": 0.9733,
-    "bodyHeight": 179.8,
-    "key": "vurdalak_death_v1_s60",
+    "originX": 0.456,
+    "originY": 0.9799,
+    "bodyHeight": 180.1,
+    "key": "vurdalak_death_v2_s60",
     "hold": true
    },
    "hit": {
@@ -5600,15 +5600,15 @@
     "loop": true
    },
    "victory": {
-    "file": "sprites/battle/vurdalak_victory_v1_s60.webp",
-    "frameWidth": 329,
-    "frameHeight": 196,
+    "file": "sprites/battle/vurdalak_victory_v2_s60.webp",
+    "frameWidth": 479,
+    "frameHeight": 274,
     "frames": 29,
     "fps": 24,
-    "originX": 0.4545,
-    "originY": 0.9733,
-    "bodyHeight": 179.8,
-    "key": "vurdalak_victory_v1_s60",
+    "originX": 0.456,
+    "originY": 0.9799,
+    "bodyHeight": 180.1,
+    "key": "vurdalak_victory_v2_s60",
     "hold": true
    }
   },
@@ -5618,39 +5618,39 @@
  "wandering_knight": {
   "anims": {
    "attack": {
-    "file": "sprites/battle/wandering_knight_attack_v1_s60.webp",
-    "frameWidth": 364,
-    "frameHeight": 203,
+    "file": "sprites/battle/wandering_knight_attack_v2_s60.webp",
+    "frameWidth": 468,
+    "frameHeight": 284,
     "frames": 29,
     "fps": 24,
-    "originX": 0.3738,
-    "originY": 0.973,
-    "bodyHeight": 180.2,
-    "key": "wandering_knight_attack_v1_s60",
-    "hitFrame": 8
+    "originX": 0.4431,
+    "originY": 0.9807,
+    "bodyHeight": 180.0,
+    "key": "wandering_knight_attack_v2_s60",
+    "hitFrame": 10
    },
    "death": {
-    "file": "sprites/battle/wandering_knight_death_v1_s60.webp",
-    "frameWidth": 364,
-    "frameHeight": 203,
+    "file": "sprites/battle/wandering_knight_death_v2_s60.webp",
+    "frameWidth": 468,
+    "frameHeight": 284,
     "frames": 30,
     "fps": 24,
-    "originX": 0.3738,
-    "originY": 0.973,
-    "bodyHeight": 180.2,
-    "key": "wandering_knight_death_v1_s60",
+    "originX": 0.4431,
+    "originY": 0.9807,
+    "bodyHeight": 180.0,
+    "key": "wandering_knight_death_v2_s60",
     "hold": true
    },
    "hit": {
-    "file": "sprites/battle/wandering_knight_hit_v1_s60.webp",
-    "frameWidth": 316,
+    "file": "sprites/battle/wandering_knight_hit_v2_s60.webp",
+    "frameWidth": 364,
     "frameHeight": 203,
     "frames": 14,
     "fps": 24,
-    "originX": 0.4307,
+    "originX": 0.3738,
     "originY": 0.973,
     "bodyHeight": 180.2,
-    "key": "wandering_knight_hit_v1_s60"
+    "key": "wandering_knight_hit_v2_s60"
    },
    "idle": {
     "file": "sprites/battle/wandering_knight_idle_v2_s60.webp",
@@ -5665,15 +5665,15 @@
     "loop": true
    },
    "victory": {
-    "file": "sprites/battle/wandering_knight_victory_v2_s60.webp",
-    "frameWidth": 316,
-    "frameHeight": 203,
+    "file": "sprites/battle/wandering_knight_victory_v3_s60.webp",
+    "frameWidth": 468,
+    "frameHeight": 284,
     "frames": 29,
     "fps": 24,
-    "originX": 0.4307,
-    "originY": 0.973,
-    "bodyHeight": 180.2,
-    "key": "wandering_knight_victory_v2_s60",
+    "originX": 0.4431,
+    "originY": 0.9807,
+    "bodyHeight": 180.0,
+    "key": "wandering_knight_victory_v3_s60",
     "hold": true
    }
   },
@@ -5732,15 +5732,15 @@
     "loop": true
    },
    "victory": {
-    "file": "sprites/battle/whisperer_victory_v1_s60.webp",
-    "frameWidth": 318,
-    "frameHeight": 190,
+    "file": "sprites/battle/whisperer_victory_v2_s60.webp",
+    "frameWidth": 465,
+    "frameHeight": 264,
     "frames": 29,
     "fps": 24,
-    "originX": 0.4355,
-    "originY": 0.9772,
+    "originX": 0.44,
+    "originY": 0.9838,
     "bodyHeight": 180.0,
-    "key": "whisperer_victory_v1_s60",
+    "key": "whisperer_victory_v2_s60",
     "hold": true
    }
   },
@@ -5764,7 +5764,7 @@
     "hitFrame": 7
    },
    "death": {
-    "file": "sprites/battle/wild_dog_death_v1_s60.webp",
+    "file": "sprites/battle/wild_dog_death_v2_s60.webp",
     "frameWidth": 394,
     "frameHeight": 216,
     "frames": 30,
@@ -5772,7 +5772,7 @@
     "originX": 0.5829,
     "originY": 0.9732,
     "bodyHeight": 179.9,
-    "key": "wild_dog_death_v1_s60",
+    "key": "wild_dog_death_v2_s60",
     "hold": true
    },
    "hit": {
@@ -5830,27 +5830,27 @@
     "key": "winter_archer_amb2_v1_s60"
    },
    "attack": {
-    "file": "sprites/battle/winter_archer_attack_v1_s60.webp",
-    "frameWidth": 365,
-    "frameHeight": 199,
+    "file": "sprites/battle/winter_archer_attack_v2_s60.webp",
+    "frameWidth": 485,
+    "frameHeight": 280,
     "frames": 29,
     "fps": 24,
-    "originX": 0.4434,
-    "originY": 0.9724,
-    "bodyHeight": 180.1,
-    "key": "winter_archer_attack_v1_s60",
-    "hitFrame": 16
+    "originX": 0.4637,
+    "originY": 0.9806,
+    "bodyHeight": 179.9,
+    "key": "winter_archer_attack_v2_s60",
+    "hitFrame": 6
    },
    "death": {
-    "file": "sprites/battle/winter_archer_death_v1_s60.webp",
-    "frameWidth": 365,
-    "frameHeight": 199,
+    "file": "sprites/battle/winter_archer_death_v2_s60.webp",
+    "frameWidth": 494,
+    "frameHeight": 280,
     "frames": 30,
     "fps": 24,
-    "originX": 0.4434,
-    "originY": 0.9724,
+    "originX": 0.4727,
+    "originY": 0.9806,
     "bodyHeight": 180.1,
-    "key": "winter_archer_death_v1_s60",
+    "key": "winter_archer_death_v2_s60",
     "hold": true
    },
    "hit": {
@@ -5865,27 +5865,27 @@
     "key": "winter_archer_hit_v1_s60"
    },
    "idle": {
-    "file": "sprites/battle/winter_archer_idle_v1_s60.webp",
-    "frameWidth": 333,
-    "frameHeight": 199,
+    "file": "sprites/battle/winter_archer_idle_v2_s60.webp",
+    "frameWidth": 410,
+    "frameHeight": 236,
     "frames": 48,
     "fps": 24,
-    "originX": 0.46,
-    "originY": 0.9724,
-    "bodyHeight": 180.0,
-    "key": "winter_archer_idle_v1_s60",
+    "originX": 0.4642,
+    "originY": 0.9841,
+    "bodyHeight": 152.2,
+    "key": "winter_archer_idle_v2_s60",
     "loop": true
    },
    "victory": {
-    "file": "sprites/battle/winter_archer_victory_v1_s60.webp",
-    "frameWidth": 333,
-    "frameHeight": 199,
+    "file": "sprites/battle/winter_archer_victory_v2_s60.webp",
+    "frameWidth": 485,
+    "frameHeight": 280,
     "frames": 29,
     "fps": 24,
-    "originX": 0.46,
-    "originY": 0.9724,
-    "bodyHeight": 180.0,
-    "key": "winter_archer_victory_v1_s60",
+    "originX": 0.4637,
+    "originY": 0.9806,
+    "bodyHeight": 179.9,
+    "key": "winter_archer_victory_v2_s60",
     "hold": true
    }
   },
@@ -5943,15 +5943,15 @@
     "hitFrame": 35
    },
    "death": {
-    "file": "sprites/battle/winter_girl_death_v1_s60.webp",
-    "frameWidth": 376,
-    "frameHeight": 204,
+    "file": "sprites/battle/winter_girl_death_v2_s60.webp",
+    "frameWidth": 502,
+    "frameHeight": 287,
     "frames": 30,
     "fps": 24,
-    "originX": 0.4405,
-    "originY": 0.9716,
-    "bodyHeight": 180.2,
-    "key": "winter_girl_death_v1_s60",
+    "originX": 0.4806,
+    "originY": 0.9801,
+    "bodyHeight": 180.1,
+    "key": "winter_girl_death_v2_s60",
     "hold": true
    },
    "idle": {
@@ -5986,7 +5986,7 @@
     "key": "winter_monster_amb2_v1_s60"
    },
    "attack": {
-    "file": "sprites/battle/winter_monster_attack_v1_s60.webp",
+    "file": "sprites/battle/winter_monster_attack_v2_s60.webp",
     "frameWidth": 328,
     "frameHeight": 184,
     "frames": 29,
@@ -5994,7 +5994,7 @@
     "originX": 0.4152,
     "originY": 0.9897,
     "bodyHeight": 179.9,
-    "key": "winter_monster_attack_v1_s60",
+    "key": "winter_monster_attack_v2_s60",
     "hitFrame": 8
    },
    "death": {
@@ -6033,16 +6033,16 @@
     "loop": true
    },
    "power": {
-    "file": "sprites/battle/winter_monster_power_v1_s60.webp",
-    "frameWidth": 328,
-    "frameHeight": 184,
+    "file": "sprites/battle/winter_monster_power_v2_s60.webp",
+    "frameWidth": 458,
+    "frameHeight": 257,
     "frames": 38,
     "fps": 24,
-    "originX": 0.4152,
-    "originY": 0.9897,
-    "bodyHeight": 179.9,
-    "key": "winter_monster_power_v1_s60",
-    "hitFrame": 26
+    "originX": 0.4393,
+    "originY": 0.9899,
+    "bodyHeight": 180.1,
+    "key": "winter_monster_power_v2_s60",
+    "hitFrame": 20
    }
   },
   "actions": {
@@ -6140,15 +6140,15 @@
     "hold": true
    },
    "hit": {
-    "file": "sprites/battle/wolfolak_hit_v1_s60.webp",
-    "frameWidth": 293,
+    "file": "sprites/battle/wolfolak_hit_v2_s60.webp",
+    "frameWidth": 346,
     "frameHeight": 194,
     "frames": 14,
     "fps": 24,
-    "originX": 0.3858,
+    "originX": 0.3269,
     "originY": 0.9732,
-    "bodyHeight": 180.1,
-    "key": "wolfolak_hit_v1_s60"
+    "bodyHeight": 180.2,
+    "key": "wolfolak_hit_v2_s60"
    },
    "idle": {
     "file": "sprites/battle/wolfolak_idle_v2_s60.webp",
@@ -6163,15 +6163,15 @@
     "loop": true
    },
    "victory": {
-    "file": "sprites/battle/wolfolak_victory_v1_s60.webp",
-    "frameWidth": 293,
-    "frameHeight": 194,
+    "file": "sprites/battle/wolfolak_victory_v2_s60.webp",
+    "frameWidth": 441,
+    "frameHeight": 270,
     "frames": 29,
     "fps": 24,
-    "originX": 0.3858,
-    "originY": 0.9732,
-    "bodyHeight": 180.1,
-    "key": "wolfolak_victory_v1_s60",
+    "originX": 0.4086,
+    "originY": 0.9812,
+    "bodyHeight": 180.0,
+    "key": "wolfolak_victory_v2_s60",
     "hold": true
    }
   },
@@ -6207,15 +6207,15 @@
     "hold": true
    },
    "hit": {
-    "file": "sprites/battle/young_boar_hit_v1_s60.webp",
-    "frameWidth": 373,
-    "frameHeight": 203,
+    "file": "sprites/battle/young_boar_hit_v2_s60.webp",
+    "frameWidth": 518,
+    "frameHeight": 285,
     "frames": 14,
     "fps": 24,
-    "originX": 0.5749,
-    "originY": 0.9723,
-    "bodyHeight": 180.2,
-    "key": "young_boar_hit_v1_s60"
+    "originX": 0.5541,
+    "originY": 0.9801,
+    "bodyHeight": 179.9,
+    "key": "young_boar_hit_v2_s60"
    },
    "idle": {
     "file": "sprites/battle/young_boar_idle_v2_s60.webp",
@@ -6230,15 +6230,15 @@
     "loop": true
    },
    "victory": {
-    "file": "sprites/battle/young_boar_victory_v1_s60.webp",
-    "frameWidth": 373,
-    "frameHeight": 203,
+    "file": "sprites/battle/young_boar_victory_v2_s60.webp",
+    "frameWidth": 518,
+    "frameHeight": 285,
     "frames": 29,
     "fps": 24,
-    "originX": 0.5749,
-    "originY": 0.9723,
-    "bodyHeight": 180.2,
-    "key": "young_boar_victory_v1_s60",
+    "originX": 0.5541,
+    "originY": 0.9801,
+    "bodyHeight": 179.9,
+    "key": "young_boar_victory_v2_s60",
     "hold": true
    }
   },
@@ -6274,15 +6274,15 @@
     "hold": true
    },
    "hit": {
-    "file": "sprites/battle/yrka_hit_v1_s60.webp",
-    "frameWidth": 322,
+    "file": "sprites/battle/yrka_hit_v2_s60.webp",
+    "frameWidth": 363,
     "frameHeight": 201,
     "frames": 14,
     "fps": 24,
-    "originX": 0.441,
+    "originX": 0.3907,
     "originY": 0.9704,
-    "bodyHeight": 180.2,
-    "key": "yrka_hit_v1_s60"
+    "bodyHeight": 180.0,
+    "key": "yrka_hit_v2_s60"
    },
    "idle": {
     "file": "sprites/battle/yrka_idle_v2_s60.webp",

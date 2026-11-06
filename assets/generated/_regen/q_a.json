@@ -1,0 +1,1109 @@
+[
+ {
+  "name": "adventurer/clips/death_w",
+  "first": "adventurer/k_battle_w.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one small crossbow in the front hand pointing to the right, one long knife in the rear hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "adventurer/clips/victory_w",
+  "first": "adventurer/k_battle_w.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one small crossbow in the front hand pointing to the right, one long knife in the rear hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "agna/clips/death_w",
+  "first": "agna/k_battle_w.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one heavy iron frying pan in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "agna/clips/victory_w",
+  "first": "agna/k_battle_w.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one heavy iron frying pan in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "archer_guard/clips/attack_w",
+  "first": "archer_guard/k_battle_w.png",
+  "prompt": "One single bow shot to the right: draws the bowstring back to the cheek, aims to the right, releases, then lowers the bow back into the same ready stance. One strike only. HANDS CANON: one longbow held in the front hand, the rear hand free to draw the string; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "archer_guard/k_battle_w.png"
+ },
+ {
+  "name": "archer_guard/clips/death_w",
+  "first": "archer_guard/k_battle_w.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one longbow held in the front hand, the rear hand free to draw the string; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "archer_guard/clips/hit_r2_w",
+  "first": "archer_guard/k_battle_w.png",
+  "prompt": "He flinches from one blow coming from the right: the body jerks back, the bow is LOWERED, he does NOT draw the bow, then he recovers into the same stance. No glow, no light, no sparks, no splashes, no impact lines, no effects of any kind. HANDS CANON: one longbow held in the front hand, the rear hand free to draw the string; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "archer_guard/k_battle_w.png"
+ },
+ {
+  "name": "archer_guard/clips/bidle_w",
+  "first": "archer_guard/k_battle_w.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: one longbow held in the front hand, the rear hand free to draw the string; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "archer_guard/k_battle_w.png"
+ },
+ {
+  "name": "archer_guard/clips/victory_w",
+  "first": "archer_guard/k_battle_w.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one longbow held in the front hand, the rear hand free to draw the string; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "assassin/clips/death_w",
+  "first": "assassin/k_battle_w.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one curved blade in each hand, exactly two blades; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "assassin/clips/power_w",
+  "first": "assassin/k_battle_w.png",
+  "prompt": "One single powerful special attack to the right: a big two-handed overhead wind-up and a crushing blow forward to the right, then back into the same ready stance. HANDS CANON: one curved blade in each hand, exactly two blades; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "assassin/k_battle_w.png"
+ },
+ {
+  "name": "assassin/clips/victory_w",
+  "first": "assassin/k_battle_w.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one curved blade in each hand, exactly two blades; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "assassin_undead/clips/attack_w",
+  "first": "assassin_undead/k_battle_w.png",
+  "prompt": "One single attack to the right: a short wind-up, one fast strong strike forward to the right with the weapon, then a recovery back into the same ready stance. One strike only. HANDS CANON: one curved poison blade in each hand, exactly two blades, a bow on the back; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "assassin_undead/k_battle_w.png"
+ },
+ {
+  "name": "assassin_undead/clips/power_w",
+  "first": "assassin_undead/k_battle_w.png",
+  "prompt": "One single powerful special attack to the right: a big two-handed overhead wind-up and a crushing blow forward to the right, then back into the same ready stance. HANDS CANON: one curved poison blade in each hand, exactly two blades, a bow on the back; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "assassin_undead/k_battle_w.png"
+ },
+ {
+  "name": "assassin_undead/clips/victory_w",
+  "first": "assassin_undead/k_battle_w.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one curved poison blade in each hand, exactly two blades, a bow on the back; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "bandit_archer/clips/victory_w",
+  "first": "bandit_archer/k_battle_w.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one crossbow held with both hands, pointing to the right; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "bandit_axewoman/clips/death_w",
+  "first": "bandit_axewoman/k_battle_w.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one hand axe in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "bandit_axewoman/clips/victory_w",
+  "first": "bandit_axewoman/k_battle_w.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one hand axe in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "bandit_brawler/clips/attack_w",
+  "first": "bandit_brawler/k_battle_w.png",
+  "prompt": "One single heavy attack to the right: a long wind-up, one powerful blow forward to the right with the whole weight of the body, a short recoil, then back into the same ready stance. One strike only. HANDS CANON: one big wooden club held with both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "bandit_brawler/k_battle_w.png"
+ },
+ {
+  "name": "bandit_brawler/clips/hit_w",
+  "first": "bandit_brawler/k_battle_w.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one big wooden club held with both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "bandit_brawler/k_battle_w.png"
+ },
+ {
+  "name": "bandit_brawler/clips/victory_w",
+  "first": "bandit_brawler/k_battle_w.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one big wooden club held with both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "bandit_commander/clips/attack_w",
+  "first": "bandit_commander/k_battle_w.png",
+  "prompt": "One single attack to the right: a short wind-up, one fast strong strike forward to the right with the weapon, then a recovery back into the same ready stance. One strike only. HANDS CANON: one straight sword in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "bandit_commander/k_battle_w.png"
+ },
+ {
+  "name": "bandit_commander/clips/death_w",
+  "first": "bandit_commander/k_battle_w.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one straight sword in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "bandit_commander/clips/hit_w",
+  "first": "bandit_commander/k_battle_w.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one straight sword in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "bandit_commander/k_battle_w.png"
+ },
+ {
+  "name": "bandit_commander/clips/power_w",
+  "first": "bandit_commander/k_battle_w.png",
+  "prompt": "One single powerful special attack to the right: a big two-handed overhead wind-up and a crushing blow forward to the right, then back into the same ready stance. HANDS CANON: one straight sword in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "bandit_commander/k_battle_w.png"
+ },
+ {
+  "name": "bandit_commander/clips/victory_w",
+  "first": "bandit_commander/k_battle_w.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one straight sword in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "bandit_knifeman/clips/attack_w",
+  "first": "bandit_knifeman/k_battle_w.png",
+  "prompt": "One single attack to the right: a short wind-up, one fast strong strike forward to the right with the weapon, then a recovery back into the same ready stance. Slow motion, one single even movement. One strike only. HANDS CANON: one long knife in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "bandit_knifeman/k_battle_w.png"
+ },
+ {
+  "name": "bandit_knifeman/clips/death_w",
+  "first": "bandit_knifeman/k_battle_w.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one long knife in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "bandit_knifeman/clips/hit_w",
+  "first": "bandit_knifeman/k_battle_w.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one long knife in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "bandit_knifeman/k_battle_w.png"
+ },
+ {
+  "name": "bandit_knifeman/clips/victory_w",
+  "first": "bandit_knifeman/k_battle_w.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one long knife in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "bandit_poacher/clips/attack_w",
+  "first": "bandit_poacher/k_battle_w.png",
+  "prompt": "One single bow shot to the right: draws the bowstring back to the cheek, aims to the right, releases, then lowers the bow back into the same ready stance. Slow motion, one single even movement. One strike only. HANDS CANON: one short bow held in the front hand, the rear hand free to draw the string; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "bandit_poacher/k_battle_w.png"
+ },
+ {
+  "name": "bandit_poacher/clips/victory_w",
+  "first": "bandit_poacher/k_battle_w.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one short bow held in the front hand, the rear hand free to draw the string; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "bear_shatun/clips/victory_w",
+  "first": "bear_shatun/k_battle_w.png",
+  "prompt": "Victory: the animal stays on all four legs the whole clip, lifts its head and barks or roars once, then stands proudly still. It never stands up on its hind legs, never changes its body shape. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "boar/clips/victory_w",
+  "first": "boar/k_battle_w.png",
+  "prompt": "Victory: the animal stays on all four legs the whole clip, lifts its head and barks or roars once, then stands proudly still. It never stands up on its hind legs, never changes its body shape. HANDS CANON: no weapon, tusks; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "brawler/clips/death_w",
+  "first": "brawler/k_battle_w.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: a heavy wooden club in the front hand, the rear hand a bare fist; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "brawler/clips/hit_w",
+  "first": "brawler/k_battle_w.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: a heavy wooden club in the front hand, the rear hand a bare fist; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "brawler/k_battle_w.png"
+ },
+ {
+  "name": "brawler/clips/power_w",
+  "first": "brawler/k_battle_w.png",
+  "prompt": "One single crushing overhead smash to the right with the weapon raised high above the head, a heavy impact, then back into the same ready stance. HANDS CANON: a heavy wooden club in the front hand, the rear hand a bare fist; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "brawler/k_battle_w.png"
+ },
+ {
+  "name": "brawler/clips/victory_w",
+  "first": "brawler/k_battle_w.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: a heavy wooden club in the front hand, the rear hand a bare fist; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "candle_keeper/clips/victory_w",
+  "first": "candle_keeper/k_battle_w.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one wooden staff held low in the rear hand, the front hand grips the wooden yoke with unlit candles on the shoulders; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. The candles stay unlit, no flames. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "cleaning_girl/clips/attack_w",
+  "first": "cleaning_girl/k_battle_w.png",
+  "prompt": "One single clumsy, unskilled attack to the right: an awkward wide swing with the item in the hand, nearly losing balance, then back into the same stance. One strike only. HANDS CANON: the long wooden mop held with both hands like a staff; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "cleaning_girl/k_battle_w.png"
+ },
+ {
+  "name": "cleaning_girl/clips/death_w",
+  "first": "cleaning_girl/k_battle_w.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: the long wooden mop held with both hands like a staff; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "cleaning_girl/clips/victory_w",
+  "first": "cleaning_girl/k_battle_w.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: the long wooden mop held with both hands like a staff; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "cult_zealot/clips/attack_r2_w",
+  "first": "cult_zealot/k_battle_w.png",
+  "prompt": "IMPORTANT: the weapon is a long wooden shaft with an OPEN iron hook at the end, like a shepherd crook made of iron; the hook stays an open curve for the whole clip, it never closes into a ring or a circle. He thrusts and pulls with the hook. One single attack to the right: a short wind-up, one fast strong strike forward to the right with the weapon, then a recovery back into the same ready stance. Slow motion, one single even movement. One strike only. HANDS CANON: one long iron hook on a wooden shaft held with both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "cult_zealot/k_battle_w.png"
+ },
+ {
+  "name": "cult_zealot/clips/death_w",
+  "first": "cult_zealot/k_battle_w.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one long iron hook on a wooden shaft held with both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "cult_zealot/clips/hit_w",
+  "first": "cult_zealot/k_battle_w.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one long iron hook on a wooden shaft held with both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "cult_zealot/k_battle_w.png"
+ },
+ {
+  "name": "cult_zealot/clips/victory_w",
+  "first": "cult_zealot/k_battle_w.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one long iron hook on a wooden shaft held with both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "drowned/clips/victory_w",
+  "first": "drowned/k_battle_w.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: no weapon, heavy grasping hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "duelist/clips2/block_in_w",
+  "first": "duelist/k_idle_w.png",
+  "prompt": "Slow motion. One single smooth movement: from his guard he raises the rapier into a high horizontal parry at head height. HANDS CANON: the thin rapier stays in his front hand on the right side of the image, ONE single flintlock pistol stays in his rear hand on the left side of the image. Never swap, never duplicate the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "duelist/k_block_w.png"
+ },
+ {
+  "name": "duelist/clips2/slash_up_w",
+  "first": "duelist/k_idle_w.png",
+  "prompt": "Slow motion. One single smooth movement for the whole clip: from his guard he raises the rapier arm high above his head, winding up for a slashing cut, the blade pointing up and back. No other gestures. HANDS CANON: the thin rapier stays in his front hand on the right side of the image, ONE single flintlock pistol stays in his rear hand on the left side of the image, low near the hip. Never swap, never duplicate the weapons.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "duelist/k_slash_up_w.png"
+ },
+ {
+  "name": "duelist/clips2/slash_cut_w",
+  "first": "duelist/k_slash_up_w.png",
+  "prompt": "Slow motion. One single powerful diagonal downward cut for the whole clip: the rapier sweeps from above his head down and forward to the lower right, the body leans slightly forward with the weight of the blow. No other gestures, no second swing. HANDS CANON: the thin rapier stays in his front hand on the right side of the image, ONE single flintlock pistol stays in his rear hand on the left side of the image, low near the hip. Never swap, never duplicate the weapons.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "duelist/k_slash_down_w.png"
+ },
+ {
+  "name": "duelist/clips2/slash_out_w",
+  "first": "duelist/k_slash_down_w.png",
+  "prompt": "Slow motion. One single smooth movement for the whole clip: after the cut he raises the rapier back up into his guard stance, the body straightens. No other gestures. HANDS CANON: the thin rapier stays in his front hand on the right side of the image, ONE single flintlock pistol stays in his rear hand on the left side of the image, low near the hip. Never swap, never duplicate the weapons.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "duelist/k_idle_w.png"
+ },
+ {
+  "name": "duelist/clips2/victory_w",
+  "first": "duelist/k_idle_w.png",
+  "prompt": "Slow motion. One single smooth movement: he raises the rapier high above his head in triumph, the pistol hand rests on his hip. HANDS CANON: the thin rapier stays in his front hand on the right side of the image, ONE single flintlock pistol stays in his rear hand on the left side of the image. Never swap, never duplicate the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "duelist/k_victory_w.png"
+ },
+ {
+  "name": "dwarf/clips/power_w",
+  "first": "dwarf/k_battle_w.png",
+  "prompt": "One single powerful special attack to the right: a big two-handed overhead wind-up and a crushing blow forward to the right, then back into the same ready stance. HANDS CANON: one round wooden shield on the front arm, one axe in the rear hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "dwarf/k_battle_w.png"
+ },
+ {
+  "name": "dwarf/clips/victory_w",
+  "first": "dwarf/k_battle_w.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one round wooden shield on the front arm, one axe in the rear hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "dwarf_beer1/clips/victory_w",
+  "first": "dwarf_beer1/k_battle_w.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: a beer mug in the front hand, one small hand axe in the rear hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "dwarf_beer2/clips/death_w",
+  "first": "dwarf_beer2/k_battle_w.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one small hand axe in the rear hand, the front hand a bare fist; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "dwarf_beer2/clips/victory_w",
+  "first": "dwarf_beer2/k_battle_w.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one small hand axe in the rear hand, the front hand a bare fist; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "dwarf_beer3/clips/victory_w",
+  "first": "dwarf_beer3/k_battle_w.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one heavy wooden stool leg used as a club in the front hand, the rear hand a bare fist; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "forgotten_warden/clips/attack_w",
+  "first": "forgotten_warden/k_battle_w.png",
+  "prompt": "One single attack to the right: a short wind-up, one fast strong strike forward to the right with the weapon, then a recovery back into the same ready stance. Slow motion, one single even movement. One strike only. HANDS CANON: one broken spear held with both hands, chains wrapped around the arms; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "forgotten_warden/k_battle_w.png"
+ },
+ {
+  "name": "forgotten_warden/clips/death_w",
+  "first": "forgotten_warden/k_battle_w.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one broken spear held with both hands, chains wrapped around the arms; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "frontier_beast/clips/death_w",
+  "first": "frontier_beast/k_battle_w.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: no weapon, long thin claws on both hands, the antlered elk skull head; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. The torn banners stay on its shoulders. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "frontier_beast/clips/hit_w",
+  "first": "frontier_beast/k_battle_w.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: no weapon, long thin claws on both hands, the antlered elk skull head; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. The torn banners stay on its shoulders. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "frontier_beast/k_battle_w.png"
+ },
+ {
+  "name": "frontier_beast/clips/bidle_w",
+  "first": "frontier_beast/k_battle_w.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: no weapon, long thin claws on both hands, the antlered elk skull head; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. The torn banners stay on its shoulders. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "frontier_beast/k_battle_w.png"
+ },
+ {
+  "name": "frontier_beast/clips/victory_w",
+  "first": "frontier_beast/k_battle_w.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: no weapon, long thin claws on both hands, the antlered elk skull head; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. The torn banners stay on its shoulders. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "gallows_reader/clips/victory_w",
+  "first": "gallows_reader/k_battle_w.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one old wooden tablet in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. The noose rope stays around the neck. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "grad_crossbowman/clips/victory_w",
+  "first": "grad_crossbowman/k_battle_w.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one heavy crossbow held with both hands, pointing to the right; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "grad_guard/clips/attack_w",
+  "first": "grad_guard/k_battle_w.png",
+  "prompt": "One single attack to the right: a short wind-up, one fast strong strike forward to the right with the weapon, then a recovery back into the same ready stance. Slow motion, one single even movement. One strike only. HANDS CANON: one long spear in the front hand, one tall wooden kite shield on the rear arm; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "grad_guard/k_battle_w.png"
+ },
+ {
+  "name": "grad_guard/clips/death_w",
+  "first": "grad_guard/k_battle_w.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one long spear in the front hand, one tall wooden kite shield on the rear arm; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "grad_guard/clips/victory_w",
+  "first": "grad_guard/k_battle_w.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one long spear in the front hand, one tall wooden kite shield on the rear arm; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "grey_wolf/clips/death_w",
+  "first": "grey_wolf/k_battle_w.png",
+  "prompt": "Is fatally struck from the right: the animal staggers, collapses onto its side and lies still on the ground at the end of the clip. HANDS CANON: no weapon, fangs; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "grey_wolf/clips/hit_w",
+  "first": "grey_wolf/k_battle_w.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: no weapon, fangs; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "grey_wolf/k_battle_w.png"
+ },
+ {
+  "name": "grey_wolf/clips/victory_w",
+  "first": "grey_wolf/k_battle_w.png",
+  "prompt": "Victory: the animal stays on all four legs the whole clip, lifts its head and barks or roars once, then stands proudly still. It never stands up on its hind legs, never changes its body shape. HANDS CANON: no weapon, fangs; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "guard/clips/death_w",
+  "first": "guard/k_battle_w.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one halberd held with both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "guard/clips/power_w",
+  "first": "guard/k_battle_w.png",
+  "prompt": "One single powerful special attack to the right: a big two-handed overhead wind-up and a crushing blow forward to the right, then back into the same ready stance. HANDS CANON: one halberd held with both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "guard/k_battle_w.png"
+ },
+ {
+  "name": "guard/clips/victory_w",
+  "first": "guard/k_battle_w.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one halberd held with both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "hanged/clips/death_w",
+  "first": "hanged/k_battle_w.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: no weapon, clawed hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. The noose rope stays around the neck. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "holt/clips/death_w",
+  "first": "holt/k_battle_w.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one small crossbow in the front hand pointing to the right, one long hunting knife in the rear hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "kikimora/clips/victory_w",
+  "first": "kikimora/k_battle_w.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: no weapon, long claws on both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "leshy/clips/attack_w",
+  "first": "leshy/k_battle_w.png",
+  "prompt": "One single attack to the right: lunges forward to the right slashing with the claws or the weapon, then recovers back into the same stance. Slow motion, one single even movement. One strike only. HANDS CANON: no weapon, long root-like claws on both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. The branch antlers keep the same shape. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "leshy/k_battle_w.png"
+ },
+ {
+  "name": "leshy/clips/death_w",
+  "first": "leshy/k_battle_w.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: no weapon, long root-like claws on both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. The branch antlers keep the same shape. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "leshy/clips/hit_w",
+  "first": "leshy/k_battle_w.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: no weapon, long root-like claws on both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. The branch antlers keep the same shape. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "leshy/k_battle_w.png"
+ },
+ {
+  "name": "leshy/clips/victory_w",
+  "first": "leshy/k_battle_w.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: no weapon, long root-like claws on both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. The branch antlers keep the same shape. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "lynx/clips/attack_w",
+  "first": "lynx/k_battle_w.png",
+  "prompt": "One single attack to the right: the animal lunges forward to the right and snaps its jaws or swipes a paw, then steps back into the same stance. Slow motion, one single even movement. One strike only. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "lynx/k_battle_w.png"
+ },
+ {
+  "name": "lynx/clips/death_w",
+  "first": "lynx/k_battle_w.png",
+  "prompt": "Is fatally struck from the right: the animal staggers, collapses onto its side and lies still on the ground at the end of the clip. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "lynx/clips/bidle_w",
+  "first": "lynx/k_battle_w.png",
+  "prompt": "Idle loop for the whole clip: the animal stays in place in the same pose, breathes calmly, the flanks rise and fall, small natural movements of the ears and tail. No steps, no turning. The last frame is exactly the same pose as the first. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "lynx/k_battle_w.png"
+ },
+ {
+  "name": "lynx/clips/victory_w",
+  "first": "lynx/k_battle_w.png",
+  "prompt": "Victory: the animal stays on all four legs the whole clip, lifts its head and barks or roars once, then stands proudly still. It never stands up on its hind legs, never changes its body shape. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "merc_captain/clips/attack_w",
+  "first": "merc_captain/k_battle_w.png",
+  "prompt": "One single attack to the right: a short wind-up, one fast strong strike forward to the right with the weapon, then a recovery back into the same ready stance. Slow motion, one single even movement. One strike only. HANDS CANON: one long sword in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "merc_captain/k_battle_w.png"
+ },
+ {
+  "name": "merc_captain/clips/victory_w",
+  "first": "merc_captain/k_battle_w.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one long sword in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "merc_pikeman/clips/death_w",
+  "first": "merc_pikeman/k_battle_w.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one long pike held with both hands, pointing to the right; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "mine_shade/clips/attack_w",
+  "first": "mine_shade/k_battle_w.png",
+  "prompt": "One single attack to the right: a short wind-up, one fast strong strike forward to the right with the weapon, then a recovery back into the same ready stance. Slow motion, one single even movement. One strike only. HANDS CANON: one pickaxe held with both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "mine_shade/k_battle_w.png"
+ },
+ {
+  "name": "mine_shade/clips/hit_w",
+  "first": "mine_shade/k_battle_w.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one pickaxe held with both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "mine_shade/k_battle_w.png"
+ },
+ {
+  "name": "mine_shade/clips/victory_w",
+  "first": "mine_shade/k_battle_w.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one pickaxe held with both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "moroz/clips/victory_w",
+  "first": "moroz/k_battle_w.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one tall staff of clear ice held in both hands, pointing to the right, no other weapon; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "mountain_king/clips/attack_w",
+  "first": "mountain_king/k_battle_w.png",
+  "prompt": "One single heavy attack to the right: a long wind-up, one powerful blow forward to the right with the whole weight of the body, a short recoil, then back into the same ready stance. One strike only. HANDS CANON: one huge war hammer in the front hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "mountain_king/k_battle_w.png"
+ },
+ {
+  "name": "mountain_king/clips/power_w",
+  "first": "mountain_king/k_battle_w.png",
+  "prompt": "One single crushing overhead smash to the right with the weapon raised high above the head, a heavy impact, then back into the same ready stance. HANDS CANON: one huge war hammer in the front hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "mountain_king/k_battle_w.png"
+ },
+ {
+  "name": "name_echo/clips/victory_w",
+  "first": "name_echo/k_battle_w.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one halberd held with both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. The figure stays pale grey and faded. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "poludnitsa/clips/hit_w",
+  "first": "poludnitsa/k_battle_w.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one large rusty sickle in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "poludnitsa/k_battle_w.png"
+ },
+ {
+  "name": "rats/clips/attack_w",
+  "first": "rats/k_battle_w.png",
+  "prompt": "One single attack to the right: the animal lunges forward to the right and snaps its jaws or swipes a paw, then steps back into the same stance. Slow motion, one single even movement. One strike only. Always exactly the same three rats, each with one tail; no rat appears or disappears. They stay on all four legs. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "rats/k_battle_w.png"
+ },
+ {
+  "name": "rats/clips/death_r2_w",
+  "first": "rats/k_battle_w.png",
+  "prompt": "IMPORTANT: all three rats stay visible for the whole clip; they collapse onto their sides one after another and lie still, still exactly three rats. Is fatally struck from the right: the animal staggers, collapses onto its side and lies still on the ground at the end of the clip. Always exactly the same three rats, each with one tail; no rat appears or disappears. They stay on all four legs. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "rats/clips/hit_w",
+  "first": "rats/k_battle_w.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. Always exactly the same three rats, each with one tail; no rat appears or disappears. They stay on all four legs. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "rats/k_battle_w.png"
+ },
+ {
+  "name": "rats/clips/victory_r2_w",
+  "first": "rats/k_battle_w.png",
+  "prompt": "IMPORTANT: the three rats stay low on all four legs in profile facing right, they only squeak with open mouths and twitch their tails; they never sit up and never turn to the camera. Victory: the animal stays on all four legs the whole clip, lifts its head and barks or roars once, then stands proudly still. It never stands up on its hind legs, never changes its body shape. Always exactly the same three rats, each with one tail; no rat appears or disappears. They stay on all four legs. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "recruit/clips/attack_w",
+  "first": "recruit/k_battle_w.png",
+  "prompt": "One single attack to the right: a short wind-up, one fast strong strike forward to the right with the weapon, then a recovery back into the same ready stance. One strike only. HANDS CANON: one short sword in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "recruit/k_battle_w.png"
+ },
+ {
+  "name": "recruit/clips/hit_w",
+  "first": "recruit/k_battle_w.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one short sword in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "recruit/k_battle_w.png"
+ },
+ {
+  "name": "recruit/clips/victory_w",
+  "first": "recruit/k_battle_w.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one short sword in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "rowan/clips/hit_w",
+  "first": "rowan/k_battle_w.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one long knife in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "rowan/k_battle_w.png"
+ },
+ {
+  "name": "rowan/clips/power_w",
+  "first": "rowan/k_battle_w.png",
+  "prompt": "One single powerful special attack to the right: a big two-handed overhead wind-up and a crushing blow forward to the right, then back into the same ready stance. HANDS CANON: one long knife in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "rowan/k_battle_w.png"
+ },
+ {
+  "name": "ryzh/clips/attack_w",
+  "first": "ryzh/k_battle_w.png",
+  "prompt": "One single clumsy, unskilled attack to the right: an awkward wide swing with the item in the hand, nearly losing balance, then back into the same stance. One strike only. HANDS CANON: one wood axe in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "ryzh/k_battle_w.png"
+ },
+ {
+  "name": "ryzh/clips/victory_w",
+  "first": "ryzh/k_battle_w.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one wood axe in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "shade/clips/death_w",
+  "first": "shade/k_battle_w.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: no weapon, long thin dark fingers; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. It always stays faceless, no face ever appears. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "shield/clips/attack_w",
+  "first": "shield/k_battle_w.png",
+  "prompt": "One single heavy attack to the right: a long wind-up, one powerful blow forward to the right with the whole weight of the body, a short recoil, then back into the same ready stance. One strike only. HANDS CANON: one big spiked club held with both hands in front of him; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "shield/k_battle_w.png"
+ },
+ {
+  "name": "shield/clips/power_w",
+  "first": "shield/k_battle_w.png",
+  "prompt": "One single crushing overhead smash to the right with the weapon raised high above the head, a heavy impact, then back into the same ready stance. HANDS CANON: one big spiked club held with both hands in front of him; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "shield/k_battle_w.png"
+ },
+ {
+  "name": "shield/clips/victory_w",
+  "first": "shield/k_battle_w.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one big spiked club held with both hands in front of him; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "shishiga/clips/death_w",
+  "first": "shishiga/k_battle_w.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: no weapon, small claws on both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "snow_wolf/clips/death_w",
+  "first": "snow_wolf/k_battle_w.png",
+  "prompt": "Is fatally struck from the right: the animal staggers, collapses onto its side and lies still on the ground at the end of the clip. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "snow_wolf/clips/hit_w",
+  "first": "snow_wolf/k_battle_w.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "snow_wolf/k_battle_w.png"
+ },
+ {
+  "name": "snow_wolf/clips/victory_w",
+  "first": "snow_wolf/k_battle_w.png",
+  "prompt": "Victory: the animal stays on all four legs the whole clip, lifts its head and barks or roars once, then stands proudly still. It never stands up on its hind legs, never changes its body shape. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "snow_wolf_leader/clips/death_w",
+  "first": "snow_wolf_leader/k_battle_w.png",
+  "prompt": "Is fatally struck from the right: the animal staggers, collapses onto its side and lies still on the ground at the end of the clip. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "snow_wolf_leader/clips/victory_w",
+  "first": "snow_wolf_leader/k_battle_w.png",
+  "prompt": "Victory: the animal stays on all four legs the whole clip, lifts its head and barks or roars once, then stands proudly still. It never stands up on its hind legs, never changes its body shape. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "stone_guard/clips/death_w",
+  "first": "stone_guard/k_battle_w.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one stone halberd held with both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "stone_guard/clips/hit_w",
+  "first": "stone_guard/k_battle_w.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one stone halberd held with both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "stone_guard/k_battle_w.png"
+ },
+ {
+  "name": "stone_guard/clips/victory_w",
+  "first": "stone_guard/k_battle_w.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one stone halberd held with both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "swamp_elf/clips/attack_w",
+  "first": "swamp_elf/k_battle_w.png",
+  "prompt": "One single bow shot to the right: draws the bowstring back to the cheek, aims to the right, releases, then lowers the bow back into the same ready stance. One strike only. HANDS CANON: one bow held in the front hand, the rear hand free to draw the string; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "swamp_elf/k_battle_w.png"
+ },
+ {
+  "name": "swamp_elf/clips/death_w",
+  "first": "swamp_elf/k_battle_w.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one bow held in the front hand, the rear hand free to draw the string; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "swamp_elf/clips/victory_w",
+  "first": "swamp_elf/k_battle_w.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one bow held in the front hand, the rear hand free to draw the string; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "swamp_knight/clips/attack_w",
+  "first": "swamp_knight/k_battle_w.png",
+  "prompt": "One single attack to the right: a short wind-up, one fast strong strike forward to the right with the weapon, then a recovery back into the same ready stance. One strike only. HANDS CANON: one long sword in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "swamp_knight/k_battle_w.png"
+ },
+ {
+  "name": "swamp_knight/clips/death_w",
+  "first": "swamp_knight/k_battle_w.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one long sword in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "swamp_knight/clips/power_w",
+  "first": "swamp_knight/k_battle_w.png",
+  "prompt": "One single powerful special attack to the right: a big two-handed overhead wind-up and a crushing blow forward to the right, then back into the same ready stance. HANDS CANON: one long sword in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "swamp_knight/k_battle_w.png"
+ },
+ {
+  "name": "swamp_knight/clips/victory_w",
+  "first": "swamp_knight/k_battle_w.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one long sword in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "tavernman/clips/victory_w",
+  "first": "tavernman/k_battle_w.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one meat cleaver in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "til/clips/power_w",
+  "first": "til/k_battle_w.png",
+  "prompt": "One single powerful special attack to the right: a big two-handed overhead wind-up and a crushing blow forward to the right, then back into the same ready stance. HANDS CANON: one blacksmith hammer in the front hand, the rear hand empty; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "til/k_battle_w.png"
+ },
+ {
+  "name": "troll_ugryum/clips/attack_r2_w",
+  "first": "troll_ugryum/k_battle_w.png",
+  "prompt": "One single heavy attack to the right: he lifts the tree-trunk club with both hands to his shoulder, then swings it down and forward to the right with the whole weight of the body, a short recoil, then back into the same ready stance. Slow motion, one single even movement. One strike only. HANDS CANON: one club made of a whole tree trunk held with both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The club keeps exactly the same thick shape, length and brown wood color for the whole clip, it never becomes thin or changes color. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "troll_ugryum/k_battle_w.png"
+ },
+ {
+  "name": "troll_ugryum/clips/death_w",
+  "first": "troll_ugryum/k_battle_w.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one club made of a whole tree trunk held with both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "troll_ugryum/clips/hit_w",
+  "first": "troll_ugryum/k_battle_w.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. HANDS CANON: one club made of a whole tree trunk held with both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "troll_ugryum/k_battle_w.png"
+ },
+ {
+  "name": "troll_ugryum/clips/victory_w",
+  "first": "troll_ugryum/k_battle_w.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one club made of a whole tree trunk held with both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "vurdalak/clips/death_w",
+  "first": "vurdalak/k_battle_w.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: no weapon, long claws on both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "vurdalak/clips/victory_w",
+  "first": "vurdalak/k_battle_w.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: no weapon, long claws on both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "wandering_knight/clips/attack_w",
+  "first": "wandering_knight/k_battle_w.png",
+  "prompt": "One single attack to the right: a short wind-up, one fast strong strike forward to the right with the weapon, then a recovery back into the same ready stance. Slow motion, one single even movement. One strike only. HANDS CANON: one long sword in the front hand, one battered heater shield on the rear arm; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "wandering_knight/k_battle_w.png"
+ },
+ {
+  "name": "wandering_knight/clips/death_w",
+  "first": "wandering_knight/k_battle_w.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one long sword in the front hand, one battered heater shield on the rear arm; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "wandering_knight/clips/victory_r4_w",
+  "first": "wandering_knight/k_battle_w.png",
+  "prompt": "Slow motion. One single smooth movement for the whole clip: the knight does NOT turn, his body stays in exactly the same three-quarter view facing right as in the first frame, the shield stays on his rear arm on the left side of the image the whole time. Only his sword arm moves: he slowly lowers the long sword until it points straight down with the point on the ground in front of his front foot, and he lifts his helmeted head a little. No turning, no rotation of the body, no steps, no swings, no twirls. HANDS CANON: one long sword in the front hand on the right side of the image, one battered heater shield on the rear arm on the left side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same armor and the same limbs for the whole clip. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "wandering_knight/k_victory_w.png"
+ },
+ {
+  "name": "whisperer/clips/victory_w",
+  "first": "whisperer/k_battle_w.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: no weapon in the hands, pale empty hands, the old book stays chained to the belt; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. The face always stays hidden in the hood shadow. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "winter_archer/clips/attack_w",
+  "first": "winter_archer/k_battle_w.png",
+  "prompt": "One single bow shot to the right: draws the bowstring back to the cheek, aims to the right, releases, then lowers the bow back into the same ready stance. One strike only. HANDS CANON: one bow held in the front hand, the rear hand free to draw the string; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "winter_archer/k_battle_w.png"
+ },
+ {
+  "name": "winter_archer/clips/death_w",
+  "first": "winter_archer/k_battle_w.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one bow held in the front hand, the rear hand free to draw the string; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "winter_archer/clips/bidle_w",
+  "first": "winter_archer/k_battle_w.png",
+  "prompt": "Combat idle loop for the whole clip: a ready fighting stance, slow tense breathing, a slight sway and weight shift, the weapons held steady, clothes and hair move gently. No steps, no attacks. The last frame is exactly the same pose as the first. HANDS CANON: one bow held in the front hand, the rear hand free to draw the string; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "winter_archer/k_battle_w.png"
+ },
+ {
+  "name": "winter_archer/clips/victory_w",
+  "first": "winter_archer/k_battle_w.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: one bow held in the front hand, the rear hand free to draw the string; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "winter_girl/clips/death_w",
+  "first": "winter_girl/k_battle_w.png",
+  "prompt": "Is fatally struck from the right: staggers back, drops to the knees and collapses onto the ground, lying still on the ground at the end of the clip. The weapons fall next to the body. HANDS CANON: one staff with a stone on top in the rear hand, the front hand free; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "winter_monster/clips/power_w",
+  "first": "winter_monster/k_battle_w.png",
+  "prompt": "A ferocious roar: throws the head back and roars, then a double slash forward to the right, then back into the same stance. HANDS CANON: one gnarled wooden snag club in the front hand; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "winter_monster/k_battle_w.png"
+ },
+ {
+  "name": "wolfolak/clips/victory_w",
+  "first": "wolfolak/k_battle_w.png",
+  "prompt": "Victory: a proud triumphant gesture, raises the weapon or the fist up, then holds the triumphant pose still until the end. No steps. HANDS CANON: no weapon, long claws on both hands; the front hand is the hand on the right side of the image. Never swap hands, never duplicate, drop or change the weapons. The figure keeps exactly the same body, the same face and the same limbs for the whole clip. It stays on two legs, never drops to all fours. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ },
+ {
+  "name": "young_boar/clips/hit_w",
+  "first": "young_boar/k_battle_w.png",
+  "prompt": "Is struck by one blow coming from the right: the body jerks back and away to the left, a pained face, then recovers into the same stance. Does not fall. No other gestures. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2,
+  "last": "young_boar/k_battle_w.png"
+ },
+ {
+  "name": "young_boar/clips/victory_w",
+  "first": "young_boar/k_battle_w.png",
+  "prompt": "Victory: the animal stays on all four legs the whole clip, lifts its head and barks or roars once, then stands proudly still. It never stands up on its hind legs, never changes its body shape. The animal keeps exactly the same body, the same face and the same limbs for the whole clip. It never stands up on its hind legs, never changes its body shape. No visual effects, no flashes, no trails, no glow, no particles.  The camera is further back: the whole figure, with raised arms and weapons, stays fully inside the frame at all times, with empty green space above the head.",
+  "sec": 4,
+  "n": 2
+ }
+]

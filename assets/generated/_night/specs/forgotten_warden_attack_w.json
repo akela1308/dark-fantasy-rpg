@@ -1,0 +1,1 @@
+{"slug": "forgotten_warden", "anim": "attack", "base": "forgotten_warden/k_battle_w.png", "body": 300, "segments": [{"clip": "forgotten_warden/clips/attack_w_v1.mp4", "from": 3, "to": 95, "frames": 29}], "hit": "auto", "right": 1.45, "left": 1.25, "drop": [13], "ver": 2, "top": 0.95}

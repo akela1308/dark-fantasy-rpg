@@ -1,0 +1,362 @@
+[
+ {
+  "name": "_stock/portrait/adventurer",
+  "first": "_stock/pad/adventurer.png",
+  "prompt": "A living portrait, locked camera, the head stays in the same place and the same size. The person breathes, blinks twice slowly, the mouth moves a little as if speaking quietly, a slight turn of the eyes. Same painted style, same face, same light. No text.",
+  "sec": 4,
+  "n": 2,
+  "last": "_stock/pad/adventurer.png",
+  "raw": true
+ },
+ {
+  "name": "_stock/portrait/agna_v2",
+  "first": "_stock/pad/agna_v2.png",
+  "prompt": "A living portrait, locked camera, the head stays in the same place and the same size. The person breathes, blinks twice slowly, the mouth moves a little as if speaking quietly, a slight turn of the eyes. Same painted style, same face, same light. No text.",
+  "sec": 4,
+  "n": 2,
+  "last": "_stock/pad/agna_v2.png",
+  "raw": true
+ },
+ {
+  "name": "_stock/portrait/bandit_commander",
+  "first": "_stock/pad/bandit_commander.png",
+  "prompt": "A living portrait, locked camera, the head stays in the same place and the same size. The person breathes, blinks twice slowly, the mouth moves a little as if speaking quietly, a slight turn of the eyes. Same painted style, same face, same light. No text.",
+  "sec": 4,
+  "n": 2,
+  "last": "_stock/pad/bandit_commander.png",
+  "raw": true
+ },
+ {
+  "name": "_stock/portrait/cat",
+  "first": "_stock/pad/cat.png",
+  "prompt": "A living portrait, locked camera, the head stays in the same place and the same size. The person breathes, blinks twice slowly, the mouth moves a little as if speaking quietly, a slight turn of the eyes. Same painted style, same face, same light. No text.",
+  "sec": 4,
+  "n": 2,
+  "last": "_stock/pad/cat.png",
+  "raw": true
+ },
+ {
+  "name": "_stock/portrait/cleaning_girl",
+  "first": "_stock/pad/cleaning_girl.png",
+  "prompt": "A living portrait, locked camera, the head stays in the same place and the same size. The person breathes, blinks twice slowly, the mouth moves a little as if speaking quietly, a slight turn of the eyes. Same painted style, same face, same light. No text.",
+  "sec": 4,
+  "n": 2,
+  "last": "_stock/pad/cleaning_girl.png",
+  "raw": true
+ },
+ {
+  "name": "_stock/portrait/companion_brawler",
+  "first": "_stock/pad/companion_brawler.png",
+  "prompt": "A living portrait, locked camera, the head stays in the same place and the same size. The person breathes, blinks twice slowly, the mouth moves a little as if speaking quietly, a slight turn of the eyes. Same painted style, same face, same light. No text.",
+  "sec": 4,
+  "n": 2,
+  "last": "_stock/pad/companion_brawler.png",
+  "raw": true
+ },
+ {
+  "name": "_stock/portrait/companion_healer",
+  "first": "_stock/pad/companion_healer.png",
+  "prompt": "A living portrait, locked camera, the head stays in the same place and the same size. The person breathes, blinks twice slowly, the mouth moves a little as if speaking quietly, a slight turn of the eyes. Same painted style, same face, same light. No text.",
+  "sec": 4,
+  "n": 2,
+  "last": "_stock/pad/companion_healer.png",
+  "raw": true
+ },
+ {
+  "name": "_stock/portrait/cult_priest",
+  "first": "_stock/pad/cult_priest.png",
+  "prompt": "A living portrait, locked camera, the head stays in the same place and the same size. The person breathes, blinks twice slowly, the mouth moves a little as if speaking quietly, a slight turn of the eyes. Same painted style, same face, same light. No text.",
+  "sec": 4,
+  "n": 2,
+  "last": "_stock/pad/cult_priest.png",
+  "raw": true
+ },
+ {
+  "name": "_stock/portrait/drunkman",
+  "first": "_stock/pad/drunkman.png",
+  "prompt": "A living portrait, locked camera, the head stays in the same place and the same size. The person breathes, blinks twice slowly, the mouth moves a little as if speaking quietly, a slight turn of the eyes. Same painted style, same face, same light. No text.",
+  "sec": 4,
+  "n": 2,
+  "last": "_stock/pad/drunkman.png",
+  "raw": true
+ },
+ {
+  "name": "_stock/portrait/dwarf",
+  "first": "_stock/pad/dwarf.png",
+  "prompt": "A living portrait, locked camera, the head stays in the same place and the same size. The person breathes, blinks twice slowly, the mouth moves a little as if speaking quietly, a slight turn of the eyes. Same painted style, same face, same light. No text.",
+  "sec": 4,
+  "n": 2,
+  "last": "_stock/pad/dwarf.png",
+  "raw": true
+ },
+ {
+  "name": "_stock/portrait/dwarf_smith",
+  "first": "_stock/pad/dwarf_smith.png",
+  "prompt": "A living portrait, locked camera, the head stays in the same place and the same size. The person breathes, blinks twice slowly, the mouth moves a little as if speaking quietly, a slight turn of the eyes. Same painted style, same face, same light. No text.",
+  "sec": 4,
+  "n": 2,
+  "last": "_stock/pad/dwarf_smith.png",
+  "raw": true
+ },
+ {
+  "name": "_stock/portrait/guard",
+  "first": "_stock/pad/guard.png",
+  "prompt": "A living portrait, locked camera, the head stays in the same place and the same size. The person breathes, blinks twice slowly, the mouth moves a little as if speaking quietly, a slight turn of the eyes. Same painted style, same face, same light. No text.",
+  "sec": 4,
+  "n": 2,
+  "last": "_stock/pad/guard.png",
+  "raw": true
+ },
+ {
+  "name": "_stock/portrait/halvar",
+  "first": "_stock/pad/halvar.png",
+  "prompt": "A living portrait, locked camera, the head stays in the same place and the same size. The person breathes, blinks twice slowly, the mouth moves a little as if speaking quietly, a slight turn of the eyes. Same painted style, same face, same light. No text.",
+  "sec": 4,
+  "n": 2,
+  "last": "_stock/pad/halvar.png",
+  "raw": true
+ },
+ {
+  "name": "_stock/portrait/herbalist",
+  "first": "_stock/pad/herbalist.png",
+  "prompt": "A living portrait, locked camera, the head stays in the same place and the same size. The person breathes, blinks twice slowly, the mouth moves a little as if speaking quietly, a slight turn of the eyes. Same painted style, same face, same light. No text.",
+  "sec": 4,
+  "n": 2,
+  "last": "_stock/pad/herbalist.png",
+  "raw": true
+ },
+ {
+  "name": "_stock/portrait/hero_duelist",
+  "first": "_stock/pad/hero_duelist.png",
+  "prompt": "A living portrait, locked camera, the head stays in the same place and the same size. The person breathes, blinks twice slowly, the mouth moves a little as if speaking quietly, a slight turn of the eyes. Same painted style, same face, same light. No text.",
+  "sec": 4,
+  "n": 2,
+  "last": "_stock/pad/hero_duelist.png",
+  "raw": true
+ },
+ {
+  "name": "_stock/portrait/holt",
+  "first": "_stock/pad/holt.png",
+  "prompt": "A living portrait, locked camera, the head stays in the same place and the same size. The person breathes, blinks twice slowly, the mouth moves a little as if speaking quietly, a slight turn of the eyes. Same painted style, same face, same light. No text.",
+  "sec": 4,
+  "n": 2,
+  "last": "_stock/pad/holt.png",
+  "raw": true
+ },
+ {
+  "name": "_stock/portrait/jester",
+  "first": "_stock/pad/jester.png",
+  "prompt": "A living portrait, locked camera, the head stays in the same place and the same size. The person breathes, blinks twice slowly, the mouth moves a little as if speaking quietly, a slight turn of the eyes. Same painted style, same face, same light. No text.",
+  "sec": 4,
+  "n": 2,
+  "last": "_stock/pad/jester.png",
+  "raw": true
+ },
+ {
+  "name": "_stock/portrait/kikimora",
+  "first": "_stock/pad/kikimora.png",
+  "prompt": "A living portrait, locked camera, the head stays in the same place and the same size. The person breathes, blinks twice slowly, the mouth moves a little as if speaking quietly, a slight turn of the eyes. Same painted style, same face, same light. No text.",
+  "sec": 4,
+  "n": 2,
+  "last": "_stock/pad/kikimora.png",
+  "raw": true
+ },
+ {
+  "name": "_stock/portrait/leshy",
+  "first": "_stock/pad/leshy.png",
+  "prompt": "A living portrait, locked camera, the head stays in the same place and the same size. The person breathes, blinks twice slowly, the mouth moves a little as if speaking quietly, a slight turn of the eyes. Same painted style, same face, same light. No text.",
+  "sec": 4,
+  "n": 2,
+  "last": "_stock/pad/leshy.png",
+  "raw": true
+ },
+ {
+  "name": "_stock/portrait/likho",
+  "first": "_stock/pad/likho.png",
+  "prompt": "A living portrait, locked camera, the head stays in the same place and the same size. The person breathes, blinks twice slowly, the mouth moves a little as if speaking quietly, a slight turn of the eyes. Same painted style, same face, same light. No text.",
+  "sec": 4,
+  "n": 2,
+  "last": "_stock/pad/likho.png",
+  "raw": true
+ },
+ {
+  "name": "_stock/portrait/lyo_v2",
+  "first": "_stock/pad/lyo_v2.png",
+  "prompt": "A living portrait, locked camera, the head stays in the same place and the same size. The person breathes, blinks twice slowly, the mouth moves a little as if speaking quietly, a slight turn of the eyes. Same painted style, same face, same light. No text.",
+  "sec": 4,
+  "n": 2,
+  "last": "_stock/pad/lyo_v2.png",
+  "raw": true
+ },
+ {
+  "name": "_stock/portrait/mavka",
+  "first": "_stock/pad/mavka.png",
+  "prompt": "A living portrait, locked camera, the head stays in the same place and the same size. The person breathes, blinks twice slowly, the mouth moves a little as if speaking quietly, a slight turn of the eyes. Same painted style, same face, same light. No text.",
+  "sec": 4,
+  "n": 2,
+  "last": "_stock/pad/mavka.png",
+  "raw": true
+ },
+ {
+  "name": "_stock/portrait/merc_captain",
+  "first": "_stock/pad/merc_captain.png",
+  "prompt": "A living portrait, locked camera, the head stays in the same place and the same size. The person breathes, blinks twice slowly, the mouth moves a little as if speaking quietly, a slight turn of the eyes. Same painted style, same face, same light. No text.",
+  "sec": 4,
+  "n": 2,
+  "last": "_stock/pad/merc_captain.png",
+  "raw": true
+ },
+ {
+  "name": "_stock/portrait/moroz",
+  "first": "_stock/pad/moroz.png",
+  "prompt": "A living portrait, locked camera, the head stays in the same place and the same size. The person breathes, blinks twice slowly, the mouth moves a little as if speaking quietly, a slight turn of the eyes. Same painted style, same face, same light. No text.",
+  "sec": 4,
+  "n": 2,
+  "last": "_stock/pad/moroz.png",
+  "raw": true
+ },
+ {
+  "name": "_stock/portrait/mountain_king",
+  "first": "_stock/pad/mountain_king.png",
+  "prompt": "A living portrait, locked camera, the head stays in the same place and the same size. The person breathes, blinks twice slowly, the mouth moves a little as if speaking quietly, a slight turn of the eyes. Same painted style, same face, same light. No text.",
+  "sec": 4,
+  "n": 2,
+  "last": "_stock/pad/mountain_king.png",
+  "raw": true
+ },
+ {
+  "name": "_stock/portrait/poludnitsa",
+  "first": "_stock/pad/poludnitsa.png",
+  "prompt": "A living portrait, locked camera, the head stays in the same place and the same size. The person breathes, blinks twice slowly, the mouth moves a little as if speaking quietly, a slight turn of the eyes. Same painted style, same face, same light. No text.",
+  "sec": 4,
+  "n": 2,
+  "last": "_stock/pad/poludnitsa.png",
+  "raw": true
+ },
+ {
+  "name": "_stock/portrait/ryzh",
+  "first": "_stock/pad/ryzh.png",
+  "prompt": "A living portrait, locked camera, the head stays in the same place and the same size. The person breathes, blinks twice slowly, the mouth moves a little as if speaking quietly, a slight turn of the eyes. Same painted style, same face, same light. No text.",
+  "sec": 4,
+  "n": 2,
+  "last": "_stock/pad/ryzh.png",
+  "raw": true
+ },
+ {
+  "name": "_stock/portrait/shopkeeper",
+  "first": "_stock/pad/shopkeeper.png",
+  "prompt": "A living portrait, locked camera, the head stays in the same place and the same size. The person breathes, blinks twice slowly, the mouth moves a little as if speaking quietly, a slight turn of the eyes. Same painted style, same face, same light. No text.",
+  "sec": 4,
+  "n": 2,
+  "last": "_stock/pad/shopkeeper.png",
+  "raw": true
+ },
+ {
+  "name": "_stock/portrait/swamp_elder_elf",
+  "first": "_stock/pad/swamp_elder_elf.png",
+  "prompt": "A living portrait, locked camera, the head stays in the same place and the same size. The person breathes, blinks twice slowly, the mouth moves a little as if speaking quietly, a slight turn of the eyes. Same painted style, same face, same light. No text.",
+  "sec": 4,
+  "n": 2,
+  "last": "_stock/pad/swamp_elder_elf.png",
+  "raw": true
+ },
+ {
+  "name": "_stock/portrait/swamp_elf_girl",
+  "first": "_stock/pad/swamp_elf_girl.png",
+  "prompt": "A living portrait, locked camera, the head stays in the same place and the same size. The person breathes, blinks twice slowly, the mouth moves a little as if speaking quietly, a slight turn of the eyes. Same painted style, same face, same light. No text.",
+  "sec": 4,
+  "n": 2,
+  "last": "_stock/pad/swamp_elf_girl.png",
+  "raw": true
+ },
+ {
+  "name": "_stock/portrait/swamp_knight",
+  "first": "_stock/pad/swamp_knight.png",
+  "prompt": "A living portrait, locked camera, the head stays in the same place and the same size. The person breathes, blinks twice slowly, the mouth moves a little as if speaking quietly, a slight turn of the eyes. Same painted style, same face, same light. No text.",
+  "sec": 4,
+  "n": 2,
+  "last": "_stock/pad/swamp_knight.png",
+  "raw": true
+ },
+ {
+  "name": "_stock/portrait/tavernman",
+  "first": "_stock/pad/tavernman.png",
+  "prompt": "A living portrait, locked camera, the head stays in the same place and the same size. The person breathes, blinks twice slowly, the mouth moves a little as if speaking quietly, a slight turn of the eyes. Same painted style, same face, same light. No text.",
+  "sec": 4,
+  "n": 2,
+  "last": "_stock/pad/tavernman.png",
+  "raw": true
+ },
+ {
+  "name": "_stock/portrait/til",
+  "first": "_stock/pad/til.png",
+  "prompt": "A living portrait, locked camera, the head stays in the same place and the same size. The person breathes, blinks twice slowly, the mouth moves a little as if speaking quietly, a slight turn of the eyes. Same painted style, same face, same light. No text.",
+  "sec": 4,
+  "n": 2,
+  "last": "_stock/pad/til.png",
+  "raw": true
+ },
+ {
+  "name": "_stock/portrait/vodyanoy",
+  "first": "_stock/pad/vodyanoy.png",
+  "prompt": "A living portrait, locked camera, the head stays in the same place and the same size. The person breathes, blinks twice slowly, the mouth moves a little as if speaking quietly, a slight turn of the eyes. Same painted style, same face, same light. No text.",
+  "sec": 4,
+  "n": 2,
+  "last": "_stock/pad/vodyanoy.png",
+  "raw": true
+ },
+ {
+  "name": "_stock/portrait/wanderer",
+  "first": "_stock/pad/wanderer.png",
+  "prompt": "A living portrait, locked camera, the head stays in the same place and the same size. The person breathes, blinks twice slowly, the mouth moves a little as if speaking quietly, a slight turn of the eyes. Same painted style, same face, same light. No text.",
+  "sec": 4,
+  "n": 2,
+  "last": "_stock/pad/wanderer.png",
+  "raw": true
+ },
+ {
+  "name": "_stock/portrait/whisperer",
+  "first": "_stock/pad/whisperer.png",
+  "prompt": "A living portrait, locked camera, the head stays in the same place and the same size. The person breathes, blinks twice slowly, the mouth moves a little as if speaking quietly, a slight turn of the eyes. Same painted style, same face, same light. No text.",
+  "sec": 4,
+  "n": 2,
+  "last": "_stock/pad/whisperer.png",
+  "raw": true
+ },
+ {
+  "name": "_stock/portrait/widow",
+  "first": "_stock/pad/widow.png",
+  "prompt": "A living portrait, locked camera, the head stays in the same place and the same size. The person breathes, blinks twice slowly, the mouth moves a little as if speaking quietly, a slight turn of the eyes. Same painted style, same face, same light. No text.",
+  "sec": 4,
+  "n": 2,
+  "last": "_stock/pad/widow.png",
+  "raw": true
+ },
+ {
+  "name": "_stock/portrait/winter_queen",
+  "first": "_stock/pad/winter_queen.png",
+  "prompt": "A living portrait, locked camera, the head stays in the same place and the same size. The person breathes, blinks twice slowly, the mouth moves a little as if speaking quietly, a slight turn of the eyes. Same painted style, same face, same light. No text.",
+  "sec": 4,
+  "n": 2,
+  "last": "_stock/pad/winter_queen.png",
+  "raw": true
+ },
+ {
+  "name": "_stock/portrait/yrka",
+  "first": "_stock/pad/yrka.png",
+  "prompt": "A living portrait, locked camera, the head stays in the same place and the same size. The person breathes, blinks twice slowly, the mouth moves a little as if speaking quietly, a slight turn of the eyes. Same painted style, same face, same light. No text.",
+  "sec": 4,
+  "n": 2,
+  "last": "_stock/pad/yrka.png",
+  "raw": true
+ },
+ {
+  "name": "_stock/portrait/reader",
+  "first": "_stock/pad/reader.png",
+  "prompt": "A living portrait, locked camera, the head stays in the same place and the same size. The person breathes, blinks twice slowly, the mouth moves a little as if speaking quietly, a slight turn of the eyes. Same painted style, same face, same light. No text.",
+  "sec": 4,
+  "n": 2,
+  "last": "_stock/pad/reader.png",
+  "raw": true
+ }
+]

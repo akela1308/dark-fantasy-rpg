@@ -1,0 +1,7 @@
+{
+ "op": "projects/veo-bot-501814/locations/us-central1/publishers/google/models/veo-3.1-generate-001/operations/28e52dbc-c8cb-4021-b754-c380ed82036f",
+ "prompt": "A living painting, a seamless loop. The camera is locked off and absolutely still. The painted image, its composition, buildings, rocks and trees stay exactly the same. Only the atmosphere moves very gently: fog and branches. No people appear, no new objects, no cuts.",
+ "img": "../../public/maps/forest1.png",
+ "last": "../../public/maps/forest1.png",
+ "sec": 8
+}

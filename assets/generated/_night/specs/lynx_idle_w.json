@@ -1,0 +1,1 @@
+{"slug": "lynx", "anim": "idle", "base": "lynx/k_battle_w.png", "body": 300, "segments": [{"clip": "lynx/clips/bidle_w_v1.mp4", "from": 0, "to": 95, "frames": 96}], "loop": true, "left": 1.6, "right": 1.6, "ver": 3, "keepall": true, "top": 0.95}

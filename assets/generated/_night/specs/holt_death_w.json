@@ -1,0 +1,1 @@
+{"slug": "holt", "anim": "death", "base": "holt/k_battle_w.png", "body": 300, "segments": [{"clip": "holt/clips/death_w_v1.mp4", "from": 0, "to": 95, "frames": 30}], "left": 1.5, "right": 1.45, "hold": true, "ver": 3, "top": 0.95}

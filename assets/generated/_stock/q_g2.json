@@ -1,0 +1,386 @@
+[
+ {
+  "name": "_stock/bg/battle_Boloto_battle_b",
+  "first": "../../public/battle/Boloto_battle.jpg",
+  "prompt": "A living painting. The camera is locked off and absolutely still. The painted image stays exactly the same: every building, rock, tree and path stays pixel-still. Motion is extremely subtle and slow and only in swamp fog drifts, water ripples. No clouds appear, no fog patches appear, nothing appears or disappears, the brightness stays the same.",
+  "sec": 8,
+  "n": 1,
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/battle_Boloto_battle1_b",
+  "first": "../../public/battle/Boloto_battle1.jpg",
+  "prompt": "A living painting. The camera is locked off and absolutely still. The painted image stays exactly the same: every building, rock, tree and path stays pixel-still. Motion is extremely subtle and slow and only in swamp fog drifts, water ripples. No clouds appear, no fog patches appear, nothing appears or disappears, the brightness stays the same.",
+  "sec": 8,
+  "n": 1,
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/battle_Forest_Battle_b",
+  "first": "../../public/battle/Forest_Battle.jpg",
+  "prompt": "A living painting. The camera is locked off and absolutely still. The painted image stays exactly the same: every building, rock, tree and path stays pixel-still. Motion is extremely subtle and slow and only in fog drifts between the trees, leaves stir. No clouds appear, no fog patches appear, nothing appears or disappears, the brightness stays the same.",
+  "sec": 8,
+  "n": 1,
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/battle_Forest_Road_b",
+  "first": "../../public/battle/Forest_Road.jpg",
+  "prompt": "A living painting. The camera is locked off and absolutely still. The painted image stays exactly the same: every building, rock, tree and path stays pixel-still. Motion is extremely subtle and slow and only in fog drifts along the road, branches sway. No clouds appear, no fog patches appear, nothing appears or disappears, the brightness stays the same.",
+  "sec": 8,
+  "n": 1,
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/battle_Grad_battle_b",
+  "first": "../../public/battle/Grad_battle.jpg",
+  "prompt": "A living painting. The camera is locked off and absolutely still. The painted image stays exactly the same: every building, rock, tree and path stays pixel-still. Motion is extremely subtle and slow and only in snow falls, torches flicker. No clouds appear, no fog patches appear, nothing appears or disappears, the brightness stays the same.",
+  "sec": 8,
+  "n": 1,
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/battle_KingThrone_battle_b",
+  "first": "../../public/battle/KingThrone_battle.jpg",
+  "prompt": "A living painting. The camera is locked off and absolutely still. The painted image stays exactly the same: every building, rock, tree and path stays pixel-still. Motion is extremely subtle and slow and only in torches and candles flicker, dust floats in the light. No clouds appear, no fog patches appear, nothing appears or disappears, the brightness stays the same.",
+  "sec": 8,
+  "n": 1,
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/battle_KingThrone_battle2_b",
+  "first": "../../public/battle/KingThrone_battle2.jpg",
+  "prompt": "A living painting. The camera is locked off and absolutely still. The painted image stays exactly the same: every building, rock, tree and path stays pixel-still. Motion is extremely subtle and slow and only in torches and candles flicker, dust floats in the light. No clouds appear, no fog patches appear, nothing appears or disappears, the brightness stays the same.",
+  "sec": 8,
+  "n": 1,
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/battle_Mountain_battle_b",
+  "first": "../../public/battle/Mountain_battle.jpg",
+  "prompt": "A living painting. The camera is locked off and absolutely still. The painted image stays exactly the same: every building, rock, tree and path stays pixel-still. Motion is extremely subtle and slow and only in clouds drift, snow blows off the ridges. No clouds appear, no fog patches appear, nothing appears or disappears, the brightness stays the same.",
+  "sec": 8,
+  "n": 1,
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/battle_Plane_b",
+  "first": "../../public/battle/Plane.jpg",
+  "prompt": "A living painting. The camera is locked off and absolutely still. The painted image stays exactly the same: every building, rock, tree and path stays pixel-still. Motion is extremely subtle and slow and only in grass sways, clouds drift. No clouds appear, no fog patches appear, nothing appears or disappears, the brightness stays the same.",
+  "sec": 8,
+  "n": 1,
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/battle_Tavern_battle_b",
+  "first": "../../public/battle/Tavern_battle.jpg",
+  "prompt": "A living painting. The camera is locked off and absolutely still. The painted image stays exactly the same: every building, rock, tree and path stays pixel-still. Motion is extremely subtle and slow and only in hearth fire and candles flicker, smoke drifts. No clouds appear, no fog patches appear, nothing appears or disappears, the brightness stays the same.",
+  "sec": 8,
+  "n": 1,
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/battle_Tavern_battle2_b",
+  "first": "../../public/battle/Tavern_battle2.jpg",
+  "prompt": "A living painting. The camera is locked off and absolutely still. The painted image stays exactly the same: every building, rock, tree and path stays pixel-still. Motion is extremely subtle and slow and only in hearth fire and candles flicker, smoke drifts. No clouds appear, no fog patches appear, nothing appears or disappears, the brightness stays the same.",
+  "sec": 8,
+  "n": 1,
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/battle_Tavern_battle3_b",
+  "first": "../../public/battle/Tavern_battle3.jpg",
+  "prompt": "A living painting. The camera is locked off and absolutely still. The painted image stays exactly the same: every building, rock, tree and path stays pixel-still. Motion is extremely subtle and slow and only in hearth fire and candles flicker, smoke drifts. No clouds appear, no fog patches appear, nothing appears or disappears, the brightness stays the same.",
+  "sec": 8,
+  "n": 1,
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/battle_Tavern_battle4_b",
+  "first": "../../public/battle/Tavern_battle4.jpg",
+  "prompt": "A living painting. The camera is locked off and absolutely still. The painted image stays exactly the same: every building, rock, tree and path stays pixel-still. Motion is extremely subtle and slow and only in hearth fire and candles flicker, smoke drifts. No clouds appear, no fog patches appear, nothing appears or disappears, the brightness stays the same.",
+  "sec": 8,
+  "n": 1,
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/battle_Village_battle1_b",
+  "first": "../../public/battle/Village_battle1.jpg",
+  "prompt": "A living painting. The camera is locked off and absolutely still. The painted image stays exactly the same: every building, rock, tree and path stays pixel-still. Motion is extremely subtle and slow and only in smoke rises from chimneys, grass sways. No clouds appear, no fog patches appear, nothing appears or disappears, the brightness stays the same.",
+  "sec": 8,
+  "n": 1,
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/battle_Village_battle2_b",
+  "first": "../../public/battle/Village_battle2.jpg",
+  "prompt": "A living painting. The camera is locked off and absolutely still. The painted image stays exactly the same: every building, rock, tree and path stays pixel-still. Motion is extremely subtle and slow and only in smoke rises from chimneys, grass sways. No clouds appear, no fog patches appear, nothing appears or disappears, the brightness stays the same.",
+  "sec": 8,
+  "n": 1,
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/battle_Village_battle3_b",
+  "first": "../../public/battle/Village_battle3.jpg",
+  "prompt": "A living painting. The camera is locked off and absolutely still. The painted image stays exactly the same: every building, rock, tree and path stays pixel-still. Motion is extremely subtle and slow and only in smoke rises from chimneys, grass sways. No clouds appear, no fog patches appear, nothing appears or disappears, the brightness stays the same.",
+  "sec": 8,
+  "n": 1,
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/battle_Winter_Forest_b",
+  "first": "../../public/battle/Winter_Forest.jpg",
+  "prompt": "A living painting. The camera is locked off and absolutely still. The painted image stays exactly the same: every building, rock, tree and path stays pixel-still. Motion is extremely subtle and slow and only in snow falls, branches tremble. No clouds appear, no fog patches appear, nothing appears or disappears, the brightness stays the same.",
+  "sec": 8,
+  "n": 1,
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/battle_Winter_Grad_b",
+  "first": "../../public/battle/Winter_Grad.jpg",
+  "prompt": "A living painting. The camera is locked off and absolutely still. The painted image stays exactly the same: every building, rock, tree and path stays pixel-still. Motion is extremely subtle and slow and only in snow falls, torches flicker. No clouds appear, no fog patches appear, nothing appears or disappears, the brightness stays the same.",
+  "sec": 8,
+  "n": 1,
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_forest1_b",
+  "first": "../../public/maps/forest1.png",
+  "prompt": "A living painting. The camera is locked off and absolutely still. The painted image stays exactly the same: every building, rock, tree and path stays pixel-still. Motion is extremely subtle and slow and only in fog and branches. No clouds appear, no fog patches appear, nothing appears or disappears, the brightness stays the same.",
+  "sec": 8,
+  "n": 1,
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_tavern_map_b",
+  "first": "../../public/maps/tavern_map.png",
+  "prompt": "A living painting. The camera is locked off and absolutely still. The painted image stays exactly the same: every building, rock, tree and path stays pixel-still. Motion is extremely subtle and slow and only in chimney smoke and lantern flames. No clouds appear, no fog patches appear, nothing appears or disappears, the brightness stays the same.",
+  "sec": 8,
+  "n": 1,
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_tavern_inside_b",
+  "first": "../../public/maps/tavern_inside.png",
+  "prompt": "A living painting. The camera is locked off and absolutely still. The painted image stays exactly the same: every building, rock, tree and path stays pixel-still. Motion is extremely subtle and slow and only in hearth fire and candles. No clouds appear, no fog patches appear, nothing appears or disappears, the brightness stays the same.",
+  "sec": 8,
+  "n": 1,
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_elf_boloto_b",
+  "first": "../../public/maps/elf_boloto.png",
+  "prompt": "A living painting. The camera is locked off and absolutely still. The painted image stays exactly the same: every building, rock, tree and path stays pixel-still. Motion is extremely subtle and slow and only in swamp fog and water ripples. No clouds appear, no fog patches appear, nothing appears or disappears, the brightness stays the same.",
+  "sec": 8,
+  "n": 1,
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_road_boloto_b",
+  "first": "../../public/maps/road_boloto.png",
+  "prompt": "A living painting. The camera is locked off and absolutely still. The painted image stays exactly the same: every building, rock, tree and path stays pixel-still. Motion is extremely subtle and slow and only in fog and water ripples. No clouds appear, no fog patches appear, nothing appears or disappears, the brightness stays the same.",
+  "sec": 8,
+  "n": 1,
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_mountains_map_b",
+  "first": "../../public/maps/mountains_map.png",
+  "prompt": "A living painting. The camera is locked off and absolutely still. The painted image stays exactly the same: every building, rock, tree and path stays pixel-still. Motion is extremely subtle and slow and only in clouds and blowing snow. No clouds appear, no fog patches appear, nothing appears or disappears, the brightness stays the same.",
+  "sec": 8,
+  "n": 1,
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_kingthrone_b",
+  "first": "../../public/maps/kingthrone.png",
+  "prompt": "A living painting. The camera is locked off and absolutely still. The painted image stays exactly the same: every building, rock, tree and path stays pixel-still. Motion is extremely subtle and slow and only in torches and dust. No clouds appear, no fog patches appear, nothing appears or disappears, the brightness stays the same.",
+  "sec": 8,
+  "n": 1,
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_village_b",
+  "first": "../../public/maps/village.png",
+  "prompt": "A living painting. The camera is locked off and absolutely still. The painted image stays exactly the same: every building, rock, tree and path stays pixel-still. Motion is extremely subtle and slow and only in chimney smoke and grass. No clouds appear, no fog patches appear, nothing appears or disappears, the brightness stays the same.",
+  "sec": 8,
+  "n": 1,
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_south_post_b",
+  "first": "../../public/maps/gen/south_post_k2.jpg",
+  "prompt": "A living painting. The camera is locked off and absolutely still. The painted image stays exactly the same: every building, rock, tree and path stays pixel-still. Motion is extremely subtle and slow and only in fog and a brazier flame. No clouds appear, no fog patches appear, nothing appears or disappears, the brightness stays the same.",
+  "sec": 8,
+  "n": 1,
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_three_pillars_b",
+  "first": "../../public/maps/gen/three_pillars_k2.jpg",
+  "prompt": "A living painting. The camera is locked off and absolutely still. The painted image stays exactly the same: every building, rock, tree and path stays pixel-still. Motion is extremely subtle and slow and only in chimney smoke and fog. No clouds appear, no fog patches appear, nothing appears or disappears, the brightness stays the same.",
+  "sec": 8,
+  "n": 1,
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_old_mill_b",
+  "first": "../../public/maps/gen/old_mill_pick.jpg",
+  "prompt": "A living painting. The camera is locked off and absolutely still. The painted image stays exactly the same: every building, rock, tree and path stays pixel-still. Motion is extremely subtle and slow and only in water and grass. No clouds appear, no fog patches appear, nothing appears or disappears, the brightness stays the same.",
+  "sec": 8,
+  "n": 1,
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_burned_hamlet_b",
+  "first": "../../public/maps/gen/burned_hamlet_k2.jpg",
+  "prompt": "A living painting. The camera is locked off and absolutely still. The painted image stays exactly the same: every building, rock, tree and path stays pixel-still. Motion is extremely subtle and slow and only in thin smoke and ash. No clouds appear, no fog patches appear, nothing appears or disappears, the brightness stays the same.",
+  "sec": 8,
+  "n": 1,
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_dead_road_b",
+  "first": "../../public/maps/gen/dead_road_pick.png",
+  "prompt": "A living painting. The camera is locked off and absolutely still. The painted image stays exactly the same: every building, rock, tree and path stays pixel-still. Motion is extremely subtle and slow and only in fog and crows' shadows of clouds. No clouds appear, no fog patches appear, nothing appears or disappears, the brightness stays the same.",
+  "sec": 8,
+  "n": 1,
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_gallows_hill_b",
+  "first": "../../public/maps/gen/gallows_hill_pick.jpg",
+  "prompt": "A living painting. The camera is locked off and absolutely still. The painted image stays exactly the same: every building, rock, tree and path stays pixel-still. Motion is extremely subtle and slow and only in wind in the grass and clouds. No clouds appear, no fog patches appear, nothing appears or disappears, the brightness stays the same.",
+  "sec": 8,
+  "n": 1,
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_forest_camp_b",
+  "first": "../../public/maps/gen/forest_camp_k2.jpg",
+  "prompt": "A living painting. The camera is locked off and absolutely still. The painted image stays exactly the same: every building, rock, tree and path stays pixel-still. Motion is extremely subtle and slow and only in campfire smoke. No clouds appear, no fog patches appear, nothing appears or disappears, the brightness stays the same.",
+  "sec": 8,
+  "n": 1,
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_forest_altar_b",
+  "first": "../../public/maps/gen/forest_altar_k2.jpg",
+  "prompt": "A living painting. The camera is locked off and absolutely still. The painted image stays exactly the same: every building, rock, tree and path stays pixel-still. Motion is extremely subtle and slow and only in fog and candle flames. No clouds appear, no fog patches appear, nothing appears or disappears, the brightness stays the same.",
+  "sec": 8,
+  "n": 1,
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_forest_deep_b",
+  "first": "../../public/maps/gen/forest_deep_k2.jpg",
+  "prompt": "A living painting. The camera is locked off and absolutely still. The painted image stays exactly the same: every building, rock, tree and path stays pixel-still. Motion is extremely subtle and slow and only in fog and branches. No clouds appear, no fog patches appear, nothing appears or disappears, the brightness stays the same.",
+  "sec": 8,
+  "n": 1,
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_ravine_b",
+  "first": "../../public/maps/gen/ravine_k2.jpg",
+  "prompt": "A living painting. The camera is locked off and absolutely still. The painted image stays exactly the same: every building, rock, tree and path stays pixel-still. Motion is extremely subtle and slow and only in fog and water. No clouds appear, no fog patches appear, nothing appears or disappears, the brightness stays the same.",
+  "sec": 8,
+  "n": 1,
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_drowned_village_b",
+  "first": "../../public/maps/gen/drowned_village_pick.png",
+  "prompt": "A living painting. The camera is locked off and absolutely still. The painted image stays exactly the same: every building, rock, tree and path stays pixel-still. Motion is extremely subtle and slow and only in fog and water ripples. No clouds appear, no fog patches appear, nothing appears or disappears, the brightness stays the same.",
+  "sec": 8,
+  "n": 1,
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_swamp_map_b",
+  "first": "../../public/maps/swamp_map.png",
+  "prompt": "A living painting. The camera is locked off and absolutely still. The painted image stays exactly the same: every building, rock, tree and path stays pixel-still. Motion is extremely subtle and slow and only in swamp fog. No clouds appear, no fog patches appear, nothing appears or disappears, the brightness stays the same.",
+  "sec": 8,
+  "n": 1,
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_copper_mine_b",
+  "first": "../../public/maps/gen/copper_mine_k2.jpg",
+  "prompt": "A living painting. The camera is locked off and absolutely still. The painted image stays exactly the same: every building, rock, tree and path stays pixel-still. Motion is extremely subtle and slow and only in lamp flames and dust. No clouds appear, no fog patches appear, nothing appears or disappears, the brightness stays the same.",
+  "sec": 8,
+  "n": 1,
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_dwarf_hall_b",
+  "first": "../../public/maps/gen/dwarf_hall_k2.jpg",
+  "prompt": "A living painting. The camera is locked off and absolutely still. The painted image stays exactly the same: every building, rock, tree and path stays pixel-still. Motion is extremely subtle and slow and only in forge fire and dust. No clouds appear, no fog patches appear, nothing appears or disappears, the brightness stays the same.",
+  "sec": 8,
+  "n": 1,
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_winter_forest_b",
+  "first": "../../public/maps/gen/winter_forest_pick.jpg",
+  "prompt": "A living painting. The camera is locked off and absolutely still. The painted image stays exactly the same: every building, rock, tree and path stays pixel-still. Motion is extremely subtle and slow and only in falling snow. No clouds appear, no fog patches appear, nothing appears or disappears, the brightness stays the same.",
+  "sec": 8,
+  "n": 1,
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_frozen_lake_b",
+  "first": "../../public/maps/gen/frozen_lake_pick.jpg",
+  "prompt": "A living painting. The camera is locked off and absolutely still. The painted image stays exactly the same: every building, rock, tree and path stays pixel-still. Motion is extremely subtle and slow and only in blowing snow. No clouds appear, no fog patches appear, nothing appears or disappears, the brightness stays the same.",
+  "sec": 8,
+  "n": 1,
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_ice_shrine_b",
+  "first": "../../public/maps/gen/ice_shrine_k2.jpg",
+  "prompt": "A living painting. The camera is locked off and absolutely still. The painted image stays exactly the same: every building, rock, tree and path stays pixel-still. Motion is extremely subtle and slow and only in cold mist. No clouds appear, no fog patches appear, nothing appears or disappears, the brightness stays the same.",
+  "sec": 8,
+  "n": 1,
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_winter_grad_gate_b",
+  "first": "../../public/maps/gen/winter_grad_gate_pick.jpg",
+  "prompt": "A living painting. The camera is locked off and absolutely still. The painted image stays exactly the same: every building, rock, tree and path stays pixel-still. Motion is extremely subtle and slow and only in snow and torches. No clouds appear, no fog patches appear, nothing appears or disappears, the brightness stays the same.",
+  "sec": 8,
+  "n": 1,
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_grad_square_b",
+  "first": "../../public/maps/gen/grad_square_pick.png",
+  "prompt": "A living painting. The camera is locked off and absolutely still. The painted image stays exactly the same: every building, rock, tree and path stays pixel-still. Motion is extremely subtle and slow and only in snow and torches. No clouds appear, no fog patches appear, nothing appears or disappears, the brightness stays the same.",
+  "sec": 8,
+  "n": 1,
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_queens_hall_b",
+  "first": "../../public/maps/gen/queens_hall_k2.jpg",
+  "prompt": "A living painting. The camera is locked off and absolutely still. The painted image stays exactly the same: every building, rock, tree and path stays pixel-still. Motion is extremely subtle and slow and only in candles and cold mist. No clouds appear, no fog patches appear, nothing appears or disappears, the brightness stays the same.",
+  "sec": 8,
+  "n": 1,
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_north_road_b",
+  "first": "../../public/maps/gen/north_road_pick.png",
+  "prompt": "A living painting. The camera is locked off and absolutely still. The painted image stays exactly the same: every building, rock, tree and path stays pixel-still. Motion is extremely subtle and slow and only in blowing snow. No clouds appear, no fog patches appear, nothing appears or disappears, the brightness stays the same.",
+  "sec": 8,
+  "n": 1,
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_north_frontier_b",
+  "first": "../../public/maps/gen/north_frontier_pick.jpg",
+  "prompt": "A living painting. The camera is locked off and absolutely still. The painted image stays exactly the same: every building, rock, tree and path stays pixel-still. Motion is extremely subtle and slow and only in blowing snow and torn banners. No clouds appear, no fog patches appear, nothing appears or disappears, the brightness stays the same.",
+  "sec": 8,
+  "n": 1,
+  "raw": true
+ }
+]

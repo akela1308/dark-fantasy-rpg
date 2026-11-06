@@ -1,0 +1,45 @@
+[
+ {
+  "name": "_stock/fx/fire_burst",
+  "first": "_stock/black.png",
+  "prompt": "Pure black background, nothing else in the frame. a burst of orange fire erupts in the center and burns out. Hand-painted dark fantasy game effect, muted natural colors, locked camera. No text.",
+  "sec": 4,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/fx/blood_splat",
+  "first": "_stock/black.png",
+  "prompt": "Pure black background, nothing else in the frame. dark red blood splashes outward from the center. Hand-painted dark fantasy game effect, muted natural colors, locked camera. No text.",
+  "sec": 4,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/battle_Boloto_battle",
+  "first": "../../public/battle/Boloto_battle.jpg",
+  "prompt": "A living painting, a seamless loop. The camera is locked off and absolutely still. The painted image, its composition, buildings, rocks and trees stay exactly the same. Only the atmosphere moves very gently: swamp fog drifts, water ripples. No people appear, no new objects, no cuts.",
+  "sec": 8,
+  "n": 2,
+  "last": "../../public/battle/Boloto_battle.jpg",
+  "raw": true
+ },
+ {
+  "name": "_stock/bg/map_forest1",
+  "first": "../../public/maps/forest1.png",
+  "prompt": "A living painting, a seamless loop. The camera is locked off and absolutely still. The painted image, its composition, buildings, rocks and trees stay exactly the same. Only the atmosphere moves very gently: fog and branches. No people appear, no new objects, no cuts.",
+  "sec": 8,
+  "n": 2,
+  "last": "../../public/maps/forest1.png",
+  "raw": true
+ },
+ {
+  "name": "_stock/portrait/adventurer",
+  "first": "_stock/pad/adventurer.png",
+  "prompt": "A living portrait, locked camera, the head stays in the same place and the same size. The person breathes, blinks twice slowly, the mouth moves a little as if speaking quietly, a slight turn of the eyes. Same painted style, same face, same light. No text.",
+  "sec": 4,
+  "n": 2,
+  "last": "_stock/pad/adventurer.png",
+  "raw": true
+ }
+]

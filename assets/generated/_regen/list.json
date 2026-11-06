@@ -1,0 +1,590 @@
+[
+{
+"slug": "adventurer",
+"anim": "death"
+},
+{
+"slug": "adventurer",
+"anim": "victory"
+},
+{
+"slug": "agna",
+"anim": "death"
+},
+{
+"slug": "agna",
+"anim": "victory"
+},
+{
+"slug": "archer_guard",
+"anim": "attack"
+},
+{
+"slug": "archer_guard",
+"anim": "death"
+},
+{
+"slug": "archer_guard",
+"anim": "hit"
+},
+{
+"slug": "archer_guard",
+"anim": "idle"
+},
+{
+"slug": "archer_guard",
+"anim": "victory"
+},
+{
+"slug": "assassin",
+"anim": "death"
+},
+{
+"slug": "assassin",
+"anim": "power"
+},
+{
+"slug": "assassin",
+"anim": "victory"
+},
+{
+"slug": "assassin_undead",
+"anim": "attack"
+},
+{
+"slug": "assassin_undead",
+"anim": "power"
+},
+{
+"slug": "assassin_undead",
+"anim": "victory"
+},
+{
+"slug": "bandit_archer",
+"anim": "victory"
+},
+{
+"slug": "bandit_axewoman",
+"anim": "death"
+},
+{
+"slug": "bandit_axewoman",
+"anim": "victory"
+},
+{
+"slug": "bandit_brawler",
+"anim": "attack"
+},
+{
+"slug": "bandit_brawler",
+"anim": "hit"
+},
+{
+"slug": "bandit_brawler",
+"anim": "victory"
+},
+{
+"slug": "bandit_commander",
+"anim": "attack"
+},
+{
+"slug": "bandit_commander",
+"anim": "death"
+},
+{
+"slug": "bandit_commander",
+"anim": "hit"
+},
+{
+"slug": "bandit_commander",
+"anim": "power"
+},
+{
+"slug": "bandit_commander",
+"anim": "victory"
+},
+{
+"slug": "bandit_knifeman",
+"anim": "attack"
+},
+{
+"slug": "bandit_knifeman",
+"anim": "death"
+},
+{
+"slug": "bandit_knifeman",
+"anim": "hit"
+},
+{
+"slug": "bandit_knifeman",
+"anim": "victory"
+},
+{
+"slug": "bandit_poacher",
+"anim": "attack"
+},
+{
+"slug": "bandit_poacher",
+"anim": "victory"
+},
+{
+"slug": "bear_shatun",
+"anim": "victory"
+},
+{
+"slug": "boar",
+"anim": "victory"
+},
+{
+"slug": "brawler",
+"anim": "death"
+},
+{
+"slug": "brawler",
+"anim": "hit"
+},
+{
+"slug": "brawler",
+"anim": "power"
+},
+{
+"slug": "brawler",
+"anim": "victory"
+},
+{
+"slug": "candle_keeper",
+"anim": "victory"
+},
+{
+"slug": "cleaning_girl",
+"anim": "attack"
+},
+{
+"slug": "cleaning_girl",
+"anim": "death"
+},
+{
+"slug": "cleaning_girl",
+"anim": "victory"
+},
+{
+"slug": "cult_zealot",
+"anim": "attack"
+},
+{
+"slug": "cult_zealot",
+"anim": "death"
+},
+{
+"slug": "cult_zealot",
+"anim": "hit"
+},
+{
+"slug": "cult_zealot",
+"anim": "victory"
+},
+{
+"slug": "drowned",
+"anim": "victory"
+},
+{
+"slug": "duelist",
+"anim": "block"
+},
+{
+"slug": "duelist",
+"anim": "slash"
+},
+{
+"slug": "duelist",
+"anim": "victory"
+},
+{
+"slug": "dwarf",
+"anim": "power"
+},
+{
+"slug": "dwarf",
+"anim": "victory"
+},
+{
+"slug": "dwarf_beer1",
+"anim": "victory"
+},
+{
+"slug": "dwarf_beer2",
+"anim": "death"
+},
+{
+"slug": "dwarf_beer2",
+"anim": "victory"
+},
+{
+"slug": "dwarf_beer3",
+"anim": "victory"
+},
+{
+"slug": "forgotten_warden",
+"anim": "attack"
+},
+{
+"slug": "forgotten_warden",
+"anim": "death"
+},
+{
+"slug": "frontier_beast",
+"anim": "death"
+},
+{
+"slug": "frontier_beast",
+"anim": "hit"
+},
+{
+"slug": "frontier_beast",
+"anim": "idle"
+},
+{
+"slug": "frontier_beast",
+"anim": "victory"
+},
+{
+"slug": "gallows_reader",
+"anim": "victory"
+},
+{
+"slug": "grad_crossbowman",
+"anim": "victory"
+},
+{
+"slug": "grad_guard",
+"anim": "attack"
+},
+{
+"slug": "grad_guard",
+"anim": "death"
+},
+{
+"slug": "grad_guard",
+"anim": "victory"
+},
+{
+"slug": "grey_wolf",
+"anim": "death"
+},
+{
+"slug": "grey_wolf",
+"anim": "hit"
+},
+{
+"slug": "grey_wolf",
+"anim": "victory"
+},
+{
+"slug": "guard",
+"anim": "death"
+},
+{
+"slug": "guard",
+"anim": "power"
+},
+{
+"slug": "guard",
+"anim": "victory"
+},
+{
+"slug": "hanged",
+"anim": "death"
+},
+{
+"slug": "holt",
+"anim": "death"
+},
+{
+"slug": "kikimora",
+"anim": "victory"
+},
+{
+"slug": "leshy",
+"anim": "attack"
+},
+{
+"slug": "leshy",
+"anim": "death"
+},
+{
+"slug": "leshy",
+"anim": "hit"
+},
+{
+"slug": "leshy",
+"anim": "victory"
+},
+{
+"slug": "lynx",
+"anim": "attack"
+},
+{
+"slug": "lynx",
+"anim": "death"
+},
+{
+"slug": "lynx",
+"anim": "idle"
+},
+{
+"slug": "lynx",
+"anim": "victory"
+},
+{
+"slug": "merc_captain",
+"anim": "attack"
+},
+{
+"slug": "merc_captain",
+"anim": "victory"
+},
+{
+"slug": "merc_pikeman",
+"anim": "death"
+},
+{
+"slug": "mine_shade",
+"anim": "attack"
+},
+{
+"slug": "mine_shade",
+"anim": "hit"
+},
+{
+"slug": "mine_shade",
+"anim": "victory"
+},
+{
+"slug": "moroz",
+"anim": "victory"
+},
+{
+"slug": "mountain_king",
+"anim": "attack"
+},
+{
+"slug": "mountain_king",
+"anim": "power"
+},
+{
+"slug": "name_echo",
+"anim": "victory"
+},
+{
+"slug": "poludnitsa",
+"anim": "hit"
+},
+{
+"slug": "rats",
+"anim": "attack"
+},
+{
+"slug": "rats",
+"anim": "death"
+},
+{
+"slug": "rats",
+"anim": "hit"
+},
+{
+"slug": "rats",
+"anim": "victory"
+},
+{
+"slug": "recruit",
+"anim": "attack"
+},
+{
+"slug": "recruit",
+"anim": "hit"
+},
+{
+"slug": "recruit",
+"anim": "victory"
+},
+{
+"slug": "rowan",
+"anim": "hit"
+},
+{
+"slug": "rowan",
+"anim": "power"
+},
+{
+"slug": "ryzh",
+"anim": "attack"
+},
+{
+"slug": "ryzh",
+"anim": "victory"
+},
+{
+"slug": "shade",
+"anim": "death"
+},
+{
+"slug": "shield",
+"anim": "attack"
+},
+{
+"slug": "shield",
+"anim": "power"
+},
+{
+"slug": "shield",
+"anim": "victory"
+},
+{
+"slug": "shishiga",
+"anim": "death"
+},
+{
+"slug": "snow_wolf",
+"anim": "death"
+},
+{
+"slug": "snow_wolf",
+"anim": "hit"
+},
+{
+"slug": "snow_wolf",
+"anim": "victory"
+},
+{
+"slug": "snow_wolf_leader",
+"anim": "death"
+},
+{
+"slug": "snow_wolf_leader",
+"anim": "victory"
+},
+{
+"slug": "stone_guard",
+"anim": "death"
+},
+{
+"slug": "stone_guard",
+"anim": "hit"
+},
+{
+"slug": "stone_guard",
+"anim": "victory"
+},
+{
+"slug": "swamp_elf",
+"anim": "attack"
+},
+{
+"slug": "swamp_elf",
+"anim": "death"
+},
+{
+"slug": "swamp_elf",
+"anim": "victory"
+},
+{
+"slug": "swamp_knight",
+"anim": "attack"
+},
+{
+"slug": "swamp_knight",
+"anim": "death"
+},
+{
+"slug": "swamp_knight",
+"anim": "power"
+},
+{
+"slug": "swamp_knight",
+"anim": "victory"
+},
+{
+"slug": "tavernman",
+"anim": "victory"
+},
+{
+"slug": "til",
+"anim": "power"
+},
+{
+"slug": "troll_ugryum",
+"anim": "attack"
+},
+{
+"slug": "troll_ugryum",
+"anim": "death"
+},
+{
+"slug": "troll_ugryum",
+"anim": "hit"
+},
+{
+"slug": "troll_ugryum",
+"anim": "victory"
+},
+{
+"slug": "vurdalak",
+"anim": "death"
+},
+{
+"slug": "vurdalak",
+"anim": "victory"
+},
+{
+"slug": "wandering_knight",
+"anim": "attack"
+},
+{
+"slug": "wandering_knight",
+"anim": "death"
+},
+{
+"slug": "wandering_knight",
+"anim": "victory"
+},
+{
+"slug": "whisperer",
+"anim": "victory"
+},
+{
+"slug": "winter_archer",
+"anim": "attack"
+},
+{
+"slug": "winter_archer",
+"anim": "death"
+},
+{
+"slug": "winter_archer",
+"anim": "idle"
+},
+{
+"slug": "winter_archer",
+"anim": "victory"
+},
+{
+"slug": "winter_girl",
+"anim": "death"
+},
+{
+"slug": "winter_monster",
+"anim": "power"
+},
+{
+"slug": "wolfolak",
+"anim": "victory"
+},
+{
+"slug": "young_boar",
+"anim": "hit"
+},
+{
+"slug": "young_boar",
+"anim": "victory"
+}
+]

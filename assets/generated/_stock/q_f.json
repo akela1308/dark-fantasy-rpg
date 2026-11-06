@@ -1,0 +1,194 @@
+[
+ {
+  "name": "_stock/cine/title_vid",
+  "first": "_stock/cine/title.png",
+  "prompt": "Very slow push-in. Fog drifts, torch flames flicker, the traveller walks slowly. Cinematic, the same painted style, the same light and characters, no cuts, no text.",
+  "sec": 8,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/cine/intro1_vid",
+  "first": "_stock/cine/intro1.png",
+  "prompt": "Slow pan to the right, smoke drifts, banners stir. Cinematic, the same painted style, the same light and characters, no cuts, no text.",
+  "sec": 8,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/cine/intro2_vid",
+  "first": "_stock/cine/intro2.png",
+  "prompt": "The gloved hand slowly picks up the letter, the candle flickers. Cinematic, the same painted style, the same light and characters, no cuts, no text.",
+  "sec": 8,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/cine/intro3_vid",
+  "first": "_stock/cine/intro3.png",
+  "prompt": "He walks slowly into the distance, rain falls, slow camera follow. Cinematic, the same painted style, the same light and characters, no cuts, no text.",
+  "sec": 8,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/cine/intro4_vid",
+  "first": "_stock/cine/intro4.png",
+  "prompt": "Slow push-in, crows take off, fog drifts. Cinematic, the same painted style, the same light and characters, no cuts, no text.",
+  "sec": 8,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/cine/intro5_vid",
+  "first": "_stock/cine/intro5.png",
+  "prompt": "Slow push-in toward the door, rain falls, the window light flickers. Cinematic, the same painted style, the same light and characters, no cuts, no text.",
+  "sec": 8,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/cine/seal1_vid",
+  "first": "_stock/cine/seal1.png",
+  "prompt": "Slow push-in, the candles gutter, a thin crack of pale light crawls over the seal. Cinematic, the same painted style, the same light and characters, no cuts, no text.",
+  "sec": 8,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/cine/seal2_vid",
+  "first": "_stock/cine/seal2.png",
+  "prompt": "The hand slowly closes into a fist, the pale light pulses once. Cinematic, the same painted style, the same light and characters, no cuts, no text.",
+  "sec": 8,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/cine/ch_swamp_vid",
+  "first": "_stock/cine/ch_swamp.png",
+  "prompt": "Very slow pan, wisps drift, ripples on the water. Cinematic, the same painted style, the same light and characters, no cuts, no text.",
+  "sec": 8,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/cine/ch_mountains_vid",
+  "first": "_stock/cine/ch_mountains.png",
+  "prompt": "Slow push-in, clouds move, snow blows from the ridges. Cinematic, the same painted style, the same light and characters, no cuts, no text.",
+  "sec": 8,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/cine/ch_north_vid",
+  "first": "_stock/cine/ch_north.png",
+  "prompt": "Slow push-in, wind blows the snow across the ice. Cinematic, the same painted style, the same light and characters, no cuts, no text.",
+  "sec": 8,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/cine/ch_throne_vid",
+  "first": "_stock/cine/ch_throne.png",
+  "prompt": "Very slow push-in toward the throne, candles flicker, snow falls. Cinematic, the same painted style, the same light and characters, no cuts, no text.",
+  "sec": 8,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/cine/korvin_vid",
+  "first": "_stock/cine/korvin.png",
+  "prompt": "Slow push-in, the fire flickers, he slowly looks up at the camera. Cinematic, the same painted style, the same light and characters, no cuts, no text.",
+  "sec": 8,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/cine/moroz_vid",
+  "first": "_stock/cine/moroz.png",
+  "prompt": "Slow push-in, the blizzard swirls, he slowly raises his head. Cinematic, the same painted style, the same light and characters, no cuts, no text.",
+  "sec": 8,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/cine/queen_vid",
+  "first": "_stock/cine/queen.png",
+  "prompt": "Slow push-in, the mist moves, she slowly opens her eyes. Cinematic, the same painted style, the same light and characters, no cuts, no text.",
+  "sec": 8,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/cine/battle_win_vid",
+  "first": "_stock/cine/battle_win.png",
+  "prompt": "Slow pull-back, crows circle, mist drifts. Cinematic, the same painted style, the same light and characters, no cuts, no text.",
+  "sec": 8,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/cine/defeat_vid",
+  "first": "_stock/cine/defeat.png",
+  "prompt": "Rain falls, the raven lands and tilts its head, very slow push-in. Cinematic, the same painted style, the same light and characters, no cuts, no text.",
+  "sec": 8,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/cine/end_law_vid",
+  "first": "_stock/cine/end_law.png",
+  "prompt": "Slow pull-back, the banner moves, the sun rises through the fog. Cinematic, the same painted style, the same light and characters, no cuts, no text.",
+  "sec": 8,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/cine/end_debt_vid",
+  "first": "_stock/cine/end_debt.png",
+  "prompt": "The candle slowly dies, smoke rises, very slow push-in. Cinematic, the same painted style, the same light and characters, no cuts, no text.",
+  "sec": 8,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/cine/end_seal_vid",
+  "first": "_stock/cine/end_seal.png",
+  "prompt": "Very slow push-in, pale light pulses in the ring, dust falls. Cinematic, the same painted style, the same light and characters, no cuts, no text.",
+  "sec": 8,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/cine/end_road_vid",
+  "first": "_stock/cine/end_road.png",
+  "prompt": "They ride slowly away, slow pull-back, wind in the grass. Cinematic, the same painted style, the same light and characters, no cuts, no text.",
+  "sec": 8,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/cine/rest_vid",
+  "first": "_stock/cine/rest.png",
+  "prompt": "The fire flickers, sparks rise, very slow push-in. Cinematic, the same painted style, the same light and characters, no cuts, no text.",
+  "sec": 8,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/cine/tavern_life_vid",
+  "first": "_stock/cine/tavern_life.png",
+  "prompt": "He slowly wipes the mug, the fire flickers, smoke drifts. Cinematic, the same painted style, the same light and characters, no cuts, no text.",
+  "sec": 8,
+  "n": 2,
+  "raw": true
+ },
+ {
+  "name": "_stock/cine/worldmap_vid",
+  "first": "_stock/cine/worldmap.png",
+  "prompt": "Candle light flickers over the map, very slow pan. Cinematic, the same painted style, the same light and characters, no cuts, no text.",
+  "sec": 8,
+  "n": 2,
+  "raw": true
+ }
+]
