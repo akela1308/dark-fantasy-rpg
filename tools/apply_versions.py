@@ -12,7 +12,7 @@ for f in glob.glob(f"{GAME}/public/sprites/battle/*_v*.json"):
 n = 0
 for (slug, anim), (ver, f) in best.items():
     uid = UNIT.get(slug, slug)
-    if uid not in a or anim.startswith(("amb", "map")): continue
+    if uid not in a or anim.startswith(("amb", "map")) or (slug, anim) == ("duelist", "salute"): continue   # salute забракован (night_manifest)
     e = a[uid]["anims"].get(anim)
     if e is None:   # новая анимация запаса Veo
         e = a[uid]["anims"][anim] = {"file": ""}

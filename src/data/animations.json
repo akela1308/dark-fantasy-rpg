@@ -609,15 +609,15 @@
     "loop": true
    },
    "victory": {
-    "file": "sprites/battle/bandit_brawler_victory_v3_s60.webp",
-    "frameWidth": 505,
-    "frameHeight": 284,
+    "file": "sprites/battle/bandit_brawler_victory_v4_s60.webp",
+    "frameWidth": 508,
+    "frameHeight": 298,
     "frames": 29,
     "fps": 24,
-    "originX": 0.3915,
-    "originY": 0.9848,
-    "bodyHeight": 179.9,
-    "key": "bandit_brawler_victory_v3_s60",
+    "originX": 0.4318,
+    "originY": 0.9904,
+    "bodyHeight": 152.5,
+    "key": "bandit_brawler_victory_v4_s60",
     "hold": true
    },
    "attack2": {
@@ -1817,17 +1817,6 @@
     "originY": 0.9911,
     "bodyHeight": 180.0,
     "key": "duelist_dodge_v1_s60"
-   },
-   "salute": {
-    "file": "sprites/battle/duelist_salute_v1_s60.webp",
-    "frameWidth": 331,
-    "frameHeight": 190,
-    "frames": 32,
-    "fps": 24,
-    "originX": 0.4504,
-    "originY": 0.9882,
-    "bodyHeight": 182.6,
-    "key": "duelist_salute_v1_s60"
    }
   },
   "actions": {
@@ -2092,15 +2081,15 @@
     "hold": true
    },
    "hit": {
-    "file": "sprites/battle/dwarf_beer3_hit_v4_s60.webp",
-    "frameWidth": 362,
-    "frameHeight": 204,
+    "file": "sprites/battle/dwarf_beer3_hit_v5_s60.webp",
+    "frameWidth": 611,
+    "frameHeight": 353,
     "frames": 13,
     "fps": 24,
-    "originX": 0.379,
-    "originY": 0.9893,
-    "bodyHeight": 179.8,
-    "key": "dwarf_beer3_hit_v4_s60"
+    "originX": 0.4412,
+    "originY": 0.994,
+    "bodyHeight": 180.1,
+    "key": "dwarf_beer3_hit_v5_s60"
    },
    "idle": {
     "file": "sprites/battle/dwarf_beer3_idle_v1_s60.webp",
@@ -3924,15 +3913,15 @@
     "loop": true
    },
    "victory": {
-    "file": "sprites/battle/merc_pikeman_victory_v3_s60.webp",
-    "frameWidth": 346,
-    "frameHeight": 194,
+    "file": "sprites/battle/merc_pikeman_victory_v4_s60.webp",
+    "frameWidth": 506,
+    "frameHeight": 284,
     "frames": 29,
     "fps": 24,
-    "originX": 0.3996,
-    "originY": 0.9718,
-    "bodyHeight": 180.2,
-    "key": "merc_pikeman_victory_v3_s60",
+    "originX": 0.442,
+    "originY": 0.9837,
+    "bodyHeight": 152.4,
+    "key": "merc_pikeman_victory_v4_s60",
     "hold": true
    }
   },
@@ -4764,15 +4753,15 @@
     "hitFrame": 15
    },
    "victory": {
-    "file": "sprites/battle/rowan_victory_v3_s60.webp",
-    "frameWidth": 368,
-    "frameHeight": 206,
+    "file": "sprites/battle/rowan_victory_v4_s60.webp",
+    "frameWidth": 520,
+    "frameHeight": 302,
     "frames": 29,
     "fps": 24,
-    "originX": 0.3815,
-    "originY": 0.974,
-    "bodyHeight": 179.8,
-    "key": "rowan_victory_v3_s60",
+    "originX": 0.4462,
+    "originY": 0.9845,
+    "bodyHeight": 152.3,
+    "key": "rowan_victory_v4_s60",
     "hold": true
    }
   },
@@ -5221,16 +5210,16 @@
  "snow_wolf_leader": {
   "anims": {
    "attack": {
-    "file": "sprites/battle/snow_wolf_leader_attack_v3_s60.webp",
-    "frameWidth": 328,
-    "frameHeight": 184,
+    "file": "sprites/battle/snow_wolf_leader_attack_v4_s60.webp",
+    "frameWidth": 491,
+    "frameHeight": 293,
     "frames": 29,
     "fps": 24,
-    "originX": 0.6131,
-    "originY": 0.9939,
-    "bodyHeight": 180.2,
-    "key": "snow_wolf_leader_attack_v3_s60",
-    "hitFrame": 5
+    "originX": 0.5395,
+    "originY": 0.9954,
+    "bodyHeight": 165.5,
+    "key": "snow_wolf_leader_attack_v4_s60",
+    "hitFrame": 4
    },
    "death": {
     "file": "sprites/battle/snow_wolf_leader_death_v2_s60.webp",
@@ -5256,15 +5245,15 @@
     "key": "snow_wolf_leader_hit_v1_s60"
    },
    "idle": {
-    "file": "sprites/battle/snow_wolf_leader_idle_v4_s60.webp",
-    "frameWidth": 301,
-    "frameHeight": 169,
+    "file": "sprites/battle/snow_wolf_leader_idle_v5_s60.webp",
+    "frameWidth": 296,
+    "frameHeight": 176,
     "frames": 95,
     "fps": 24,
-    "originX": 0.6135,
-    "originY": 0.9954,
-    "bodyHeight": 165.5,
-    "key": "snow_wolf_leader_idle_v4_s60",
+    "originX": 0.5424,
+    "originY": 1.0039,
+    "bodyHeight": 100.3,
+    "key": "snow_wolf_leader_idle_v5_s60",
     "loop": true
    },
    "victory": {
