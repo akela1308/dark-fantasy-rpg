@@ -7,6 +7,7 @@ import { UIManager }    from '../ui/UIManager.js';
 import { MusicPlayer }    from '../ui/MusicPlayer.js';
 import { PortraitPanel, HAS_PORTRAIT } from '../ui/PortraitPanel.js';
 import { HpBar, preloadHpBar } from '../ui/HpBar.js';
+import { playFx, preloadBattleFx } from '../systems/BattleFx.js';
 import { battleBodyPx } from '../systems/UnitHeights.js';
 import { COLORS, XP, AI_DELAY } from '../utils/constants.js';
 import eventBus from '../utils/eventBus.js';
@@ -109,6 +110,7 @@ export class BattleScene extends Phaser.Scene {
 
   preload() {
     preloadHpBar(this);
+    preloadBattleFx(this);
     this._loadingScreen();
     const img = (key, path) => { if (!this.textures.exists(key)) this.load.image(key, path); };
     if (this._battleConfig?.backgroundKey && this._battleConfig?.backgroundPath) {
@@ -183,6 +185,7 @@ export class BattleScene extends Phaser.Scene {
     this.input.on('pointerdown', p => { if (p.rightButtonDown()) this._cancelPendingSkill(); });
     this.turnManager.init([...this.playerUnits, ...this.enemyUnits]);
     this._renderAll();
+    this.enemyUnits.forEach(u => this._react(u, 'enter'));   // появление боссов
     // Инициализируем плеер здесь (ассеты уже в кэше после LoadingScene)
     this.music = new MusicPlayer(this);
     this.music.create();
@@ -450,6 +453,7 @@ export class BattleScene extends Phaser.Scene {
   _actionAnim(unit, actionId) {
     if (!unit._animSprite?.active || !unit._animCfg) return null;
     const name = unit._animCfg.actions?.[actionId];
+    if (name === 'attack' && Math.random() < 0.4 && battleAnimReady(this, unit._animCfg, 'attack2')) return 'attack2';   // второй вариант удара
     return name && battleAnimReady(this, unit._animCfg, name) ? name : null;
   }
 
@@ -522,12 +526,20 @@ export class BattleScene extends Phaser.Scene {
   }
 
   // Вспышка и дым выстрела у дула (в спрайтах их нет, их рисует игра)
+  /** Эффект на уровне груди бойца (листы battle_fx, BattleFx.js). */
+  _fxAt(unit, name, scale) {
+    const spr = unit._animSprite;
+    if (!spr?.active) return;
+    playFx(this, name, spr.x, spr.y - (spr._bodyPx ?? 150) * 0.55, { scale, depth: spr.depth + 2, flip: unit.type === 'player' });
+  }
+
   _fxMuzzle(spr, a) {
     const s = spr.scaleX;
     const mxLocal = spr.flipX ? a.frameWidth - a.muzzle.x : a.muzzle.x;
     const mx = spr.x + (mxLocal - spr.originX * a.frameWidth) * s;
     const my = spr.y + (a.muzzle.y - spr.originY * a.frameHeight) * s;
     const d = spr.depth + 1;
+    playFx(this, 'smoke_puff', mx + (spr.flipX ? -30 : 30), my, { scale: 0.45, depth: d, alpha: 0.6 });
     const glow  = this.add.ellipse(mx + 6, my, 30, 16, 0xFFB040, 0.85).setDepth(d);
     const core  = this.add.ellipse(mx + 3, my, 12, 7, 0xFFF4C0, 1).setDepth(d + 0.1);
     this.tweens.add({
@@ -850,6 +862,7 @@ export class BattleScene extends Phaser.Scene {
         if (!this.battleOver && !this._furyUsed && hasFury(actor) && this.playerUnits.some(u => u.isAlive)) {
           this._furyUsed = true;
           eventBus.emit('log', `${actor.name} в ярости и бьёт ещё раз!`);
+          this._react(actor, 'roar');
           this._checkSurrenders();
           if (this._checkEnd()) return;
           this._runAITurn();
@@ -1179,17 +1192,20 @@ export class BattleScene extends Phaser.Scene {
     eventBus.on('unit_damaged', ({ unit, amount, isCrit }) => {
       if (unit.isAlive) this._react(unit, 'hit');
       this._animHit(unit, !!isCrit);
+      this._fxAt(unit, unit.armor >= 15 ? 'sparks' : 'blood_spray', isCrit ? 0.6 : 0.4);
       this._animDamageNumber(unit, amount, !!isCrit);
       this._updateHpBar(unit);
       if (!isCrit) this.cameras.main.shake(80, 0.002);
     });
 
     eventBus.on('unit_missed', ({ unit }) => {
+      this._react(unit, 'dodge');
       this._animMiss(unit);
     });
 
     eventBus.on('unit_healed', ({ unit }) => {
       this._animHeal(unit);
+      this._fxAt(unit, 'heal_motes', 0.6);
       this._updateHpBar(unit);
     });
 
@@ -1204,7 +1220,9 @@ export class BattleScene extends Phaser.Scene {
     eventBus.on('skill_selected', skillId => this._onSkillSelect(skillId));
 
     eventBus.on('commanders_roar', () => {
-      // Ярость союзникам выдаёт сам навык (SkillSystem), здесь только эффект камеры
+      // Ярость союзникам выдаёт сам навык (SkillSystem), здесь рёв и эффект камеры
+      const boss = this.turnManager.active;
+      if (boss) { this._react(boss, 'roar'); this._fxAt(boss, 'bell_wave', 0.9); }
       this.cameras.main.shake(350, 0.010);
     });
 
@@ -1225,7 +1243,7 @@ export class BattleScene extends Phaser.Scene {
       const unit = this.turnManager.active;
       if (!unit || unit.type !== 'player') return;
       unit.addEffect({ type: 'defending', value: 0.5, duration: 2 }); // duration=2: снимается после след. хода
-      this._react(unit, 'block');
+      if (!this._react(unit, 'guard')) this._react(unit, 'block');
       eventBus.emit('log', `${unit.label} встаёт в защиту: до следующего хода урон вдвое меньше`);
       this.turnManager.skipTurn(true);
       if (this._checkEnd()) return;

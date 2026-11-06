@@ -207,7 +207,14 @@
    }
   },
   "actions": {
-   "basic": "attack"
+   "basic": "attack",
+   "venom_bolt": "attack",
+   "spotter_mark": "attack",
+   "ordered_volley": "attack",
+   "royal_volley": "attack",
+   "overwatch": "attack",
+   "snare_trap": "attack",
+   "black_mire": "attack"
   },
   "name": "Бран, лучник-страж"
  },
@@ -463,7 +470,14 @@
    }
   },
   "actions": {
-   "basic": "attack"
+   "basic": "attack",
+   "venom_bolt": "attack",
+   "spotter_mark": "attack",
+   "ordered_volley": "attack",
+   "royal_volley": "attack",
+   "overwatch": "attack",
+   "snare_trap": "attack",
+   "black_mire": "attack"
   },
   "name": "Тисс (стрелок Корвина)"
  },
@@ -560,15 +574,15 @@
     "hitFrame": 10
    },
    "death": {
-    "file": "sprites/battle/bandit_brawler_death_v2_s60.webp",
-    "frameWidth": 360,
+    "file": "sprites/battle/bandit_brawler_death_v3_s60.webp",
+    "frameWidth": 362,
     "frameHeight": 203,
     "frames": 30,
     "fps": 24,
-    "originX": 0.3514,
+    "originX": 0.3497,
     "originY": 0.9796,
-    "bodyHeight": 180.0,
-    "key": "bandit_brawler_death_v2_s60",
+    "bodyHeight": 180.1,
+    "key": "bandit_brawler_death_v3_s60",
     "hold": true
    },
    "hit": {
@@ -595,7 +609,19 @@
     "loop": true
    },
    "victory": {
-    "file": "sprites/battle/bandit_brawler_victory_v2_s60.webp",
+    "file": "sprites/battle/bandit_brawler_victory_v3_s60.webp",
+    "frameWidth": 505,
+    "frameHeight": 284,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.3915,
+    "originY": 0.9848,
+    "bodyHeight": 179.9,
+    "key": "bandit_brawler_victory_v3_s60",
+    "hold": true
+   },
+   "attack2": {
+    "file": "sprites/battle/bandit_brawler_attack2_v1_s60.webp",
     "frameWidth": 458,
     "frameHeight": 284,
     "frames": 29,
@@ -603,8 +629,8 @@
     "originX": 0.4314,
     "originY": 0.9848,
     "bodyHeight": 179.8,
-    "key": "bandit_brawler_victory_v2_s60",
-    "hold": true
+    "key": "bandit_brawler_attack2_v1_s60",
+    "hitFrame": 12
    }
   },
   "actions": {
@@ -662,15 +688,15 @@
     "loop": true
    },
    "power": {
-    "file": "sprites/battle/bandit_commander_power_v2_s60.webp",
-    "frameWidth": 462,
-    "frameHeight": 282,
+    "file": "sprites/battle/bandit_commander_power_v3_s60.webp",
+    "frameWidth": 466,
+    "frameHeight": 259,
     "frames": 38,
     "fps": 24,
-    "originX": 0.436,
-    "originY": 0.9799,
-    "bodyHeight": 180.0,
-    "key": "bandit_commander_power_v2_s60",
+    "originX": 0.3975,
+    "originY": 0.9808,
+    "bodyHeight": 165.5,
+    "key": "bandit_commander_power_v3_s60",
     "hitFrame": 14
    },
    "victory": {
@@ -885,10 +911,46 @@
     "bodyHeight": 180.1,
     "key": "bear_shatun_victory_v2_s60",
     "hold": true
+   },
+   "attack2": {
+    "file": "sprites/battle/bear_shatun_attack2_v1_s60.webp",
+    "frameWidth": 481,
+    "frameHeight": 282,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4686,
+    "originY": 0.9797,
+    "bodyHeight": 180.1,
+    "key": "bear_shatun_attack2_v1_s60",
+    "hitFrame": 8
+   },
+   "roar": {
+    "file": "sprites/battle/bear_shatun_roar_v1_s60.webp",
+    "frameWidth": 481,
+    "frameHeight": 282,
+    "frames": 36,
+    "fps": 24,
+    "originX": 0.4686,
+    "originY": 0.9797,
+    "bodyHeight": 180.1,
+    "key": "bear_shatun_roar_v1_s60"
+   },
+   "enter": {
+    "file": "sprites/battle/bear_shatun_enter_v1_s60.webp",
+    "frameWidth": 481,
+    "frameHeight": 282,
+    "frames": 36,
+    "fps": 24,
+    "originX": 0.4686,
+    "originY": 0.9797,
+    "bodyHeight": 180.1,
+    "key": "bear_shatun_enter_v1_s60"
    }
   },
   "actions": {
-   "basic": "attack"
+   "basic": "attack",
+   "commanders_roar": "roar",
+   "boss_fury": "roar"
   },
   "name": "Медведь-шатун"
  },
@@ -1054,11 +1116,37 @@
     "bodyHeight": 179.9,
     "key": "brawler_victory_v2_s60",
     "hold": true
+   },
+   "guard": {
+    "file": "sprites/battle/brawler_guard_v1_s60.webp",
+    "frameWidth": 472,
+    "frameHeight": 277,
+    "frames": 22,
+    "fps": 24,
+    "originX": 0.448,
+    "originY": 0.9803,
+    "bodyHeight": 179.9,
+    "key": "brawler_guard_v1_s60"
+   },
+   "dodge": {
+    "file": "sprites/battle/brawler_dodge_v1_s60.webp",
+    "frameWidth": 472,
+    "frameHeight": 277,
+    "frames": 22,
+    "fps": 24,
+    "originX": 0.448,
+    "originY": 0.9803,
+    "bodyHeight": 179.9,
+    "key": "brawler_dodge_v1_s60"
    }
   },
   "actions": {
    "basic": "attack",
-   "heavy_strike": "power"
+   "heavy_strike": "power",
+   "sweep": "power",
+   "bonebreaker_finisher": "power",
+   "deaf_stance": "guard",
+   "last_bulwark": "guard"
   },
   "name": "Ворнаг (Боец)"
  },
@@ -1132,15 +1220,15 @@
  "cleaning_girl": {
   "anims": {
    "attack": {
-    "file": "sprites/battle/cleaning_girl_attack_v2_s60.webp",
-    "frameWidth": 479,
+    "file": "sprites/battle/cleaning_girl_attack_v3_s60.webp",
+    "frameWidth": 534,
     "frameHeight": 291,
     "frames": 29,
     "fps": 24,
-    "originX": 0.4558,
+    "originX": 0.4086,
     "originY": 0.9817,
-    "bodyHeight": 180.1,
-    "key": "cleaning_girl_attack_v2_s60",
+    "bodyHeight": 180.0,
+    "key": "cleaning_girl_attack_v3_s60",
     "hitFrame": 12
    },
    "death": {
@@ -1512,6 +1600,30 @@
     "bodyHeight": 180.2,
     "key": "drowned_victory_v2_s60",
     "hold": true
+   },
+   "attack2": {
+    "file": "sprites/battle/drowned_attack2_v1_s60.webp",
+    "frameWidth": 478,
+    "frameHeight": 267,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4613,
+    "originY": 0.9791,
+    "bodyHeight": 180.2,
+    "key": "drowned_attack2_v1_s60",
+    "hitFrame": 4
+   },
+   "attack": {
+    "file": "sprites/battle/drowned_attack_v1_s60.webp",
+    "frameWidth": 478,
+    "frameHeight": 267,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4613,
+    "originY": 0.9791,
+    "bodyHeight": 180.2,
+    "key": "drowned_attack_v1_s60",
+    "hitFrame": 7
    }
   },
   "actions": {},
@@ -1694,6 +1806,28 @@
      "x": 142.7,
      "y": 31.2
     }
+   },
+   "dodge": {
+    "file": "sprites/battle/duelist_dodge_v1_s60.webp",
+    "frameWidth": 465,
+    "frameHeight": 262,
+    "frames": 22,
+    "fps": 24,
+    "originX": 0.4567,
+    "originY": 0.9911,
+    "bodyHeight": 180.0,
+    "key": "duelist_dodge_v1_s60"
+   },
+   "salute": {
+    "file": "sprites/battle/duelist_salute_v1_s60.webp",
+    "frameWidth": 331,
+    "frameHeight": 190,
+    "frames": 32,
+    "fps": 24,
+    "originX": 0.4504,
+    "originY": 0.9882,
+    "bodyHeight": 182.6,
+    "key": "duelist_salute_v1_s60"
    }
   },
   "actions": {
@@ -1702,7 +1836,8 @@
    "dueling_stance": "block",
    "last_argument_shot": "shot",
    "pistol_shot": "shot",
-   "aimed_shot": "shot"
+   "aimed_shot": "shot",
+   "two_barrels": "shot"
   },
   "name": "Падший Дуэлянт"
  },
@@ -1720,7 +1855,7 @@
     "key": "dwarf_amb2_v1_s60"
    },
    "attack": {
-    "file": "sprites/battle/dwarf_attack_v2_s60.webp",
+    "file": "sprites/battle/dwarf_attack_v3_s60.webp",
     "frameWidth": 376,
     "frameHeight": 206,
     "frames": 28,
@@ -1728,7 +1863,7 @@
     "originX": 0.3893,
     "originY": 0.9717,
     "bodyHeight": 180.2,
-    "key": "dwarf_attack_v2_s60",
+    "key": "dwarf_attack_v3_s60",
     "hitFrame": 8
    },
    "death": {
@@ -1744,15 +1879,15 @@
     "hold": true
    },
    "hit": {
-    "file": "sprites/battle/dwarf_hit_v2_s60.webp",
-    "frameWidth": 326,
+    "file": "sprites/battle/dwarf_hit_v3_s60.webp",
+    "frameWidth": 376,
     "frameHeight": 206,
     "frames": 14,
     "fps": 24,
-    "originX": 0.4488,
+    "originX": 0.3893,
     "originY": 0.9717,
-    "bodyHeight": 180.1,
-    "key": "dwarf_hit_v2_s60"
+    "bodyHeight": 180.2,
+    "key": "dwarf_hit_v3_s60"
    },
    "idle": {
     "file": "sprites/battle/dwarf_idle_v1_s60.webp",
@@ -1933,7 +2068,7 @@
  "dwarf_beer3": {
   "anims": {
    "attack": {
-    "file": "sprites/battle/dwarf_beer3_attack_v2_s60.webp",
+    "file": "sprites/battle/dwarf_beer3_attack_v3_s60.webp",
     "frameWidth": 362,
     "frameHeight": 204,
     "frames": 29,
@@ -1941,7 +2076,7 @@
     "originX": 0.379,
     "originY": 0.9893,
     "bodyHeight": 179.8,
-    "key": "dwarf_beer3_attack_v2_s60",
+    "key": "dwarf_beer3_attack_v3_s60",
     "hitFrame": 6
    },
    "death": {
@@ -1957,15 +2092,15 @@
     "hold": true
    },
    "hit": {
-    "file": "sprites/battle/dwarf_beer3_hit_v3_s60.webp",
-    "frameWidth": 317,
+    "file": "sprites/battle/dwarf_beer3_hit_v4_s60.webp",
+    "frameWidth": 362,
     "frameHeight": 204,
     "frames": 13,
     "fps": 24,
-    "originX": 0.4335,
+    "originX": 0.379,
     "originY": 0.9893,
-    "bodyHeight": 180.1,
-    "key": "dwarf_beer3_hit_v3_s60"
+    "bodyHeight": 179.8,
+    "key": "dwarf_beer3_hit_v4_s60"
    },
    "idle": {
     "file": "sprites/battle/dwarf_beer3_idle_v1_s60.webp",
@@ -2168,15 +2303,15 @@
     "hitFrame": 10
    },
    "death": {
-    "file": "sprites/battle/forgotten_warden_death_v2_s60.webp",
-    "frameWidth": 454,
+    "file": "sprites/battle/forgotten_warden_death_v3_s60.webp",
+    "frameWidth": 478,
     "frameHeight": 269,
     "frames": 30,
     "fps": 24,
-    "originX": 0.4265,
+    "originX": 0.405,
     "originY": 0.9836,
     "bodyHeight": 180.2,
-    "key": "forgotten_warden_death_v2_s60",
+    "key": "forgotten_warden_death_v3_s60",
     "hold": true
    },
    "hit": {
@@ -2280,10 +2415,35 @@
     "bodyHeight": 179.9,
     "key": "frontier_beast_victory_v2_s60",
     "hold": true
+   },
+   "roar": {
+    "file": "sprites/battle/frontier_beast_roar_v1_s60.webp",
+    "frameWidth": 424,
+    "frameHeight": 256,
+    "frames": 36,
+    "fps": 24,
+    "originX": 0.3866,
+    "originY": 0.9923,
+    "bodyHeight": 179.9,
+    "key": "frontier_beast_roar_v1_s60"
+   },
+   "attack2": {
+    "file": "sprites/battle/frontier_beast_attack2_v1_s60.webp",
+    "frameWidth": 424,
+    "frameHeight": 256,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.3866,
+    "originY": 0.9923,
+    "bodyHeight": 179.9,
+    "key": "frontier_beast_attack2_v1_s60",
+    "hitFrame": 7
    }
   },
   "actions": {
-   "basic": "attack"
+   "basic": "attack",
+   "commanders_roar": "roar",
+   "boss_fury": "roar"
   },
   "name": "Предел"
  },
@@ -2548,6 +2708,18 @@
     "bodyHeight": 179.8,
     "key": "grey_wolf_victory_v2_s60",
     "hold": true
+   },
+   "attack2": {
+    "file": "sprites/battle/grey_wolf_attack2_v1_s60.webp",
+    "frameWidth": 434,
+    "frameHeight": 267,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.5187,
+    "originY": 0.9792,
+    "bodyHeight": 180.1,
+    "key": "grey_wolf_attack2_v1_s60",
+    "hitFrame": 7
    }
   },
   "actions": {
@@ -2694,6 +2866,18 @@
     "bodyHeight": 180.0,
     "key": "hanged_victory_v1_s60",
     "hold": true
+   },
+   "attack2": {
+    "file": "sprites/battle/hanged_attack2_v1_s60.webp",
+    "frameWidth": 454,
+    "frameHeight": 268,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4256,
+    "originY": 0.9796,
+    "bodyHeight": 180.2,
+    "key": "hanged_attack2_v1_s60",
+    "hitFrame": 6
    }
   },
   "actions": {
@@ -2795,6 +2979,17 @@
     "bodyHeight": 180.2,
     "key": "healer_victory_v1_s60",
     "hold": true
+   },
+   "dodge": {
+    "file": "sprites/battle/healer_dodge_v1_s60.webp",
+    "frameWidth": 466,
+    "frameHeight": 269,
+    "frames": 22,
+    "fps": 24,
+    "originX": 0.4839,
+    "originY": 0.9777,
+    "bodyHeight": 180.2,
+    "key": "healer_dodge_v1_s60"
    }
   },
   "actions": {
@@ -2802,7 +2997,9 @@
    "bandage": "cast2",
    "bitter_poultice": "cast2",
    "resin_brew": "cast2",
-   "salt_tongue": "cast2"
+   "salt_tongue": "cast2",
+   "last_tincture": "cast2",
+   "dope_all": "cast2"
   },
   "name": "Тая (Знахарка)"
  },
@@ -2880,7 +3077,14 @@
    }
   },
   "actions": {
-   "basic": "attack"
+   "basic": "attack",
+   "venom_bolt": "attack",
+   "spotter_mark": "attack",
+   "ordered_volley": "attack",
+   "royal_volley": "attack",
+   "overwatch": "reload",
+   "snare_trap": "reload",
+   "black_mire": "reload"
   },
   "name": "Хольт, следопыт"
  },
@@ -3096,6 +3300,18 @@
     "bodyHeight": 165.5,
     "key": "kobold_idle_v1_s60",
     "loop": true
+   },
+   "victory": {
+    "file": "sprites/battle/kobold_victory_v1_s60.webp",
+    "hold": true,
+    "frameWidth": 476,
+    "frameHeight": 268,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4534,
+    "originY": 0.9781,
+    "bodyHeight": 180.1,
+    "key": "kobold_victory_v1_s60"
    }
   },
   "actions": {
@@ -3163,10 +3379,35 @@
     "bodyHeight": 180.0,
     "key": "leshy_victory_v2_s60",
     "hold": true
+   },
+   "attack2": {
+    "file": "sprites/battle/leshy_attack2_v1_s60.webp",
+    "frameWidth": 450,
+    "frameHeight": 260,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4213,
+    "originY": 0.9836,
+    "bodyHeight": 180.0,
+    "key": "leshy_attack2_v1_s60",
+    "hitFrame": 5
+   },
+   "roar": {
+    "file": "sprites/battle/leshy_roar_v1_s60.webp",
+    "frameWidth": 450,
+    "frameHeight": 260,
+    "frames": 36,
+    "fps": 24,
+    "originX": 0.4213,
+    "originY": 0.9836,
+    "bodyHeight": 180.0,
+    "key": "leshy_roar_v1_s60"
    }
   },
   "actions": {
-   "basic": "attack"
+   "basic": "attack",
+   "commanders_roar": "roar",
+   "boss_fury": "roar"
   },
   "name": "Леший (бестиарий)"
  },
@@ -3230,10 +3471,46 @@
     "bodyHeight": 180.0,
     "key": "likho_victory_v1_s60",
     "hold": true
+   },
+   "attack2": {
+    "file": "sprites/battle/likho_attack2_v1_s60.webp",
+    "frameWidth": 455,
+    "frameHeight": 274,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4283,
+    "originY": 0.9847,
+    "bodyHeight": 179.8,
+    "key": "likho_attack2_v1_s60",
+    "hitFrame": 5
+   },
+   "enter": {
+    "file": "sprites/battle/likho_enter_v1_s60.webp",
+    "frameWidth": 455,
+    "frameHeight": 274,
+    "frames": 36,
+    "fps": 24,
+    "originX": 0.4283,
+    "originY": 0.9847,
+    "bodyHeight": 179.8,
+    "key": "likho_enter_v1_s60"
+   },
+   "roar": {
+    "file": "sprites/battle/likho_roar_v1_s60.webp",
+    "frameWidth": 455,
+    "frameHeight": 274,
+    "frames": 36,
+    "fps": 24,
+    "originX": 0.4283,
+    "originY": 0.9847,
+    "bodyHeight": 179.8,
+    "key": "likho_roar_v1_s60"
    }
   },
   "actions": {
-   "basic": "attack"
+   "basic": "attack",
+   "commanders_roar": "roar",
+   "boss_fury": "roar"
   },
   "name": "likho"
  },
@@ -3647,7 +3924,7 @@
     "loop": true
    },
    "victory": {
-    "file": "sprites/battle/merc_pikeman_victory_v2_s60.webp",
+    "file": "sprites/battle/merc_pikeman_victory_v3_s60.webp",
     "frameWidth": 346,
     "frameHeight": 194,
     "frames": 29,
@@ -3655,7 +3932,7 @@
     "originX": 0.3996,
     "originY": 0.9718,
     "bodyHeight": 180.2,
-    "key": "merc_pikeman_victory_v2_s60",
+    "key": "merc_pikeman_victory_v3_s60",
     "hold": true
    }
   },
@@ -3858,10 +4135,23 @@
     "bodyHeight": 180.2,
     "key": "moroz_victory_v2_s60",
     "hold": true
+   },
+   "roar": {
+    "file": "sprites/battle/moroz_roar_v1_s60.webp",
+    "frameWidth": 466,
+    "frameHeight": 262,
+    "frames": 36,
+    "fps": 24,
+    "originX": 0.4836,
+    "originY": 0.9881,
+    "bodyHeight": 180.2,
+    "key": "moroz_roar_v1_s60"
    }
   },
   "actions": {
-   "basic": "attack"
+   "basic": "attack",
+   "commanders_roar": "roar",
+   "boss_fury": "roar"
   },
   "name": "Мороз"
  },
@@ -3902,6 +4192,18 @@
     "bodyHeight": 179.9,
     "key": "mountain_king_power_v2_s60",
     "hitFrame": 20
+   },
+   "victory": {
+    "file": "sprites/battle/mountain_king_victory_v1_s60.webp",
+    "hold": true,
+    "frameWidth": 448,
+    "frameHeight": 260,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.419,
+    "originY": 0.9931,
+    "bodyHeight": 179.9,
+    "key": "mountain_king_victory_v1_s60"
    }
   },
   "actions": {
@@ -4462,15 +4764,15 @@
     "hitFrame": 15
    },
    "victory": {
-    "file": "sprites/battle/rowan_victory_v2_s60.webp",
-    "frameWidth": 320,
+    "file": "sprites/battle/rowan_victory_v3_s60.webp",
+    "frameWidth": 368,
     "frameHeight": 206,
     "frames": 29,
     "fps": 24,
-    "originX": 0.4387,
+    "originX": 0.3815,
     "originY": 0.974,
     "bodyHeight": 179.8,
-    "key": "rowan_victory_v2_s60",
+    "key": "rowan_victory_v3_s60",
     "hold": true
    }
   },
@@ -4752,6 +5054,28 @@
     "bodyHeight": 179.9,
     "key": "shield_victory_v2_s60",
     "hold": true
+   },
+   "guard": {
+    "file": "sprites/battle/shield_guard_v1_s60.webp",
+    "frameWidth": 475,
+    "frameHeight": 281,
+    "frames": 22,
+    "fps": 24,
+    "originX": 0.4517,
+    "originY": 0.98,
+    "bodyHeight": 179.9,
+    "key": "shield_guard_v1_s60"
+   },
+   "hit": {
+    "file": "sprites/battle/shield_hit_v1_s60.webp",
+    "frameWidth": 475,
+    "frameHeight": 281,
+    "frames": 14,
+    "fps": 24,
+    "originX": 0.4517,
+    "originY": 0.98,
+    "bodyHeight": 179.9,
+    "key": "shield_hit_v1_s60"
    }
   },
   "actions": {
@@ -4897,7 +5221,7 @@
  "snow_wolf_leader": {
   "anims": {
    "attack": {
-    "file": "sprites/battle/snow_wolf_leader_attack_v2_s60.webp",
+    "file": "sprites/battle/snow_wolf_leader_attack_v3_s60.webp",
     "frameWidth": 328,
     "frameHeight": 184,
     "frames": 29,
@@ -4905,7 +5229,7 @@
     "originX": 0.6131,
     "originY": 0.9939,
     "bodyHeight": 180.2,
-    "key": "snow_wolf_leader_attack_v2_s60",
+    "key": "snow_wolf_leader_attack_v3_s60",
     "hitFrame": 5
    },
    "death": {
@@ -4932,7 +5256,7 @@
     "key": "snow_wolf_leader_hit_v1_s60"
    },
    "idle": {
-    "file": "sprites/battle/snow_wolf_leader_idle_v3_s60.webp",
+    "file": "sprites/battle/snow_wolf_leader_idle_v4_s60.webp",
     "frameWidth": 301,
     "frameHeight": 169,
     "frames": 95,
@@ -4940,7 +5264,7 @@
     "originX": 0.6135,
     "originY": 0.9954,
     "bodyHeight": 165.5,
-    "key": "snow_wolf_leader_idle_v3_s60",
+    "key": "snow_wolf_leader_idle_v4_s60",
     "loop": true
    },
    "victory": {
@@ -4976,15 +5300,15 @@
     "hitFrame": 23
    },
    "death": {
-    "file": "sprites/battle/stone_guard_death_v2_s60.webp",
-    "frameWidth": 457,
+    "file": "sprites/battle/stone_guard_death_v3_s60.webp",
+    "frameWidth": 502,
     "frameHeight": 282,
     "frames": 30,
     "fps": 24,
-    "originX": 0.4294,
+    "originX": 0.3909,
     "originY": 0.9846,
-    "bodyHeight": 180.2,
-    "key": "stone_guard_death_v2_s60",
+    "bodyHeight": 180.1,
+    "key": "stone_guard_death_v3_s60",
     "hold": true
    },
    "hit": {
@@ -5247,7 +5571,13 @@
    }
   },
   "actions": {
-   "basic": "attack"
+   "basic": "attack",
+   "blood_loan": "attack",
+   "bad_blood": "attack",
+   "black_chant": "attack",
+   "final_pact": "attack",
+   "unspoken_name": "attack",
+   "guilt_brand": "attack"
   },
   "name": "Ресса в бою (арт swamp_elf_battle)"
  },
@@ -5323,10 +5653,23 @@
     "bodyHeight": 180.1,
     "key": "swamp_knight_victory_v2_s60",
     "hold": true
+   },
+   "roar": {
+    "file": "sprites/battle/swamp_knight_roar_v1_s60.webp",
+    "frameWidth": 479,
+    "frameHeight": 293,
+    "frames": 36,
+    "fps": 24,
+    "originX": 0.4558,
+    "originY": 0.9807,
+    "bodyHeight": 180.1,
+    "key": "swamp_knight_roar_v1_s60"
    }
   },
   "actions": {
-   "basic": "attack"
+   "basic": "attack",
+   "commanders_roar": "roar",
+   "boss_fury": "roar"
   },
   "name": "Болотный рыцарь"
  },
@@ -5491,15 +5834,15 @@
     "hitFrame": 17
    },
    "death": {
-    "file": "sprites/battle/troll_ugryum_death_v2_s60.webp",
-    "frameWidth": 453,
+    "file": "sprites/battle/troll_ugryum_death_v3_s60.webp",
+    "frameWidth": 483,
     "frameHeight": 271,
     "frames": 30,
     "fps": 24,
-    "originX": 0.4244,
+    "originX": 0.3981,
     "originY": 0.9879,
     "bodyHeight": 180.0,
-    "key": "troll_ugryum_death_v2_s60",
+    "key": "troll_ugryum_death_v3_s60",
     "hold": true
    },
    "hit": {
@@ -5536,10 +5879,34 @@
     "bodyHeight": 180.0,
     "key": "troll_ugryum_victory_v2_s60",
     "hold": true
+   },
+   "roar": {
+    "file": "sprites/battle/troll_ugryum_roar_v1_s60.webp",
+    "frameWidth": 453,
+    "frameHeight": 271,
+    "frames": 36,
+    "fps": 24,
+    "originX": 0.4244,
+    "originY": 0.9879,
+    "bodyHeight": 180.0,
+    "key": "troll_ugryum_roar_v1_s60"
+   },
+   "enter": {
+    "file": "sprites/battle/troll_ugryum_enter_v1_s60.webp",
+    "frameWidth": 453,
+    "frameHeight": 271,
+    "frames": 36,
+    "fps": 24,
+    "originX": 0.4244,
+    "originY": 0.9879,
+    "bodyHeight": 180.0,
+    "key": "troll_ugryum_enter_v1_s60"
    }
   },
   "actions": {
-   "basic": "attack"
+   "basic": "attack",
+   "commanders_roar": "roar",
+   "boss_fury": "roar"
   },
   "name": "Угрюм, горный тролль"
  },
@@ -5745,10 +6112,35 @@
     "bodyHeight": 180.0,
     "key": "whisperer_victory_v2_s60",
     "hold": true
+   },
+   "roar": {
+    "file": "sprites/battle/whisperer_roar_v1_s60.webp",
+    "frameWidth": 465,
+    "frameHeight": 264,
+    "frames": 36,
+    "fps": 24,
+    "originX": 0.44,
+    "originY": 0.9838,
+    "bodyHeight": 180.0,
+    "key": "whisperer_roar_v1_s60"
+   },
+   "attack2": {
+    "file": "sprites/battle/whisperer_attack2_v1_s60.webp",
+    "frameWidth": 465,
+    "frameHeight": 264,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.44,
+    "originY": 0.9838,
+    "bodyHeight": 180.0,
+    "key": "whisperer_attack2_v1_s60",
+    "hitFrame": 13
    }
   },
   "actions": {
-   "basic": "attack"
+   "basic": "attack",
+   "commanders_roar": "roar",
+   "boss_fury": "roar"
   },
   "name": "Шептун"
  },
@@ -5812,6 +6204,18 @@
     "bodyHeight": 179.9,
     "key": "wild_dog_victory_v1_s60",
     "hold": true
+   },
+   "attack2": {
+    "file": "sprites/battle/wild_dog_attack2_v1_s60.webp",
+    "frameWidth": 467,
+    "frameHeight": 303,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4822,
+    "originY": 0.9811,
+    "bodyHeight": 180.1,
+    "key": "wild_dog_attack2_v1_s60",
+    "hitFrame": 11
    }
   },
   "actions": {
@@ -5968,6 +6372,29 @@
     "bodyHeight": 165.0,
     "key": "winter_girl_idle_v1_s60",
     "loop": true
+   },
+   "hit": {
+    "file": "sprites/battle/winter_girl_hit_v1_s60.webp",
+    "frameWidth": 485,
+    "frameHeight": 287,
+    "frames": 14,
+    "fps": 24,
+    "originX": 0.4637,
+    "originY": 0.9801,
+    "bodyHeight": 179.9,
+    "key": "winter_girl_hit_v1_s60"
+   },
+   "victory": {
+    "file": "sprites/battle/winter_girl_victory_v1_s60.webp",
+    "hold": true,
+    "frameWidth": 485,
+    "frameHeight": 287,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4637,
+    "originY": 0.9801,
+    "bodyHeight": 179.9,
+    "key": "winter_girl_victory_v1_s60"
    }
   },
   "actions": {
@@ -6046,6 +6473,18 @@
     "bodyHeight": 180.1,
     "key": "winter_monster_power_v2_s60",
     "hitFrame": 20
+   },
+   "victory": {
+    "file": "sprites/battle/winter_monster_victory_v1_s60.webp",
+    "hold": true,
+    "frameWidth": 458,
+    "frameHeight": 257,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4393,
+    "originY": 0.9899,
+    "bodyHeight": 180.1,
+    "key": "winter_monster_victory_v1_s60"
    }
   },
   "actions": {
@@ -6111,9 +6550,58 @@
     "bodyHeight": 165.1,
     "key": "winter_queen_idle_v1_s60",
     "loop": true
+   },
+   "roar": {
+    "file": "sprites/battle/winter_queen_roar_v1_s60.webp",
+    "frameWidth": 463,
+    "frameHeight": 269,
+    "frames": 36,
+    "fps": 24,
+    "originX": 0.4862,
+    "originY": 0.9777,
+    "bodyHeight": 179.9,
+    "key": "winter_queen_roar_v1_s60"
+   },
+   "enter": {
+    "file": "sprites/battle/winter_queen_enter_v1_s60.webp",
+    "frameWidth": 463,
+    "frameHeight": 269,
+    "frames": 36,
+    "fps": 24,
+    "originX": 0.4862,
+    "originY": 0.9777,
+    "bodyHeight": 179.9,
+    "key": "winter_queen_enter_v1_s60"
+   },
+   "attack": {
+    "file": "sprites/battle/winter_queen_attack_v1_s60.webp",
+    "frameWidth": 463,
+    "frameHeight": 269,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4862,
+    "originY": 0.9777,
+    "bodyHeight": 179.9,
+    "key": "winter_queen_attack_v1_s60",
+    "hitFrame": 15
+   },
+   "victory": {
+    "file": "sprites/battle/winter_queen_victory_v1_s60.webp",
+    "hold": true,
+    "frameWidth": 463,
+    "frameHeight": 269,
+    "frames": 29,
+    "fps": 24,
+    "originX": 0.4862,
+    "originY": 0.9777,
+    "bodyHeight": 179.9,
+    "key": "winter_queen_victory_v1_s60"
    }
   },
-  "actions": {},
+  "actions": {
+   "commanders_roar": "roar",
+   "boss_fury": "roar"
+  },
   "name": "Зимняя королева"
  },
  "wolfolak": {

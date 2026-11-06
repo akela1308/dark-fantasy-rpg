@@ -31,7 +31,7 @@ export function getBattleAnimConfig(unitId) {
  * Загрузка листов только для юнитов этого боя. first = true: стойка и урон (нужны сразу, BattleScene.preload),
  * first = false: остальное (удары, смерть, победа), догружается в фоне уже во время боя.
  */
-const FIRST = ['idle', 'hit'];
+const FIRST = ['idle', 'hit', 'enter'];
 export function loadBattleAnimSheets(scene, unitIds, first = true) {
   let queued = 0;
   unitIds.forEach(id => {
