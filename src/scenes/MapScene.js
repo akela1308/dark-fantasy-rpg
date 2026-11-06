@@ -1,3 +1,4 @@
+import cinema from '../data/cinema.json';
 import { knowledgePages } from '../ui/BookKnowledge.js';
 import * as Phaser from 'phaser/dist/phaser.esm.js';
 
@@ -83,6 +84,7 @@ export class MapScene extends Phaser.Scene {
     this._transitioning = false;
     // Сцена переиспользуется: окна прошлой карты уничтожены вместе с ней, ссылки на них сбрасываем
     this._journalObjs   = null;
+    this._partyPortraits = null;
     this._doorTimer = null;
     this._doorTarget = null;
     this._extraFollowers = [];   // сцена переиспользуется: спрайты прошлого запуска уже уничтожены
@@ -119,8 +121,9 @@ export class MapScene extends Phaser.Scene {
     // Клампим спавн на случай если он вне walkable зоны
     const spawn = this.walkable.clamp(rawSpawn.x, rawSpawn.y);
 
-    // В интерьерах и пещерах все персонажи одного, чуть большего роста (src/data/heights.json, map)
-    const s = this._charScale = (cfg.kind === 'interior' || cfg.kind === 'cave') ? HEIGHTS.map.interiorScale : 1;
+    // В интерьерах и пещерах все персонажи одного, чуть большего роста (src/data/heights.json, map).
+    // charScale карты: она нарисована дальше обычного (Д34), рост фигур уменьшается под её дома и двери
+    const s = this._charScale = cfg.charScale ?? ((cfg.kind === 'interior' || cfg.kind === 'cave') ? HEIGHTS.map.interiorScale : 1);
     this.hero    = new MapUnit(this, spawn.x,       spawn.y, 'map_hero',    { height: Math.round(130 * s), speed: 130, idlePeriod: 2800, paperdoll: false, walkSpriteKey: 'map_hero_walk_side', walkFrames: 29, walkFrameRate: 24, walkFrameContentHeight: 251, idleSpriteKey: 'map_hero_stand', idleFrames: 96, idleFrameRate: 24, idleFrameContentHeight: 251, idleOriginX: 0.56 });
     this.brawler = new MapUnit(this, spawn.x - 65,  spawn.y, 'map_brawler', { height: Math.round(136 * s), speed: 130, idlePeriod: 3400, paperdoll: false, walkSpriteKey: 'map_brawler_walk_v4', walkFrames: 23, walkFrameRate: 24, walkFrameContentHeight: 251, idleSpriteKey: 'map_brawler_stand_v1', idleFrames: 95, idleFrameRate: 24, idleFrameContentHeight: 251 });
     this.healer  = new MapUnit(this, spawn.x - 120, spawn.y, 'map_healer',  { height: Math.round(128 * s), speed: 130, idlePeriod: 2200, paperdoll: false, walkSpriteKey: 'map_healer_walk_v3', walkFrames: 25, walkFrameRate: 24, walkFrameContentHeight: 274, idleSpriteKey: 'map_healer_stand_v1', idleFrames: 95, idleFrameRate: 24, idleFrameContentHeight: 274 }); // 274: в высоту кадра входит посох выше головы
@@ -234,6 +237,7 @@ export class MapScene extends Phaser.Scene {
 
     // Esc: если открытых окон нет, открывает «Меню» (открытое окно Esc закрывает само)
     this.input.keyboard.on('keydown-ESC', () => {
+      if (this._bookOverlay && !this._transitioning) { this._closeBookReader?.(); return; }
       if (Frame.current(this) || this._dialogue?.active || this._bookOverlay || this._transitioning) return;
       if (this.time.now - (this._dialogue?._closedAt ?? -1e9) < 150) return;   // тот же Esc только что закрыл разговор
       if (this._charSheetOpen) { this._hideCharSheet(); return; }
@@ -334,7 +338,7 @@ export class MapScene extends Phaser.Scene {
 
     // Safety-net: если герой стоит - компаньоны гарантированно в idle (дышат, не шатаются)
     if (!this.hero.moving) {
-      [this.brawler, this.healer].forEach(u => {
+      [this.brawler, this.healer, ...(this._extraFollowers || []).map(f => f.unit)].forEach(u => {
         if (u.moving || u._bobTween) {
           u.moving = false;
           u._stopWalkAnim();
@@ -409,6 +413,7 @@ export class MapScene extends Phaser.Scene {
         if (u._container) u._container.setVisible(vis);
       }
     });
+    if (this._partyPortraits) this._buildPartyPortraits();   // состав сменился прямо на карте
   }
 
   /**
@@ -470,11 +475,9 @@ export class MapScene extends Phaser.Scene {
 
   _separateParty() {
     const MIN = 55;
-    const pairs = [
-      [this.hero, this.brawler],
-      [this.hero, this.healer],
-      [this.brawler, this.healer],
-    ];
+    // Только видимые: спрайт спутника вне отряда стоит на точке входа и не должен никого толкать
+    const group = [this.hero, this.brawler, this.healer, ...(this._extraFollowers || []).map(f => f.unit)].filter(u => !u._hidden);
+    const pairs = group.flatMap((a, i) => group.slice(i + 1).map(b => [a, b]));
     for (const [a, b] of pairs) {
       const dx = b.sprite.x - a.sprite.x;
       const dy = b.sprite.y - a.sprite.y;
@@ -1494,7 +1497,10 @@ export class MapScene extends Phaser.Scene {
       chapterEnd: () => this.time.delayedCall(300, () => {
         SaveSystem.saveWorld(reg, this.mapKey, this.spawnId);
         this._transitioning = true;
-        this.scene.start('ChapterEndScene', { fromMapKey: 'tavern_map', fromSpawnId: 'tavern_exit' });
+        this.scene.start('CinemaScene', {
+          id: reg.get('seal_worn') ? 'end_seal' : 'end_road',
+          next: 'ChapterEndScene', nextData: { fromMapKey: 'tavern_map', fromSpawnId: 'tavern_exit' },
+        });
       }),
       openParty: () => this._showPartyManager(),
       openShop: id => this.time.delayedCall(80, () => this._openShop(id)),
@@ -1892,6 +1898,8 @@ export class MapScene extends Phaser.Scene {
   // ─── Labels (hover-надписи для зданий и развилок) ────────────────────────
 
   _setupLabels(cfg) {
+    // Выходы подписывает ExitMarkers. Старые labels карты с шаблонными зонами всплывали не у своих выходов (Д46)
+    if (cfg.exits?.length) return;
     (cfg.labels || []).forEach(lbl => {
       const txt = this.add.text(lbl.screenX, lbl.screenY, lbl.text, {
         fontFamily: 'serif',
@@ -2006,10 +2014,13 @@ export class MapScene extends Phaser.Scene {
     SaveSystem.updatePosition(mapKey, spawnId);
     this.cameras.main.fade(600, 0, 0, 0, false, (cam, progress) => {
       if (progress === 1) {
-        this.scene.start('LoadingScene', {
-          destination:     'MapScene',
-          destinationData: { mapKey, spawnId },
-        });
+        const load = { destination: 'MapScene', destinationData: { mapKey, spawnId } };
+        // Первый вход в новую землю: короткий ролик (src/data/cinema.json), отмечается один раз
+        const id = Object.keys(cinema).find(k => cinema[k].map === mapKey);
+        if (id && !this.game.registry.get(`cine_${id}`)) {
+          this.game.registry.set(`cine_${id}`, true);
+          this.scene.start('CinemaScene', { id, next: 'LoadingScene', nextData: load });
+        } else this.scene.start('LoadingScene', load);
       }
     });
   }
@@ -2062,10 +2073,9 @@ export class MapScene extends Phaser.Scene {
     });
   }
 
-  _buildHUD(cfg) {
-    // Подсказка «Кликни чтобы идти» убрана (раунд 2: мельче 11 px и налезала на имя собеседника)
-
-    // ── Портреты партии ───────────────────────────────────────────────
+  _buildPartyPortraits() {
+    (this._partyPortraits || []).forEach(o => o.destroy());
+    this._partyPortraits = [];
     // Позиционированы по аннотации:
     //   Экран: x=0–120px, y=180–555px
     //   zoom=0.765 → world = screen/0.765
@@ -2083,10 +2093,16 @@ export class MapScene extends Phaser.Scene {
       const cx = startX + i * gapX;
       const img = this.add.image(cx, cy, p.key).setDepth(UI_DEPTH).setScrollFactor(0).setInteractive();
       img.setScale(Math.min(cardW / img.width, cardH / img.height));
-      this.add.text(cx, cy + cardH / 2 + 12, p.label, {
+      const name = this.add.text(cx, cy + cardH / 2 + 12, p.label, {
         fontSize: '15px', color: '#BBBBAA', fontFamily: 'serif', stroke: '#000000', strokeThickness: 3,
       }).setOrigin(0.5, 0.5).setDepth(UI_DEPTH).setScrollFactor(0);
+      this._partyPortraits.push(img, name);
     });
+  }
+
+  _buildHUD(cfg) {
+    // Подсказка «Кликни чтобы идти» убрана (раунд 2: мельче 11 px и налезала на имя собеседника)
+    this._buildPartyPortraits();
 
     // Hover-портреты бандитов (командир + воин + арбалетчик)
     if (cfg.bandits) {
@@ -2538,6 +2554,7 @@ export class MapScene extends Phaser.Scene {
       group.clear(true, true);
       this._bookOverlay = null;
     };
+    this._closeBookReader = closeReader;
 
     const overlay = add(this.add.rectangle(s(640), s(360), s(1280), s(720), 0x000000, 0.82)
       .setDepth(DEPTH).setScrollFactor(0).setInteractive());

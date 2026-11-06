@@ -44,8 +44,8 @@
     },
     "c": {
       "speaker": "narrator",
-      "text": "Мародёры уходят с мешком. Боя нет.",
-      "effects": { "setFlag": ["looters_spared", "road_looters_done"], "giveXp": "battle:road_looters" }
+      "text": "Мародёры уходят с мешком. Боя нет. На телеге остался пустой футляр для писем с имперским знаком.",
+      "effects": { "setFlag": ["looters_spared", "road_looters_done", "courier_letter_found"], "giveXp": "battle:road_looters" }
     },
     "after_fight": {
       "speaker": "narrator",

@@ -45,7 +45,14 @@
       "bleed": "Кровотечение",
       "challenged": "Вызов",
       "enraged": "Ярость",
-      "armor_broken": "Броня пробита"
+      "armor_broken": "Броня пробита",
+      "poison": "Яд",
+      "branded": "Клеймо",
+      "trap": "Силок",
+      "overwatch": "Дозор",
+      "smoke_screen": "Дымная завеса",
+      "last_barrier": "Последний барьер",
+      "last_bulwark": "Последний заслон"
     },
     "cost": "Стоимость",
     "gain": "Даёт",

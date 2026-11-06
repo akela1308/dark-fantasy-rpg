@@ -5,6 +5,7 @@ import { MapScene }     from './scenes/MapScene.js';
 import { BattleScene }  from './scenes/BattleScene.js';
 import { LevelUpScene } from './scenes/LevelUpScene.js';
 import { ChapterEndScene } from './scenes/ChapterEndScene.js';
+import { CinemaScene } from './scenes/CinemaScene.js';
 import { GAME_WIDTH, GAME_HEIGHT } from './utils/constants.js';
 import { Store } from './utils/storeAdapter.js';
 import portraitVersions from './data/portrait_versions.json';
@@ -46,7 +47,7 @@ const config = {
     default: 'arcade',
     arcade: { debug: false },
   },
-  scene: [BootScene, LoadingScene, MapScene, BattleScene, LevelUpScene, ChapterEndScene],
+  scene: [BootScene, LoadingScene, MapScene, BattleScene, LevelUpScene, ChapterEndScene, CinemaScene],
   scale: {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH,

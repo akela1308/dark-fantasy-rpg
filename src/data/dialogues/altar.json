@@ -179,6 +179,7 @@
     "rowan_leaves": {
       "speaker": "rowan",
       "text": "«Вы первый, кто не взял. Все остальные брали.»",
+      "next": "stone_voice",
       "effects": {
         "setFlag": "rowan_gone"
       }

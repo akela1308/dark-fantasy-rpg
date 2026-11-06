@@ -163,8 +163,7 @@
           "label": "Парирование",
           "desc": "При Темпе 2+ шанс 20% отбить ближний удар",
           "branchId": "honor_code",
-          "auto": true,
-          "implemented": false
+          "auto": true
         },
         {
           "key": "smoke_screen",
@@ -173,8 +172,7 @@
           "label": "Дымная завеса",
           "desc": "После выстрела враги получают -15 к точности по вам до конца раунда",
           "branchId": "last_argument",
-          "auto": true,
-          "implemented": false
+          "auto": true
         }
       ],
       "9": [
@@ -214,8 +212,7 @@
           "label": "Честь дороги",
           "desc": "Союзники +1 к инициативе, пока герой стоит",
           "branchId": "honor_code",
-          "auto": true,
-          "implemented": false
+          "auto": true
         },
         {
           "key": "dirty_range",
@@ -225,7 +222,11 @@
           "desc": "3 заряда вместо 2, выстрел накладывает слабость",
           "branchId": "last_argument",
           "auto": true,
-          "implemented": false
+          "effects": {
+            "resourceBase": {
+              "pistol_charges": 1
+            }
+          }
         }
       ],
       "11": [
@@ -265,18 +266,16 @@
           "label": "Последний барьер",
           "desc": "Раз в бой при здоровье ниже 30%: отбиваете все ближние удары до конца раунда",
           "branchId": "honor_code",
-          "auto": true,
-          "implemented": false
+          "auto": true
         },
         {
           "key": "two_barrels",
-          "type": "passive",
-          "passiveId": "two_barrels",
+          "type": "skill",
+          "skillId": "two_barrels",
           "label": "Два ствола",
-          "desc": "Раз в бой: два выстрела одним действием",
+          "desc": "Раз в бой: два выстрела одним действием. 2 заряда, 2 Темпа",
           "branchId": "last_argument",
-          "auto": true,
-          "implemented": false
+          "auto": true
         }
       ]
     },
@@ -497,10 +496,9 @@
           "type": "skill",
           "skillId": "deaf_stance",
           "label": "Глухая стойка",
-          "desc": "Пропустить атаку, получить защиту на 2 хода и +2 Мощи",
+          "desc": "Пропустить атаку: 2 хода получаете на 20% меньше урона, +2 Мощи",
           "branchId": "living_wall",
-          "auto": true,
-          "implemented": false
+          "auto": true
         },
         {
           "key": "sweep",
@@ -509,8 +507,7 @@
           "label": "Размах",
           "desc": "Удар по двум соседним врагам переднего ряда ×0.9, 2 Мощи",
           "branchId": "bonebreaker",
-          "auto": true,
-          "implemented": false
+          "auto": true
         }
       ],
       "9": [
@@ -550,8 +547,7 @@
           "label": "Неотступный",
           "desc": "Иммунитет к шатанию и слабости",
           "branchId": "living_wall",
-          "auto": true,
-          "implemented": false
+          "auto": true
         },
         {
           "key": "thirst",
@@ -560,8 +556,7 @@
           "label": "Жажда",
           "desc": "+1 Мощь, когда ваша цель умирает",
           "branchId": "bonebreaker",
-          "auto": true,
-          "implemented": false
+          "auto": true
         }
       ],
       "11": [
@@ -596,23 +591,21 @@
       "12": [
         {
           "key": "last_bulwark",
-          "type": "passive",
-          "passiveId": "last_bulwark",
+          "type": "skill",
+          "skillId": "last_bulwark",
           "label": "Последний заслон",
-          "desc": "Раз в бой: весь урон по союзникам в этом раунде идёт в вас с половиной силы",
+          "desc": "Раз в бой: до вашего следующего хода весь урон по союзникам идёт в вас с половиной силы",
           "branchId": "living_wall",
-          "auto": true,
-          "implemented": false
+          "auto": true
         },
         {
           "key": "bonebreaker_finisher",
           "type": "skill",
           "skillId": "bonebreaker_finisher",
           "label": "Костолом",
-          "desc": "Цель ниже 25% HP умирает. 3 Мощи, откат 3",
+          "desc": "Цель ниже 25% HP умирает, иначе обычный удар. 3 Мощи, откат 3",
           "branchId": "bonebreaker",
-          "auto": true,
-          "implemented": false
+          "auto": true
         }
       ]
     },
@@ -826,8 +819,7 @@
           "label": "Пиявочный отклик",
           "desc": "Реакция: союзник ниже 30% после удара сразу лечится на 10 + уровень. Раз в раунд",
           "branchId": "healers_hand",
-          "auto": true,
-          "implemented": false
+          "auto": true
         },
         {
           "key": "bitter_price",
@@ -836,8 +828,7 @@
           "label": "Горькая цена",
           "desc": "Перевязка не тратит Сборы, но Знахарка теряет 5 HP",
           "branchId": "bitter_tinctures",
-          "auto": true,
-          "implemented": false
+          "auto": true
         }
       ],
       "9": [
@@ -877,8 +868,7 @@
           "label": "Чистые руки",
           "desc": "В конце хода союзника с него снимается один статус",
           "branchId": "healers_hand",
-          "auto": true,
-          "implemented": false
+          "auto": true
         },
         {
           "key": "rot",
@@ -887,8 +877,7 @@
           "label": "Порча",
           "desc": "Ослабленные цели получают +15% урона",
           "branchId": "bitter_tinctures",
-          "auto": true,
-          "implemented": false
+          "auto": true
         }
       ],
       "11": [
@@ -923,23 +912,21 @@
       "12": [
         {
           "key": "last_tincture",
-          "type": "passive",
-          "passiveId": "last_tincture",
+          "type": "skill",
+          "skillId": "last_tincture",
           "label": "Последняя настойка",
-          "desc": "Раз в бой: поднять упавшего союзника с 40% HP",
+          "desc": "Раз в бой: поднять последнего упавшего союзника с 40% HP",
           "branchId": "healers_hand",
-          "auto": true,
-          "implemented": false
+          "auto": true
         },
         {
           "key": "dope_all",
-          "type": "passive",
-          "passiveId": "dope_all",
+          "type": "skill",
+          "skillId": "dope_all",
           "label": "Дурман на всех",
           "desc": "Раз в бой: слабость на всех врагов",
           "branchId": "bitter_tinctures",
-          "auto": true,
-          "implemented": false
+          "auto": true
         }
       ]
     },
@@ -978,13 +965,300 @@
       "id": "focus",
       "name": "Сосредоточение",
       "max": 3,
-      "startsCombat": 0
+      "startsCombat": 0,
+      "gainOnBasicAttack": 1
     },
-    "branches": [],
-    "tags": [
-      "ranged"
+    "branches": [
+      {
+        "id": "swamp_grip",
+        "name": "Болотный Хват",
+        "unlockLevel": 3,
+        "description": "Яд, силки, корни. Выстрел слабее, зато враг платит потом и платит долго. По чистой цели такой стрелок бьёт хуже любого.",
+        "firstNode": {
+          "skillId": "venom_bolt",
+          "label": "Яд на жале"
+        }
+      },
+      {
+        "id": "royal_drill",
+        "name": "Королевская Выучка",
+        "unlockLevel": 3,
+        "description": "Метки, залпы по приказу, работа в строю. Стрелок отдаёт свой урон отряду и сам силён только по отмеченной цели.",
+        "firstNode": {
+          "skillId": "spotter_mark",
+          "label": "Целеуказание"
+        }
+      }
     ],
-    "levelPlan": {},
+    "tags": [
+      "ranged",
+      "trail",
+      "watch"
+    ],
+    "levelPlan": {
+      "2": [
+        {
+          "key": "keen_hand",
+          "type": "perk",
+          "label": "Верная рука",
+          "desc": "+2 к урону",
+          "effects": {
+            "dmg": 2
+          }
+        },
+        {
+          "key": "long_walk",
+          "type": "perk",
+          "label": "Ходок",
+          "desc": "+12 к максимальному здоровью",
+          "effects": {
+            "hp": 12
+          }
+        },
+        {
+          "key": "road_leather",
+          "type": "perk",
+          "label": "Дорожная кожа",
+          "desc": "+3% к броне",
+          "effects": {
+            "armor": 3
+          }
+        }
+      ],
+      "3": [
+        "swamp_grip",
+        "royal_drill"
+      ],
+      "4": [
+        {
+          "key": "keen_hand",
+          "type": "perk",
+          "label": "Верная рука",
+          "desc": "+2 к урону",
+          "effects": {
+            "dmg": 2
+          }
+        },
+        {
+          "key": "long_walk",
+          "type": "perk",
+          "label": "Ходок",
+          "desc": "+12 к максимальному здоровью",
+          "effects": {
+            "hp": 12
+          }
+        },
+        {
+          "key": "road_leather",
+          "type": "perk",
+          "label": "Дорожная кожа",
+          "desc": "+3% к броне",
+          "effects": {
+            "armor": 3
+          }
+        }
+      ],
+      "5": [
+        {
+          "key": "snare_trap",
+          "type": "skill",
+          "skillId": "snare_trap",
+          "label": "Силок",
+          "desc": "Поставить силок на союзника: кто ударит его вблизи, опутан на 2 хода и бьёт вполсилы. 2 Сосредоточения, откат 3",
+          "branchId": "swamp_grip",
+          "auto": true
+        },
+        {
+          "key": "ordered_volley",
+          "type": "skill",
+          "skillId": "ordered_volley",
+          "label": "Залп по приказу",
+          "desc": "По цели с меткой ×1,8 без промаха, по чистой обычный выстрел. 2 Сосредоточения, откат 2",
+          "branchId": "royal_drill",
+          "auto": true
+        }
+      ],
+      "6": [
+        {
+          "key": "focus_cap",
+          "type": "perk",
+          "label": "Сосредоточение до 4",
+          "desc": "Предел Сосредоточения 4",
+          "effects": {
+            "resourceMax": {
+              "focus": 4
+            }
+          }
+        },
+        {
+          "key": "steady_start",
+          "type": "perk",
+          "label": "Ровное дыхание",
+          "desc": "Бой начинается с 1 Сосредоточения",
+          "effects": {
+            "resourceBase": {
+              "focus": 1
+            }
+          }
+        },
+        {
+          "key": "cold_hand",
+          "type": "perk",
+          "label": "Холодная рука",
+          "desc": "-1 к откату навыков",
+          "effects": {
+            "cdReduction": 1
+          }
+        }
+      ],
+      "7": [
+        {
+          "key": "keen_hand",
+          "type": "perk",
+          "label": "Верная рука",
+          "desc": "+2 к урону",
+          "effects": {
+            "dmg": 2
+          }
+        },
+        {
+          "key": "long_walk",
+          "type": "perk",
+          "label": "Ходок",
+          "desc": "+12 к максимальному здоровью",
+          "effects": {
+            "hp": 12
+          }
+        },
+        {
+          "key": "road_leather",
+          "type": "perk",
+          "label": "Дорожная кожа",
+          "desc": "+3% к броне",
+          "effects": {
+            "armor": 3
+          }
+        }
+      ],
+      "8": [
+        {
+          "key": "rotten_blood",
+          "type": "passive",
+          "passiveId": "rotten_blood",
+          "label": "Гнилая кровь",
+          "desc": "Реакция: отравленный враг падает, яд переходит на соседа на 2 хода",
+          "branchId": "swamp_grip",
+          "auto": true
+        },
+        {
+          "key": "overwatch",
+          "type": "skill",
+          "skillId": "overwatch",
+          "label": "Дозор",
+          "desc": "Вместо выстрела держать сектор: первый, кто ударит отряд до вашего хода, получает выстрел ×1,2. 1 Сосредоточение, откат 2",
+          "branchId": "royal_drill",
+          "auto": true
+        }
+      ],
+      "9": [
+        {
+          "key": "keen_hand",
+          "type": "perk",
+          "label": "Верная рука",
+          "desc": "+2 к урону",
+          "effects": {
+            "dmg": 2
+          }
+        },
+        {
+          "key": "long_walk",
+          "type": "perk",
+          "label": "Ходок",
+          "desc": "+12 к максимальному здоровью",
+          "effects": {
+            "hp": 12
+          }
+        },
+        {
+          "key": "road_leather",
+          "type": "perk",
+          "label": "Дорожная кожа",
+          "desc": "+3% к броне",
+          "effects": {
+            "armor": 3
+          }
+        }
+      ],
+      "10": [
+        {
+          "key": "mire_feeder",
+          "type": "passive",
+          "passiveId": "mire_feeder",
+          "label": "Кормилец топи",
+          "desc": "Попадание по отравленной или опутанной цели даёт +1 Сосредоточение. По чистой цели урон на 15% ниже",
+          "branchId": "swamp_grip",
+          "auto": true
+        },
+        {
+          "key": "field_orders",
+          "type": "passive",
+          "passiveId": "field_orders",
+          "label": "Полевой устав",
+          "desc": "Любое попадание по цели с меткой даёт +1 Сосредоточение. Обычный выстрел по чистой цели больше не копит его",
+          "branchId": "royal_drill",
+          "auto": true
+        }
+      ],
+      "11": [
+        {
+          "key": "keen_hand",
+          "type": "perk",
+          "label": "Верная рука",
+          "desc": "+2 к урону",
+          "effects": {
+            "dmg": 2
+          }
+        },
+        {
+          "key": "long_walk",
+          "type": "perk",
+          "label": "Ходок",
+          "desc": "+12 к максимальному здоровью",
+          "effects": {
+            "hp": 12
+          }
+        },
+        {
+          "key": "road_leather",
+          "type": "perk",
+          "label": "Дорожная кожа",
+          "desc": "+3% к броне",
+          "effects": {
+            "armor": 3
+          }
+        }
+      ],
+      "12": [
+        {
+          "key": "black_mire",
+          "type": "skill",
+          "skillId": "black_mire",
+          "label": "Чёрная топь",
+          "desc": "Раз в бой: все враги опутаны на 2 хода и отравлены на 3. 3 Сосредоточения, выстрела нет",
+          "branchId": "swamp_grip",
+          "auto": true
+        },
+        {
+          "key": "royal_volley",
+          "type": "skill",
+          "skillId": "royal_volley",
+          "label": "Королевский залп",
+          "desc": "Раз в бой: всё Сосредоточение в залп по всем врагам, ×(0,5 + 0,25 за единицу). Меченые не уйдут, половина их брони не считается",
+          "branchId": "royal_drill",
+          "auto": true
+        }
+      ]
+    },
     "base": {
       "hp": 62,
       "dmin": 10,
@@ -1005,8 +1279,7 @@
         11
       ],
       "armorCap": 60
-    },
-    "note": "Класс расширения из 01_БАЛАНС 5 (шаблон). Деревья веток не написаны: на уровнях только рост статов."
+    }
   },
   {
     "id": "forbidden_bearer",
@@ -1017,13 +1290,306 @@
       "id": "taint",
       "name": "Скверна",
       "max": 3,
-      "startsCombat": 0
+      "startsCombat": 0,
+      "gainOnBasicAttack": 1,
+      "needsBranch": true,
+      "damagePerPoint": 0.08,
+      "overflowHpPct": 8
     },
-    "branches": [],
-    "tags": [
-      "occult"
+    "branches": [
+      {
+        "id": "blood_pact",
+        "name": "Кровавый Пакт",
+        "unlockLevel": 3,
+        "description": "Лечит своей кровью и возвращает чужую рану обратно. Отряд живёт, пока вы отдаёте себя: чем меньше крови осталось, тем сильнее руки и тем хуже лечат вас самих.",
+        "firstNode": {
+          "skillId": "blood_loan",
+          "label": "Кровавый заём"
+        }
+      },
+      {
+        "id": "black_litany",
+        "name": "Чёрная Литания",
+        "unlockLevel": 3,
+        "description": "Клеймит врагов и держит Скверну до последнего. Заряд бьёт по всем, но на пределе он жжёт того, кто его носит.",
+        "firstNode": {
+          "skillId": "guilt_brand",
+          "label": "Клеймо вины"
+        }
+      }
     ],
-    "levelPlan": {},
+    "tags": [
+      "occult",
+      "swamp",
+      "debt"
+    ],
+    "levelPlan": {
+      "2": [
+        {
+          "key": "heavy_hand",
+          "type": "perk",
+          "label": "Тяжёлая рука",
+          "desc": "+2 к урону",
+          "effects": {
+            "dmg": 2
+          }
+        },
+        {
+          "key": "marsh_skin",
+          "type": "perk",
+          "label": "Болотная шкура",
+          "desc": "+12 к максимальному здоровью",
+          "effects": {
+            "hp": 12
+          }
+        },
+        {
+          "key": "cold_blood",
+          "type": "perk",
+          "label": "Холодная кровь",
+          "desc": "+5 к точности",
+          "effects": {
+            "accuracy": 5
+          }
+        }
+      ],
+      "3": [
+        "blood_pact",
+        "black_litany"
+      ],
+      "4": [
+        {
+          "key": "heavy_hand",
+          "type": "perk",
+          "label": "Тяжёлая рука",
+          "desc": "+2 к урону",
+          "effects": {
+            "dmg": 2
+          }
+        },
+        {
+          "key": "marsh_skin",
+          "type": "perk",
+          "label": "Болотная шкура",
+          "desc": "+12 к максимальному здоровью",
+          "effects": {
+            "hp": 12
+          }
+        },
+        {
+          "key": "cold_blood",
+          "type": "perk",
+          "label": "Холодная кровь",
+          "desc": "+5 к точности",
+          "effects": {
+            "accuracy": 5
+          }
+        }
+      ],
+      "5": [
+        {
+          "key": "bad_blood",
+          "type": "skill",
+          "skillId": "bad_blood",
+          "label": "Дурная кровь",
+          "desc": "Вся Скверна уходит в цель: 5 + уровень за единицу без брони, половина возвращается здоровьем. Откат 3",
+          "branchId": "blood_pact",
+          "auto": true
+        },
+        {
+          "key": "black_chant",
+          "type": "skill",
+          "skillId": "black_chant",
+          "label": "Чёрная литания",
+          "desc": "Вся Скверна бьёт по всем врагам: 4 + половина уровня за единицу, без брони. Откат 3",
+          "branchId": "black_litany",
+          "auto": true
+        }
+      ],
+      "6": [
+        {
+          "key": "taint_cap",
+          "type": "perk",
+          "label": "Скверна до 4",
+          "desc": "Предел Скверны 4",
+          "effects": {
+            "resourceMax": {
+              "taint": 4
+            }
+          }
+        },
+        {
+          "key": "bitter_start",
+          "type": "perk",
+          "label": "Горькое начало",
+          "desc": "Бой начинается с 1 Скверны",
+          "effects": {
+            "resourceBase": {
+              "taint": 1
+            }
+          }
+        },
+        {
+          "key": "steel_gut",
+          "type": "perk",
+          "label": "Крепкое нутро",
+          "desc": "Скверна через край жжёт вдвое меньше",
+          "effects": {}
+        }
+      ],
+      "7": [
+        {
+          "key": "heavy_hand",
+          "type": "perk",
+          "label": "Тяжёлая рука",
+          "desc": "+2 к урону",
+          "effects": {
+            "dmg": 2
+          }
+        },
+        {
+          "key": "marsh_skin",
+          "type": "perk",
+          "label": "Болотная шкура",
+          "desc": "+12 к максимальному здоровью",
+          "effects": {
+            "hp": 12
+          }
+        },
+        {
+          "key": "cold_blood",
+          "type": "perk",
+          "label": "Холодная кровь",
+          "desc": "+5 к точности",
+          "effects": {
+            "accuracy": 5
+          }
+        }
+      ],
+      "8": [
+        {
+          "key": "debt_returned",
+          "type": "passive",
+          "passiveId": "debt_returned",
+          "label": "Долг назад",
+          "desc": "Реакция: половина полученного урона уходит обидчику без брони, +1 Скверна. Раз в раунд",
+          "branchId": "blood_pact",
+          "auto": true
+        },
+        {
+          "key": "voice_beyond",
+          "type": "passive",
+          "passiveId": "voice_beyond",
+          "label": "Голос за порогом",
+          "desc": "Реакция: при Скверне 2+ обидчик получает клеймо на 2 хода, 1 Скверна сгорает. Раз в раунд",
+          "branchId": "black_litany",
+          "auto": true
+        }
+      ],
+      "9": [
+        {
+          "key": "heavy_hand",
+          "type": "perk",
+          "label": "Тяжёлая рука",
+          "desc": "+2 к урону",
+          "effects": {
+            "dmg": 2
+          }
+        },
+        {
+          "key": "marsh_skin",
+          "type": "perk",
+          "label": "Болотная шкура",
+          "desc": "+12 к максимальному здоровью",
+          "effects": {
+            "hp": 12
+          }
+        },
+        {
+          "key": "cold_blood",
+          "type": "perk",
+          "label": "Холодная кровь",
+          "desc": "+5 к точности",
+          "effects": {
+            "accuracy": 5
+          }
+        }
+      ],
+      "10": [
+        {
+          "key": "thin_blood",
+          "type": "passive",
+          "passiveId": "thin_blood",
+          "label": "Жидкая кровь",
+          "desc": "Ниже половины здоровья удары и Кровавый заём сильнее на 25%, но лечение на вас вдвое слабее",
+          "branchId": "blood_pact",
+          "auto": true
+        },
+        {
+          "key": "overbrim",
+          "type": "passive",
+          "passiveId": "overbrim",
+          "label": "Через край",
+          "desc": "Предел Скверны +1, но на пределе она жжёт вдвое сильнее",
+          "branchId": "black_litany",
+          "auto": true,
+          "effects": {
+            "resourceMaxAdd": {
+              "taint": 1
+            }
+          }
+        }
+      ],
+      "11": [
+        {
+          "key": "heavy_hand",
+          "type": "perk",
+          "label": "Тяжёлая рука",
+          "desc": "+2 к урону",
+          "effects": {
+            "dmg": 2
+          }
+        },
+        {
+          "key": "marsh_skin",
+          "type": "perk",
+          "label": "Болотная шкура",
+          "desc": "+12 к максимальному здоровью",
+          "effects": {
+            "hp": 12
+          }
+        },
+        {
+          "key": "cold_blood",
+          "type": "perk",
+          "label": "Холодная кровь",
+          "desc": "+5 к точности",
+          "effects": {
+            "accuracy": 5
+          }
+        }
+      ],
+      "12": [
+        {
+          "key": "final_pact",
+          "type": "skill",
+          "skillId": "final_pact",
+          "label": "Последний пакт",
+          "desc": "Раз в бой: половина вашего здоровья уходит каждому союзнику, Скверна до предела",
+          "branchId": "blood_pact",
+          "auto": true
+        },
+        {
+          "key": "unspoken_name",
+          "type": "skill",
+          "skillId": "unspoken_name",
+          "label": "Непроизнесённое",
+          "desc": "Раз в бой: клеймо на всех врагов на 3 хода, Скверна до предела",
+          "branchId": "black_litany",
+          "auto": true
+        }
+      ]
+    },
     "base": {
       "hp": 58,
       "dmin": 12,
@@ -1043,7 +1609,6 @@
         12
       ],
       "armorCap": 60
-    },
-    "note": "Класс расширения из 01_БАЛАНС 5 (шаблон). Навыки не написаны."
+    }
   }
 ]

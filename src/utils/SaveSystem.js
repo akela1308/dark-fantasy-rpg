@@ -6,6 +6,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { Store } from './storeAdapter.js';
+import { backfillAutoNodes } from '../systems/ClassProgression.js';
 
 // Три слота. Слот 1 хранится под старым ключом, чтобы старые сохранения читались.
 export const SLOTS = [1, 2, 3];
@@ -19,7 +20,7 @@ export const START_MAP = 'south_post';
 export const START_SPAWN = 'default';
 
 // Ключи registry, которые не сохраняются (звук, служебное)
-const TRANSIENT = new Set(['bgMusic', 'musicStarted', 'bgMusicIndex', '_sessionLoaded']);
+const TRANSIENT = new Set(['bgMusic', 'musicStarted', 'bgMusicIndex', 'musicMuted', '_sessionLoaded']);
 
 function isPlain(v) {
   if (v === null) return true;
@@ -312,6 +313,7 @@ export const SaveSystem = {
       u.resourceBonus = { ...(u.resourceBonus || {}), ...(s.resourceBonus || {}) };
       u.healBonus = s.healBonus || 0;
       u._cdReduction = s._cdReduction ?? u._cdReduction ?? 0;
+      backfillAutoNodes(u);
     });
   },
 };

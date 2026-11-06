@@ -89,3 +89,53 @@ test('уровни 3–4, резерв и поражение: привал во�
  assert.deepEqual(SaveSystem.load().units,saved.units);
  assert.equal(pendingProgression(restored).pending.length,0);
 });
+
+test('сохранение переносит поздние узлы, ресурсы Следопыта и Запрета и лимиты', () => {
+ const reg=new Reg();SaveSystem.newGame(reg);
+ PartySystem.recruit(reg,'holt');PartySystem.recruit(reg,'ressa');PartySystem.recruit(reg,'hero_duelist');
+ const [hero,holt,ressa]=['hero_duelist','holt','ressa'].map(id=>PartySystem.buildRosterUnits(reg).find(u=>u.id===id));
+ const up=(u,branch,picks={})=>{
+  for(let L=2;L<=12;L++){
+   CP.applyLevelGrowth(u,L);u.level=L;
+   CP.getAutoNodes(u,L).forEach(n=>CP.applyProgressionChoice(u,n));
+   const ch=CP.getClassProgressionChoices(u,L);
+   if(ch)CP.applyProgressionChoice(u,ch.find(c=>c.branchId===branch||c.key===picks[L])||ch[0]);
+  }
+ };
+ up(hero,'last_argument');up(holt,'royal_drill',{6:'focus_cap'});up(ressa,'black_litany',{6:'taint_cap'});
+ ressa.resources.taint=2;
+ SaveSystem.save([hero,holt,ressa],'south_post','default',reg);
+ const back=PartySystem.buildRosterUnits(reg).reduce((m,u)=>({...m,[u.id]:u}),{});
+ assert.equal(back.hero_duelist.resourceBonus.pistol_charges,1);
+ assert.ok(back.hero_duelist.skills.includes('two_barrels'));
+ assert.equal(back.holt.branchId,'royal_drill');
+ assert.equal(back.holt.resourceMax.focus,4);
+ assert.ok(back.holt.passives.includes('field_orders'));
+ assert.ok(back.holt.skills.includes('royal_volley'));
+ assert.equal(back.ressa.resourceMax.taint,5,'предел перка и узла');
+ assert.equal(back.ressa.resources.taint,2);
+ assert.ok(back.ressa.skills.includes('unspoken_name'));
+ back.ressa.prepareForBattle({});assert.equal(back.ressa.resources.taint,0);
+ back.hero_duelist.prepareForBattle({tempo:0,pistol_charges:2});assert.equal(back.hero_duelist.resources.pistol_charges,3);
+});
+
+test('старое сохранение: высокий уровень получает пропущенные узлы, спутник без ветки выбирает её', () => {
+ const reg=new Reg();SaveSystem.newGame(reg);
+ PartySystem.recruit(reg,'holt');
+ const [hero,holt]=PartySystem.buildRosterUnits(reg);
+ hero.level=10;hero.branchId='last_argument';hero.passives.push('point_blank');
+ holt.level=7;
+ SaveSystem.save([hero,holt],'south_post','default',reg);
+ const [h2,t2]=PartySystem.buildRosterUnits(reg);
+ assert.ok(h2.passives.includes('smoke_screen')&&h2.passives.includes('dirty_range'));
+ assert.equal(h2.resourceBonus.pistol_charges,1);
+ SaveSystem.save([h2],'south_post','default',reg);
+ const [h3]=PartySystem.buildRosterUnits(reg);
+ assert.equal(h3.resourceBonus.pistol_charges,1,'повторная загрузка не копит бонус');
+ assert.equal(t2.branchId,null);
+ const ch=CP.getClassProgressionChoices(t2,8);
+ assert.deepEqual(ch.map(c=>c.key),['swamp_grip','royal_drill']);
+ t2.level=8;CP.applyProgressionChoice(t2,ch[0]);
+ assert.ok(t2.skills.includes('venom_bolt')&&t2.skills.includes('snare_trap'));
+ assert.ok(t2.passives.includes('rotten_blood'));
+});

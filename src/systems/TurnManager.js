@@ -40,7 +40,7 @@ export class TurnManager {
   _startNextRound() {
     this.index = 0;
     this.turn++;
-    (this.all || []).forEach(u => { u._initiativeBonus = 0; });
+    (this.all || []).forEach(u => { u._initiativeBonus = 0; u.onRoundStart?.(); });
     this.queue = this._order();
   }
 

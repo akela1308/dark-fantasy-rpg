@@ -20,7 +20,11 @@ export function showToast(scene, text, icon = null) {
   const s = v => v / z;
   const list = (live.get(scene) || []).filter(t => t.active);
   const key = icon || ICONS.find(([re]) => re.test(text))?.[1] || 'icon_skull';
-  const y = 96 + list.length * 44;
+  // Первый свободный ряд: погасший верхний тост освобождает своё место, а нижние остаются
+  const taken = new Set(list.map(l => l.slot));
+  let slot = 0;
+  while (taken.has(slot)) slot++;
+  const y = 96 + slot * 44;
   const t = scene.add.text(0, 0, text, {
     fontFamily: FONT, fontSize: `${s(15)}px`, color: COLOR.text, stroke: '#000', strokeThickness: s(2),
   }).setOrigin(0, 0.5).setScrollFactor(0).setDepth(10002);
@@ -33,7 +37,7 @@ export function showToast(scene, text, icon = null) {
     objs.push(scene.add.image(s(x0 + 22), s(y), key).setDisplaySize(s(24), s(24)).setScrollFactor(0).setDepth(10001));
   }
   t.setPosition(s(x0 + 42), s(y));
-  const handle = { active: true };
+  const handle = { active: true, slot };
   list.push(handle);
   live.set(scene, list);
   objs.forEach(o => o.setAlpha(0));

@@ -1706,7 +1706,31 @@
       }
     ],
     "doorPx": 130,
+    "onEnter": [
+      { "dialogue": "korvin", "node": "debt_tick", "once": "korvin_debt_tick_1", "showIf": { "flag": "korvin_debt_active", "notFlag": "korvin_debt_paid" } },
+      { "dialogue": "korvin", "node": "debt_warn", "once": "korvin_debt_tick_2", "showIf": { "flag": "korvin_debt_active", "notFlag": "korvin_debt_paid" } },
+      { "dialogue": "korvin", "node": "debt_last", "once": "korvin_debt_tick_3", "showIf": { "flag": "korvin_debt_active", "notFlag": "korvin_debt_paid" } },
+      { "dialogue": "korvin", "node": "debt_overdue", "once": "korvin_debt_overdue", "showIf": { "flag": "korvin_debt_active", "notFlag": "korvin_debt_paid" } }
+    ],
     "encounters": [
+      {
+        "id": "korvin_revenge_road",
+        "battleId": "korvin_revenge",
+        "name": "Корвин Сухой",
+        "behaviour": "pack",
+        "radius": 170,
+        "preDialogue": "korvin",
+        "preNode": "revenge",
+        "showIf": {
+          "flag": "korvin_debt_overdue",
+          "notFlag": [
+            "korvin_revenge_done",
+            "bandit_commander_killed"
+          ]
+        },
+        "x": 920,
+        "y": 490
+      },
       {
         "id": "forest_poachers",
         "battleId": "forest_poachers",
@@ -1799,7 +1823,7 @@
           "w": 122,
           "h": 250
         },
-        "text": "→ Деревня",
+        "text": "→ Двор «Хромого Лося»",
         "screenX": 1200,
         "screenY": 875
       }
@@ -3401,6 +3425,7 @@
     ]
   },
   "village": {
+    "charScale": 0.68,
     "bgKey": "map_village",
     "spawnPoints": {
       "default": {
@@ -9335,7 +9360,26 @@
     ],
     "tavernEntry": null,
     "bandits": false,
-    "npcs": [],
+    "npcs": [
+      {
+        "id": "korvin_camp",
+        "name": "Корвин Сухой",
+        "x": 1032,
+        "y": 481,
+        "spriteKey": "map_bandit",
+        "portraitKey": "portrait_bandit_commander",
+        "heightM": 1.85,
+        "dialogue": "korvin",
+        "dialogueStart": "debt",
+        "showIf": {
+          "flag": "korvin_debt_active",
+          "notFlag": [
+            "korvin_debt_paid",
+            "korvin_debt_overdue"
+          ]
+        }
+      }
+    ],
     "props": [
       {
         "key": "prop_forest_camp_occ_1",
@@ -9950,7 +9994,7 @@
   },
   "forest_deep": {
     "bgKey": "map_forest_deep",
-    "image": "maps/gen/forest_deep_k2.jpg",
+    "image": "maps/gen/forest_deep_k3.jpg",
     "name": "Глухой лес",
     "region": "Лес",
     "level": 4,
@@ -13417,7 +13461,7 @@
   },
   "swamp_map": {
     "bgKey": "map_swamp_map",
-    "image": "maps/swamp_map.png",
+    "image": "maps/gen/swamp_map_k2.jpg",
     "name": "Глубокое болото",
     "region": "Болото",
     "level": 4,
@@ -15971,6 +16015,7 @@
     ]
   },
   "frozen_lake": {
+    "charScale": 0.62,
     "bgKey": "map_frozen_lake",
     "image": "maps/gen/frozen_lake_pick.jpg",
     "name": "Замёрзшее озеро",
@@ -16840,6 +16885,7 @@
     "doorPx": 100
   },
   "grad_square": {
+    "charScale": 0.6,
     "bgKey": "map_grad_square",
     "image": "maps/gen/grad_square_pick.jpg",
     "name": "Площадь Града",

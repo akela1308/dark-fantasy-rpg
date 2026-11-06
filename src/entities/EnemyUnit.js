@@ -44,7 +44,7 @@ export class EnemyUnit extends Unit {
       const wounded = own.filter(a => isActive(a) && a.hp / a.maxHp < 0.6);
       if (wounded.length) {
         const w = wounded.reduce((a, b) => (b.hp / b.maxHp < a.hp / a.maxHp ? b : a));
-        const amount = Math.round(w.maxHp * 0.15);
+        const amount = Math.round(w.maxHp * 0.15 * this.staggerMult());
         w.heal(amount);
         this.cooldowns.enemy_heal = 2;
         eventBus.emit('log', `${this.label} → ${w.label}: +${amount} HP`);

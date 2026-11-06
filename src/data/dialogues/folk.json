@@ -204,6 +204,9 @@
       "choices": [
         {
           "label": "«Ты помнишь, как ставили печати на дороге?»",
+          "showIf": {
+            "notFlag": "mokey_seals_told"
+          },
           "next": "mokey_seals"
         },
         {
@@ -511,6 +514,9 @@
       "choices": [
         {
           "label": "«Что в склепе под руинами?»",
+          "showIf": {
+            "notFlag": "sych_crypt_told"
+          },
           "next": "sych_crypt"
         },
         {
@@ -583,6 +589,26 @@
           "next": "olena_buried"
         },
         {
+          "label": "Открыть приходскую книгу вместе с Хольтом.",
+          "showIf": {
+            "companion": "holt",
+            "flag": "holt_sister_hint",
+            "notFlag": "holt_sister_named",
+            "any": [
+              {
+                "flag": "chapel_peaceful"
+              },
+              {
+                "flag": "chapel_cult_defeated"
+              },
+              {
+                "flag": "cult_turned"
+              }
+            ]
+          },
+          "next": "olena_parish_book"
+        },
+        {
           "label": "«Что он писал в последний раз?»",
           "next": "olena_letter"
         },
@@ -606,6 +632,15 @@
     "olena_buried": {
       "speaker": "olena",
       "text": "Олена долго молчит, потом гасит свечу пальцами. «Значит, земля у него есть. Это больше, чем у многих. Спасибо. Не за него, за то, что сказали вслух.»",
+      "next": "olena"
+    },
+    "olena_parish_book": {
+      "speaker": "narrator",
+      "text": "Книга всё ещё лежит на аналое. Хольт: «Найди вычеркнутое. Третья страница, снизу.» Вы читаете имя вслух. Хольт: «Лейна.»",
+      "effects": {
+        "setFlag": "holt_sister_named",
+        "giveXp": 15
+      },
       "next": "olena"
     },
     "olena_letter": {

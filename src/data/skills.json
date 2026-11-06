@@ -344,5 +344,367 @@
       }
     ],
     "source": "book"
+  },
+  {
+    "id": "two_barrels",
+    "name": "Два ствола",
+    "description": "Раз в бой: два выстрела одним действием. Если первый свалит цель, второй уйдёт в самого раненого",
+    "type": "active",
+    "targetType": "enemy_single",
+    "cooldown": 0,
+    "oncePerBattle": true,
+    "resourceCost": {
+      "tempo": 2,
+      "pistol_charges": 2
+    },
+    "damage": {
+      "min": 20,
+      "max": 26
+    },
+    "damagePerLevel": 2,
+    "shots": 2,
+    "ignoreRows": true
+  },
+  {
+    "id": "deaf_stance",
+    "name": "Глухая стойка",
+    "description": "Пропустить атаку: 2 хода получаете на 20% меньше урона, +2 Мощи",
+    "type": "active",
+    "targetType": "self",
+    "cooldown": 0,
+    "resourceGain": {
+      "might": 2
+    },
+    "appliesStatus": [
+      {
+        "type": "guarded",
+        "value": 0.8,
+        "duration": 3,
+        "target": "self",
+        "label": "глухая стойка"
+      }
+    ]
+  },
+  {
+    "id": "sweep",
+    "name": "Размах",
+    "description": "Удар ×0,9 по цели и её соседу по ряду. Если соседей двое, достанется более раненому",
+    "type": "active",
+    "targetType": "enemy_single",
+    "cooldown": 1,
+    "effect": "sweep",
+    "damageMult": 0.9,
+    "resourceCost": {
+      "might": 2
+    }
+  },
+  {
+    "id": "last_bulwark",
+    "name": "Последний заслон",
+    "description": "Раз в бой: до вашего следующего хода весь урон по союзникам идёт в вас с половиной силы",
+    "type": "active",
+    "targetType": "self",
+    "cooldown": 0,
+    "oncePerBattle": true,
+    "appliesStatus": [
+      {
+        "type": "last_bulwark",
+        "value": 0.5,
+        "duration": 2,
+        "target": "self",
+        "label": "последний заслон"
+      }
+    ]
+  },
+  {
+    "id": "bonebreaker_finisher",
+    "name": "Костолом",
+    "description": "Цель ниже 25% HP умирает, иначе обычный удар. 3 Мощи",
+    "type": "active",
+    "targetType": "enemy_single",
+    "cooldown": 3,
+    "effect": "execute",
+    "executeBelow": 0.25,
+    "resourceCost": {
+      "might": 3
+    }
+  },
+  {
+    "id": "last_tincture",
+    "name": "Последняя настойка",
+    "description": "Раз в бой: поднять последнего упавшего союзника с 40% HP",
+    "type": "active",
+    "targetType": "self",
+    "cooldown": 0,
+    "oncePerBattle": true,
+    "effect": "revive",
+    "requiresFallen": true,
+    "reviveHp": 0.4
+  },
+  {
+    "id": "dope_all",
+    "name": "Дурман на всех",
+    "description": "Раз в бой: слабость на всех врагов на 2 хода",
+    "type": "active",
+    "targetType": "self",
+    "cooldown": 0,
+    "oncePerBattle": true,
+    "appliesStatus": [
+      {
+        "type": "weakened",
+        "value": 0.75,
+        "duration": 2,
+        "target": "all_foes",
+        "label": "слабость"
+      }
+    ]
+  },
+  {
+    "id": "venom_bolt",
+    "name": "Яд на жале",
+    "description": "Выстрел ×0,7. Цель 3 хода теряет 2 + уровень HP в конце своего хода, броня не спасает",
+    "type": "active",
+    "targetType": "enemy_single",
+    "cooldown": 3,
+    "damageMultiplier": 0.7,
+    "ignoreRows": true,
+    "resourceCost": {
+      "focus": 1
+    },
+    "appliesStatus": [
+      {
+        "type": "poison",
+        "value": 2,
+        "valuePerLevel": 1,
+        "duration": 3,
+        "onHit": true,
+        "label": "яд"
+      }
+    ]
+  },
+  {
+    "id": "snare_trap",
+    "name": "Силок",
+    "description": "Силок на союзника на 2 его хода: кто ударит его вблизи, опутан на 2 хода и бьёт вполсилы",
+    "type": "active",
+    "targetType": "ally_single",
+    "cooldown": 3,
+    "resourceCost": {
+      "focus": 2
+    },
+    "appliesStatus": [
+      {
+        "type": "trap",
+        "duration": 2,
+        "label": "силок"
+      }
+    ]
+  },
+  {
+    "id": "black_mire",
+    "name": "Чёрная топь",
+    "description": "Раз в бой: все враги опутаны на 2 хода и отравлены на 3",
+    "type": "active",
+    "targetType": "self",
+    "cooldown": 0,
+    "oncePerBattle": true,
+    "resourceCost": {
+      "focus": 3
+    },
+    "appliesStatus": [
+      {
+        "type": "rooted",
+        "value": 4,
+        "duration": 2,
+        "target": "all_foes",
+        "label": "топь"
+      },
+      {
+        "type": "poison",
+        "value": 2,
+        "valuePerLevel": 1,
+        "duration": 3,
+        "target": "all_foes",
+        "label": "яд"
+      }
+    ]
+  },
+  {
+    "id": "spotter_mark",
+    "name": "Целеуказание",
+    "description": "Выстрел ×0,6 и метка на 2 хода: дальше цель бьёт отряд",
+    "type": "active",
+    "targetType": "enemy_single",
+    "cooldown": 2,
+    "damageMultiplier": 0.6,
+    "ignoreRows": true,
+    "resourceCost": {
+      "focus": 1
+    },
+    "appliesStatus": [
+      {
+        "type": "marked",
+        "value": 1.25,
+        "duration": 2,
+        "onHit": true,
+        "label": "метка"
+      }
+    ]
+  },
+  {
+    "id": "ordered_volley",
+    "name": "Залп по приказу",
+    "description": "По цели с меткой ×1,8 без промаха, по чистой обычный выстрел",
+    "type": "active",
+    "targetType": "enemy_single",
+    "cooldown": 2,
+    "effect": "ordered_volley",
+    "markedMult": 1.8,
+    "ignoreRows": true,
+    "resourceCost": {
+      "focus": 2
+    }
+  },
+  {
+    "id": "overwatch",
+    "name": "Дозор",
+    "description": "Вместо выстрела держать сектор: первый, кто ударит отряд до вашего хода, получает выстрел ×1,2",
+    "type": "active",
+    "targetType": "self",
+    "cooldown": 2,
+    "resourceCost": {
+      "focus": 1
+    },
+    "appliesStatus": [
+      {
+        "type": "overwatch",
+        "value": 1.2,
+        "duration": 2,
+        "target": "self",
+        "label": "дозор"
+      }
+    ]
+  },
+  {
+    "id": "royal_volley",
+    "name": "Королевский залп",
+    "description": "Раз в бой: всё Сосредоточение в залп по всем врагам, ×(0,5 + 0,25 за единицу). Меченые не уйдут, половина их брони не считается",
+    "type": "active",
+    "targetType": "self",
+    "cooldown": 0,
+    "oncePerBattle": true,
+    "effect": "final_volley",
+    "spendAll": "focus",
+    "volleyBase": 0.5,
+    "volleyPerPoint": 0.25,
+    "markedIgnoreArmor": 0.5,
+    "ignoreRows": true,
+    "resourceCost": {
+      "focus": 1
+    }
+  },
+  {
+    "id": "blood_loan",
+    "name": "Кровавый заём",
+    "description": "Лечит союзника на 14 HP (+2 за уровень), вы платите 8 + уровень своими",
+    "type": "active",
+    "targetType": "ally_single",
+    "cooldown": 2,
+    "healAmount": 14,
+    "healPerLevel": 2,
+    "hpCost": {
+      "base": 8,
+      "perLevel": 1
+    },
+    "resourceGain": {
+      "taint": 1
+    }
+  },
+  {
+    "id": "bad_blood",
+    "name": "Дурная кровь",
+    "description": "Вся Скверна уходит в цель: 5 + уровень за единицу без брони, половина возвращается здоровьем",
+    "type": "active",
+    "targetType": "enemy_single",
+    "cooldown": 3,
+    "effect": "bad_blood",
+    "perPoint": 5,
+    "spendAll": "taint",
+    "ignoreRows": true,
+    "resourceCost": {
+      "taint": 1
+    }
+  },
+  {
+    "id": "final_pact",
+    "name": "Последний пакт",
+    "description": "Раз в бой: половина вашего здоровья уходит каждому союзнику, Скверна до предела",
+    "type": "active",
+    "targetType": "self",
+    "cooldown": 0,
+    "oncePerBattle": true,
+    "effect": "final_pact",
+    "resourceGain": {
+      "taint": 9
+    }
+  },
+  {
+    "id": "guilt_brand",
+    "name": "Клеймо вины",
+    "description": "Удар ×0,8. Цель 3 хода теряет 3 + уровень HP за каждый свой удар",
+    "type": "active",
+    "targetType": "enemy_single",
+    "cooldown": 2,
+    "damageMultiplier": 0.8,
+    "ignoreRows": true,
+    "resourceGain": {
+      "taint": 1
+    },
+    "appliesStatus": [
+      {
+        "type": "branded",
+        "value": 3,
+        "valuePerLevel": 1,
+        "duration": 3,
+        "onHit": true,
+        "label": "клеймо"
+      }
+    ]
+  },
+  {
+    "id": "black_chant",
+    "name": "Чёрная литания",
+    "description": "Вся Скверна бьёт по всем врагам: 4 + половина уровня за единицу, без брони",
+    "type": "active",
+    "targetType": "self",
+    "cooldown": 3,
+    "effect": "black_litany",
+    "perPoint": 4,
+    "spendAll": "taint",
+    "resourceCost": {
+      "taint": 1
+    }
+  },
+  {
+    "id": "unspoken_name",
+    "name": "Непроизнесённое",
+    "description": "Раз в бой: клеймо на всех врагов на 3 хода, Скверна до предела",
+    "type": "active",
+    "targetType": "self",
+    "cooldown": 0,
+    "oncePerBattle": true,
+    "resourceGain": {
+      "taint": 9
+    },
+    "appliesStatus": [
+      {
+        "type": "branded",
+        "value": 3,
+        "valuePerLevel": 1,
+        "duration": 3,
+        "target": "all_foes",
+        "label": "клеймо"
+      }
+    ]
   }
 ]

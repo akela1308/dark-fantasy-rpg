@@ -26,6 +26,9 @@ const STYLE = {
   retreat: ['#9a9484', '#d0c8b4'],
 };
 
+// Портреты с клипом public/video/p_<id>.mp4 (запас Veo, одобренные)
+const LIVE_PORTRAITS = ['cat', 'cleaning_girl', 'kikimora', 'likho', 'lyo', 'ryzh', 'shopkeeper', 'swamp_elder_elf', 'swamp_knight', 'tavernman', 'til', 'vodyanoy'];
+
 export class DialoguePanel {
   constructor(scene) {
     this.scene = scene;
@@ -151,6 +154,7 @@ export class DialoguePanel {
     const img = scene.add.image(s(x), s(y), key).setDepth(DEPTH + 2).setScrollFactor(0);
     img.setScale(Math.min(s(PORT_W) / img.width, s(PORT_H) / img.height));
     this._objs.push(img);
+    this._livePortrait(img, key);
     if (name) {
       const t = scene.add.text(s(x), s(y + PORT_H / 2 + 2), name, {
         fontFamily: 'Georgia, "Times New Roman", serif', fontSize: `${s(13)}px`, color: COLOR.gold,
@@ -158,6 +162,23 @@ export class DialoguePanel {
       }).setOrigin(0.5, 1).setDepth(DEPTH + 5).setScrollFactor(0);
       this._objs.push(t);
     }
+  }
+
+  /** Живой портрет (клип Veo поверх картинки, углы срезаются маской картинки). Нет клипа или сбой: остаётся картинка. */
+  _livePortrait(img, key) {
+    const id = key.replace(/^portrait_/, '');
+    if (!LIVE_PORTRAITS.includes(id)) return;
+    const scene = this.scene;
+    const v = scene.add.video(img.x, img.y).setDepth(img.depth + 0.5).setScrollFactor(0).setAlpha(0);
+    v.once('play', () => {
+      v.setDisplaySize(img.displayWidth, img.displayHeight);
+      v.setMask(img.createBitmapMask());
+      scene.tweens.add({ targets: v, alpha: 1, duration: 400 });
+    });
+    v.on('error', () => v.destroy());
+    v.loadURL(`video/p_${id}.mp4`, true);
+    v.play(true);
+    this._objs.push(v);
   }
 
   hide() {

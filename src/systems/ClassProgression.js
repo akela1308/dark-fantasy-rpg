@@ -3,7 +3,8 @@ import eventBus from '../utils/eventBus.js';
 
 /**
  * Прогрессия классов: базовый рост статов за уровень (01_БАЛАНС 5) и узлы levelPlan
- * на уровни 2-12 (02_ДИЗАЙН 4). Узлы с implemented: false в игре не показываются.
+ * на уровни 2-12 (02_ДИЗАЙН 4). Узел с implemented: false в игре не показывается: так можно
+ * завести в данных узел без механики (сейчас таких нет, test/late_nodes.test.mjs это проверяет).
  */
 
 const pyRound = x => {
@@ -84,11 +85,33 @@ export function getAutoNodes(unit, level) {
   return plan.filter(n => typeof n === 'object' && n.auto && nodeVisible(unit, n));
 }
 
+/**
+ * Узлы «автоматически», которых нет у бойца на его уровне. Нужны старым сохранениям:
+ * поздние узлы раньше были отключены, и уровни, на которых они выдаются, уже пройдены.
+ */
+export function backfillAutoNodes(unit) {
+  const cls = getClassDef(unit);
+  if (!cls?.levelPlan) return;
+  for (let L = 2; L <= (unit.level || 1); L++) {
+    getAutoNodes(unit, L).forEach(n => {
+      if (n.skillId && !unit.skills.includes(n.skillId)) unit.skills.push(n.skillId);
+      if (n.passiveId && !unit.passives.includes(n.passiveId)) {
+        unit.passives.push(n.passiveId);
+        if (n.effects) applyPerk(unit, n.effects);
+      }
+    });
+  }
+}
+
 /** Выбор на следующем уровне (null, если выбирать нечего). */
 export function getClassProgressionChoices(unit, level = null) {
   const cls = getClassDef(unit);
   if (!cls?.levelPlan) return null;
   const nextLevel = String(level ?? (unit.level || 1) + 1);
+  // Сохранение старше веток Следопыта и Запрета: спутник уже выше 3 уровня без ветки
+  if (Number(nextLevel) > 3 && !unit.branchId && cls.branches?.length) {
+    return cls.branches.map(b => normalizeChoice(cls, b.id));
+  }
   const choices = cls.levelPlan[nextLevel];
   if (!Array.isArray(choices) || choices.length === 0) return null;
   const list = choices
@@ -114,6 +137,7 @@ export function applyProgressionChoice(unit, choice) {
   if (choice.type === 'passive') {
     if (choice.passiveId && !unit.passives.includes(choice.passiveId)) {
       unit.passives.push(choice.passiveId);
+      if (choice.effects) applyPerk(unit, choice.effects);
       eventBus.emit('log', `${unit.label || unit.name}: открыто умение «${choice.label}»`);
     }
     markChoice(unit, choice);
@@ -128,6 +152,7 @@ export function applyProgressionChoice(unit, choice) {
     if (first?.skillId && !unit.skills.includes(first.skillId)) unit.skills.push(first.skillId);
     if (first?.passiveId && !unit.passives.includes(first.passiveId)) unit.passives.push(first.passiveId);
     markChoice(unit, choice);
+    backfillAutoNodes(unit);   // ветка, выбранная поздно, отдаёт пропущенные узлы
     return true;
   }
 
@@ -168,6 +193,13 @@ export function applyPerk(unit, e) {
   if (e.lifestealSet) unit.lifesteal = e.lifestealSet;
   if (e.healBonus) unit.healBonus = (unit.healBonus || 0) + e.healBonus;
   if (e.resourceMax) unit.resourceMax = { ...(unit.resourceMax || {}), ...e.resourceMax };
+  if (e.resourceMaxAdd) {
+    Object.entries(e.resourceMaxAdd).forEach(([k, v]) => {
+      const cls = getClassDef(unit);
+      const cap = unit.resourceMax?.[k] ?? (cls?.resource?.id === k ? cls.resource.max : 0);
+      unit.resourceMax = { ...(unit.resourceMax || {}), [k]: cap + v };
+    });
+  }
   if (e.resourceBase) {
     unit.resourceBonus = unit.resourceBonus || {};
     Object.entries(e.resourceBase).forEach(([k, v]) => {

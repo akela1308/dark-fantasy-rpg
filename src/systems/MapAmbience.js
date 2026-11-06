@@ -19,7 +19,7 @@ function makeTextures(scene) {
     draw(g); g.generateTexture(key, w, h); g.destroy();
   };
   // Птицы: два кадра (крылья вверх / вниз), смотрят вправо
-  const bird = (key, color, s, up) => tex(key, 24 * s, 14 * s, g => {
+  const bird = (key, color, s, up) => tex(key, Math.ceil(24 * s), Math.ceil(14 * s), g => {
     g.fillStyle(color, 1);
     g.fillEllipse(12 * s, 8 * s, 8 * s, 4 * s);                 // тело
     g.fillCircle(16.5 * s, 7 * s, 1.8 * s);                      // голова
@@ -86,7 +86,7 @@ export class MapAmbience {
     sc.time.addEvent({ delay: 2500, loop: true, callback: () => {
       gustTarget = Math.random() < 0.25 ? 1 + Math.random() : Math.random() * 0.3;   // иногда порыв
     } });
-    sc.events.on('update', (_t, d) => {
+    const onUpdate = (_t, d) => {
       if (!trees.size) return;
       t += d / 1000;
       gust += (gustTarget - gust) * Math.min(1, d / 1200);
@@ -94,7 +94,9 @@ export class MapAmbience {
         if (!o.active) { trees.delete(o); return; }
         o.angle = o._windAmp * (0.6 * Math.sin(t * 1.1 + o._windPhase) + 0.4 * Math.sin(t * 2.3 + o._windPhase * 1.7)) * (0.6 + gust);
       });
-    });
+    };
+    sc.events.on('update', onUpdate);
+    sc.events.once('shutdown', () => sc.events.off('update', onUpdate));   // сцена переиспользуется, её события переживают смену карты
   }
 
   // ── Свет окон и огней: мягкое свечение (ADD), яркость и размер плавают ───
@@ -213,7 +215,9 @@ export class MapAmbience {
     if (!sc.textures.exists('fog2')) return;
     const t = sc.add.tileSprite(W / 2, H * 0.55, W, sc.textures.get('fog2').getSourceImage().height, 'fog2')
       .setAlpha(0.10).setDepth(5);
-    sc.events.on('update', (_t, d) => { if (t.active) t.tilePositionX += 0.012 * d; });
+    const onUpdate = (_t, d) => { if (t.active) t.tilePositionX += 0.012 * d; };
+    sc.events.on('update', onUpdate);
+    sc.events.once('shutdown', () => sc.events.off('update', onUpdate));
     sc.tweens.add({ targets: t, alpha: 0.18, duration: 9000, yoyo: true, repeat: -1, ease: 'Sine.easeInOut' });
   }
 

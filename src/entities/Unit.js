@@ -3,6 +3,12 @@ import { getClassDef } from '../systems/ClassProgression.js';
 import {
   RULES, rollHit, rollCrit, effectiveArmor, effectiveSpeed, meleeReach, isActive,
 } from '../systems/CombatRules.js';
+import {
+  accuracyPenalty, afterHit, basicGainAllowed, bulwarkFor, cleanHands, incomingHealMult, incomingMult,
+  onDeath, onLanded, outgoingMult, parries, payBrand, taintOverflow, tickPoison,
+} from '../systems/ClassPassives.js';
+
+let fallOrder = 0;   // порядок падений в бою: Последняя настойка поднимает последнего упавшего
 
 /**
  * Unit - базовый класс для всех юнитов (игрок и враги).
@@ -76,6 +82,14 @@ export class Unit {
       return cover.coveredBy.takeDamage(amount, { ...opts, coveredAlly: this });
     }
 
+    // Последний заслон: удар уходит в Бойца с половиной силы
+    const wall = bulwarkFor(this);
+    if (wall) {
+      const half = Math.max(1, Math.round(amount * wall.getEffect('last_bulwark').value));
+      eventBus.emit('log', `${wall.label} принимает удар на себя`);
+      return wall.takeDamage(half, { ...opts, coveredAlly: this });
+    }
+
     const dodge = this.effects.find(e => e.type === 'dodge_boost');
     if (dodge && Math.random() < dodge.value) {
       eventBus.emit('log', `${this.label} уклоняется!`);
@@ -92,6 +106,8 @@ export class Unit {
 
     const marked = this.effects.find(e => e.type === 'marked');
     if (marked) reduced = Math.round(reduced * (marked.value ?? RULES.MARKED_DEFAULT));
+    const rot = incomingMult(this);
+    if (rot !== 1) reduced = Math.round(reduced * rot);
 
     const guarded = this.effects.find(e => e.type === 'guarded');
     if (guarded) reduced = Math.round(reduced * (guarded.value ?? RULES.GUARDED_DEFAULT));
@@ -106,13 +122,40 @@ export class Unit {
     eventBus.emit('unit_damaged', { unit: this, amount: actual, isCrit });
 
     if (this.hp <= 0) {
-      this.isAlive = false;
-      eventBus.emit('unit_died', this);
+      this._die();
     } else {
       this._reactToHit(opts);
+      afterHit(this, opts, actual);
     }
 
     return actual;
+  }
+
+  _die() {
+    this.isAlive = false;
+    this._fellAt = ++fallOrder;
+    eventBus.emit('unit_died', this);
+    onDeath(this);
+  }
+
+  /** Потеря здоровья мимо брони и защит (яд, клеймо, цена навыка). Цена навыка не убивает, яд и клеймо убивают (lethal). */
+  loseHp(amount, { lethal = false } = {}) {
+    const floor = lethal ? 0 : 1;
+    const actual = Math.max(0, Math.min(this.hp - floor, Math.round(amount)));
+    if (actual <= 0) return 0;
+    this.hp -= actual;
+    eventBus.emit('unit_damaged', { unit: this, amount: actual, isCrit: false });
+    if (this.hp <= 0) this._die();
+    return actual;
+  }
+
+  /** Вернуть упавшего в бой с долей здоровья. Статусы он потерял вместе с сознанием. */
+  revive(fraction) {
+    this.effects.forEach(e => this._restoreEffect(e));
+    this.effects = [];
+    this.isAlive = true;
+    this.hp = Math.max(1, Math.round(this.maxHp * fraction));
+    eventBus.emit('unit_healed', { unit: this, amount: this.hp });
   }
 
   // Кара непрошенных (Живая Стена, ур. 5): ответ на ближний удар по себе или прикрытому
@@ -128,7 +171,8 @@ export class Unit {
   // --- Лечение ---
   heal(amount) {
     const before = this.hp;
-    this.hp = Math.min(this.maxHp, this.hp + amount);
+    const mult = incomingHealMult(this);   // Жидкая кровь
+    this.hp = Math.min(this.maxHp, this.hp + (mult === 1 ? amount : Math.round(amount * mult)));
     const actual = this.hp - before;
     eventBus.emit('unit_healed', { unit: this, amount: actual });
     return actual;
@@ -171,12 +215,22 @@ export class Unit {
       : { ok: true, flank: target.position?.row === 1 && (target._allies || []).some(u => isActive(u) && u.position?.row === 0) };
     const challenged = target.effects.find(e => e.type === 'challenged' && e.sourceId === this.id);
 
-    const atk = { accuracy: this.accuracy + (opts.accuracyBonus || 0), speed: effectiveSpeed(this) };
+    const atk = { accuracy: this.accuracy + (opts.accuracyBonus || 0) - accuracyPenalty(target), speed: effectiveSpeed(this) };
     const tgt = { speed: effectiveSpeed(target) };
     if (!opts.cannotMiss && !challenged && !rollHit(atk, tgt)) {
       eventBus.emit('log', `${this.label} → ${target.label}: промах`);
       eventBus.emit('unit_missed', { unit: target });
       target._reactToMiss?.(this, opts);
+      payBrand(this, opts);
+      return 0;
+    }
+
+    // Парирование и Последний барьер: ближний удар отбит, для ответного выпада это тот же промах
+    if (parries(target, this, opts)) {
+      eventBus.emit('log', `${target.label} отбивает удар`);
+      eventBus.emit('unit_missed', { unit: target });
+      target._reactToMiss?.(this, opts);
+      payBrand(this, opts);
       return 0;
     }
 
@@ -188,7 +242,7 @@ export class Unit {
     } else {
       base = this.rollDamage();
     }
-    let dmg = Math.round(base * (opts.mult || 1) * (isCrit ? RULES.CRIT_MULT : 1));
+    let dmg = Math.round(base * (opts.mult || 1) * (isCrit ? RULES.CRIT_MULT : 1) * outgoingMult(this, target));
     if (challenged) dmg = Math.round(dmg * (challenged.value ?? 1.4));
     if (this.hasEffect('staggered')) dmg = Math.max(1, Math.round(dmg * RULES.STAGGER_MULT));
     // Тайная грамота: +10% по «забытым» (тени, эхо, чтецы)
@@ -211,9 +265,13 @@ export class Unit {
     if (opts.basic) {
       const cls = getClassDef(this);
       const gain = cls?.resource?.gainOnBasicAttack;
-      if (gain && actual > 0) this.gainResource(cls.resource.id, gain);
+      const ready = !cls?.resource?.needsBranch || this.branchId;
+      if (gain && ready && actual > 0 && basicGainAllowed(this, target)) this.gainResource(cls.resource.id, gain);
     }
-    if (actual > 0) opts.onHit?.(actual);
+    if (actual > 0) {
+      onLanded(this, target);
+      opts.onHit?.(actual);
+    }
 
     // Второй выпад (черта): базовая атака убила цель, действие ещё раз (раз в раунд)
     if (opts.basic && !opts.reaction && !target.isAlive && (this.commanderTraits || []).includes('second_strike') && !this._secondStrikeUsed) {
@@ -221,6 +279,7 @@ export class Unit {
       this._extraAction = true;
       eventBus.emit('log', `${this.label}: второй выпад!`);
     }
+    payBrand(this, opts);
     return actual;
   }
 
@@ -231,6 +290,11 @@ export class Unit {
     this._reactionUsed = true;
     eventBus.emit('log', `${this.label}: ответный выпад!`);
     this.attack(attacker, { reaction: true, basic: true, ignoreRows: true });
+  }
+
+  /** Ресурс класса (описание из classes.json) или null. */
+  classResource() {
+    return getClassDef(this)?.resource || null;
   }
 
   gainResource(id, amount) {
@@ -258,10 +322,11 @@ export class Unit {
 
   // --- Эффекты ---
   addEffect(effect) {
-    if (effect.type === 'staggered' && this.passives.includes('unyielding')) return;
-    if (effect.type === 'weakened' && (this.passives.includes('unyielding') || this.immuneWeakened)) return;
+    if (effect.type === 'staggered' && this.passives.includes('unyielding')) return false;
+    if (effect.type === 'weakened' && (this.passives.includes('unyielding') || this.immuneWeakened)) return false;
     this.effects.push({ ...effect });
     eventBus.emit('effect_added', { unit: this, effect });
+    return true;
   }
 
   hasEffect(type) {
@@ -298,10 +363,19 @@ export class Unit {
     this.effects = next.filter(e => e.duration > 0);
   }
 
+  /** Начало раунда: уходит то, что держится «до конца раунда», раунд-лимиты снова свободны. */
+  onRoundStart() {
+    this.effects.filter(e => e.untilRoundEnd).forEach(e => this.removeEffectInstance(e));
+    this._leechUsed = false;
+  }
+
   // --- Конец хода ---
   endTurn() {
     this.tickCooldowns();
+    cleanHands(this);
     this.removeEffect('staggered');   // шатание действует на одно действие
+    tickPoison(this);
+    taintOverflow(this);
     this.tickEffects();
     this._reactionUsed = false;
     this._secondStrikeUsed = false;
@@ -323,6 +397,7 @@ export class Unit {
     this.surrendered = false;
     this._usedOnce = new Set();
     this._reactionUsed = false;
+    this._leechUsed = false;
     const perBattle = ['tempo', 'might', 'pistol_charges', 'cover_uses'];
     perBattle.forEach(k => {
       if (k in baseResources || k in this.resources) {
@@ -330,7 +405,9 @@ export class Unit {
       }
     });
     const cls = getClassDef(this);
-    if (cls?.resource && cls.resource.id !== 'supplies') this.resources[cls.resource.id] = cls.resource.startsCombat ?? 0;
+    if (cls?.resource && cls.resource.id !== 'supplies') {
+      this.resources[cls.resource.id] = (cls.resource.startsCombat ?? 0) + (this.resourceBonus?.[cls.resource.id] || 0);
+    }
   }
 
   resetForBattle() {

@@ -38,3 +38,4 @@ assets/generated/_qa/**
 # Запас Veo: подложки портретов и ходьбы восстанавливаются tools/stock_queue.py
 assets/generated/_stock/pad/
 assets/generated/_stock/rejected/
+assets/generated/_ui_nov/paths/

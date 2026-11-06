@@ -2,6 +2,9 @@
   "id": "korvin",
   "source": "03_ДИАЛОГИ_И_КВЕСТЫ_v0.2, раздел 6",
   "speakers": {
+    "narrator": {
+      "name": ""
+    },
     "korvin": {
       "name": "Корвин Сухой",
       "portrait": "portrait_bandit_commander"
@@ -17,6 +20,10 @@
     "vornag": {
       "name": "Ворнаг",
       "portrait": "portrait_companion_brawler"
+    },
+    "taya": {
+      "name": "Тая",
+      "portrait": "portrait_companion_healer"
     }
   },
   "start": [
@@ -344,7 +351,7 @@
     },
     "deal_altar": {
       "speaker": "korvin",
-      "text": "«За месяц туда ушли трое моих. Вернулся один, и тот не помнит, как его зовут. Узнаешь, дорога твоя. Соврёшь, останешься на ней.»",
+      "text": "«За месяц туда ушли трое моих. Вернулся один, и тот не помнит, как его зовут. Узнаешь, дорога твоя. Соврёшь, останешься на ней. С ответом приходи в лагерь, это выше по тропе.»",
       "effects": {
         "setFlag": [
           "bandit_deal_altar",
@@ -358,7 +365,7 @@
     },
     "deal_cloaks": {
       "speaker": "korvin",
-      "text": "«Кто они, я и сам знаю. Не знаю, кто им платит. Принеси имя.»",
+      "text": "«Кто они, я и сам знаю. Не знаю, кто ими вертит. Принеси имя ко мне в лагерь, это выше по тропе.»",
       "effects": {
         "setFlag": [
           "bandit_deal_cloaks",
@@ -372,7 +379,7 @@
     },
     "deal_vorn": {
       "speaker": "korvin",
-      "text": "«Ворн со мной сам не разговаривает. Раз ты говоришь за него, тебе за него и отвечать.»",
+      "text": "«Ворн со мной сам не разговаривает. Раз ты говоришь за него, тебе за него и отвечать. Принесёшь его согласие в лагерь, выше по тропе, тогда и будет сделка.»",
       "effects": {
         "setFlag": [
           "bandit_deal_vorn",
@@ -386,7 +393,7 @@
     },
     "deal_legit": {
       "speaker": "korvin",
-      "text": "«Если пост мёртв, подпишешь бумагу. Твоя печать, моя подпись. Тогда я не разбойник. Тогда я власть.»",
+      "text": "«Если пост мёртв, докажи и подпиши бумагу. Твоя печать, моя подпись. Тогда я не разбойник. Тогда я власть. Лагерь выше по тропе, там и подпишем.»",
       "effects": {
         "setFlag": [
           "bandit_deal_legitimize",
@@ -413,6 +420,30 @@
           },
           "node": "korvin_down"
         },
+        {
+          "showIf": {
+            "flag": "dead_bandit_commander"
+          },
+          "node": "korvin_fell"
+        },
+        {
+          "node": "korvin_fled"
+        }
+      ]
+    },
+    "korvin_fled": {
+      "speaker": "narrator",
+      "text": "Пока вы дрались с его людьми, Корвин ушёл. На поляне осталось холодное кострище и след одного человека, уходящий в чащу.",
+      "effects": {
+        "setFlag": "bandit_commander_fled"
+      },
+      "next": "tiss_check"
+    },
+    "korvin_fell": {
+      "effects": {
+        "setFlag": "bandit_commander_killed"
+      },
+      "goto": [
         {
           "node": "tiss_check"
         }
@@ -464,7 +495,10 @@
       "goto": [
         {
           "showIf": {
-            "notFlag": "dead_bandit_archer"
+            "notFlag": [
+              "dead_bandit_archer",
+              "korvin_revenge_done"
+            ]
           },
           "node": "tiss_after"
         }
@@ -521,7 +555,17 @@
     },
     "revenge": {
       "speaker": "korvin",
-      "text": "«Думал, унизить меня можно задаром? На дороге всё стоит денег.»",
+      "text": [
+        {
+          "showIf": {
+            "flag": "korvin_debt_overdue"
+          },
+          "text": "«Я считал до трёх, как учили в десятке. Слово на дороге стоит дороже монеты, а ты своё проел.»"
+        },
+        {
+          "text": "«Думал, унизить меня можно задаром? На дороге всё стоит денег.»"
+        }
+      ],
       "choices": [
         {
           "label": "[Атаковать]",
@@ -544,6 +588,183 @@
             "flag": "surrendered_bandit_commander"
           },
           "node": "korvin_down"
+        },
+        {
+          "showIf": {
+            "flag": "dead_bandit_commander"
+          },
+          "node": "korvin_fell"
+        }
+      ]
+    },
+    "debt": {
+      "speaker": "korvin",
+      "text": "«Принёс, что должен? Говори. Мои считают, сколько раз ты прошёл мимо.»",
+      "choices": [
+        {
+          "label": "«У алтаря три камня и кольцо. Стерегут его тени, а платят там именем.»",
+          "showIf": {
+            "flag": "bandit_deal_altar"
+          },
+          "requires": {
+            "any": [
+              {
+                "flag": "seal_taken"
+              },
+              {
+                "flag": "seal_left"
+              }
+            ]
+          },
+          "reason": "Сначала узнать, что творится у алтаря",
+          "next": "debt_altar"
+        },
+        {
+          "label": "«Людей в плащах водит Гаст.»",
+          "showIf": {
+            "flag": "bandit_deal_cloaks"
+          },
+          "requires": {
+            "flag": "cloaks_leader_named"
+          },
+          "reason": "Сначала узнать имя",
+          "next": "debt_cloaks"
+        },
+        {
+          "label": "«Ворн согласен. Два мешка в неделю без пошлины, и твои не садятся за его стол.»",
+          "showIf": {
+            "flag": "bandit_deal_vorn"
+          },
+          "requires": {
+            "flag": "vorn_bread_agreed"
+          },
+          "reason": "Сначала поговорить с Ворном",
+          "next": "debt_vorn"
+        },
+        {
+          "label": "«Седьмой пост мёртв. Давай бумагу.»",
+          "showIf": {
+            "flag": "bandit_deal_legitimize"
+          },
+          "requires": {
+            "any": [
+              {
+                "flag": "deserter_told"
+              },
+              {
+                "flag": "basement_journal_read"
+              }
+            ]
+          },
+          "reason": "Сначала убедиться, что пост мёртв: журнал поста или беглец у ворот",
+          "confirm": "Бумага сделает Корвина законной властью на дороге. Поставить печать?",
+          "next": "debt_legit"
+        },
+        {
+          "label": "«Ещё нет.»",
+          "style": "retreat",
+          "close": true
+        }
+      ]
+    },
+    "debt_altar": {
+      "speaker": "korvin",
+      "text": "«Именем. Теперь понятно, почему тот, кто вернулся, смотрит на свою ложку, как на чужую. Больше никого туда не пошлю. Дорога твоя.»",
+      "lines": [
+        {
+          "showIf": {
+            "flag": "seal_worn"
+          },
+          "speaker": "korvin",
+          "text": "«Рука у тебя белая. Моим её не показывай.»"
+        }
+      ],
+      "effects": {
+        "setFlag": "korvin_debt_paid",
+        "rep": {
+          "word": 1
+        }
+      }
+    },
+    "debt_cloaks": {
+      "speaker": "korvin",
+      "text": "«Гаст. Ладно. Имя не кошелёк, но с него уже можно спрашивать. Мы в расчёте.»",
+      "effects": {
+        "setFlag": "korvin_debt_paid",
+        "rep": {
+          "word": 1
+        }
+      }
+    },
+    "debt_vorn": {
+      "speaker": "korvin",
+      "text": "«Хлеб по счёту и слово трактирщика. На меньшем целые посты держались. Передай Ворну: мои к нему не ходят, пока мешки приходят. Мы в расчёте.»",
+      "effects": {
+        "setFlag": "korvin_debt_paid",
+        "rep": {
+          "word": 1
+        }
+      }
+    },
+    "debt_legit": {
+      "speaker": "korvin",
+      "text": "«Моя подпись уже стоит. Рука десятника, не разбойника. Прикладывай.» Вы прижимаете к воску имперскую печать с письма. «Вот теперь я власть. Посмотрим, кто первым придёт со мной спорить.»",
+      "lines": [
+        {
+          "showIf": {
+            "flag": "korvin_was_warden"
+          },
+          "speaker": "korvin",
+          "text": "«Журнал ты, значит, читал. И знаешь, кто бросил ту дверь. Молчи об этом, и бумага будет чище.»"
+        },
+        {
+          "showIf": {
+            "companion": "companion_healer"
+          },
+          "speaker": "taya",
+          "text": "«Вы это сделали. Сделали из него закон.»"
+        }
+      ],
+      "effects": {
+        "setFlag": [
+          "korvin_debt_paid",
+          "korvin_legit_signed"
+        ],
+        "rep": {
+          "word": 1
+        }
+      }
+    },
+    "debt_tick": {
+      "goto": []
+    },
+    "debt_warn": {
+      "speaker": "tiss",
+      "text": "«Стой. Я не стреляю, я считаю. Командир велел передать: лагерь выше по тропе, долг он помнит.»",
+      "choices": [
+        {
+          "label": "«Я тоже помню.»",
+          "close": true
+        }
+      ]
+    },
+    "debt_last": {
+      "speaker": "tiss",
+      "text": "Стрела входит в ствол на ладонь от вашего уха. «Это не промах. Это второе напоминание. Третьего командир не велел.»",
+      "choices": [
+        {
+          "label": "«Понял.»",
+          "close": true
+        }
+      ]
+    },
+    "debt_overdue": {
+      "speaker": "tiss",
+      "text": "«Всё. Срок вышел, сделки нет. Командир больше не считает. В другой раз через лес иди тише.»",
+      "choices": [
+        {
+          "label": "«Посмотрим.»",
+          "close": true
         }
       ]
     }

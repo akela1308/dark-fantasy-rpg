@@ -18,7 +18,7 @@ const SKILL_ICONS = {
   rapier_strike:  'icon_rapier_strike',
   dueling_stance: 'icon_dueling_stance',
   pistol_shot:    'icon_pistol',
-  last_argument_shot: 'icon_pistol',
+  last_argument_shot: 'icon_skull',   // другой навык, своя иконка: рядом с пистолетом стояли две одинаковые кнопки
   shield_cover:   'icon_hand',
   heavy_strike:   'icon_might',
   bandage:        'icon_heart',
@@ -27,6 +27,26 @@ const SKILL_ICONS = {
   bitter_poultice: 'icon_drop',
   resin_brew:     'icon_healing_potion',
   dope_smoke:     'icon_drop',
+  two_barrels:    'icon_pistol',
+  deaf_stance:    'icon_shield',
+  sweep:          'icon_hammer',
+  bonebreaker_finisher: 'icon_skull',
+  last_bulwark:   'icon_shield',
+  last_tincture:  'healing_magic',
+  dope_all:       'icon_drop',
+  venom_bolt:     'icon_crossbow',
+  snare_trap:     'icon_hand',
+  black_mire:     'bleeding_curse',
+  spotter_mark:   'icon_bow',
+  ordered_volley: 'icon_crossbow',
+  overwatch:      'icon_bow',
+  royal_volley:   'icon_crossbow',
+  blood_loan:     'icon_heart',
+  bad_blood:      'bleeding_curse',
+  final_pact:     'healing_magic',
+  guilt_brand:    'bleeding_curse',
+  black_chant:    'icon_skull',
+  unspoken_name:  'icon_skull',
 };
 
 // Полоса навыков: куски bottom_panel1.png (866×288). Столбы между нишами на x 121, 250, 377, 504, 622
@@ -214,8 +234,7 @@ export class UIManager {
 
   _updateActionButtons() {
     this.tip.hide();
-    this._actionBtns.forEach(b => b.destroy());
-    this._actionBtns = [];
+    this._clearActionBtns();
     if (this.scene.battleOver || this.scene._animLock || !this.turnManager.isPlayerTurn()) return;
     const unit = this.turnManager.active;
     if (!unit) return;
@@ -233,7 +252,7 @@ export class UIManager {
       const charges = skill.usesResource ? unit.resources?.[skill.usesResource] : undefined;
       const cd = unit.isOnCooldown?.(skillId) ? unit.cooldowns[skillId] : 0;
       const badge = cd ? `⌛${cd}` : charges !== undefined ? `×${charges}` : null;
-      const body = [skill.description, skillResourceSummary(skill), charges !== undefined ? `Заряды: ${charges}` : null].filter(Boolean).join('\n');
+      const body = [skill.description, skillResourceSummary(skill, unit), charges !== undefined ? `Заряды: ${charges}` : null].filter(Boolean).join('\n');
       buttons.push({
         icon: SKILL_ICONS[skillId] || 'icon_dual_sword', badge,
         tip: { title: skill.name, body, action: reason ? `Недоступно: ${reason}` : pending === skillId ? 'Выбрано. Клик или Esc: отменить' : (skill.targetType === 'self' ? 'Клик: применить сразу' : 'Клик: выбрать, затем цель') },
@@ -263,6 +282,13 @@ export class UIManager {
     this._actionBtns.push(this.scene.add.text(BAR.X + 14, 720 - BAR.H + 6, hint, {
       fontFamily: FONT, fontSize: '12px', color: pending ? COLOR.gold : COLOR.bone, stroke: '#000', strokeThickness: 3,
     }).setOrigin(0, 1).setDepth(10));
+  }
+
+  // destroy() не останавливает твин: бесконечное мерцание рамки выбора жило бы до конца боя
+  _clearActionBtns() {
+    this.scene.tweens.killTweensOf(this._actionBtns);
+    this._actionBtns.forEach(b => b.destroy());
+    this._actionBtns = [];
   }
 
   /** Бронзовая полоса на n ниш; возвращает центры ниш (экранные px). */
@@ -314,8 +340,7 @@ export class UIManager {
   /** Конец боя: убрать кнопки, подсказку, очередь, подпись хода и кольца. */
   hideActions() {
     this.tip.hide();
-    this._actionBtns.forEach(b => b.destroy());
-    this._actionBtns = [];
+    this._clearActionBtns();
     this._borders.forEach(b => b.destroy());
     this._borders = [];
     this.clearTargets();
@@ -364,6 +389,7 @@ export class UIManager {
   }
 
   clearTargets() {
+    this.scene.tweens.killTweensOf(this._rings);
     this._rings.forEach(g => g.destroy());
     this._rings = [];
   }

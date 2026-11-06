@@ -1,6 +1,9 @@
 import eventBus from '../utils/eventBus.js';
 import { getClassDef } from './ClassProgression.js';
 import { RULES, isActive } from './CombatRules.js';
+import { BAD_STATUSES, afterShot, healerMult, isPistolShot, skillCost, skillHpCost } from './ClassPassives.js';
+import { CLASS_EFFECTS, fallenAlly } from './ClassSkillEffects.js';
+import UI from '../data/ui.json';
 
 /**
  * SkillSystem - регистрирует скиллы и применяет их эффекты.
@@ -24,6 +27,7 @@ export class SkillSystem {
     if (!skill || !caster) return false;
     if (caster.isOnCooldown?.(skillId)) return false;
     if (skill.oncePerBattle && caster._usedOnce?.has(skillId)) return false;
+    if (skill.requiresFallen && !fallenAlly(caster)) return false;
     return this._hasRequiredResources(skill, caster);
   }
 
@@ -33,10 +37,11 @@ export class SkillSystem {
     if (!skill) return 'нет навыка';
     if (caster.isOnCooldown?.(skillId)) return `откат ${caster.cooldowns[skillId]}`;
     if (skill.oncePerBattle && caster._usedOnce?.has(skillId)) return 'уже использован в этом бою';
+    if (skill.requiresFallen && !fallenAlly(caster)) return 'некого поднимать';
     if (skill.usesResource && (caster.resources?.[skill.usesResource] || 0) <= 0) return 'нет зарядов';
-    const lack = Object.entries(skill.resourceCost || {}).find(([id, n]) => (caster.resources?.[id] || 0) < n);
+    const lack = Object.entries(skillCost(skill, caster)).find(([id, n]) => (caster.resources?.[id] || 0) < n);
     if (lack) {
-      const name = getClassDef(caster)?.resource?.id === lack[0] ? getClassDef(caster).resource.name : lack[0];
+      const name = getClassDef(caster)?.resource?.id === lack[0] ? getClassDef(caster).resource.name : (UI.battle.resources[lack[0]] || lack[0]);
       return `нужно ${name} ${lack[1]}`;
     }
     return null;
@@ -58,16 +63,28 @@ export class SkillSystem {
       eventBus.emit('log', `Не хватает ресурса для «${skill.name}»`);
       return false;
     }
+    if (skill.requiresFallen && !fallenAlly(caster)) {
+      eventBus.emit('log', `«${skill.name}»: некого поднимать`);
+      return false;
+    }
 
     // Финишер тратит весь Темп: запоминаем до списания
     const tempoBefore = caster.resources?.tempo || 0;
     this._spendResources(skill, caster);
     if (skill.effect === 'finisher') caster.resources.tempo = 0;
+    // Навык со spendAll забирает весь ресурс: стоимость плюс остаток
+    let spent = 0;
+    if (skill.spendAll) {
+      spent = (caster.resources[skill.spendAll] || 0) + (skill.resourceCost?.[skill.spendAll] || 0);
+      caster.resources[skill.spendAll] = 0;
+    }
+    const hpPrice = skillHpCost(skill, caster);
+    if (hpPrice) caster.loseHp(hpPrice);
 
     if (typeof skill.effect === 'function') {
       skill.effect(caster, target, eventBus);
     } else {
-      this._applyBuiltin(skill, caster, target, { tempoBefore });
+      this._applyBuiltin(skill, caster, target, { tempoBefore, spent });
     }
 
     this._gainResources(skill, caster);
@@ -83,7 +100,7 @@ export class SkillSystem {
     const lvl = caster.level || 1;
     let amount = (skill.healAmount || 0) + (skill.healPerLevel || 0) * (lvl - 1);
     if (skill.id === 'bandage') amount += caster.healBonus || 0;
-    return Math.max(1, Math.round(amount * (caster.staggerMult?.() ?? 1)));
+    return Math.max(1, Math.round(amount * healerMult(skill, caster) * (caster.staggerMult?.() ?? 1)));
   }
 
   _applyBuiltin(skill, caster, target, ctx = {}) {
@@ -111,13 +128,21 @@ export class SkillSystem {
     if (skill.damage && target) {
       const lvl = caster.level || 1;
       const per = (skill.damagePerLevel || 0) * (lvl - 1);
-      const knack = (caster.commanderTraits || []).includes('shooting_knack') && skill.id === 'pistol_shot' ? 0.25 : 0;
-      landed = caster.attack(target, {
-        ...hitOpts, ignoreArmor: Math.max(hitOpts.ignoreArmor, knack),
-        fixed: { min: skill.damage.min + per, max: skill.damage.max + per },
-      });
-      if (landed > 0 && skill.id === 'pistol_shot' && passives.includes('point_blank')) {
-        this._status(target, { type: 'staggered', duration: 99, label: 'шатается' }, caster);
+      const knack = (caster.commanderTraits || []).includes('shooting_knack') && isPistolShot(skill) ? 0.25 : 0;
+      // Два ствола: если первый выстрел свалил цель, второй уходит в самого раненого из живых
+      for (let shot = 0, aim = target; shot < (skill.shots || 1) && aim; shot++) {
+        const hit = caster.attack(aim, {
+          ...hitOpts, ignoreArmor: Math.max(hitOpts.ignoreArmor, knack),
+          fixed: { min: skill.damage.min + per, max: skill.damage.max + per },
+        });
+        landed += hit;
+        if (hit > 0 && isPistolShot(skill) && passives.includes('point_blank')) {
+          this._status(aim, { type: 'staggered', duration: 99, label: 'шатается' }, caster);
+        }
+        if (hit > 0 && isPistolShot(skill) && passives.includes('dirty_range')) {
+          this._status(aim, { type: 'weakened', value: 0.75, duration: 2, label: 'слабость' }, caster);
+        }
+        if (!isActive(aim)) aim = (caster._foes || []).filter(isActive).reduce((a, b) => (!a || b.hp < a.hp ? b : a), null);
       }
     }
 
@@ -137,8 +162,7 @@ export class SkillSystem {
 
     // Снять статус и подлечить
     if (skill.effect === 'cleanse_heal' && target) {
-      const bad = ['weakened', 'staggered', 'marked', 'rooted', 'armor_broken'];
-      const st = target.effects.find(e => bad.includes(e.type));
+      const st = target.effects.find(e => BAD_STATUSES.includes(e.type));
       if (st) target.removeEffectInstance(st);
       const amount = this.healPower(skill, caster);
       target.heal(amount);
@@ -174,12 +198,19 @@ export class SkillSystem {
       eventBus.emit('log', `${caster.label} прикрывает: ${target.label}`);
     }
 
+    const custom = CLASS_EFFECTS[skill.effect];
+    if (custom) landed = custom({ skill, caster, target, hit: hitOpts, spent: ctx.spent || 0 }) || 0;
+
     this._applyStatuses(skill, caster, target, landed);
+    afterShot(skill, caster);
   }
 
   _status(receiver, status, caster) {
     let value = status.value;
     let type = status.type;
+    // Яд и клеймо растут от уровня заклинателя и не складываются, а обновляются
+    if (status.valuePerLevel) value += status.valuePerLevel * (caster.level || 1);
+    if (type === 'poison' || type === 'branded') receiver.removeEffect(type);
     // На боссе корни дают только −2 инициативы (01_БАЛАНС 2)
     if (type === 'rooted' && receiver.isBoss) value = RULES.ROOT_SPEED_BOSS;
     if (type === 'armor_broken') {
@@ -187,8 +218,12 @@ export class SkillSystem {
       receiver.armor = Math.max(0, (receiver.armor || 0) - value);
       receiver._armorBroken = (receiver._armorBroken || 0) + value;
     }
-    receiver.addEffect({ type, value, duration: status.duration ?? 1, sourceId: caster.id });
-    const STATUS_RU = { guarded: 'под прикрытием', marked: 'метка', weakened: 'ослаблен', staggered: 'оглушён', rooted: 'опутан', bleed: 'кровотечение', challenged: 'вызов', enraged: 'ярость', dodge_boost: 'уклонение', armor_broken: 'броня пробита' };
+    const taken = receiver.addEffect({ type, value, duration: status.duration ?? 1, sourceId: caster.id });
+    if (taken === false) {
+      if (status.log !== false) eventBus.emit('log', `${receiver.label} не поддаётся`);
+      return;
+    }
+    const STATUS_RU = { guarded: 'под прикрытием', marked: 'метка', weakened: 'ослаблен', staggered: 'оглушён', rooted: 'опутан', bleed: 'кровотечение', challenged: 'вызов', enraged: 'ярость', dodge_boost: 'уклонение', armor_broken: 'броня пробита', poison: 'яд', branded: 'клеймо' };
     if (status.log !== false) eventBus.emit('log', `${receiver.label}: ${status.label || STATUS_RU[type] || type}`);
   }
 
@@ -196,8 +231,7 @@ export class SkillSystem {
     if (skill.usesResource && (caster.resources?.[skill.usesResource] || 0) <= 0) {
       return false;
     }
-    const cost = skill.resourceCost || {};
-    return Object.entries(cost).every(([resourceId, amount]) => (
+    return Object.entries(skillCost(skill, caster)).every(([resourceId, amount]) => (
       (caster.resources?.[resourceId] || 0) >= amount
     ));
   }
@@ -207,7 +241,7 @@ export class SkillSystem {
     if (skill.usesResource) {
       caster.resources[skill.usesResource] = Math.max(0, (caster.resources[skill.usesResource] || 0) - 1);
     }
-    Object.entries(skill.resourceCost || {}).forEach(([resourceId, amount]) => {
+    Object.entries(skillCost(skill, caster)).forEach(([resourceId, amount]) => {
       caster.resources[resourceId] = Math.max(0, (caster.resources[resourceId] || 0) - amount);
     });
   }
@@ -223,6 +257,10 @@ export class SkillSystem {
   _applyStatuses(skill, caster, target, landed) {
     const statuses = Array.isArray(skill.appliesStatus) ? skill.appliesStatus : [];
     statuses.forEach(status => {
+      if (status.target === 'all_foes') {
+        (caster._foes || []).filter(isActive).forEach(foe => this._status(foe, status, caster));
+        return;
+      }
       const receiver = status.target === 'self' ? caster : target;
       if (!receiver) return;
       if (status.onHit && !(landed > 0)) return;   // метка ложится только при попадании

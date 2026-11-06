@@ -228,7 +228,7 @@ export class WalkableZones {
 
   isWalkable(x, y) { return this.open(this.cellOf(x, y)); }
 
-  /** Ближайшая проходимая клетка (в области comp, если задана). null, если таких нет. */
+  /** Ближайшая проходимая клетка (в области comp, если задана). -1, если таких нет. */
   nearestCell(x, y, comp = null) {
     let best = -1, bestD = Infinity;
     for (let i = 0; i < this.cells.length; i++) {

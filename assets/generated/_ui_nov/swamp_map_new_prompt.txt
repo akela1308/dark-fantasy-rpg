@@ -1,0 +1,2 @@
+Edit this exact painting. Keep the exact same composition, the same paths, the same shapes of dry ground and water, the same positions of every tree and object. Turn this into a different, deeper part of a dead black bog: colder grey-green light, dark still water with thin pale fog, rotten wooden stakes and leaning grave markers along the paths, dead reeds, sagging moss on the trees. Hand-painted dark fantasy style. No text.
+refs: public/maps/swamp_map.png

@@ -92,12 +92,15 @@ export class BootScene extends Phaser.Scene {
       this._starting = true;
       this.cameras.main.fade(700, 0, 0, 0, false, (cam, progress) => {
         if (progress !== 1) return;
-        this.scene.start('LoadingScene', {
+        const load = {
           destination: 'MapScene',
           destinationData: save
             ? { mapKey: save.mapKey || START_MAP, spawnId: save.spawnId || START_SPAWN }
             : { mapKey: START_MAP, spawnId: START_SPAWN },
-        });
+        };
+        // Новая игра начинается с вступительного ролика
+        if (save) this.scene.start('LoadingScene', load);
+        else this.scene.start('CinemaScene', { id: 'intro', next: 'LoadingScene', nextData: load });
       });
     };
     const continueGame = () => {

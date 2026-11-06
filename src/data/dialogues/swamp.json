@@ -45,7 +45,11 @@
           "label": "«Со мной Ресса.»",
           "showIf": {
             "companion": "ressa",
-            "notFlag": "swamp_hostile"
+            "notFlag": [
+              "swamp_hostile",
+              "ressa_exile_kept",
+              "ressa_water_quest"
+            ]
           },
           "next": "with_ressa"
         },
@@ -71,7 +75,10 @@
           "label": "«Зерно вместо воды. За Рессу.»",
           "showIf": {
             "flag": "ressa_water_quest",
-            "notFlag": "ressa_water_restored"
+            "notFlag": [
+              "ressa_water_restored",
+              "swamp_hostile"
+            ]
           },
           "requires": {
             "item": "grain"

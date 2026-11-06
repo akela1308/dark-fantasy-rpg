@@ -280,6 +280,8 @@ export class BattleScene extends Phaser.Scene {
   // ── Рендер юнитов ─────────────────────────────────────────────────────
 
   _renderAll() {
+    // destroy() не останавливает твин: мерцание колец копилось бы с каждым ходом до конца боя
+    if (this._unitSprites) this.tweens.killTweensOf(this._unitSprites.filter(s => s.type === 'Graphics'));
     if (this._unitSprites) this._unitSprites.forEach(s => { try { s.destroy(); } catch(e){} });
     this._unitSprites = [];
 
@@ -825,6 +827,7 @@ export class BattleScene extends Phaser.Scene {
       return;
     }
     this.turnManager.nextTurn();
+    if (this._checkEnd()) return;   // яд или клеймо могли решить бой в конце хода
     // Синхронно убираем мёртвых из грида (onComplete tween ненадёжен)
     [...this.playerUnits, ...this.enemyUnits].forEach(u => { if (!u.isAlive) this.grid.remove(u); });
     this._renderAll();
@@ -876,6 +879,7 @@ export class BattleScene extends Phaser.Scene {
     this._checkSurrenders();
     if (this._checkEnd()) return;
     this.turnManager.nextTurn();
+    if (this._checkEnd()) return;
     [...this.playerUnits, ...this.enemyUnits].forEach(u => { if (!u.isAlive) this.grid.remove(u); });
     this._renderAll();
     this.ui.update();
@@ -913,7 +917,8 @@ export class BattleScene extends Phaser.Scene {
     const enemiesDown = this.enemyUnits.every(u => !isActive(u));
     // Хроника: поражение, когда лежат все. Железо: когда пал герой.
     const iron = this.game.registry.get('gameMode') === 'iron';
-    const lost = iron ? !this.playerUnits[0]?.isAlive : this.playerUnits.every(u => !u.isAlive);
+    const hero = this.playerUnits.find(u => u.id === 'hero_duelist') ?? this.playerUnits[0];   // герой по id, а не по месту в отряде
+    const lost = iron ? !hero?.isAlive : this.playerUnits.every(u => !u.isAlive);
     if (enemiesDown) { this._endBattle('victory'); return true; }
     if (lost)        { this._endBattle('defeat');  return true; }
     return false;
@@ -952,7 +957,7 @@ export class BattleScene extends Phaser.Scene {
         rows.push({ icon: 'icon_drop', text: `${u.label}: рана, до отдыха HP не выше ${u.maxHp}`, color: '#d08a6a' });
       });
       // Сдавшиеся: решение «добить / отпустить» показывает карта (03_ДИАЛОГИ 6.7)
-      const surrendered = this.enemyUnits.filter(u => u.surrendered && u.isAlive).map(u => u.id);
+      const surrendered = this.enemyUnits.filter(u => u.surrendered && !u.fled && u.isAlive).map(u => u.id);
       this.game.registry.set('lastSurrendered', surrendered);
       this.game.registry.set('lastBattleId', this._battleId);
       this.game.registry.set('lastBattleResult', 'victory');
@@ -1070,6 +1075,7 @@ export class BattleScene extends Phaser.Scene {
     if (this._coordGrid) {
       this._coordGrid.forEach(o => { try { o.destroy(); } catch {} });
       this._coordGrid = null;
+      this.input.off('pointermove', this._onCoordMove);
       return;
     }
     this._coordGrid = [];
@@ -1097,9 +1103,10 @@ export class BattleScene extends Phaser.Scene {
       fontSize: '12px', color: '#FFFF00', fontFamily: 'monospace',
     }).setOrigin(0.5, 0).setDepth(999).setScrollFactor(0);
     this._coordGrid.push(cursor);
-    this.input.on('pointermove', (ptr) => {
+    this._onCoordMove = (ptr) => {
       if (this._coordGrid) cursor.setText(`x:${Math.round(ptr.x)}  y:${Math.round(ptr.y)}`);
-    });
+    };
+    this.input.on('pointermove', this._onCoordMove);
   }
 
   _toggleJGrid() {
@@ -1191,6 +1198,9 @@ export class BattleScene extends Phaser.Scene {
       // Опыт даётся за встречу целиком в конце боя (PartySystem.addXp)
     });
 
+    // Последняя настойка: поднятый возвращается на свою клетку, очередь его уже знает
+    eventBus.on('unit_revived', unit => this.grid.place(unit));
+
     eventBus.on('skill_selected', skillId => this._onSkillSelect(skillId));
 
     eventBus.on('commanders_roar', () => {
@@ -1202,6 +1212,7 @@ export class BattleScene extends Phaser.Scene {
       if (this.battleOver || this._animLock || !this.turnManager.isPlayerTurn()) return;
       this._pendingSkill = null;
       this.turnManager.skipTurn();
+      if (this._checkEnd()) return;
       this._renderAll();
       this.ui.update();
       if (!this.turnManager.isPlayerTurn()) this._runAITurn();
@@ -1217,6 +1228,7 @@ export class BattleScene extends Phaser.Scene {
       this._react(unit, 'block');
       eventBus.emit('log', `${unit.label} встаёт в защиту: до следующего хода урон вдвое меньше`);
       this.turnManager.skipTurn(true);
+      if (this._checkEnd()) return;
       this._renderAll();
       this.ui.update();
       if (!this.turnManager.isPlayerTurn()) this._runAITurn();

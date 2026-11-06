@@ -1,0 +1,93 @@
+{
+ "slash_arc": {
+  "file": "battle_fx/slash_arc.webp",
+  "frameWidth": 200,
+  "frameHeight": 200,
+  "frames": 16,
+  "fps": 24
+ },
+ "slash_heavy": {
+  "file": "battle_fx/slash_heavy.webp",
+  "frameWidth": 200,
+  "frameHeight": 200,
+  "frames": 16,
+  "fps": 24
+ },
+ "sparks": {
+  "file": "battle_fx/sparks.webp",
+  "frameWidth": 200,
+  "frameHeight": 200,
+  "frames": 16,
+  "fps": 24
+ },
+ "blood_spray": {
+  "file": "battle_fx/blood_spray.webp",
+  "frameWidth": 200,
+  "frameHeight": 200,
+  "frames": 16,
+  "fps": 24
+ },
+ "dust_hit": {
+  "file": "battle_fx/dust_hit.webp",
+  "frameWidth": 200,
+  "frameHeight": 200,
+  "frames": 16,
+  "fps": 24
+ },
+ "heal_motes": {
+  "file": "battle_fx/heal_motes.webp",
+  "frameWidth": 200,
+  "frameHeight": 200,
+  "frames": 16,
+  "fps": 24
+ },
+ "frost_burst": {
+  "file": "battle_fx/frost_burst.webp",
+  "frameWidth": 200,
+  "frameHeight": 200,
+  "frames": 16,
+  "fps": 24
+ },
+ "poison": {
+  "file": "battle_fx/poison.webp",
+  "frameWidth": 200,
+  "frameHeight": 200,
+  "frames": 16,
+  "fps": 24
+ },
+ "curse": {
+  "file": "battle_fx/curse.webp",
+  "frameWidth": 200,
+  "frameHeight": 200,
+  "frames": 16,
+  "fps": 24
+ },
+ "smoke_puff": {
+  "file": "battle_fx/smoke_puff.webp",
+  "frameWidth": 200,
+  "frameHeight": 200,
+  "frames": 16,
+  "fps": 24
+ },
+ "muzzle": {
+  "file": "battle_fx/muzzle.webp",
+  "frameWidth": 200,
+  "frameHeight": 200,
+  "frames": 16,
+  "fps": 24
+ },
+ "bell_wave": {
+  "file": "battle_fx/bell_wave.webp",
+  "frameWidth": 200,
+  "frameHeight": 200,
+  "frames": 16,
+  "fps": 24
+ },
+ "fire_burst": {
+  "file": "battle_fx/fire_burst.webp",
+  "frameWidth": 200,
+  "frameHeight": 200,
+  "frames": 16,
+  "fps": 24
+ }
+}

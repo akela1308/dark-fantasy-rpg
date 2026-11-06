@@ -1,5 +1,6 @@
 import UI from '../data/ui.json';
 import { getClassDef } from '../systems/ClassProgression.js';
+import { skillCost, skillHpCost } from '../systems/ClassPassives.js';
 
 const labels = UI.battle;
 const resourceName = id => labels.resources[id] || id;
@@ -24,9 +25,11 @@ export function statusSummary(unit) {
   return [...new Set((unit?.effects || []).map(e => labels.statuses[e.type]).filter(Boolean))].join(', ');
 }
 
-export function skillResourceSummary(skill) {
-  const cost = Object.entries(skill.resourceCost || {}).map(([id,n]) => `${resourceName(id)} ${n}`);
+export function skillResourceSummary(skill, unit = null) {
+  const cost = Object.entries(skillCost(skill, unit)).map(([id,n]) => `${resourceName(id)} ${n}`);
   if (skill.usesResource) cost.push(`${resourceName(skill.usesResource)} 1`);
+  const hp = unit ? skillHpCost(skill, unit) : 0;
+  if (hp) cost.push(`HP ${hp}`);
   const gain = Object.entries(skill.resourceGain || {}).map(([id,n]) => `${resourceName(id)} +${n}`);
   return [cost.length ? `${labels.cost}: ${cost.join(', ')}` : '', gain.length ? `${labels.gain}: ${gain.join(', ')}` : ''].filter(Boolean).join('\n');
 }

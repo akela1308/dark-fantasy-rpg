@@ -114,14 +114,7 @@
       "flag": "tavern_inside_visited"
     },
     "doneIf": {
-      "any": [
-        {
-          "flag": "mira_source_protected"
-        },
-        {
-          "flag": "mira_source_betrayed"
-        }
-      ]
+      "flag": "cloaks_leader_named"
     },
     "stages": [
       {
@@ -141,10 +134,11 @@
       },
       {
         "id": "name",
-        "text": "Узнать у Миры, кто командует людьми в плащах.",
+        "text": "Узнать, кто водит людей в плащах.",
         "doneIf": {
           "flag": "cloaks_leader_named"
-        }
+        },
+        "hint": "Мира назовёт имя, если вы сдержали слово и прошли лес или подвал. Ещё его знает Хольт у очага «Трёх столбов»."
       }
     ],
     "outcomes": [
@@ -303,21 +297,51 @@
       "flag": "ressa_recruited"
     },
     "doneIf": {
-      "flag": "ressa_water_restored"
+      "any": [
+        {
+          "flag": "ressa_water_restored"
+        },
+        {
+          "flag": "ressa_exile_kept"
+        },
+        {
+          "flag": "swamp_hostile"
+        }
+      ]
     },
     "stages": [
       {
         "id": "ask",
         "text": "Поговорить со старейшиной Лё в Болотном поселении о воде.",
         "doneIf": {
-          "flag": "ressa_water_quest"
+          "any": [
+            {
+              "flag": "ressa_water_quest"
+            },
+            {
+              "flag": "ressa_exile_kept"
+            },
+            {
+              "flag": "swamp_hostile"
+            }
+          ]
         }
       },
       {
         "id": "grain",
         "text": "Купить зерно у Ворна или взять в Придорожном и отнести Лё.",
         "doneIf": {
-          "flag": "ressa_water_restored"
+          "any": [
+            {
+              "flag": "ressa_water_restored"
+            },
+            {
+              "flag": "ressa_exile_kept"
+            },
+            {
+              "flag": "swamp_hostile"
+            }
+          ]
         }
       }
     ],
@@ -325,6 +349,14 @@
       {
         "flag": "ressa_water_restored",
         "text": "Вода возвращена. Ресса верна, болото открыто ей."
+      },
+      {
+        "flag": "ressa_exile_kept",
+        "text": "Вы сказали Лё, что Рессе хватит вас. Воду ей никто не вернёт."
+      },
+      {
+        "flag": "swamp_hostile",
+        "text": "С болотом поссорились: о воде для Рессы больше не с кем говорить."
       }
     ],
     "reward": {
@@ -407,13 +439,16 @@
         },
         {
           "flag": "sealed_basement_4_defeated"
+        },
+        {
+          "flag": "basement_left_closed"
         }
       ]
     },
     "stages": [
       {
         "id": "talk",
-        "text": "Добыть ключ у Савко во дворе «Хромого Лося»: выпить с ним трижды, прийти с Таей или пригрозить.",
+        "text": "Добыть ключ у Савко во дворе «Хромого Лося»: выпить с ним трижды, прийти с Таей или пригрозить. Если Савко ушёл, спросить о люке Ворна.",
         "doneIf": {
           "any": [
             {
@@ -427,9 +462,9 @@
       },
       {
         "id": "hatch",
-        "text": "Открыть люк в подвал за поленницей во дворе «Хромого Лося».",
+        "text": "Спуститься в подвал через люк за поленницей во дворе «Хромого Лося».",
         "doneIf": {
-          "flag": "basement_opened"
+          "flag": "tavern_cellar_visited"
         }
       },
       {
@@ -442,6 +477,9 @@
             },
             {
               "flag": "sealed_basement_4_defeated"
+            },
+            {
+              "flag": "basement_left_closed"
             }
           ]
         }
@@ -455,6 +493,10 @@
       {
         "flag": "savko_gone",
         "text": "Савко ушёл ночью и не вернётся."
+      },
+      {
+        "flag": "basement_left_closed",
+        "text": "Дверь со знаком осталась закрытой."
       }
     ],
     "reward": {
@@ -596,6 +638,10 @@
       {
         "flag": "village_tribute",
         "text": "Деревня платит вам. Тая ушла."
+      },
+      {
+        "flag": "swamp_deal_kept",
+        "text": "Правду о воде оставили при себе, разговор с болотом за вами."
       }
     ],
     "reward": {
@@ -931,21 +977,15 @@
       "flag": "forest1_visited"
     },
     "doneIf": {
-      "flag": "gate_passed"
-    },
-    "stages": [
-      {
-        "id": "forest",
-        "text": "Пройти Чёрный Лес мимо Корвина: заплатить, показать письмо, напугать, договориться или драться.",
-        "doneIf": {
-          "flag": "korvin_resolved"
-        }
-      },
-      {
-        "id": "debt",
-        "text": "Выполнить сделку с Корвином или ждать засады на дороге.",
-        "doneIf": {
+      "all": [
+        {
+          "flag": "gate_passed"
+        },
+        {
           "any": [
+            {
+              "flag": "korvin_gang_won"
+            },
             {
               "flag": "korvin_revenge_done"
             },
@@ -959,34 +999,49 @@
               "flag": "bandit_commander_spared"
             },
             {
-              "all": [
-                {
-                  "flag": "bandit_deal_altar"
-                },
-                {
-                  "any": [
-                    {
-                      "flag": "seal_taken"
-                    },
-                    {
-                      "flag": "seal_left"
-                    }
-                  ]
-                }
-              ]
+              "flag": "bandit_paid"
             },
             {
-              "all": [
-                {
-                  "flag": "bandit_deal_cloaks"
-                },
-                {
-                  "flag": "cloaks_leader_named"
-                }
-              ]
+              "flag": "bandit_intimidated"
             }
           ]
         }
+      ]
+    },
+    "stages": [
+      {
+        "id": "forest",
+        "text": "Пройти Чёрный Лес мимо Корвина: заплатить, показать письмо, напугать, договориться или драться.",
+        "doneIf": {
+          "flag": "korvin_resolved"
+        }
+      },
+      {
+        "id": "debt",
+        "text": "Выполнить сделку и прийти с ответом в лагерь Корвина или ждать засады на дороге.",
+        "doneIf": {
+          "any": [
+            {
+              "flag": "korvin_gang_won"
+            },
+            {
+              "flag": "korvin_revenge_done"
+            },
+            {
+              "flag": "korvin_debt_paid"
+            },
+            {
+              "flag": "bandit_commander_killed"
+            },
+            {
+              "flag": "bandit_commander_spared"
+            },
+            {
+              "flag": "bandit_paid"
+            }
+          ]
+        },
+        "hint": "Срок считают люди Корвина: каждый проход Чёрным Лесом после сделки. После двух предупреждений Тисса сделка сгорает."
       },
       {
         "id": "village",
@@ -1006,12 +1061,40 @@
         "text": "Корвин отпущен."
       },
       {
+        "flag": "bandit_commander_fled",
+        "text": "Корвин бежал, бросив своих людей."
+      },
+      {
         "flag": "korvin_witness",
         "text": "Корвин пойдёт свидетелем."
       },
       {
+        "flag": "bandit_deal_altar",
+        "text": "Сделка: узнать, кто убивает людей у старого алтаря."
+      },
+      {
+        "flag": "bandit_deal_cloaks",
+        "text": "Сделка: назвать Корвину имя того, кто водит людей в плащах."
+      },
+      {
+        "flag": "bandit_deal_vorn",
+        "text": "Сделка: уговорить Ворна возить Корвину хлеб без пошлины."
+      },
+      {
         "flag": "bandit_deal_legitimize",
+        "text": "Сделка: доказать, что седьмой пост мёртв, и скрепить бумагу Корвина."
+      },
+      {
+        "flag": "korvin_debt_paid",
+        "text": "Сделка выполнена, с Корвином в расчёте."
+      },
+      {
+        "flag": "korvin_legit_signed",
         "text": "Корвин получил право на дорогу."
+      },
+      {
+        "flag": "korvin_debt_overdue",
+        "text": "Срок сделки вышел. Корвин ждёт в лесу."
       },
       {
         "flag": "cult_turned",
@@ -1084,7 +1167,7 @@
       },
       {
         "flag": "seal_taken",
-        "text": "Кольцо взято, не надето."
+        "text": "Кольцо взято."
       },
       {
         "flag": "seal_left",

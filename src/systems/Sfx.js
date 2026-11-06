@@ -29,7 +29,7 @@ export const Sfx = {
     eventBus.on('unit_missed', () => this.play(scene, 'miss'));
     eventBus.on('unit_healed', ({ amount }) => { if (amount > 0) this.play(scene, 'heal'); });
     eventBus.on('unit_died', () => this.play(scene, 'death'));
-    eventBus.on('skill_used', ({ skillId }) => { if (skillId === 'pistol_shot' || skillId === 'last_argument_shot') this.play(scene, 'shot'); });
+    eventBus.on('skill_used', ({ skillId }) => { if (skillId === 'pistol_shot' || skillId === 'last_argument_shot' || skillId === 'two_barrels') this.play(scene, 'shot'); });
     eventBus.on('defend_action', () => this.play(scene, 'block'));
   },
 };

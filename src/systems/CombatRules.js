@@ -88,12 +88,17 @@ export function reachableTargets(attacker, enemies) {
   return enemies.filter(t => isActive(t) && meleeReach(attacker, t, enemies).ok);
 }
 
-/** Инициатива с учётом rooted (−4, у босса −2). */
+/** Инициатива с учётом засады, Чести дороги и rooted (−4, у босса −2). */
 export function effectiveSpeed(unit) {
-  const bonus = unit._initiativeBonus || 0;   // засада: враги ходят первыми в первом раунде
+  // Засада: враги ходят первыми в первом раунде. Честь дороги: союзники героя +1, пока он стоит
+  const bonus = (unit._initiativeBonus || 0) + (roadHonor(unit) ? 1 : 0);
   const root = (unit.effects || []).find(e => e.type === 'rooted');
   if (!root) return (unit.speed || 0) + bonus;
   return (unit.speed || 0) + bonus - (unit.isBoss ? RULES.ROOT_SPEED_BOSS : RULES.ROOT_SPEED);
+}
+
+function roadHonor(unit) {
+  return (unit._allies || []).some(a => a !== unit && isActive(a) && (a.passives || []).includes('road_honor'));
 }
 
 /** Должен ли враг сдаться: canSurrender, HP < 20%, командир мёртв или сдался. */

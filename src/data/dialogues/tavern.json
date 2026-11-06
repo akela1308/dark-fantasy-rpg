@@ -178,6 +178,26 @@
           "next": "vorn"
         },
         {
+          "label": "«Савко ушёл, а люк за поленницей заперт.»",
+          "showIf": {
+            "flag": "savko_gone",
+            "notFlag": "cellar_open"
+          },
+          "next": "hatch_bar"
+        },
+        {
+          "label": "«Я пообещал Корвину твой хлеб без пошлины.»",
+          "showIf": {
+            "flag": "bandit_deal_vorn",
+            "notFlag": [
+              "vorn_bread_agreed",
+              "korvin_debt_paid",
+              "korvin_debt_overdue"
+            ]
+          },
+          "next": "vorn_bread"
+        },
+        {
           "label": "«Можно почитать устав?»",
           "showIf": {
             "notFlag": "book_taken_with_permission"
@@ -267,6 +287,26 @@
     "rested": {
       "speaker": "vorn",
       "text": "«Четвёртая наверху, по правую руку. Дверь открыта, ключ внутри. Утром оставь его на крюке.»",
+      "next": "vorn"
+    },
+    "hatch_bar": {
+      "speaker": "vorn",
+      "text": "«Замок там старый, а лом стоит у поленницы. Я его туда не для вас ставил, но брать не запрещал. Что внизу, не спрашивайте. Я сам не спрашиваю.»",
+      "effects": {
+        "setFlag": [
+          "cellar_open",
+          "hatch_known",
+          "savko_believed"
+        ]
+      },
+      "next": "vorn"
+    },
+    "vorn_bread": {
+      "speaker": "vorn",
+      "text": "«Вы пообещали. Мой хлеб. Человеку, который берёт плату с похоронных повозок.» Ворн долго вытирает кружку. «Ладно. Устав на то и устав: что под крышей, моё, что за порогом, чья-то пошлина. Два мешка в неделю. Но ни один его человек не сядет за мой стол. Так ему и передайте, слово в слово.»",
+      "effects": {
+        "setFlag": "vorn_bread_agreed"
+      },
       "next": "vorn"
     },
     "beer": {

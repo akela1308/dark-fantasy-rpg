@@ -51,7 +51,8 @@
       "goto": [
         {
           "showIf": {
-            "flag": "bandit_deal_legitimize"
+            "flag": "korvin_legit_signed",
+            "companion": "companion_healer"
           },
           "node": "gate_legit"
         },
@@ -66,12 +67,22 @@
             "flag": "bandit_commander_killed"
           },
           "node": "gate_killed"
+        },
+        {
+          "showIf": {
+            "flag": "bandit_commander_fled"
+          },
+          "node": "gate_fled"
         }
       ]
     },
     "gate_killed": {
       "speaker": "guard",
       "text": "«Корвина нет. Теперь всякий с дубиной мнит себя Корвином. Вчера трое таких приходили.»"
+    },
+    "gate_fled": {
+      "speaker": "guard",
+      "text": "«Корвин, говорят, один ушёл, людей своих бросил. Десятник без десятка. Такие либо спиваются, либо возвращаются.»"
     },
     "gate_spared": {
       "speaker": "korvin",
@@ -164,7 +175,7 @@
               "village_tribute",
               "taya_leaves"
             ],
-            "dismiss": "companion_healer",
+            "dismissForever": "companion_healer",
             "giveXp": "minor"
           },
           "close": true,
@@ -272,8 +283,7 @@
       "goto": [
         {
           "showIf": {
-            "companion": "holt",
-            "trait": "secret_literacy"
+            "companion": "holt"
           },
           "node": "holt_name"
         }
@@ -426,6 +436,9 @@
                   },
                   {
                     "flag": "chapel_cult_defeated"
+                  },
+                  {
+                    "flag": "cult_turned"
                   }
                 ]
               },
@@ -435,7 +448,13 @@
                     "flag": "bandit_commander_killed"
                   },
                   {
+                    "flag": "bandit_commander_fled"
+                  },
+                  {
                     "flag": "korvin_witness"
+                  },
+                  {
+                    "flag": "cult_turned"
                   }
                 ]
               }
