@@ -1,6 +1,6 @@
 """Генерация кадров (Nano Banana Pro) и видео (Veo 3.1) для Mortis.
 python3 tools/veo_client.py image "prompt" out.png [ref1 ...] [--aspect 1:1]
-python3 tools/veo_client.py vsubmit in.png "prompt" out_prefix [--sec 6] [--aspect 16:9] [--n 2] [--last last.png] [--raw]
+python3 tools/veo_client.py vsubmit in.png "prompt" out_prefix [--sec 6] [--aspect 16:9] [--n 2] [--last last.png] [--raw] [--res 720p|1080p|4k] [--audio]
 python3 tools/veo_client.py vpoll out_prefix      # забирает готовое видео по сохранённой операции
 Ключ берётся из VEO_SA_KEY, в проект не копируется."""
 import base64, io, json, os, sys, time, urllib.request, urllib.error
@@ -22,7 +22,7 @@ NEG = ("text, letters, subtitles, watermark, logo, UI, duplicate character, seco
        "zoom, cut, scene change, background change, shadows on background, objects appearing or disappearing, fire, smoke, steam, vapor, breath mist, white puffs, sparks, muzzle flash, glow, "
        "weapons switching hands, weapon passed to the other hand, weapon changing shape or size, sword turning into another weapon, character turning around")
 
-NEG_RAW = "text, letters, subtitles, watermark, logo, UI, scene cut, style change, 3D render, photorealistic, cartoon, morphing faces"
+NEG_RAW = "text, letters, subtitles, watermark, logo, UI, scene cut, style change, 3D render, cartoon, morphing faces, morphing clothes, new objects appearing, power lines, utility poles, cars, headlights, modern objects, plastic skin"
 
 def token():
     if not KEY: raise SystemExit("ключ не найден, задай VEO_SA_KEY")
@@ -75,8 +75,11 @@ def image(args):
 def vsubmit(args):
     sec = int(opt(args, "--sec", "6")); aspect = opt(args, "--aspect", "16:9")
     n = int(opt(args, "--n", "2")); last = opt(args, "--last", None)
+    res = opt(args, "--res", "720p")
     raw = "--raw" in args
     if raw: args.remove("--raw")   # эффекты, живые фоны, ролики: без зелёного фона и запрета огня и дыма
+    audio = "--audio" in args      # родной звук Veo: для трейлера
+    if audio: args.remove("--audio")
     img, prompt, prefix = args[0], args[1], args[2]
     pre = ("Game sprite animation on a flat solid chroma green background. Keep exactly the same hand-painted 2D art style, "
            "the same single character, same costume and weapons for the whole clip. The camera is locked off, does not move or zoom. "
@@ -85,9 +88,22 @@ def vsubmit(args):
     inst = {"prompt": pre + prompt, "image": {"bytesBase64Encoded": b64img(img, 1920), "mimeType": "image/jpeg"}}
     if last: inst["lastFrame"] = {"bytesBase64Encoded": b64img(last, 1920), "mimeType": "image/jpeg"}
     body = {"instances": [inst], "parameters": {"aspectRatio": aspect, "durationSeconds": sec, "sampleCount": n,
-            "generateAudio": False, "resolution": "720p", "negativePrompt": NEG_RAW if raw else NEG}}
+            "generateAudio": audio, "resolution": res, "negativePrompt": NEG_RAW if raw else NEG}}
     op = call(VEO + ":predictLongRunning", body, token())["name"]
     json.dump({"op": op, "prompt": prompt, "img": img, "last": last, "sec": sec}, open(prefix + "_op.json", "w"), ensure_ascii=False, indent=1)
+    print("submitted", prefix)
+
+def vextend(args):
+    # Продление готового клипа: Veo дописывает кусок с учётом движения. python3 tools/veo_client.py vextend in.mp4 "prompt" out_prefix [--sec 7] [--n 1] [--res 720p] [--audio]
+    sec = int(opt(args, "--sec", "7")); n = int(opt(args, "--n", "1")); res = opt(args, "--res", "720p")
+    audio = "--audio" in args
+    if audio: args.remove("--audio")
+    vid, prompt, prefix = args[0], args[1], args[2]
+    inst = {"prompt": prompt, "video": {"bytesBase64Encoded": base64.b64encode(open(vid, "rb").read()).decode(), "mimeType": "video/mp4"}}
+    body = {"instances": [inst], "parameters": {"aspectRatio": "16:9", "durationSeconds": sec, "sampleCount": n,
+            "generateAudio": audio, "resolution": res, "negativePrompt": NEG_RAW}}
+    op = call(VEO + ":predictLongRunning", body, token())["name"]
+    json.dump({"op": op, "prompt": prompt, "video": vid, "sec": sec}, open(prefix + "_op.json", "w"), ensure_ascii=False, indent=1)
     print("submitted", prefix)
 
 def vpoll(args):
@@ -101,4 +117,4 @@ def vpoll(args):
 
 if __name__ == "__main__":
     a = sys.argv[1:]; cmd = a.pop(0)
-    {"image": image, "vsubmit": vsubmit, "vpoll": vpoll}[cmd](a)
+    {"image": image, "vsubmit": vsubmit, "vextend": vextend, "vpoll": vpoll}[cmd](a)

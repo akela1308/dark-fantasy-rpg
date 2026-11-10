@@ -39,3 +39,13 @@ assets/generated/_qa/**
 assets/generated/_stock/pad/
 assets/generated/_stock/rejected/
 assets/generated/_ui_nov/paths/
+
+# Трейлер: кадры, клипы и монтаж локально, в git только сценарий и раскадровка
+assets/generated/_trailer/**
+!assets/generated/_trailer/**/
+!assets/generated/_trailer/**/*.md
+
+# Рилс: кадры, клипы и монтаж локально, в git только сценарий и отчёт
+assets/generated/_trailer_reel/**
+!assets/generated/_trailer_reel/**/
+!assets/generated/_trailer_reel/**/*.md
