@@ -79,7 +79,7 @@
           "type": "skill",
           "skillId": "challenge",
           "label": "Вызов",
-          "desc": "Метка на 3 хода: удары по цели не промахиваются и бьют на 40% сильнее. Откат 3",
+          "desc": "Вызов на 3 хода: удары по цели не промахиваются и бьют на 40% сильнее. Откат 3",
           "branchId": "honor_code",
           "auto": true
         },
@@ -88,7 +88,7 @@
           "type": "skill",
           "skillId": "last_argument_shot",
           "label": "Последний Аргумент",
-          "desc": "Финишер: тратит весь Темп, урон ×(1 + 0.5 × Темп), без брони. Раз в бой",
+          "desc": "Добивание: тратит весь Темп, урон ×(1 + 0,5 × Темп), без брони. Раз в бой",
           "branchId": "last_argument",
           "auto": true
         }
@@ -120,7 +120,7 @@
           "key": "bloodthirst",
           "type": "perk",
           "label": "Жажда крови",
-          "desc": "Вампиризм 4 вместо 2",
+          "desc": "Удар возвращает 4 здоровья вместо 2",
           "effects": {
             "lifestealSet": 4
           }
@@ -170,7 +170,7 @@
           "type": "passive",
           "passiveId": "smoke_screen",
           "label": "Дымная завеса",
-          "desc": "После выстрела враги получают -15 к точности по вам до конца раунда",
+          "desc": "После выстрела враги получают −15 к точности по вам до конца раунда",
           "branchId": "last_argument",
           "auto": true
         }
@@ -219,7 +219,7 @@
           "type": "passive",
           "passiveId": "dirty_range",
           "label": "Грязная дистанция",
-          "desc": "3 заряда вместо 2, выстрел накладывает слабость",
+          "desc": "+1 заряд пистоля, выстрел накладывает слабость",
           "branchId": "last_argument",
           "auto": true,
           "effects": {
@@ -333,7 +333,7 @@
         "id": "bonebreaker",
         "name": "Костолом",
         "unlockLevel": 3,
-        "description": "Агрессивная ветка: тяжелые удары, шатание, ломка защиты, давление дубиной.",
+        "description": "Агрессивная ветка: тяжёлые удары, шатание, ломка защиты, давление дубиной.",
         "firstNode": {
           "passiveId": "breaking_blow",
           "label": "Ломающий удар"
@@ -455,7 +455,7 @@
           "key": "regen_plus",
           "type": "perk",
           "label": "Второе дыхание",
-          "desc": "Регенерация +2%",
+          "desc": "Ещё +2% здоровья в конце каждого хода",
           "effects": {
             "regen": 2
           }
@@ -505,7 +505,7 @@
           "type": "skill",
           "skillId": "sweep",
           "label": "Размах",
-          "desc": "Удар по двум соседним врагам переднего ряда ×0.9, 2 Мощи",
+          "desc": "Удар ×0,9 по цели и её соседу по ряду. 2 Мощи",
           "branchId": "bonebreaker",
           "auto": true
         }
@@ -656,7 +656,7 @@
         "id": "bitter_tinctures",
         "name": "Горькие Настои",
         "unlockLevel": 3,
-        "description": "Мрачная ветка: слабость, дурман, корни, цена лечения и темная народная медицина.",
+        "description": "Мрачная ветка: слабость, дурман, корни, цена лечения и тёмная народная медицина.",
         "firstNode": {
           "skillId": "dope_smoke",
           "label": "Дурманный дым"
@@ -692,7 +692,7 @@
           "key": "concentration",
           "type": "perk",
           "label": "Концентрация",
-          "desc": "-1 к откату навыков",
+          "desc": "−1 к откату навыков",
           "effects": {
             "cdReduction": 1
           }
@@ -725,7 +725,7 @@
           "key": "concentration",
           "type": "perk",
           "label": "Концентрация",
-          "desc": "-1 к откату навыков",
+          "desc": "−1 к откату навыков",
           "effects": {
             "cdReduction": 1
           }
@@ -806,7 +806,7 @@
           "key": "concentration",
           "type": "perk",
           "label": "Концентрация",
-          "desc": "-1 к откату навыков",
+          "desc": "−1 к откату навыков",
           "effects": {
             "cdReduction": 1
           }
@@ -827,7 +827,7 @@
           "type": "passive",
           "passiveId": "bitter_price",
           "label": "Горькая цена",
-          "desc": "Перевязка не тратит Сборы, но Знахарка теряет 5 HP",
+          "desc": "Перевязка не тратит Сборы, но Знахарка теряет 5 здоровья",
           "branchId": "bitter_tinctures",
           "auto": true
         }
@@ -855,7 +855,7 @@
           "key": "concentration",
           "type": "perk",
           "label": "Концентрация",
-          "desc": "-1 к откату навыков",
+          "desc": "−1 к откату навыков",
           "effects": {
             "cdReduction": 1
           }
@@ -904,7 +904,7 @@
           "key": "concentration",
           "type": "perk",
           "label": "Концентрация",
-          "desc": "-1 к откату навыков",
+          "desc": "−1 к откату навыков",
           "effects": {
             "cdReduction": 1
           }
@@ -916,7 +916,7 @@
           "type": "skill",
           "skillId": "last_tincture",
           "label": "Последняя настойка",
-          "desc": "Раз в бой: поднять последнего упавшего союзника с 40% HP",
+          "desc": "Раз в бой: поднять последнего упавшего союзника с 40% здоровья",
           "branchId": "healers_hand",
           "auto": true
         },
@@ -1106,7 +1106,7 @@
           "key": "cold_hand",
           "type": "perk",
           "label": "Холодная рука",
-          "desc": "-1 к откату навыков",
+          "desc": "−1 к откату навыков",
           "effects": {
             "cdReduction": 1
           }

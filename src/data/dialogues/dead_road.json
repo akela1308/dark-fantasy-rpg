@@ -16,12 +16,12 @@
       "choices": [
         { "label": "«Дочитывай. Мы подождём.»", "next": "waited" },
         { "label": "«Кого ты читаешь?»", "next": "who" },
-        { "label": "«[Атаковать]»", "effects": { "setFlag": "dead_road_pending" }, "startBattle": { "battleId": "dead_road_reader", "onWin": "after_fight" } }
+        { "label": "[Атаковать]", "effects": { "setFlag": "dead_road_pending" }, "startBattle": { "battleId": "dead_road_reader", "onWin": "after_fight" } }
       ]
     },
     "who": {
       "speaker": "reader",
-      "text": "«Тех, кого седьмой пост повесил за то, что ушли с дороги. Потом и сам пост ушёл. А их так никто и не снял. Я снимаю. Медленно.»",
+      "text": "«Тех своих, кого седьмой пост повесил за то, что ушли с дороги. Потом и сам пост ушёл. А их так никто и не снял. Я снимаю. Медленно.»",
       "effects": { "setFlag": "post_hanged_deserters" },
       "next": "reader"
     },

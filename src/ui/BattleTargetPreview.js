@@ -22,7 +22,7 @@ export function targetPreview(scene, target) {
   if (!reason && skill) reason = scene.skillSystem.unavailableReason(skill.id, actor) || '';
   if (!reason && skill?.healAmount && (!skill.effect || skill.effect === 'cleanse_heal')) {
     const amount = Math.max(0, Math.min(target.maxHp - target.hp, scene.skillSystem.healPower(skill, actor)));
-    body.push(amount ? `${t.heal}: ${amount} HP (${target.hp} → ${target.hp + amount})` : t.full);
+    body.push(amount ? `${t.heal}: ${amount} здоровья (${target.hp} → ${target.hp + amount})` : t.full);
   }
   if (target.type !== actor?.type) {
     for (const e of target.effects || []) {

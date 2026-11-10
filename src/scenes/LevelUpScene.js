@@ -23,7 +23,7 @@ const CLASS_BONUSES = {
   companion_healer: [
     { key: 'hp',        label: 'Выносливость',  desc: '+20 к максимальному здоровью' },
     { key: 'armor',     label: 'Оберег',        desc: '+3% к броне' },
-    { key: 'cooldown',  label: 'Концентрация',  desc: '-1 к откату всех навыков' },
+    { key: 'cooldown',  label: 'Концентрация',  desc: '−1 к откату всех навыков' },
   ],
 };
 
@@ -68,7 +68,7 @@ export class LevelUpScene extends Phaser.Scene {
       autos.forEach(n => applyProgressionChoice(unit, n));
       const notes = autos.map(n => n.label);
       const trait = getCommanderTraitChoices(unit, L, this.game.registry);
-      if (trait) this._screens.push({ unit, level: L, choices: trait, kind: 'trait' });
+      if (trait) this._screens.push({ unit, level: L, choices: trait, kind: 'trait', notes });
       // Выбор класса считается после черты (на случай, если от черты что-то зависит)
       this._screens.push({ unit, level: L, kind: 'class', notes, lazy: true });
     }
@@ -127,6 +127,10 @@ export class LevelUpScene extends Phaser.Scene {
     f.text(x + 130, y + 10, name, 'title', { size: 24, letterSpacing: 1 });
     f.text(x + 130, y + 46, `Уровень ${this._current?.level ?? unit.level}${unit.personalName ? `, ${unit.name.toLowerCase()}` : ''}`, 'body', { color: COLOR.muted });
     f.text(x + 130, y + 76, choiceKind, 'small', { size: 13, color: COLOR.gold, letterSpacing: 1 });
+    // На 5 и 8 уровне герой получает умение ветки вместе с чертой: сводки «Отряд окреп» у него нет, пишем здесь
+    if (this._current?.kind === 'trait' && this._current.notes?.length) {
+      f.text(x + 130, y + 98, `Новое умение ветки: ${this._current.notes.join(', ')}`, 'small', { size: 13, color: COLOR.muted });
+    }
 
     let cy = y + headH - 10;
     cards.forEach((c, i) => {
@@ -181,7 +185,7 @@ export class LevelUpScene extends Phaser.Scene {
       eventBus.emit('log', `${unit.label || unit.name}: +5 к максимальному урону`);
     } else if (bonus.key === 'cooldown') {
       unit._cdReduction = (unit._cdReduction || 0) + 1;
-      eventBus.emit('log', `${unit.label || unit.name}: откаты навыков -1`);
+      eventBus.emit('log', `${unit.label || unit.name}: откаты навыков −1`);
     }
   }
 

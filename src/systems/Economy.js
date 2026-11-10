@@ -61,8 +61,8 @@ export function useSummary(item) {
   const u = item?.use;
   if (!u) return '';
   const parts = [];
-  if (u.heal) parts.push(`+${u.heal} HP одному`);
-  if (u.healAll) parts.push(`+${u.healAll} HP всем`);
+  if (u.heal) parts.push(`+${u.heal} здоровья одному`);
+  if (u.healAll) parts.push(`+${u.healAll} здоровья всем`);
   if (u.cureInjury) parts.push('снимает рану');
   const b = u.battleBuff;
   if (b) parts.push(`${UI.itemHints.nextBattle}${UI.itemHints.targets[b.target] ? `: ${UI.itemHints.targets[b.target]}` : ''}`);
@@ -198,7 +198,7 @@ export function useItem(id, unitId, ws, place = {}) {
   const healOne = (x, n) => {
     const before = x.hp;
     x.hp = Math.min(x.maxHp, x.hp + n);
-    if (x.hp > before) { changed = true; lines.push(`${unitLabel(x)}: +${x.hp - before} HP`); }
+    if (x.hp > before) { changed = true; lines.push(`${unitLabel(x)}: +${x.hp - before} здоровья`); }
   };
   if (u.cureInjury && target?.injured) {
     target.injured = false;

@@ -29,7 +29,7 @@ export function skillResourceSummary(skill, unit = null) {
   const cost = Object.entries(skillCost(skill, unit)).map(([id,n]) => `${resourceName(id)} ${n}`);
   if (skill.usesResource) cost.push(`${resourceName(skill.usesResource)} 1`);
   const hp = unit ? skillHpCost(skill, unit) : 0;
-  if (hp) cost.push(`HP ${hp}`);
+  if (hp) cost.push(`здоровье ${hp}`);
   const gain = Object.entries(skill.resourceGain || {}).map(([id,n]) => `${resourceName(id)} +${n}`);
   return [cost.length ? `${labels.cost}: ${cost.join(', ')}` : '', gain.length ? `${labels.gain}: ${gain.join(', ')}` : ''].filter(Boolean).join('\n');
 }

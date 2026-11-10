@@ -1,7 +1,7 @@
 [
   {
     "id": "road_looters",
-    "name": "Прибытие: мародёры у столба",
+    "name": "Прибытие: мародёр у столба",
     "intendedLevel": 1,
     "intendedPartySize": 1,
     "kind": "minor",

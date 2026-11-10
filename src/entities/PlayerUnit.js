@@ -20,7 +20,7 @@ export class PlayerUnit extends Unit {
   // Вызывается при выборе скилла
   handleSkill(skillId, target, skillSystem) {
     if (this.isOnCooldown(skillId)) {
-      eventBus.emit('log', `Скилл на перезарядке!`);
+      eventBus.emit('log', `Навык на откате`);
       return false;
     }
     return skillSystem.use(skillId, this, target);
@@ -29,7 +29,7 @@ export class PlayerUnit extends Unit {
   // Использовать заряд пистолета
   handlePistolShot(target, skillSystem) {
     if ((this.resources.pistol_charges || 0) <= 0) {
-      eventBus.emit('log', `Нет зарядов пистолета!`);
+      eventBus.emit('log', `Нет зарядов пистоля`);
       return false;
     }
     // Заряд списывает сам SkillSystem через usesResource - не дублируем здесь.

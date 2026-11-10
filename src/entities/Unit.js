@@ -382,7 +382,7 @@ export class Unit {
     if (this.regen > 0 && this.isAlive && this.hp < this.maxHp) {
       const amount = Math.max(1, Math.round(this.maxHp * this.regen / 100));
       this.heal(amount);
-      eventBus.emit('log', `${this.label} восстанавливает ${amount} HP (регенерация)`);
+      eventBus.emit('log', `${this.label} восстанавливает ${amount} здоровья (регенерация)`);
     }
   }
 

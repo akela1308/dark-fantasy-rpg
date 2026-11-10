@@ -8,7 +8,7 @@ import { plate } from './Plate.js';
 const ICONS = [
   [/монет|золот|пошлин|плат/i, 'icon_gold'],
   [/отряд|спутник|человек|ждёт в таверне/i, 'map_menu_button'],
-  [/отдохнул|лечен|HP/i, 'icon_heart'],
+  [/отдохнул|лечен|здоровь/i, 'icon_heart'],
   [/засад|бой/i, 'icon_broken_sword'],
   [/книг|запис|журнал/i, 'icon_hand'],
 ];

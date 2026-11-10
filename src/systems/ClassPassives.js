@@ -199,7 +199,7 @@ function leechResponse(unit) {
   healer._leechUsed = true;
   const amount = 10 + (healer.level || 1);
   unit.heal(amount);
-  eventBus.emit('log', `${healer.label}: пиявочный отклик, ${unit.label} +${amount} HP`);
+  eventBus.emit('log', `${healer.label}: пиявочный отклик, ${unit.label} +${amount} здоровья`);
 }
 
 // ─── Гибель ─────────────────────────────────────────────────────────────────

@@ -108,7 +108,7 @@ export class UIManager {
     const bx = LOG.x + LOG.w - 30, by = LOG.y + 22;
     const btnBg = plate(sc, 'button', bx, by, 34, 28).setDepth(11).setInteractive({ useHandCursor: true });
     const btn = sc.add.text(bx, by, '≡', { fontFamily: FONT, fontSize: '15px', color: COLOR.gold }).setOrigin(0.5).setDepth(12);
-    btnBg.on('pointerover', () => { btn.setColor(COLOR.goldHi); this.tip.show(bx, by - 14, { title: 'Лог боя', action: this._logCollapsed ? 'Клик: развернуть' : 'Клик: свернуть' }); });
+    btnBg.on('pointerover', () => { btn.setColor(COLOR.goldHi); this.tip.show(bx, by - 14, { title: 'Журнал боя', action: this._logCollapsed ? 'Клик: развернуть' : 'Клик: свернуть' }); });
     btnBg.on('pointerout', () => { btn.setColor(COLOR.gold); this.tip.hide(); });
     btnBg.on('pointerdown', () => {
       this._logCollapsed = !this._logCollapsed;
@@ -136,7 +136,7 @@ export class UIManager {
   // Цвет строки: урон красным, лечение зелёным, промах и уклонение серым
   _logColor(m) {
     if (/−\d|урона|КРИТ/.test(m)) return COLOR.damage;
-    if (/\+\d+ HP|лечит|восстанавливает/.test(m)) return COLOR.heal;
+    if (/\+\d+ здоровья|лечит|восстанавливает/.test(m)) return COLOR.heal;
     if (/промах|уклоняется|недоступен|пропускает/.test(m)) return COLOR.muted;
     return COLOR.bone;
   }
@@ -197,7 +197,7 @@ export class UIManager {
       }
       const hit = sc.add.zone(cx, cy, sz, sz).setDepth(32).setInteractive();
       hit.on('pointerover', () => this.tip.show(cx, cy + sz / 2, { title: u.label,
-        body: [`HP ${u.hp}/${u.maxHp}`, resourceSummary(u), statusSummary(u)].filter(Boolean).join('\n') }, { below: true }));
+        body: [`Здоровье ${u.hp}/${u.maxHp}`, resourceSummary(u), statusSummary(u)].filter(Boolean).join('\n') }, { below: true }));
       hit.on('pointerout', () => this.tip.hide());
       this._queueObjs.push(hit);
       x += sz + gap;
@@ -268,7 +268,7 @@ export class UIManager {
     });
     buttons.push({
       icon: 'icon_broken_sword',
-      tip: { title: 'Пропустить ход', body: 'Боец ничего не делает до следующего круга.', action: 'Клик: пропустить' },
+      tip: { title: 'Пропустить ход', body: 'Боец ничего не делает до следующего раунда.', action: 'Клик: пропустить' },
       cb: () => eventBus.emit('skip_turn'),
     });
 

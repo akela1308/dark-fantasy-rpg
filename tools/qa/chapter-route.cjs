@@ -71,7 +71,7 @@ const pause=ms=>new Promise(r=>setTimeout(r,ms));
   await walk('tavern_map');await walk('forest1');
   await page.evaluate(()=>{const s=window.__game.scene.getScene('MapScene'),b=s._bandits[0];s.hero.moveTo(b.unit.x,b.unit.y);});
   await page.waitForFunction(()=>window.__game.scene.getScene('MapScene')._dialogue.active,{timeout:30000});
-  await pause(150);await clickChoice('встречное предложение');await clickChoice('кто были люди в плащах');
+  await pause(150);await clickChoice('встречное предложение');await clickChoice('кем были люди в плащах');
   await page.waitForFunction(()=>window.__game.scene.getScene('LevelUpScene')._current);
   await page.screenshot({path:path.join(out,'level2-before-reload.png')});
   await page.reload();await boot();await mapReady('forest1');

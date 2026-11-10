@@ -2701,7 +2701,7 @@ export class MapScene extends Phaser.Scene {
       { label: 'Журнал', icon: 'icon_hand', action: () => this._toggleJournal(), tooltip: 'Журнал заданий' },
       { label: 'Отряд', icon: 'map_menu_button', action: () => this._showCharSheet(0), tooltip: 'Отряд и инвентарь' },
       { label: 'Карта', icon: 'icon_luck_horseshoe', action: () => this._openWorldMap(), tooltip: 'Где отряд уже был' },
-      { label: 'Меню', icon: 'icon_skull', action: () => this._openMenu(), tooltip: 'Громкость, выход в титул (Esc)' },
+      { label: 'Меню', icon: 'icon_skull', action: () => this._openMenu(), tooltip: 'Громкость, выход в главное меню (Esc)' },
     ];
 
     const s = v => v / zoom;

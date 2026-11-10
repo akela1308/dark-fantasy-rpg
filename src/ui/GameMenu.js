@@ -43,7 +43,7 @@ export function openGameMenu(scene, { onExit } = {}) {
     sfx.text.setText(sfxLabel());
   } }));
   y += 70;
-  add(nicheButton(scene, cx, y, 'Выйти в титул', { w: 260, depth: 9820, color: '#d8b070', onClick: () => { f.close(true); onExit?.(); } }));
+  add(nicheButton(scene, cx, y, 'В главное меню', { w: 260, depth: 9820, color: '#d8b070', onClick: () => { f.close(true); onExit?.(); } }));
   f.text(cx, y + 30, 'Игра сохранится на этом месте', 'small').setOrigin(0.5, 0);
   return f;
 }

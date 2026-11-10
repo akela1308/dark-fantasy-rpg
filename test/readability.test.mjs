@@ -36,7 +36,7 @@ test('лечение показывает фактическое восстан�
  const ss=new SkillSystem();ss.registerAll(skills);
  const scene={turnManager:{active:actor,isPlayerTurn:()=>true},skillSystem:ss,_pendingSkill:'bandage'};
  const target={type:'player',hp:37,maxHp:40,effects:[]};
- assert.match(targetPreview(scene,target).body,/3 HP \(37 → 40\)/);
+ assert.match(targetPreview(scene,target).body,/3 здоровья \(37 → 40\)/);
  target.hp=40;assert.match(targetPreview(scene,target).body,/полное/);
 });
 

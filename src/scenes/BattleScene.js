@@ -646,7 +646,7 @@ export class BattleScene extends Phaser.Scene {
       onComplete: () => glow.destroy(),
     });
     if (support) return; // прикрытие и другие нелечащие навыки не показывают ложное «+HP»
-    const txt = this.add.text(unit._spriteX, unit._spriteY - 20, '+HP', {
+    const txt = this.add.text(unit._spriteX, unit._spriteY - 20, '+здоровье', {
       fontSize: '17px', color: '#44FF88', fontFamily: 'serif',
       stroke: '#000', strokeThickness: 2
     }).setOrigin(0.5).setDepth(1300);
@@ -659,7 +659,7 @@ export class BattleScene extends Phaser.Scene {
 
   _animDamageNumber(unit, amount, isCrit = false) {
     if (!unit._spriteX) return;
-    const label   = isCrit ? `КРИТ! -${amount}` : `-${amount}`;
+    const label   = isCrit ? `КРИТ! −${amount}` : `−${amount}`;
     const color   = isCrit ? '#FFD700' : '#FF4444';
     const size    = isCrit ? '24px' : '19px';
     const txt = this.add.text(
@@ -973,8 +973,8 @@ export class BattleScene extends Phaser.Scene {
         u.injured = true;
         u.maxHp = Math.round(u.baseMaxHp * RULES.INJURY_MULT);
         u.hp = 1;
-        eventBus.emit('log', `${u.label}: рана, до отдыха максимум HP ${u.maxHp}`);
-        rows.push({ icon: 'icon_drop', text: `${u.label}: рана, до отдыха HP не выше ${u.maxHp}`, color: '#d08a6a' });
+        eventBus.emit('log', `${u.label}: рана, до отдыха максимум здоровья ${u.maxHp}`);
+        rows.push({ icon: 'icon_drop', text: `${u.label}: рана, до отдыха здоровье не выше ${u.maxHp}`, color: '#d08a6a' });
       });
       // Сдавшиеся: решение «добить / отпустить» показывает карта (03_ДИАЛОГИ 6.7)
       const surrendered = this.enemyUnits.filter(u => u.surrendered && !u.fled && u.isAlive).map(u => u.id);

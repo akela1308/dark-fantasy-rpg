@@ -80,7 +80,7 @@ function finalPact({ skill, caster }) {
   if (price < 1) return 0;
   caster.loseHp(price);
   (caster._allies || []).filter(a => a !== caster && a.isAlive).forEach(a => a.heal(price));
-  eventBus.emit('log', `${caster.label}: ${tokenLabel(skill)}, союзники +${price} HP`);
+  eventBus.emit('log', `${caster.label}: ${tokenLabel(skill)}, союзники +${price} здоровья`);
   return 0;
 }
 

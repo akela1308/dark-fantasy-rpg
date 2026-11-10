@@ -46,7 +46,7 @@ const pause = ms => new Promise(r => setTimeout(r, ms));
   assert.ok(await page.evaluate(()=>window.__game.scene.getScene('BattleScene').ui.tip.objs.some(o=>o.text?.includes('закрыта'))));
   await page.evaluate(()=>{const s=window.__game.scene.getScene('BattleScene'),h=s.playerUnits.find(u=>u.id==='companion_healer'),a=s.playerUnits[0];a.hp=a.maxHp-3;s.turnManager.active=h;s.turnManager._setPhase(h);s._onSkillSelect('bandage');a._animSprite.emit('pointerover');});
   await pause(200);await page.screenshot({path:path.join(out,'target-heal.png')});
-  assert.ok(await page.evaluate(()=>window.__game.scene.getScene('BattleScene').ui.tip.objs.some(o=>o.text?.includes('3 HP'))));
+  assert.ok(await page.evaluate(()=>window.__game.scene.getScene('BattleScene').ui.tip.objs.some(o=>o.text?.includes('3 здоровья'))));
   // Reader fixture: verify the actual book effects and repeat reading, separate from the natural route.
   await page.evaluate(()=>{const g=window.__game;g.scene.stop('BattleScene');g.scene.start('LoadingScene',{targetScene:'MapScene',mapKey:'south_post'});});
   await page.waitForFunction(()=>{const s=window.__game.scene.getScene('MapScene');return s.scene.isActive()&&s._runner;},{timeout:60000});await pause(1200);

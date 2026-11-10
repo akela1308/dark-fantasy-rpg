@@ -10,7 +10,9 @@ const pause=ms=>new Promise(r=>setTimeout(r,ms));
   await page.evaluateOnNewDocument(()=>performance.setResourceTimingBufferSize(5000));
   await page.goto(process.env.MORTIS_URL||'http://127.0.0.1:5179/dark-fantasy-rpg/');await page.waitForSelector('canvas');await page.waitForNetworkIdle({idleTime:800,timeout:60000});await pause(2200);
   assert.equal(await page.evaluate(()=>typeof window.__game),'undefined');
-  await page.keyboard.press('Enter');await page.waitForNetworkIdle({idleTime:1500,timeout:60000});await pause(1500);
+  await page.keyboard.press('Enter');await pause(2500);
+  // Новая игра открывается вступительным роликом (CinemaScene): пропускаем его, как игрок, клавишей Esc
+  await page.keyboard.press('Escape');await page.waitForNetworkIdle({idleTime:1500,timeout:60000});await pause(2500);
   await page.screenshot({path:path.join(out,'production-map.png')});
   // Click the marauder's visible body on the initial map, then the Attack dialogue choice.
   await page.mouse.click(699,395);await pause(300);await page.keyboard.press('4');

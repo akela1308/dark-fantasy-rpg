@@ -120,7 +120,7 @@ export class SkillSystem {
       landed = caster.attack(target, { ...hitOpts, ignoreArmor, mult: skill.damageMultiplier });
       if (landed > 0 && skill.id === 'heavy_strike') {
         if (passives.includes('breaking_blow')) this._status(target, { type: 'staggered', duration: 99, label: 'шатается' }, caster);
-        if (passives.includes('crushing_blow')) this._status(target, { type: 'armor_broken', value: 10, duration: 2, label: 'броня проломлена' }, caster);
+        if (passives.includes('crushing_blow')) this._status(target, { type: 'armor_broken', value: 10, duration: 2, label: 'броня пробита' }, caster);
       }
     }
 
@@ -157,7 +157,7 @@ export class SkillSystem {
     if (skill.healAmount && target && !skill.effect) {
       const amount = this.healPower(skill, caster);
       target.heal(amount);
-      eventBus.emit('log', `${caster.label} → ${target.label}: +${amount} HP`);
+      eventBus.emit('log', `${caster.label} → ${target.label}: +${amount} здоровья`);
     }
 
     // Снять статус и подлечить
@@ -174,7 +174,7 @@ export class SkillSystem {
       const base = this._skills[skill.healFrom || 'bandage'];
       const amount = Math.max(1, Math.round(this.healPower(base, caster) * (skill.healFraction || 0.5)));
       (caster._allies || [caster]).filter(u => u.isAlive).forEach(u => u.heal(amount));
-      eventBus.emit('log', `${caster.label}: «${skill.name}», все союзники +${amount} HP`);
+      eventBus.emit('log', `${caster.label}: «${skill.name}», все союзники +${amount} здоровья`);
     }
 
     // Слово Печати: 8 + уровень по всему заднему ряду врага, без брони
@@ -223,7 +223,7 @@ export class SkillSystem {
       if (status.log !== false) eventBus.emit('log', `${receiver.label} не поддаётся`);
       return;
     }
-    const STATUS_RU = { guarded: 'под прикрытием', marked: 'метка', weakened: 'ослаблен', staggered: 'оглушён', rooted: 'опутан', bleed: 'кровотечение', challenged: 'вызов', enraged: 'ярость', dodge_boost: 'уклонение', armor_broken: 'броня пробита', poison: 'яд', branded: 'клеймо' };
+    const STATUS_RU = { guarded: 'под прикрытием', marked: 'метка', weakened: 'ослаблен', staggered: 'шатается', rooted: 'опутан', bleed: 'кровотечение', challenged: 'вызов', enraged: 'ярость', dodge_boost: 'уклонение', armor_broken: 'броня пробита', poison: 'яд', branded: 'клеймо' };
     if (status.log !== false) eventBus.emit('log', `${receiver.label}: ${status.label || STATUS_RU[type] || type}`);
   }
 
