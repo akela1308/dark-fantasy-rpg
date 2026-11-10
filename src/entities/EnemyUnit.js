@@ -33,8 +33,10 @@ export class EnemyUnit extends Unit {
     const target = this.findTarget(playerUnits);
     if (!target) return null;
 
-    // Босс: боевой рёв при HP < 50%
-    if (this.isBoss && this.hp < this.maxHp * 0.5 && !this.isOnCooldown('commanders_roar')) {
+    // Босс: боевой рёв при HP < 50%. Рёв усиливает только союзников, поэтому босс, пришедший один
+    // (Лихо, Полудница, Угрюм), на него ход не тратит. Вожак, потерявший свиту, ревёт как раньше: так сведён баланс
+    const hasPack = own.length > 1;
+    if (this.isBoss && hasPack && this.hp < this.maxHp * 0.5 && !this.isOnCooldown('commanders_roar')) {
       skillSystem.use('commanders_roar', this, null);
       return { type: 'roar', target: null };
     }

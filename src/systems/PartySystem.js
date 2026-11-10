@@ -182,7 +182,8 @@ export const PartySystem = {
       u.injured = false;
       u.hp = u.maxHp;
       const sup = unitsData.find(d => d.id === u.id)?.resources?.supplies;
-      if (sup != null) u.resources.supplies = u.resourceMax?.supplies ?? sup;
+      // Травница (перк Знахарки): после привала один Сбор сверх предела
+      if (sup != null) u.resources.supplies = (u.resourceMax?.supplies ?? sup) + ((u.classTags || []).includes('herbalist') ? 1 : 0);
     });
     SaveSystem.save(units, mapKey, spawnId, registry);
     SaveSystem.saveRestPoint();

@@ -21,9 +21,9 @@ function sweep({ skill, caster, target, hit }) {
     .reduce((sum, foe) => sum + caster.attack(foe, { ...hit, mult: skill.damageMult }), 0);
 }
 
-/** Добивание: удар, и если цель была ниже порога, она падает. */
+/** Добивание: удар, и если цель была ниже порога, она падает. Босса так не свалить: он получает обычный удар. */
 function execute({ skill, caster, target, hit }) {
-  const low = target.hp < target.maxHp * skill.executeBelow;
+  const low = !target.isBoss && target.hp < target.maxHp * skill.executeBelow;
   const landed = caster.attack(target, hit);
   if (!(landed > 0) || !low || !target.isAlive) return landed;
   eventBus.emit('log', `${caster.label}: ${tokenLabel(skill)}, ${target.label} падает`);

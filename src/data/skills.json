@@ -307,7 +307,7 @@
       {
         "type": "guarded",
         "value": 0.7,
-        "duration": 2,
+        "duration": 3,
         "target": "self",
         "label": "молчание камня"
       }
@@ -419,7 +419,7 @@
   {
     "id": "bonebreaker_finisher",
     "name": "Костолом",
-    "description": "Цель ниже 25% HP умирает, иначе обычный удар. 3 Мощи",
+    "description": "Цель ниже 25% здоровья умирает, иначе обычный удар. На боссов добивание не действует. 3 Мощи",
     "type": "active",
     "targetType": "enemy_single",
     "cooldown": 3,

@@ -294,11 +294,16 @@ export class UIManager {
   /** Бронзовая полоса на n ниш; возвращает центры ниш (экранные px). */
   _drawBar(n) {
     const sc = this.scene;
-    const k = BAR.H / 288;
+    let k = BAR.H / 288;
     const cy = 720 - BAR.H / 2 + 2;
     const has = sc.textures.exists(BAR.key) && sc.textures.get(BAR.key).has('bar_l');
     const centers = [];
+    // Полоса не должна заходить на лог: при 7 и больше нишах (5-6 навыков) сдвигаем её влево, потом сжимаем
+    const natural = BAR.left[1] + (n - 1) * BAR.niche[1] + BAR.right[1];
+    const limit = LOG.x - 6;
     let x = BAR.X;
+    if (x + natural * k > limit) x = Math.max(8, limit - natural * k);
+    if (x + natural * k > limit) k = (limit - x) / natural;
     const piece = (frame, w) => {
       if (has) this._actionBtns.push(sc.add.image(x, cy, BAR.key, frame).setOrigin(0, 0.5).setScale(k).setDepth(4).setInteractive());
       x += w * k;

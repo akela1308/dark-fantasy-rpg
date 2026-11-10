@@ -456,6 +456,7 @@
         {
           "label": "«[Добить]»",
           "style": "attack",
+          "confirm": "Корвин сдался и ждёт вашего слова. Этого решения назад не вернуть. Добить его?",
           "effects": {
             "setFlag": "bandit_commander_killed",
             "rep": {

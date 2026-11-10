@@ -27,6 +27,8 @@ const COLORS = { walk: 0x33ff66, exit: 0xffaa22, spawn: 0x33ccff, npc: 0xff66cc,
 
 export class MapEditor {
   static enabled() {
+    // Только в dev-сборке: в проде редактор позволял любому перерисовать маску ходьбы
+    if (!import.meta.env?.DEV) return false;
     try { return new URLSearchParams(window.location.search).has('dev'); } catch { return false; }
   }
 

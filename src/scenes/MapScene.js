@@ -43,6 +43,7 @@ import { Sfx } from '../systems/Sfx.js';
 import traitsData from '../data/commanderTraits.json';
 import { ShopWindow } from '../ui/ShopWindow.js';
 import { SHOPS, iconKey, itemDef, useItem, useSummary, applyBookEffects, onRest, coins, CRAFTER, recipes } from '../systems/Economy.js';
+import { unclaimedItemRewards, rewardItemEarned } from '../systems/QuestLog.js';
 
 const TRAIT_LABELS = Object.fromEntries(traitsData.map(t => [t.id, t.name]));
 import { xpForEncounter } from '../systems/EnemyArchetypes.js';
@@ -72,6 +73,8 @@ export class MapScene extends Phaser.Scene {
   init(data) {
     this.mapKey  = data?.mapKey  || 'map1';
     this.spawnId = data?.spawnId || 'default';
+    // Настоящий переход с другой карты. После боя, F5 и отдыха сцена создаётся заново, но это не вход
+    this._entered = !!data?.entered;
   }
 
   create() {
@@ -186,11 +189,12 @@ export class MapScene extends Phaser.Scene {
     // Автосохранение при входе на карту в обоих режимах: в Железе сохранение есть с первого шага (этап 8)
     SaveSystem.saveWorld(this.game.registry, this.mapKey, this.spawnId);
     this.game.registry.set(`${this.mapKey}_visited`, true);
-    { const v = this._ws.inc(`visits_${this.mapKey}`); this.game.registry.set(`cnt_visits_${this.mapKey}_${v}`, true); }
+    // Визиты и пошлина считаются только по входам с другой карты, иначе их накручивает F5 и возврат из боя (Д49)
+    if (this._entered) { const v = this._ws.inc(`visits_${this.mapKey}`); this.game.registry.set(`cnt_visits_${this.mapKey}_${v}`, true); }
     // Пошлина: заплатил Корвину один раз, дальше каждый проход лесом 10 монет, пока он жив и без сделки (03_ДИАЛОГИ 6.3)
     {
       const reg = this.game.registry;
-      if (this.mapKey === 'forest1' && reg.get('road_open_personal_only') && !reg.get('bandit_commander_killed')
+      if (this._entered && this.mapKey === 'forest1' && reg.get('road_open_personal_only') && !reg.get('bandit_commander_killed')
           && !reg.get('korvin_debt_active') && !reg.get('bandit_commander_spared')) {
         const toll = Math.min(10, SaveSystem.getGold(reg));
         if (toll > 0) {
@@ -199,6 +203,12 @@ export class MapScene extends Phaser.Scene {
         }
       }
     }
+    // Север открывает и победа над Горным Королём, не только плата памятью: иначе 12 карт могли остаться закрытыми навсегда
+    if (this.game.registry.get('north_closed') && this.game.registry.get('mountain_king_optional_defeated')) {
+      this.game.registry.set('north_closed', false);
+      this.time.delayedCall(900, () => this._toast('Король пал. Перевал на север открыт'));
+    }
+    this.time.delayedCall(1200, () => this._grantQuestItems());   // квест мог закрыться победой в бою
     this._runner = new DialogueRunner(this, this._dialogue, this._ws, this._dialogueHooks());
     // Необязательные встречи бестиария (стая, логово, патруль, западня, одиночка, ватага)
     this._encounters = new MapEncounters(this, cfg.encounters, this._ws, {
@@ -1506,7 +1516,7 @@ export class MapScene extends Phaser.Scene {
       openShop: id => this.time.delayedCall(80, () => this._openShop(id)),
       finishEncounter: id => this._encounters?.finish(id),
       onEffects: () => SaveSystem.saveWorld(reg, this.mapKey, this.spawnId),
-      onClose: () => { SaveSystem.saveWorld(reg, this.mapKey, this.spawnId); this._refreshNpcs(); },
+      onClose: () => { this._grantQuestItems(); SaveSystem.saveWorld(reg, this.mapKey, this.spawnId); this._refreshNpcs(); },
     };
   }
 
@@ -1665,6 +1675,18 @@ export class MapScene extends Phaser.Scene {
   }
 
   /** Отдых: полное HP, Сборы, раны сняты, точка возврата Хроники. */
+  /** Предмет за закрытый квест (шкура с рунами, цепь Чтеца, молитвы, кольцо): раньше поле reward никто не читал. */
+  _grantQuestItems() {
+    unclaimedItemRewards(this._ws).forEach(q => {
+      this._ws.setFlag(`quest_item_${q.id}`);
+      const def = itemDef(q.reward.item);
+      if (!def || !rewardItemEarned(q, this._ws)) return;
+      this._ws.giveItem(q.reward.item, 1);
+      this._syncWorldItems();
+      this._toast(`Награда: ${def.name}`);
+    });
+  }
+
   _rest() {
     onRest(this.game.registry);   // фляга полна, лавки пополнились
     PartySystem.restAll(this.game.registry, this.mapKey, this.spawnId);
@@ -1759,6 +1781,7 @@ export class MapScene extends Phaser.Scene {
     const reg = this.game.registry;
     for (const e of (cfg.onEnter || [])) {
       if (e.once && reg.get(e.once)) continue;
+      if (e.onTransit && !this._entered) continue;   // срок долга идёт по входам в лес, не по F5
       if (e.showIf && !checkRequires(e.showIf, this._ws).ok) continue;
       if (!this._runner.has(e.dialogue)) continue;
       if (e.once) reg.set(e.once, true);
@@ -2014,7 +2037,7 @@ export class MapScene extends Phaser.Scene {
     SaveSystem.updatePosition(mapKey, spawnId);
     this.cameras.main.fade(600, 0, 0, 0, false, (cam, progress) => {
       if (progress === 1) {
-        const load = { destination: 'MapScene', destinationData: { mapKey, spawnId } };
+        const load = { destination: 'MapScene', destinationData: { mapKey, spawnId, entered: true } };
         // Первый вход в новую землю: короткий ролик (src/data/cinema.json), отмечается один раз
         const id = Object.keys(cinema).find(k => cinema[k].map === mapKey);
         if (id && !this.game.registry.get(`cine_${id}`)) {

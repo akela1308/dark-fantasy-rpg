@@ -28,3 +28,16 @@ export function journal(ws) {
 export function outcomesSeen(q, ws) {
   return (q.outcomes || []).filter(o => ws.flag(o.flag)).map(o => o.text);
 }
+
+/**
+ * Предметы-награды закрытых квестов, которые ещё не выданы. Выдаёт журнал только то, что помечено
+ * reward.grantItem (остальное приходит из диалогов). itemIf: исход, при котором предмет вообще достаётся.
+ */
+export function unclaimedItemRewards(ws) {
+  return quests.filter(q => q.reward?.grantItem && q.reward.item
+    && questStatus(q, ws) === 'done' && !ws.flag(`quest_item_${q.id}`));
+}
+
+export function rewardItemEarned(q, ws) {
+  return !q.reward?.itemIf || checkRequires(q.reward.itemIf, ws).ok;
+}

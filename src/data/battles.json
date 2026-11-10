@@ -71,7 +71,8 @@
   },
   {
     "id": "korvin_gang",
-    "name": "Чёрный Лес: шайка Корвина (трое)",
+    "name": "Чёрный Лес: шайка Корвина",
+    "note": "трое",
     "intendedLevel": 2,
     "intendedPartySize": 3,
     "kind": "standard",
@@ -685,7 +686,8 @@
   },
   {
     "id": "forest_grandfather",
-    "name": "Глубокое болото: Лесной Дед (необязательно)",
+    "name": "Глубокое болото: Лесной Дед",
+    "note": "необязательно",
     "intendedLevel": 4,
     "intendedPartySize": 3,
     "kind": "hard",
@@ -779,7 +781,8 @@
   },
   {
     "id": "dead_road_reader",
-    "name": "Мёртвый тракт: Висельный чтец (необязательно)",
+    "name": "Мёртвый тракт: Висельный чтец",
+    "note": "необязательно",
     "intendedLevel": 4,
     "intendedPartySize": 3,
     "kind": "hard",
@@ -1438,7 +1441,8 @@
   },
   {
     "id": "sealed_basement_4",
-    "name": "Запечатанный подвал (4 в партии, +1 Эхо)",
+    "name": "Запечатанный подвал: то, что ждало",
+    "note": "4 в партии, +1 Эхо",
     "intendedLevel": 6,
     "intendedPartySize": 4,
     "kind": "boss",
@@ -1671,7 +1675,8 @@
   },
   {
     "id": "hamlet_dogs",
-    "name": "Выселок: одичавшие псы (стая, не трогают первыми)",
+    "name": "Выселок: одичавшие псы",
+    "note": "стая, не трогают первыми",
     "intendedLevel": 1,
     "intendedPartySize": 2,
     "kind": "minor",
@@ -1764,7 +1769,8 @@
   },
   {
     "id": "crypt_shades",
-    "name": "Склеп: упыри (логово)",
+    "name": "Склеп: упыри",
+    "note": "логово",
     "intendedLevel": 2,
     "intendedPartySize": 2,
     "kind": "standard",
@@ -1861,7 +1867,8 @@
   },
   {
     "id": "forest_wolves",
-    "name": "Глухой лес: волки у туши (стая, не трогают первыми)",
+    "name": "Глухой лес: волки у туши",
+    "note": "стая, не трогают первыми",
     "intendedLevel": 4,
     "intendedPartySize": 3,
     "kind": "minor",
@@ -1954,7 +1961,8 @@
   },
   {
     "id": "cloaks_hideout",
-    "name": "Пещера под мостом: люди в плащах (западня)",
+    "name": "Пещера под мостом: люди в плащах",
+    "note": "западня",
     "intendedLevel": 4,
     "intendedPartySize": 3,
     "kind": "standard",
@@ -2056,7 +2064,8 @@
   },
   {
     "id": "drowned_dead",
-    "name": "Утопшая деревня: утопленники (логово, просыпаются от огней)",
+    "name": "Утопшая деревня: утопленники",
+    "note": "логово, просыпаются от огней",
     "intendedLevel": 3,
     "intendedPartySize": 3,
     "kind": "standard",
@@ -2149,7 +2158,8 @@
   },
   {
     "id": "fields_creature",
-    "name": "Поля: старая тварь у амбара (одиночка)",
+    "name": "Поля: старая тварь у амбара",
+    "note": "одиночка",
     "intendedLevel": 5,
     "intendedPartySize": 3,
     "kind": "standard",
@@ -2193,7 +2203,8 @@
   },
   {
     "id": "mine_creatures",
-    "name": "Шахта: рудничные пауки (логово)",
+    "name": "Шахта: рудничные пауки",
+    "note": "логово",
     "intendedLevel": 5,
     "intendedPartySize": 3,
     "kind": "hard",
@@ -2316,7 +2327,8 @@
   },
   {
     "id": "mine_shades",
-    "name": "Глубина: тени шахтёров (патруль)",
+    "name": "Глубина: тени шахтёров",
+    "note": "патруль",
     "intendedLevel": 6,
     "intendedPartySize": 3,
     "kind": "standard",
@@ -2427,7 +2439,8 @@
   },
   {
     "id": "winter_wolves",
-    "name": "Озеро: зимние волки и вожак (стая)",
+    "name": "Озеро: зимние волки и вожак",
+    "note": "стая",
     "intendedLevel": 7,
     "intendedPartySize": 4,
     "kind": "standard",
@@ -2522,7 +2535,8 @@
   },
   {
     "id": "deer_beast",
-    "name": "Зимний лес: оленье чудовище (выходит на ложь)",
+    "name": "Зимний лес: оленье чудовище",
+    "note": "выходит на ложь",
     "intendedLevel": 7,
     "intendedPartySize": 4,
     "kind": "hard",
@@ -2645,7 +2659,8 @@
   },
   {
     "id": "grad_guards",
-    "name": "Ворота Града: стража (если не назвал имя)",
+    "name": "Ворота Града: стража",
+    "note": "если не назвал имя",
     "intendedLevel": 7,
     "intendedPartySize": 4,
     "kind": "hard",
@@ -2772,7 +2787,8 @@
   },
   {
     "id": "alley_cloaks",
-    "name": "Подворотня: люди в плащах (западня)",
+    "name": "Подворотня: люди в плащах",
+    "note": "западня",
     "intendedLevel": 8,
     "intendedPartySize": 4,
     "kind": "standard",
@@ -3498,7 +3514,8 @@
   },
   {
     "id": "kobolds_mine",
-    "name": "Шахта: коблы (трусливая ватага, бегут при потере половины)",
+    "name": "Шахта: коблы",
+    "note": "трусливая ватага, бегут при потере половины",
     "intendedLevel": 5,
     "intendedPartySize": 3,
     "kind": "standard",
@@ -3618,7 +3635,8 @@
   },
   {
     "id": "mavki_lights",
-    "name": "Глубокое болото: мавки (если посчитал огни)",
+    "name": "Глубокое болото: мавки",
+    "note": "если посчитал огни",
     "intendedLevel": 4,
     "intendedPartySize": 3,
     "kind": "standard",
@@ -3711,7 +3729,8 @@
   },
   {
     "id": "poludnitsa",
-    "name": "Поля в полдень: Полудница (одиночка, выходит в полдень)",
+    "name": "Поля в полдень: Полудница",
+    "note": "одиночка, выходит в полдень",
     "intendedLevel": 5,
     "intendedPartySize": 3,
     "kind": "hard",
@@ -3755,7 +3774,8 @@
   },
   {
     "id": "boar_old_forest",
-    "name": "Глухой лес: Вепрь Старого Бора (легенда, мирный)",
+    "name": "Глухой лес: Вепрь Старого Бора",
+    "note": "легенда, мирный",
     "intendedLevel": 4,
     "intendedPartySize": 3,
     "kind": "hard",
@@ -3798,7 +3818,8 @@
   },
   {
     "id": "leshy",
-    "name": "Глухой лес: Леший (легенда, мирный, бой только если обидеть)",
+    "name": "Глухой лес: Леший",
+    "note": "легенда, мирный, бой только если обидеть",
     "intendedLevel": 4,
     "intendedPartySize": 3,
     "kind": "hard",
@@ -3894,7 +3915,8 @@
   },
   {
     "id": "likho",
-    "name": "Висельный холм: Лихо (одиночка, проклинает)",
+    "name": "Висельный холм: Лихо",
+    "note": "одиночка, проклинает",
     "intendedLevel": 4,
     "intendedPartySize": 3,
     "kind": "standard",
@@ -3938,7 +3960,8 @@
   },
   {
     "id": "troll_ugryum",
-    "name": "Перевал: тролль Угрюм (легенда, мирный если накормить)",
+    "name": "Перевал: тролль Угрюм",
+    "note": "легенда, мирный если накормить",
     "intendedLevel": 5,
     "intendedPartySize": 3,
     "kind": "hard",
@@ -3982,7 +4005,8 @@
   },
   {
     "id": "wolfolaks",
-    "name": "Зимний лес ночью: волколаки (агрессивные)",
+    "name": "Зимний лес ночью: волколаки",
+    "note": "агрессивные",
     "intendedLevel": 7,
     "intendedPartySize": 4,
     "kind": "hard",
@@ -4079,7 +4103,8 @@
   },
   {
     "id": "moroz",
-    "name": "Озеро: Мороз (легенда, мирный до первой лжи)",
+    "name": "Озеро: Мороз",
+    "note": "легенда, мирный до первой лжи",
     "intendedLevel": 8,
     "intendedPartySize": 4,
     "kind": "boss",
@@ -4258,7 +4283,8 @@
   },
   {
     "id": "veshka_gang",
-    "name": "Сгоревший выселок: шайка Вешки (трусливая ватага)",
+    "name": "Сгоревший выселок: шайка Вешки",
+    "note": "трусливая ватага",
     "intendedLevel": 1,
     "intendedPartySize": 2,
     "kind": "standard",

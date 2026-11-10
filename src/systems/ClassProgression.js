@@ -117,9 +117,27 @@ export function getClassProgressionChoices(unit, level = null) {
   const list = choices
     .filter(c => !(typeof c === 'object' && c.auto))
     .filter(c => nodeVisible(unit, c))
+    .filter(c => !perkGivesNothing(unit, cls, c))
     .map(choice => normalizeChoice(cls, choice))
     .filter(Boolean);
   return list.length ? list : null;
+}
+
+// Самый длинный откат навыка 3, меньше 1 откат не опускается (Unit.setCooldown): третий минус уже пустой
+const MAX_USEFUL_CD_REDUCTION = 2;
+
+/**
+ * Перк, который упёрся в потолок и ничего не прибавит (броня класса, точность 95, откаты).
+ * Такой выбор не показываем: раньше он предлагался и молча сгорал.
+ */
+function perkGivesNothing(unit, cls, c) {
+  if (typeof c !== 'object' || c.type !== 'perk' || !c.effects) return false;
+  const keys = Object.keys(c.effects);
+  if (keys.length !== 1) return false;
+  if (keys[0] === 'armor') return (unit.armor || 0) >= (cls.growth?.armorCap ?? 60);
+  if (keys[0] === 'accuracy') return (unit.accuracy ?? 75) >= 95;
+  if (keys[0] === 'cdReduction') return (unit._cdReduction || 0) >= MAX_USEFUL_CD_REDUCTION;
+  return false;
 }
 
 export function applyProgressionChoice(unit, choice) {

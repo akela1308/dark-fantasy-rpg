@@ -183,7 +183,11 @@
       "flag": "cnt_visits_tavern_inside_3"
     },
     "doneIf": {
-      "flag": "bramm_trust"
+      "any": [
+        { "flag": "bramm_trust" },
+        { "flag": "tavern_brawl_done" },
+        { "flag": ["bandit_commander_killed", "cnt_visits_tavern_inside_3"], "any": [{ "flag": "bandit_paid" }, { "flag": "bandit_intimidated" }] }
+      ]
     },
     "stages": [
       {
@@ -209,6 +213,10 @@
       {
         "flag": "vorn_wary",
         "text": "Драка в зале. Ворн поднял цену комнаты."
+      },
+      {
+        "flag": "bandit_commander_killed",
+        "text": "Корвин мёртв, его люди ушли из зала. Давить на Брамма больше некому."
       }
     ],
     "reward": {
@@ -416,7 +424,9 @@
     "reward": {
       "xp": 180,
       "gold": 0,
-      "item": "rune_hide"
+      "item": "rune_hide",
+      "grantItem": true,
+      "itemIf": { "flag": "forest_grandfather_defeated" }
     },
     "links": [
       "swamp_deal"
@@ -572,7 +582,8 @@
     "reward": {
       "xp": 240,
       "gold": 56,
-      "item": "book_prayers"
+      "item": "book_prayers",
+      "grantItem": true
     },
     "links": [
       "cloaked_men",
@@ -800,7 +811,9 @@
     "reward": {
       "xp": 180,
       "gold": 36,
-      "item": "reader_chain"
+      "item": "reader_chain",
+      "grantItem": true,
+      "itemIf": { "flag": "dead_road_reader_defeated" }
     },
     "links": [
       "savko_key",
@@ -1177,7 +1190,9 @@
     "reward": {
       "xp": 150,
       "gold": 0,
-      "item": "seal_ring"
+      "item": "seal_ring",
+      "grantItem": true,
+      "itemIf": { "any": [{ "flag": "seal_taken" }, { "flag": "seal_worn" }] }
     },
     "links": [
       "savko_key",

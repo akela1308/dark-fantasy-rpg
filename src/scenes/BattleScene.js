@@ -8,7 +8,7 @@ import { MusicPlayer }    from '../ui/MusicPlayer.js';
 import { PortraitPanel, HAS_PORTRAIT } from '../ui/PortraitPanel.js';
 import { HpBar, preloadHpBar } from '../ui/HpBar.js';
 import { playFx, preloadBattleFx } from '../systems/BattleFx.js';
-import { battleBodyPx } from '../systems/UnitHeights.js';
+import { battleBodyPx, heightM } from '../systems/UnitHeights.js';
 import { COLORS, XP, AI_DELAY } from '../utils/constants.js';
 import eventBus from '../utils/eventBus.js';
 
@@ -228,6 +228,7 @@ export class BattleScene extends Phaser.Scene {
       this.enemyUnits.forEach(u => { u._initiativeBonus = 100; });
       this.game.registry.set('battleAmbush', false);
     }
+    this._enemyShift = null;   // пересчитывается под состав этого боя
     this.grid.placeAll([...this.playerUnits, ...this.enemyUnits]);
   }
 
@@ -238,7 +239,13 @@ export class BattleScene extends Phaser.Scene {
     const { row, col } = unit.position;
     const pos = UNIT_POSITIONS[side]?.[row]?.[col];
     if (!pos) return { x: 640, y: 400 };
-    return pos;
+    if (side === 'player') return pos;
+    // Великаны (тролль, леший, Предел) закрывали собой передний ряд отряда: строй врага отходит вправо
+    if (this._enemyShift == null) {
+      const tallest = Math.max(0, ...this.enemyUnits.map(heightM));
+      this._enemyShift = Math.round(Phaser.Math.Clamp((tallest - 1.9) * 110, 0, 110));
+    }
+    return { x: pos.x + this._enemyShift, y: pos.y };
   }
 
   // ── Фон ───────────────────────────────────────────────────────────────
