@@ -15,6 +15,7 @@ export class MusicPlayer {
       { key: 'track_monastery',  file: 'Ashes of the Monastery.mp3',   label: 'Пепел монастыря' },
       { key: 'track_pass',       file: 'Ashes of the Pass.mp3',        label: 'Пепел перевала' },
       { key: 'track_dark',       file: 'Dark Song.mp3',                label: 'Тёмная песня' },
+      { key: 'track_bridge',     file: 'Ashes of the Bridge.mp3',      label: 'Всё сходится' },
     ];
     this.muted   = false;
     this.current = null;
