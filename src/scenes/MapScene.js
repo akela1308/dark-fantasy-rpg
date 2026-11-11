@@ -51,10 +51,9 @@ import battlesData from '../data/battles.json';
 import { MapEditor } from '../dev/MapEditor.js';
 import { preloadCompanionSheets } from './LoadingScene.js';
 
-// «Подойти и взять»: на таком расстоянии (px карты) герой дотягивается до предмета; второе число для предметов,
-// к которым вплотную не подойти
+// «Подойти и взять»: на таком расстоянии (px карты) герой дотягивается до предмета; второе число для разговора
 const APPROACH_REACH = 95;
-const APPROACH_REACH_BLOCKED = 230;
+const APPROACH_REACH_TALK = 130;
 
 const PLACEHOLDER_IMAGE = 'maps/gen/_placeholder.png';
 
@@ -1197,11 +1196,11 @@ export class MapScene extends Phaser.Scene {
       });
 
       // Клик - диалог
-      sprite.on('pointerdown', () => {
+      sprite.on('pointerdown', (pointer, localX, localY, event) => {
+        event?.stopPropagation();   // иначе тот же клик уйдёт в «идти по земле» и отменит подход
         if (this._transitioning || this._dialogue?.active) return;
-        this.hero.stopMove();
-        this.brawler.stopMove();
-        this.healer.stopMove();
+        // Разговор начинается, когда герой подошёл: издалека клик ведёт его к собеседнику
+        this._approachThen(npc.x, npc.y, () => {
         // Помечаем разговор состоявшимся - при следующем визите NPC исчезнет
         if (npc.vanishKey) this.game.registry.set(npc.vanishKey, true);
         this._talkNpc = npc;   // где стоит собеседник: нанятый без места в отряде будет ждать здесь же
@@ -1213,6 +1212,7 @@ export class MapScene extends Phaser.Scene {
           return;
         }
         this._showNpcDialogue(npc, this._resolveRootDialogue(npc));
+        }, APPROACH_REACH_TALK);
       });
 
       this._npcs.push({ sprite, shadow, label, cfg: npc, hoverImg: _hImg, hoverName: _hName });
@@ -2055,15 +2055,15 @@ export class MapScene extends Phaser.Scene {
   // ─── HUD ─────────────────────────────────────────────────────────────────
 
   /**
-   * Книга, письмо, находка: издалека не открываются. Герой сначала подходит, и только рядом предмет открывается.
-   * Предмет может лежать там, куда не встать (на телеге, за оградой): тогда хватает подойти к ближайшему месту.
+   * Книга, письмо, находка, собеседник: издалека не открываются. Герой сначала подходит, и только рядом идёт действие.
+   * Цель может стоять там, куда не встать (предмет на телеге, трактирщик за стойкой): тогда герой подходит,
+   * насколько пускает дорога, и действие идёт оттуда. Если пути нет совсем, действие идёт сразу: недоступных целей быть не должно.
    */
-  _approachThen(x, y, open) {
+  _approachThen(x, y, open, reach = APPROACH_REACH) {
     const near = () => Math.hypot(this.hero.x - x, this.hero.y - y);
     const act = () => { this.hero.stopMove(); this.brawler.stopMove(); this.healer.stopMove(); open(); };
-    if (near() <= APPROACH_REACH) { act(); return; }
-    if (!this._walkHeroTo(x, y)) return;   // пути нет: знак «нельзя» уже показан
-    this._pendingApproach = { near, act, started: this.time.now };
+    if (near() <= reach || !this._walkHeroTo(x, y)) { act(); return; }
+    this._pendingApproach = { near, act, reach, started: this.time.now };
   }
 
   /** Вызывается каждый кадр: дошёл до предмета или встал у ближайшего доступного места. */
@@ -2071,10 +2071,9 @@ export class MapScene extends Phaser.Scene {
     const a = this._pendingApproach;
     if (!a) return;
     if (this._transitioning || this._dialogue?.active || this._bookOverlay) { this._pendingApproach = null; return; }
-    if (a.near() <= APPROACH_REACH) { this._pendingApproach = null; a.act(); return; }
-    if (!this.hero.moving && this.time.now - a.started > 300) {
+    if (a.near() <= a.reach || (!this.hero.moving && this.time.now - a.started > 300)) {
       this._pendingApproach = null;
-      if (a.near() <= APPROACH_REACH_BLOCKED) a.act();
+      a.act();
     }
   }
 

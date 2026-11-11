@@ -10,7 +10,9 @@ const pause=ms=>new Promise(r=>setTimeout(r,ms));
  const mapReady=async id=>{await page.waitForFunction(id=>{const s=window.__game?.scene.getScene('MapScene');return s?.scene.isActive()&&s.mapKey===id&&s._runner&&!s._transitioning;},{timeout:60000},id);await pause(900);};
  const boot=async()=>{await page.waitForFunction(()=>window.__game?.scene.getScene('BootScene')._enter&&window.__game.scene.getScene('BootScene').time.now>1900,{timeout:60000});await page.keyboard.press('Enter');};
  const choose=async n=>{await page.keyboard.press(String(n));await pause(250);};
- const talk=async id=>{await page.evaluate(id=>{const s=window.__game.scene.getScene('MapScene');const n=s._npcs.find(n=>n.cfg.id===id||n.cfg.name===id);if(!n)throw Error(`NPC missing ${id}`);n.sprite.emit('pointerdown');},id);await pause(100);};
+ const talk=async id=>{await page.evaluate(id=>{const s=window.__game.scene.getScene('MapScene');const n=s._npcs.find(n=>n.cfg.id===id||n.cfg.name===id);if(!n)throw Error(`NPC missing ${id}`);n.sprite.emit('pointerdown');},id);
+  // Герой сначала подходит к собеседнику, разговор начинается рядом
+  await page.waitForFunction(()=>!window.__game.scene.getScene('MapScene')._pendingApproach,{timeout:30000});await pause(150);};
  async function walk(to){
   const started=await page.evaluate(async to=>{const s=window.__game.scene.getScene('MapScene'),m=(await import('/dark-fantasy-rpg/src/data/maps.json?import')).default[s.mapKey];const exit=(m.exits||[]).find(e=>e.toMap===to)||(m.tavernEntry?.toMap===to?m.tavernEntry:null);if(!exit)throw Error(`No exit ${s.mapKey} -> ${to}`);return s._walkToExit(exit);},to);
   assert.equal(started,true);await mapReady(to);console.log('Walked to',to);results.push({walk:to});await page.screenshot({path:path.join(out,`route-${to}.png`)});
