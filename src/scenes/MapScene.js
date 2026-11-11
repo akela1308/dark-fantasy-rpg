@@ -51,6 +51,11 @@ import battlesData from '../data/battles.json';
 import { MapEditor } from '../dev/MapEditor.js';
 import { preloadCompanionSheets } from './LoadingScene.js';
 
+// «Подойти и взять»: на таком расстоянии (px карты) герой дотягивается до предмета; второе число для предметов,
+// к которым вплотную не подойти
+const APPROACH_REACH = 95;
+const APPROACH_REACH_BLOCKED = 230;
+
 const PLACEHOLDER_IMAGE = 'maps/gen/_placeholder.png';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -330,6 +335,7 @@ export class MapScene extends Phaser.Scene {
     }
 
     this.hero.update(delta);
+    this._checkApproach();
 
     this._trailInterval += delta;
     if (this._trailInterval > 80) {
@@ -902,10 +908,7 @@ export class MapScene extends Phaser.Scene {
       img.on('pointerdown', (pointer, localX, localY, event) => {
         event?.stopPropagation();
         if (this._transitioning || this._dialogue?.active || this._bookOverlay) return;
-        this.hero.stopMove();
-        this.brawler.stopMove();
-        this.healer.stopMove();
-        this._collectBookPickup(book, img, label, p);
+        this._approachThen(p.x, p.y, () => this._collectBookPickup(book, img, label, p));
       });
 
       this._bookPickups.push({ img, label, book });
@@ -935,10 +938,7 @@ export class MapScene extends Phaser.Scene {
       img.on('pointerdown', (pointer, localX, localY, event) => {
         event?.stopPropagation();
         if (this._transitioning || this._dialogue?.active || this._bookOverlay) return;
-        this.hero.stopMove();
-        this.brawler.stopMove();
-        this.healer.stopMove();
-        this._showInspectable(p, img, label);
+        this._approachThen(p.x, p.y, () => this._showInspectable(p, img, label));
       });
 
       this._inspectables.push({ img, label, data: p });
@@ -2054,9 +2054,34 @@ export class MapScene extends Phaser.Scene {
 
   // ─── HUD ─────────────────────────────────────────────────────────────────
 
+  /**
+   * Книга, письмо, находка: издалека не открываются. Герой сначала подходит, и только рядом предмет открывается.
+   * Предмет может лежать там, куда не встать (на телеге, за оградой): тогда хватает подойти к ближайшему месту.
+   */
+  _approachThen(x, y, open) {
+    const near = () => Math.hypot(this.hero.x - x, this.hero.y - y);
+    const act = () => { this.hero.stopMove(); this.brawler.stopMove(); this.healer.stopMove(); open(); };
+    if (near() <= APPROACH_REACH) { act(); return; }
+    if (!this._walkHeroTo(x, y)) return;   // пути нет: знак «нельзя» уже показан
+    this._pendingApproach = { near, act, started: this.time.now };
+  }
+
+  /** Вызывается каждый кадр: дошёл до предмета или встал у ближайшего доступного места. */
+  _checkApproach() {
+    const a = this._pendingApproach;
+    if (!a) return;
+    if (this._transitioning || this._dialogue?.active || this._bookOverlay) { this._pendingApproach = null; return; }
+    if (a.near() <= APPROACH_REACH) { this._pendingApproach = null; a.act(); return; }
+    if (!this.hero.moving && this.time.now - a.started > 300) {
+      this._pendingApproach = null;
+      if (a.near() <= APPROACH_REACH_BLOCKED) a.act();
+    }
+  }
+
   /** Герой идёт к точке по пути. Нет пути (клик в лес, небо, крышу далеко от дороги): стоит, знак «нельзя». */
   _walkHeroTo(x, y) {
     if (window.__mapEditor?.active) return false;   // редактор зон: клики рисуют маску
+    this._pendingApproach = null;   // новый клик по земле отменяет «подойти и взять»
     const res = findPath(this.walkable, this.hero.x, this.hero.y, x, y);
     if (!res) { this._showNoGoMarker(x, y); return false; }
     this.hero.followPath(res.points);
