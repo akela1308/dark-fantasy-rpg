@@ -31,14 +31,29 @@ export function installHiRes(game) {
   const W = game.config.width, H = game.config.height;
   const viewport = gl.viewport.bind(gl), scissor = gl.scissor.bind(gl), bind = gl.bindFramebuffer.bind(gl);
   let screen = true;   // рисуем на экран, а не в текстуру: масштаб нужен только здесь
-  gl.bindFramebuffer = (t, fb) => { if (t === gl.FRAMEBUFFER) screen = !fb; bind(t, fb); };
-  gl.viewport = (x, y, w, h) => (screen ? viewport(x * R, y * R, w * R, h * R) : viewport(x, y, w, h));
-  gl.scissor = (x, y, w, h) => (screen ? scissor(x * R, y * R, w * R, h * R) : scissor(x, y, w, h));
+  // Phaser помнит последние viewport и scissor и не повторяет одинаковый вызов. Если те же числа были заданы,
+  // пока рисовали в текстуру (размытый фон по краям, видео), на экране оставалась рамка без масштаба:
+  // игра рисовалась в четверть окна. Поэтому при смене цели (экран или текстура) рамки выставляются заново.
+  let lastV = null, lastS = null;
+  const setV = (x, y, w, h) => (screen ? viewport(x * R, y * R, w * R, h * R) : viewport(x, y, w, h));
+  const setS = (x, y, w, h) => (screen ? scissor(x * R, y * R, w * R, h * R) : scissor(x, y, w, h));
+  gl.bindFramebuffer = (t, fb) => {
+    bind(t, fb);
+    if (t !== gl.FRAMEBUFFER || screen === !fb) return;
+    screen = !fb;
+    if (lastV) setV(...lastV);
+    if (lastS) setS(...lastS);
+  };
+  gl.viewport = (x, y, w, h) => { lastV = [x, y, w, h]; setV(x, y, w, h); };
+  gl.scissor = (x, y, w, h) => { lastS = [x, y, w, h]; setS(x, y, w, h); };
   const apply = () => {
     const c = game.canvas, cw = Math.round(W * R), ch = Math.round(H * R);
     if (c.width === cw && c.height === ch) return;
     c.width = cw; c.height = ch;
+    // Рамки на весь буфер: Phaser выставил их до установки масштаба и повторять тот же вызов не станет
+    lastV = [0, 0, W, H]; lastS = [0, 0, W, H];
     viewport(0, 0, cw, ch);
+    scissor(0, 0, cw, ch);
   };
   apply();
   game.scale.refresh();
