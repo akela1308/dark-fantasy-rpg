@@ -782,5 +782,45 @@
    "Север",
    "outdoor"
   ]
+ },
+ "motion": {
+  "smoke": {
+   "intervalMs": [
+    480,
+    1100
+   ],
+   "durationMs": [
+    5500,
+    8500
+   ],
+   "rise": [
+    80,
+    140
+   ],
+   "drift": [
+    25,
+    65
+   ],
+   "opacity": 0.16
+  },
+  "water": {
+   "intervalMs": [
+    850,
+    2100
+   ],
+   "durationMs": [
+    2200,
+    3800
+   ],
+   "radius": [
+    12,
+    24
+   ],
+   "opacity": 0.26
+  },
+  "leaves": {
+   "turnsPerSecond": 0.18,
+   "flutter": 0.28
+  }
  }
 }

@@ -122,19 +122,33 @@ export class MapAmbience {
 
   // ── Дым из трубы: медленно вверх и по ветру ────────────────────────────
   _smoke(s) {
+    const sc = this.scene;
+    const cfg = ambienceData.motion.smoke;
     const puff = () => {
-      const p = this.scene.add.image(s.x + Phaser.Math.Between(-3, 3), s.y, 'amb_soft')
-        .setTint(0x9a948a).setAlpha(0).setDepth(s.depth ?? 4).setScale(0.25);
-      this.scene.tweens.add({
-        targets: p,
-        x: p.x + Phaser.Math.Between(30, 70), y: s.y - Phaser.Math.Between(70, 120),
-        scale: Phaser.Math.FloatBetween(0.9, 1.4),
-        duration: Phaser.Math.Between(4500, 6500), ease: 'Sine.easeOut',
-        onUpdate: tw => { p.setAlpha(0.22 * Math.sin(Math.PI * tw.progress)); },
+      if (!sc.sys.isActive()) return;
+      const x = s.x + Phaser.Math.FloatBetween(-2, 2);
+      const phase = Math.random() * Math.PI * 2;
+      const drift = Phaser.Math.FloatBetween(...cfg.drift);
+      const rise = Phaser.Math.FloatBetween(...cfg.rise);
+      const size = Phaser.Math.FloatBetween(0.8, 1.2);
+      const p = sc.add.image(x, s.y, 'amb_soft')
+        .setTint(0x9a948a).setAlpha(0).setDepth(s.depth ?? 4);
+      sc.tweens.addCounter({
+        from: 0, to: 1, duration: Phaser.Math.Between(...cfg.durationMs),
+        onUpdate: tw => {
+          const t = tw.getValue();
+          // Струя расширяется и изгибается постепенно; основание остаётся у трубы.
+          p.setPosition(x + drift * t + Math.sin(t * 7 + phase) * 9 * t,
+            s.y - rise * t);
+          p.setScale((0.16 + t * size) * (1 + 0.12 * Math.sin(t * 5 + phase)),
+            0.22 + t * size * 0.8);
+          p.setAlpha(cfg.opacity * Math.sin(Math.PI * t) ** 1.4);
+        },
         onComplete: () => p.destroy(),
       });
+      sc.time.delayedCall(Phaser.Math.Between(...cfg.intervalMs) / this.q, puff);
     };
-    this.scene.time.addEvent({ delay: Math.round(700 / this.q), loop: true, callback: puff });
+    puff();
   }
 
   // ── Листья, снег, светлячки, пыль ─────────────────────────────────────
@@ -181,13 +195,20 @@ export class MapAmbience {
       .setAlpha(snow ? 0.8 : 0.85).setAngle(Phaser.Math.Between(0, 360));
     const dur = Phaser.Math.Between(snow ? 9000 : 7000, snow ? 14000 : 11000);
     const drift = Phaser.Math.Between(80, 220), sway = Phaser.Math.Between(15, 35), ph = Math.random() * 6;
+    const initialAngle = p.angle;
+    const leafMotion = ambienceData.motion.leaves;
     sc.tweens.addCounter({
       from: 0, to: 1, duration: dur,
       onUpdate: tw => {
         const t = tw.getValue();
         p.x = x + drift * t + sway * Math.sin(ph + t * 12);
         p.y = -10 + (H + 20) * t;
-        if (!snow) p.angle += 1.5;
+        if (!snow) {
+          const seconds = t * dur / 1000;
+          p.angle = initialAngle + seconds * 360 * leafMotion.turnsPerSecond
+            + 25 * Math.sin(ph + seconds * 2.1);
+          p.scaleX = p.scaleY * (1 - leafMotion.flutter + leafMotion.flutter * Math.cos(ph + seconds * 3));
+        }
         p.setAlpha((snow ? 0.8 : 0.85) * Math.min(1, (1 - t) * 6));
       },
       onComplete: () => { p.destroy(); again(); },
@@ -197,16 +218,28 @@ export class MapAmbience {
   // ── Круги на воде и пузыри ─────────────────────────────────────────────
   _water(w) {
     const sc = this.scene;
+    const cfg = ambienceData.motion.water;
     const ring = () => {
-      const x = w.x + Math.random() * w.w, y = w.y + Math.random() * w.h;
-      const g = sc.add.ellipse(x, y, 6, 2.5).setStrokeStyle(1, 0xBFD8C0, 0.5).setDepth(2);
-      sc.tweens.add({ targets: g, scaleX: 7, scaleY: 7, alpha: 0, duration: 2200, ease: 'Sine.easeOut', onComplete: () => g.destroy() });
-      if (Math.random() < 0.35) {
-        const b = sc.add.image(x, y, 'amb_dot').setTint(0xC8E0C0).setScale(0.35).setAlpha(0.6).setDepth(2);
-        sc.tweens.add({ targets: b, y: y - 4, alpha: 0, scale: 0.6, duration: 700, onComplete: () => b.destroy() });
-      }
+      if (!sc.sys.isActive()) return;
+      const radius = Math.min(Phaser.Math.FloatBetween(...cfg.radius), w.w / 2, w.h);
+      // Центр отступает от края: кольцо не выходит из размеченной воды на сушу.
+      const x = w.x + radius + Math.random() * Math.max(0, w.w - radius * 2);
+      const y = w.y + radius / 2 + Math.random() * Math.max(0, w.h - radius);
+      const duration = Phaser.Math.Between(...cfg.durationMs);
+      const g = sc.add.ellipse(x, y, radius * 2, radius)
+        .setStrokeStyle(0.7, 0xBFD8C0, 1).setDepth(2).setAlpha(0).setScale(0.1);
+      sc.tweens.addCounter({
+        from: 0, to: 1, duration,
+        onUpdate: tw => {
+          const t = tw.getValue();
+          g.setScale(0.1 + 0.9 * t);
+          g.setAlpha(cfg.opacity * Math.sin(Math.PI * t) * (1 - t));
+        },
+        onComplete: () => g.destroy(),
+      });
+      sc.time.delayedCall(Phaser.Math.Between(...cfg.intervalMs) / this.q, ring);
     };
-    sc.time.addEvent({ delay: Math.round(900 / this.q), loop: true, callback: ring });
+    sc.time.delayedCall(Phaser.Math.Between(0, cfg.intervalMs[1]), ring);
   }
 
   // ── Второй медленный слой тумана ───────────────────────────────────────
