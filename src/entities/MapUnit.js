@@ -1,3 +1,4 @@
+import { advanceMapMovement } from '../systems/MapMovement.js';
 import * as Phaser from 'phaser/dist/phaser.esm.js';
 
 /**
@@ -22,7 +23,6 @@ export class MapUnit {
     this.targetY        = y;
     this.moving         = false;
     this._idlePeriod    = config.idlePeriod    ?? 2800;
-    this._walkThreshold = config.walkThreshold ?? 10;
     this._skirtWalk     = config.skirtWalk     ?? false;
     this._legMode       = config.legMode       ?? 'split';
     this._walkSpriteKey = config.walkSpriteKey ?? null;
@@ -181,42 +181,22 @@ export class MapUnit {
   }
 
   update(delta) {
-    // Дошёл до поворота: встаём точно в точку пути (не срезая угол) и берём следующую
-    // Не меньше порога остановки (5 px): иначе точка пути в 2-5 px считалась достигнутой, а следующая не бралась
-    const reach = Math.max(5, this.speed * (delta / 1000));
-    while (this._path?.length && Math.hypot(this.targetX - this.sprite.x, this.targetY - this.sprite.y) <= reach) {
-      this.sprite.x = this.targetX;
-      this.sprite.y = this.targetY;
-      const p = this._path.shift();
-      this.targetX = p.x;
-      this.targetY = p.y;
-    }
-    const dx   = this.targetX - this.sprite.x;
-    const dy   = this.targetY - this.sprite.y;
-    const dist = Math.sqrt(dx * dx + dy * dy);
-
-    if (dist < 5) {
-      if (this.moving) {
-        this.moving = false;
-        this._stopWalkAnim();
-        this._startIdleAnim();
-      }
-      if (dist < 1) {
-        this.sprite.x = this.targetX;
-        this.sprite.y = this.targetY;
-      }
-    } else {
-      const step = this.speed * (delta / 1000);
-      this.sprite.x += (dx / dist) * step;
-      this.sprite.y += (dy / dist) * step;
-      this.sprite.setFlipX(dx < 0);
+    // После задержки вкладки не перескакиваем через полкарты за один кадр.
+    const step = this.speed * Math.min(Math.max(delta, 0), 100) / 1000;
+    const motion = advanceMapMovement(this, step);
+    if (motion.travelled > 0.001) {
+      // При почти вертикальном ходе сохраняем направление взгляда.
+      if (Math.abs(motion.dx) > 0.1) this.sprite.setFlipX(motion.dx < 0);
       this._syncOrigin();
-
-      if (!this.moving && dist > this._walkThreshold) {
+      if (!this.moving) {
         this.moving = true;
         this._stopIdleAnim();
         this._startWalkAnim();
       }
+    } else if (this.moving) {
+      this.moving = false;
+      this._stopWalkAnim();
+      this._startIdleAnim();
     }
 
     this.shadow.setPosition(this.sprite.x, this.sprite.y + 2);
