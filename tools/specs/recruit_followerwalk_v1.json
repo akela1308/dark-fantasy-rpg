@@ -1,0 +1,21 @@
+{
+  "slug": "recruit",
+  "anim": "followerwalk",
+  "base": "recruit/k_idle.png",
+  "segments": [
+    {
+      "clip": "recruit/clips/walk_s_v2.mp4",
+      "from": 35,
+      "to": 62,
+      "frames": 28
+    }
+  ],
+  "loop": true,
+  "target": "map",
+  "body": 200,
+  "ver": 1,
+  "left": 1,
+  "right": 1,
+  "top": 0.15,
+  "bottom": 0.07
+}

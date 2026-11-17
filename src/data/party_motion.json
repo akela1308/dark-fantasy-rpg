@@ -1,0 +1,73 @@
+{
+  "spacing": 55,
+  "followers": {
+    "tiss_recruit": {
+      "walk": {
+        "frameWidth": 376,
+        "frameHeight": 261,
+        "frames": 29,
+        "fps": 24,
+        "cols": 10,
+        "originX": 0.5014,
+        "originY": 0.9714,
+        "bodyHeight": 251,
+        "file": "maps/characters/anim/bandit_archer_map_walk_v1.webp",
+        "hitFrame": null,
+        "hold": false,
+        "loop": true,
+        "key": "bandit_archer_map_walk_v1"
+      },
+      "facesLeft": false,
+      "staticContentHeight": 492,
+      "staticOriginY": 0.984
+    },
+    "mirko": {
+      "walk": {
+        "frameWidth": 374,
+        "frameHeight": 222,
+        "frames": 27,
+        "fps": 24,
+        "cols": 10,
+        "originX": 0.5352,
+        "originY": 0.951,
+        "bodyHeight": 200.0,
+        "bodyFixed": true,
+        "file": "maps/characters/anim/recruit_followerwalk_v1.webp",
+        "hitFrame": null,
+        "hold": false,
+        "loop": true,
+        "key": "recruit_followerwalk_v1"
+      },
+      "facesLeft": false,
+      "staticContentHeight": 438,
+      "staticOriginY": 0.936,
+      "walkContentHeight": 139,
+      "walkOriginY": 0.9144144144144144,
+      "walkOriginX": 0.4786096256684492
+    },
+    "bran": {
+      "walk": {
+        "frameWidth": 372,
+        "frameHeight": 225,
+        "frames": 26,
+        "fps": 24,
+        "cols": 11,
+        "originX": 0.5376,
+        "originY": 0.9458,
+        "bodyHeight": 200.0,
+        "bodyFixed": true,
+        "file": "maps/characters/anim/archer_guard_followerwalk_v1.webp",
+        "hitFrame": null,
+        "hold": false,
+        "loop": true,
+        "key": "archer_guard_followerwalk_v1"
+      },
+      "facesLeft": true,
+      "staticContentHeight": 432,
+      "staticOriginY": 0.934,
+      "walkContentHeight": 151.0,
+      "walkOriginY": 0.92,
+      "walkOriginX": 0.4643817204301075
+    }
+  }
+}

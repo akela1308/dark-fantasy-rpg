@@ -30,6 +30,11 @@ export class MapUnit {
     this._walkFrames    = config.walkFrames    ?? 6;
     this._walkFrameRate = config.walkFrameRate ?? 8;
     this._walkPlaying   = false;
+    this._walkOriginX = config.walkOriginX ?? 0.5;
+    this._walkOriginY = config.walkOriginY ?? 1;
+    this._walkSourceFacesLeft = config.walkSourceFacesLeft ?? false;
+    this._facingLeft = false;
+    this._staticOriginY = config.staticOriginY ?? 1;
     // Анимированная стойка (спрайт-лист). Если не задана, работает старая статичная картинка с «дыханием» твином.
     this._idleSpriteKey = config.idleSpriteKey ?? null;
     this._idleAnimKey   = this._idleSpriteKey ? `${this._idleSpriteKey}_idle` : null;
@@ -52,7 +57,7 @@ export class MapUnit {
       this._idleTextureKey = textureKey;
       this.sprite = scene.add.sprite(x, y, textureKey).setOrigin(0.5, 1).setDepth(y);
 
-      this._baseScale = h / this.sprite.height;
+      this._baseScale = h / (config.staticContentHeight ?? this.sprite.height);
       const walkFrame = scene.textures.get(this._walkSpriteKey).get(0);
       const walkContentH = config.walkFrameContentHeight ?? walkFrame.height;
       this._walkScale = h / walkContentH;
@@ -186,7 +191,10 @@ export class MapUnit {
     const motion = advanceMapMovement(this, step);
     if (motion.travelled > 0.001) {
       // При почти вертикальном ходе сохраняем направление взгляда.
-      if (Math.abs(motion.dx) > 0.1) this.sprite.setFlipX(motion.dx < 0);
+      if (Math.abs(motion.dx) > 0.1) {
+        this._facingLeft = motion.dx < 0;
+        this.sprite.setFlipX(this._facingLeft);
+      }
       this._syncOrigin();
       if (!this.moving) {
         this.moving = true;
@@ -326,6 +334,7 @@ export class MapUnit {
       }
       this.sprite.setAngle(0);
       this.sprite.setScale(s);
+      this._syncOrigin();
       this._idleTween = this.scene.tweens.add({
         targets: this.sprite,
         scaleY:  { from: s * 0.998, to: s * 1.022 },
@@ -337,9 +346,11 @@ export class MapUnit {
   }
 
   _syncOrigin() {
-    if (!this._idleSpriteKey) return;
-    const ox = this.sprite.texture.key === this._idleSpriteKey ? this._idleOriginX : 0.5;
-    this.sprite.setOrigin(this.sprite.flipX ? 1 - ox : ox, 1);
+    if (!this._useWalkFrames) return;
+    const walking = this.sprite.texture.key === this._walkSpriteKey;
+    this.sprite.setFlipX(this._facingLeft !== (walking && this._walkSourceFacesLeft));
+    const ox = walking ? this._walkOriginX : (this._idleSpriteKey ? this._idleOriginX : 0.5);
+    this.sprite.setOrigin(this.sprite.flipX ? 1 - ox : ox, walking ? this._walkOriginY : (this._idleSpriteKey ? 1 : this._staticOriginY));
   }
 
   _stopIdleAnim() {

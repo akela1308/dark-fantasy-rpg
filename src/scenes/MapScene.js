@@ -1,3 +1,6 @@
+import { whenTextures } from '../utils/loadOnce.js';
+import PARTY_MOTION from '../data/party_motion.json';
+import { planPartySeparation } from '../systems/PartySpacing.js';
 import cinema from '../data/cinema.json';
 import { knowledgePages } from '../ui/BookKnowledge.js';
 import * as Phaser from 'phaser/dist/phaser.esm.js';
@@ -243,10 +246,12 @@ export class MapScene extends Phaser.Scene {
     // Передний слой для объектов, за которыми должен проходить отряд
     this._spawnForegrounds(cfg);
 
+    this.events.once('shutdown', () => { this._pendingFollowerSheets = new Set(); });
+
     // Оживление мира: птицы, свет окон, дым, листья/снег/светлячки, вода (src/data/ambience.json)
     this._ambience = new MapAmbience(this, this.mapKey, this.hero);
     // Листы спутников, которых ещё нет в отряде, догружаем в фоне (понадобятся после найма)
-    if (preloadCompanionSheets(this, ['companion_brawler', 'companion_healer'])) this.load.start();
+    if (preloadCompanionSheets(this, ['companion_brawler', 'companion_healer', ...Object.keys(PARTY_MOTION.followers)])) this.load.start();
     MapEditor.attach(this, cfg); // dev-редактор зон: только с ?dev=1, клавиша E
 
     // Esc: если открытых окон нет, открывает «Меню» (открытое окно Esc закрывает само)
@@ -351,16 +356,8 @@ export class MapScene extends Phaser.Scene {
 
     this._separateParty();
 
-    // Safety-net: если герой стоит - компаньоны гарантированно в idle (дышат, не шатаются)
-    if (!this.hero.moving) {
-      [this.brawler, this.healer, ...(this._extraFollowers || []).map(f => f.unit)].forEach(u => {
-        if (u.moving || u._bobTween) {
-          u.moving = false;
-          u._stopWalkAnim();
-          if (!u._idleTween) u._startIdleAnim();
-        }
-      });
-    }
+    // Спутники сами завершают свой путь и переключаются в idle в MapUnit.update.
+    // Остановка героя не должна обрывать их шаг или сбрасывать анимацию каждый кадр.
 
     if (this._bandits.length) {
       this._updateBandits(delta);
@@ -432,8 +429,8 @@ export class MapScene extends Phaser.Scene {
   }
 
   /**
-   * Остальные спутники отряда (Хольт, Тисс, Мирко, Бран, Ресса) идут за героем статичной фигурой
-   * с карты (листов ходьбы у них пока нет). Те, кого нет в отряде, убираются.
+   * Дополнительные спутники используют проверенные листы из party_motion.json.
+   * Если подходящего клипа нет, сохраняется исходная фигура. Ушедшие из отряда убираются.
    */
   _syncExtraFollowers(party) {
     this._extraFollowers = (this._extraFollowers || []).filter(f => {
@@ -446,9 +443,30 @@ export class MapScene extends Phaser.Scene {
         if (this._extraFollowers.some(f => f.id === id)) return;
         const [, , key, heightM] = WAITING_SPOTS[id];
         if (!this.textures.exists(key)) return;
+        const motion = PARTY_MOTION.followers[id];
+        if (motion && !this.textures.exists(motion.walk.key)) {
+          this._pendingFollowerSheets ??= new Set();
+          if (!this._pendingFollowerSheets.has(id)) {
+            this._pendingFollowerSheets.add(id);
+            whenTextures(this, [motion.walk.key], () => {
+              this._pendingFollowerSheets.delete(id);
+              if (this.scene.isActive()) this._applyPartyVisibility();
+            });
+            if (preloadCompanionSheets(this, [id])) this.load.start();
+          }
+          return;
+        }
+        const walkConfig = motion ? {
+          walkSpriteKey: motion.walk.key, walkFrames: motion.walk.frames,
+          walkFrameRate: motion.walk.fps, walkFrameContentHeight: motion.walkContentHeight ?? motion.walk.bodyHeight,
+          walkOriginX: motion.walkOriginX ?? motion.walk.originX,
+          walkOriginY: motion.walkOriginY ?? motion.walk.originY,
+          staticContentHeight: motion.staticContentHeight, staticOriginY: motion.staticOriginY,
+          walkSourceFacesLeft: motion.facesLeft,
+        } : {};
         const M = HEIGHTS.map;
         const p = this.walkable.clamp(this.hero.x - 90 - this._extraFollowers.length * 40, this.hero.y);
-        const unit = new MapUnit(this, p.x, p.y, key, { height: Math.round(M.heroPx * this._charScale * heightM / M.heroM), speed: 130, idlePeriod: 3000, paperdoll: false });
+        const unit = new MapUnit(this, p.x, p.y, key, { height: Math.round(M.heroPx * this._charScale * heightM / M.heroM), speed: 130, idlePeriod: 3000, paperdoll: false, ...walkConfig });
         this._extraFollowers.push({ id, unit });
       });
   }
@@ -489,30 +507,10 @@ export class MapScene extends Phaser.Scene {
   }
 
   _separateParty() {
-    const MIN = 55;
-    // Только видимые: спрайт спутника вне отряда стоит на точке входа и не должен никого толкать
-    const group = [this.hero, this.brawler, this.healer, ...(this._extraFollowers || []).map(f => f.unit)].filter(u => !u._hidden);
-    const pairs = group.flatMap((a, i) => group.slice(i + 1).map(b => [a, b]));
-    for (const [a, b] of pairs) {
-      const dx = b.sprite.x - a.sprite.x;
-      const dy = b.sprite.y - a.sprite.y;
-      const dist = Math.sqrt(dx * dx + dy * dy);
-      if (dist < MIN && dist > 0.1) {
-        const push = MIN - dist;
-        const nx = b.sprite.x + (dx / dist) * push;
-        const ny = b.sprite.y + (dy / dist) * push;
-        // Толчок не должен уводить за угол стены: и сам сдвиг, и дорога от новой точки к цели чистые
-        const w = this.walkable;
-        if (!w.lineClear(b.sprite.x, b.sprite.y, nx, ny) || (b.moving && !w.lineClear(nx, ny, b.targetX, b.targetY))) continue;
-        b.sprite.x = nx;
-        b.sprite.y = ny;
-        b.shadow.setPosition(b.sprite.x, b.sprite.y + 2);
-        // Если юнит стоит - обновляем цель чтобы не было обратного движения
-        if (!b.moving) {
-          b.targetX = b.sprite.x;
-          b.targetY = b.sprite.y;
-        }
-      }
+    const group = [this.hero, this.brawler, this.healer, ...(this._extraFollowers || []).map(f => f.unit)]
+      .filter(u => !u._hidden);
+    for (const { unit, to } of planPartySeparation(group, this.walkable, PARTY_MOTION.spacing)) {
+      unit.followPath([to]);
     }
   }
 

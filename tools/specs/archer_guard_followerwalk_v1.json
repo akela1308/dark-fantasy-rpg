@@ -1,0 +1,21 @@
+{
+  "slug": "archer_guard",
+  "anim": "followerwalk",
+  "base": "archer_guard/k_idle.png",
+  "segments": [
+    {
+      "clip": "archer_guard/clips/walk_s_v2.mp4",
+      "from": 40,
+      "to": 66,
+      "frames": 27
+    }
+  ],
+  "loop": true,
+  "target": "map",
+  "body": 200,
+  "ver": 1,
+  "left": 1,
+  "right": 1,
+  "top": 0.15,
+  "bottom": 0.07
+}
