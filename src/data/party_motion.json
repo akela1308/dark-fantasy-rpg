@@ -84,6 +84,7 @@
         "key": "holt_followerwalk_v4"
       },
       "facesLeft": false,
+      "scaleWalkFps": true,
       "walkContentHeight": 209.39597315436242,
       "walkOriginY": 0.976330297219559
     },
@@ -102,6 +103,7 @@
         "key": "ressa_followerwalk_v4"
       },
       "facesLeft": false,
+      "scaleWalkFps": true,
       "walkContentHeight": 227.76572668112797,
       "walkOriginY": 1.0016850015494267
     }

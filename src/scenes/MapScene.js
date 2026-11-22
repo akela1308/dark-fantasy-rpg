@@ -451,17 +451,20 @@ export class MapScene extends Phaser.Scene {
           }
           return;
         }
+        const M = HEIGHTS.map;
+        const height = Math.round(M.heroPx * this._charScale * heightM / M.heroM);
+        const nominalHeight = Math.round(M.heroPx * heightM / M.heroM);
         const walkConfig = motion ? {
           walkSpriteKey: motion.walk.key, walkFrames: motion.walk.frames,
           walkFrameRate: motion.walk.fps, walkFrameContentHeight: motion.walkContentHeight ?? motion.walk.bodyHeight,
+          walkPlaybackFrameRate: motion.scaleWalkFps ? (motion.walk.fps * nominalHeight) / height : undefined,
           walkOriginX: motion.walkOriginX ?? motion.walk.originX,
           walkOriginY: motion.walkOriginY ?? motion.walk.originY,
           staticContentHeight: motion.staticContentHeight, staticOriginY: motion.staticOriginY,
           walkSourceFacesLeft: motion.facesLeft,
         } : {};
-        const M = HEIGHTS.map;
         const p = this.walkable.clamp(this.hero.x - 90 - this._extraFollowers.length * 40, this.hero.y);
-        const unit = new MapUnit(this, p.x, p.y, key, { height: Math.round(M.heroPx * this._charScale * heightM / M.heroM), speed: 130, idlePeriod: 3000, paperdoll: false, ...walkConfig });
+        const unit = new MapUnit(this, p.x, p.y, key, { height, speed: 130, idlePeriod: 3000, paperdoll: false, ...walkConfig });
         this._extraFollowers.push({ id, unit });
       });
   }

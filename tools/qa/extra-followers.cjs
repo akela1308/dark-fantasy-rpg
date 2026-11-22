@@ -140,7 +140,7 @@ async function takeExit(page, from, to) {
 
 async function motion(page, id, config) {
   const expected = config.walk;
-  const result = await page.evaluate((id, numberOfFrames, fps) => {
+  const result = await page.evaluate((id, numberOfFrames) => {
     const scene = window.__game.scene.getScene('MapScene');
     const unit = scene._extraFollowers.find(f => f.id === id).unit;
     const sprite = unit.sprite;
@@ -183,7 +183,8 @@ async function motion(page, id, config) {
     const walkBounds = [visibleBounds()];
     const frameSize = [sprite.frame.cutWidth, sprite.frame.cutHeight];
     const loadedFps = sprite.anims.currentAnim?.frameRate;
-    const tick = 1000 / fps + 0.001;
+    const playbackFps = sprite.anims.frameRate;
+    const tick = 1000 / playbackFps + 0.001;
     for (let i = 1; i <= numberOfFrames; i++) {
       sprite.anims.update(i * tick, tick);
       frames.push(Number(sprite.frame.name));
@@ -199,13 +200,27 @@ async function motion(page, id, config) {
     unit.update(16);
     const stopped = pose();
     const remaining = Math.hypot(unit.x - unit.targetX, unit.y - unit.targetY);
-    return { idle, idleBounds, right, frames, walkBounds, frameSize, loadedFps, left, vertical, stopped, remaining };
-  }, id, expected.frames, expected.fps);
+    const cadence = {
+      mapKey: scene.mapKey, mapScale: scene._charScale, speed: unit.speed,
+      loadedFps, playbackFps,
+    };
+    return { idle, idleBounds, right, frames, walkBounds, frameSize, cadence, left, vertical, stopped, remaining };
+  }, id, expected.frames);
 
   const originX = config.walkOriginX ?? expected.originX;
   const originY = config.walkOriginY ?? expected.originY;
   assert.equal(result.right.key, expected.key, id + ' walk texture');
-  assert.equal(result.loadedFps, expected.fps, id + ' frame rate');
+  let playbackFps = expected.fps;
+  if (config.scaleWalkFps) {
+    const { map, units } = require('../../src/data/heights.json');
+    const heightM = id === 'ressa' ? units.swamp_elf_battle : units[id];
+    const nominalHeight = Math.round(map.heroPx * heightM / map.heroM);
+    const actualHeight = Math.round(map.heroPx * result.cadence.mapScale * heightM / map.heroM);
+    playbackFps *= nominalHeight / actualHeight;
+  }
+  assert.equal(result.cadence.loadedFps, expected.fps, id + ' global animation frame rate');
+  assert.ok(Math.abs(result.cadence.playbackFps - playbackFps) < 1e-6, id + ' playback frame rate');
+  assert.equal(result.cadence.speed, 130, id + ' movement speed');
   assert.deepEqual(result.frameSize, [expected.frameWidth, expected.frameHeight], id + ' frame size');
   assert.deepEqual(result.frames, [...Array.from({ length: expected.frames }, (_, i) => i), 0], id + ' cycle and wrap');
   assert.equal(result.right.moving, true, id + ' starts on an 8 px step');
@@ -368,7 +383,8 @@ async function liveTrail(page, id, key, gap, capture, options) {
       lastSample = scene.time.now;
       trace.samples.push({
         time: lastSample, x: unit.x, y: unit.y, heroX: hero.x, heroY: hero.y,
-        moving: unit.moving, heroMoving: hero.moving, texture: unit.sprite.texture.key, frame: unit.sprite.frame.name,
+        moving: unit.moving, heroMoving: hero.moving, texture: unit.sprite.texture.key,
+        frame: unit.sprite.frame.name, fps: unit.moving ? unit.sprite.anims.frameRate : null,
       });
     };
     scene.events.on('postupdate', collect);
@@ -419,7 +435,9 @@ async function liveTrail(page, id, key, gap, capture, options) {
     assert.ok(Math.hypot(end.x - trace.from.x, end.y - trace.from.y) > 20, id + ' followed the route');
     const walking = trace.samples.filter(sample => sample.moving && sample.texture === key);
     assert.ok(new Set(walking.map(sample => sample.frame)).size > 1, id + ' uses changing frames on the real route');
-    return { goal, finalGap, maxGap, ...trace };
+    const walkingFps = [...new Set(walking.map(sample => sample.fps))];
+    assert.equal(walkingFps.length, 1, id + ' steady playback rate on the route');
+    return { goal, finalGap, maxGap, walkingFps: walkingFps[0], ...trace };
   } finally {
     await page.evaluate(() => window.__game.scene.getScene('MapScene')._qaStopTrace?.());
   }
@@ -432,6 +450,7 @@ async function main() {
     assert.equal(typeof followers[id].facesLeft, 'boolean', id + ' source direction');
     assert.ok(Number.isInteger(followers[id].walk.frames) && followers[id].walk.frames > 1);
     assert.ok(followers[id].walk.fps > 0);
+    assert.equal(Boolean(followers[id].scaleWalkFps), !existing[id], id + ' opts in to scale-adjusted frame rate');
     if (existing[id]) {
       assert.equal(followers[id].walk.frames, existing[id]);
       assert.equal(followers[id].walk.fps, 24);
@@ -516,13 +535,17 @@ async function main() {
       const interior = await captureTrail(id, key, { suffix: 'interior', minDistance: 120 });
       await takeExit(page, 'three_pillars_inside', 'three_pillars');
       await follower(page, id, key);
+      const outsideVisuals = await motion(page, id, followers[id]);
       await reload(page, 'three_pillars');
       await follower(page, id, key);
       const restored = await savedParty(page, 'three_pillars', [heroId, id], [heroId, id]);
       const separation = await spacing(page, id, key, gap);
       const trail = await captureTrail(id, key);
       const back = await captureTrail(id, key, { suffix: 'return', backTo: trail.heroFrom });
-      return { hired, visuals, restored, separation, trail, back, interior };
+      assert.equal(interior.walkingFps, visuals.cadence.playbackFps);
+      assert.equal(trail.walkingFps, outsideVisuals.cadence.playbackFps);
+      assert.equal(back.walkingFps, outsideVisuals.cadence.playbackFps);
+      return { hired, visuals, outsideVisuals, restored, separation, trail, back, interior };
     });
 
     await scenario('ressa', async (page, _capture, captureTrail) => {
@@ -553,10 +576,15 @@ async function main() {
       const back = await captureTrail(id, key, { suffix: 'return', backTo: trail.heroFrom });
       await takeExit(page, 'elf_boloto', 'le_house');
       await follower(page, id, key);
+      const interiorVisuals = await motion(page, id, followers[id]);
       await reload(page, 'le_house');
       await follower(page, id, key);
+      const restoredVisuals = await motion(page, id, followers[id]);
       const restored = await savedParty(page, 'le_house', [heroId, id], [heroId, id]);
       const interior = await captureTrail(id, key, { suffix: 'interior', minDistance: 120 });
+      assert.equal(trail.walkingFps, visuals.cadence.playbackFps);
+      assert.equal(back.walkingFps, visuals.cadence.playbackFps);
+      assert.equal(interior.walkingFps, restoredVisuals.cadence.playbackFps);
       await page.evaluate(id => {
         const scene = window.__game.scene.getScene('MapScene');
         const { sprite, shadow } = scene._extraFollowers.find(f => f.id === id).unit;
@@ -572,7 +600,7 @@ async function main() {
       const reserve = await savedParty(page, 'le_house', [heroId], [heroId, id]);
       await reload(page, 'le_house');
       const restoredReserve = await savedParty(page, 'le_house', [heroId], [heroId, id]);
-      return { hiredInReserve, active, visuals, separation, obstacle, trail, back, interior, restored, reserve, restoredReserve };
+      return { hiredInReserve, active, visuals, interiorVisuals, restoredVisuals, separation, obstacle, trail, back, interior, restored, reserve, restoredReserve };
     });
 
     assert.deepEqual(errors, []);

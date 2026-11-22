@@ -29,6 +29,9 @@ export class MapUnit {
     this._walkAnimKey   = this._walkSpriteKey ? `${this._walkSpriteKey}_walk` : null;
     this._walkFrames    = config.walkFrames    ?? 6;
     this._walkFrameRate = config.walkFrameRate ?? 8;
+    this._walkPlayback  = config.walkPlaybackFrameRate == null
+      ? this._walkAnimKey
+      : { key: this._walkAnimKey, frameRate: config.walkPlaybackFrameRate };
     this._walkPlaying   = false;
     this._walkOriginX = config.walkOriginX ?? 0.5;
     this._walkOriginY = config.walkOriginY ?? 1;
@@ -220,7 +223,7 @@ export class MapUnit {
       this.sprite.setTexture(this._walkSpriteKey, 0);
       this.sprite.setScale(this._walkScale);
       this.sprite.setAngle(0);
-      this.sprite.play(this._walkAnimKey);
+      this.sprite.play(this._walkPlayback);
       this._syncOrigin();
       this._walkPlaying = true;
     } else if (this._paperdoll) {
