@@ -79,9 +79,9 @@
         "originX": 0.5,
         "originY": 0.96875,
         "bodyHeight": 208,
-        "file": "maps/characters/anim/holt_followerwalk_v4.webp",
+        "file": "maps/characters/anim/holt_followerwalk_v5.webp",
         "loop": true,
-        "key": "holt_followerwalk_v4"
+        "key": "holt_followerwalk_v5"
       },
       "facesLeft": false,
       "scaleWalkFps": true,
