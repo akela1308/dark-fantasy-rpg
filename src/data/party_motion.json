@@ -68,6 +68,42 @@
       "walkContentHeight": 151.0,
       "walkOriginY": 0.92,
       "walkOriginX": 0.4643817204301075
+    },
+    "holt": {
+      "walk": {
+        "frameWidth": 240,
+        "frameHeight": 224,
+        "frames": 24,
+        "fps": 24,
+        "cols": 8,
+        "originX": 0.5,
+        "originY": 0.96875,
+        "bodyHeight": 208,
+        "file": "maps/characters/anim/holt_followerwalk_v3.webp",
+        "loop": true,
+        "key": "holt_followerwalk_v3"
+      },
+      "facesLeft": false,
+      "walkContentHeight": 209.39597315436242,
+      "walkOriginY": 0.976330297219559
+    },
+    "ressa": {
+      "walk": {
+        "frameWidth": 240,
+        "frameHeight": 224,
+        "frames": 24,
+        "fps": 24,
+        "cols": 8,
+        "originX": 0.5,
+        "originY": 0.96875,
+        "bodyHeight": 210,
+        "file": "maps/characters/anim/ressa_followerwalk_v3.webp",
+        "loop": true,
+        "key": "ressa_followerwalk_v3"
+      },
+      "facesLeft": false,
+      "walkContentHeight": 227.76572668112797,
+      "walkOriginY": 1.0016850015494267
     }
   }
 }
