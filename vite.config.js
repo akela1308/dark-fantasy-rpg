@@ -50,6 +50,19 @@ const pngToWebp = {
   enforce: 'post',
   config() { return { define: { __PNG_AS_WEBP__: 'true' } }; },
   configResolved(cfg) { outDir = cfg.build.outDir; rootDir = cfg.root; },
+  writeBundle() {
+    // Не копируем заведомо лишние исходники: прежняя схема сначала занимала
+    // весь объём public, а лишь затем освобождала его в closeBundle.
+    const publicDir = path.resolve(rootDir, 'public');
+    const src = srcText();
+    fs.cpSync(publicDir, path.resolve(rootDir, outDir), {
+      recursive: true,
+      filter: file => {
+        const rel = path.relative(publicDir, file).split(path.sep).join('/');
+        return !DROP.some(([re]) => re.test(rel)) && !isUnusedFullSheet(rel, publicDir, src);
+      },
+    });
+  },
   async closeBundle() {
     const sharp = (await import('sharp')).default;
     const dir = path.resolve(rootDir, outDir);
@@ -105,6 +118,7 @@ export default {
   },
   build: {
     outDir: 'dist',
+    copyPublicDir: false, // отбор public выполняет writeBundle плагина выше
     // Повторная сборка не должна накапливать старые JS/WebP и съедать лимит Pages.
     emptyOutDir: true,
   },

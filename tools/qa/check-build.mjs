@@ -9,7 +9,7 @@ function files(dir) {
 const built=files(root),bytes=built.reduce((sum,f)=>sum+fs.statSync(f).size,0);
 assert.ok(bytes<1024**3,`Build exceeds Pages limit: ${bytes} bytes`);
 const refs=new Set();
-for(const name of ['animations','map_animations']) {
+for(const name of ['animations','map_animations','party_motion']) {
  const data=JSON.parse(fs.readFileSync(`src/data/${name}.json`));
  const visit=v=>{if(!v||typeof v!=='object')return;if(typeof v.file==='string')refs.add(v.file);Object.values(v).forEach(visit);};
  visit(data);

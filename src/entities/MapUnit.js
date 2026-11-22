@@ -1,3 +1,4 @@
+import { advanceMapMovement } from '../systems/MapMovement.js';
 import * as Phaser from 'phaser/dist/phaser.esm.js';
 
 /**
@@ -22,14 +23,21 @@ export class MapUnit {
     this.targetY        = y;
     this.moving         = false;
     this._idlePeriod    = config.idlePeriod    ?? 2800;
-    this._walkThreshold = config.walkThreshold ?? 10;
     this._skirtWalk     = config.skirtWalk     ?? false;
     this._legMode       = config.legMode       ?? 'split';
     this._walkSpriteKey = config.walkSpriteKey ?? null;
     this._walkAnimKey   = this._walkSpriteKey ? `${this._walkSpriteKey}_walk` : null;
     this._walkFrames    = config.walkFrames    ?? 6;
     this._walkFrameRate = config.walkFrameRate ?? 8;
+    this._walkPlayback  = config.walkPlaybackFrameRate == null
+      ? this._walkAnimKey
+      : { key: this._walkAnimKey, frameRate: config.walkPlaybackFrameRate };
     this._walkPlaying   = false;
+    this._walkOriginX = config.walkOriginX ?? 0.5;
+    this._walkOriginY = config.walkOriginY ?? 1;
+    this._walkSourceFacesLeft = config.walkSourceFacesLeft ?? false;
+    this._facingLeft = false;
+    this._staticOriginY = config.staticOriginY ?? 1;
     // Анимированная стойка (спрайт-лист). Если не задана, работает старая статичная картинка с «дыханием» твином.
     this._idleSpriteKey = config.idleSpriteKey ?? null;
     this._idleAnimKey   = this._idleSpriteKey ? `${this._idleSpriteKey}_idle` : null;
@@ -52,7 +60,7 @@ export class MapUnit {
       this._idleTextureKey = textureKey;
       this.sprite = scene.add.sprite(x, y, textureKey).setOrigin(0.5, 1).setDepth(y);
 
-      this._baseScale = h / this.sprite.height;
+      this._baseScale = h / (config.staticContentHeight ?? this.sprite.height);
       const walkFrame = scene.textures.get(this._walkSpriteKey).get(0);
       const walkContentH = config.walkFrameContentHeight ?? walkFrame.height;
       this._walkScale = h / walkContentH;
@@ -181,42 +189,25 @@ export class MapUnit {
   }
 
   update(delta) {
-    // Дошёл до поворота: встаём точно в точку пути (не срезая угол) и берём следующую
-    // Не меньше порога остановки (5 px): иначе точка пути в 2-5 px считалась достигнутой, а следующая не бралась
-    const reach = Math.max(5, this.speed * (delta / 1000));
-    while (this._path?.length && Math.hypot(this.targetX - this.sprite.x, this.targetY - this.sprite.y) <= reach) {
-      this.sprite.x = this.targetX;
-      this.sprite.y = this.targetY;
-      const p = this._path.shift();
-      this.targetX = p.x;
-      this.targetY = p.y;
-    }
-    const dx   = this.targetX - this.sprite.x;
-    const dy   = this.targetY - this.sprite.y;
-    const dist = Math.sqrt(dx * dx + dy * dy);
-
-    if (dist < 5) {
-      if (this.moving) {
-        this.moving = false;
-        this._stopWalkAnim();
-        this._startIdleAnim();
+    // После задержки вкладки не перескакиваем через полкарты за один кадр.
+    const step = this.speed * Math.min(Math.max(delta, 0), 100) / 1000;
+    const motion = advanceMapMovement(this, step);
+    if (motion.travelled > 0.001) {
+      // При почти вертикальном ходе сохраняем направление взгляда.
+      if (Math.abs(motion.dx) > 0.1) {
+        this._facingLeft = motion.dx < 0;
+        this.sprite.setFlipX(this._facingLeft);
       }
-      if (dist < 1) {
-        this.sprite.x = this.targetX;
-        this.sprite.y = this.targetY;
-      }
-    } else {
-      const step = this.speed * (delta / 1000);
-      this.sprite.x += (dx / dist) * step;
-      this.sprite.y += (dy / dist) * step;
-      this.sprite.setFlipX(dx < 0);
       this._syncOrigin();
-
-      if (!this.moving && dist > this._walkThreshold) {
+      if (!this.moving) {
         this.moving = true;
         this._stopIdleAnim();
         this._startWalkAnim();
       }
+    } else if (this.moving) {
+      this.moving = false;
+      this._stopWalkAnim();
+      this._startIdleAnim();
     }
 
     this.shadow.setPosition(this.sprite.x, this.sprite.y + 2);
@@ -232,7 +223,7 @@ export class MapUnit {
       this.sprite.setTexture(this._walkSpriteKey, 0);
       this.sprite.setScale(this._walkScale);
       this.sprite.setAngle(0);
-      this.sprite.play(this._walkAnimKey);
+      this.sprite.play(this._walkPlayback);
       this._syncOrigin();
       this._walkPlaying = true;
     } else if (this._paperdoll) {
@@ -346,6 +337,7 @@ export class MapUnit {
       }
       this.sprite.setAngle(0);
       this.sprite.setScale(s);
+      this._syncOrigin();
       this._idleTween = this.scene.tweens.add({
         targets: this.sprite,
         scaleY:  { from: s * 0.998, to: s * 1.022 },
@@ -357,9 +349,11 @@ export class MapUnit {
   }
 
   _syncOrigin() {
-    if (!this._idleSpriteKey) return;
-    const ox = this.sprite.texture.key === this._idleSpriteKey ? this._idleOriginX : 0.5;
-    this.sprite.setOrigin(this.sprite.flipX ? 1 - ox : ox, 1);
+    if (!this._useWalkFrames) return;
+    const walking = this.sprite.texture.key === this._walkSpriteKey;
+    this.sprite.setFlipX(this._facingLeft !== (walking && this._walkSourceFacesLeft));
+    const ox = walking ? this._walkOriginX : (this._idleSpriteKey ? this._idleOriginX : 0.5);
+    this.sprite.setOrigin(this.sprite.flipX ? 1 - ox : ox, walking ? this._walkOriginY : (this._idleSpriteKey ? 1 : this._staticOriginY));
   }
 
   _stopIdleAnim() {

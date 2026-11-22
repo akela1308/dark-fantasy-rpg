@@ -1,3 +1,4 @@
+import PARTY_MOTION from '../data/party_motion.json';
 import NPC_ART from '../data/npc_art.json';
 import { preloadPlates } from '../ui/Plate.js';
 import * as Phaser from 'phaser/dist/phaser.esm.js';
@@ -283,6 +284,9 @@ export function preloadCompanionSheets(scene, only) {
       ['map_healer_stand_v1', 'maps/characters/anim/healer_stand_v1.webp', 300, 274],
     ],
   };
+  Object.entries(PARTY_MOTION.followers).forEach(([id, { walk }]) => {
+    SHEETS[id] = [[walk.key, walk.file, walk.frameWidth, walk.frameHeight]];
+  });
   let n = 0;
   Object.entries(SHEETS).forEach(([id, list]) => {
     if (!only.includes(id)) return;
