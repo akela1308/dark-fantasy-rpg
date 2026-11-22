@@ -30,6 +30,7 @@ import { getNpcAnimConfig, attachNpcAnimations } from '../systems/NpcAnimations.
 import { MapAmbience } from '../systems/MapAmbience.js';
 import { PartySystem } from '../systems/PartySystem.js';
 import { openMapProgression, recoverMapProgression } from '../systems/ProgressionRecovery.js';
+import { CHAPTER_END_PENDING, chapterEndingRoute } from '../systems/ChapterEnding.js';
 import { WorldState } from '../systems/WorldState.js';
 import { DialogueRunner } from '../systems/DialogueRunner.js';
 import { MapEncounters } from '../systems/MapEncounters.js';
@@ -1491,14 +1492,13 @@ export class MapScene extends Phaser.Scene {
       rest: () => this._rest(),
       dismissForever: id => { PartySystem.dismiss(reg, id); this._applyPartyVisibility(true); this._toast('Спутник ушёл'); },
       loseTrait: () => this.time.delayedCall(120, () => this._chooseTraitToLose()),
-      chapterEnd: () => this.time.delayedCall(300, () => {
-        SaveSystem.saveWorld(reg, this.mapKey, this.spawnId);
+      chapterEnd: () => {
         this._transitioning = true;
-        this.scene.start('CinemaScene', {
-          id: reg.get('seal_worn') ? 'end_seal' : 'end_road',
-          next: 'ChapterEndScene', nextData: { fromMapKey: 'tavern_map', fromSpawnId: 'tavern_exit' },
-        });
-      }),
+        reg.set(CHAPTER_END_PENDING, 'cinema');
+        SaveSystem.saveWorld(reg, this.mapKey, this.spawnId);
+        const { key, data } = chapterEndingRoute(reg);
+        this.time.delayedCall(300, () => this.scene.start(key, data));
+      },
       openParty: () => this._showPartyManager(),
       openShop: id => this.time.delayedCall(80, () => this._openShop(id)),
       finishEncounter: id => this._encounters?.finish(id),

@@ -1,4 +1,6 @@
 import * as Phaser from 'phaser/dist/phaser.esm.js';
+import { CHAPTER_END_PENDING } from '../systems/ChapterEnding.js';
+import { SaveSystem } from '../utils/SaveSystem.js';
 
 /**
  * Финальный экран главы 1 (03_ДИАЛОГИ 9, 07_ЗАДАЧИ 28): абзацы по флагам мира.
@@ -21,6 +23,8 @@ export class ChapterEndScene extends Phaser.Scene {
     const W = 1280, H = 720;
     const reg = this.game.registry;
     reg.set('chapter1_done', true);
+    reg.set(CHAPTER_END_PENDING, 'summary');
+    SaveSystem.saveWorld(reg);
     this.add.rectangle(W / 2, H / 2, W, H, 0x050407, 1);
     const line = SEAL_LINES.find(([f]) => !f || reg.get(f))[1];
     const title = this.add.text(W / 2, 200, 'Конец первой главы', {
@@ -38,7 +42,9 @@ export class ChapterEndScene extends Phaser.Scene {
     this.tweens.add({ targets: btn, alpha: 1, duration: 800, delay: 2200 });
     btn.on('pointerover', () => btn.setColor('#FFD700'));
     btn.on('pointerout', () => btn.setColor('#C9A84C'));
-    btn.on('pointerdown', () => {
+    btn.once('pointerdown', () => {
+      reg.remove(CHAPTER_END_PENDING);
+      SaveSystem.saveWorld(reg, this.fromMapKey, this.fromSpawnId);
       this.scene.start('LoadingScene', { destination: 'MapScene', destinationData: { mapKey: this.fromMapKey, spawnId: this.fromSpawnId } });
     });
   }

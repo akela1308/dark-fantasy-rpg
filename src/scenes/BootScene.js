@@ -1,5 +1,6 @@
 import * as Phaser from 'phaser/dist/phaser.esm.js';
 import { SaveSystem, START_MAP, START_SPAWN } from '../utils/SaveSystem.js';
+import { chapterEndingRoute } from '../systems/ChapterEnding.js';
 import MAP_CONFIGS from '../data/maps.json';
 import { Frame } from '../ui/Frame.js';
 import { nicheButton } from '../ui/NicheButton.js';
@@ -92,6 +93,11 @@ export class BootScene extends Phaser.Scene {
       this._starting = true;
       this.cameras.main.fade(700, 0, 0, 0, false, (cam, progress) => {
         if (progress !== 1) return;
+        const ending = save && chapterEndingRoute(this.game.registry, save.mapKey);
+        if (ending) {
+          this.scene.start(ending.key, ending.data);
+          return;
+        }
         const load = {
           destination: 'MapScene',
           destinationData: save
