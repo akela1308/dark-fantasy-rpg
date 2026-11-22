@@ -286,11 +286,12 @@ async function spacing(page, id, key, gap) {
   return result;
 }
 
-async function detour(page, id) {
-  const result = await page.evaluate(id => {
+async function detour(page, id, gap) {
+  const result = await page.evaluate((id, gap) => {
     const scene = window.__game.scene.getScene('MapScene');
     const unit = scene._extraFollowers.find(f => f.id === id).unit;
     const grid = scene.walkable;
+    const following = new scene._partyFollowing.constructor(grid, gap);
     const sample = [];
     for (let i = 0; i < grid.cells.length; i += 2) {
       const point = grid.center(i);
@@ -305,17 +306,18 @@ async function detour(page, id) {
         try {
           unit.sprite.setPosition(from.x, from.y);
           unit.stopMove();
-          scene._walkCompanionTo(unit, to.x, to.y);
+          following.follow(unit, to);
           if (!unit._path?.length) continue;
           const waypoints = [{ x: unit.targetX, y: unit.targetY }, ...unit._path];
           let crossedBlockedCell = false;
           let playedWalk = false;
           let stopped = false;
           for (let step = 0; step < 500; step++) {
+            following.follow(unit, to);
             unit.update(16);
             if (!grid.open(grid.cellOf(unit.x, unit.y))) crossedBlockedCell = true;
             if (unit.moving && unit.sprite.texture.key === unit._walkSpriteKey) playedWalk = true;
-            stopped = !unit.moving && Math.hypot(unit.x - to.x, unit.y - to.y) < 0.001;
+            stopped = !unit.moving && Math.hypot(unit.x - to.x, unit.y - to.y) <= gap + 8;
             if (stopped) break;
           }
           return { from, to, waypoints, crossedBlockedCell, playedWalk, stopped };
@@ -327,7 +329,7 @@ async function detour(page, id) {
       }
     }
     return null;
-  }, id);
+  }, id, gap);
   assert.ok(result, id + ' has a connected route around an obstruction');
   assert.equal(result.crossedBlockedCell, false, id + ' stays on the walkable grid');
   assert.equal(result.playedWalk, true);
@@ -335,25 +337,31 @@ async function detour(page, id) {
   return result;
 }
 
-async function liveTrail(page, id, key, capture) {
-  const goal = await page.evaluate(id => {
+async function liveTrail(page, id, key, gap, capture, options) {
+  const { suffix = 'route', minDistance = 320, backTo = null } = options;
+  const goal = await page.evaluate((id, minDistance, backTo) => {
     const scene = window.__game.scene.getScene('MapScene');
     const unit = scene._extraFollowers.find(f => f.id === id).unit;
     const { hero, walkable } = scene;
     const start = walkable.cellOf(hero.x, hero.y);
-    const candidates = [];
-    for (let i = 0; i < walkable.cells.length; i++) {
-      if (!walkable.open(i) || walkable.comp[i] !== walkable.comp[start]) continue;
-      const point = walkable.center(i);
-      const distance = Math.hypot(point.x - hero.x, point.y - hero.y);
-      if (distance < 320 || distance > 650 || !walkable.lineClear(hero.x, hero.y, point.x, point.y, 4)) continue;
-      if (scene._exitMarkers.items.some(item => scene._inZone(point.x, point.y, item.zone))) continue;
-      candidates.push({ ...point, distance });
+    let target = backTo;
+    if (!target) {
+      const candidates = [];
+      for (let i = 0; i < walkable.cells.length; i++) {
+        if (!walkable.open(i) || walkable.comp[i] !== walkable.comp[start]) continue;
+        const point = walkable.center(i);
+        const distance = Math.hypot(point.x - hero.x, point.y - hero.y);
+        if (distance < minDistance || distance > 650 || !walkable.lineClear(hero.x, hero.y, point.x, point.y, 4)) continue;
+        const entersExit = Array.from({ length: Math.ceil(distance / 12) }, (_, j) => (j + 1) * 12 / distance)
+          .some(t => scene._exitMarkers.items.some(item => scene._inZone(
+            hero.x + (point.x - hero.x) * t, hero.y + (point.y - hero.y) * t, item.zone)));
+        if (!entersExit) candidates.push({ ...point, distance });
+      }
+      candidates.sort((a, b) => b.distance - a.distance);
+      target = candidates[0];
     }
-    candidates.sort((a, b) => b.distance - a.distance);
-    const target = candidates[0];
     if (!target) throw new Error('No continuous walk route from this spawn');
-    const trace = { from: { x: unit.x, y: unit.y }, samples: [] };
+    const trace = { from: { x: unit.x, y: unit.y }, heroFrom: { x: hero.x, y: hero.y }, samples: [] };
     let lastSample = -Infinity;
     const collect = () => {
       if (scene.time.now - lastSample < 35) return;
@@ -371,7 +379,7 @@ async function liveTrail(page, id, key, capture) {
       throw new Error('Hero route rejected');
     }
     return target;
-  }, id);
+  }, id, minDistance, backTo);
 
   try {
     await page.waitForFunction((id, key) => {
@@ -379,20 +387,39 @@ async function liveTrail(page, id, key, capture) {
       return scene.hero.moving && scene._extraFollowers.some(({ id: unitId, unit }) =>
         unitId === id && unit.moving && unit.sprite.texture.key === key);
     }, { timeout }, id, key);
-    await capture(id + '-walking');
-    await page.waitForFunction((id, x, y) => {
+    await capture(id + '-' + suffix + '-walking');
+    await page.waitForFunction((x, y) => {
+      const scene = window.__game.scene.getScene('MapScene');
+      return !scene.hero.moving && Math.hypot(scene.hero.x - x, scene.hero.y - y) < 1;
+    }, { timeout }, goal.x, goal.y);
+    const maxGap = gap + 18;
+    await page.waitForFunction((id, maxGap) => {
       const scene = window.__game.scene.getScene('MapScene');
       const unit = scene._extraFollowers.find(f => f.id === id)?.unit;
-      return unit && !scene.hero.moving && !unit.moving
-        && Math.hypot(scene.hero.x - x, scene.hero.y - y) < 1
-        && Math.hypot(unit.x - unit.targetX, unit.y - unit.targetY) < 1
-        && Math.hypot(unit.x - scene._qaTrail.from.x, unit.y - scene._qaTrail.from.y) > 20;
-    }, { timeout }, id, goal.x, goal.y);
-    await capture(id + '-stopped');
+      return unit && !unit.moving && Math.hypot(unit.x - unit.targetX, unit.y - unit.targetY) < 1
+        && Math.hypot(unit.x - scene.hero.x, unit.y - scene.hero.y) <= maxGap;
+    }, { timeout: 6000 }, id, maxGap).catch(async error => {
+      const distance = await page.evaluate(id => {
+        const scene = window.__game.scene.getScene('MapScene');
+        const unit = scene._extraFollowers.find(f => f.id === id)?.unit;
+        return unit && Math.hypot(unit.x - scene.hero.x, unit.y - scene.hero.y);
+      }, id);
+      throw new Error(id + ' ' + suffix + ': did not settle within ' + maxGap
+        + ' world px of hero; last distance ' + distance, { cause: error });
+    });
+    await capture(id + '-' + suffix + '-stopped');
     const trace = await page.evaluate(() => window.__game.scene.getScene('MapScene')._qaTrail);
+    const end = await page.evaluate(id => {
+      const scene = window.__game.scene.getScene('MapScene');
+      const unit = scene._extraFollowers.find(f => f.id === id).unit;
+      return { x: unit.x, y: unit.y, heroX: scene.hero.x, heroY: scene.hero.y };
+    }, id);
+    const finalGap = Math.hypot(end.x - end.heroX, end.y - end.heroY);
+    assert.ok(finalGap <= maxGap, id + ' final distance: ' + finalGap);
+    assert.ok(Math.hypot(end.x - trace.from.x, end.y - trace.from.y) > 20, id + ' followed the route');
     const walking = trace.samples.filter(sample => sample.moving && sample.texture === key);
     assert.ok(new Set(walking.map(sample => sample.frame)).size > 1, id + ' uses changing frames on the real route');
-    return { goal, ...trace };
+    return { goal, finalGap, maxGap, ...trace };
   } finally {
     await page.evaluate(() => window.__game.scene.getScene('MapScene')._qaStopTrace?.());
   }
@@ -434,12 +461,12 @@ async function main() {
         }
       });
       const capture = label => page.screenshot({ path: path.join(out, label + '.png') });
-      const captureTrail = async (id, key) => {
+      const captureTrail = async (id, key, options = {}) => {
         const recorder = process.env.MORTIS_QA_VIDEO === '1' && !existing[id]
-          ? await page.screencast({ path: path.join(out, id + '-route.webm'), fps: 30 })
+          ? await page.screencast({ path: path.join(out, id + '-' + (options.suffix ?? 'route') + '.webm'), fps: 30 })
           : null;
         try {
-          return await liveTrail(page, id, key, capture);
+          return await liveTrail(page, id, key, gap, capture, options);
         } finally {
           await recorder?.stop();
         }
@@ -486,6 +513,7 @@ async function main() {
       const hired = await savedParty(page, 'three_pillars_inside', [heroId, id], [heroId, id]);
       const visuals = await motion(page, id, followers[id]);
       await capture('holt-interior');
+      const interior = await captureTrail(id, key, { suffix: 'interior', minDistance: 120 });
       await takeExit(page, 'three_pillars_inside', 'three_pillars');
       await follower(page, id, key);
       await reload(page, 'three_pillars');
@@ -493,7 +521,8 @@ async function main() {
       const restored = await savedParty(page, 'three_pillars', [heroId, id], [heroId, id]);
       const separation = await spacing(page, id, key, gap);
       const trail = await captureTrail(id, key);
-      return { hired, visuals, restored, separation, trail };
+      const back = await captureTrail(id, key, { suffix: 'return', backTo: trail.heroFrom });
+      return { hired, visuals, restored, separation, trail, back, interior };
     });
 
     await scenario('ressa', async (page, _capture, captureTrail) => {
@@ -519,13 +548,15 @@ async function main() {
       const active = await savedParty(page, 'elf_boloto', [heroId, id], [heroId, id]);
       const visuals = await motion(page, id, followers[id]);
       const separation = await spacing(page, id, key, gap);
-      const obstacle = await detour(page, id);
+      const obstacle = await detour(page, id, gap);
       const trail = await captureTrail(id, key);
+      const back = await captureTrail(id, key, { suffix: 'return', backTo: trail.heroFrom });
       await takeExit(page, 'elf_boloto', 'le_house');
       await follower(page, id, key);
       await reload(page, 'le_house');
       await follower(page, id, key);
       const restored = await savedParty(page, 'le_house', [heroId, id], [heroId, id]);
+      const interior = await captureTrail(id, key, { suffix: 'interior', minDistance: 120 });
       await page.evaluate(id => {
         const scene = window.__game.scene.getScene('MapScene');
         const { sprite, shadow } = scene._extraFollowers.find(f => f.id === id).unit;
@@ -541,7 +572,7 @@ async function main() {
       const reserve = await savedParty(page, 'le_house', [heroId], [heroId, id]);
       await reload(page, 'le_house');
       const restoredReserve = await savedParty(page, 'le_house', [heroId], [heroId, id]);
-      return { hiredInReserve, active, visuals, separation, obstacle, trail, restored, reserve, restoredReserve };
+      return { hiredInReserve, active, visuals, separation, obstacle, trail, back, interior, restored, reserve, restoredReserve };
     });
 
     assert.deepEqual(errors, []);

@@ -1,6 +1,7 @@
 import { whenTextures } from '../utils/loadOnce.js';
 import PARTY_MOTION from '../data/party_motion.json';
 import { planPartySeparation } from '../systems/PartySpacing.js';
+import { PartyFollowing } from '../systems/PartyFollowing.js';
 import cinema from '../data/cinema.json';
 import { knowledgePages } from '../ui/BookKnowledge.js';
 import * as Phaser from 'phaser/dist/phaser.esm.js';
@@ -158,8 +159,7 @@ export class MapScene extends Phaser.Scene {
       }
     }
 
-    this._heroTrail     = [];
-    this._trailInterval = 0;
+    this._partyFollowing = new PartyFollowing(this.walkable, PARTY_MOTION.spacing);
 
     // Спутники на карте только если они в партии (PartySystem)
     this._applyPartyVisibility();
@@ -341,20 +341,15 @@ export class MapScene extends Phaser.Scene {
     this.hero.update(delta);
     this._checkApproach();
 
-    this._trailInterval += delta;
-    if (this._trailInterval > 80) {
-      this._trailInterval = 0;
-      this._heroTrail.push({ x: this.hero.x, y: this.hero.y });
-      if (this._heroTrail.length > 60) this._heroTrail.shift();
+    const group = this._visibleParty();
+    if (!this._transitioning) {
+      for (let i = 1; i < group.length; i++) this._partyFollowing.follow(group[i], group[i - 1]);
     }
-
-    this._followTrail(this.brawler, 15);
-    this._followTrail(this.healer,  28);
     this.brawler.update(delta);
     this.healer.update(delta);
-    (this._extraFollowers || []).forEach((f, i) => { this._followTrail(f.unit, 40 + i * 12); f.unit.update(delta); });
+    this._extraFollowers.forEach(({ unit }) => unit.update(delta));
 
-    this._separateParty();
+    this._separateParty(group);
 
     // Спутники сами завершают свой путь и переключаются в idle в MapUnit.update.
     // Остановка героя не должна обрывать их шаг или сбрасывать анимацию каждый кадр.
@@ -494,21 +489,12 @@ export class MapScene extends Phaser.Scene {
     }).setOrigin(0.5).setDepth(3).setAlpha(0.7);
   }
 
-  _followTrail(unit, stepsBack) {
-    if (unit._hidden) return;
-    // Когда герой стоит - не обновляем цель, компаньоны остаются на месте и дышат
-    if (!this.hero.moving) return;
-    const idx = Math.max(0, this._heroTrail.length - stepsBack);
-    const pos = this._heroTrail[idx];
-    if (pos) {
-      const clamped = this.walkable.clamp(pos.x, pos.y);
-      this._walkCompanionTo(unit, clamped.x, clamped.y);
-    }
+  _visibleParty() {
+    return [this.hero, this.brawler, this.healer, ...this._extraFollowers.map(({ unit }) => unit)]
+      .filter(unit => !unit._hidden);
   }
 
-  _separateParty() {
-    const group = [this.hero, this.brawler, this.healer, ...(this._extraFollowers || []).map(f => f.unit)]
-      .filter(u => !u._hidden);
+  _separateParty(group = this._visibleParty()) {
     for (const { unit, to } of planPartySeparation(group, this.walkable, PARTY_MOTION.spacing)) {
       unit.followPath([to]);
     }
@@ -2085,17 +2071,6 @@ export class MapScene extends Phaser.Scene {
     const end = res.points[res.points.length - 1];
     this._showClickMarker(end.x, end.y);
     return true;
-  }
-
-  /** Спутник к точке следа: напрямую, если по прямой проходимо, иначе в обход. */
-  _walkCompanionTo(unit, x, y) {
-    if (this.walkable.lineClear(unit.x, unit.y, x, y, 4)) { unit.moveTo(x, y); return; }
-    // Уже идёт в обход к той же точке: путь не пересчитываем каждый кадр
-    if (unit._path && unit._pathGoal && Math.hypot(unit._pathGoal.x - x, unit._pathGoal.y - y) < 40) return;
-    const res = findPath(this.walkable, unit.x, unit.y, x, y);
-    if (!res) return;
-    unit.followPath(res.points);
-    unit._pathGoal = { x, y };
   }
 
   _showNoGoMarker(x, y) {
