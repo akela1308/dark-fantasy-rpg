@@ -98,9 +98,9 @@
         "originX": 0.5,
         "originY": 0.96875,
         "bodyHeight": 210,
-        "file": "maps/characters/anim/ressa_followerwalk_v4.webp",
+        "file": "maps/characters/anim/ressa_followerwalk_v5.webp",
         "loop": true,
-        "key": "ressa_followerwalk_v4"
+        "key": "ressa_followerwalk_v5"
       },
       "facesLeft": false,
       "scaleWalkFps": true,
