@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-11-22",
+  "projectId": "local-847d1aa40f2f9a28ab59c5400a49f388",
+  "repository": "/Users/maksimilin/Desktop/Dark Fantasy/dark-fantasy-rpg",
+  "environment": "local-shared",
+  "branch": "revision-2026-10",
+  "members": [
+    {
+      "role": "lead",
+      "title": "00 · Руководитель «Мортиса»",
+      "threadId": "01a20480-264d-7b80-9854-b756d5d9dd2d",
+      "hostId": "local",
+      "instructions": "docs/team/roles/lead.md"
+    },
+    {
+      "role": "engineer",
+      "title": "01 · Разработчик игры",
+      "threadId": "01a20480-3156-7622-8dc3-4a4d46ad3c55",
+      "hostId": "local",
+      "instructions": "docs/team/roles/engineer.md"
+    },
+    {
+      "role": "design",
+      "title": "02 · Геймдизайнер и сценарист",
+      "threadId": "01a20480-3ba7-7c33-b9a6-859cece160bd",
+      "hostId": "local",
+      "instructions": "docs/team/roles/design.md"
+    },
+    {
+      "role": "art",
+      "title": "03 · Художник и аниматор",
+      "threadId": "01a20480-4567-72b1-90aa-0e1505830d36",
+      "hostId": "local",
+      "instructions": "docs/team/roles/art.md"
+    },
+    {
+      "role": "qa",
+      "title": "04 · Тестировщик",
+      "threadId": "01a20480-4f44-7781-b4c3-529cd63dc64e",
+      "hostId": "local",
+      "instructions": "docs/team/roles/qa.md"
+    }
+  ],
+  "authorizationSource": {
+    "threadId": "01a18996-a04c-79e3-8d9a-91caa5842479",
+    "hostId": "local",
+    "title": "Изучи проект Мортис",
+    "userRequestDate": "2026-11-22"
+  }
+}

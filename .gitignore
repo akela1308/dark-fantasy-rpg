@@ -49,3 +49,6 @@ assets/generated/_trailer/**
 assets/generated/_trailer_reel/**
 !assets/generated/_trailer_reel/**/
 !assets/generated/_trailer_reel/**/*.md
+
+# Координация чатов: локальная атомарная блокировка записи
+.team-write-lock/
