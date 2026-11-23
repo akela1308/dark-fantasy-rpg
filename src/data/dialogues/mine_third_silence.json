@@ -1,0 +1,21 @@
+{
+  "id": "mine_third_silence",
+  "speakers": {
+    "narrator": { "name": "" }
+  },
+  "start": [
+    { "showIf": { "flag": "mine_third_silence_seen" }, "node": "seen_again" },
+    { "node": "inspect" }
+  ],
+  "nodes": {
+    "inspect": {
+      "speaker": "narrator",
+      "text": "На потемневшей медной табличке три насечки. Под ними гладкое место, будто оставленное для имён.",
+      "effects": { "setFlag": "mine_third_silence_seen" }
+    },
+    "seen_again": {
+      "speaker": "narrator",
+      "text": "Три насечки. Место под ними так и осталось пустым."
+    }
+  }
+}

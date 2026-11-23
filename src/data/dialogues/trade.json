@@ -90,8 +90,14 @@
       "choices": [
         { "label": "«Покажи, что берёшь и что продаёшь.»", "effects": { "openShop": "grimm" }, "close": true },
         { "label": "«Зачем клану печатки постов?»", "next": "grimm_signets" },
+        { "label": "«У ворот медная табличка с тремя насечками. Что она значит?»", "showIf": { "flag": "mine_third_silence_seen" }, "next": "grimm_third_silence" },
         { "label": "Уйти.", "style": "retreat", "close": true }
       ]
+    },
+    "grimm_third_silence": {
+      "speaker": "grimm",
+      "text": "«Третье молчание. После обвала имён не выкликают. Камень сам помнит, кто под ним остался. Потому и место под насечками оставили пустым.»",
+      "next": "grimm"
     },
     "grimm_signets": {
       "speaker": "grimm",

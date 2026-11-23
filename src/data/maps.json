@@ -14713,8 +14713,29 @@
     ],
     "tavernEntry": null,
     "bandits": false,
+    "doors": [
+      {
+        "id": "mine_third_silence_copper_plate",
+        "x": 897,
+        "y": 295,
+        "w": 50,
+        "h": 48,
+        "label": "Осмотреть медную табличку",
+        "dialogue": "mine_third_silence"
+      }
+    ],
     "npcs": [],
     "props": [
+      {
+        "key": "prop_mine_deep_third_silence_copper_plate_v1",
+        "src": "maps/props/mine_deep/third_silence_copper_plate_v1.png",
+        "x": 900,
+        "y": 341,
+        "originX": 0,
+        "originY": 1,
+        "height": 43,
+        "depth": 2
+      },
       {
         "key": "prop_mine_deep_rocks_left",
         "src": "maps/props/mine_deep/rocks_left.png",
