@@ -2543,7 +2543,10 @@
           "h": 90
         },
         "toMap": "forest_deep",
-        "spawnId": "from_road_to_village"
+        "spawnId": "from_road_to_village",
+        "kind": "edge",
+        "dir": "up",
+        "label": "↑ Тропа в Глухой лес"
       }
     ],
     "labels": [
@@ -12963,13 +12966,13 @@
     "npcs": [],
     "props": [
       {
-        "key": "prop_drowned_church_door_jamb_notches_v1",
-        "src": "maps/props/drowned_church/door_jamb_notches_v1.png",
-        "x": 495,
-        "y": 407,
+        "key": "prop_drowned_church_door_jamb_notches_v2",
+        "src": "maps/props/drowned_church/door_jamb_notches_v2.png",
+        "x": 494,
+        "y": 416,
         "originX": 0,
         "originY": 1,
-        "height": 36,
+        "height": 48,
         "depth": 2
       }
     ],
