@@ -12945,6 +12945,17 @@
     ],
     "tavernEntry": null,
     "bandits": false,
+    "doors": [
+      {
+        "id": "drowned_church_marks",
+        "x": 474,
+        "y": 356,
+        "w": 44,
+        "h": 62,
+        "label": "Осмотреть зарубки",
+        "dialogue": "drowned_church"
+      }
+    ],
     "npcs": [],
     "props": [],
     "encounters": [],

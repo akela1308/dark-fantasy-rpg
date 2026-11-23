@@ -1,0 +1,29 @@
+{
+  "id": "drowned_church",
+  "speakers": {
+    "narrator": { "name": "" }
+  },
+  "start": [
+    { "showIf": { "flag": "drowned_church_marks_seen" }, "node": "seen_again" },
+    { "node": "doorframe" }
+  ],
+  "nodes": {
+    "doorframe": {
+      "speaker": "narrator",
+      "text": "На дверном косяке сквозь тину проступают зарубки.",
+      "choices": [
+        { "label": "Осмотреть зарубки.", "next": "seen" },
+        { "label": "Отойти.", "style": "retreat", "close": true }
+      ]
+    },
+    "seen": {
+      "speaker": "narrator",
+      "text": "Нижние зарубки почернели от воды. Верхняя сухая и вырезана глубже остальных.",
+      "effects": { "setFlag": "drowned_church_marks_seen" }
+    },
+    "seen_again": {
+      "speaker": "narrator",
+      "text": "Среди мокрых зарубок верхняя по-прежнему сухая."
+    }
+  }
+}

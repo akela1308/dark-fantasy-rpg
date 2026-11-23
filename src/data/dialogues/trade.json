@@ -175,12 +175,24 @@
         { "label": "«Что у тебя есть?»", "effects": { "openShop": "vodyanoy" }, "close": true },
         { "label": "«Ты торгуешь именами?»", "next": "vod_names" },
         { "label": "[Хлеб] «Это тебе. Просто так.»", "showIf": { "notFlag": "vod_bread_given" }, "requires": { "item": "bread" }, "reason": "нужен хлеб", "effects": { "takeItem": "bread", "setFlag": "vod_bread_given", "rep": { "word": 1 }, "giveItem": "amber_bead" }, "next": "vod_bread" },
+        { "label": "«Что там, в церкви?»", "next": "vod_church_hint" },
+        { "label": "«Видел верхнюю зарубку.»", "showIf": { "flag": "drowned_church_marks_seen" }, "next": "vod_church_answer" },
         { "label": "Уйти.", "style": "retreat", "close": true }
       ]
     },
     "vod_names": {
       "speaker": "vodyanoy",
       "text": "«Монета круглая, имя тоже. Монета тонет быстрее. Возьму монетой, а именем возьму, если монет нет. Имя потом не вернёшь: я его не помню, я его ношу. Вон их сколько на мне, видишь? Не видишь. Это хорошо.»",
+      "next": "vodyanoy"
+    },
+    "vod_church_hint": {
+      "speaker": "vodyanoy",
+      "text": "«У входа глянь на косяк. На нём зарубки. Нижние вода заново моет, а верхнюю не спрятала.»",
+      "next": "vodyanoy"
+    },
+    "vod_church_answer": {
+      "speaker": "vodyanoy",
+      "text": "«Нижними отмечали, куда за ночь поднялась вода. Верхнюю вырезали, стоя на скамье. Надеялись, что воды выше уже не будет.»",
       "next": "vodyanoy"
     },
     "vod_bread": {
