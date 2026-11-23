@@ -8632,7 +8632,8 @@
           "h": 84
         },
         "toMap": "hunters_lodge",
-        "spawnId": "from_forest_camp"
+        "spawnId": "from_forest_camp",
+        "label": "Войти в Охотничью избу"
       }
     ],
     "labels": [
@@ -9509,6 +9510,11 @@
     "bgKey": "map_forest_deep",
     "image": "maps/gen/forest_deep_k3.jpg",
     "name": "Глухой лес",
+    "worldMapStatus": [
+      { "showIf": { "flag": "leshy_defeated" }, "text": "Леший повержен" },
+      { "showIf": { "flag": "leshy_path_open" }, "text": "Леший указал путь" },
+      { "showIf": { "flag": "leshy_fed" }, "text": "Леший принял хлеб" }
+    ],
     "region": "Лес",
     "level": 4,
     "kind": "outdoor",
@@ -10053,7 +10059,8 @@
         "x": 1092,
         "y": 552,
         "dialogue": "creatures",
-        "dialogueStart": "leshy"
+        "dialogueStart": "leshy",
+        "showIf": { "notFlag": ["leshy_path_open", "leshy_fed", "leshy_defeated"] }
       }
     ],
     "battleBg": "Forest_Battle",

@@ -2,6 +2,31 @@
  "_help": "Оживление карт поверх фона. quality: 0 выключить всё, 0.5 вдвое меньше частиц, 1 норма. Координаты в пикселях мира (1672x941). birds: раз в min..max секунд, flock: размер стайки. lights: мерцающее свечение окон и огней. smoke: дым из труб. particles: leaves | snow | fireflies | dust. water: круги и пузыри на воде (rect x,y,w,h). fog2: второй медленный слой тумана поверх существующего. Карты без своей записи берут набор по региону и типу (regionDefaults[регион][outdoor|interior|cave]); mapRegions: карта -> [регион, тип]. Ветер: props, у которых в ключе есть tree/oak/pine/birch/willow/bush/spruce/fir/branch/reed, качаются вокруг основания с порывами; выключить на карте: \"wind\": false.",
  "quality": 1,
  "maps": {
+  "forest_camp": {
+   "birds": {
+    "kinds": [
+     "crow",
+     "small"
+    ],
+    "min": 25,
+    "max": 60,
+    "flock": [
+     1,
+     4
+    ]
+   },
+   "particles": {
+    "type": "leaves",
+    "count": 16
+   },
+   "lights": [
+    {
+     "x": 1260,
+     "y": 286,
+     "r": 22
+    }
+   ]
+  },
   "map1": {
    "birds": {
     "kinds": [
