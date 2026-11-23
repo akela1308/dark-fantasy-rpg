@@ -47,7 +47,7 @@ import { repLines } from '../systems/Reputation.js';
 import { Sfx } from '../systems/Sfx.js';
 import traitsData from '../data/commanderTraits.json';
 import { ShopWindow } from '../ui/ShopWindow.js';
-import { SHOPS, iconKey, itemDef, useItem, useSummary, applyBookEffects, onRest, coins, CRAFTER, recipes } from '../systems/Economy.js';
+import { SHOPS, iconKey, itemDef, useItem, useSummary, readBook, onRest, coins, CRAFTER, recipes } from '../systems/Economy.js';
 import { unclaimedItemRewards, rewardItemEarned } from '../systems/QuestLog.js';
 
 const TRAIT_LABELS = Object.fromEntries(traitsData.map(t => [t.id, t.name]));
@@ -2553,13 +2553,9 @@ export class MapScene extends Phaser.Scene {
     const book = booksData.find(b => b.id === bookId);
     if (!book) return;
 
-    if (book.readFlag) SaveSystem.setFlag(book.readFlag, true, this.game.registry);
-    // Эффект книги при первом прочтении (books.json → effects): опыт, навык, рецепт, флаг, черта
-    const fx = applyBookEffects(book, { ws: this._ws, giveXp: n => this.time.delayedCall(400, () => this._grantXp(n)), mapKey: this.mapKey, spawnId: this.spawnId });
-    if (fx.length) {
-      this.time.delayedCall(250, () => fx.forEach(t => this._toast(t, 'icon_hand')));
-      SaveSystem.saveWorld(this.game.registry, this.mapKey, this.spawnId);
-    }
+    const { notifications, xp, levelGained } = readBook(book, { ws: this._ws, mapKey: this.mapKey, spawnId: this.spawnId });
+    if (notifications.length) this.time.delayedCall(250, () => notifications.forEach(t => this._toast(t, 'icon_hand')));
+    if (xp > 0) this.time.delayedCall(400, () => this._toast(`Опыт отряда: +${xp}`));
     if (this._dialogue?.active) this._dialogue.hide();
     this.hero.stopMove();
     this.brawler.stopMove();
@@ -2576,6 +2572,7 @@ export class MapScene extends Phaser.Scene {
       group.getChildren().forEach(obj => { try { obj.destroy(); } catch {} });
       group.clear(true, true);
       this._bookOverlay = null;
+      if (levelGained) recoverMapProgression(this);
     };
     this._closeBookReader = closeReader;
 

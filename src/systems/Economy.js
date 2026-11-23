@@ -232,16 +232,18 @@ export function onRest(registry) {
 }
 
 // ── Эффекты книг (books.json → effects), один раз при первом прочтении ─────
-/**
- * ctx: { ws, giveXp(n), mapKey, spawnId }. Возвращает строки для тоста или [] (уже применено / эффектов нет).
- */
-export function applyBookEffects(book, ctx) {
-  const { ws } = ctx;
+/** Сохраняет первое чтение и все эффекты книги одной записью. */
+export function readBook(book, { ws, mapKey, spawnId }) {
   const reg = ws.registry;
-  const e = book?.effects;
-  const fxFlag = `book_${book?.id}_fx`;
-  if (!e || reg.get(fxFlag)) return [];
-  reg.set(fxFlag, true);
+  const newlyRead = book.readFlag && !ws.flag(book.readFlag);
+  if (newlyRead) ws.setFlag(book.readFlag);
+  const e = book.effects;
+  const fxFlag = `book_${book.id}_fx`;
+  if (!e || ws.flag(fxFlag)) {
+    if (newlyRead) SaveSystem.saveWorld(reg, mapKey, spawnId);
+    return { notifications: [], xp: 0, levelGained: false };
+  }
+  ws.setFlag(fxFlag);
   const out = [];
   const arr = v => (v == null ? [] : Array.isArray(v) ? v : [v]);
   arr(e.setFlag).forEach(f => ws.setFlag(f, true));
@@ -258,8 +260,8 @@ export function applyBookEffects(book, ctx) {
     reg.set('book_skills', map);
   }
   // Прибавка к характеристикам: сразу в сохранение; тем, кого ещё нет, при первом бою (book_stats_pending)
+  const units = e.stat || e.learnSkill ? PartySystem.buildRosterUnits(reg) : [];
   if (e.stat || e.learnSkill) {
-    const units = PartySystem.buildRosterUnits(reg);
     if (e.stat) {
       const targets = e.stat.units === 'party' ? units.map(u => u.id) : arr(e.stat.units);
       const pending = { ...(reg.get('book_stats_pending') || {}) };
@@ -272,11 +274,13 @@ export function applyBookEffects(book, ctx) {
     }
     const skills = reg.get('book_skills') || {};
     units.forEach(u => (skills[u.id] || []).forEach(s => { if (!u.skills.includes(s)) u.skills.push(s); }));
-    SaveSystem.save(units, ctx.mapKey, ctx.spawnId, reg);
   }
-  if (e.giveXp) ctx.giveXp?.(e.giveXp);
+
+  const xp = e.giveXp || 0;
+  const span = xp ? PartySystem.addXp(reg, xp) : null;
+  SaveSystem.save(units, mapKey, spawnId, reg);
   if (book.effectText) out.unshift(book.effectText);
-  return out;
+  return { notifications: out, xp, levelGained: !!span && span.to > span.from };
 }
 
 /** Постоянная прибавка из книги к юниту (accuracy, maxHp, armor, healBonus). */

@@ -128,14 +128,13 @@ test('книга даёт эффект один раз: навык и рецеп
   const reg = new Reg();
   SaveSystem.newGame(reg);
   const ws = new WorldState(reg);
-  let xp = 0;
   const duel = E.BOOKS.duel_law;
-  const out = E.applyBookEffects(duel, { ws, giveXp: n => { xp += n; } });
-  assert.ok(out.length > 0);
+  const out = E.readBook(duel, { ws });
+  assert.ok(out.notifications.length > 0);
   const hero = SaveSystem.load().units.find(u => u.id === 'hero_duelist');
   assert.ok(hero.skills.includes('last_word'));
-  assert.deepEqual(E.applyBookEffects(duel, { ws }), [], 'второй раз эффекта нет');
-  E.applyBookEffects(E.BOOKS.lowland_herbal, { ws });
+  assert.deepEqual(E.readBook(duel, { ws }).notifications, [], 'второй раз эффекта нет');
+  E.readBook(E.BOOKS.lowland_herbal, { ws });
   assert.ok(ws.flag('recipe_swamp_bandage'));
   assert.ok(E.recipes(ws).some(r => r.id === 'swamp_bandage'));
   ws.giveItem('black_sedge', 1); ws.giveItem('linen', 1);

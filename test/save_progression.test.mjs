@@ -5,6 +5,8 @@ const { SaveSystem } = await import('../src/utils/SaveSystem.js');
 const { PartySystem } = await import('../src/systems/PartySystem.js');
 const { pendingProgression } = await import('../src/systems/ProgressionRecovery.js');
 const CP = await import('../src/systems/ClassProgression.js');
+const { WorldState } = await import('../src/systems/WorldState.js');
+const { BOOKS, readBook } = await import('../src/systems/Economy.js');
 const CT = await import('../src/systems/CommanderTraits.js');
 class Reg {
   constructor() { this.list = {}; }
@@ -138,4 +140,47 @@ test('старое сохранение: высокий уровень полу�
  t2.level=8;CP.applyProgressionChoice(t2,ch[0]);
  assert.ok(t2.skills.includes('venom_bolt')&&t2.skills.includes('snare_trap'));
  assert.ok(t2.passives.includes('rotten_blood'));
+});
+
+test('первое чтение журнала поста сохраняет флаги и 25 XP до F5, в том числе при переходе на уровень 2', () => {
+  const book = BOOKS.post_seven_log;
+  const mapKey = 'old_outpost';
+  const spawnId = 'from_outpost_inside';
+  for (const initialXp of [0, 90]) {
+    const reg = new Reg();
+    SaveSystem.newGame(reg);
+    PartySystem.addXp(reg, initialXp);
+    reg.set(book.collectFlag, true);
+    SaveSystem.save(PartySystem.buildRosterUnits(reg), mapKey, spawnId, reg);
+
+    const write = globalThis.localStorage.setItem;
+    const snapshots = [];
+    globalThis.localStorage.setItem = (key, value) => {
+      if (key === 'darkfantasy_ironman_v1') snapshots.push(JSON.parse(value));
+      write(key, value);
+    };
+    try {
+      const open = readBook(book, { ws: new WorldState(reg), mapKey, spawnId });
+      const levelGained = initialXp === 90;
+      assert.equal(open.xp, 25);
+      assert.equal(open.levelGained, levelGained);
+      assert.equal(snapshots.length, 1);
+      const [saved] = snapshots;
+      assert.equal(saved.world.partyXp, initialXp + 25);
+      assert.equal(saved.world[book.collectFlag], true);
+      assert.equal(saved.world[book.readFlag], true);
+      assert.equal(saved.world.book_post_seven_log_fx, true);
+      assert.equal(saved.world.post_seven_log_read_hint, true);
+      assert.equal(saved.units[0].level, 1);
+
+      const restored = new Reg();
+      SaveSystem.applyFlagsToRegistry(restored);
+      assert.equal(pendingProgression(restored).pending.length, levelGained ? 1 : 0);
+      assert.equal(readBook(book, { ws: new WorldState(restored), mapKey, spawnId }).xp, 0);
+      assert.equal(snapshots.length, 1);
+      assert.equal(PartySystem.getXp(restored), initialXp + 25);
+    } finally {
+      globalThis.localStorage.setItem = write;
+    }
+  }
 });
