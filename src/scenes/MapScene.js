@@ -1766,16 +1766,21 @@ export class MapScene extends Phaser.Scene {
   /** Сцена при входе на карту (поле onEnter): первая подходящая, один раз. */
   _runOnEnter(cfg) {
     const reg = this.game.registry;
+    const pendingTransit = reg.get('pendingMapTransit') === this.mapKey;
+    if (pendingTransit) reg.remove('pendingMapTransit');
     for (const e of (cfg.onEnter || [])) {
       if (e.once && reg.get(e.once)) continue;
-      if (e.onTransit && !this._entered) continue;   // срок долга идёт по входам в лес, не по F5
+      if (e.onTransit && !this._entered && !pendingTransit) continue;
       if (e.showIf && !checkRequires(e.showIf, this._ws).ok) continue;
       if (!this._runner.has(e.dialogue)) continue;
       if (e.once) reg.set(e.once, true);
+      // Этап сохраняется до реплики, даже если игрок обновит страницу, пока она открыта.
+      if (e.onTransit || pendingTransit) SaveSystem.saveWorld(reg, this.mapKey, this.spawnId);
       this.hero.stopMove();
       this._runner.start(e.dialogue, e.node || null);
       return true;
     }
+    if (pendingTransit) SaveSystem.saveWorld(reg, this.mapKey, this.spawnId);
     return false;
   }
 
@@ -2020,8 +2025,13 @@ export class MapScene extends Phaser.Scene {
     this.brawler.stopMove();
     this.healer.stopMove();
     Sfx.play(this, 'door');
-    // Обновить позицию в сохранении при переходе между картами
-    SaveSystem.updatePosition(mapKey, spawnId);
+    // Переход считается один раз, в том числе при F5 до обработки новой карты.
+    if (MAP_CONFIGS[mapKey].onEnter?.some(e => e.onTransit)) {
+      this.game.registry.set('pendingMapTransit', mapKey);
+      SaveSystem.saveWorld(this.game.registry, mapKey, spawnId);
+    } else {
+      SaveSystem.updatePosition(mapKey, spawnId);
+    }
     this.cameras.main.fade(600, 0, 0, 0, false, (cam, progress) => {
       if (progress === 1) {
         const load = { destination: 'MapScene', destinationData: { mapKey, spawnId, entered: true } };
