@@ -1201,7 +1201,8 @@
           "h": 96
         },
         "toMap": "forest_camp",
-        "spawnId": "from_forest1"
+        "spawnId": "from_forest1",
+        "label": "↑ Тропа в лагерь Корвина"
       },
       {
         "zone": {
@@ -8611,7 +8612,10 @@
           "h": 84
         },
         "toMap": "forest1",
-        "spawnId": "from_forest_camp"
+        "spawnId": "from_forest_camp",
+        "kind": "edge",
+        "dir": "down",
+        "label": "↓ К развилке Чёрного Леса"
       },
       {
         "zone": {
@@ -12957,7 +12961,18 @@
       }
     ],
     "npcs": [],
-    "props": [],
+    "props": [
+      {
+        "key": "prop_drowned_church_door_jamb_notches_v1",
+        "src": "maps/props/drowned_church/door_jamb_notches_v1.png",
+        "x": 495,
+        "y": 407,
+        "originX": 0,
+        "originY": 1,
+        "height": 36,
+        "depth": 2
+      }
+    ],
     "encounters": [],
     "battleBg": "Boloto_battle",
     "doorPx": 190,
@@ -18191,13 +18206,23 @@
         "y": 241,
         "w": 153,
         "h": 255,
-        "label": "Пост № 7",
+        "label": "Осмотреть указатель",
         "dialogue": "outpost_seven",
         "node": "signpost"
       }
     ],
     "npcs": [],
     "props": [
+      {
+        "key": "prop_north_road_signpost_seven_plate_v1",
+        "src": "maps/props/north_road/signpost_seven_plate_v1.png",
+        "x": 554,
+        "y": 308,
+        "originX": 0,
+        "originY": 1,
+        "height": 35,
+        "depth": 2
+      },
       {
         "key": "prop_north_road_rocks_east",
         "src": "maps/props/north_road/rocks_east.png",
@@ -18675,7 +18700,18 @@
       }
     ],
     "npcs": [],
-    "props": [],
+    "props": [
+      {
+        "key": "prop_outpost_inside_chest_circled_seven_v1",
+        "src": "maps/props/outpost_inside/chest_circled_seven_v1.png",
+        "x": 894,
+        "y": 420,
+        "originX": 0,
+        "originY": 1,
+        "height": 24,
+        "depth": 2
+      }
+    ],
     "encounters": [],
     "battleBg": "Winter_Forest",
     "doorPx": 190,

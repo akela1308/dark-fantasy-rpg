@@ -62,6 +62,14 @@
           "next": "deal"
         },
         {
+          "label": "«Рыж согласился платить зерном.»",
+          "showIf": {
+            "flag": "swamp_deal_kept",
+            "notFlag": "swamp_hostile"
+          },
+          "next": "le_grain_ack"
+        },
+        {
           "label": "[Страх 3] «Я не плачу болоту.»",
           "showIf": {
             "notFlag": "swamp_hostile"
@@ -188,6 +196,11 @@
       "effects": {
         "setFlag": "swamp_deal_offered"
       },
+      "next": "le"
+    },
+    "le_grain_ack": {
+      "speaker": "le",
+      "text": "«Значит, Рыж согласился. Если вместо воды привезёт зерно, горечь из колодца уйдёт к весне.»",
       "next": "le"
     },
     "hostile": {
