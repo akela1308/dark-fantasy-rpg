@@ -194,11 +194,19 @@ export class MapScene extends Phaser.Scene {
     // Диалоги из src/data/dialogues/*.json с условиями и репутацией (блок Г)
     this._ws = new WorldState(this.game.registry);
     this._lastGold = SaveSystem.getGold(this.game.registry);
-    // Автосохранение при входе на карту в обоих режимах: в Железе сохранение есть с первого шага (этап 8)
-    SaveSystem.saveWorld(this.game.registry, this.mapKey, this.spawnId);
-    this.game.registry.set(`${this.mapKey}_visited`, true);
+    const registry = this.game.registry;
+    if (this.mapKey === 'tavern_inside' && registry.get('pendingMapTransit') === this.mapKey) {
+      registry.remove('pendingMapTransit');
+      this._entered = true;
+    }
+    registry.set(`${this.mapKey}_visited`, true);
     // Визиты и пошлина считаются только по входам с другой карты, иначе их накручивает F5 и возврат из боя (Д49)
-    if (this._entered) { const v = this._ws.inc(`visits_${this.mapKey}`); this.game.registry.set(`cnt_visits_${this.mapKey}_${v}`, true); }
+    if (this._entered) {
+      const visits = this._ws.inc(`visits_${this.mapKey}`);
+      registry.set(`cnt_visits_${this.mapKey}_${visits}`, true);
+    }
+    // Сохраняем посещение и погашенную отметку перехода вместе.
+    SaveSystem.saveWorld(registry, this.mapKey, this.spawnId);
     // Пошлина: заплатил Корвину один раз, дальше каждый проход лесом 10 монет, пока он жив и без сделки (03_ДИАЛОГИ 6.3)
     {
       const reg = this.game.registry;
@@ -1530,7 +1538,7 @@ export class MapScene extends Phaser.Scene {
     if (this._charSheetOpen) this._hideCharSheet();
     const reg = this.game.registry;
     const visited = new Set(Object.keys(MAP_CONFIGS).filter(k => reg.get(`${k}_visited`) || k === this.mapKey));
-    openWorldMap(this, { maps: MAP_CONFIGS, visited, current: this.mapKey, start: START_MAP });
+    openWorldMap(this, { maps: MAP_CONFIGS, visited, current: this.mapKey, start: START_MAP, ws: this._ws });
   }
 
   _toggleJournal() {
@@ -2026,7 +2034,7 @@ export class MapScene extends Phaser.Scene {
     this.healer.stopMove();
     Sfx.play(this, 'door');
     // Переход считается один раз, в том числе при F5 до обработки новой карты.
-    if (MAP_CONFIGS[mapKey].onEnter?.some(e => e.onTransit)) {
+    if (mapKey === 'tavern_inside' || MAP_CONFIGS[mapKey].onEnter?.some(e => e.onTransit)) {
       this.game.registry.set('pendingMapTransit', mapKey);
       SaveSystem.saveWorld(this.game.registry, mapKey, spawnId);
     } else {

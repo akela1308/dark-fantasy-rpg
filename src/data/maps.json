@@ -2121,6 +2121,10 @@
       }
     ],
     "name": "Перевал Медного Зуба",
+    "worldMapStatus": [
+      { "showIf": { "flag": "mountain_pass_defeated" }, "text": "Латники разбиты" },
+      { "showIf": { "flag": "mountain_pass_peaceful" }, "text": "Знак Орта принят" }
+    ],
     "region": "Горы",
     "level": 5,
     "kind": "outdoor",
@@ -2149,8 +2153,8 @@
             "mountain_pass_defeated"
           ]
         },
-        "x": 1101,
-        "y": 573
+        "x": 968,
+        "y": 650
       }
     ],
     "battleBg": "Mountain_battle",

@@ -99,8 +99,10 @@ export class MapEncounters {
 
   /** Встреча пройдена (бой выигран): существо уходит с карты. */
   finish(id) {
-    this.list.filter(it => it.cfg.id === id).forEach(it => {
+    this.list.filter(it => it.cfg.id === id && it.state !== 'done').forEach(it => {
       it.state = 'done';
+      it.marker.disableInteractive();
+      it.figure?.disableInteractive();
       [it.marker, it.label, it.figure, it.ring].forEach(o => o && this.scene.tweens.add({ targets: o, alpha: 0, duration: 400, onComplete: () => o.destroy() }));
     });
   }

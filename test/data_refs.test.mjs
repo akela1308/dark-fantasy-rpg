@@ -84,6 +84,7 @@ function mapConds(m) {
   (m.npcs || []).forEach(n => conds.push(n.showIf));
   (m.encounters || []).forEach(e => conds.push(e.showIf));
   (m.onEnter || []).forEach(e => conds.push(e.showIf));
+  (m.worldMapStatus || []).forEach(e => conds.push(e.showIf));
   (m.doors || []).forEach(e => conds.push(e.showIf));
   (m.exits || []).forEach(e => conds.push(e.showIf));
   (m.inspectables || []).forEach(e => conds.push(e.showIf));

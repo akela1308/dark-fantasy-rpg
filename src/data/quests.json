@@ -209,7 +209,11 @@
     "outcomes": [
       {
         "flag": "ort_respect",
-        "text": "Орт видел, что вы не пролили кровь. Он отдаёт каменный знак."
+        "text": "Орт одобрил, что вы заступились за Брамма без кровопролития."
+      },
+      {
+        "flag": "ort_token_given",
+        "text": "Вы получили каменный знак Орта."
       },
       {
         "flag": "vorn_wary",
@@ -713,6 +717,10 @@
       {
         "flag": "mountain_pass_peaceful",
         "text": "Знак Орта прочитан, латники отступили."
+      },
+      {
+        "flag": "mountain_pass_defeated",
+        "text": "Латники клятвы разбиты в бою."
       },
       {
         "flag": "mountain_king_paid_memory",

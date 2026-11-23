@@ -7,6 +7,7 @@ import { Frame } from './Frame.js';
 import { plate } from './Plate.js';
 import { COLOR, HEX, FONT } from './Theme.js';
 import { MAP_W, MAP_H } from '../systems/WalkableZones.js';
+import { checkRequires } from '../systems/DialogueConditions.js';
 
 const VEC = { left: [-1, 0], right: [1, 0], up: [0, -1], down: [0, 1] };
 
@@ -52,7 +53,7 @@ export function layoutWorld(maps, visited, start) {
   return { pos, edges };
 }
 
-export function openWorldMap(scene, { maps, visited, current, start }) {
+export function openWorldMap(scene, { maps, visited, current, start, ws }) {
   const f = new Frame(scene, { w: 1040, h: 600, title: 'Карта', y: 340, backdropDepth: 7990 });
   const { pos, edges } = layoutWorld(maps, visited, start);
   const keys = Object.keys(pos);
@@ -83,12 +84,16 @@ export function openWorldMap(scene, { maps, visited, current, start }) {
     const box = f.add(plate(scene, here ? 'button' : 'label', s(nx), s(ny), s(bw + 8), s(NH + 8)).setAlpha(been ? 1 : 0.6), 6);
     if (here) box.setTint?.(0xffe2b0);
     const name = been ? (maps[k].name || k) : '?';
-    const t = f.add(scene.add.text(s(nx), s(ny), name, {
-      fontFamily: FONT, fontSize: `${s(12)}px`, color: here ? COLOR.goldHi : been ? COLOR.text : COLOR.dim,
+    const status = been && maps[k].worldMapStatus?.find(({ showIf }) => checkRequires(showIf, ws).ok);
+    const t = f.add(scene.add.text(s(nx), s(ny - (status ? 8 : 0)), name, {
+      fontFamily: FONT, fontSize: `${s(status ? 11 : 12)}px`, color: here ? COLOR.goldHi : been ? COLOR.text : COLOR.dim,
       align: 'center', wordWrap: { width: s(NW - 10), useAdvancedWrap: true }, stroke: '#000', strokeThickness: s(1.5),
     }).setOrigin(0.5), 7);
     if (t.height * (scene.cameras.main.zoom || 1) > NH - 4) t.setFontSize(s(11));
     box.setDepth(t.depth - 1);
+    if (status) {
+      f.text(nx, ny + 8, status.text, 'small', { color: COLOR.bone }).setOrigin(0.5).setDepth(t.depth);
+    }
   });
   f.text(x + w / 2, y + h - 14, 'Золотая рамка: вы здесь. «?»: место рядом, где отряд ещё не был.', 'small').setOrigin(0.5, 0);
   return f;

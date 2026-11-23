@@ -16,7 +16,7 @@
         { "label": "Уйти.", "style": "retreat", "close": true }
       ]
     },
-    "pass_open": { "speaker": "narrator", "text": "Дозорный читает знак. Латники отступают, проход свободен." },
+    "pass_open": { "speaker": "narrator", "text": "Дозорный читает знак. Латники отступают, проход свободен.", "effects": { "finishEncounter": "mountain_pass" } },
     "pass_won": { "speaker": "narrator", "text": "Перевал свободен.", "effects": { "setFlag": "mountain_pass_won", "giveItem": "dwarf_ore" } },
 
     "king": {
