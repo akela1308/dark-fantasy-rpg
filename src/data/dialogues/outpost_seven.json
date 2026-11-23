@@ -1,0 +1,38 @@
+{
+  "id": "outpost_seven",
+  "speakers": {
+    "narrator": { "name": "" }
+  },
+  "start": [
+    { "showIf": { "flag": "outpost_seven_mark_inspected" }, "node": "found_again" },
+    { "showIf": { "flag": "book_post_seven_log_read" }, "node": "recognize" },
+    { "node": "unknown" }
+  ],
+  "nodes": {
+    "signpost": {
+      "speaker": "narrator",
+      "text": "Под снегом ещё видны слова: «Пост № 7». Стрелка указывает на северный отворот тракта."
+    },
+    "unknown": {
+      "speaker": "narrator",
+      "text": "На дереве вырезана семёрка в круге. Рядом неглубокая щель, забитая пылью."
+    },
+    "recognize": {
+      "speaker": "narrator",
+      "text": "Та самая семёрка в круге. Влас писал, что искать нужно под знаком.",
+      "choices": [
+        { "label": "Осмотреть семёрку в круге.", "next": "found" },
+        { "label": "Отойти.", "style": "retreat", "close": true }
+      ]
+    },
+    "found": {
+      "speaker": "narrator",
+      "text": "Из щели выглядывает уголок бумаги. На обрывке уцелела одна строка: «Держать пост до смены».",
+      "effects": { "setFlag": "outpost_seven_mark_inspected" }
+    },
+    "found_again": {
+      "speaker": "narrator",
+      "text": "Под семёркой всё тот же обрывок: «Держать пост до смены»."
+    }
+  }
+}

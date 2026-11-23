@@ -974,6 +974,10 @@
     ],
     "outcomes": [
       {
+        "flag": "outpost_seven_mark_inspected",
+        "text": "Под знаком семёрки в казарме нашли обрывок: «Держать пост до смены»."
+      },
+      {
         "flag": "letter_opened",
         "text": "Письмо вскрыто."
       },

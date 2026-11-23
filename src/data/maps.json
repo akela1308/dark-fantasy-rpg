@@ -18173,6 +18173,18 @@
     ],
     "tavernEntry": null,
     "bandits": false,
+    "doors": [
+      {
+        "id": "post_seven_signpost",
+        "x": 548,
+        "y": 241,
+        "w": 153,
+        "h": 255,
+        "label": "Пост № 7",
+        "dialogue": "outpost_seven",
+        "node": "signpost"
+      }
+    ],
     "npcs": [],
     "props": [
       {
@@ -18640,6 +18652,17 @@
     ],
     "tavernEntry": null,
     "bandits": false,
+    "doors": [
+      {
+        "id": "post_seven_mark",
+        "x": 884,
+        "y": 397,
+        "w": 52,
+        "h": 45,
+        "label": "Осмотреть семёрку в круге",
+        "dialogue": "outpost_seven"
+      }
+    ],
     "npcs": [],
     "props": [],
     "encounters": [],
