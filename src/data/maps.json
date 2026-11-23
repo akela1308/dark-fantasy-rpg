@@ -1021,7 +1021,7 @@
         "id": "korvin_men",
         "name": "Люди Корвина",
         "x": 760,
-        "y": 690,
+        "y": 570,
         "spriteKey": "map_bandit_warrior",
         "portraitKey": "portrait_bandit_warrior",
         "height": 150,
